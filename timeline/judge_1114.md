@@ -46,7 +46,7 @@ The client uses only the Python standard library and needs a running Docker engi
 
 ```json
 {
-  "judge_version": "0.2.0", "suite": "public", "task_id": "lcb-atcoder-abc393_a",
+  "judge_version": "0.2.1", "suite": "public", "task_id": "lcb-atcoder-abc393_a",
   "tests_sha256": "…", "code_sha256": "…", "time_limit_s": 6.0,
   "status": "candidate_failure",
   "passed": 1, "total": 2,
@@ -156,13 +156,14 @@ flowchart LR
   - Privileges: `--cap-drop ALL --cap-add SETUID,SETGID,KILL,CHOWN,FOWNER`, `no-new-privileges`.
   - Resources: fixed `--cpus` and `--memory`.
 - **Submissions cannot read the tests.** The suite is streamed into the container's tmpfs at startup with `tar | docker exec -i … tar x`. It is not bind-mounted, and is owned by root with mode 0600.
-- **Each submission runs in a worker slot.** Each slot has its own unprivileged user and scratch directory, and each case runs in a fresh process group with rlimits:
+- **Each submission runs in a worker slot.** Each slot has its own unprivileged user and scratch directory, and its code is readable only by that slot, and each case runs in a fresh process group with rlimits:
   - Address space: 1 GiB
   - CPU time: time limit plus 1 s
   - File size: 16 MiB
-  - Processes: 64
+  - Processes and threads: 4 per slot (enough for the threading recursion trick)
 
   After each call, all of that slot's processes are killed and its directory is wiped.
+- **Container reuse is checked.** `Judge.public()` reuses a running container only if it runs the same image ID and holds exactly the requested tests; otherwise it recreates it.
 - **Concurrency is limited by the slots.** The number of slots equals the container's CPU count. Calls wait for a free slot, so parallel runs do not cause false TLEs.
 
 ## 7. Open decisions

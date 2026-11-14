@@ -7,6 +7,7 @@
 See timeline/judge_1114.md for the result schema. Requires a running Docker engine
 (Docker Desktop, OrbStack or Colima).
 """
+import hashlib
 import io
 import json
 import os
@@ -17,11 +18,11 @@ from pathlib import Path
 
 __all__ = ["Judge", "JudgeError", "IMAGE", "JUDGE_VERSION"]
 
-JUDGE_VERSION = "0.2.0"
+JUDGE_VERSION = "0.2.1"
 IMAGE = os.environ.get("JUDGE_IMAGE", f"csc2108-judge:{JUDGE_VERSION}")
 EVAL_ROOT = Path(__file__).resolve().parent.parent
 SUITES = ("public", "hidden")
-NPROC_PER_SLOT = 64
+NPROC_PER_SLOT = 4      # must match NPROC_LIMIT in container/judge.py
 
 
 class JudgeError(RuntimeError):
@@ -79,44 +80,64 @@ class Judge:
         return judge
 
     def _call(self, *args, stdin=None, timeout=120):
-        return subprocess.run([self.docker, *args], input=stdin, capture_output=True,
-                              timeout=timeout)
+        try:
+            return subprocess.run([self.docker, *args], input=stdin, capture_output=True,
+                                  timeout=timeout)
+        except OSError as error:  # e.g. the docker binary disappeared
+            raise JudgeError(f"cannot run docker: {error}") from error
 
-    def _state(self):
-        proc = self._call("inspect", "-f", "{{.State.Running}} {{.Config.Image}}", self.name)
+    def _image_id(self):
+        proc = self._call("image", "inspect", "-f", "{{.Id}}", self.image)
+        if proc.returncode != 0:
+            raise JudgeError(f"image {self.image} not found; build it with judge/setup.sh")
+        return proc.stdout.decode().strip()
+
+    def _container_image_id(self):
+        """Image ID of the running container, or None if it is not running."""
+        proc = self._call("inspect", "-f", "{{.State.Running}} {{.Image}}", self.name)
         if proc.returncode != 0:
             return None
-        running, image = proc.stdout.decode().split()
-        return running == "true", image
+        running, image_id = proc.stdout.decode().split()
+        return image_id if running == "true" else None
+
+    def fingerprint(self, archive):
+        """Identity of what would be loaded: suite, container settings and test bytes."""
+        digest = hashlib.sha256(f"{self.suite}\0{self.cpus}\0".encode())
+        digest.update(archive)
+        return digest.hexdigest()
 
     def up(self, force=False):
-        """Start (or reuse) the container and load the suite. Returns `info()`."""
-        state = self._state()
-        if state and not force and state == (True, self.image):
+        """Start the container and load the suite, or reuse a container that runs the
+        same image ID with the same fingerprint. Returns `info()`."""
+        archive = self._suite_archive()
+        fingerprint = self.fingerprint(archive)
+        image_id = self._image_id()
+        if not force and self._container_image_id() == image_id:
             try:
                 info = self.info()
-                if info["suite"] == self.suite and (self.tasks is None
-                                                    or info["tasks"] == self.tasks):
+                if info.get("fingerprint") == fingerprint:
                     return info
             except JudgeError:
                 pass
         self.down()
         proc = self._call("run", "-d", "--name", self.name,
                           "--label", f"csc2108.judge.suite={self.suite}",
-                          *container_flags(self.cpus), self.image, "sleep", "infinity")
+                          *container_flags(self.cpus), image_id, "sleep", "infinity")
         if proc.returncode != 0:
             raise JudgeError(f"docker run failed: {proc.stderr.decode().strip()}")
-        self.load()
+        self.load(archive, fingerprint)
         return self.info()
 
     def down(self):
         self._call("rm", "-f", self.name)
 
-    def load(self):
+    def load(self, archive=None, fingerprint=None):
         """Stream the suite's tests into the container (no bind mount)."""
-        archive = self._suite_archive()
+        archive = archive if archive is not None else self._suite_archive()
+        fingerprint = fingerprint or self.fingerprint(archive)
         proc = self._call("exec", "-i", "-u", "0", self.name, "judge", "load",
-                          "--suite", self.suite, stdin=archive, timeout=600)
+                          "--suite", self.suite, "--fingerprint", fingerprint,
+                          stdin=archive, timeout=600)
         if proc.returncode != 0:
             raise JudgeError(f"judge load failed: {proc.stderr.decode().strip()}")
 
@@ -141,7 +162,7 @@ class Judge:
                     raise JudgeError(f"no {self.suite} tests for {task_id} at {tests}")
                 for path in sorted(tests.iterdir()):
                     if path.suffix in (".in", ".out"):
-                        archive.add(path, arcname=f"{task_id}/{path.name}", recursive=False)
+                        _add_bytes(archive, f"{task_id}/{path.name}", path.read_bytes())
                 _add_bytes(archive, f"{task_id}/task.json",
                            json.dumps({"time_limit_s": meta.get("time_limit_s", 6.0)}).encode())
         return buffer.getvalue()
@@ -176,6 +197,8 @@ class Judge:
                 status, data = self._json(*args, stdin=source, timeout=timeout)
             except subprocess.TimeoutExpired:
                 status, data = -1, {"error": f"no result within {timeout} s"}
+            except JudgeError as error:  # docker could not be run at all
+                status, data = -1, {"error": str(error)}
             if status == 0 and data and "status" in data:
                 return data
             last = data
@@ -183,6 +206,7 @@ class Judge:
             return last
         error = (last or {}).get("error", "judge produced no result")
         return {"judge_version": None, "suite": self.suite, "task_id": task_id,
+                "code_sha256": hashlib.sha256(source).hexdigest(),
                 "status": "infrastructure_error", "passed": 0, "total": 0,
                 "verdict_counts": {}, "cases": [], "first_failure": None, "error": error,
                 "report": f"{self.suite.upper()} TESTS: infrastructure error ({error})"}
@@ -195,6 +219,7 @@ class Judge:
 
 
 def _add_bytes(archive, name, data):
+    """Deterministic member (fixed mtime, owner and mode) so the fingerprint is stable."""
     info = tarfile.TarInfo(name)
-    info.size = len(data)
+    info.size, info.mtime, info.mode = len(data), 0, 0o644
     archive.addfile(info, io.BytesIO(data))

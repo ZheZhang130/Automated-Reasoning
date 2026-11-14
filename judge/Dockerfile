@@ -1,5 +1,5 @@
 # csc2108-judge: the judge black box (see timeline/judge_1114.md).
-# Build from the judge/ directory:  docker build -t csc2108-judge:0.2.0 .
+# Build from the judge/ directory:  docker build -t csc2108-judge:0.2.1 .
 # Start it with judgekit (python -m judgekit up), which sets the required flags.
 FROM python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
 
@@ -15,7 +15,7 @@ RUN printf '#!/bin/sh\nexec python3 -I /opt/judge/judge.py "$@"\n' > /usr/local/
     && chmod 755 /usr/local/bin/judge /opt/judge && chmod 644 /opt/judge/judge.py
 
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
-LABEL org.csc2108.judge.version="0.2.0"
+LABEL org.csc2108.judge.version="0.2.1"
 USER root
 WORKDIR /
 CMD ["sleep", "infinity"]

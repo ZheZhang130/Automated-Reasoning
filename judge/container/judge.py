@@ -34,7 +34,7 @@ import time
 from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
-JUDGE_VERSION = "0.2.0"
+JUDGE_VERSION = "0.2.1"
 
 STATE_DIR = Path("/var/judge")          # tmpfs, root only (mode 0700)
 SUITE_DIR = STATE_DIR / "suite"         # loaded tests, root only
@@ -52,7 +52,7 @@ SLOT_WAIT_S = 1800
 DEFAULT_TIME_LIMIT = 6.0
 MEMORY_LIMIT = 1 << 30                  # address space per process
 FILE_SIZE_LIMIT = 16 << 20
-NPROC_LIMIT = 64
+NPROC_LIMIT = 4                         # processes + threads per slot user (keeps slots from starving each other)
 OUTPUT_CAP = 1 << 20                    # stdout bytes kept per case
 STDERR_CAP = 64 << 10
 CODE_CAP = 1 << 20
@@ -88,7 +88,10 @@ def outputs_match(actual, expected):
         if a == b:
             continue
         da, db = _decimals(a), _decimals(b)
-        if da is None or db is None or da != db:
+        try:
+            if da is None or db is None or da != db:
+                return False
+        except InvalidOperation:  # e.g. sNaN: malformed output, not a judge failure
             return False
     return True
 
@@ -227,11 +230,15 @@ class Slot:
         os.chown(self.work, self.uid, self.gid)
 
     def write_code(self, code):
+        """root:runner-k 0750 / 0640: this slot can read its code, other slots cannot."""
         _remove(self.code_dir)
-        self.code_dir.mkdir(mode=0o755)
+        self.code_dir.mkdir(mode=0o750)
+        os.chown(self.code_dir, 0, self.gid)
+        self.code_dir.chmod(0o750)
         path = self.code_dir / "solution.py"
         path.write_bytes(code)
-        path.chmod(0o644)
+        os.chown(path, 0, self.gid)
+        path.chmod(0o640)
         return path
 
     def release(self):
@@ -264,6 +271,13 @@ def _read_capped(handle, cap):
     return data[:cap].decode("utf-8", "replace"), len(data) > cap
 
 
+def _read_tail(handle, cap):
+    """The last `cap` bytes, so a long stderr still ends with the traceback."""
+    size = handle.seek(0, os.SEEK_END)
+    handle.seek(max(0, size - cap))
+    return handle.read(cap).decode("utf-8", "replace")
+
+
 def run_case(slot, solution, case_in, case_out, time_limit):
     slot.reset()
     env = {"PATH": "/usr/local/bin:/usr/bin:/bin", "HOME": str(slot.work),
@@ -292,7 +306,7 @@ def run_case(slot, solution, case_in, case_out, time_limit):
         elapsed = time.monotonic() - start
         kill_uid(slot.uid)
         stdout, overflow = _read_capped(out, OUTPUT_CAP)
-        stderr, _ = _read_capped(err, STDERR_CAP)
+        stderr = _read_tail(err, STDERR_CAP)
     case = {"time_s": round(elapsed, 3), "stdout": stdout, "stderr": stderr}
     if timed_out or code == -signal.SIGXCPU:
         case["verdict"] = "TLE"
@@ -315,6 +329,12 @@ def _clip(text, cap=REPORT_FIELD_CAP):
     return text if len(text) <= cap else text[:cap] + f"\n... [truncated, {len(text)} chars total]"
 
 
+def _clip_tail(text, cap=REPORT_FIELD_CAP):
+    """Like _clip but keeps the end (for stderr, where the traceback is last)."""
+    text = text or ""
+    return text if len(text) <= cap else f"[truncated, {len(text)} chars total] ...\n" + text[-cap:]
+
+
 def _read_text(path):
     return Path(path).read_text(encoding="utf-8", errors="replace")
 
@@ -327,7 +347,7 @@ def _first_failure(cases, paths):
     if failing["verdict"] in ("MISSING", "INFRA"):
         return first
     if failing["verdict"] == "CE":
-        first["stderr_tail"] = _clip(failing.get("stderr", ""))
+        first["stderr_tail"] = _clip_tail(failing.get("stderr", ""))
         return first
     case_in, case_out = paths[failing["name"]]
     first["input"] = _clip(_read_text(case_in))
@@ -335,7 +355,7 @@ def _first_failure(cases, paths):
         first["expected"] = _clip(_read_text(case_out))
         first["actual"] = _clip(failing.get("stdout", ""))
     tail = "\n".join(failing.get("stderr", "").rstrip().splitlines()[-STDERR_TAIL_LINES:])
-    first["stderr_tail"] = _clip(tail)
+    first["stderr_tail"] = _clip_tail(tail)
     if failing.get("note"):
         first["note"] = failing["note"]
     return first
@@ -365,12 +385,16 @@ def format_report(suite, passed, total, first, error=None):
     return "\n".join(lines)
 
 
-def judge_task(code, task_id, task_dir, time_limit, suite, tests_sha256=None):
-    """Judge one submission. Raises JudgeFailure only for judge-side problems."""
+def judge_task(code, task_id, task_dir, time_limit, suite, tests_sha256=None, code_sha256=None):
+    """Judge one submission. Raises JudgeFailure only for judge-side problems.
+
+    `code` may be a bounded prefix of the submission; `code_sha256` is then the
+    hash of the complete submission.
+    """
     cases_on_disk = list_cases(task_dir)
     paths = {name: (inp, out) for name, inp, out in cases_on_disk}
     result = {"judge_version": JUDGE_VERSION, "suite": suite, "task_id": task_id,
-              "tests_sha256": tests_sha256, "code_sha256": sha256_bytes(code),
+              "tests_sha256": tests_sha256, "code_sha256": code_sha256 or sha256_bytes(code),
               "time_limit_s": time_limit}
 
     def every(verdict, **extra):
@@ -414,9 +438,9 @@ def judge_task(code, task_id, task_dir, time_limit, suite, tests_sha256=None):
     return result
 
 
-def infra_result(error, suite=None, task_id=None, code=None, time_limit=None):
+def infra_result(error, suite=None, task_id=None, code_sha256=None, time_limit=None):
     return {"judge_version": JUDGE_VERSION, "suite": suite, "task_id": task_id,
-            "tests_sha256": None, "code_sha256": sha256_bytes(code) if code is not None else None,
+            "tests_sha256": None, "code_sha256": code_sha256,
             "time_limit_s": time_limit, "status": INFRA, "passed": 0, "total": 0,
             "verdict_counts": {}, "cases": [], "first_failure": None, "error": error,
             "report": format_report(suite or "judge", 0, 0, None, error=error)}
@@ -476,6 +500,7 @@ def cmd_load(args):
     overall = hashlib.sha256("".join(f"{t}:{m['tests_sha256']}\n"
                                      for t, m in sorted(tasks.items())).encode()).hexdigest()
     meta = {"judge_version": JUDGE_VERSION, "suite": args.suite, "loaded_at": _now(),
+            "fingerprint": args.fingerprint,
             "n_tasks": len(tasks), "tests_sha256": overall, "tasks": tasks}
     fd = os.open(SUITE_META, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
     with os.fdopen(fd, "w") as handle:
@@ -486,14 +511,25 @@ def cmd_load(args):
 def cmd_info(args):
     meta = read_suite_meta()
     print(json.dumps({"judge_version": JUDGE_VERSION, "suite": meta["suite"],
+                      "fingerprint": meta.get("fingerprint"),
                       "loaded_at": meta["loaded_at"], "n_tasks": meta["n_tasks"],
                       "tests_sha256": meta["tests_sha256"], "slots": n_slots(),
                       "tasks": sorted(meta["tasks"])}))
     return 0
 
 
+def read_submission(stream):
+    """Hash all of stdin but keep at most CODE_CAP + 1 bytes for judging."""
+    digest, kept = hashlib.sha256(), bytearray()
+    while chunk := stream.read(1 << 16):
+        digest.update(chunk)
+        if len(kept) <= CODE_CAP:
+            kept += chunk[:CODE_CAP + 1 - len(kept)]
+    return bytes(kept), digest.hexdigest()
+
+
 def cmd_run(args):
-    code = sys.stdin.buffer.read(CODE_CAP + 1)
+    code, code_sha = read_submission(sys.stdin.buffer)
     suite = None
     try:
         meta = read_suite_meta()
@@ -503,10 +539,10 @@ def cmd_run(args):
             raise JudgeFailure(f"unknown task: {args.task}")
         time_limit = args.time_limit or task["time_limit_s"]
         result = judge_task(code, args.task, SUITE_DIR / args.task, time_limit, suite,
-                            task["tests_sha256"])
+                            task["tests_sha256"], code_sha)
     except Exception as error:  # noqa: BLE001 - every judge-side failure becomes INFRA
         detail = str(error) if isinstance(error, JudgeFailure) else f"{type(error).__name__}: {error}"
-        print(json.dumps(infra_result(detail, suite, args.task, code, args.time_limit)))
+        print(json.dumps(infra_result(detail, suite, args.task, code_sha, args.time_limit)))
         return 2
     print(json.dumps(result))
     return 0
@@ -596,6 +632,7 @@ def main(argv=None):
     sub = parser.add_subparsers(dest="command", required=True)
     load = sub.add_parser("load", help="load a test suite from a tar archive on stdin")
     load.add_argument("--suite", required=True)
+    load.add_argument("--fingerprint", default=None, help="host-side identity of the archive")
     sub.add_parser("info", help="describe the loaded suite")
     run = sub.add_parser("run", help="judge source code from stdin")
     run.add_argument("--task", required=True)
