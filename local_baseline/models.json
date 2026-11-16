@@ -1,0 +1,5 @@
+{
+  "qwen3.5:9b": {"thinking": false},
+  "qwen2.5-coder:14b": {"thinking": null},
+  "qwen2.5-coder:7b": {"thinking": null}
+}

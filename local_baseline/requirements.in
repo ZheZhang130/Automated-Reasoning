@@ -1,0 +1,4 @@
+mini-swe-agent==2.4.6
+# Compatible mature wheels load under this machine's Smart App Control policy.
+pydantic==2.12.5
+litellm==1.81.16
