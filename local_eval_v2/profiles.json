@@ -1,0 +1,15 @@
+{
+  "heredoc-v4-8k": {"context": 8192, "protocol": "text", "thinking": false, "output_tokens": 4096},
+  "heredoc-v4-16k": {"context": 16384, "protocol": "text", "thinking": false, "output_tokens": 4096},
+  "heredoc-v4-32k": {"context": 32768, "protocol": "text", "thinking": false, "output_tokens": 4096},
+  "heredoc-v4-16k-thinking": {"context": 16384, "protocol": "text", "thinking": true, "output_tokens": 4096},
+  "native-v4-16k": {"context": 16384, "protocol": "native", "thinking": false, "output_tokens": 4096},
+  "heredoc-v5-8k": {"context": 8192, "protocol": "text", "thinking": false, "output_tokens": 4096},
+  "heredoc-v5-16k": {"context": 16384, "protocol": "text", "thinking": false, "output_tokens": 4096},
+  "heredoc-v5-32k": {"context": 32768, "protocol": "text", "thinking": false, "output_tokens": 4096},
+  "heredoc-v5-16k-thinking": {"context": 16384, "protocol": "text", "thinking": true, "output_tokens": 4096},
+  "native-v5-16k": {"context": 16384, "protocol": "native", "thinking": false, "output_tokens": 4096},
+  "native-v6-16k": {"context": 16384, "protocol": "native", "thinking": false, "output_tokens": 4096},
+  "heredoc-v5-16k-t02": {"context": 16384, "protocol": "text", "thinking": false, "output_tokens": 4096, "temperature": 0.2},
+  "heredoc-v6-16k-common": {"context": 16384, "protocol": "text", "thinking": false, "output_tokens": 4096, "temperature": 0.2, "sampler": {"top_k": 40, "top_p": 0.9, "min_p": 0.0, "repeat_penalty": 1.0, "repeat_last_n": 64, "presence_penalty": 0.0, "frequency_penalty": 0.0}}
+}

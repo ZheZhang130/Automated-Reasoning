@@ -1,0 +1,2 @@
+* text eol=lf
+evaluation_manifest.json -text whitespace=cr-at-eol

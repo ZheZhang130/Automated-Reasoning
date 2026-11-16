@@ -1,0 +1,451 @@
+{
+  "dataset": "livecodebench/code_generation_lite",
+  "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+  "release": "release_v6",
+  "slice": "v6 (test6.jsonl; newest component only)",
+  "source_file": "test6.jsonl",
+  "source_sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5",
+  "evaluator_revision": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+  "selection_rule": "8 easy/10 medium/6 hard; latest compatible slice; round-robin platforms within difficulty, newest date first; max two tasks per platform/contest; stdin or JSON functional interfaces; exclude custom node types and image statements",
+  "excluded": [
+    "atcoder-abc301_a",
+    "atcoder-abc301_c",
+    "atcoder-abc301_e"
+  ],
+  "development_tasks": [
+    "dev-negative-squares",
+    "dev-balanced-delimiters",
+    "dev-ascii-case",
+    "dev-functional-distinct"
+  ],
+  "eligible_counts": {
+    "('atcoder', 'easy', True)": 26,
+    "('atcoder', 'hard', True)": 60,
+    "('atcoder', 'medium', True)": 26,
+    "('leetcode', 'easy', True)": 17,
+    "('leetcode', 'medium', True)": 26,
+    "('leetcode', 'hard', True)": 20
+  },
+  "tasks": [
+    {
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "question_id": "abc400_b",
+      "contest_id": "abc400",
+      "contest_date": "2025-04-05T00:00:00",
+      "task_id": "atcoder-abc400_b",
+      "line_number": 82,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "bb6fb000b72498558f8d650db6505741663c94381c2a3cbb0754645ee81fd243",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "dff28d3dd01222c3b23fbadef53cb61233d6dcda7e9950c0fff9f2be8b052449",
+        "task.json": "0670e2f24992f2b6f0c6cc3b6f39c4100a11a37682ad4302387553c804720820"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "easy",
+      "question_id": "3773",
+      "contest_id": "weekly-contest-444",
+      "contest_date": "2025-04-05T19:30:00",
+      "task_id": "leetcode-3773",
+      "line_number": 155,
+      "submission_type": "functional",
+      "function_name": "minimumPairRemoval",
+      "private_row_sha256": "5c31096f1ff88fc71b902972d5e681b73865de9304d5173a62fe915259dd3d25",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "daab9c82e051103ca034a76ad6253dc822d32ddb64b8b11c3fb0311433c78bdd",
+        "solution.py": "28419c12320fadca1700ef4657c2fcddef3705d4f995924f14bce313edd35228",
+        "task.json": "6e3b44430fe0d74141f1bc493ef4804e07c83bcf4356a5811cd69c106564eb60"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "question_id": "abc400_a",
+      "contest_id": "abc400",
+      "contest_date": "2025-04-05T00:00:00",
+      "task_id": "atcoder-abc400_a",
+      "line_number": 81,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "e9b346041cda25b25a0446f93d8742197ba22132fdf82e86e05d72a0f6964e7a",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "073ddd40d9019f2768a8902c269e04f866e52edc70f24e42cb9ce445c00941b2",
+        "task.json": "d4a04ca882f0e8b58740f548d1c31d0f0a322b9b79b5e117252daf87546900b6"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "easy",
+      "question_id": "3832",
+      "contest_id": "weekly-contest-443",
+      "contest_date": "2025-03-29T19:30:00",
+      "task_id": "leetcode-3832",
+      "line_number": 152,
+      "submission_type": "functional",
+      "function_name": "minCosts",
+      "private_row_sha256": "ea110223c76a7f2f20830f10e6619fdbba70b53f262e1394753e62e5503e1c0a",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "5542ec90c0044ddfc9259d29569a00e36207aa36d9d85ed123ecee99f089b3b7",
+        "solution.py": "fdacbc4204c5e65fc3dd6780899ba94f291fc7f7f73e096e80420b5426b9f134",
+        "task.json": "419471561b91a3e99826ffd4b5ab37494b8c1f9c70e3e705731f49dad9b0db65"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "question_id": "abc399_b",
+      "contest_id": "abc399",
+      "contest_date": "2025-03-29T00:00:00",
+      "task_id": "atcoder-abc399_b",
+      "line_number": 78,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "afdf5d8d6c08f0a723d55406b64ef41eb4ad7f6e55a5fb044b9a3a1c6069b24f",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "d5cefa95f3c66e1ca6a75fda890df04d50846641af51fdba7d23e15f5f57296e",
+        "task.json": "a012d1527bd581ad3c555d496f79b3895db6ca2a0b66cd574cffd4448d123519"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "easy",
+      "question_id": "3811",
+      "contest_id": "biweekly-contest-153",
+      "contest_date": "2025-03-29T07:30:00",
+      "task_id": "leetcode-3811",
+      "line_number": 172,
+      "submission_type": "functional",
+      "function_name": "reverseDegree",
+      "private_row_sha256": "7bf7bafb47051a4b51365adec0831ef251f77a38c20d053816a5f68b698f0a6c",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "42421ee3fc41372320d95f10b177ec66ccf4b3fa19ff98321801fcd74b68c2c0",
+        "solution.py": "d8059871ecde83805d7de14e98437db89fbd4a523484c4b8d3641ce83ed3cd31",
+        "task.json": "3d17dcc910c0b0e7f0dd62d04f8faf29d76fb5d7446664d6bca4f3319d47d5bc"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "question_id": "abc399_a",
+      "contest_id": "abc399",
+      "contest_date": "2025-03-29T00:00:00",
+      "task_id": "atcoder-abc399_a",
+      "line_number": 75,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "64155b74bf79e7860a0b0c2a76c86ac68087dc5102338f3b8182a29b0e1f3d5b",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "41d4b6dfff3cd46e576a20fd2dca7dc462dfe1e20e15132b5bfb207d1873df54",
+        "task.json": "eb0a7cf0eda22de0f1d0994c48cfd0a5c2c11aade699b08ef9ddaf977c02b0c6"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "easy",
+      "question_id": "3817",
+      "contest_id": "weekly-contest-442",
+      "contest_date": "2025-03-22T19:30:00",
+      "task_id": "leetcode-3817",
+      "line_number": 148,
+      "submission_type": "functional",
+      "function_name": "maxContainers",
+      "private_row_sha256": "6e51bd4bd5c3876af8ee72638e945d5360924e832626677856ff22c68f7315b4",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "b560bf7a281d18fa3aabf76b432797716a674a665491bf5282367c2bf9e47eef",
+        "solution.py": "3fa32a96ad56c156d79821b577b2bc20392df17f41657d757fd17436c0ad7e87",
+        "task.json": "46ea7e41058c07c9c12393e0ff0c70a29a65932de0de5314ef512d679bd92c31"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "question_id": "arc195_a",
+      "contest_id": "arc195",
+      "contest_date": "2025-03-23T00:00:00",
+      "task_id": "atcoder-arc195_a",
+      "line_number": 107,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "7677afe166521dd7fab40a22dd0eea669db8061dcb5e229e522c0ee09f677e5e",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "5ff1e878396f84a7aaa0ff19b877536d6c594e401c57696977dc7872b3fb93d6",
+        "task.json": "5ee88eff4596e4af9ff70b89316987944a6c559c6bc9be8bd01fcd73acebd682"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "medium",
+      "question_id": "3793",
+      "contest_id": "weekly-contest-443",
+      "contest_date": "2025-03-29T19:30:00",
+      "task_id": "leetcode-3793",
+      "line_number": 153,
+      "submission_type": "functional",
+      "function_name": "longestPalindrome",
+      "private_row_sha256": "9767391306771d9c5699cd07eacddb06349c09adea666c9fc690d129b8916dc3",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "9261aa255fe55d277ef6ff1a83bcdd79969b9db287c24a707267069460abb0b0",
+        "solution.py": "bf52a5b6e782142409bc0d0625678a27732ff7731cd816bf74e30293f70c1d90",
+        "task.json": "54f7661b7921b544733c4bceb47af633115f6cbcdf288e4d33ee73d2756da786"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "question_id": "abc398_c",
+      "contest_id": "abc398",
+      "contest_date": "2025-03-22T00:00:00",
+      "task_id": "atcoder-abc398_c",
+      "line_number": 71,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "d45e4755ef675c9d1e414388d39efa9456f919078697680514a27f44741670f6",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "fef1cba386779609203a142222236e8e3c8ec4cd3bfaa4b90321a0a286f44f78",
+        "task.json": "58d14d63597bf24b2f1a4f9b8a4896da62b7c84a10cd028b86a60e69ecf66445"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "medium",
+      "question_id": "3805",
+      "contest_id": "biweekly-contest-153",
+      "contest_date": "2025-03-29T07:30:00",
+      "task_id": "leetcode-3805",
+      "line_number": 173,
+      "submission_type": "functional",
+      "function_name": "maxActiveSectionsAfterTrade",
+      "private_row_sha256": "c54d4417d587f538318142f7fec2c0c79cd424a02bd6e99b8738f051f094374e",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "ec3dd3237081d217cc6635b89f3e294b656e047f6553cc0845085ea76906cb89",
+        "solution.py": "a08c0010ff056cbb602f9a57bd704949770df8c19d4b1abb93359bba4611c484",
+        "task.json": "5231cb2e2a7228590ad1fba0d39e50444646cf8d44873678d608b506a9255638"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "question_id": "abc398_b",
+      "contest_id": "abc398",
+      "contest_date": "2025-03-22T00:00:00",
+      "task_id": "atcoder-abc398_b",
+      "line_number": 68,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "44c75c6104483bc0b7b41d05130041e70fcf64e2baba2b297133c64f5e29594a",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "d38372d28112adc0bbc7d8fea81d85e84cd450a205f04f6b613b82a40fb9b862",
+        "task.json": "ce46148c6905107122bfc72dba83accf8a266da8ca059679d4408200d5624ff9"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "medium",
+      "question_id": "3809",
+      "contest_id": "weekly-contest-442",
+      "contest_date": "2025-03-22T19:30:00",
+      "task_id": "leetcode-3809",
+      "line_number": 149,
+      "submission_type": "functional",
+      "function_name": "numberOfComponents",
+      "private_row_sha256": "96b9a18770e29ea5a39e0d48cd933b5878beaeafe296828e21e4b31f7249236f",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "f60c1bfd16e16f8b2d284625c0e7e8a0eed4c8472d89b850ef0d31d122418936",
+        "solution.py": "c99c52f38c6e637e0c1d23090e813fd6546f58fdeff1fa86c63c477d939e7c9f",
+        "task.json": "850ad944c6cb7184e6fb2223882b713cf78041b31c96357287f527e8cb461078"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "question_id": "abc397_c",
+      "contest_id": "abc397",
+      "contest_date": "2025-03-15T00:00:00",
+      "task_id": "atcoder-abc397_c",
+      "line_number": 62,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "45ac3336e5450bfd27e381a0285b0dbdab378cb39b091f048633a3bf64187395",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "e6ac757495a1d8683e83c2fc92d7a3ef0edafe2bed5d38fdb436445af5a38470",
+        "task.json": "f41f32051db057d08773ac054b1fbd07147da4807df8386a7d1dfc87d760556d"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "medium",
+      "question_id": "3795",
+      "contest_id": "weekly-contest-441",
+      "contest_date": "2025-03-15T19:30:00",
+      "task_id": "leetcode-3795",
+      "line_number": 146,
+      "submission_type": "functional",
+      "function_name": "minZeroArray",
+      "private_row_sha256": "e763d1fda4b69de9c27a8f862134cd58d1730d1b6eba429acad74e3ae03852dc",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "980ab30034a936a301402af0f322a2d6555f3afc48bfd1713afc6835027c6c49",
+        "solution.py": "5b1fc6727af58bf94606338253d4b7addc070746bf714a4cd6acdd433f2ef47a",
+        "task.json": "3c43942da37b1502f557bf5f001271e2481a4be451591b1eae6bb8065c18adb9"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "question_id": "abc397_b",
+      "contest_id": "abc397",
+      "contest_date": "2025-03-15T00:00:00",
+      "task_id": "atcoder-abc397_b",
+      "line_number": 66,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "6dcdfc474f62572a4b4f78508e4b38f2b3e6d30aa1129bd2860764ba64a052ca",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "a5efdcc48d8340a43291f58ce50b379ecfdb2b2c2a250bb7c5f1876157c49ed7",
+        "task.json": "89fc8b5b54a3ee016fb3026d63fde20001c0708773f6dc95b22462caf24aedeb"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "medium",
+      "question_id": "3750",
+      "contest_id": "weekly-contest-441",
+      "contest_date": "2025-03-15T19:30:00",
+      "task_id": "leetcode-3750",
+      "line_number": 145,
+      "submission_type": "functional",
+      "function_name": "solveQueries",
+      "private_row_sha256": "b4d52697b59d1f50923e08858dd94d4f10d8c3a263885e9f1dd3597db8e13c8c",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "a6d3a88ff9d2b02cd1114ea21bf6e8ab3adeead58cdf71b930d596d12c1c85d6",
+        "solution.py": "c44cb1c8880b2501e0199a85932bd2580547e2d21177d6991c38c7544c0814ac",
+        "task.json": "bda7c36f93744510275b63ed59044c6dcb289fd6134210b05eee02b82c3df9a6"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "question_id": "arc196_d",
+      "contest_id": "arc196",
+      "contest_date": "2025-04-06T00:00:00",
+      "task_id": "atcoder-arc196_d",
+      "line_number": 111,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "8ee09c476eab0e6758656f215066b6dfe6a629d7461a7a312a2417fc1ca403cf",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "d0aeaaaeb525f7974173bb042d3bbc062f7aea438bf679f47c1483c9d76d670c",
+        "task.json": "9288bf1fe44e1c79364adbeca8a38914e0165ff86e8fcfa0ba544b68e51c8781"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "hard",
+      "question_id": "3777",
+      "contest_id": "weekly-contest-444",
+      "contest_date": "2025-04-05T19:30:00",
+      "task_id": "leetcode-3777",
+      "line_number": 156,
+      "submission_type": "functional",
+      "function_name": "maxProduct",
+      "private_row_sha256": "44e012ae16b24c692a4547bb92f8aba0e0d35db8941bf6b9b8971c0e1087c7bc",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "baa0cffa87062835ff3d08eca7e0bfd8e137220b7efbcc01f3c0d4d4b336e8be",
+        "solution.py": "03a2a95ec0fe1d4dae3101da9399ee176ac7ae9ffddf57a671837d805fde3e3c",
+        "task.json": "3fcc9b043ab97b49de3e456b7f8c864a45f14fbdde72c8a4569ac2a26134920a"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "question_id": "arc196_c",
+      "contest_id": "arc196",
+      "contest_date": "2025-04-06T00:00:00",
+      "task_id": "atcoder-arc196_c",
+      "line_number": 109,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "b9fdcbb01aa7eee940e7d393d4300ae0a140ed08239d80e1c41ae82406dbe016",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "6471c80a0595ec7790ff621791f41ef35503c8d2edd1033b2ca4f27b93e1b12c",
+        "task.json": "f2ad2c29884848b552e95e6760128b0851d3078ce959d5fde6b77ea641b72de1"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "hard",
+      "question_id": "3784",
+      "contest_id": "biweekly-contest-152",
+      "contest_date": "2025-03-15T07:30:00",
+      "task_id": "leetcode-3784",
+      "line_number": 171,
+      "submission_type": "functional",
+      "function_name": "longestCommonPrefix",
+      "private_row_sha256": "bdd7b44d095ae11173bda28c80ba383fc9cd7abcd22f82ffdd5bdd0b5e3a8167",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "c200760fe913aabf23bd6bb4978a580e01f6054a6897377c49551842793d7261",
+        "solution.py": "022e95216e46dd4e682d5c27ba2c771b99cfa6513debc98793896b6a65f912d8",
+        "task.json": "310d93b504308394b9bd21379f6aff68904babc4a0ad87e922ccfc1a403c77bd"
+      }
+    },
+    {
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "question_id": "arc195_e",
+      "contest_id": "arc195",
+      "contest_date": "2025-03-23T00:00:00",
+      "task_id": "atcoder-arc195_e",
+      "line_number": 103,
+      "submission_type": "stdin_stdout",
+      "function_name": null,
+      "private_row_sha256": "e8cd3de983005ee33252a7d1029046aece4fe0d03b6f6a1d9e884057e274cb31",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "fb6adfd5b24e06a6ac591d87d7363a7da9a85c4d6e9c938c244d58864f391596",
+        "task.json": "3229a9bd0a0e95abbaa7049bee2fbce6afdf34d50879436ce15e6a4962ee8f74"
+      }
+    },
+    {
+      "platform": "leetcode",
+      "difficulty": "hard",
+      "question_id": "3789",
+      "contest_id": "weekly-contest-440",
+      "contest_date": "2025-03-08T18:30:00",
+      "task_id": "leetcode-3789",
+      "line_number": 143,
+      "submission_type": "functional",
+      "function_name": "maxSubarrays",
+      "private_row_sha256": "88725e4f080256269c63165b2a3803078640a42090875789668711141c1ecbcd",
+      "public_sha256": {
+        "check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+        "public_tests.json": "335253f7d5e0927fe082f578180fac55ac9b685df8964cd35e4d350c6c242950",
+        "solution.py": "3062d2fe0037c4825e49c5be3a68b32c895ee9bf46cc8ea8f5da21ece74d1bd3",
+        "task.json": "0a4bec58a2652fa78dd813e67de5a563a3f6a63a85a9ac030b223f642f9b0c59"
+      }
+    }
+  ]
+}
