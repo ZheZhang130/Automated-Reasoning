@@ -273,5 +273,40 @@
       "frequency_penalty": 0.0
     },
     "query_seconds": 480
+  },
+  "native-general-128k-32k-think": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "heredoc-general-128k-32k-think": {
+    "context": 131072,
+    "protocol": "text",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "query_seconds": 480
   }
 }

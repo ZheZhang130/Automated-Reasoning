@@ -27,6 +27,18 @@ def freeze(args, batch):
     manifest_path = args.manifest.resolve(strict=True)
     manifest = read(manifest_path)
     profiles = read(ROOT / 'profiles.json')
+    final_selection = None
+    if manifest.get('split') == 'heldout':
+        selection_path = ROOT / 'final_selection.json'
+        if not selection_path.exists():
+            raise RuntimeError('Held-out inference requires a committed final configuration selection first')
+        selection = read(selection_path)
+        if any(p not in selection['frozen_configurations'] or profiles[p] != selection['frozen_configurations'][p] for p in args.profiles):
+            raise RuntimeError('Held-out profiles must match the frozen selection')
+        for relative, checksum in selection['runtime_sha256'].items():
+            if digest(REPO / relative) != checksum:
+                raise RuntimeError('Selected runtime changed before held-out')
+        final_selection = {'path': str(selection_path), 'sha256': digest(selection_path), 'selection': selection}
     for profile in args.profiles:
         if profile not in profiles:
             raise ValueError('Unknown profile ' + profile)
@@ -65,6 +77,7 @@ def freeze(args, batch):
         if digest(destination) != checksum:
             raise RuntimeError('Source changed during freeze')
     plan = {'manifest_path': str(manifest_path), 'manifest_sha256': digest(manifest_path), 'manifest': manifest,
+            'final_selection': final_selection,
             'profiles': {p: profiles[p] for p in args.profiles}, 'jobs': jobs, 'tasks': specs,
             'actions': 20, 'repairs': 3, 'seconds': args.seconds, 'model_digest': MODEL_DIGEST,
             'source_sha256': hashes, 'images': images, 'evaluator_revision': EVALUATOR,
@@ -105,6 +118,8 @@ def run(args):
             args.seeds = args.seeds or [2108]
             plan = freeze(args, batch)
         pinned_vendor()
+        if plan.get('final_selection') and digest(plan['final_selection']['path']) != plan['final_selection']['sha256']:
+            raise RuntimeError('Frozen final selection changed')
         for relative, checksum in plan['source_sha256'].items():
             if digest(batch / 'frozen-source' / relative) != checksum:
                 raise RuntimeError('Frozen source corrupted')
