@@ -110,3 +110,7 @@ Replication provenance: seed2108 short-output challenger uses archived optimizat
 ## Repeated selection complete; validation frozen
 
 Seed2109 control4/12 versus challenger5/12. Across both seeds: control8/24,2,073.156 agent seconds,171,860output tokens,31format errors; challenger10/24,1,687.765seconds,133,405tokens,21format errors. Paired gain+8.33percentage points with problem-cluster bootstrap95% interval[-8.33,+25.00]; three challenger-only and one control-only passes. The challenger is on the descriptive three-metric Pareto frontier, but superiority is uncertain. Source/configuration/image/manifest/seed/budget pins are committed in2c3bb17 before held-out inference. All9 tests and compilation pass. The unchanged confirmation/fallback rule applies; no tuning after validation starts.
+
+## Reporting-only budget accounting clarification during validation
+
+The immutable runtime-record budget gate scans result.json files and excludes the three one-token context-allocation probes saved in context-allocation.json. They add exactly3 output tokens and10.7446001seconds (0.002984611hours) of captured load/prefill/generation. results/allocation_probe_accounting.json pins their source hash and itemizes this reporting-only addition. No runtime, model setting, validation job or frozen evidence changes. The final report will distinguish the gate charge from the full itemized total; both remain far below the original ceiling.
