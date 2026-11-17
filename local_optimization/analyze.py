@@ -4,6 +4,7 @@ import collections
 import csv
 import json
 import random
+import re
 import statistics
 from pathlib import Path
 
@@ -37,7 +38,9 @@ def collect(batch):
         path = Path(read(slot / 'complete.json')['attempt'])
         r, judge = read(path / 'result.json'), read(path / 'private_evaluation.json')
         assessment = read(path/'timeout-assessment.json') if (path/'timeout-assessment.json').exists() else {}
-        inf, tests = r['inference'], r['public_tests']
+        inf = r['inference']
+        checker = re.compile(r'^\s*python(?:3)?\s+(?:-I\s+)?/public/check\.py(?:\s*<\s*[^;&|\s]+)?(?:\s+2>&1)?\s*$')
+        tests = [e for e in r['events'] if e.get('recognized_public_test') or checker.fullmatch(e.get('command',''))]
         seen_failure = recovered = False
         for test in tests:
             if test['returncode']:
@@ -79,6 +82,8 @@ def collect(batch):
         rows[-1]['invocation_wall_seconds'] = read(path/'invocation-timing.json')['wall_seconds'] if (path/'invocation-timing.json').exists() else None
         rows[-1]['official_error_codes'] = ','.join(str(m.get('error_code','')) for m in judge.get('metadata',[]))
         rows[-1]['raw_agent_status'] = r['status']
+        rows[-1]['raw_recognized_public_tests'] = len(r['public_tests'])
+        rows[-1]['posthoc_direct_checker_events'] = sum(not e.get('recognized_public_test') for e in tests)
     return plan, rows
 
 
@@ -107,6 +112,7 @@ def summarize(batch):
             'output_tokens_distribution': quantiles([r['output_tokens'] for r in selected])}
         profiles[profile]['model_calls_distribution'] = quantiles([r['model_calls'] for r in selected])
         profiles[profile]['actions_distribution'] = quantiles([r['actions'] for r in selected])
+        profiles[profile]['posthoc_direct_checker_events'] = sum(r['posthoc_direct_checker_events'] for r in selected)
         profiles[profile]['official_error_codes'] = dict(collections.Counter(r['official_error_codes'] for r in selected if not r['correct']))
         invocation_times = [r['invocation_wall_seconds'] for r in selected if r['invocation_wall_seconds'] is not None]
         profiles[profile]['invocation_wall_seconds'] = quantiles(invocation_times)
