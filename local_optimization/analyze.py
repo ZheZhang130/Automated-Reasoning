@@ -58,10 +58,14 @@ def collect(batch):
             except ValueError:
                 pass
         raw = read(path / 'ollama-responses.json')
+        messages=read(path/'trajectory.json')['messages']
+        errors=[m for m in messages if m.get('extra',{}).get('interrupt_type')=='FormatError']
+        length_errors=sum(m.get('extra',{}).get('response',{}).get('choices',[{}])[0].get('finish_reason')=='length' for m in errors)
         rows.append({**job, 'batch': batch.name, 'difficulty': tasks[job['task_id']]['difficulty'], 'platform': tasks[job['task_id']]['platform'],
             'correct': int(judge['status'] == 'pass'), 'official_status': judge['status'], 'agent_status': assessment.get('effective_status',r['status']),
             'seconds': r['elapsed_seconds'], 'actions': r['actions'], 'repairs': r['repairs'], 'model_calls': r['model_calls'],
             'format_errors': r.get('format_errors', 0), 'public_tests': len(tests), 'public_failure': seen_failure, 'public_recovery': recovered,
+            'format_length_errors':length_errors,'other_format_errors':len(errors)-length_errors,
             'recovery_official_pass': seen_failure and judge['status'] == 'pass',
             'public_pass_official_fail': any(t['returncode'] == 0 for t in tests) and judge['status'] != 'pass',
             'repeated_source_tests': sum(a['source_sha256'] == b['source_sha256'] for a,b in zip(tests,tests[1:])),
@@ -101,7 +105,7 @@ def summarize(batch):
             'difficulty': {d: {'n': sum(r['difficulty']==d for r in selected), 'passed': sum(r['correct'] for r in selected if r['difficulty']==d)} for d in ['easy','medium','hard']},
             'seconds': quantiles([r['seconds'] for r in selected]), 'successful_seconds': quantiles([r['seconds'] for r in correct]),
             'failed_seconds': quantiles([r['seconds'] for r in failed]),
-            'totals': {key: sum(r[key] for r in selected) for key in ['seconds','output_tokens','prompt_tokens','generation_seconds','prefill_seconds','load_seconds','actions','model_calls','format_errors','length_responses','context_events','public_tests','public_failure','public_recovery','recovery_official_pass','public_pass_official_fail','repeated_source_tests','thinking_chars']},
+            'totals': {key: sum(r[key] for r in selected) for key in ['seconds','output_tokens','prompt_tokens','generation_seconds','prefill_seconds','load_seconds','actions','model_calls','format_errors','format_length_errors','other_format_errors','length_responses','context_events','public_tests','public_failure','public_recovery','recovery_official_pass','public_pass_official_fail','repeated_source_tests','thinking_chars']},
             'failed_cost': {key: sum(r[key] for r in failed) for key in ['seconds','output_tokens','generation_seconds']},
             'terminations': dict(collections.Counter(r['agent_status'] for r in selected)),
             'official_statuses': dict(collections.Counter(r['official_status'] for r in selected)),
