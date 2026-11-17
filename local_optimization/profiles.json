@@ -308,5 +308,21 @@
       "frequency_penalty": 0.0
     },
     "query_seconds": 480
+  },
+  "heredoc-opt-16k-4k-tag": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    }
   }
 }

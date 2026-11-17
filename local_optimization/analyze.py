@@ -117,6 +117,12 @@ def summarize(batch):
         invocation_times = [r['invocation_wall_seconds'] for r in selected if r['invocation_wall_seconds'] is not None]
         profiles[profile]['invocation_wall_seconds'] = quantiles(invocation_times)
         profiles[profile]['invocation_wall_total'] = sum(invocation_times)
+        by_problem = collections.defaultdict(list)
+        for r in selected:
+            by_problem[r['task_id']].append(r['correct'])
+        profiles[profile]['problem_bootstrap_95'] = interval([statistics.mean(v) for v in by_problem.values()])
+        duration = profiles[profile]['totals']['generation_seconds']
+        profiles[profile]['observed_generation_tokens_per_second'] = profiles[profile]['totals']['output_tokens']/duration if duration else None
     paired = []
     names = list(profiles)
     for i, a in enumerate(names):
