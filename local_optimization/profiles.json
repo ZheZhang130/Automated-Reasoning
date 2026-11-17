@@ -171,5 +171,73 @@
     },
     "native_history": "fixed",
     "query_seconds": 480
+  },
+  "heredoc-opt-16k-4k-p0": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "heredoc-opt-16k-4k-p15": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    }
+  },
+  "native-fixed-128k-32k-think-p15": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "native-fixed-64k-32k-think": {
+    "context": 65536,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
   }
 }

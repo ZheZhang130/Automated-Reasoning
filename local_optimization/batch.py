@@ -131,6 +131,11 @@ def run(args):
             slot.mkdir(parents=True, exist_ok=True)
             attempts = sorted(p for p in slot.glob('attempt-*') if p.is_dir())
             attempt = attempts[-1] if attempts else slot / 'attempt-01'
+            if (attempt / 'result.json').exists() and read(attempt / 'result.json')['status'] == 'InfrastructureError':
+                if not args.retry_infrastructure:
+                    raise RuntimeError('Infrastructure attempt retained; resolve its cause and explicitly use --retry-infrastructure')
+                save(attempt / 'retry-authorized.json', {'at': time.time(), 'reason': 'Explicit infrastructure retry; original result retained'})
+                attempt = slot / ('attempt-' + str(len(attempts) + 1).zfill(2))
             if not (attempt / 'result.json').exists():
                 if attempt.exists():
                     claim = attempt.with_suffix('.claim.json')
@@ -199,6 +204,7 @@ if __name__ == '__main__':
     p.add_argument('--seconds', type=int, default=600)
     p.add_argument('--resume', action='store_true')
     p.add_argument('--retry-interrupted', action='store_true')
+    p.add_argument('--retry-infrastructure', action='store_true', help='Preserve and retry a genuine infrastructure error; never retries resource timeouts')
     p.add_argument('--max-new', type=int)
     args = p.parse_args()
     if not 1 <= args.seconds <= 1200:

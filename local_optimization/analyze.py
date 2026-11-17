@@ -76,6 +76,7 @@ def collect(batch):
         starter_hash = tasks[job['task_id']].get('public_sha256', {}).get('solution.py')
         rows[-1]['unchanged_starter'] = bool(starter_hash) and r.get('submission_sha256') == starter_hash
         rows[-1]['invocation_wall_seconds'] = read(path/'invocation-timing.json')['wall_seconds'] if (path/'invocation-timing.json').exists() else None
+        rows[-1]['official_error_codes'] = ','.join(str(m.get('error_code','')) for m in judge.get('metadata',[]))
     return plan, rows
 
 
@@ -102,6 +103,12 @@ def summarize(batch):
             'unobserved_model_calls': sum(r['unobserved_model_calls'] for r in selected),
             'output_tokens_unobserved_upper_bound': sum(r['unobserved_output_token_upper_bound'] for r in selected),
             'output_tokens_distribution': quantiles([r['output_tokens'] for r in selected])}
+        profiles[profile]['model_calls_distribution'] = quantiles([r['model_calls'] for r in selected])
+        profiles[profile]['actions_distribution'] = quantiles([r['actions'] for r in selected])
+        profiles[profile]['official_error_codes'] = dict(collections.Counter(r['official_error_codes'] for r in selected if not r['correct']))
+        invocation_times = [r['invocation_wall_seconds'] for r in selected if r['invocation_wall_seconds'] is not None]
+        profiles[profile]['invocation_wall_seconds'] = quantiles(invocation_times)
+        profiles[profile]['invocation_wall_total'] = sum(invocation_times)
     paired = []
     names = list(profiles)
     for i, a in enumerate(names):
