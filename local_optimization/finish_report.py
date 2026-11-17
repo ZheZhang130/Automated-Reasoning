@@ -200,6 +200,8 @@ The seed2109 comparison itself is preserved separately:
 
 Agent elapsed covers preflight/cold loading/container setup through termination, excluding extraction/cleanup/judge. Full wall additionally includes interpreter startup, extraction, cleanup and telemetry; private judging stays separate. CSV/JSON retain min/p25/median/p75/p90/max and individual attempts, not just means. Prefill/load/generation come from actual completed Ollama responses; timeout totals explicitly expose missing work.
 
+Offline judge wall totals are {number(a['judge_invocation_wall_total'])} seconds for control and {number(b['judge_invocation_wall_total'])} for challenger, with {a['judge_invocation_wall_observations']}/{a['n']} and {b['judge_invocation_wall_observations']}/{b['n']} timing observations. CSV also exports agent-plus-judge wall when both are available; the coding-agent Pareto comparison excludes offline judging. All judge-attempt time is included when a saved candidate needed a bookkeeping rejudge.
+
 | Configuration | Model calls / actions | Format errors | Missing | Public recovery / official success after failure | Public pass, official fail | Output spent on failures |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 {chr(10).join(reliability)}

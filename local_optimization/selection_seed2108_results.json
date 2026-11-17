@@ -132,6 +132,8 @@
       },
       "invocation_wall_total": 888.9830000000075,
       "invocation_wall_observations": 12,
+      "judge_invocation_wall_total": 22.845000000088476,
+      "judge_invocation_wall_observations": 12,
       "problem_bootstrap_95": [
         0.08333333333333333,
         0.5833333333333334
@@ -267,6 +269,8 @@
       },
       "invocation_wall_total": 1001.9679999998771,
       "invocation_wall_observations": 12,
+      "judge_invocation_wall_total": 18.688000000081956,
+      "judge_invocation_wall_observations": 12,
       "problem_bootstrap_95": [
         0.16666666666666666,
         0.6666666666666666
@@ -401,6 +405,8 @@
       },
       "invocation_wall_total": 1163.2820000000647,
       "invocation_wall_observations": 12,
+      "judge_invocation_wall_total": 23.231999999959953,
+      "judge_invocation_wall_observations": 12,
       "problem_bootstrap_95": [
         0.08333333333333333,
         0.5833333333333334
@@ -536,6 +542,8 @@
       },
       "invocation_wall_total": 1231.7820000000065,
       "invocation_wall_observations": 12,
+      "judge_invocation_wall_total": 23.903999999980442,
+      "judge_invocation_wall_observations": 12,
       "problem_bootstrap_95": [
         0.08333333333333333,
         0.5833333333333334

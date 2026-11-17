@@ -91,6 +91,10 @@ def collect(batch):
         starter_hash = tasks[job['task_id']].get('public_sha256', {}).get('solution.py')
         rows[-1]['unchanged_starter'] = bool(starter_hash) and r.get('submission_sha256') == starter_hash
         rows[-1]['invocation_wall_seconds'] = read(path/'invocation-timing.json')['wall_seconds'] if (path/'invocation-timing.json').exists() else None
+        judge_timings=[read(p)['wall_seconds'] for p in path.glob('judge-attempt-*/timing.json')]
+        rows[-1]['judge_invocation_wall_seconds']=sum(judge_timings) if judge_timings else None
+        rows[-1]['agent_and_judge_wall_seconds']=(rows[-1]['invocation_wall_seconds']+sum(judge_timings)
+            if rows[-1]['invocation_wall_seconds'] is not None and judge_timings else None)
         rows[-1]['official_error_codes'] = ','.join(str(m.get('error_code','')) for m in judge.get('metadata',[]))
         rows[-1]['raw_agent_status'] = r['status']
         rows[-1]['judge_resource_failure'] = judge.get('resource','')
@@ -131,6 +135,9 @@ def summarize(batch):
         profiles[profile]['invocation_wall_seconds'] = quantiles(invocation_times)
         profiles[profile]['invocation_wall_total'] = sum(invocation_times)
         profiles[profile]['invocation_wall_observations'] = len(invocation_times)
+        judge_times=[r['judge_invocation_wall_seconds'] for r in selected if r['judge_invocation_wall_seconds'] is not None]
+        profiles[profile]['judge_invocation_wall_total']=sum(judge_times)
+        profiles[profile]['judge_invocation_wall_observations']=len(judge_times)
         by_problem = collections.defaultdict(list)
         for r in selected:
             by_problem[r['task_id']].append(r['correct'])
