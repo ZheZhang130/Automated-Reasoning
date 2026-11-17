@@ -81,8 +81,11 @@ def consumed():
     tokens, ns = 0, 0
     for path in DATA.rglob('result.json'):
         inf = read(path).get('inference', {})
-        tokens += inf.get('eval_count', 0)
+        result = read(path)
+        tokens += inf.get('eval_count', 0) + result.get('unobserved_output_token_upper_bound', 0)
         ns += sum(inf.get(k, 0) for k in ('eval_duration', 'prompt_eval_duration', 'load_duration'))
+        if result.get('unobserved_model_calls'):
+            ns += result['unobserved_model_calls'] * result['profile_config'].get('query_seconds', 180) * 1e9
     return {'output_tokens': tokens, 'inference_hours': ns / 3.6e12}
 
 
@@ -154,7 +157,7 @@ def run(args):
                     save(attempt.with_suffix('.claim.json'), {'pid': child.pid, 'invocation': invocation, 'started': time.time()})
                     child.wait(timeout=plan['seconds'] + 150)
             result = read(attempt / 'result.json')
-            if result.get('status') == 'InfrastructureError' or not result.get('sampler_wire_verified') or not result.get('token_telemetry_complete'):
+            if result.get('status') == 'InfrastructureError' or not result.get('sampler_wire_verified') or (not result.get('token_telemetry_complete') and result.get('status') != 'ModelTimeout'):
                 raise RuntimeError('Runtime infrastructure/wire/telemetry failure; evidence retained: ' + str(attempt))
             wire = read(attempt / 'ollama-requests.json')
             if not wire or not all(r.get('think') is plan['profiles'][job['profile']]['thinking'] and r['model'] == MODEL for r in wire):

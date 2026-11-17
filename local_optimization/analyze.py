@@ -71,6 +71,8 @@ def collect(batch):
             'content_chars': sum(len(x.get('message', {}).get('content', '')) for x in raw),
             'wire_verified': r.get('sampler_wire_verified'), 'native_history_verified': r.get('native_history_wire_verified'),
             'telemetry_complete': r['token_telemetry_complete'], 'attempt': str(path)})
+        rows[-1]['unobserved_model_calls'] = r.get('unobserved_model_calls', 0)
+        rows[-1]['unobserved_output_token_upper_bound'] = r.get('unobserved_output_token_upper_bound', 0)
     return plan, rows
 
 
@@ -93,6 +95,8 @@ def summarize(batch):
             'official_statuses': dict(collections.Counter(r['official_status'] for r in selected)),
             'offloaded_runs': sum(r['offload'] for r in selected), 'missing_gpu_snapshots': sum(r['gpu_bytes'] is None for r in selected),
             'maximum_prompt_tokens': max(r['max_prompt'] for r in selected),
+            'unobserved_model_calls': sum(r['unobserved_model_calls'] for r in selected),
+            'output_tokens_unobserved_upper_bound': sum(r['unobserved_output_token_upper_bound'] for r in selected),
             'output_tokens_distribution': quantiles([r['output_tokens'] for r in selected])}
     paired = []
     names = list(profiles)

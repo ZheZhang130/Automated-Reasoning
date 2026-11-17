@@ -239,6 +239,10 @@ def run(task_dir, output, model_name, profile_name, *, seed=2108, actions=20, re
         record['status'] = result.get('exit_status', 'Unknown')
     except Exception as exc:
         record.update(error_type=type(exc).__name__, error=str(exc))
+        if isinstance(exc, litellm.exceptions.Timeout):
+            # A declared query/wall budget expiration is a task outcome, not a
+            # fabricated complete response or a reason to erase the attempt.
+            record['status'] = 'ModelTimeout'
     finally:
         record.update(elapsed_seconds=time.monotonic() - started, actions=budget.actions,
                       repairs=min(repairs, budget.repairs), repair_events=budget.events)
@@ -268,6 +272,8 @@ def run(task_dir, output, model_name, profile_name, *, seed=2108, actions=20, re
         raw = capture.responses
         record['model_calls'] = agent.n_calls if agent else 0
         record['token_telemetry_complete'] = len(raw) == record['model_calls']
+        record['unobserved_model_calls'] = max(0, record['model_calls'] - len(raw))
+        record['unobserved_output_token_upper_bound'] = record['unobserved_model_calls'] * profile['output_tokens']
         record['wire_requests_captured'] = len(capture.requests)
         if profile.get('native_history') == 'fixed':
             # Every non-initial native request must preserve all prior executed
