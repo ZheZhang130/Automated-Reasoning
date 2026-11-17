@@ -1,6 +1,6 @@
 # Qwen3.5 9B local coding-agent optimization
 
-**Status: development in progress; no final configuration or held-out result yet.** Work is confined to `feat/csc2108-qwen-local-optimization`; nothing has been pushed or merged. This report will be completed after configuration selection and held-out validation. [Decision log](DECISIONS.md), [plan](PLAN.md), [reproduction instructions](README.md).
+**Status: configuration selection complete; frozen held-out validation running.** Across 12 selection problems and two seeds, the presence/window1024 challenger passes 10/24 versus control 8/24, using 1,687.8 versus 2,073.2 agent seconds and 133,405 versus 171,860 output tokens. The paired accuracy interval remains inconclusive. The two configurations and source hashes were committed in `2c3bb17` before the fixed 80-attempt held-out comparison started. No final improvement is claimed yet. Work remains on `feat/csc2108-qwen-local-optimization`; nothing has been pushed or merged. This report will be completed after held-out validation. [Decision log](DECISIONS.md), [plan](PLAN.md), [reproduction instructions](README.md), [frozen selection](final_selection.json).
 
 ## Original baseline and diagnosis
 
