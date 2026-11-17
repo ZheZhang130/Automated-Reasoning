@@ -1,0 +1,458 @@
+{
+  "model": "qwen3.5:9b",
+  "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "control": "heredoc-v6-16k-common",
+  "challenger": "heredoc-opt-16k-4k-p15-r1024",
+  "frozen_configurations": {
+    "heredoc-v6-16k-common": {
+      "context": 16384,
+      "protocol": "text",
+      "thinking": false,
+      "output_tokens": 4096,
+      "temperature": 0.2,
+      "sampler": {
+        "top_k": 40,
+        "top_p": 0.9,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 64,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    },
+    "heredoc-opt-16k-4k-p15-r1024": {
+      "context": 16384,
+      "protocol": "text",
+      "thinking": false,
+      "output_tokens": 4096,
+      "temperature": 0.2,
+      "sampler": {
+        "top_k": 40,
+        "top_p": 0.9,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 1024,
+        "presence_penalty": 1.5,
+        "frequency_penalty": 0.0
+      }
+    }
+  },
+  "runtime_sha256": {
+    "local_baseline\\env.ps1": "fc877ba44738e1bc5fafaa9d5b4a5aeb268399367b419a1bd47092f297375d41",
+    "local_baseline\\judge-requirements.lock": "321bded630c3638c9d97b41f040759c1395f53bc3a2ebdbbca7990384d2ed944",
+    "local_baseline\\judge_lcb.py": "2228e604a0eb35220203ff10fffa15618e705c7111a4199f0631c219f1632331",
+    "local_baseline\\models.json": "9ee4f351f76fca2dcfa71f984b852104a2721fb882156e7d8e58c4f739821482",
+    "local_baseline\\pilot.py": "68d6e005287aa6ee28458f911da6526e1cec345ef55cd1dea3ab0a59ce690cd4",
+    "local_baseline\\prepare_lcb.py": "52486227eea06a423bef968445e06ab976ed546295b1350dfe787fc3586075b3",
+    "local_baseline\\probe.py": "e222b8e31ea4dc95405d3d007a2ff83fdabffe82423bed4993c0f5948b46a657",
+    "local_baseline\\requirements.lock": "13528cfccfcc9577dab0656b12342e88c5dacdefa20877d6e600104344d512da",
+    "local_baseline\\runner.py": "6466b36f40ac69711cc7819a28b3526b26363c708de760f0bdc191eaded8841b",
+    "local_eval_v2\\common.py": "71cf45e9ca51d02c4670da2fb4f7b0c08c7f6fcbb1987655da1959872707d6fa",
+    "local_eval_v2\\dataset.py": "d2d6b06e0190a895446e7a44526da5fa73f09d3c9b0ca34b6bb57d9dd1ceb46f",
+    "local_eval_v2\\profiles.json": "00470abd3f3c2bae32ea00885fda36b9e726ac5c1e63ab64d57ab061cc2ea9b8",
+    "local_eval_v2\\public_check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+    "local_eval_v2\\runtime.py": "f01f8653aff25ebb53bc5834224b8781e428bf9a9d5498b42bc924ae7c0824c4",
+    "local_optimization\\analyze.py": "496b82e652fe6880f14cecde377f5e24f171664218c2ae2dad441e1c78232275",
+    "local_optimization\\assess_timeout.py": "a7ce17f431dd707a1e0bb1b69316c0bfd96d975de5845d0f36a0b49193cc4aad",
+    "local_optimization\\audit.py": "dc54293621a1bfecc8af3727f3d9e2e147dc05cf83c16a149978defba55844d5",
+    "local_optimization\\audit_length_causes.py": "066bcde26966cab4227a1833b87bb170ee1c539d4dd46582e6324e8f835497fc",
+    "local_optimization\\batch.py": "0c576a9fcfb390023d5b627653c642327bf05e234fe095977932957d617b00bf",
+    "local_optimization\\check_command_transport.py": "a8da3743de437a37754b3cbdba993407601e7769eb7ff61db8b5cedbeb7c35ff",
+    "local_optimization\\check_judge.py": "4c0dd15a4a05af3e997c930371a12e69b867148d94b3839aa4f15d5362993488",
+    "local_optimization\\cohort.py": "8eab6f331218c435e57a1c23ac3e283109df325036d52719628219a26642307c",
+    "local_optimization\\command_transport.py": "8f293248953ef3fc5056c0dcc2cb1562898cb9c8d8cea2f8dd6035bd4aa92d5f",
+    "local_optimization\\diagnose.py": "741e0527661a52c9c83576c83412d81570cde25d5060574de2066ef81f76bd85",
+    "local_optimization\\finish_report.py": "bb62200f30b41c77894cbcd86cd92145e0fe726f1c767be6a4e87a5e31a06616",
+    "local_optimization\\freeze_final.py": "aa8e177fe48c6bd9e8310dc1de1800c30a07348b073c46c00d5d1d0d211513bf",
+    "local_optimization\\judge_watch.py": "5a1b255e06dc9367d6fa8b0d54494d69ebffb2f15a859a2ca34135cbd8c63d7e",
+    "local_optimization\\optlib.py": "8dc4d512a73efba8c228cc85bfb9dbe796c25f8ebbdd9b8bcc098c5953682705",
+    "local_optimization\\plot.py": "711806a5dca1fb63dd3c5b9a691a9809a8ee3c9a0a3befeeb14f1c860bd4cd5d",
+    "local_optimization\\prepare.py": "939993b373355cb08d1728998aa5a19d796fae1bcc8500bf106868675578d841",
+    "local_optimization\\profiles.json": "b68e76b1ff60a56db4f7a49b9793ba3613fa7084f9045c918b886795ec188a06",
+    "local_optimization\\runtime_opt.py": "6c7fd73e05603052e0542d9f37a55efb131a3dc2c8d0db49a051bc50a1261d21",
+    "local_optimization\\selected.py": "112af3ea8cf9b5d03707e9eeab054663092e28c94b2f2b445440c31767de746c",
+    "local_optimization\\test_methodology.py": "31a381ed09f857895aef96296d6bf1d6b968358ec8c669d74efcb9875f4b6152",
+    "local_optimization\\test_public_command.py": "87eae94f11a2eaa29831cc840cc8b8ea31c2d24cee0aa8f8e9fc25ccf7e693b9",
+    "local_optimization\\test_transport.py": "e7b6974b0ba1cb46cbec5e74805d65651c917fe17568243f3f0d2c3266adedd1",
+    "local_optimization\\transport.py": "7e0b7906a5f310981e15723b2e8ef2f70f81b8e4c2eff7f6877d2509da64d0a1",
+    "local_optimization\\verify.py": "1ee3b0b1dbf2a38736a00e96fdc656e29df5b591a63722c75f5d8617eec2c9fe"
+  },
+  "images": {
+    "python:3.11-slim-bookworm": {
+      "docker": {
+        "ServerVersion": "29.4.1",
+        "DockerRootDir": "/var/lib/docker",
+        "OSType": "linux"
+      },
+      "disk_root": "E:\\DockerDesktop",
+      "disks": [
+        {
+          "path": "E:\\DockerDesktop\\disk\\docker_data.vhdx",
+          "bytes": 11687428096
+        },
+        {
+          "path": "E:\\DockerDesktop\\main\\ext4.vhdx",
+          "bytes": 142606336
+        }
+      ],
+      "image_id": "sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39",
+      "image_digests": [
+        "python@sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39"
+      ]
+    },
+    "csc2108-lcb-judge:v2": {
+      "docker": {
+        "ServerVersion": "29.4.1",
+        "DockerRootDir": "/var/lib/docker",
+        "OSType": "linux"
+      },
+      "disk_root": "E:\\DockerDesktop",
+      "disks": [
+        {
+          "path": "E:\\DockerDesktop\\disk\\docker_data.vhdx",
+          "bytes": 11687428096
+        },
+        {
+          "path": "E:\\DockerDesktop\\main\\ext4.vhdx",
+          "bytes": 142606336
+        }
+      ],
+      "image_id": "sha256:00bc9f2a442ad4ec2cc98692313b3e6bab8752a765d724a8a79e47431b0c02ab",
+      "image_digests": [
+        "csc2108-lcb-judge@sha256:00bc9f2a442ad4ec2cc98692313b3e6bab8752a765d724a8a79e47431b0c02ab"
+      ]
+    }
+  },
+  "selection_repeated_sha256": "7a33a8e2c830803cbcdc26f9e1c73e9aafb190e9308566afa576ddc75a8f324c",
+  "selection_results": {
+    "batch": "E:\\CSC2108Local\\optimization\\analysis\\selection-repeated",
+    "planned": 48,
+    "completed": 48,
+    "profiles": {
+      "heredoc-v6-16k-common": {
+        "n": 24,
+        "passed": 8,
+        "accuracy": 0.3333333333333333,
+        "difficulty": {
+          "easy": {
+            "n": 8,
+            "passed": 6
+          },
+          "medium": {
+            "n": 8,
+            "passed": 2
+          },
+          "hard": {
+            "n": 8,
+            "passed": 0
+          }
+        },
+        "seconds": {
+          "min": 12.312000000034459,
+          "p25": 14.546749999979511,
+          "median": 65.24300000001676,
+          "p75": 129.36674999997194,
+          "p90": 188.4888999999733,
+          "max": 297.375
+        },
+        "successful_seconds": {
+          "min": 12.312000000034459,
+          "p25": 12.413999999975204,
+          "median": 12.898500000010245,
+          "p75": 14.113249999980326,
+          "p90": 15.409399999980815,
+          "max": 15.561999999976251
+        },
+        "failed_seconds": {
+          "min": 14.827999999979511,
+          "p25": 71.91100000002189,
+          "median": 128.32850000003236,
+          "p75": 133.1519999999873,
+          "p90": 210.71099999998114,
+          "max": 297.375
+        },
+        "totals": {
+          "seconds": 2073.1559999998426,
+          "output_tokens": 171860,
+          "prompt_tokens": 624178,
+          "generation_seconds": 1661.0281549990002,
+          "prefill_seconds": 36.79199499799999,
+          "load_seconds": 76.95698609999998,
+          "actions": 123,
+          "model_calls": 154,
+          "format_errors": 31,
+          "format_length_errors": 31,
+          "other_format_errors": 0,
+          "length_responses": 31,
+          "length_output_bound": 28,
+          "length_context_bound": 3,
+          "context_events": 3,
+          "public_tests": 40,
+          "public_failure": 5,
+          "public_recovery": 2,
+          "recovery_official_pass": 0,
+          "public_pass_official_fail": 7,
+          "repeated_source_tests": 12,
+          "thinking_chars": 0
+        },
+        "failed_cost": {
+          "seconds": 1965.6259999998729,
+          "output_tokens": 169224,
+          "generation_seconds": 1636.061438999
+        },
+        "terminations": {
+          "Submitted": 15,
+          "RepeatedFormatError": 6,
+          "ActionLimit": 2,
+          "RepairLimit": 1
+        },
+        "official_statuses": {
+          "pass": 8,
+          "candidate_failure": 13,
+          "candidate_resource_failure": 1,
+          "missing_submission": 2
+        },
+        "unchanged_starter_runs": 3,
+        "offloaded_runs": 0,
+        "missing_gpu_snapshots": 0,
+        "maximum_prompt_tokens": 16323,
+        "unobserved_model_calls": 0,
+        "output_tokens_unobserved_upper_bound": 0,
+        "output_tokens_distribution": {
+          "min": 204,
+          "p25": 428.0,
+          "median": 5350.0,
+          "p75": 12288.0,
+          "p90": 15776.099999999997,
+          "max": 23369
+        },
+        "model_calls_distribution": {
+          "min": 3,
+          "p25": 3.0,
+          "median": 3.0,
+          "p75": 5.25,
+          "p90": 18.199999999999996,
+          "max": 24
+        },
+        "actions_distribution": {
+          "min": 0,
+          "p25": 3.0,
+          "median": 3.0,
+          "p75": 3.5,
+          "p90": 16.599999999999994,
+          "max": 20
+        },
+        "posthoc_direct_checker_events": 0,
+        "official_error_codes": {
+          "-3": 3,
+          "": 3,
+          "-2": 6,
+          "-4": 4
+        },
+        "judge_resource_failures": {
+          "memory_1g": 1
+        },
+        "invocation_wall_seconds": {
+          "min": 14.577999999979511,
+          "p25": 16.948749999995925,
+          "median": 67.59450000000652,
+          "p75": 131.87475000003178,
+          "p90": 190.85150000000718,
+          "max": 299.7029999999795
+        },
+        "invocation_wall_total": 2130.779000000097,
+        "invocation_wall_observations": 24,
+        "judge_invocation_wall_total": 47.73599999997532,
+        "judge_invocation_wall_observations": 24,
+        "problem_bootstrap_95": [
+          0.08333333333333333,
+          0.5833333333333334
+        ],
+        "observed_generation_tokens_per_second": 103.46603667299273
+      },
+      "heredoc-opt-16k-4k-p15-r1024": {
+        "n": 24,
+        "passed": 10,
+        "accuracy": 0.4166666666666667,
+        "difficulty": {
+          "easy": {
+            "n": 8,
+            "passed": 5
+          },
+          "medium": {
+            "n": 8,
+            "passed": 4
+          },
+          "hard": {
+            "n": 8,
+            "passed": 1
+          }
+        },
+        "seconds": {
+          "min": 12.59399999998277,
+          "p25": 19.304249999986496,
+          "median": 48.218499999988126,
+          "p75": 135.8902499999822,
+          "p90": 138.9191000000166,
+          "max": 236.35899999999674
+        },
+        "successful_seconds": {
+          "min": 12.59399999998277,
+          "p25": 12.816749999998137,
+          "median": 16.82799999997951,
+          "p75": 37.12950000001001,
+          "p90": 102.2892000000167,
+          "max": 143.84399999998277
+        },
+        "failed_seconds": {
+          "min": 19.35899999999674,
+          "p25": 46.08574999998382,
+          "median": 62.25,
+          "p75": 137.3902499999822,
+          "p90": 138.9191000000166,
+          "max": 236.35899999999674
+        },
+        "totals": {
+          "seconds": 1687.7649999998393,
+          "output_tokens": 133405,
+          "prompt_tokens": 272546,
+          "generation_seconds": 1367.491005999,
+          "prefill_seconds": 25.355731999999996,
+          "load_seconds": 76.8825216,
+          "actions": 95,
+          "model_calls": 116,
+          "format_errors": 21,
+          "format_length_errors": 21,
+          "other_format_errors": 0,
+          "length_responses": 21,
+          "length_output_bound": 21,
+          "length_context_bound": 0,
+          "context_events": 0,
+          "public_tests": 36,
+          "public_failure": 8,
+          "public_recovery": 4,
+          "recovery_official_pass": 3,
+          "public_pass_official_fail": 5,
+          "repeated_source_tests": 0,
+          "thinking_chars": 0
+        },
+        "failed_cost": {
+          "seconds": 1298.8569999999017,
+          "output_tokens": 107585,
+          "generation_seconds": 1105.035624999
+        },
+        "terminations": {
+          "Submitted": 15,
+          "RepairLimit": 4,
+          "RepeatedFormatError": 5
+        },
+        "official_statuses": {
+          "pass": 10,
+          "candidate_failure": 11,
+          "missing_submission": 3
+        },
+        "unchanged_starter_runs": 2,
+        "offloaded_runs": 0,
+        "missing_gpu_snapshots": 0,
+        "maximum_prompt_tokens": 11319,
+        "unobserved_model_calls": 0,
+        "output_tokens_unobserved_upper_bound": 0,
+        "output_tokens_distribution": {
+          "min": 219,
+          "p25": 741.25,
+          "median": 3605.0,
+          "p75": 12288.0,
+          "p90": 12288.0,
+          "max": 19892
+        },
+        "model_calls_distribution": {
+          "min": 3,
+          "p25": 3.0,
+          "median": 3.0,
+          "p75": 5.25,
+          "p90": 9.0,
+          "max": 12
+        },
+        "actions_distribution": {
+          "min": 0,
+          "p25": 3.0,
+          "median": 3.0,
+          "p75": 5.0,
+          "p90": 9.0,
+          "max": 10
+        },
+        "posthoc_direct_checker_events": 0,
+        "official_error_codes": {
+          "-2": 7,
+          "": 3,
+          "-4": 2,
+          "-3": 2
+        },
+        "judge_resource_failures": {},
+        "invocation_wall_seconds": {
+          "min": 14.875,
+          "p25": 21.636750000034226,
+          "median": 50.562499999970896,
+          "p75": 138.36299999996845,
+          "p90": 141.37660000000034,
+          "max": 238.79699999996228
+        },
+        "invocation_wall_total": 1746.8749999998254,
+        "invocation_wall_observations": 24,
+        "judge_invocation_wall_total": 53.82900000020163,
+        "judge_invocation_wall_observations": 24,
+        "problem_bootstrap_95": [
+          0.20833333333333334,
+          0.6666666666666666
+        ],
+        "observed_generation_tokens_per_second": 97.5545721432683
+      }
+    },
+    "paired": [
+      {
+        "a": "heredoc-v6-16k-common",
+        "b": "heredoc-opt-16k-4k-p15-r1024",
+        "paired_runs": 24,
+        "paired_problems": 12,
+        "b_minus_a_correct": 2,
+        "problem_mean_accuracy_difference": 0.08333333333333333,
+        "problem_bootstrap_95": [
+          -0.08333333333333333,
+          0.25
+        ],
+        "a_only_pass": 1,
+        "b_only_pass": 3,
+        "a_seconds": 2073.1559999998426,
+        "b_seconds": 1687.7649999998393,
+        "a_tokens": 171860,
+        "b_tokens": 133405
+      }
+    ],
+    "descriptive_three_metric_frontier": [
+      "heredoc-opt-16k-4k-p15-r1024"
+    ],
+    "frontier_warning": "Compare only identical complete task/seed coverage; incomplete arms are not comparable.",
+    "pareto_time_metric": "full_child_invocation_wall",
+    "pareto_token_rule": "Dominance requires dominator upper token bound <= dominated observed lower bound when telemetry is incomplete."
+  },
+  "validation_manifest_sha256": "89b9d23b349fa0679679b90e150ad628e6b36ad491e3b61d27fbec176b0f3d90",
+  "heldout_tasks": 20,
+  "seeds": [
+    2108,
+    2109
+  ],
+  "planned_attempts": 80,
+  "actions": 20,
+  "repairs": 3,
+  "seconds": 600,
+  "confirmation_rule": {
+    "paired_problem_bootstrap_lower_strictly_positive": true,
+    "more_official_passes": true,
+    "maximum_full_wall_ratio": 1.5,
+    "maximum_conservative_output_token_ratio": 1.5,
+    "missing_submissions_must_not_increase": true,
+    "fallback_profile": "heredoc-v6-16k-common"
+  },
+  "policy": "No tuning after held-out starts. Evaluate only the frozen practical challenger/control; retain original control unless all confirmation criteria hold. No expensive reasoning arm earned selection.",
+  "selection_note": "Best practical seed2108 challenger repeated on identical tasks at2109. All other discovery stopped. Negative/equivocal results are retained."
+}
