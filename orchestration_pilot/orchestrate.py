@@ -10,6 +10,8 @@ import time
 import uuid
 from pathlib import Path
 
+from guidance_rounds import DEFAULT_SCHEDULE, GuidanceRounds, failure_feedback, validate_schedule
+
 GUIDANCE = {"C": "plan", "D": "contract", "E": "diagnosis"}
 FIXTURE = {
     "task_id": "fixture-sum-signed", "version": "1",
@@ -29,9 +31,9 @@ SYSTEM = """Solve the Python task. Return one JSON object per turn.
 Actions: {"action":"write","code":"complete Python source"}, {"action":"test"},
 or {"action":"submit"}. Use the public test feedback to revise your candidate."""
 GUIDANCE_SYSTEM = {
-    "plan": "Provide a concise implementation plan without replacement code.",
+    "plan": "Give a concise approach, implementation steps, and public checks. If failure evidence is present, revise the approach to address it.",
     "contract": "Specify required behavior, preconditions, postconditions and edge cases.",
-    "diagnosis": "Use the candidate and public failure to suggest repairs without replacement code.",
+    "diagnosis": "Identify the observed failure, explain its likely cause with evidence, and suggest a targeted repair and public verification check. Give advice in prose.",
 }
 
 
@@ -134,14 +136,23 @@ class DeadlineReached(Exception):
 
 def run_task(task, condition, output, coder, guide=None, *, coding_model="scripted",
              guidance_model=None, action_limit=20, repair_limit=3,
-             timeout=600, image="python:3.12-slim", scripted=False):
+             timeout=600, image="python:3.12-slim", scripted=False, guidance_schedule=None):
     """Adapters take the remaining seconds and return (text, usage_or_none)."""
     validate_task(task)
-    if condition not in "ABCDE" or len(condition) != 1:
-        raise ValueError("Expected condition A, B, C, D or E")
+    if condition not in {"A", "B", "C", "D", "E", "guided"}:
+        raise ValueError("Expected condition A, B, C, D, E or guided")
     if action_limit < 1 or repair_limit < 0 or not math.isfinite(timeout) or timeout <= 0:
         raise ValueError("Invalid run limits")
-    if condition in GUIDANCE and guide is None:
+    if guidance_schedule is not None and condition != "guided":
+        raise ValueError("Custom schedules require the guided condition")
+    schedule = validate_schedule(
+        (DEFAULT_SCHEDULE if guidance_schedule is None else guidance_schedule)
+        if condition == "guided" else ((GUIDANCE[condition],) if condition in GUIDANCE else ())
+    )
+    if condition == "guided" and not schedule:
+        raise ValueError("Guided mode requires at least one round")
+    rounds = GuidanceRounds(schedule)
+    if schedule and guide is None:
         raise ValueError("This condition requires a guidance adapter")
     output.mkdir(parents=True, exist_ok=False)
     workspace = output / "workspace"
@@ -154,7 +165,8 @@ def run_task(task, condition, output, coder, guide=None, *, coding_model="script
     config = {"condition": condition, "coding_model": coding_model,
               "guidance_model": guidance_model, "action_limit": action_limit,
               "repair_limit": repair_limit, "timeout_seconds": timeout,
-              "image": None if scripted else image, "scripted": scripted}
+              "image": None if scripted else image, "scripted": scripted,
+              "guidance_schedule": list(schedule)}
     record = {
         "run_id": output.name, "task_id": task["task_id"], "task_version": task["version"],
         "config_version": hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest(),
@@ -162,7 +174,7 @@ def run_task(task, condition, output, coder, guide=None, *, coding_model="script
         "actions": 0, "repairs": 0, "stop_reason": None, "trace": [],
         "guidance": {"kind": GUIDANCE.get(condition), "requested": False,
                      "diagnosis_triggered": False, "delivered": False, "error": None},
-        "coding_usage": [], "guidance_usage": None,
+        "coding_usage": [], "guidance_usage": None, "guidance_rounds": [],
     }
     public_context = {key: task[key] for key in (
         "task_id", "statement", "submission_path", "public_tests")}
@@ -181,29 +193,39 @@ def run_task(task, condition, output, coder, guide=None, *, coding_model="script
 
     def deliver(kind, **data):
         seconds = remaining()
-        record["guidance"].update(requested=True, diagnosis_triggered=kind == "diagnosis")
-        log("guidance_request", kind=kind, **data)
+        entry = {"round": rounds.used, "kind": kind, "delivered": False,
+                 "usage": None, "error": None, "feedback": data}
+        record["guidance_rounds"].append(entry)
+        record["guidance"]["requested"] = True
+        if kind == "diagnosis":
+            record["guidance"]["diagnosis_triggered"] = True
+        log("guidance_request", kind=kind, round=rounds.used)
         try:
-            guidance, usage = guide(kind, {**public_context, **data}, seconds)
+            guidance, usage = guide(kind, {**public_context, "round": rounds.used, **data}, seconds)
+            entry["usage"] = usage
             record["guidance_usage"] = usage
             remaining()
             if not isinstance(guidance, str) or not guidance.strip():
                 raise ValueError("Empty guidance")
         except DeadlineReached:
+            entry["error"] = "deadline"
             raise
         except Exception as error:
-            record["guidance"]["error"] = type(error).__name__
-            log("guidance_error", error_type=type(error).__name__)
+            entry["error"] = type(error).__name__
+            record["guidance"]["error"] = entry["error"]
+            log("guidance_error", error_type=entry["error"], round=rounds.used)
             return
+        entry.update(delivered=True, text=guidance)
         record["guidance"]["delivered"] = True
         messages.append({"role": "user", "content": f"Frontier {kind}: {guidance}"})
-        log("guidance_delivered", kind=kind, text=guidance)
+        log("guidance_delivered", kind=kind, text=guidance, round=rounds.used)
 
     failed_candidate = None
     repairing = False
     try:
-        if condition in ("C", "D"):
-            deliver(GUIDANCE[condition])
+        initial = rounds.upfront()
+        if initial:
+            deliver(initial)
         while record["actions"] < action_limit:
             response, usage = coder(messages.copy(), remaining())
             if not isinstance(response, str):
@@ -225,7 +247,7 @@ def run_task(task, condition, output, coder, guide=None, *, coding_model="script
 
             kind = action["action"]
             log("action", action=kind)
-            if kind == "submit" and candidate.is_file():
+            if kind == "submit" and candidate.is_file() and condition != "guided":
                 record["stop_reason"] = "submitted"
                 break
             if kind == "write":
@@ -240,7 +262,7 @@ def run_task(task, condition, output, coder, guide=None, *, coding_model="script
                 candidate.write_text(code, encoding="utf-8")
                 log("candidate_written", code=code)
                 feedback = "Candidate saved."
-            elif kind == "test" and candidate.is_file():
+            elif kind in ("test", "submit") and candidate.is_file():
                 tested_code = candidate.read_text(encoding="utf-8")
                 result = public_test(task, candidate, remaining, image=image, scripted=scripted)
                 log("public_test", **result)
@@ -252,9 +274,18 @@ def run_task(task, condition, output, coder, guide=None, *, coding_model="script
                     repairing = False
                 failed_candidate = tested_code if result["status"] == "candidate_failure" else None
                 messages.append({"role": "user", "content": json.dumps(result)})
-                if (condition == "E" and failed_candidate is not None
-                        and not record["guidance"]["requested"] and record["actions"] < action_limit):
-                    deliver("diagnosis", candidate_code=tested_code, public_failure=result)
+                if condition == "guided" and result["status"] == "pass":
+                    record["stop_reason"] = "public_tests_passed"
+                    break
+                if (failed_candidate is not None and record["actions"] < action_limit
+                        and record["repairs"] < repair_limit):
+                    next_kind = rounds.after_failure(tested_code)
+                    if next_kind:
+                        deliver(next_kind, **failure_feedback(
+                            tested_code, result, record["trace"],
+                            actions_left=action_limit - record["actions"],
+                            repairs_left=repair_limit - record["repairs"],
+                        ))
                 continue
             else:
                 feedback = "Write a candidate before testing or submitting."
@@ -277,7 +308,9 @@ def run_task(task, condition, output, coder, guide=None, *, coding_model="script
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--condition", choices=["A", "B", "C", "D", "E", "all"], default="all")
+    parser.add_argument("--condition", choices=["A", "B", "C", "D", "E", "all", "guided"], default="all")
+    parser.add_argument("--guidance", nargs="+", choices=["plan", "contract", "diagnosis"],
+                        help="Ordered guide types. Default for guided mode: plan diagnosis.")
     parser.add_argument("--task", type=Path, action="append", help="Public task JSON; repeat for a pilot batch.")
     parser.add_argument("--output", type=Path, default=Path("runs"))
     parser.add_argument("--local-model")
@@ -289,13 +322,15 @@ def main():
     parser.add_argument("--repairs", type=int, default=3)
     parser.add_argument("--timeout", type=float, default=600)
     args = parser.parse_args()
-    conditions = "ABCDE" if args.condition == "all" else args.condition
+    conditions = tuple("ABCDE") if args.condition == "all" else (args.condition,)
+    if args.guidance and args.condition != "guided":
+        parser.error("--guidance requires --condition guided")
     if args.scripted and args.task:
         parser.error("--scripted runs only the built-in fixture")
     if not args.scripted:
         if any(condition != "B" for condition in conditions) and not args.local_model:
             parser.error("--local-model is required for local coding conditions")
-        if ("B" in conditions or (set(conditions) & set(GUIDANCE) and not args.fixed_guidance)) and not args.frontier_model:
+        if ("B" in conditions or ((args.condition == "guided" or set(conditions) & set(GUIDANCE)) and not args.fixed_guidance)) and not args.frontier_model:
             parser.error("--frontier-model is required for frontier coding or live guidance")
     tasks = [json.loads(path.read_text(encoding="utf-8")) for path in args.task] if args.task else [FIXTURE]
     for task in tasks:
@@ -318,9 +353,10 @@ def main():
                               scripted_coder() if args.scripted else coder,
                               guide, coding_model="scripted" if args.scripted else model,
                               guidance_model=("fixed" if use_fixed else args.frontier_model)
-                              if condition in GUIDANCE else None,
+                              if condition in GUIDANCE or condition == "guided" else None,
                               action_limit=args.actions, repair_limit=args.repairs,
-                              timeout=args.timeout, image=args.image, scripted=args.scripted)
+                              timeout=args.timeout, image=args.image, scripted=args.scripted,
+                              guidance_schedule=args.guidance)
             print(f"{result['task_id']} {condition}: {result['stop_reason']} ({output / 'result.json'})")
 
 

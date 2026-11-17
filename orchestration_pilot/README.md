@@ -52,3 +52,57 @@ Repeat `--task` to run a pilot batch. Pilot defaults are 20 actions (including i
 **Sam.** Pass a callable as `guide` to `run_task`. It accepts the guidance kind, public task payload, and remaining seconds. It returns guidance text plus usage metadata (or `None` when unavailable). In E, the payload includes `candidate_code` and `public_failure`. The runner calls the adapter at most once, logs adapter errors, and resumes the same local coding conversation. Prompt text in the default adapter is provisional.
 
 The live path has not been tested against a real local endpoint, frontier provider, or running Docker daemon. The deterministic suite checks the orchestration protocol independently of those services.
+
+## Configurable guidance rounds
+
+```sh
+python3 orchestrate.py --scripted --condition guided
+python3 orchestrate.py --scripted --condition guided --guidance contract diagnosis plan
+python orchestrate.py --condition guided --local-model "$LOCAL_MODEL" --frontier-model "$FRONTIER_MODEL" --task public-task.json
+```
+
+The guide list sets the maximum number of frontier calls. The default is two
+(`plan diagnosis`). An initial plan or contract arrives before the first coding
+action. An initial diagnosis waits for public failure evidence. Later rounds
+consume the next guide after a qualifying public test failure on a changed
+candidate. Each round uses the same conversation, workspace and task-wide action,
+repair and time limits. Repeating a test on the same candidate does not trigger
+another call. A provider error consumes its scheduled call. After the guide list
+is exhausted the coder can finish within its remaining budget.
+
+Guided mode ends on a public pass. A submit action also checks the candidate
+against the public suite. Private correctness stays with the independent judge.
+A–E retain their single-intervention baseline schedules. Multi-round guided mode
+is a separate condition.
+
+The round policy and evidence packet live in `guidance_rounds.py`.
+`run_task` owns the execution loop, workspace and budgets. The injected
+`guide(kind, payload, timeout)` owns the frontier request. For follow-up rounds
+the payload includes the current candidate, recognized public failure, the
+last 12 events, and remaining action and repair budgets. Per-round requests,
+feedback, guide text, usage and failures appear in `result.json`.
+
+## Paper notes and integration with the measured runner
+
+[CUDAnalyst, sections 3.1–3.2 and appendices D.4 and E](https://arxiv.org/html/2605.26720v1)
+normalizes debugger, analyzer and profiler evidence, optionally summarizes it,
+and supplies it to a dedicated planner with fixed prompts. Its controlled
+experiments freeze program states while varying the planner inputs. Our reduced
+version uses one structured public feedback packet and short natural-language
+guides. There are no CUDA profiles, summarization calls or attribution studies.
+For a later diagnosis ablation, replay a saved candidate and its public
+observation with the same remaining budget in each branch.
+
+[SWE-agent, sections 2–3 and appendix C](https://arxiv.org/html/2405.15793)
+defines the coding agent interface through task prompts, tool actions and
+execution observations. Appendix C includes formatting instructions, example
+trajectories and recovery messages for malformed actions. Treat the frontier
+guide as an additional message after the normal public observation. Keep the
+coding action syntax consistent across guidance schedules.
+
+The measured mini-SWE-agent runner in `local_eval_v2` is a separate backend.
+A future adapter should use its recognized public test events, snapshot the
+candidate that caused the observation, and deliver guide text before the next
+model query. The pilot uses its own JSON coding interface and stdin/stdout task
+schema. The measured runner's LeetCode function submissions require its own
+public evaluator. Run a fresh guided batch when integrating the adapter.

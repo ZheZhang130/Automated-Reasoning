@@ -4,7 +4,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from orchestrate import CORRECT, FIXED, FIXTURE, run_task, scripted_coder
+from orchestrate import CORRECT, WRONG, FIXED, FIXTURE, run_task, scripted_coder
 
 
 class PilotTests(unittest.TestCase):
@@ -58,6 +58,28 @@ class PilotTests(unittest.TestCase):
             record, calls = self.run_fixture("E")
         self.assertEqual(record["stop_reason"], "infrastructure_error")
         self.assertFalse(calls)
+
+    def test_default_schedule_refreshes_guidance_with_failure_state(self):
+        record, calls = self.run_fixture("guided")
+        self.assertEqual(record["stop_reason"], "public_tests_passed")
+        self.assertEqual([kind for kind, _ in calls], ["plan", "diagnosis"])
+        self.assertEqual(calls[1][1]["candidate_code"], WRONG)
+        self.assertEqual(calls[1][1]["public_failure"]["actual"].strip(), "3")
+        self.assertEqual(calls[1][1]["state"]["actions_left"], 18)
+        self.assertEqual(record["actions"], 4)
+
+    def test_custom_schedule_ignores_repeated_failure_and_stops_when_passing(self):
+        actions = iter([
+            {"action": "write", "code": WRONG}, {"action": "test"}, {"action": "test"},
+            {"action": "write", "code": "print(0)"}, {"action": "test"},
+            {"action": "write", "code": CORRECT}, {"action": "test"},
+        ])
+        record, calls = self.run_fixture(
+            "guided", guidance_schedule=("contract", "plan", "diagnosis", "contract"),
+            coder=lambda messages, seconds: (json.dumps(next(actions)), None),
+        )
+        self.assertEqual(record["stop_reason"], "public_tests_passed")
+        self.assertEqual([kind for kind, _ in calls], ["contract", "plan", "diagnosis"])
 
     def test_limits_preserve_latest_candidate(self):
         for options, expected in [({"action_limit": 2}, "action_limit"), ({"repair_limit": 0}, "repair_limit")]:
