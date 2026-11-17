@@ -65,3 +65,11 @@ The completed report and machine-readable recommendation are generated after the
 ```
 
 `freeze_final.py` refuses to replace the final selection. Held-out creation additionally requires that selection to be committed. Do not modify the frozen selection or its source files after validation starts. Full telemetry and official outcomes stay outside Git; `results/` exports only aggregate metrics and normalized per-attempt measurements. `final_recommendation.json` implements the preregistered confirmation/fallback rule rather than tuning on validation.
+
+## Completed study
+
+See REPORT.md for all203 measured benchmark attempts and the80-attempt held-out comparison. The experimental challenger passes22/40 versus control19/40, with lower measured wall time/tokens and fewer format errors. Its paired interval touches zero and missing submissions increase9vs8, so the frozen rule retains heredoc-v6-16k-common as the default. selected.py --challenger is the explicitly evaluated experimental alternative. No costly thinking configuration earned a recommendation.
+
+The published report contains editorial interpretation beyond the frozen finish_report.py narrative template. The template's budget uses runtime result.json files; results/allocation_probe_accounting.json separately itemizes three one-token allocation probes (10.7446001seconds). The published compute_budget.json reports both the runtime gate charge and their full sum. Rerunning finish_report.py regenerates the runtime-record totals; add that allocation itemization for the complete study total. Benchmark scores and all statistical calculations come from the unchanged frozen analysis code.
+
+Final integrity, zero-job resume evidence, entrypoint acceptance and the65 scored IDs to exclude from future fresh validation are in results/. Full trajectories remain under E:\CSC2108Local\optimization. No benchmark candidate or private test case is included in Git.
