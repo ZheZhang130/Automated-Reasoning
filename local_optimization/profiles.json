@@ -1,0 +1,481 @@
+{
+  "heredoc-v6-16k-common": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "native-stock-16k-4k": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "stock"
+  },
+  "native-fixed-16k-4k": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "native-fixed-16k-4k-think": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "native-fixed-128k-4k-think": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "native-fixed-128k-32k-think": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "native-fixed-128k-32k": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "heredoc-128k-32k-think": {
+    "context": 131072,
+    "protocol": "text",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "query_seconds": 480
+  },
+  "native-fixed-128k-4k-think-longquery": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "native-coding-128k-32k-think": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.6,
+    "sampler": {
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "heredoc-opt-16k-4k-p0": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "heredoc-opt-16k-4k-p15": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    }
+  },
+  "native-fixed-128k-32k-think-p15": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "native-fixed-64k-32k-think": {
+    "context": 65536,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "heredoc-opt-64k-4k-p15": {
+    "context": 65536,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "query_seconds": 480
+  },
+  "heredoc-opt-64k-32k-p15": {
+    "context": 65536,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "query_seconds": 480
+  },
+  "native-general-128k-32k-think": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "heredoc-general-128k-32k-think": {
+    "context": 131072,
+    "protocol": "text",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "query_seconds": 480
+  },
+  "heredoc-opt-16k-4k-tag": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    }
+  },
+  "heredoc-opt-16k-4k-p15-r1024": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    }
+  },
+  "native-general-128k-32k-think-r1024": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 20,
+      "top_p": 0.95,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "native-opt-16k-4k-p15-r1024": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "heredoc-opt-16k-4k-reason-r1024": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 2.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "native-opt-16k-4k-reason-r1024": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 2.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "native-opt-32k-4k-p15-r1024": {
+    "context": 32768,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "heredoc-opt-32k-4k-reason-r1024": {
+    "context": 32768,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 2.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "heredoc-opt-64k-4k-reason-r1024": {
+    "context": 65536,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 2.0,
+      "frequency_penalty": 0.0
+    },
+    "query_seconds": 480,
+    "stream_large_commands": true
+  },
+  "heredoc-opt-64k-32k-reason-r1024": {
+    "context": 65536,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 32768,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 2.0,
+      "frequency_penalty": 0.0
+    },
+    "query_seconds": 480,
+    "stream_large_commands": true
+  }
+}

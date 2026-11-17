@@ -1,0 +1,272 @@
+{
+  "batch": "E:\\CSC2108Local\\optimization\\batches\\dev-nonthinking-presence",
+  "planned": 6,
+  "completed": 6,
+  "profiles": {
+    "heredoc-opt-16k-4k-p0": {
+      "n": 3,
+      "passed": 1,
+      "accuracy": 0.3333333333333333,
+      "difficulty": {
+        "easy": {
+          "n": 1,
+          "passed": 0
+        },
+        "medium": {
+          "n": 1,
+          "passed": 1
+        },
+        "hard": {
+          "n": 1,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 29.78100000001723,
+        "p25": 29.78100000001723,
+        "median": 49.42199999996228,
+        "p75": 128.28099999995902,
+        "p90": 128.28099999995902,
+        "max": 128.28099999995902
+      },
+      "successful_seconds": {
+        "min": 29.78100000001723,
+        "p25": 29.78100000001723,
+        "median": 29.78100000001723,
+        "p75": 29.78100000001723,
+        "p90": 29.78100000001723,
+        "max": 29.78100000001723
+      },
+      "failed_seconds": {
+        "min": 49.42199999996228,
+        "p25": 49.42199999996228,
+        "median": 88.85149999996065,
+        "p75": 128.28099999995902,
+        "p90": 128.28099999995902,
+        "max": 128.28099999995902
+      },
+      "totals": {
+        "seconds": 207.48399999993853,
+        "output_tokens": 17362,
+        "prompt_tokens": 58552,
+        "generation_seconds": 164.99453999899998,
+        "prefill_seconds": 3.4433879999999997,
+        "load_seconds": 9.6065341,
+        "actions": 23,
+        "model_calls": 26,
+        "format_errors": 3,
+        "length_responses": 3,
+        "context_events": 0,
+        "public_tests": 8,
+        "public_failure": 2,
+        "public_recovery": 1,
+        "recovery_official_pass": 1,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 2,
+        "thinking_chars": 0
+      },
+      "failed_cost": {
+        "seconds": 177.7029999999213,
+        "output_tokens": 15474,
+        "generation_seconds": 147.152148999
+      },
+      "terminations": {
+        "RepairLimit": 1,
+        "Submitted": 1,
+        "RepeatedFormatError": 1
+      },
+      "official_statuses": {
+        "candidate_failure": 1,
+        "pass": 1,
+        "missing_submission": 1
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 5160,
+      "unobserved_model_calls": 0,
+      "output_tokens_unobserved_upper_bound": 0,
+      "output_tokens_distribution": {
+        "min": 1888,
+        "p25": 1888,
+        "median": 3186,
+        "p75": 12288,
+        "p90": 12288,
+        "max": 12288
+      },
+      "model_calls_distribution": {
+        "min": 3,
+        "p25": 3,
+        "median": 5,
+        "p75": 18,
+        "p90": 18,
+        "max": 18
+      },
+      "actions_distribution": {
+        "min": 0,
+        "p25": 0,
+        "median": 5,
+        "p75": 18,
+        "p90": 18,
+        "max": 18
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "-2": 1,
+        "": 1
+      },
+      "invocation_wall_seconds": {
+        "min": 32.07800000003772,
+        "p25": 32.07800000003772,
+        "median": 51.79700000002049,
+        "p75": 130.76500000001397,
+        "p90": 130.76500000001397,
+        "max": 130.76500000001397
+      },
+      "invocation_wall_total": 214.64000000007218
+    },
+    "heredoc-opt-16k-4k-p15": {
+      "n": 3,
+      "passed": 2,
+      "accuracy": 0.6666666666666666,
+      "difficulty": {
+        "easy": {
+          "n": 1,
+          "passed": 1
+        },
+        "medium": {
+          "n": 1,
+          "passed": 1
+        },
+        "hard": {
+          "n": 1,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 14.686999999976251,
+        "p25": 14.686999999976251,
+        "median": 26.95300000003772,
+        "p75": 134.375,
+        "p90": 134.375,
+        "max": 134.375
+      },
+      "successful_seconds": {
+        "min": 14.686999999976251,
+        "p25": 14.686999999976251,
+        "median": 20.820000000006985,
+        "p75": 26.95300000003772,
+        "p90": 26.95300000003772,
+        "max": 26.95300000003772
+      },
+      "failed_seconds": {
+        "min": 134.375,
+        "p25": 134.375,
+        "median": 134.375,
+        "p75": 134.375,
+        "p90": 134.375,
+        "max": 134.375
+      },
+      "totals": {
+        "seconds": 176.01500000001397,
+        "output_tokens": 14189,
+        "prompt_tokens": 15044,
+        "generation_seconds": 142.067475,
+        "prefill_seconds": 2.11325,
+        "load_seconds": 9.559708500000001,
+        "actions": 8,
+        "model_calls": 11,
+        "format_errors": 3,
+        "length_responses": 3,
+        "context_events": 0,
+        "public_tests": 3,
+        "public_failure": 1,
+        "public_recovery": 1,
+        "recovery_official_pass": 1,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 0,
+        "thinking_chars": 0
+      },
+      "failed_cost": {
+        "seconds": 134.375,
+        "output_tokens": 12288,
+        "generation_seconds": 123.158373
+      },
+      "terminations": {
+        "Submitted": 2,
+        "RepeatedFormatError": 1
+      },
+      "official_statuses": {
+        "pass": 2,
+        "missing_submission": 1
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 2614,
+      "unobserved_model_calls": 0,
+      "output_tokens_unobserved_upper_bound": 0,
+      "output_tokens_distribution": {
+        "min": 392,
+        "p25": 392,
+        "median": 1509,
+        "p75": 12288,
+        "p90": 12288,
+        "max": 12288
+      },
+      "model_calls_distribution": {
+        "min": 3,
+        "p25": 3,
+        "median": 3,
+        "p75": 5,
+        "p90": 5,
+        "max": 5
+      },
+      "actions_distribution": {
+        "min": 0,
+        "p25": 0,
+        "median": 3,
+        "p75": 5,
+        "p90": 5,
+        "max": 5
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "": 1
+      },
+      "invocation_wall_seconds": {
+        "min": 17.07799999997951,
+        "p25": 17.07799999997951,
+        "median": 29.23499999998603,
+        "p75": 136.84399999998277,
+        "p90": 136.84399999998277,
+        "max": 136.84399999998277
+      },
+      "invocation_wall_total": 183.1569999999483
+    }
+  },
+  "paired": [
+    {
+      "a": "heredoc-opt-16k-4k-p0",
+      "b": "heredoc-opt-16k-4k-p15",
+      "paired_runs": 3,
+      "paired_problems": 3,
+      "b_minus_a_correct": 1,
+      "problem_mean_accuracy_difference": 0.3333333333333333,
+      "problem_bootstrap_95": [
+        0,
+        1
+      ],
+      "a_only_pass": 0,
+      "b_only_pass": 1,
+      "a_seconds": 207.48399999993853,
+      "b_seconds": 176.01500000001397,
+      "a_tokens": 17362,
+      "b_tokens": 14189
+    }
+  ],
+  "descriptive_three_metric_frontier": [
+    "heredoc-opt-16k-4k-p15"
+  ],
+  "frontier_warning": "Compare only identical complete task/seed coverage; incomplete arms are not comparable."
+}

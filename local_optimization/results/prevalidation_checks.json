@@ -1,0 +1,107 @@
+{
+  "completed_unix": 1794922687.260773,
+  "checks": [
+    {
+      "arguments": [
+        "test_transport.py"
+      ],
+      "returncode": 0,
+      "stdout": "\n\u001b[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new\u001b[0m\nLiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.\n\n\n\u001b[1;31mGive Feedback / Get Help: https://github.com/BerriAI/litellm/issues/new\u001b[0m\nLiteLLM.Info: If you need to debug this error, use `litellm._turn_on_debug()'.\n\n",
+      "stderr": "test_override_preserves_history_and_sampler (__main__.Transport.test_override_preserves_history_and_sampler) ... ok\ntest_stock_adapter_drops_history (__main__.Transport.test_stock_adapter_drops_history) ... ok\ntest_unknown_tool_result_is_rejected (__main__.Transport.test_unknown_tool_result_is_rejected) ... ok\ntest_wrapped_timeout_is_distinct_from_connection_refusal (__main__.Transport.test_wrapped_timeout_is_distinct_from_connection_refusal) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.209s\n\nOK\n"
+    },
+    {
+      "arguments": [
+        "test_methodology.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_frozen_splits_and_exclusions (__main__.Methodology.test_frozen_splits_and_exclusions) ... ok\ntest_original_control_is_exact (__main__.Methodology.test_original_control_is_exact) ... ok\ntest_public_bundles_contain_no_private_rows (__main__.Methodology.test_public_bundles_contain_no_private_rows) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.361s\n\nOK\n"
+    },
+    {
+      "arguments": [
+        "test_public_command.py"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "test_direct_checks (__main__.PublicCommand.test_direct_checks) ... ok\ntest_nonchecks_and_masked_exit_status (__main__.PublicCommand.test_nonchecks_and_masked_exit_status) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "arguments": [
+        "-m",
+        "compileall",
+        "-q",
+        "."
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "unit_tests_passed": 9,
+  "source_sha256": {
+    "local_baseline\\env.ps1": "fc877ba44738e1bc5fafaa9d5b4a5aeb268399367b419a1bd47092f297375d41",
+    "local_baseline\\judge-requirements.lock": "321bded630c3638c9d97b41f040759c1395f53bc3a2ebdbbca7990384d2ed944",
+    "local_baseline\\judge_lcb.py": "2228e604a0eb35220203ff10fffa15618e705c7111a4199f0631c219f1632331",
+    "local_baseline\\models.json": "9ee4f351f76fca2dcfa71f984b852104a2721fb882156e7d8e58c4f739821482",
+    "local_baseline\\pilot.py": "68d6e005287aa6ee28458f911da6526e1cec345ef55cd1dea3ab0a59ce690cd4",
+    "local_baseline\\prepare_lcb.py": "52486227eea06a423bef968445e06ab976ed546295b1350dfe787fc3586075b3",
+    "local_baseline\\probe.py": "e222b8e31ea4dc95405d3d007a2ff83fdabffe82423bed4993c0f5948b46a657",
+    "local_baseline\\requirements.lock": "13528cfccfcc9577dab0656b12342e88c5dacdefa20877d6e600104344d512da",
+    "local_baseline\\runner.py": "6466b36f40ac69711cc7819a28b3526b26363c708de760f0bdc191eaded8841b",
+    "local_eval_v2\\common.py": "71cf45e9ca51d02c4670da2fb4f7b0c08c7f6fcbb1987655da1959872707d6fa",
+    "local_eval_v2\\dataset.py": "d2d6b06e0190a895446e7a44526da5fa73f09d3c9b0ca34b6bb57d9dd1ceb46f",
+    "local_eval_v2\\profiles.json": "00470abd3f3c2bae32ea00885fda36b9e726ac5c1e63ab64d57ab061cc2ea9b8",
+    "local_eval_v2\\public_check.py": "1ebfcb4792934127e17b3a76ba9749440ba2019a40d91af148810c51e3cd4ffc",
+    "local_eval_v2\\runtime.py": "f01f8653aff25ebb53bc5834224b8781e428bf9a9d5498b42bc924ae7c0824c4",
+    "local_optimization\\analyze.py": "496b82e652fe6880f14cecde377f5e24f171664218c2ae2dad441e1c78232275",
+    "local_optimization\\assess_timeout.py": "a7ce17f431dd707a1e0bb1b69316c0bfd96d975de5845d0f36a0b49193cc4aad",
+    "local_optimization\\audit.py": "dc54293621a1bfecc8af3727f3d9e2e147dc05cf83c16a149978defba55844d5",
+    "local_optimization\\audit_length_causes.py": "066bcde26966cab4227a1833b87bb170ee1c539d4dd46582e6324e8f835497fc",
+    "local_optimization\\batch.py": "0c576a9fcfb390023d5b627653c642327bf05e234fe095977932957d617b00bf",
+    "local_optimization\\check_command_transport.py": "a8da3743de437a37754b3cbdba993407601e7769eb7ff61db8b5cedbeb7c35ff",
+    "local_optimization\\check_judge.py": "4c0dd15a4a05af3e997c930371a12e69b867148d94b3839aa4f15d5362993488",
+    "local_optimization\\cohort.py": "8eab6f331218c435e57a1c23ac3e283109df325036d52719628219a26642307c",
+    "local_optimization\\command_transport.py": "8f293248953ef3fc5056c0dcc2cb1562898cb9c8d8cea2f8dd6035bd4aa92d5f",
+    "local_optimization\\diagnose.py": "741e0527661a52c9c83576c83412d81570cde25d5060574de2066ef81f76bd85",
+    "local_optimization\\finish_report.py": "bb62200f30b41c77894cbcd86cd92145e0fe726f1c767be6a4e87a5e31a06616",
+    "local_optimization\\freeze_final.py": "aa8e177fe48c6bd9e8310dc1de1800c30a07348b073c46c00d5d1d0d211513bf",
+    "local_optimization\\judge_watch.py": "5a1b255e06dc9367d6fa8b0d54494d69ebffb2f15a859a2ca34135cbd8c63d7e",
+    "local_optimization\\optlib.py": "8dc4d512a73efba8c228cc85bfb9dbe796c25f8ebbdd9b8bcc098c5953682705",
+    "local_optimization\\plot.py": "711806a5dca1fb63dd3c5b9a691a9809a8ee3c9a0a3befeeb14f1c860bd4cd5d",
+    "local_optimization\\prepare.py": "939993b373355cb08d1728998aa5a19d796fae1bcc8500bf106868675578d841",
+    "local_optimization\\profiles.json": "b68e76b1ff60a56db4f7a49b9793ba3613fa7084f9045c918b886795ec188a06",
+    "local_optimization\\runtime_opt.py": "6c7fd73e05603052e0542d9f37a55efb131a3dc2c8d0db49a051bc50a1261d21",
+    "local_optimization\\selected.py": "112af3ea8cf9b5d03707e9eeab054663092e28c94b2f2b445440c31767de746c",
+    "local_optimization\\test_methodology.py": "31a381ed09f857895aef96296d6bf1d6b968358ec8c669d74efcb9875f4b6152",
+    "local_optimization\\test_public_command.py": "87eae94f11a2eaa29831cc840cc8b8ea31c2d24cee0aa8f8e9fc25ccf7e693b9",
+    "local_optimization\\test_transport.py": "e7b6974b0ba1cb46cbec5e74805d65651c917fe17568243f3f0d2c3266adedd1",
+    "local_optimization\\transport.py": "7e0b7906a5f310981e15723b2e8ef2f70f81b8e4c2eff7f6877d2509da64d0a1",
+    "local_optimization\\verify.py": "1ee3b0b1dbf2a38736a00e96fdc656e29df5b591a63722c75f5d8617eec2c9fe"
+  },
+  "long_command_transport": [
+    {
+      "streaming": false,
+      "status": "CommandExecutionError",
+      "command_bytes": 227558,
+      "returncode": -1,
+      "exception_info": "An error occurred while executing the command: [WinError 206] The filename or extension is too long"
+    },
+    {
+      "streaming": true,
+      "status": "executed",
+      "command_bytes": 227558,
+      "returncode": 0,
+      "exception_info": "",
+      "source_sha256": "dd14a53a5436d5a4f5f08dbf58e4b6356d89fdaa767d2fa4b9863a1e25e511ed",
+      "expected_sha256": "dd14a53a5436d5a4f5f08dbf58e4b6356d89fdaa767d2fa4b9863a1e25e511ed",
+      "source_byte_exact": true,
+      "program_marker": "STREAM_OK",
+      "stdin_is_eof": true
+    }
+  ],
+  "judge_controls": {
+    "known_qwen_toy_pass": true,
+    "deliberate_oom_identified": true,
+    "evidence": "E:\\CSC2108Local\\optimization\\diagnostics\\judge-monitor-controls"
+  }
+}

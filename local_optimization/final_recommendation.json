@@ -1,0 +1,44 @@
+{
+  "selection_sha256": "8a8ac7f58adbf9073d87ab902cfe32d47fc2a38fea3d4d812086a70c2da0ceb6",
+  "recommended_profile": "heredoc-v6-16k-common",
+  "configuration": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "challenger_promoted": false,
+  "heldout_paired": {
+    "a": "heredoc-v6-16k-common",
+    "b": "heredoc-opt-16k-4k-p15-r1024",
+    "paired_runs": 40,
+    "paired_problems": 20,
+    "b_minus_a_correct": 3,
+    "problem_mean_accuracy_difference": 0.075,
+    "problem_bootstrap_95": [
+      0,
+      0.15
+    ],
+    "a_only_pass": 0,
+    "b_only_pass": 3,
+    "a_seconds": 3213.092999999819,
+    "b_seconds": 3023.608999999822,
+    "a_tokens": 275593,
+    "b_tokens": 241025
+  },
+  "wall_ratio": 0.9427223931574977,
+  "token_ratio_upper": 0.8745686574042156,
+  "policy": "Confirm a positive paired problem-bootstrap lower bound, more passes, <=1.5x wall/tokens, and no more missing submissions; otherwise retain original control.",
+  "high_reasoning_alternative": null,
+  "validation_plan_sha256": "9e9ffdb3184298d62537d7c42edd781dd36c545e6d1cc39edb93ff5d4584c49a"
+}

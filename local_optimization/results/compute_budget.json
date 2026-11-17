@@ -1,0 +1,18 @@
+{
+  "conservatively_charged_output_tokens": 1753522,
+  "conservatively_charged_inference_hours": 5.391692497908611,
+  "ceiling_output_tokens": 3000000,
+  "ceiling_inference_hours": 10,
+  "includes": "Runtime result.json attempts and explicit missing-reply upper bounds, including the synthetic entrypoint check. The three one-token allocation probes are itemized separately.",
+  "allocation_probe_addition": {
+    "source": "E:\\CSC2108Local\\optimization\\diagnostics\\context-allocation.json",
+    "source_sha256": "32787d9ec513b92521191534ddf715c889a60124b48297d44bfc1a73100249e3",
+    "probes": 3,
+    "output_tokens": 3,
+    "load_prefill_generation_seconds": 10.7446001,
+    "inference_hours": 0.002984611138888889,
+    "note": "One-token allocation checks are stored outside result.json and excluded from the runtime-record budget gate. Itemize separately in the final total; no changed inference/configuration/evidence."
+  },
+  "all_itemized_output_tokens": 1753525,
+  "all_itemized_inference_hours": 5.3946771090475
+}

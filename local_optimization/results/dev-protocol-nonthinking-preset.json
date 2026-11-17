@@ -1,0 +1,616 @@
+{
+  "batch": "E:\\CSC2108Local\\optimization\\batches\\dev-protocol-nonthinking-preset",
+  "planned": 8,
+  "completed": 6,
+  "profiles": {
+    "heredoc-opt-16k-4k-p15-r1024": {
+      "n": 2,
+      "passed": 0,
+      "accuracy": 0.0,
+      "difficulty": {
+        "easy": {
+          "n": 0,
+          "passed": 0
+        },
+        "medium": {
+          "n": 1,
+          "passed": 0
+        },
+        "hard": {
+          "n": 1,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 23.03100000001723,
+        "p25": 33.74975000000268,
+        "median": 44.468499999988126,
+        "p75": 55.187249999973574,
+        "p90": 61.61849999996485,
+        "max": 65.90599999995902
+      },
+      "successful_seconds": null,
+      "failed_seconds": {
+        "min": 23.03100000001723,
+        "p25": 33.74975000000268,
+        "median": 44.468499999988126,
+        "p75": 55.187249999973574,
+        "p90": 61.61849999996485,
+        "max": 65.90599999995902
+      },
+      "totals": {
+        "seconds": 88.93699999997625,
+        "output_tokens": 5662,
+        "prompt_tokens": 33058,
+        "generation_seconds": 57.406746999,
+        "prefill_seconds": 2.452274,
+        "load_seconds": 6.3797925,
+        "actions": 12,
+        "model_calls": 12,
+        "format_errors": 0,
+        "format_length_errors": 0,
+        "other_format_errors": 0,
+        "length_responses": 0,
+        "length_output_bound": 0,
+        "length_context_bound": 0,
+        "context_events": 0,
+        "public_tests": 5,
+        "public_failure": 1,
+        "public_recovery": 0,
+        "recovery_official_pass": 0,
+        "public_pass_official_fail": 1,
+        "repeated_source_tests": 0,
+        "thinking_chars": 0
+      },
+      "failed_cost": {
+        "seconds": 88.93699999997625,
+        "output_tokens": 5662,
+        "generation_seconds": 57.406746999
+      },
+      "terminations": {
+        "RepairLimit": 1,
+        "Submitted": 1
+      },
+      "official_statuses": {
+        "candidate_failure": 2
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 4796,
+      "unobserved_model_calls": 0,
+      "output_tokens_unobserved_upper_bound": 0,
+      "output_tokens_distribution": {
+        "min": 1202,
+        "p25": 2016.5,
+        "median": 2831.0,
+        "p75": 3645.5,
+        "p90": 4134.200000000001,
+        "max": 4460
+      },
+      "model_calls_distribution": {
+        "min": 3,
+        "p25": 4.5,
+        "median": 6.0,
+        "p75": 7.5,
+        "p90": 8.4,
+        "max": 9
+      },
+      "actions_distribution": {
+        "min": 3,
+        "p25": 4.5,
+        "median": 6.0,
+        "p75": 7.5,
+        "p90": 8.4,
+        "max": 9
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "-2": 2
+      },
+      "judge_resource_failures": {},
+      "invocation_wall_seconds": {
+        "min": 25.35899999999674,
+        "p25": 36.09350000000268,
+        "median": 46.828000000008615,
+        "p75": 57.56250000001455,
+        "p90": 64.00320000001813,
+        "max": 68.29700000002049
+      },
+      "invocation_wall_total": 93.65600000001723,
+      "invocation_wall_observations": 2,
+      "judge_invocation_wall_total": 2.0930000000516884,
+      "judge_invocation_wall_observations": 2,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "observed_generation_tokens_per_second": 98.62952171978374
+    },
+    "native-opt-16k-4k-p15-r1024": {
+      "n": 1,
+      "passed": 0,
+      "accuracy": 0.0,
+      "difficulty": {
+        "easy": {
+          "n": 0,
+          "passed": 0
+        },
+        "medium": {
+          "n": 1,
+          "passed": 0
+        },
+        "hard": {
+          "n": 0,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 205.40600000001723,
+        "p25": 205.40600000001723,
+        "median": 205.40600000001723,
+        "p75": 205.40600000001723,
+        "p90": 205.40600000001723,
+        "max": 205.40600000001723
+      },
+      "successful_seconds": null,
+      "failed_seconds": {
+        "min": 205.40600000001723,
+        "p25": 205.40600000001723,
+        "median": 205.40600000001723,
+        "p75": 205.40600000001723,
+        "p90": 205.40600000001723,
+        "max": 205.40600000001723
+      },
+      "totals": {
+        "seconds": 205.40600000001723,
+        "output_tokens": 14388,
+        "prompt_tokens": 213049,
+        "generation_seconds": 150.157354,
+        "prefill_seconds": 6.825542,
+        "load_seconds": 3.268762,
+        "actions": 18,
+        "model_calls": 22,
+        "format_errors": 4,
+        "format_length_errors": 4,
+        "other_format_errors": 0,
+        "length_responses": 4,
+        "length_output_bound": 0,
+        "length_context_bound": 4,
+        "context_events": 4,
+        "public_tests": 1,
+        "public_failure": 1,
+        "public_recovery": 0,
+        "recovery_official_pass": 0,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 0,
+        "thinking_chars": 0
+      },
+      "failed_cost": {
+        "seconds": 205.40600000001723,
+        "output_tokens": 14388,
+        "generation_seconds": 150.157354
+      },
+      "terminations": {
+        "RepeatedFormatError": 1
+      },
+      "official_statuses": {
+        "candidate_failure": 1
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 16261,
+      "unobserved_model_calls": 0,
+      "output_tokens_unobserved_upper_bound": 0,
+      "output_tokens_distribution": {
+        "min": 14388,
+        "p25": 14388.0,
+        "median": 14388,
+        "p75": 14388.0,
+        "p90": 14388.0,
+        "max": 14388
+      },
+      "model_calls_distribution": {
+        "min": 22,
+        "p25": 22.0,
+        "median": 22,
+        "p75": 22.0,
+        "p90": 22.0,
+        "max": 22
+      },
+      "actions_distribution": {
+        "min": 18,
+        "p25": 18.0,
+        "median": 18,
+        "p75": 18.0,
+        "p90": 18.0,
+        "max": 18
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "-2": 1
+      },
+      "judge_resource_failures": {},
+      "invocation_wall_seconds": {
+        "min": 207.7970000000205,
+        "p25": 207.7970000000205,
+        "median": 207.7970000000205,
+        "p75": 207.7970000000205,
+        "p90": 207.7970000000205,
+        "max": 207.7970000000205
+      },
+      "invocation_wall_total": 207.7970000000205,
+      "invocation_wall_observations": 1,
+      "judge_invocation_wall_total": 0.8900000000139698,
+      "judge_invocation_wall_observations": 1,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "observed_generation_tokens_per_second": 95.81948280734889
+    },
+    "heredoc-opt-16k-4k-reason-r1024": {
+      "n": 2,
+      "passed": 2,
+      "accuracy": 1.0,
+      "difficulty": {
+        "easy": {
+          "n": 0,
+          "passed": 0
+        },
+        "medium": {
+          "n": 1,
+          "passed": 1
+        },
+        "hard": {
+          "n": 1,
+          "passed": 1
+        }
+      },
+      "seconds": {
+        "min": 64.14100000000326,
+        "p25": 88.79725000000326,
+        "median": 113.45350000000326,
+        "p75": 138.10975000000326,
+        "p90": 152.90350000000325,
+        "max": 162.76600000000326
+      },
+      "successful_seconds": {
+        "min": 64.14100000000326,
+        "p25": 88.79725000000326,
+        "median": 113.45350000000326,
+        "p75": 138.10975000000326,
+        "p90": 152.90350000000325,
+        "max": 162.76600000000326
+      },
+      "failed_seconds": null,
+      "totals": {
+        "seconds": 226.90700000000652,
+        "output_tokens": 18040,
+        "prompt_tokens": 111407,
+        "generation_seconds": 184.89569,
+        "prefill_seconds": 5.315209,
+        "load_seconds": 6.4095032,
+        "actions": 15,
+        "model_calls": 15,
+        "format_errors": 0,
+        "format_length_errors": 0,
+        "other_format_errors": 0,
+        "length_responses": 2,
+        "length_output_bound": 2,
+        "length_context_bound": 0,
+        "context_events": 0,
+        "public_tests": 2,
+        "public_failure": 0,
+        "public_recovery": 0,
+        "recovery_official_pass": 0,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 0,
+        "thinking_chars": 0
+      },
+      "failed_cost": {
+        "seconds": 0,
+        "output_tokens": 0,
+        "generation_seconds": 0
+      },
+      "terminations": {
+        "Submitted": 2
+      },
+      "official_statuses": {
+        "pass": 2
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 14254,
+      "unobserved_model_calls": 0,
+      "output_tokens_unobserved_upper_bound": 0,
+      "output_tokens_distribution": {
+        "min": 4858,
+        "p25": 6939.0,
+        "median": 9020.0,
+        "p75": 11101.0,
+        "p90": 12349.6,
+        "max": 13182
+      },
+      "model_calls_distribution": {
+        "min": 7,
+        "p25": 7.25,
+        "median": 7.5,
+        "p75": 7.75,
+        "p90": 7.9,
+        "max": 8
+      },
+      "actions_distribution": {
+        "min": 7,
+        "p25": 7.25,
+        "median": 7.5,
+        "p75": 7.75,
+        "p90": 7.9,
+        "max": 8
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {},
+      "judge_resource_failures": {},
+      "invocation_wall_seconds": {
+        "min": 66.56199999997625,
+        "p25": 91.20274999998219,
+        "median": 115.84349999998813,
+        "p75": 140.48424999999406,
+        "p90": 155.26869999999764,
+        "max": 165.125
+      },
+      "invocation_wall_total": 231.68699999997625,
+      "invocation_wall_observations": 2,
+      "judge_invocation_wall_total": 1.8760000000474975,
+      "judge_invocation_wall_observations": 2,
+      "problem_bootstrap_95": [
+        1,
+        1
+      ],
+      "observed_generation_tokens_per_second": 97.56852634044634
+    },
+    "native-opt-16k-4k-reason-r1024": {
+      "n": 1,
+      "passed": 0,
+      "accuracy": 0.0,
+      "difficulty": {
+        "easy": {
+          "n": 0,
+          "passed": 0
+        },
+        "medium": {
+          "n": 1,
+          "passed": 0
+        },
+        "hard": {
+          "n": 0,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 172.92199999996228,
+        "p25": 172.92199999996228,
+        "median": 172.92199999996228,
+        "p75": 172.92199999996228,
+        "p90": 172.92199999996228,
+        "max": 172.92199999996228
+      },
+      "successful_seconds": null,
+      "failed_seconds": {
+        "min": 172.92199999996228,
+        "p25": 172.92199999996228,
+        "median": 172.92199999996228,
+        "p75": 172.92199999996228,
+        "p90": 172.92199999996228,
+        "max": 172.92199999996228
+      },
+      "totals": {
+        "seconds": 172.92199999996228,
+        "output_tokens": 12136,
+        "prompt_tokens": 148933,
+        "generation_seconds": 125.409373,
+        "prefill_seconds": 5.322282,
+        "load_seconds": 3.2480179,
+        "actions": 20,
+        "model_calls": 20,
+        "format_errors": 0,
+        "format_length_errors": 0,
+        "other_format_errors": 0,
+        "length_responses": 0,
+        "length_output_bound": 0,
+        "length_context_bound": 0,
+        "context_events": 0,
+        "public_tests": 0,
+        "public_failure": 0,
+        "public_recovery": 0,
+        "recovery_official_pass": 0,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 0,
+        "thinking_chars": 0
+      },
+      "failed_cost": {
+        "seconds": 172.92199999996228,
+        "output_tokens": 12136,
+        "generation_seconds": 125.409373
+      },
+      "terminations": {
+        "ActionLimit": 1
+      },
+      "official_statuses": {
+        "candidate_failure": 1
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 14351,
+      "unobserved_model_calls": 0,
+      "output_tokens_unobserved_upper_bound": 0,
+      "output_tokens_distribution": {
+        "min": 12136,
+        "p25": 12136.0,
+        "median": 12136,
+        "p75": 12136.0,
+        "p90": 12136.0,
+        "max": 12136
+      },
+      "model_calls_distribution": {
+        "min": 20,
+        "p25": 20.0,
+        "median": 20,
+        "p75": 20.0,
+        "p90": 20.0,
+        "max": 20
+      },
+      "actions_distribution": {
+        "min": 20,
+        "p25": 20.0,
+        "median": 20,
+        "p75": 20.0,
+        "p90": 20.0,
+        "max": 20
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "-4": 1
+      },
+      "judge_resource_failures": {},
+      "invocation_wall_seconds": {
+        "min": 175.35899999999674,
+        "p25": 175.35899999999674,
+        "median": 175.35899999999674,
+        "p75": 175.35899999999674,
+        "p90": 175.35899999999674,
+        "max": 175.35899999999674
+      },
+      "invocation_wall_total": 175.35899999999674,
+      "invocation_wall_observations": 1,
+      "judge_invocation_wall_total": 0.8589999999967404,
+      "judge_invocation_wall_observations": 1,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "observed_generation_tokens_per_second": 96.77107627354137
+    }
+  },
+  "paired": [
+    {
+      "a": "heredoc-opt-16k-4k-p15-r1024",
+      "b": "native-opt-16k-4k-p15-r1024",
+      "paired_runs": 1,
+      "paired_problems": 1,
+      "b_minus_a_correct": 0,
+      "problem_mean_accuracy_difference": 0,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "a_only_pass": 0,
+      "b_only_pass": 0,
+      "a_seconds": 65.90599999995902,
+      "b_seconds": 205.40600000001723,
+      "a_tokens": 4460,
+      "b_tokens": 14388
+    },
+    {
+      "a": "heredoc-opt-16k-4k-p15-r1024",
+      "b": "heredoc-opt-16k-4k-reason-r1024",
+      "paired_runs": 2,
+      "paired_problems": 2,
+      "b_minus_a_correct": 2,
+      "problem_mean_accuracy_difference": 1,
+      "problem_bootstrap_95": [
+        1,
+        1
+      ],
+      "a_only_pass": 0,
+      "b_only_pass": 2,
+      "a_seconds": 88.93699999997625,
+      "b_seconds": 226.90700000000652,
+      "a_tokens": 5662,
+      "b_tokens": 18040
+    },
+    {
+      "a": "heredoc-opt-16k-4k-p15-r1024",
+      "b": "native-opt-16k-4k-reason-r1024",
+      "paired_runs": 1,
+      "paired_problems": 1,
+      "b_minus_a_correct": 0,
+      "problem_mean_accuracy_difference": 0,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "a_only_pass": 0,
+      "b_only_pass": 0,
+      "a_seconds": 65.90599999995902,
+      "b_seconds": 172.92199999996228,
+      "a_tokens": 4460,
+      "b_tokens": 12136
+    },
+    {
+      "a": "native-opt-16k-4k-p15-r1024",
+      "b": "heredoc-opt-16k-4k-reason-r1024",
+      "paired_runs": 1,
+      "paired_problems": 1,
+      "b_minus_a_correct": 1,
+      "problem_mean_accuracy_difference": 1,
+      "problem_bootstrap_95": [
+        1,
+        1
+      ],
+      "a_only_pass": 0,
+      "b_only_pass": 1,
+      "a_seconds": 205.40600000001723,
+      "b_seconds": 64.14100000000326,
+      "a_tokens": 14388,
+      "b_tokens": 4858
+    },
+    {
+      "a": "native-opt-16k-4k-p15-r1024",
+      "b": "native-opt-16k-4k-reason-r1024",
+      "paired_runs": 1,
+      "paired_problems": 1,
+      "b_minus_a_correct": 0,
+      "problem_mean_accuracy_difference": 0,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "a_only_pass": 0,
+      "b_only_pass": 0,
+      "a_seconds": 205.40600000001723,
+      "b_seconds": 172.92199999996228,
+      "a_tokens": 14388,
+      "b_tokens": 12136
+    },
+    {
+      "a": "heredoc-opt-16k-4k-reason-r1024",
+      "b": "native-opt-16k-4k-reason-r1024",
+      "paired_runs": 1,
+      "paired_problems": 1,
+      "b_minus_a_correct": -1,
+      "problem_mean_accuracy_difference": -1,
+      "problem_bootstrap_95": [
+        -1,
+        -1
+      ],
+      "a_only_pass": 1,
+      "b_only_pass": 0,
+      "a_seconds": 64.14100000000326,
+      "b_seconds": 172.92199999996228,
+      "a_tokens": 4858,
+      "b_tokens": 12136
+    }
+  ],
+  "descriptive_three_metric_frontier": [
+    "heredoc-opt-16k-4k-p15-r1024",
+    "heredoc-opt-16k-4k-reason-r1024",
+    "native-opt-16k-4k-reason-r1024"
+  ],
+  "frontier_warning": "Compare only identical complete task/seed coverage; incomplete arms are not comparable.",
+  "pareto_time_metric": "full_child_invocation_wall",
+  "pareto_token_rule": "Dominance requires dominator upper token bound <= dominated observed lower bound when telemetry is incomplete."
+}
