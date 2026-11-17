@@ -154,5 +154,12 @@
     "leetcode-3811",
     "leetcode-3817",
     "leetcode-3832"
-  ]
+  ],
+  "newly_scored": [
+    "atcoder-abc392_b",
+    "atcoder-arc191_a",
+    "leetcode-3720",
+    "atcoder-abc400_d"
+  ],
+  "validation_complete": true
 }

@@ -24,3 +24,11 @@ $deliveryPython = 'E:\CSC2108Local\.venv\Scripts\python.exe'
 ```
 
 Never rerun the measured pilot or reset its timer. `future_exclusions.json` records the old 71 IDs plus these four tasks. Final interpretation distinguishes delivery, implementation correctness and genuine test-driven recovery; faster commands alone do not prove stronger algorithms.
+
+## Completed diagnostic
+
+The original clock finished at1199.047seconds (19min59s), below35minutes. All12 benchmark attempts completed; A, A2 and B each scored1/4. A2 did not reduce format failures or missing files; it left an unchanged starter on one medium task where the control had actually written code. Do not promote this prompt version. Keep mini-SWE-agent and the original control. No further model inference, tuning or task retries were performed.
+
+Both real A2 synthetic fixtures passed public and independent tests, but grouped shell commands exposed an overly strict sanity predicate: genuine checker feedback was present without recognition by the narrow original repair matcher. The controller stopped twice while this bookkeeping check was corrected. continue_after_gate.py resumed only before any benchmark attempt, skipped completed fixtures and retained the original deadline; it did not change the frozen worker, A2 prompt, sampler, parser or accounting. The pauses count in the1199-second total. All controller versions/statuses are retained under the artifact root. The existing accounting limitation is reported, not fixed as a second intervention.
+
+The run.py command deliberately preserves the original gate/source. If reproducing a pre-benchmark gate stop in a separate authorized reproduction, use continue_after_gate.py under its existing execution.json deadline, never a reset or retry. Do not execute either command again against this completed pilot. The final report includes manually reviewed mechanism explanations in addition to report.py's regenerated metrics; analysis-source hashes are recorded separately from the frozen measured worker. See FORENSICS.md, REPORT.md, metrics.csv and verification.json. future_exclusions.json is the recorded75-ID union; older exclusion files remain unchanged.

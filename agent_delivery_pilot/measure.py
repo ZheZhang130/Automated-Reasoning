@@ -1,7 +1,41 @@
 """Metadata-only delivery/feedback measurements; never repairs generated code."""
 import datetime
 import hashlib
+import json
+import re
 from pilot_common import read
+
+
+def visible_feedback(result):
+    """Posthoc only: distinguish genuine compound checker calls from budget recognition."""
+    checks=[];last_hash=None;failed_hash=None;repairing=False;repairs=0;ambiguous=False
+    for event in result.get('events',[]):
+        source=event.get('source_sha256',last_hash)
+        if failed_hash is not None and source!=last_hash and not repairing:
+            repairs+=1;repairing=True
+        actual_checker=bool(re.search(r'^[ \t]*python(?:3)?[ \t]+(?:-I[ \t]+)?/public/check\.py(?:[ \t]+2>&1)?[ \t]*$',event.get('command',''),re.M))
+        values=[]
+        if actual_checker:
+            for line in event.get('output','').splitlines():
+                if line.startswith('CSC2108_PUBLIC_RESULT='):
+                    try:values.append(json.loads(line.split('=',1)[1]))
+                    except ValueError:pass
+        if not values and event.get('recognized_public_test'):
+            values=[{'status':'pass' if event['returncode']==0 else 'candidate_failure'}]
+        ambiguous|=len(values)>1
+        for value in values:
+            success=value.get('status')=='pass'
+            checks.append({'action':event['action'],'pass':success,'source_sha256':source,
+                           'recognized_by_budget':bool(event.get('recognized_public_test'))})
+            if source!=failed_hash:repairing=False
+            failed_hash=None if success else source
+        last_hash=source
+    failed=False;recovered=False
+    for check in checks:
+        if not check['pass']:failed=True
+        elif failed:recovered=True
+    return {'checks':checks,'public_recovery':recovered,'unrecognized_checks':sum(not x['recognized_by_budget'] for x in checks),
+            'reconstructed_changed_repair_groups':repairs,'multiple_checks_in_one_action':ambiguous}
 
 
 def delivery(folder,execution):
