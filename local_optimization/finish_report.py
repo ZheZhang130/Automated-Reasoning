@@ -178,6 +178,8 @@ Presence-only, its tag-default counterpart and expensive thinking stopped after 
 
 The control and best practical challenger were repeated on the same12 tasks with seed2109. Combined seed2108/2109 results:
 
+The seed2108 challenger uses archived runtime v3; seed2109 and held-out use v4. The latter adds optional long-command delivery, disabled in this challenger, leaving its command path and sampler unchanged. Both retain the same checker-accounting behavior. Exact source archives and wire records preserve this provenance difference; the original control uses the unchanged v2 runtime throughout.
+
 {table(repeated)}
 
 Selection Pareto frontier (accuracy, full wall and output tokens): {', '.join('`'+p+'`' for p in repeated['descriptive_three_metric_frontier'])}. This is descriptive point dominance on identical coverage, not a significance claim. Full selection evidence was frozen before validation. No more expensive high-reasoning default is justified by the measured selection tradeoffs.
