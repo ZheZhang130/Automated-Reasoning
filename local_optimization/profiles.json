@@ -1,0 +1,139 @@
+{
+  "heredoc-v6-16k-common": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "native-stock-16k-4k": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "stock"
+  },
+  "native-fixed-16k-4k": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "native-fixed-16k-4k-think": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "native-fixed-128k-4k-think": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "native-fixed-128k-32k-think": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "native-fixed-128k-32k": {
+    "context": 131072,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed",
+    "query_seconds": 480
+  },
+  "heredoc-128k-32k-think": {
+    "context": 131072,
+    "protocol": "text",
+    "thinking": true,
+    "output_tokens": 32768,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    },
+    "query_seconds": 480
+  }
+}
