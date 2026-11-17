@@ -22,7 +22,7 @@ from minisweagent.exceptions import InterruptAgentFlow
 from minisweagent.models.litellm_model import LitellmModel
 from minisweagent.models.litellm_textbased_model import LitellmTextbasedModel
 
-TEST_PATTERN = re.compile(r'^\s*python(?:3)?\s+(?:-I\s+)?/public/check\.py(?:\s*<\s*[^;&|\s]+)?\s*$')
+TEST_PATTERN = re.compile(r'^\s*python(?:3)?\s+(?:-I\s+)?/public/check\.py(?:\s*<\s*[^;&|\s]+)?(?:\s+2>&1)?\s*$')
 PROMPT = """You are an autonomous Python coding agent operating a Linux workspace.
 Solve the user's programming task and save the complete Python source at /workspace/solution.py.
 Honor its required interface: either a stdin/stdout program or the supplied class and method.
@@ -177,6 +177,7 @@ def run(task_dir, output, model_name, profile_name, *, seed=2108, actions=20, re
     if model_name != MODEL:
         raise ValueError('Unapproved model')
     record = {'run_id': output.name, 'model': model_name, 'condition': 'A', 'profile': profile_name,
+              'runtime_version': 'optimization-v2-stderr-check-recognition',
               'profile_config': profile, 'seed': seed, 'action_limit': actions, 'repair_limit': repairs,
               'time_limit_seconds': seconds, 'events': [], 'status': 'InfrastructureError'}
     budget = v3.Budget(actions, repairs)
