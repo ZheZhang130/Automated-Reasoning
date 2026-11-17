@@ -27,6 +27,8 @@ def freeze(args, batch):
     manifest_path = args.manifest.resolve(strict=True)
     manifest = read(manifest_path)
     profiles = read(ROOT / 'profiles.json')
+    if len(set(args.profiles)) != len(args.profiles) or len(set(args.seeds)) != len(args.seeds) or any(s<0 or s>=2**31 for s in args.seeds):
+        raise ValueError('Profiles/seeds must be unique; seeds must be fixed nonnegative int32 values')
     final_selection = None
     if manifest.get('split') == 'heldout':
         selection_path = ROOT / 'final_selection.json'
@@ -47,6 +49,12 @@ def freeze(args, batch):
         tasks = [t for t in tasks if t['task_id'] in args.tasks]
         if len(tasks) != len(args.tasks):
             raise ValueError('Unknown task filter')
+    # Early checkpoints should include every difficulty, rather than a prefix
+    # containing only easy problems. Metadata order within each stratum stays fixed.
+    strata = [[t for t in tasks if t['difficulty']==d] for d in ('easy','medium','hard')]
+    if sum(map(len,strata)) != len(tasks):
+        raise ValueError('Unexpected task difficulty')
+    tasks = [pool[i] for i in range(max(map(len,strata),default=0)) for pool in strata if i<len(pool)]
     pinned_vendor()
     with Lock(GPU_LOCK):
         if api(11434, '/api/ps')['models']:
@@ -79,6 +87,7 @@ def freeze(args, batch):
     plan = {'manifest_path': str(manifest_path), 'manifest_sha256': digest(manifest_path), 'manifest': manifest,
             'final_selection': final_selection,
             'profiles': {p: profiles[p] for p in args.profiles}, 'jobs': jobs, 'tasks': specs,
+            'task_order': 'Interleave easy/medium/hard; preserve manifest order within difficulty; rotate profile order by task/repetition',
             'actions': 20, 'repairs': 3, 'seconds': args.seconds, 'model_digest': MODEL_DIGEST,
             'source_sha256': hashes, 'images': images, 'evaluator_revision': EVALUATOR,
             'git_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=REPO, text=True).strip(),
