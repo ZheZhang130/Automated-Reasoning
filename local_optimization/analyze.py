@@ -82,6 +82,7 @@ def collect(batch):
         rows[-1]['invocation_wall_seconds'] = read(path/'invocation-timing.json')['wall_seconds'] if (path/'invocation-timing.json').exists() else None
         rows[-1]['official_error_codes'] = ','.join(str(m.get('error_code','')) for m in judge.get('metadata',[]))
         rows[-1]['raw_agent_status'] = r['status']
+        rows[-1]['judge_resource_failure'] = judge.get('resource','')
         rows[-1]['raw_recognized_public_tests'] = len(r['public_tests'])
         rows[-1]['posthoc_direct_checker_events'] = sum(not e.get('recognized_public_test') for e in tests)
     return plan, rows
@@ -114,9 +115,11 @@ def summarize(batch):
         profiles[profile]['actions_distribution'] = quantiles([r['actions'] for r in selected])
         profiles[profile]['posthoc_direct_checker_events'] = sum(r['posthoc_direct_checker_events'] for r in selected)
         profiles[profile]['official_error_codes'] = dict(collections.Counter(r['official_error_codes'] for r in selected if not r['correct']))
+        profiles[profile]['judge_resource_failures'] = dict(collections.Counter(r['judge_resource_failure'] for r in selected if r['judge_resource_failure']))
         invocation_times = [r['invocation_wall_seconds'] for r in selected if r['invocation_wall_seconds'] is not None]
         profiles[profile]['invocation_wall_seconds'] = quantiles(invocation_times)
         profiles[profile]['invocation_wall_total'] = sum(invocation_times)
+        profiles[profile]['invocation_wall_observations'] = len(invocation_times)
         by_problem = collections.defaultdict(list)
         for r in selected:
             by_problem[r['task_id']].append(r['correct'])
@@ -143,12 +146,16 @@ def summarize(batch):
                 'a_tokens': sum(aa[k]['output_tokens'] for k in keys), 'b_tokens': sum(bb[k]['output_tokens'] for k in keys)})
     frontier = []
     coverage = {p: {(r['task_id'],r['seed']) for r in rows if r['profile']==p} for p in profiles}
+    full_wall = all(x['invocation_wall_observations']==x['n'] for x in profiles.values())
+    def time_cost(x): return x['invocation_wall_total'] if full_wall else x['totals']['seconds']
     for p,x in profiles.items():
-        if not any(q!=p and coverage[q]==coverage[p] and y['accuracy']>=x['accuracy'] and y['totals']['seconds']<=x['totals']['seconds'] and y['totals']['output_tokens']<=x['totals']['output_tokens'] and
-                   (y['accuracy']>x['accuracy'] or y['totals']['seconds']<x['totals']['seconds'] or y['totals']['output_tokens']<x['totals']['output_tokens']) for q,y in profiles.items()):
+        if not any(q!=p and coverage[q]==coverage[p] and y['accuracy']>=x['accuracy'] and time_cost(y)<=time_cost(x) and y['totals']['output_tokens']+y['output_tokens_unobserved_upper_bound']<=x['totals']['output_tokens'] and
+                   (y['accuracy']>x['accuracy'] or time_cost(y)<time_cost(x) or y['totals']['output_tokens']+y['output_tokens_unobserved_upper_bound']<x['totals']['output_tokens']) for q,y in profiles.items()):
             frontier.append(p)
     summary = {'batch': str(batch), 'planned': len(plan['jobs']), 'completed': len(rows), 'profiles': profiles, 'paired': paired,
                'descriptive_three_metric_frontier': frontier, 'frontier_warning': 'Compare only identical complete task/seed coverage; incomplete arms are not comparable.'}
+    summary['pareto_time_metric'] = 'full_child_invocation_wall' if full_wall else 'agent_elapsed'
+    summary['pareto_token_rule'] = 'Dominance requires dominator upper token bound <= dominated observed lower bound when telemetry is incomplete.'
     save(batch / 'analysis.json', summary)
     if rows:
         with (batch / 'metrics.csv').open('w', newline='', encoding='utf-8') as stream:

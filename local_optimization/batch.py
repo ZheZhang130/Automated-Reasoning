@@ -123,6 +123,8 @@ def run(args):
             if args.profiles or args.tasks or args.seeds or args.manifest:
                 raise ValueError('Resume takes no configuration overrides')
             plan = read(batch / 'plan.json')
+            if plan.get('kind')=='derived_paired_analysis_only':
+                raise ValueError('Derived analysis views cannot execute benchmark jobs')
         else:
             if not args.manifest or not args.profiles:
                 raise ValueError('New batch needs manifest and profiles')

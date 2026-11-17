@@ -1,6 +1,9 @@
 """Optimization paths; reuse immutable v2 primitives without changing their globals."""
 import sys
+import os
 from pathlib import Path
+
+os.environ.setdefault('LITELLM_LOCAL_MODEL_COST_MAP', 'True')
 
 ROOT = Path(__file__).resolve().parent
 REPO = ROOT.parent
