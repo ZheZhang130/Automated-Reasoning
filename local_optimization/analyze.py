@@ -134,4 +134,7 @@ if __name__ == '__main__':
     summary=summarize(args.batch)
     if args.export:
         save(args.export,summary)
-    print(json.dumps({'completed':summary['completed'],'planned':summary['planned'],'profiles':{p:{'passed':x['passed'],'n':x['n'],'seconds':round(x['totals']['seconds'],1),'tokens':x['totals']['output_tokens'],'formats':x['totals']['format_errors']} for p,x in summary['profiles'].items()}),flush=True)
+    compact = {p: {'passed':x['passed'], 'n':x['n'], 'seconds':round(x['totals']['seconds'],1),
+                   'tokens':x['totals']['output_tokens'], 'formats':x['totals']['format_errors']}
+               for p,x in summary['profiles'].items()}
+    print(json.dumps({'completed':summary['completed'], 'planned':summary['planned'], 'profiles':compact}),flush=True)

@@ -70,7 +70,9 @@ def freeze(args, batch):
             'source_sha256': hashes, 'images': images, 'evaluator_revision': EVALUATOR,
             'git_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=REPO, text=True).strip(),
             'python': sys.version, 'packages': {p: importlib.metadata.version(p) for p in ('mini-swe-agent', 'litellm', 'pydantic')},
-            'ollama': api(11435, '/api/version'), 'created_unix': time.time()}
+            'ollama': api(11435, '/api/version'), 'created_unix': time.time(),
+            'gpu_hardware': subprocess.check_output(['nvidia-smi', '--query-gpu=name,uuid,memory.total,driver_version', '--format=csv,noheader'], text=True),
+            'installed_ollama_adapter_sha256': digest(Path(importlib.util.find_spec('litellm').origin).parent / 'llms/ollama/chat/transformation.py')}
     save(batch / 'plan.json', plan)
     return plan
 
@@ -154,6 +156,9 @@ def run(args):
             result = read(attempt / 'result.json')
             if result.get('status') == 'InfrastructureError' or not result.get('sampler_wire_verified') or not result.get('token_telemetry_complete'):
                 raise RuntimeError('Runtime infrastructure/wire/telemetry failure; evidence retained: ' + str(attempt))
+            wire = read(attempt / 'ollama-requests.json')
+            if not wire or not all(r.get('think') is plan['profiles'][job['profile']]['thinking'] and r['model'] == MODEL for r in wire):
+                raise RuntimeError('Thinking/model wire invariant failed')
             if plan['profiles'][job['profile']].get('native_history') == 'fixed' and not result.get('native_history_wire_verified'):
                 raise RuntimeError('Native history invariant failed')
             if not (attempt / 'private_evaluation.json').exists():
