@@ -78,6 +78,15 @@ def main():
             'intentionally_unstarted':s['planned']-s['completed'],
             'plan_sha256':digest(DATA/'batches'/name/'plan.json'),'analysis_sha256':digest(DATA/'batches'/name/'analysis.json')})
     save(ROOT/'results/experiment_inventory.json',inventory)
+    charged_tokens=charged_nanoseconds=0
+    for result_path in DATA.rglob('result.json'):
+        result=read(result_path);inf=result.get('inference',{})
+        charged_tokens+=inf.get('eval_count',0)+result.get('unobserved_output_token_upper_bound',0)
+        charged_nanoseconds+=sum(inf.get(k,0) for k in ('eval_duration','prompt_eval_duration','load_duration'))
+        charged_nanoseconds+=result.get('unobserved_model_calls',0)*result.get('profile_config',{}).get('query_seconds',180)*1e9
+    compute={'conservatively_charged_output_tokens':charged_tokens,'conservatively_charged_inference_hours':charged_nanoseconds/3.6e12,
+             'ceiling_output_tokens':3000000,'ceiling_inference_hours':10,'includes':'all recorded diagnostics/development/selection/repetition/validation attempts, including explicit missing-reply upper bounds'}
+    save(ROOT/'results/compute_budget.json',compute)
     plan=read(DATA/'batches/heldout-final/plan.json')
     provenance={k:plan[k] for k in ('git_commit','python','packages','all_packages','ollama','gpu_hardware',
         'model_digest','images','evaluator_revision','manifest_sha256','installed_ollama_adapter_sha256')}
@@ -173,6 +182,10 @@ The control and best practical challenger were repeated on the same12 tasks with
 
 Selection Pareto frontier (accuracy, full wall and output tokens): {', '.join('`'+p+'`' for p in repeated['descriptive_three_metric_frontier'])}. This is descriptive point dominance on identical coverage, not a significance claim. Full selection evidence was frozen before validation. No more expensive high-reasoning default is justified by the measured selection tradeoffs.
 
+The seed2109 comparison itself is preserved separately:
+
+{table(summaries['selection-repeat-s2109'])}
+
 ![Repeated selection comparison](figures/selection-repeated-pareto.png)
 
 ## Held-out efficiency, reliability and recovery
@@ -216,6 +229,8 @@ From `local_optimization` in PowerShell, dot-source `..\\local_baseline\\env.ps1
 | Frozen batch | Completed / planned | Intentionally unstarted |
 | --- | ---: | ---: |
 {batch_lines}
+
+Total conservative inference charge is {compute['conservatively_charged_inference_hours']:.3f} hours and {charged_tokens:,} output tokens, under the initial10-hour/3-million-token ceiling. This includes diagnostics and failed/missing-reply upper bounds; it is not presented as fully observed generation. Discovery stopped after3.396 charged hours, reserving compute for repetition and independent validation.
 
 Complete trajectories, failed attempts and independent judge evidence remain on E:. Aggregate-only JSON/CSV and PNG/SVG/PDF charts are versioned here. [Experiment hashes](results/experiment_inventory.json) identify frozen plans and analyses. [Commit inventory before this final report](results/commits-before-report.txt) records scoped progress; `git log --reverse d0fb8756..HEAD` also includes the final report commit. All changed project files are confined to `local_optimization/`; no baseline/eval-v2 files were changed. Branch: `feat/csc2108-qwen-local-optimization`. Nothing was pushed or merged.
 
