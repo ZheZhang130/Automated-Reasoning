@@ -36,6 +36,7 @@ def collect(batch):
             continue
         path = Path(read(slot / 'complete.json')['attempt'])
         r, judge = read(path / 'result.json'), read(path / 'private_evaluation.json')
+        assessment = read(path/'timeout-assessment.json') if (path/'timeout-assessment.json').exists() else {}
         inf, tests = r['inference'], r['public_tests']
         seen_failure = recovered = False
         for test in tests:
@@ -55,7 +56,7 @@ def collect(batch):
                 pass
         raw = read(path / 'ollama-responses.json')
         rows.append({**job, 'batch': batch.name, 'difficulty': tasks[job['task_id']]['difficulty'], 'platform': tasks[job['task_id']]['platform'],
-            'correct': int(judge['status'] == 'pass'), 'official_status': judge['status'], 'agent_status': r['status'],
+            'correct': int(judge['status'] == 'pass'), 'official_status': judge['status'], 'agent_status': assessment.get('effective_status',r['status']),
             'seconds': r['elapsed_seconds'], 'actions': r['actions'], 'repairs': r['repairs'], 'model_calls': r['model_calls'],
             'format_errors': r.get('format_errors', 0), 'public_tests': len(tests), 'public_failure': seen_failure, 'public_recovery': recovered,
             'recovery_official_pass': seen_failure and judge['status'] == 'pass',
@@ -77,6 +78,7 @@ def collect(batch):
         rows[-1]['unchanged_starter'] = bool(starter_hash) and r.get('submission_sha256') == starter_hash
         rows[-1]['invocation_wall_seconds'] = read(path/'invocation-timing.json')['wall_seconds'] if (path/'invocation-timing.json').exists() else None
         rows[-1]['official_error_codes'] = ','.join(str(m.get('error_code','')) for m in judge.get('metadata',[]))
+        rows[-1]['raw_agent_status'] = r['status']
     return plan, rows
 
 

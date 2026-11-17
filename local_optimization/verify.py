@@ -22,11 +22,14 @@ def verify(batch):
         requests=read(attempt/'ollama-requests.json')
         responses=read(attempt/'ollama-responses.json')
         profile=plan['profiles'][job['profile']]
+        assessment=read(attempt/'timeout-assessment.json') if (attempt/'timeout-assessment.json').exists() else {}
+        if assessment and (digest(attempt/'result.json')!=assessment['result_sha256'] or digest(attempt/'trajectory.json')!=assessment['trajectory_sha256']):
+            raise ValueError('Timeout assessment evidence changed')
         expected=profile['sampler']|{'num_ctx':profile['context'],'num_predict':profile['output_tokens'],'temperature':profile['temperature'],'seed':job['seed']}
         for wire in requests:
             if wire['model']!=MODEL or wire['options']!=expected or wire.get('think') is not profile['thinking']:
                 raise ValueError('Wire configuration mismatch: '+job['key'])
-        if len(requests)!=result['model_calls'] or (len(responses)!=result['model_calls'] and result['status']!='ModelTimeout'):
+        if len(requests)!=result['model_calls'] or (len(responses)!=result['model_calls'] and assessment.get('effective_status',result['status'])!='ModelTimeout'):
             raise ValueError('Unexplained missing transport evidence')
         if profile.get('native_history')=='fixed':
             for request in requests:

@@ -3,6 +3,20 @@ import copy
 import json
 
 
+def is_timeout(exception):
+    """Pinned LiteLLM wraps httpx ReadTimeout as APIConnectionError (500)."""
+    import httpx
+    import litellm
+    import requests
+    seen = set()
+    while exception is not None and id(exception) not in seen:
+        seen.add(id(exception))
+        if isinstance(exception, (httpx.TimeoutException, requests.exceptions.Timeout, litellm.exceptions.Timeout)):
+            return True
+        exception = exception.__cause__ or exception.__context__
+    return False
+
+
 def native_messages(messages, *, retain_thinking=True):
     """Translate the actual agent history, without synthesizing observations or code."""
     result, names = [], {}

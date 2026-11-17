@@ -7,7 +7,7 @@ from unittest.mock import patch
 from optlib import ENDPOINT
 import httpx
 import litellm
-from transport import native_messages
+from transport import native_messages, is_timeout
 
 
 class Transport(unittest.TestCase):
@@ -50,6 +50,22 @@ class Transport(unittest.TestCase):
     def test_unknown_tool_result_is_rejected(self):
         with self.assertRaises(KeyError):
             native_messages([{'role': 'tool', 'content': 'x', 'tool_call_id': 'missing'}])
+
+    def test_wrapped_timeout_is_distinct_from_connection_refusal(self):
+        for error_type, expected in [(httpx.ReadTimeout, True), (httpx.ConnectError, False)]:
+            def post(handler, url, **kwargs):
+                self.assertTrue(str(url).startswith(ENDPOINT + '/'))
+                if str(url).endswith('/api/chat'):
+                    raise error_type('Deliberate transport fixture', request=httpx.Request('POST', url))
+                return httpx.Response(200, json={}, request=httpx.Request('POST', url))
+            with patch('litellm.llms.custom_httpx.http_handler.HTTPHandler.post', new=post):
+                try:
+                    litellm.completion(model='ollama_chat/qwen3.5:9b', api_base=ENDPOINT,
+                        messages=[{'role':'user','content':'Test'}], num_retries=0)
+                except Exception as exc:
+                    self.assertEqual(is_timeout(exc), expected)
+                else:
+                    self.fail('Expected deliberate transport failure')
 
 
 if __name__ == '__main__':

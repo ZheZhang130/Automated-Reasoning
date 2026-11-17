@@ -9,7 +9,7 @@ import uuid
 from pathlib import Path
 
 from optlib import BASELINE, DATA, ENDPOINT, MODEL, ROOT, GPU_LOCK, Lock, digest, on_e, read, save
-from transport import NativeHistory, native_messages
+from transport import NativeHistory, native_messages, is_timeout
 import copy
 import threading
 import runner as v3
@@ -177,7 +177,7 @@ def run(task_dir, output, model_name, profile_name, *, seed=2108, actions=20, re
     if model_name != MODEL:
         raise ValueError('Unapproved model')
     record = {'run_id': output.name, 'model': model_name, 'condition': 'A', 'profile': profile_name,
-              'runtime_version': 'optimization-v2-stderr-check-recognition',
+              'runtime_version': 'optimization-v3-wrapped-timeouts',
               'profile_config': profile, 'seed': seed, 'action_limit': actions, 'repair_limit': repairs,
               'time_limit_seconds': seconds, 'events': [], 'status': 'InfrastructureError'}
     budget = v3.Budget(actions, repairs)
@@ -240,7 +240,7 @@ def run(task_dir, output, model_name, profile_name, *, seed=2108, actions=20, re
         record['status'] = result.get('exit_status', 'Unknown')
     except Exception as exc:
         record.update(error_type=type(exc).__name__, error=str(exc))
-        if isinstance(exc, litellm.exceptions.Timeout):
+        if is_timeout(exc):
             # A declared query/wall budget expiration is a task outcome, not a
             # fabricated complete response or a reason to erase the attempt.
             record['status'] = 'ModelTimeout'
