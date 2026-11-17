@@ -1,0 +1,99 @@
+{
+  "run_id": "24b406a84cdd48269ead4dd442b8e383-001-A",
+  "task_id": "fixture-sum-signed",
+  "task_version": "1",
+  "config_version": "053d18e7f361623a36c000665fd2347b255cc2a6913001b3626ffd539954f5e9",
+  "condition": "A",
+  "coding_model": "scripted",
+  "guidance_model": null,
+  "action_limit": 20,
+  "repair_limit": 3,
+  "timeout_seconds": 600,
+  "image": null,
+  "scripted": true,
+  "submission_type": "stdin_stdout",
+  "submission": "workspace/solution.py",
+  "actions": 5,
+  "repairs": 1,
+  "stop_reason": "submitted",
+  "trace": [
+    {
+      "event": "action",
+      "seconds": 0.0006755420000000012,
+      "action": "write"
+    },
+    {
+      "event": "candidate_written",
+      "seconds": 0.001055709000000002,
+      "code": "a, b = map(int, input().split())\nprint(abs(a + b))\n"
+    },
+    {
+      "event": "action",
+      "seconds": 0.0010706250000000056,
+      "action": "test"
+    },
+    {
+      "event": "public_test",
+      "seconds": 0.07839745900000002,
+      "status": "candidate_failure",
+      "case": 1,
+      "stdin": "2 3\n",
+      "expected": "5\n",
+      "actual": "",
+      "stderr": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3: can't open file '/Users/zhe/Desktop/2026 Summer/Automated Reasoning/orchestration_pilot/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-A/workspace/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-A/workspace/solution.py': [Errno 2] No such file or directory\n",
+      "returncode": 2
+    },
+    {
+      "event": "action",
+      "seconds": 0.078573292,
+      "action": "write"
+    },
+    {
+      "event": "repair_start",
+      "seconds": 0.07857516700000002,
+      "number": 1
+    },
+    {
+      "event": "candidate_written",
+      "seconds": 0.078866,
+      "code": "a, b = map(int, input().split())\nprint(a + b)\n"
+    },
+    {
+      "event": "action",
+      "seconds": 0.07888212500000001,
+      "action": "test"
+    },
+    {
+      "event": "public_test",
+      "seconds": 0.20900637499999997,
+      "status": "candidate_failure",
+      "case": 1,
+      "stdin": "2 3\n",
+      "expected": "5\n",
+      "actual": "",
+      "stderr": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3: can't open file '/Users/zhe/Desktop/2026 Summer/Automated Reasoning/orchestration_pilot/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-A/workspace/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-A/workspace/solution.py': [Errno 2] No such file or directory\n",
+      "returncode": 2
+    },
+    {
+      "event": "action",
+      "seconds": 0.209352875,
+      "action": "submit"
+    }
+  ],
+  "guidance": {
+    "kind": null,
+    "requested": false,
+    "diagnosis_triggered": false,
+    "delivered": false,
+    "error": null
+  },
+  "coding_usage": [
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "guidance_usage": null,
+  "elapsed_seconds": 0.20940599999999998
+}

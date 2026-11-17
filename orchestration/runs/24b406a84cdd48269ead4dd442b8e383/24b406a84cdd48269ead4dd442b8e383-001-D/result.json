@@ -1,0 +1,110 @@
+{
+  "run_id": "24b406a84cdd48269ead4dd442b8e383-001-D",
+  "task_id": "fixture-sum-signed",
+  "task_version": "1",
+  "config_version": "e920732363fe0044cd66b1cf4c68e924fe5b16cd2a012a458196bcfbaf7ae53b",
+  "condition": "D",
+  "coding_model": "scripted",
+  "guidance_model": "fixed",
+  "action_limit": 20,
+  "repair_limit": 3,
+  "timeout_seconds": 600,
+  "image": null,
+  "scripted": true,
+  "submission_type": "stdin_stdout",
+  "submission": "workspace/solution.py",
+  "actions": 5,
+  "repairs": 1,
+  "stop_reason": "submitted",
+  "trace": [
+    {
+      "event": "guidance_request",
+      "seconds": 5.037499999993589e-05,
+      "kind": "contract"
+    },
+    {
+      "event": "guidance_delivered",
+      "seconds": 5.4749999999992305e-05,
+      "kind": "contract",
+      "text": "Print the exact signed sum followed by a newline."
+    },
+    {
+      "event": "action",
+      "seconds": 6.883299999993486e-05,
+      "action": "write"
+    },
+    {
+      "event": "candidate_written",
+      "seconds": 0.0001871249999999547,
+      "code": "a, b = map(int, input().split())\nprint(abs(a + b))\n"
+    },
+    {
+      "event": "action",
+      "seconds": 0.00019841600000003456,
+      "action": "test"
+    },
+    {
+      "event": "public_test",
+      "seconds": 0.06503420799999993,
+      "status": "candidate_failure",
+      "case": 1,
+      "stdin": "2 3\n",
+      "expected": "5\n",
+      "actual": "",
+      "stderr": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3: can't open file '/Users/zhe/Desktop/2026 Summer/Automated Reasoning/orchestration_pilot/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-D/workspace/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-D/workspace/solution.py': [Errno 2] No such file or directory\n",
+      "returncode": 2
+    },
+    {
+      "event": "action",
+      "seconds": 0.06513950000000002,
+      "action": "write"
+    },
+    {
+      "event": "repair_start",
+      "seconds": 0.065141,
+      "number": 1
+    },
+    {
+      "event": "candidate_written",
+      "seconds": 0.06539125000000001,
+      "code": "a, b = map(int, input().split())\nprint(a + b)\n"
+    },
+    {
+      "event": "action",
+      "seconds": 0.065404291,
+      "action": "test"
+    },
+    {
+      "event": "public_test",
+      "seconds": 0.12981779100000002,
+      "status": "candidate_failure",
+      "case": 1,
+      "stdin": "2 3\n",
+      "expected": "5\n",
+      "actual": "",
+      "stderr": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3: can't open file '/Users/zhe/Desktop/2026 Summer/Automated Reasoning/orchestration_pilot/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-D/workspace/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-D/workspace/solution.py': [Errno 2] No such file or directory\n",
+      "returncode": 2
+    },
+    {
+      "event": "action",
+      "seconds": 0.129939166,
+      "action": "submit"
+    }
+  ],
+  "guidance": {
+    "kind": "contract",
+    "requested": true,
+    "diagnosis_triggered": false,
+    "delivered": true,
+    "error": null
+  },
+  "coding_usage": [
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "guidance_usage": null,
+  "elapsed_seconds": 0.12997758299999995
+}

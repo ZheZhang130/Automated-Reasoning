@@ -1,0 +1,110 @@
+{
+  "run_id": "24b406a84cdd48269ead4dd442b8e383-001-C",
+  "task_id": "fixture-sum-signed",
+  "task_version": "1",
+  "config_version": "edd22ba5b132d8da9c7a84ce9447f3ee2c5b44522d27c7cafd7c1e84fbe269c1",
+  "condition": "C",
+  "coding_model": "scripted",
+  "guidance_model": "fixed",
+  "action_limit": 20,
+  "repair_limit": 3,
+  "timeout_seconds": 600,
+  "image": null,
+  "scripted": true,
+  "submission_type": "stdin_stdout",
+  "submission": "workspace/solution.py",
+  "actions": 5,
+  "repairs": 1,
+  "stop_reason": "submitted",
+  "trace": [
+    {
+      "event": "guidance_request",
+      "seconds": 5.2333000000015506e-05,
+      "kind": "plan"
+    },
+    {
+      "event": "guidance_delivered",
+      "seconds": 5.5791000000027235e-05,
+      "kind": "plan",
+      "text": "Read both integers, add them and check a negative sum."
+    },
+    {
+      "event": "action",
+      "seconds": 7.179100000004324e-05,
+      "action": "write"
+    },
+    {
+      "event": "candidate_written",
+      "seconds": 0.0001894580000000312,
+      "code": "a, b = map(int, input().split())\nprint(abs(a + b))\n"
+    },
+    {
+      "event": "action",
+      "seconds": 0.0002019160000000242,
+      "action": "test"
+    },
+    {
+      "event": "public_test",
+      "seconds": 0.06477283300000003,
+      "status": "candidate_failure",
+      "case": 1,
+      "stdin": "2 3\n",
+      "expected": "5\n",
+      "actual": "",
+      "stderr": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3: can't open file '/Users/zhe/Desktop/2026 Summer/Automated Reasoning/orchestration_pilot/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-C/workspace/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-C/workspace/solution.py': [Errno 2] No such file or directory\n",
+      "returncode": 2
+    },
+    {
+      "event": "action",
+      "seconds": 0.06488233300000001,
+      "action": "write"
+    },
+    {
+      "event": "repair_start",
+      "seconds": 0.06488379100000008,
+      "number": 1
+    },
+    {
+      "event": "candidate_written",
+      "seconds": 0.065117125,
+      "code": "a, b = map(int, input().split())\nprint(a + b)\n"
+    },
+    {
+      "event": "action",
+      "seconds": 0.06513158299999999,
+      "action": "test"
+    },
+    {
+      "event": "public_test",
+      "seconds": 0.12461166600000007,
+      "status": "candidate_failure",
+      "case": 1,
+      "stdin": "2 3\n",
+      "expected": "5\n",
+      "actual": "",
+      "stderr": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3: can't open file '/Users/zhe/Desktop/2026 Summer/Automated Reasoning/orchestration_pilot/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-C/workspace/runs/24b406a84cdd48269ead4dd442b8e383/24b406a84cdd48269ead4dd442b8e383-001-C/workspace/solution.py': [Errno 2] No such file or directory\n",
+      "returncode": 2
+    },
+    {
+      "event": "action",
+      "seconds": 0.12470829100000003,
+      "action": "submit"
+    }
+  ],
+  "guidance": {
+    "kind": "plan",
+    "requested": true,
+    "diagnosis_triggered": false,
+    "delivered": true,
+    "error": null
+  },
+  "coding_usage": [
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "guidance_usage": null,
+  "elapsed_seconds": 0.12474145800000003
+}
