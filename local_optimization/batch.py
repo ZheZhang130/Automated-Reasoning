@@ -94,6 +94,7 @@ def freeze(args, batch):
             'source_sha256': hashes, 'images': images, 'evaluator_revision': EVALUATOR,
             'git_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=REPO, text=True).strip(),
             'python': sys.version, 'packages': {p: importlib.metadata.version(p) for p in ('mini-swe-agent', 'litellm', 'pydantic')},
+            'all_packages': dict(sorted((d.metadata['Name'],d.version) for d in importlib.metadata.distributions())),
             'ollama': api(11435, '/api/version'), 'created_unix': time.time(),
             'gpu_hardware': subprocess.check_output(['nvidia-smi', '--query-gpu=name,uuid,memory.total,driver_version', '--format=csv,noheader'], text=True),
             'installed_ollama_adapter_sha256': digest(Path(importlib.util.find_spec('litellm').origin).parent / 'llms/ollama/chat/transformation.py')}

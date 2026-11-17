@@ -358,5 +358,55 @@
     },
     "native_history": "fixed",
     "query_seconds": 480
+  },
+  "native-opt-16k-4k-p15-r1024": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 1.5,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
+  },
+  "heredoc-opt-16k-4k-reason-r1024": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 2.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "native-opt-16k-4k-reason-r1024": {
+    "context": 16384,
+    "protocol": "native",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 1.0,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 1.0,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 1024,
+      "presence_penalty": 2.0,
+      "frequency_penalty": 0.0
+    },
+    "native_history": "fixed"
   }
 }
