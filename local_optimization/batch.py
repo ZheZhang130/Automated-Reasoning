@@ -153,9 +153,11 @@ def run(args):
                 invocation = [sys.executable, str(script), '--task', str(public), '--output', str(attempt), '--model', MODEL,
                               '--profile', job['profile'], '--seed', str(job['seed']), '--seconds', str(plan['seconds'])]
                 with (slot / (attempt.name + '.stdout.txt')).open('w', encoding='utf-8') as stdout, (slot / (attempt.name + '.stderr.txt')).open('w', encoding='utf-8') as stderr:
+                    invocation_started = time.monotonic()
                     child = subprocess.Popen(invocation, stdout=stdout, stderr=stderr)
                     save(attempt.with_suffix('.claim.json'), {'pid': child.pid, 'invocation': invocation, 'started': time.time()})
                     child.wait(timeout=plan['seconds'] + 150)
+                save(attempt / 'invocation-timing.json', {'wall_seconds': time.monotonic() - invocation_started, 'includes': 'interpreter startup, preflight, model loading, agent, extraction, cleanup and telemetry; excludes judge'})
             result = read(attempt / 'result.json')
             if result.get('status') == 'InfrastructureError' or not result.get('sampler_wire_verified') or (not result.get('token_telemetry_complete') and result.get('status') != 'ModelTimeout'):
                 raise RuntimeError('Runtime infrastructure/wire/telemetry failure; evidence retained: ' + str(attempt))
@@ -169,7 +171,9 @@ def run(args):
                 judge_attempt.mkdir()
                 if (attempt / 'solution.py').exists():
                     shutil.copyfile(attempt / 'solution.py', judge_attempt / 'solution.py')
+                judge_started = time.monotonic()
                 evaluation = score(judge_attempt, private, VENDOR, JUDGE)
+                save(judge_attempt / 'timing.json', {'wall_seconds': time.monotonic() - judge_started})
                 save(judge_attempt / 'evaluation.json', evaluation)
                 if evaluation['status'] == 'infrastructure_error':
                     raise RuntimeError('Judge infrastructure failure; isolated attempt retained')

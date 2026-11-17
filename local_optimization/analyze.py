@@ -73,6 +73,9 @@ def collect(batch):
             'telemetry_complete': r['token_telemetry_complete'], 'attempt': str(path)})
         rows[-1]['unobserved_model_calls'] = r.get('unobserved_model_calls', 0)
         rows[-1]['unobserved_output_token_upper_bound'] = r.get('unobserved_output_token_upper_bound', 0)
+        starter_hash = tasks[job['task_id']].get('public_sha256', {}).get('solution.py')
+        rows[-1]['unchanged_starter'] = bool(starter_hash) and r.get('submission_sha256') == starter_hash
+        rows[-1]['invocation_wall_seconds'] = read(path/'invocation-timing.json')['wall_seconds'] if (path/'invocation-timing.json').exists() else None
     return plan, rows
 
 
@@ -93,6 +96,7 @@ def summarize(batch):
             'failed_cost': {key: sum(r[key] for r in failed) for key in ['seconds','output_tokens','generation_seconds']},
             'terminations': dict(collections.Counter(r['agent_status'] for r in selected)),
             'official_statuses': dict(collections.Counter(r['official_status'] for r in selected)),
+            'unchanged_starter_runs': sum(r['unchanged_starter'] for r in selected),
             'offloaded_runs': sum(r['offload'] for r in selected), 'missing_gpu_snapshots': sum(r['gpu_bytes'] is None for r in selected),
             'maximum_prompt_tokens': max(r['max_prompt'] for r in selected),
             'unobserved_model_calls': sum(r['unobserved_model_calls'] for r in selected),
@@ -117,8 +121,9 @@ def summarize(batch):
                 'a_seconds': sum(aa[k]['seconds'] for k in keys), 'b_seconds': sum(bb[k]['seconds'] for k in keys),
                 'a_tokens': sum(aa[k]['output_tokens'] for k in keys), 'b_tokens': sum(bb[k]['output_tokens'] for k in keys)})
     frontier = []
+    coverage = {p: {(r['task_id'],r['seed']) for r in rows if r['profile']==p} for p in profiles}
     for p,x in profiles.items():
-        if not any(q!=p and y['n']==x['n'] and y['accuracy']>=x['accuracy'] and y['totals']['seconds']<=x['totals']['seconds'] and y['totals']['output_tokens']<=x['totals']['output_tokens'] and
+        if not any(q!=p and coverage[q]==coverage[p] and y['accuracy']>=x['accuracy'] and y['totals']['seconds']<=x['totals']['seconds'] and y['totals']['output_tokens']<=x['totals']['output_tokens'] and
                    (y['accuracy']>x['accuracy'] or y['totals']['seconds']<x['totals']['seconds'] or y['totals']['output_tokens']<x['totals']['output_tokens']) for q,y in profiles.items()):
             frontier.append(p)
     summary = {'batch': str(batch), 'planned': len(plan['jobs']), 'completed': len(rows), 'profiles': profiles, 'paired': paired,
