@@ -18,6 +18,8 @@ def combine(args):
         for key in ('revision','source_sha256','evaluator_revision'):
             if plan['manifest'][key]!=first['manifest'][key]:raise ValueError('Incompatible dataset/evaluator provenance')
         sources.append({'path':str(batch/'plan.json'),'sha256':digest(batch/'plan.json')})
+        if (batch/'judge-addendum.json').exists():
+            sources.append({'path':str(batch/'judge-addendum.json'),'sha256':digest(batch/'judge-addendum.json'),'kind':'judge_observability_addendum'})
         for profile,config in plan['profiles'].items():
             if profile not in args.profiles:continue
             if profile in profiles and config!=profiles[profile]:raise ValueError('Profile changed between source cohorts')

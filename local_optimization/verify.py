@@ -44,6 +44,8 @@ def verify(batch):
                 observations=[m for m in request['messages'] if m['role']=='tool']
                 if len(calls)!=len(observations) or any(m.get('tool_name')!='bash' for m in observations):
                     raise ValueError('Native history mismatch')
+        if (attempt/'solution.py').is_file()!=bool(result.get('submission_sha256')):
+            raise ValueError('Extracted-source presence differs from recorded evidence')
         if (attempt/'solution.py').exists() and digest(attempt/'solution.py')!=result['submission_sha256']:
             raise ValueError('Extracted source changed')
         judge=read(attempt/'private_evaluation.json')
