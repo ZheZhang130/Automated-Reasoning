@@ -1,5 +1,6 @@
 """Export standalone scientific accuracy/cost plots using an isolated matplotlib install."""
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -9,6 +10,7 @@ from optlib import DATA, ROOT, read
 def plot(batches, destination):
     # Plotting dependencies live outside the inference environment.
     sys.path.insert(0,str(DATA/'plotting-packages'))
+    os.environ['MPLCONFIGDIR']=str(DATA/'matplotlib-cache')
     import matplotlib
     matplotlib.use('Agg')
     import matplotlib.pyplot as plt
@@ -25,6 +27,7 @@ def plot(batches, destination):
         for index,profile in enumerate(profiles):
             row=summary['profiles'][profile];n=row['n']
             label=profile.replace('native-fixed-','native-').replace('heredoc-','text-')
+            label=str(index+1)+'. '+label+' (n='+str(n)+')'
             y=100*row['passed']/n
             mean_seconds=(row['invocation_wall_total'] if full_wall else row['totals']['seconds'])/n
             axes[0].scatter(mean_seconds,y,s=65,label=label)
@@ -56,6 +59,7 @@ def plot(batches, destination):
             ax.boxplot(values,tick_labels=labels,showmeans=True)
         ax.set_ylabel('Full invocation wall time (seconds)' if full_wall else 'Agent elapsed time (seconds)');ax.grid(axis='y',alpha=.2)
         ax.set_title(batch.name+' — successful and failed attempt costs')
+        fig.text(.02,-.02,'\n'.join(str(i+1)+': '+p for i,p in enumerate(profiles)),fontsize=8,va='top')
         for suffix in ('svg','png','pdf'):
             fig.savefig(destination/(batch.name+'-runtime.'+suffix),bbox_inches='tight')
         plt.close(fig)

@@ -39,3 +39,15 @@ Never rerun `prepare.py` over the frozen dataset: it deliberately refuses replac
 ## Evidence layout
 
 Each batch contains `plan.json`, a `frozen-source/` tree and per-task/profile/seed slots. Each attempt retains the exact task, complete trajectory, raw Ollama request/response arrays, server-log slice, configuration, public-test events, extracted candidate, GPU samples for the new runner and separate judge-attempt logs. `complete.json` points to the accepted completed attempt; it does not delete earlier attempts. Aggregate `analysis.json` and `metrics.csv` are derived, regenerable views. Timeout token/duration totals are lower bounds, with explicit unobserved upper bounds; they are never reported as complete telemetry.
+
+`judge_watch.py` additionally saves the raw official evaluator result, exact owned judge name and Docker OOM events. A confirmed judge-worker OOM is a zero-pass resource failure under the unchanged 1GB allocation, rather than an unexplained harness failure. An older plan can explicitly pin this bookkeeping through `--judge-monitor`; its addendum records the unchanged limits and exact archived wrapper. Unknown infrastructure errors still stop.
+
+## Exporting plots without changing inference dependencies
+
+```powershell
+uv --system-certs pip install --python $optimizationPython --no-deps --only-binary :all: `
+  --target E:\CSC2108Local\optimization\plotting-packages -r plot-requirements.txt
+& $optimizationPython plot.py E:\CSC2108Local\optimization\batches\BATCH-NAME
+```
+
+The plotting target is isolated from the inference environment; it shares the existing NumPy/packaging/dateutil/six. Matplotlib cache also stays on E:. SVG, PNG and PDF exports were rendered and visually checked, and the inference package inventory was verified unchanged. `cohort.py` can combine paired seeds or matched subsets using pointers to original attempts, without copying candidates or rerunning inference/judging. Derived comparisons explicitly cannot execute benchmark jobs.
