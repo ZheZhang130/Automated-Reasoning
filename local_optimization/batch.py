@@ -127,6 +127,11 @@ def run(args):
             args.seeds = args.seeds or [2108]
             plan = freeze(args, batch)
         pinned_vendor()
+        if args.only_profiles and (not args.resume or not set(args.only_profiles) <= set(plan['profiles'])):
+            raise ValueError('Execution filtering is only for resuming a subset of an unchanged frozen plan')
+        save(batch / ('execution-' + str(time.time_ns()) + '.json'), {'resume':args.resume,
+            'only_profiles':args.only_profiles, 'max_new':args.max_new, 'controller_sha256':digest(Path(__file__)),
+            'plan_sha256':digest(batch/'plan.json'), 'started_unix':time.time()})
         if plan.get('final_selection') and digest(plan['final_selection']['path']) != plan['final_selection']['sha256']:
             raise RuntimeError('Frozen final selection changed')
         for relative, checksum in plan['source_sha256'].items():
@@ -137,6 +142,8 @@ def run(args):
                 raise RuntimeError('Image digest changed')
         count = 0
         for job in plan['jobs']:
+            if args.only_profiles and job['profile'] not in args.only_profiles:
+                continue
             slot = batch / 'runs' / job['key']
             if (slot / 'complete.json').exists():
                 continue
@@ -230,6 +237,7 @@ if __name__ == '__main__':
     p.add_argument('--retry-interrupted', action='store_true')
     p.add_argument('--retry-infrastructure', action='store_true', help='Preserve and retry a genuine infrastructure error; never retries resource timeouts')
     p.add_argument('--max-new', type=int)
+    p.add_argument('--only-profiles', nargs='+', help='Resume execution of selected frozen arms; other jobs remain explicitly unstarted')
     args = p.parse_args()
     if not 1 <= args.seconds <= 1200:
         p.error('Invalid wall budget')
