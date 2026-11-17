@@ -10,6 +10,7 @@ from pathlib import Path
 
 from optlib import BASELINE, DATA, ENDPOINT, MODEL, ROOT, GPU_LOCK, Lock, digest, on_e, read, save
 from transport import NativeHistory, native_messages, is_timeout
+from command_transport import execute_stdin_script
 import copy
 import threading
 import runner as v3
@@ -149,7 +150,10 @@ class Environment(v3.TaskEnvironment):
         return super()._check_finished(output)
 
     def execute(self, action, cwd='', *, timeout=None):
-        output = super().execute(action, cwd, timeout=timeout)
+        if getattr(self,'stream_large_commands',False) and isinstance(action.get('command'),str) and len(action['command'])>12000:
+            output=execute_stdin_script(self,action,cwd,timeout,super().execute)
+        else:
+            output = super().execute(action, cwd, timeout=timeout)
         event = self.evidence[-1]
         if TEST_PATTERN.fullmatch(action['command']) and not event.get('recognized_public_test'):
             self.budget.tested(event['source_sha256'], output['returncode'])
@@ -177,7 +181,7 @@ def run(task_dir, output, model_name, profile_name, *, seed=2108, actions=20, re
     if model_name != MODEL:
         raise ValueError('Unapproved model')
     record = {'run_id': output.name, 'model': model_name, 'condition': 'A', 'profile': profile_name,
-              'runtime_version': 'optimization-v3-wrapped-timeouts',
+              'runtime_version': 'optimization-v4-long-command-transport',
               'profile_config': profile, 'seed': seed, 'action_limit': actions, 'repair_limit': repairs,
               'time_limit_seconds': seconds, 'events': [], 'status': 'InfrastructureError'}
     budget = v3.Budget(actions, repairs)
@@ -189,7 +193,7 @@ def run(task_dir, output, model_name, profile_name, *, seed=2108, actions=20, re
     gpu_sampler.thread.start()
     server_log = Path('E:/CSC2108Local/logs/ollama-project.stderr.log')
     log_offset = server_log.stat().st_size
-    record['implementation_sha256'] = {p.name: digest(p) for p in (ROOT / 'runtime_opt.py', ROOT / 'transport.py', ROOT / 'profiles.json', BASELINE / 'runner.py')}
+    record['implementation_sha256'] = {p.name: digest(p) for p in (ROOT / 'runtime_opt.py', ROOT / 'transport.py', ROOT / 'command_transport.py', ROOT / 'profiles.json', BASELINE / 'runner.py')}
     try:
         task_dir = Path(task_dir).resolve(strict=True)
         allowed = {'task.json', 'public_tests.json', 'check.py', 'solution.py'}
@@ -228,6 +232,7 @@ def run(task_dir, output, model_name, profile_name, *, seed=2108, actions=20, re
                           cwd='/workspace', run_args=v3.container_args(task_dir) + ['--label', 'csc2108.eval-v2.run=' + output.name], container_timeout=str(seconds + 60) + 's',
                           env={'PYTHONDONTWRITEBYTECODE': '1', 'HOME': '/tmp'})
         save(output / 'container.json', {'container_id': env.container_id, 'run_id': output.name})
+        env.stream_large_commands=profile.get('stream_large_commands',False)
         if (task_dir / 'solution.py').exists():
             v3.docker('exec', env.container_id, 'cp', '/public/solution.py', '/workspace/solution.py')
         prompt = PROMPT if profile['protocol'] == 'text' else NATIVE_PROMPT

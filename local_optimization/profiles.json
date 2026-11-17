@@ -457,7 +457,8 @@
       "presence_penalty": 2.0,
       "frequency_penalty": 0.0
     },
-    "query_seconds": 480
+    "query_seconds": 480,
+    "stream_large_commands": true
   },
   "heredoc-opt-64k-32k-reason-r1024": {
     "context": 65536,
@@ -474,6 +475,7 @@
       "presence_penalty": 2.0,
       "frequency_penalty": 0.0
     },
-    "query_seconds": 480
+    "query_seconds": 480,
+    "stream_large_commands": true
   }
 }
