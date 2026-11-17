@@ -1,6 +1,7 @@
 """Frozen-source, sequential, resumable paired local optimization batches."""
 import argparse
 import importlib.metadata
+import importlib.util
 import json
 import os
 import shutil
@@ -86,6 +87,7 @@ def freeze(args, batch):
             raise RuntimeError('Source changed during freeze')
     plan = {'manifest_path': str(manifest_path), 'manifest_sha256': digest(manifest_path), 'manifest': manifest,
             'final_selection': final_selection,
+            'judge_monitor': 'local_optimization/judge_watch.py',
             'profiles': {p: profiles[p] for p in args.profiles}, 'jobs': jobs, 'tasks': specs,
             'task_order': 'Interleave easy/medium/hard; preserve manifest order within difficulty; rotate profile order by task/repetition',
             'actions': 20, 'repairs': 3, 'seconds': args.seconds, 'model_digest': MODEL_DIGEST,
@@ -140,6 +142,24 @@ def run(args):
         for image, expected in plan['images'].items():
             if json.loads(sandbox.docker('image', 'inspect', image).stdout)[0]['Id'] != expected['image_id']:
                 raise RuntimeError('Image digest changed')
+        monitored_score = None
+        monitor_path = None
+        if plan.get('judge_monitor'):
+            monitor_path=batch/'frozen-source'/plan['judge_monitor']
+        elif (batch/'judge-addendum.json').exists():
+            addition=read(batch/'judge-addendum.json');monitor_path=Path(addition['path'])
+            if digest(monitor_path)!=addition['sha256']:raise RuntimeError('Judge addendum changed')
+        elif args.judge_monitor:
+            monitor_path=batch/'addenda/judge_watch_v1.py'
+            monitor_path.parent.mkdir(parents=True,exist_ok=True)
+            shutil.copyfile(ROOT/'judge_watch.py',monitor_path)
+            save(batch/'judge-addendum.json',{'path':str(monitor_path),'sha256':digest(monitor_path),
+                'reason':'Explicit resource-observability addendum after confirmed judge-worker OOM; same source/image/1GB/1CPU/6sec tests/175sec guard/180sec host limits. No inference repeated or candidate changed.',
+                'activated_unix':time.time(),'completed_before':sum((batch/'runs'/j['key']/'complete.json').exists() for j in plan['jobs'])})
+        if monitor_path:
+            spec=importlib.util.spec_from_file_location('frozen_judge_watch',monitor_path)
+            module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+            monitored_score=module.score
         count = 0
         for job in plan['jobs']:
             if args.only_profiles and job['profile'] not in args.only_profiles:
@@ -208,7 +228,8 @@ def run(args):
                 if (attempt / 'solution.py').exists():
                     shutil.copyfile(attempt / 'solution.py', judge_attempt / 'solution.py')
                 judge_started = time.monotonic()
-                evaluation = score(judge_attempt, private, VENDOR, JUDGE)
+                evaluation = (monitored_score(judge_attempt,private,VENDOR,JUDGE,judge_script=batch/'frozen-source/local_baseline/judge_lcb.py')
+                              if monitored_score else score(judge_attempt, private, VENDOR, JUDGE))
                 save(judge_attempt / 'timing.json', {'wall_seconds': time.monotonic() - judge_started})
                 save(judge_attempt / 'evaluation.json', evaluation)
                 if evaluation['status'] == 'infrastructure_error':
@@ -238,6 +259,7 @@ if __name__ == '__main__':
     p.add_argument('--retry-infrastructure', action='store_true', help='Preserve and retry a genuine infrastructure error; never retries resource timeouts')
     p.add_argument('--max-new', type=int)
     p.add_argument('--only-profiles', nargs='+', help='Resume execution of selected frozen arms; other jobs remain explicitly unstarted')
+    p.add_argument('--judge-monitor', action='store_true', help='Explicitly pin a resource-observability addendum for an older plan; does not change evaluator/limits')
     args = p.parse_args()
     if not 1 <= args.seconds <= 1200:
         p.error('Invalid wall budget')
