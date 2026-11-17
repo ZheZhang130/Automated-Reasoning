@@ -21,3 +21,5 @@ $pilotPython = 'E:\CSC2108Local\.venv\Scripts\python.exe'
 ```
 
 Existing frozen sources/results are read-only. Do not rerun the pilot, reuse its scored problems as fresh validation, or reset its timer. Missing timeout replies have unknown exact generation counts; report observed token totals plus explicit bounds rather than inventing complete telemetry. This is not a comparison under matched compute and not a repository-repair benchmark.
+
+Completed: all12 benchmark attempts plus two synthetic checks, in640.2seconds total experimental wall. Agent3/6; one-shot4/6; no agent-only successes. See REPORT.md, metrics.csv and verification.json. One agent timeout reply has unknown exact tokens; its4,096-token bound is explicit. No additional model runs were made. The post-run report generator records its analysis-source hash separately from the original frozen execution source; classification/formatting edits did not change inference or candidates.
