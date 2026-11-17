@@ -35,6 +35,10 @@ def freeze(args, batch):
         selection_path = ROOT / 'final_selection.json'
         if not selection_path.exists():
             raise RuntimeError('Held-out inference requires a committed final configuration selection first')
+        relative=str(selection_path.relative_to(REPO))
+        subprocess.run(['git','ls-files','--error-unmatch',relative],cwd=REPO,check=True,capture_output=True)
+        if subprocess.run(['git','diff','--quiet','HEAD','--',relative],cwd=REPO).returncode:
+            raise RuntimeError('Final selection must be committed before held-out inference')
         selection = read(selection_path)
         if any(p not in selection['frozen_configurations'] or profiles[p] != selection['frozen_configurations'][p] for p in args.profiles):
             raise RuntimeError('Held-out profiles must match the frozen selection')

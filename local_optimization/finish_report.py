@@ -1,6 +1,7 @@
 """Publish aggregate-only study artifacts after the frozen validation finishes."""
 import csv
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -13,6 +14,18 @@ CHALLENGER='heredoc-opt-16k-4k-p15-r1024'
 
 
 def number(value):return f'{value:,.1f}'
+
+
+def readable_prose(text):
+    # Keep identifiers, URLs, versions and literal paths intact.
+    pieces=re.split(r'(`[^`]+`|https?://[^\s)]+)',text)
+    for index in range(0,len(pieces),2):
+        value=pieces[index]
+        value=re.sub(r'\b(all|on|of|after|at|from|versus|over|under|than|with|before|prior|original|held-out|seeds|control|thinking|native|window|presence|output|easy|medium|hard|Qwen|Coder)(?=\d)',r'\1 ',value)
+        value=re.sub(r'(?<=\d)(?=(?:seconds?|tokens?|hours?|actions?|problems?|tasks?|attempts?|MiB|GB|CPU|PIDs|passes|easy|medium|hard|million|word|second|output|context|bytes?|seconds|token|v?2\.4\.6)\b)',' ',value)
+        value=re.sub(r'\b(RTX|SUPER|Pydantic|LiteLLM|Ollama|Python|mini-SWE-agent)(?=\d)',r'\1 ',value)
+        pieces[index]=value
+    return ''.join(pieces)
 
 
 def table(summary):
@@ -208,7 +221,7 @@ Complete trajectories, failed attempts and independent judge evidence remain on 
 
 The authorized study stages are complete. Remaining research questions include larger independent validation, model/dataset training contamination, sensitivity to seeds/contest mix, longer-input throughput, warm-start deployment latency and stronger algorithmic reasoning without excessive inference. Small samples, adaptive selection, one quantization/hardware combination and desktop/container noise limit generalization. Held-out20 problems improve separation of tuning and validation but do not establish a population-wide model ranking. No new configuration may be tuned on these held-out outcomes; any follow-up needs fresh tasks. No expensive high-reasoning alternative is recommended from this evidence.
 '''
-    (ROOT/'REPORT.md').write_text(text,encoding='utf-8')
+    (ROOT/'REPORT.md').write_text(readable_prose(text),encoding='utf-8')
     print(json.dumps({'recommended':recommended,'heldout_control':a['passed'],'heldout_challenger':b['passed'],
                       'attempts_per_arm':a['n'],'paired_difference_interval':ci,'measured_new_attempts':sum(x['completed'] for x in inventory)}))
 

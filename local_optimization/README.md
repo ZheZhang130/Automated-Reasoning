@@ -51,3 +51,17 @@ uv --system-certs pip install --python $optimizationPython --no-deps --only-bina
 ```
 
 The plotting target is isolated from the inference environment; it shares the existing NumPy/packaging/dateutil/six. Matplotlib cache also stays on E:. SVG, PNG and PDF exports were rendered and visually checked, and the inference package inventory was verified unchanged. `cohort.py` can combine paired seeds or matched subsets using pointers to original attempts, without copying candidates or rerunning inference/judging. Derived comparisons explicitly cannot execute benchmark jobs.
+
+## Final comparison and practical entrypoint
+
+The completed report and machine-readable recommendation are generated after the frozen selection repeat and held-out comparison. The original control remains the fallback when a gain is uncertain. `selected.py --task <trusted-public-bundle> --output <new-E-directory> --seed 2108` verifies the source/configuration/image pins and uses the final recommended profile; `--challenger` explicitly requests the evaluated alternative. It runs the original v2 implementation when the original control is recommended.
+
+```powershell
+& $optimizationPython batch.py --batch E:\CSC2108Local\optimization\batches\heldout-final --resume
+& $optimizationPython analyze.py E:\CSC2108Local\optimization\batches\heldout-final
+& $optimizationPython verify.py E:\CSC2108Local\optimization\batches\heldout-final --baseline
+& $optimizationPython finish_report.py
+& $optimizationPython plot.py E:\CSC2108Local\optimization\analysis\selection-repeated E:\CSC2108Local\optimization\batches\heldout-final
+```
+
+`freeze_final.py` refuses to replace the final selection. Held-out creation additionally requires that selection to be committed. Do not modify the frozen selection or its source files after validation starts. Full telemetry and official outcomes stay outside Git; `results/` exports only aggregate metrics and normalized per-attempt measurements. `final_recommendation.json` implements the preregistered confirmation/fallback rule rather than tuning on validation.
