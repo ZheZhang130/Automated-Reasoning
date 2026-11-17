@@ -15,8 +15,11 @@ def quantiles(values):
     if not values:
         return None
     values = sorted(values)
-    return {'min': values[0], 'p25': values[round((len(values)-1)*.25)], 'median': statistics.median(values),
-            'p75': values[round((len(values)-1)*.75)], 'p90': values[round((len(values)-1)*.9)], 'max': values[-1]}
+    def percentile(q):
+        position=(len(values)-1)*q;lower=int(position);upper=min(lower+1,len(values)-1)
+        return values[lower]+(position-lower)*(values[upper]-values[lower])
+    return {'min': values[0], 'p25': percentile(.25), 'median': statistics.median(values),
+            'p75': percentile(.75), 'p90': percentile(.9), 'max': values[-1]}
 
 
 def interval(values):
@@ -58,6 +61,9 @@ def collect(batch):
             except ValueError:
                 pass
         raw = read(path / 'ollama-responses.json')
+        profile_config=plan['profiles'][job['profile']]
+        length_output_bound=sum(x.get('done_reason')=='length' and x.get('eval_count',0)>=profile_config['output_tokens'] for x in raw)
+        length_context_bound=sum(x.get('done_reason')=='length' and x.get('prompt_eval_count',0)+x.get('eval_count',0)>=profile_config['context'] for x in raw)
         messages=read(path/'trajectory.json')['messages']
         errors=[m for m in messages if m.get('extra',{}).get('interrupt_type')=='FormatError']
         length_errors=sum(m.get('extra',{}).get('response',{}).get('choices',[{}])[0].get('finish_reason')=='length' for m in errors)
@@ -66,6 +72,7 @@ def collect(batch):
             'seconds': r['elapsed_seconds'], 'actions': r['actions'], 'repairs': r['repairs'], 'model_calls': r['model_calls'],
             'format_errors': r.get('format_errors', 0), 'public_tests': len(tests), 'public_failure': seen_failure, 'public_recovery': recovered,
             'format_length_errors':length_errors,'other_format_errors':len(errors)-length_errors,
+            'length_output_bound':length_output_bound,'length_context_bound':length_context_bound,
             'recovery_official_pass': seen_failure and judge['status'] == 'pass',
             'public_pass_official_fail': any(t['returncode'] == 0 for t in tests) and judge['status'] != 'pass',
             'repeated_source_tests': sum(a['source_sha256'] == b['source_sha256'] for a,b in zip(tests,tests[1:])),
@@ -105,7 +112,7 @@ def summarize(batch):
             'difficulty': {d: {'n': sum(r['difficulty']==d for r in selected), 'passed': sum(r['correct'] for r in selected if r['difficulty']==d)} for d in ['easy','medium','hard']},
             'seconds': quantiles([r['seconds'] for r in selected]), 'successful_seconds': quantiles([r['seconds'] for r in correct]),
             'failed_seconds': quantiles([r['seconds'] for r in failed]),
-            'totals': {key: sum(r[key] for r in selected) for key in ['seconds','output_tokens','prompt_tokens','generation_seconds','prefill_seconds','load_seconds','actions','model_calls','format_errors','format_length_errors','other_format_errors','length_responses','context_events','public_tests','public_failure','public_recovery','recovery_official_pass','public_pass_official_fail','repeated_source_tests','thinking_chars']},
+            'totals': {key: sum(r[key] for r in selected) for key in ['seconds','output_tokens','prompt_tokens','generation_seconds','prefill_seconds','load_seconds','actions','model_calls','format_errors','format_length_errors','other_format_errors','length_responses','length_output_bound','length_context_bound','context_events','public_tests','public_failure','public_recovery','recovery_official_pass','public_pass_official_fail','repeated_source_tests','thinking_chars']},
             'failed_cost': {key: sum(r[key] for r in failed) for key in ['seconds','output_tokens','generation_seconds']},
             'terminations': dict(collections.Counter(r['agent_status'] for r in selected)),
             'official_statuses': dict(collections.Counter(r['official_status'] for r in selected)),
