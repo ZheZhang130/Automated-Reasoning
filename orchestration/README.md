@@ -1,3 +1,7 @@
+# Merged judge integration
+
+Read [MERGED_INTEGRATION.md](MERGED_INTEGRATION.md) for the current live commands, teammate handoffs, and backend limitations. Live public tests use Peter's judge. The earlier Docker-comparator instructions below describe the original standalone pilot.
+
 # CSC2108 orchestration pilot
 
 This implementation uses a shared Python coding loop with three actions: write a complete candidate, run public tests, and submit. The pilot uses a narrow JSON interface to validate the experiment protocol independently of mini-SWE-agent. Wiring in mini-SWE-agent is a separate integration step. The shared loop supports all five core conditions. Condition F remains optional.
