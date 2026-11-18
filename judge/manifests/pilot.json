@@ -1,0 +1,98 @@
+{
+  "name": "pilot",
+  "seed": 2108,
+  "dataset": "livecodebench/code_generation_lite",
+  "hf_revision": [
+    "0fe84c3912ea0c4d4a78037083943e8f0c4dd505"
+  ],
+  "shards": [
+    "test6.jsonl"
+  ],
+  "counts": {
+    "easy": 3,
+    "medium": 3,
+    "hard": 2
+  },
+  "tasks": [
+    {
+      "task_id": "lcb-atcoder-abc390_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "947b4a626cdd0beacba7bb6260c546351e6234088c826fc018af3d3e1bac0fef",
+      "hidden_sha256": "6baf07a5790da3ab1a9a6904b639f818cc54b883dc4d95b3f1ce521d00c72633",
+      "contest_date": "2025-01-25T00:00:00"
+    },
+    {
+      "task_id": "lcb-atcoder-abc393_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "127264865c930ad1264ec6a00b51ca687953b63e8ac04ca88c295b302523b1e9",
+      "hidden_sha256": "5d9891c845b246110e4f761a7314f84a7c5e4d3b2de7ff565038de04e1c9be50",
+      "contest_date": "2025-02-15T00:00:00"
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "efb8a4e70f29ffe290ee6116873635e0be435b35a4badf0cd45070204e549b95",
+      "hidden_sha256": "3bdbc2d9bc183643f2e161332c506dd63289d4376603794a610272cf7d2b42bc",
+      "contest_date": "2025-02-22T00:00:00"
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "94f35362c94ba352fb2979d8393603d6b113aafba4c7fc96a711cdce51b7e6ba",
+      "hidden_sha256": "43d98cd130954c1c1a5fbbec2489bb113492b53773afaebf3cd22ffb43506d8d",
+      "contest_date": "2025-02-22T00:00:00"
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_g",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 1,
+      "n_hidden": 40,
+      "public_sha256": "928fd245628cf20afe15812f4099db0b3c4956bd957dd64ec13afa27696d0a7a",
+      "hidden_sha256": "072c4de4fae2c6c09918e44f1bc48d1b111afee778cb123ffb8a0bfbef761f15",
+      "contest_date": "2025-02-22T00:00:00"
+    },
+    {
+      "task_id": "lcb-atcoder-abc396_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 5,
+      "n_hidden": 40,
+      "public_sha256": "c8ddffd238773e074be5623a3ee5b2b2cc51f4be38980a30bfd7cee7ff6c88f8",
+      "hidden_sha256": "79b9802b760b418fb386e88b25699a8525fc5ee9d98360c3868a3158233c2cc5",
+      "contest_date": "2025-03-08T00:00:00"
+    },
+    {
+      "task_id": "lcb-atcoder-arc193_b",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "e515e57362bc9f78597095f7fab6990074eca2c366a9cdcefa60d69950b669e2",
+      "hidden_sha256": "bfed4c3cf02804614c7a8bbdc679ebd23466d21bbe4f7b0f3597a14b1044170c",
+      "contest_date": "2025-02-23T00:00:00"
+    },
+    {
+      "task_id": "lcb-atcoder-arc195_a",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "189378ad633984e4f3eb39e797c6fca4344ac4cc2ff860596ca3071d56e0170f",
+      "hidden_sha256": "3fc3eadd63460a2f02d672fa14a52478b2df18e86cf9934ac781cfebdcd2e49b",
+      "contest_date": "2025-03-23T00:00:00"
+    }
+  ]
+}
