@@ -1,0 +1,324 @@
+{
+  "planned": 144,
+  "completed": 144,
+  "remaining": 0,
+  "profile": "heredoc-v6-16k-common",
+  "profile_config": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "dataset_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+  "models": {
+    "qwen3.5:9b": {
+      "completed": 48,
+      "planned": 48,
+      "passed": 23,
+      "accuracy_completed": 0.4791666666666667,
+      "problem_bootstrap_95": [
+        0.2916666666666667,
+        0.6666666666666666
+      ],
+      "complete_problem_count": 24,
+      "problems_any_pass": 12,
+      "problems_all_attempts_pass": 11,
+      "by_difficulty": {
+        "easy": {
+          "passed": 14,
+          "completed": 16
+        },
+        "hard": {
+          "passed": 0,
+          "completed": 12
+        },
+        "medium": {
+          "passed": 9,
+          "completed": 20
+        }
+      },
+      "by_platform": {
+        "atcoder": {
+          "passed": 14,
+          "completed": 24
+        },
+        "leetcode": {
+          "passed": 9,
+          "completed": 24
+        }
+      },
+      "terminations": {
+        "Submitted": 29,
+        "ActionLimit": 4,
+        "RepeatedFormatError": 14,
+        "RepairLimit": 1
+      },
+      "official_statuses": {
+        "pass": 23,
+        "candidate_failure": 17,
+        "missing_submission": 8
+      },
+      "total_seconds": 3727.482000000018,
+      "median_seconds": 37.304000000003725,
+      "median_correct_seconds": 12.921999999962281,
+      "median_failed_seconds": 137.0470000000205,
+      "actions": 236,
+      "repairs": 12,
+      "format_errors": 56,
+      "runs_with_format_errors": 20,
+      "command_failures": 0,
+      "zero_action_runs": 12,
+      "no_recognized_public_test_runs": 15,
+      "unchanged_starter_candidates": 4,
+      "public_pass_official_failure_runs": 6,
+      "official_pass_without_submitted_status": 0,
+      "runs_with_command_failures": 0,
+      "public_failure_runs": 8,
+      "public_timeout_events": 0,
+      "public_wrong_answer_events": 18,
+      "public_runtime_error_events": 3,
+      "public_unclassified_events": 0,
+      "public_recoveries": 4,
+      "recoveries_officially_correct": 1,
+      "context_affected_runs": 2,
+      "offloaded_runs": 0,
+      "residency_snapshot_runs": 48,
+      "prompt_tokens": 1013509,
+      "output_tokens": 299459,
+      "telemetry_complete_runs": 48,
+      "sampler_wire_verified_runs": 48,
+      "maximum_prompt_tokens": 15902,
+      "length_limited_responses": 56,
+      "prefill_seconds": 62.062101994,
+      "generation_seconds": 2999.257203998,
+      "load_seconds": 156.9691295,
+      "generation_tokens_per_second": 99.84438800407719,
+      "output_tokens_per_official_pass": 13019.95652173913,
+      "agent_seconds_per_official_pass": 162.06443478260948,
+      "duplicate_candidate_pairs": 1,
+      "candidate_pairs_compared": 19
+    },
+    "qwen2.5-coder:14b": {
+      "completed": 48,
+      "planned": 48,
+      "passed": 18,
+      "accuracy_completed": 0.375,
+      "problem_bootstrap_95": [
+        0.20833333333333334,
+        0.5833333333333334
+      ],
+      "complete_problem_count": 24,
+      "problems_any_pass": 9,
+      "problems_all_attempts_pass": 9,
+      "by_difficulty": {
+        "easy": {
+          "passed": 12,
+          "completed": 16
+        },
+        "hard": {
+          "passed": 0,
+          "completed": 12
+        },
+        "medium": {
+          "passed": 6,
+          "completed": 20
+        }
+      },
+      "by_platform": {
+        "atcoder": {
+          "passed": 12,
+          "completed": 24
+        },
+        "leetcode": {
+          "passed": 6,
+          "completed": 24
+        }
+      },
+      "terminations": {
+        "Submitted": 29,
+        "ActionLimit": 17,
+        "RepairLimit": 1,
+        "RepeatedFormatError": 1
+      },
+      "official_statuses": {
+        "pass": 18,
+        "candidate_failure": 29,
+        "missing_submission": 1
+      },
+      "total_seconds": 2146.2179999999353,
+      "median_seconds": 14.796999999991385,
+      "median_correct_seconds": 12.632500000006985,
+      "median_failed_seconds": 55.63300000000163,
+      "actions": 443,
+      "repairs": 13,
+      "format_errors": 33,
+      "runs_with_format_errors": 31,
+      "command_failures": 1,
+      "zero_action_runs": 1,
+      "no_recognized_public_test_runs": 1,
+      "unchanged_starter_candidates": 0,
+      "public_pass_official_failure_runs": 10,
+      "official_pass_without_submitted_status": 0,
+      "runs_with_command_failures": 1,
+      "public_failure_runs": 20,
+      "public_timeout_events": 10,
+      "public_wrong_answer_events": 166,
+      "public_runtime_error_events": 2,
+      "public_unclassified_events": 0,
+      "public_recoveries": 1,
+      "recoveries_officially_correct": 0,
+      "context_affected_runs": 0,
+      "offloaded_runs": 0,
+      "residency_snapshot_runs": 48,
+      "prompt_tokens": 1068949,
+      "output_tokens": 78625,
+      "telemetry_complete_runs": 48,
+      "sampler_wire_verified_runs": 48,
+      "maximum_prompt_tokens": 8417,
+      "length_limited_responses": 4,
+      "prefill_seconds": 33.65528499,
+      "generation_seconds": 1238.949177979,
+      "load_seconds": 148.7180279,
+      "generation_tokens_per_second": 63.46103730280103,
+      "output_tokens_per_official_pass": 4368.055555555556,
+      "agent_seconds_per_official_pass": 119.23433333332974,
+      "duplicate_candidate_pairs": 6,
+      "candidate_pairs_compared": 23
+    },
+    "qwen2.5-coder:7b": {
+      "completed": 48,
+      "planned": 48,
+      "passed": 15,
+      "accuracy_completed": 0.3125,
+      "problem_bootstrap_95": [
+        0.14583333333333334,
+        0.5
+      ],
+      "complete_problem_count": 24,
+      "problems_any_pass": 8,
+      "problems_all_attempts_pass": 7,
+      "by_difficulty": {
+        "easy": {
+          "passed": 9,
+          "completed": 16
+        },
+        "hard": {
+          "passed": 0,
+          "completed": 12
+        },
+        "medium": {
+          "passed": 6,
+          "completed": 20
+        }
+      },
+      "by_platform": {
+        "atcoder": {
+          "passed": 9,
+          "completed": 24
+        },
+        "leetcode": {
+          "passed": 6,
+          "completed": 24
+        }
+      },
+      "terminations": {
+        "Submitted": 15,
+        "ActionLimit": 33
+      },
+      "official_statuses": {
+        "pass": 15,
+        "candidate_failure": 33
+      },
+      "total_seconds": 1647.3919999999925,
+      "median_seconds": 29.61750000002212,
+      "median_correct_seconds": 10.594000000040978,
+      "median_failed_seconds": 33.21899999998277,
+      "actions": 708,
+      "repairs": 5,
+      "format_errors": 3,
+      "runs_with_format_errors": 3,
+      "command_failures": 0,
+      "zero_action_runs": 0,
+      "no_recognized_public_test_runs": 9,
+      "unchanged_starter_candidates": 0,
+      "public_pass_official_failure_runs": 2,
+      "official_pass_without_submitted_status": 2,
+      "runs_with_command_failures": 0,
+      "public_failure_runs": 24,
+      "public_timeout_events": 20,
+      "public_wrong_answer_events": 215,
+      "public_runtime_error_events": 1,
+      "public_unclassified_events": 0,
+      "public_recoveries": 0,
+      "recoveries_officially_correct": 0,
+      "context_affected_runs": 0,
+      "offloaded_runs": 0,
+      "residency_snapshot_runs": 48,
+      "prompt_tokens": 1609120,
+      "output_tokens": 90044,
+      "telemetry_complete_runs": 48,
+      "sampler_wire_verified_runs": 48,
+      "maximum_prompt_tokens": 11007,
+      "length_limited_responses": 1,
+      "prefill_seconds": 23.357033986,
+      "generation_seconds": 749.561383988,
+      "load_seconds": 109.7118971,
+      "generation_tokens_per_second": 120.12892062412003,
+      "output_tokens_per_official_pass": 6002.933333333333,
+      "agent_seconds_per_official_pass": 109.82613333333283,
+      "duplicate_candidate_pairs": 8,
+      "candidate_pairs_compared": 24
+    }
+  },
+  "paired": [
+    {
+      "a": "qwen3.5:9b",
+      "b": "qwen2.5-coder:14b",
+      "complete_problem_pairs": 24,
+      "accuracy_difference": 0.10416666666666667,
+      "problem_bootstrap_difference_95": [
+        0.0,
+        0.22916666666666666
+      ],
+      "a_only_problem_success": 3,
+      "b_only_problem_success": 0,
+      "exploratory_exact_p": 0.25
+    },
+    {
+      "a": "qwen3.5:9b",
+      "b": "qwen2.5-coder:7b",
+      "complete_problem_pairs": 24,
+      "accuracy_difference": 0.16666666666666666,
+      "problem_bootstrap_difference_95": [
+        0.0,
+        0.3541666666666667
+      ],
+      "a_only_problem_success": 5,
+      "b_only_problem_success": 1,
+      "exploratory_exact_p": 0.21875
+    },
+    {
+      "a": "qwen2.5-coder:14b",
+      "b": "qwen2.5-coder:7b",
+      "complete_problem_pairs": 24,
+      "accuracy_difference": 0.0625,
+      "problem_bootstrap_difference_95": [
+        -0.08333333333333333,
+        0.20833333333333334
+      ],
+      "a_only_problem_success": 2,
+      "b_only_problem_success": 1,
+      "exploratory_exact_p": 1.0
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "batch": "E:\\CSC2108Local\\optimization\\batches\\dev-output-budget",
+  "planned": 4,
+  "completed": 2,
+  "profiles": {
+    "native-fixed-128k-4k-think-longquery": {
+      "n": 1,
+      "passed": 0,
+      "accuracy": 0.0,
+      "difficulty": {
+        "easy": {
+          "n": 0,
+          "passed": 0
+        },
+        "medium": {
+          "n": 1,
+          "passed": 0
+        },
+        "hard": {
+          "n": 0,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 128.5,
+        "p25": 128.5,
+        "median": 128.5,
+        "p75": 128.5,
+        "p90": 128.5,
+        "max": 128.5
+      },
+      "successful_seconds": null,
+      "failed_seconds": {
+        "min": 128.5,
+        "p25": 128.5,
+        "median": 128.5,
+        "p75": 128.5,
+        "p90": 128.5,
+        "max": 128.5
+      },
+      "totals": {
+        "seconds": 128.5,
+        "output_tokens": 12288,
+        "prompt_tokens": 2415,
+        "generation_seconds": 117.60712,
+        "prefill_seconds": 0.429324,
+        "load_seconds": 3.1786693,
+        "actions": 0,
+        "model_calls": 3,
+        "format_errors": 3,
+        "format_length_errors": 3,
+        "other_format_errors": 0,
+        "length_responses": 3,
+        "length_output_bound": 3,
+        "length_context_bound": 0,
+        "context_events": 0,
+        "public_tests": 0,
+        "public_failure": 0,
+        "public_recovery": 0,
+        "recovery_official_pass": 0,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 0,
+        "thinking_chars": 41347
+      },
+      "failed_cost": {
+        "seconds": 128.5,
+        "output_tokens": 12288,
+        "generation_seconds": 117.60712
+      },
+      "terminations": {
+        "RepeatedFormatError": 1
+      },
+      "official_statuses": {
+        "missing_submission": 1
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 843,
+      "unobserved_model_calls": 0,
+      "output_tokens_unobserved_upper_bound": 0,
+      "output_tokens_distribution": {
+        "min": 12288,
+        "p25": 12288.0,
+        "median": 12288,
+        "p75": 12288.0,
+        "p90": 12288.0,
+        "max": 12288
+      },
+      "model_calls_distribution": {
+        "min": 3,
+        "p25": 3.0,
+        "median": 3,
+        "p75": 3.0,
+        "p90": 3.0,
+        "max": 3
+      },
+      "actions_distribution": {
+        "min": 0,
+        "p25": 0.0,
+        "median": 0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "max": 0
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "": 1
+      },
+      "judge_resource_failures": {},
+      "invocation_wall_seconds": {
+        "min": 131.0,
+        "p25": 131.0,
+        "median": 131.0,
+        "p75": 131.0,
+        "p90": 131.0,
+        "max": 131.0
+      },
+      "invocation_wall_total": 131.0,
+      "invocation_wall_observations": 1,
+      "judge_invocation_wall_total": 0.0,
+      "judge_invocation_wall_observations": 1,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "observed_generation_tokens_per_second": 104.48347004841204
+    },
+    "native-fixed-128k-32k-think": {
+      "n": 1,
+      "passed": 0,
+      "accuracy": 0.0,
+      "difficulty": {
+        "easy": {
+          "n": 0,
+          "passed": 0
+        },
+        "medium": {
+          "n": 1,
+          "passed": 0
+        },
+        "hard": {
+          "n": 0,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 600.0630000000237,
+        "p25": 600.0630000000237,
+        "median": 600.0630000000237,
+        "p75": 600.0630000000237,
+        "p90": 600.0630000000237,
+        "max": 600.0630000000237
+      },
+      "successful_seconds": null,
+      "failed_seconds": {
+        "min": 600.0630000000237,
+        "p25": 600.0630000000237,
+        "median": 600.0630000000237,
+        "p75": 600.0630000000237,
+        "p90": 600.0630000000237,
+        "max": 600.0630000000237
+      },
+      "totals": {
+        "seconds": 600.0630000000237,
+        "output_tokens": 32768,
+        "prompt_tokens": 767,
+        "generation_seconds": 336.961902,
+        "prefill_seconds": 0.214545,
+        "load_seconds": 3.1713196,
+        "actions": 0,
+        "model_calls": 2,
+        "format_errors": 1,
+        "format_length_errors": 1,
+        "other_format_errors": 0,
+        "length_responses": 1,
+        "length_output_bound": 1,
+        "length_context_bound": 0,
+        "context_events": 0,
+        "public_tests": 0,
+        "public_failure": 0,
+        "public_recovery": 0,
+        "recovery_official_pass": 0,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 0,
+        "thinking_chars": 109936
+      },
+      "failed_cost": {
+        "seconds": 600.0630000000237,
+        "output_tokens": 32768,
+        "generation_seconds": 336.961902
+      },
+      "terminations": {
+        "ModelTimeout": 1
+      },
+      "official_statuses": {
+        "missing_submission": 1
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 767,
+      "unobserved_model_calls": 1,
+      "output_tokens_unobserved_upper_bound": 32768,
+      "output_tokens_distribution": {
+        "min": 32768,
+        "p25": 32768.0,
+        "median": 32768,
+        "p75": 32768.0,
+        "p90": 32768.0,
+        "max": 32768
+      },
+      "model_calls_distribution": {
+        "min": 2,
+        "p25": 2.0,
+        "median": 2,
+        "p75": 2.0,
+        "p90": 2.0,
+        "max": 2
+      },
+      "actions_distribution": {
+        "min": 0,
+        "p25": 0.0,
+        "median": 0,
+        "p75": 0.0,
+        "p90": 0.0,
+        "max": 0
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "": 1
+      },
+      "judge_resource_failures": {},
+      "invocation_wall_seconds": {
+        "min": 602.609999999986,
+        "p25": 602.609999999986,
+        "median": 602.609999999986,
+        "p75": 602.609999999986,
+        "p90": 602.609999999986,
+        "max": 602.609999999986
+      },
+      "invocation_wall_total": 602.609999999986,
+      "invocation_wall_observations": 1,
+      "judge_invocation_wall_total": 0,
+      "judge_invocation_wall_observations": 0,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "observed_generation_tokens_per_second": 97.2454150024355
+    }
+  },
+  "paired": [
+    {
+      "a": "native-fixed-128k-4k-think-longquery",
+      "b": "native-fixed-128k-32k-think",
+      "paired_runs": 1,
+      "paired_problems": 1,
+      "b_minus_a_correct": 0,
+      "problem_mean_accuracy_difference": 0,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "a_only_pass": 0,
+      "b_only_pass": 0,
+      "a_seconds": 128.5,
+      "b_seconds": 600.0630000000237,
+      "a_tokens": 12288,
+      "b_tokens": 32768
+    }
+  ],
+  "descriptive_three_metric_frontier": [
+    "native-fixed-128k-4k-think-longquery"
+  ],
+  "frontier_warning": "Compare only identical complete task/seed coverage; incomplete arms are not comparable.",
+  "pareto_time_metric": "full_child_invocation_wall",
+  "pareto_token_rule": "Dominance requires dominator upper token bound <= dominated observed lower bound when telemetry is incomplete."
+}

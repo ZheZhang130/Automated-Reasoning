@@ -1,1 +1,3 @@
 * text eol=lf
+# The measured environment lock was CRLF; its frozen SHA pins those exact bytes.
+requirements.lock -text whitespace=cr-at-eol
