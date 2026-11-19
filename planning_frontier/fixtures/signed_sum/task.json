@@ -1,0 +1,1 @@
+{"task_id":"smoke-signed-sum","version":"1","statement":"Read two signed integers from standard input and print their sum. Save a standalone Python program at /workspace/solution.py. Run python -I /public/check.py to test it.","submission_path":"solution.py"}

@@ -15,3 +15,38 @@ local_baseline/.cache/
 .env.*
 local_agent/runs/
 local_agent/artifacts/
+
+
+# Python build and environment artifacts.
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+venv/
+
+# Allow credential-free environment templates.
+!.env.example
+!.env.template
+
+# New runtime outputs; historical tracked examples remain tracked.
+/runs/
+/orchestration/runs/
+
+# Planning smoke-test raw outputs stay local. Commit the reports and
+# reusable fixtures, scripts, and codex-plan.json/md input artifacts.
+/planning_frontier/smoke-evidence/
+/planning_frontier/compact-evidence/
+/planning_frontier/plan3600-evidence/
+/planning_frontier/expanded-context/8k/
+/planning_frontier/expanded-context/16k/
+/planning_frontier/complex-smoke/local/
+/planning_frontier/complex-smoke/planned/
+/planning_frontier/complex-smoke/setup-error/
+/planning_frontier/codex-smoke/evidence/
+/planning_frontier/codex-smoke/coding-4k/
+/planning_frontier/runs/
+
+# Downloaded model weights belong outside the repository.
+*.gguf
+*.safetensors
