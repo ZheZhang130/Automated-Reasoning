@@ -1,0 +1,92 @@
+{
+  "status": "pass",
+  "source_branch_commit": "f6ba40c6f284eb27c899fce60ffa1e73cdb36e26",
+  "new_branch": "feat/csc2108-local-agent-final",
+  "frozen_files_byte_identical_to_measured_source": 38,
+  "relocated_evidence_files_byte_identical": 102,
+  "archive_only_files_removed_from_active_tree": 24,
+  "source_worktree_clean_and_unchanged": true,
+  "teammate_files_byte_identical": true,
+  "archival_tags_remote_verified": {
+    "archive/csc2108-local-pilot": "b978b7f150a52563da9a5f33568136fc792ee5bb",
+    "archive/csc2108-extended-evaluation": "d0fb8756a54e7d7fb1f136b6a5de4a2257b3a4b9",
+    "archive/csc2108-qwen-optimization": "da6eb45a920004594f6fb14cc3baa87e143b5f16",
+    "archive/csc2108-one-shot-ablation": "ca0e9dc1274e831d3f642a0b4e1730506c11f131",
+    "archive/csc2108-agent-delivery-followup": "f6ba40c6f284eb27c899fce60ffa1e73cdb36e26"
+  },
+  "historical_baseline_artifact_hashes_verified": 240,
+  "original_forensic_artifact_hashes_verified": 30,
+  "preserved_exclusion_ids": 75,
+  "static_checks": {
+    "schema_version": 1,
+    "benchmark_inference_runs": 0,
+    "synthetic_model_runs": 1,
+    "tests": [
+      {
+        "suite": "interface",
+        "passed": 4,
+        "exit_code": 0,
+        "log_sha256": "ed240d693de9a8d0dfb4e05f9f32a72370b64fcb54b36691204cc77dc9c00e96"
+      },
+      {
+        "suite": "local_baseline",
+        "passed": 6,
+        "exit_code": 0,
+        "log_sha256": "1ad318bb64792fcc287557d3e48f3044cd333b4cbbd166a1d9bbfeb3c2d7042f"
+      },
+      {
+        "suite": "local_eval_v2",
+        "passed": 9,
+        "exit_code": 0,
+        "log_sha256": "945f79e8776406c113b5e05dcbc3e24eff3e044b906cff3fe33a257acd5e23e3"
+      },
+      {
+        "suite": "local_optimization",
+        "passed": 9,
+        "exit_code": 0,
+        "log_sha256": "fd8d838069df13ce433bccddeb0e513faa8c1b696c1480895be7eedf2207a1a3"
+      }
+    ],
+    "compilation": "pass",
+    "imports": "pass",
+    "unit_tests_passed": 28
+  },
+  "fresh_index_export_offline_verification": "pass",
+  "synthetic": {
+    "task_id": "dev-negative-squares",
+    "status": "Submitted",
+    "official_evaluation": "pass",
+    "actions": 3,
+    "public_tests": 1,
+    "format_errors": 0,
+    "output_tokens": 175,
+    "wall_seconds": 31.860000000044238,
+    "judge_wall_seconds": 2.75,
+    "candidate_sha256": "2e91f486dc6b954cca33a897f786fd37ee1c78ad160f505cbf5f2e4ccf435611",
+    "frozen_original_prompt_and_sampler_verified_on_all_requests": true,
+    "complete_trajectory": true,
+    "execution_wrapper_sha256": "672bd074623a686b8589c16830b5f7179e2e68e0fe167d4b757b7c10fcb9b3f1",
+    "final_wrapper_sha256": "4d2d1490713ed20a081d83408df7353909cf94e4f4116ee4a76d2eb6c624dead",
+    "post_run_change": "Two observational fields added: run_id in result and verified image IDs in metadata; launch/model logic unchanged; final source passed all static/unit checks."
+  },
+  "no_inference_sanity_controls": {
+    "isolation": true,
+    "malformed_action_rejected": true,
+    "persistent_real_shell": true,
+    "public_failure_changed_repair_pass": true,
+    "repairs": 1,
+    "submission": true,
+    "judge_positive": "pass",
+    "judge_wrong": "candidate_failure",
+    "judge_syntax": "candidate_failure",
+    "judge_oom": "candidate_resource_failure"
+  },
+  "runtime_artifacts": "E:\\CSC2108Local\\final-agent-handoff\\20261118",
+  "new_benchmark_runs": 0,
+  "new_model_inference_attempts": 1,
+  "baseline_behavior_changes": [],
+  "remaining_integration_limitations": [
+    "Requires existing Windows/E: environment, NVIDIA GPU, prepared trusted public bundles and pinned Docker/evaluator installations.",
+    "Arbitrary repository repair and frontier planning are not implemented; preserved repair counters recognize only direct checker command forms."
+  ]
+}

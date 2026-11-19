@@ -1,0 +1,397 @@
+{
+  "phase": "before_new_inference",
+  "response_indices": "zero-based",
+  "tasks": [
+    {
+      "task_id": "leetcode-3677",
+      "responses": [
+        {
+          "index": 0,
+          "tokens": 4096,
+          "done_reason": "length",
+          "content_sha256": "73b0a35841d2d6c769d51ee721e7bee582934a7e8ff1116e7f7ac17fb87b9dcd",
+          "characters": 16398,
+          "comment_lines": 156,
+          "lines": 236,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 1,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 48.08655595779419
+        },
+        {
+          "index": 1,
+          "tokens": 1549,
+          "done_reason": "stop",
+          "content_sha256": "8adbd9ba48f7d105a1bbe2c21531119353e2c9c07064461efd165f0074753749",
+          "characters": 6208,
+          "comment_lines": 19,
+          "lines": 152,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 65.56737184524536
+        },
+        {
+          "index": 2,
+          "tokens": 966,
+          "done_reason": "stop",
+          "content_sha256": "5d5973d1ded0890a8e8272312f6e9ced7236b68f62f887ece2505345162bb8bd",
+          "characters": 3682,
+          "comment_lines": 13,
+          "lines": 103,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 78.02725887298584
+        },
+        {
+          "index": 3,
+          "tokens": 18,
+          "done_reason": "stop",
+          "content_sha256": "71fbedb765cd0b9630112dac0a78580f32199fa8ee10a9bf9ff1bbecb36a7fd1",
+          "characters": 52,
+          "comment_lines": 0,
+          "lines": 3,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 81.02494692802429
+        },
+        {
+          "index": 4,
+          "tokens": 966,
+          "done_reason": "stop",
+          "content_sha256": "5d5973d1ded0890a8e8272312f6e9ced7236b68f62f887ece2505345162bb8bd",
+          "characters": 3682,
+          "comment_lines": 13,
+          "lines": 103,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 91.12702798843384
+        },
+        {
+          "index": 5,
+          "tokens": 18,
+          "done_reason": "stop",
+          "content_sha256": "71fbedb765cd0b9630112dac0a78580f32199fa8ee10a9bf9ff1bbecb36a7fd1",
+          "characters": 52,
+          "comment_lines": 0,
+          "lines": 3,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 94.1713228225708
+        },
+        {
+          "index": 6,
+          "tokens": 966,
+          "done_reason": "stop",
+          "content_sha256": "5d5973d1ded0890a8e8272312f6e9ced7236b68f62f887ece2505345162bb8bd",
+          "characters": 3682,
+          "comment_lines": 13,
+          "lines": 103,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 104.3805079460144
+        },
+        {
+          "index": 7,
+          "tokens": 966,
+          "done_reason": "stop",
+          "content_sha256": "5d5973d1ded0890a8e8272312f6e9ced7236b68f62f887ece2505345162bb8bd",
+          "characters": 3682,
+          "comment_lines": 13,
+          "lines": 103,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 116.8022530078888
+        }
+      ],
+      "executed_actions": [
+        {
+          "response_index": 1,
+          "assistant_message_index": 3,
+          "observation_message_index": 4,
+          "start_seconds": 65.57340502738953,
+          "end_seconds": 65.99815583229065,
+          "tokens_before_action": 5645,
+          "returncode": 0
+        },
+        {
+          "response_index": 2,
+          "assistant_message_index": 5,
+          "observation_message_index": 6,
+          "start_seconds": 78.03513956069946,
+          "end_seconds": 78.41982531547546,
+          "tokens_before_action": 6611,
+          "returncode": 0
+        },
+        {
+          "response_index": 3,
+          "assistant_message_index": 7,
+          "observation_message_index": 8,
+          "start_seconds": 81.02895283699036,
+          "end_seconds": 81.60174655914307,
+          "tokens_before_action": 6629,
+          "returncode": 1
+        },
+        {
+          "response_index": 4,
+          "assistant_message_index": 9,
+          "observation_message_index": 10,
+          "start_seconds": 91.13303828239441,
+          "end_seconds": 91.50801157951355,
+          "tokens_before_action": 7595,
+          "returncode": 0
+        },
+        {
+          "response_index": 5,
+          "assistant_message_index": 11,
+          "observation_message_index": 12,
+          "start_seconds": 94.17751717567444,
+          "end_seconds": 94.76978874206543,
+          "tokens_before_action": 7613,
+          "returncode": 1
+        },
+        {
+          "response_index": 6,
+          "assistant_message_index": 13,
+          "observation_message_index": 14,
+          "start_seconds": 104.38748598098755,
+          "end_seconds": 104.7866473197937,
+          "tokens_before_action": 8579,
+          "returncode": 0
+        }
+      ],
+      "first_executable_action": {
+        "response_index": 1,
+        "assistant_message_index": 3,
+        "observation_message_index": 4,
+        "start_seconds": 65.57340502738953,
+        "end_seconds": 65.99815583229065,
+        "tokens_before_action": 5645,
+        "returncode": 0
+      },
+      "first_successful_action": {
+        "response_index": 1,
+        "assistant_message_index": 3,
+        "observation_message_index": 4,
+        "start_seconds": 65.57340502738953,
+        "end_seconds": 65.99815583229065,
+        "tokens_before_action": 5645,
+        "returncode": 0
+      },
+      "recognized_public_checks": [
+        {
+          "action": 3,
+          "returncode": 1,
+          "source_sha256": "06c34705c02032cf77debe786bae9c5c83c770237bed4b1f5ec68ee2a25d363a"
+        },
+        {
+          "action": 5,
+          "returncode": 1,
+          "source_sha256": "06c34705c02032cf77debe786bae9c5c83c770237bed4b1f5ec68ee2a25d363a"
+        }
+      ],
+      "recorded_repairs": 0,
+      "raw_status": "Deadline",
+      "context_events": 0,
+      "one_shot": {
+        "tokens": 929,
+        "done_reason": "stop",
+        "fence_count": 2,
+        "comment_lines": 28
+      },
+      "source_files": {
+        "agent_responses": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-A\\ollama-responses.json",
+        "agent_trajectory": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-A\\trajectory.json",
+        "one_shot_responses": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-B\\ollama-responses.json"
+      }
+    },
+    {
+      "task_id": "atcoder-abc390_d",
+      "responses": [
+        {
+          "index": 0,
+          "tokens": 4096,
+          "done_reason": "length",
+          "content_sha256": "3ebf4943a424a5ec3b1393da5e4afd759336f8ebbcfb78d3b91b13c01bb3b966",
+          "characters": 14943,
+          "comment_lines": 284,
+          "lines": 299,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 1,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 48.09674382209778
+        },
+        {
+          "index": 1,
+          "tokens": 4096,
+          "done_reason": "length",
+          "content_sha256": "9de95611f282964996ef9c2eead2ae93cb5e60bc848cf19ae1741840076ee86a",
+          "characters": 15532,
+          "comment_lines": 274,
+          "lines": 330,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 1,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 90.58249092102051
+        },
+        {
+          "index": 2,
+          "tokens": 2006,
+          "done_reason": "stop",
+          "content_sha256": "f51b3d41d06ab6743c5d74187b59b6499e7288b726d69785b8a710b9778ddbe7",
+          "characters": 7238,
+          "comment_lines": 85,
+          "lines": 136,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 112.37126684188843
+        },
+        {
+          "index": 3,
+          "tokens": 18,
+          "done_reason": "stop",
+          "content_sha256": "71fbedb765cd0b9630112dac0a78580f32199fa8ee10a9bf9ff1bbecb36a7fd1",
+          "characters": 52,
+          "comment_lines": 0,
+          "lines": 3,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 2,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 115.63217377662659
+        }
+      ],
+      "executed_actions": [
+        {
+          "response_index": 2,
+          "assistant_message_index": 4,
+          "observation_message_index": 5,
+          "start_seconds": 112.3803882598877,
+          "end_seconds": 112.76656651496887,
+          "tokens_before_action": 10198,
+          "returncode": 0
+        }
+      ],
+      "first_executable_action": {
+        "response_index": 2,
+        "assistant_message_index": 4,
+        "observation_message_index": 5,
+        "start_seconds": 112.3803882598877,
+        "end_seconds": 112.76656651496887,
+        "tokens_before_action": 10198,
+        "returncode": 0
+      },
+      "first_successful_action": {
+        "response_index": 2,
+        "assistant_message_index": 4,
+        "observation_message_index": 5,
+        "start_seconds": 112.3803882598877,
+        "end_seconds": 112.76656651496887,
+        "tokens_before_action": 10198,
+        "returncode": 0
+      },
+      "recognized_public_checks": [],
+      "recorded_repairs": 0,
+      "raw_status": "Deadline",
+      "context_events": 0,
+      "one_shot": {
+        "tokens": 4096,
+        "done_reason": "length",
+        "fence_count": 1,
+        "comment_lines": 219
+      },
+      "source_files": {
+        "agent_responses": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-A\\ollama-responses.json",
+        "agent_trajectory": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-A\\trajectory.json",
+        "one_shot_responses": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-B\\ollama-responses.json"
+      }
+    },
+    {
+      "task_id": "atcoder-arc193_d",
+      "responses": [
+        {
+          "index": 0,
+          "tokens": 4096,
+          "done_reason": "length",
+          "content_sha256": "a38cff3961285a7d32048be21d4b28273428a4e7f3498650904a214a0a2a43e7",
+          "characters": 16216,
+          "comment_lines": 204,
+          "lines": 278,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 1,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 48.31038689613342
+        },
+        {
+          "index": 1,
+          "tokens": 4096,
+          "done_reason": "length",
+          "content_sha256": "85b305df4e577291593e35a9e76a3ec8dc05c9f54847a67a7edfa2e40d21cdb8",
+          "characters": 15058,
+          "comment_lines": 308,
+          "lines": 340,
+          "prefix_before_fence_characters": 0,
+          "fence_count": 1,
+          "thinking_field_characters": 0,
+          "reply_end_seconds": 90.7053587436676
+        }
+      ],
+      "executed_actions": [],
+      "first_executable_action": null,
+      "first_successful_action": null,
+      "recognized_public_checks": [],
+      "recorded_repairs": 0,
+      "raw_status": "InfrastructureError",
+      "context_events": 0,
+      "one_shot": {
+        "tokens": 4096,
+        "done_reason": "length",
+        "fence_count": 1,
+        "comment_lines": 198
+      },
+      "source_files": {
+        "agent_responses": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-A\\ollama-responses.json",
+        "agent_trajectory": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-A\\trajectory.json",
+        "one_shot_responses": "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-B\\ollama-responses.json"
+      }
+    }
+  ],
+  "original_artifact_sha256": {
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-A\\ollama-responses.json": "66dc2dc7fe9e739e859d8d8c98e805c3578b208a8e9d77f11fc03888c64b11e5",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-A\\ollama-requests.json": "9cabd8f7dd97fc09faf3c6781997a558374a46b312a11232e0ded3fd5d97fa9d",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-A\\trajectory.json": "1a90eb9b99ba0d8caf97e7faf23b415550a37bbf929bd5e25c29a8f43ca7878e",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-A\\result.json": "2014ac0b71f8d06d7da9343fe1b7f9898333b15d33e523f1e5c6c381a3c387cc",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-A\\solution.py": "06c34705c02032cf77debe786bae9c5c83c770237bed4b1f5ec68ee2a25d363a",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-A\\complete.json": "b1a3d35cb66258a4003b8b4c8148faad0ee31bd60b8586666108a3f44c284856",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-B\\ollama-responses.json": "733aef915229a184029cd9d6459c2a6b45f861daaf2b5d8fa3f1fb1f37da9608",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-B\\ollama-requests.json": "453e88e600022b8167140fc6a93a43d815252bf22de42f3e420cc8a943d14bce",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-B\\result.json": "19f42e6c35f41e3d547e17eb1ed69695d60b63a9d72744f54d817385c1b641f8",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-B\\solution.py": "f4713f05f6e07d8bd064423058b3ddd183434dc43ebc475674d2af49659f726e",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-leetcode-3677-B\\complete.json": "9c9479b321d3231bb8c0aee2c0030bc4d2f03aeaf614ded2c3f89c41b974f291",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-A\\ollama-responses.json": "a5706df069b8860ca1e7026219705962dc89accfc21ab07f8b5adef54875d7c4",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-A\\ollama-requests.json": "c3d8cb250657a41a8dde8cd9ae5969be5e1effb1507c4a3c4c758e5783b458c3",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-A\\trajectory.json": "8fc2715e68bf517ec0794957ceb0b84d77df9fd3cff5e02ea80a4fe6dbbc6b5e",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-A\\result.json": "1cd2586edadec6bda1bae765561c4e7da46795531693bd47644670027012661e",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-A\\solution.py": "1b7925919681d115b14ad48c5b18f28e1bd417e8e9d698e4edfb6d8115042bb2",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-A\\complete.json": "05a47a04e988e43e33b2207606430cab9a2f1475eeadf92c0bdcb3c78f14126b",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-B\\ollama-responses.json": "06ec069578c6b5c1c66d2cfd1a76a4e135db22395cf112cf9a61c3b36eec5faa",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-B\\ollama-requests.json": "6e5d455107f2d429644e476671369f23d61796586443452fea1587005be3d4d9",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-B\\result.json": "162c79cb4ce505534a1be60468e2d723cbe6614301d1b43bab93ddc18308e829",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-abc390_d-B\\complete.json": "de361b1e2edf563ea7f75a6361e55b251d95363a560fdfd603cdef1dfb7d0c16",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-A\\ollama-responses.json": "7556a740834252c8a5430d22b3d3f164c4fe7e534087e2e919673dd561070b73",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-A\\ollama-requests.json": "c02f5a9b3b1624ba6f9b036b5ac475c412103e5db7d29f926a4176943df90b91",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-A\\trajectory.json": "007d9ec62a1570cd4875bd4a2203b57e5149432b24e2e39237dd83d83fe49d9f",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-A\\result.json": "d6256b528e109066f93e1d75b0b2cf65863418922b8e9995469d8434d8dd94a0",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-A\\complete.json": "74563493e199b1896f0a42c8d39040bd833b1961f6b42b3cca055ce101d9b0e9",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-B\\ollama-responses.json": "03ce67cd35d09cbb383d00860b2c5e072f291ffc5d6941854b63097d2964f2a2",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-B\\ollama-requests.json": "6c301a862cabe7a90929fba3013627014c760369d90980bd3adeb208ad02aef8",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-B\\result.json": "1b8606bec1573ec31e726e1fe83325500382f9caec27c4eff8a1e5293cd6e90d",
+    "E:\\CSC2108Local\\one-shot-ablation\\runs\\osa-atcoder-arc193_d-B\\complete.json": "8220daddd5c2ed457146b9f1617150ab53302965cf7febcecaa1eadb442da252"
+  }
+}

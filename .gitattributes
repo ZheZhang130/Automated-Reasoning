@@ -1,0 +1,6 @@
+# Preserve frozen bytes and historical evidence across Windows checkouts.
+/local_optimization/** -text whitespace=cr-at-eol
+/evidence/** -text whitespace=cr-at-eol
+/local_agent/** text eol=lf
+/README.md text eol=lf
+/RESULTS_SUMMARY.md text eol=lf

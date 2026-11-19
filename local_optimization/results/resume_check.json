@@ -1,6 +1,0 @@
-{
-  "completed_new_jobs": 0,
-  "evidence_files_hash_unchanged": 543,
-  "stdout": "{\"completed_this_invocation\": 0, \"consumed\": {\"output_tokens\": 1753522, \"inference_hours\": 5.391692497908611}}\n",
-  "stderr": ""
-}

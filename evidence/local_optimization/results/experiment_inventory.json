@@ -1,0 +1,122 @@
+[
+  {
+    "batch": "dev-general-thinking-protocol",
+    "completed": 2,
+    "planned": 4,
+    "intentionally_unstarted": 2,
+    "plan_sha256": "f84164e0d100c467c0dbfd3a73e9fe67b00b004391bc3929a0a556a733372243",
+    "analysis_sha256": "293a5668dd8ead00ccfa9bfee8381299f0e3d60014935826e2f362275d460779"
+  },
+  {
+    "batch": "dev-interface-thinking",
+    "completed": 9,
+    "planned": 9,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "2d7acb63e0d46522f599a996366f6acfc6d1796b08b6a162129baaa007d2fcf4",
+    "analysis_sha256": "a9614f43a8537a5b163d56572cf1ea3870691e9dbf2166cc00c7def5def2fe48"
+  },
+  {
+    "batch": "dev-native-context",
+    "completed": 1,
+    "planned": 1,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "a05e4e9ee25725b0d1ff1d906279c2bc768709ce98a19c4049785d9f623bef41",
+    "analysis_sha256": "689da22984d1bd68b1e709f1682e6878f3faa9649a0f2f2e2da95b360e08e2fd"
+  },
+  {
+    "batch": "dev-nonthinking-large-output",
+    "completed": 1,
+    "planned": 1,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "e24788d6bd26ffb1e40b5a7359bb4ff1a32905f86eedc626dbde44d096cc451e",
+    "analysis_sha256": "663018360ae763912492136620abe44f00a620c2ccdb78da0128843c724c0702"
+  },
+  {
+    "batch": "dev-nonthinking-presence",
+    "completed": 6,
+    "planned": 6,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "f2a625bd5b0e5eb597ce1721beb17e939a9d2dd88c88e329299e01983852632a",
+    "analysis_sha256": "ac7a9c2e86b542edb23d807ae02319922787dd19d34f6144c686c38bc3fea16f"
+  },
+  {
+    "batch": "dev-output-budget",
+    "completed": 2,
+    "planned": 4,
+    "intentionally_unstarted": 2,
+    "plan_sha256": "815498329d5af5d40dd447cb1fecfefb36bb188226eb5ce7f1c3081ac376675f",
+    "analysis_sha256": "5fb60b2cb4ea56d0c2f7471fbe1c66ffdd17c0d39b63f4e5d216a9732d384baa"
+  },
+  {
+    "batch": "dev-protocol-nonthinking-preset",
+    "completed": 6,
+    "planned": 8,
+    "intentionally_unstarted": 2,
+    "plan_sha256": "b6d8ad3dd028277d44252fc1238ad84fe9ce13d8cf49faacacbdacb8d2446b61",
+    "analysis_sha256": "dbd21e052d291b827332ee3b8cca8326086484ed7a9997514af2d82572440423"
+  },
+  {
+    "batch": "dev-repeat-window",
+    "completed": 1,
+    "planned": 1,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "88b0ee1c75850d4bcc97f488f47d747b95827e3f6d9cc9833dfebb252a9656b6",
+    "analysis_sha256": "3aa4190240a15f90366700fe56bdddf006d95bc421e05e63c44077382109e0f9"
+  },
+  {
+    "batch": "dev-thinking-repeat-window",
+    "completed": 1,
+    "planned": 1,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "b3f15a232d0ce5df74b9f8d7ff72dd36a7540e40e055ec90e8b4b8d92b0882e9",
+    "analysis_sha256": "73ae39961199cdd2f6a626f9137aa11458a5d07731f829243adc5871cc5ad236"
+  },
+  {
+    "batch": "dev-thinking-sampling",
+    "completed": 2,
+    "planned": 2,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "94390323b8f19bf5d51ca3214c4d59fba055050f1ab1c4e2dca628901beb467d",
+    "analysis_sha256": "6607215bf4fc59ce8bd14929bcfb4d9353b7935137bbac2445c562f0e5cd2a03"
+  },
+  {
+    "batch": "heldout-final",
+    "completed": 80,
+    "planned": 80,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "9e9ffdb3184298d62537d7c42edd781dd36c545e6d1cc39edb93ff5d4584c49a",
+    "analysis_sha256": "9bc6b63257c0327580b35acc0c3460aa8ca2f0457d4dd01435ea2d17be24357b"
+  },
+  {
+    "batch": "selection-final-output-probe",
+    "completed": 2,
+    "planned": 2,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "36cf0e8afa9f7aac72c16406757b991140d8cd8552a830963d932352b575d8d8",
+    "analysis_sha256": "d0481c1e572bb2abb2ded724972b520429a536590855c8d1fd57724a616db10a"
+  },
+  {
+    "batch": "selection-repeat-s2109",
+    "completed": 24,
+    "planned": 24,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "f92977c4a88cdd8ddfff185ac3ba4ea086a3212e60b010a3d45bf83e7c5e1165",
+    "analysis_sha256": "5ef466e7c27bcba4dddbf1ed62734d1d5b90725990ee73a634f0817901412b8b"
+  },
+  {
+    "batch": "selection-s2108",
+    "completed": 42,
+    "planned": 60,
+    "intentionally_unstarted": 18,
+    "plan_sha256": "21a5de7064a9f0f720297d7d947bc3e4b0c84f6973d5e1d1a02bbe0a57e20eb4",
+    "analysis_sha256": "f93d3fefe7f48499986c4eda5cfa3a41ec7300089092524cae44aba00792a939"
+  },
+  {
+    "batch": "selection-vendor-context-s2108",
+    "completed": 24,
+    "planned": 24,
+    "intentionally_unstarted": 0,
+    "plan_sha256": "cc815329cbc247d2c69e986ffea8362080897e37a4b4513ae46a24da7bc263d5",
+    "analysis_sha256": "3c495444d972efb2f937cb66ef5939d5b9d84bb7e01d4fcfcc0bb3322cfd2ea6"
+  }
+]

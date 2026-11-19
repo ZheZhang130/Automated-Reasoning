@@ -6,3 +6,10 @@ local_baseline/.venv/
 local_baseline/runs/
 local_baseline/artifacts/
 local_baseline/.cache/
+
+# Handoff outputs belong on E: outside the checkout.
+.venv/
+.env
+.env.*
+local_agent/runs/
+local_agent/artifacts/

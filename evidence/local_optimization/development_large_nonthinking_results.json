@@ -1,0 +1,127 @@
+{
+  "batch": "E:\\CSC2108Local\\optimization\\batches\\dev-nonthinking-large-output",
+  "planned": 1,
+  "completed": 1,
+  "profiles": {
+    "heredoc-opt-64k-32k-p15": {
+      "n": 1,
+      "passed": 0,
+      "accuracy": 0.0,
+      "difficulty": {
+        "easy": {
+          "n": 0,
+          "passed": 0
+        },
+        "medium": {
+          "n": 0,
+          "passed": 0
+        },
+        "hard": {
+          "n": 1,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 600.030999999959,
+        "p25": 600.030999999959,
+        "median": 600.030999999959,
+        "p75": 600.030999999959,
+        "p90": 600.030999999959,
+        "max": 600.030999999959
+      },
+      "successful_seconds": null,
+      "failed_seconds": {
+        "min": 600.030999999959,
+        "p25": 600.030999999959,
+        "median": 600.030999999959,
+        "p75": 600.030999999959,
+        "p90": 600.030999999959,
+        "max": 600.030999999959
+      },
+      "totals": {
+        "seconds": 600.030999999959,
+        "output_tokens": 32768,
+        "prompt_tokens": 700,
+        "generation_seconds": 351.719645,
+        "prefill_seconds": 0.214172,
+        "load_seconds": 3.1746121,
+        "actions": 0,
+        "model_calls": 2,
+        "format_errors": 1,
+        "length_responses": 1,
+        "context_events": 0,
+        "public_tests": 0,
+        "public_failure": 0,
+        "public_recovery": 0,
+        "recovery_official_pass": 0,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 0,
+        "thinking_chars": 0
+      },
+      "failed_cost": {
+        "seconds": 600.030999999959,
+        "output_tokens": 32768,
+        "generation_seconds": 351.719645
+      },
+      "terminations": {
+        "ModelTimeout": 1
+      },
+      "official_statuses": {
+        "missing_submission": 1
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 700,
+      "unobserved_model_calls": 1,
+      "output_tokens_unobserved_upper_bound": 32768,
+      "output_tokens_distribution": {
+        "min": 32768,
+        "p25": 32768,
+        "median": 32768,
+        "p75": 32768,
+        "p90": 32768,
+        "max": 32768
+      },
+      "model_calls_distribution": {
+        "min": 2,
+        "p25": 2,
+        "median": 2,
+        "p75": 2,
+        "p90": 2,
+        "max": 2
+      },
+      "actions_distribution": {
+        "min": 0,
+        "p25": 0,
+        "median": 0,
+        "p75": 0,
+        "p90": 0,
+        "max": 0
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "": 1
+      },
+      "invocation_wall_seconds": {
+        "min": 602.5939999999828,
+        "p25": 602.5939999999828,
+        "median": 602.5939999999828,
+        "p75": 602.5939999999828,
+        "p90": 602.5939999999828,
+        "max": 602.5939999999828
+      },
+      "invocation_wall_total": 602.5939999999828,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "observed_generation_tokens_per_second": 93.16511166159059
+    }
+  },
+  "paired": [],
+  "descriptive_three_metric_frontier": [
+    "heredoc-opt-64k-32k-p15"
+  ],
+  "frontier_warning": "Compare only identical complete task/seed coverage; incomplete arms are not comparable."
+}

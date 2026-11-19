@@ -1,0 +1,44 @@
+{
+  "dataset": "livecodebench/code_generation_lite",
+  "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+  "release": "release_v1",
+  "file": "test.jsonl",
+  "evaluator_revision": "28fef95ea8c9f7a547c8329f2cd3d32b92c1fa24",
+  "selection_rule": "First lexicographic (platform,question_id) stdin task with visible tests per difficulty; fixed before runs",
+  "tasks": [
+    {
+      "task_id": "atcoder-abc301_a",
+      "question_id": "abc301_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "public_sha256": {
+        "check.py": "c5d3dac87c202b15fc747d4fb4875ed6653c65bf5c18d979b9a6b7d915de0ea1",
+        "public_tests.json": "ab218bc271e32b800a37f3b1fc411f8f85d78a3cd5ac0e5a4f77eee5c6e00749",
+        "task.json": "9226d4fdb5a9df54f8a83484bc1060594a9233206870e505325340dac2358cfe"
+      }
+    },
+    {
+      "task_id": "atcoder-abc301_c",
+      "question_id": "abc301_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "public_sha256": {
+        "check.py": "c5d3dac87c202b15fc747d4fb4875ed6653c65bf5c18d979b9a6b7d915de0ea1",
+        "public_tests.json": "187441a37051ce41a5e743276917d4a9b094d5ff21b5e436c1c1911e43121055",
+        "task.json": "af11732baef2f346b3599470561338fde3dcec885fbfbb4a142275d0e09c06fb"
+      }
+    },
+    {
+      "task_id": "atcoder-abc301_e",
+      "question_id": "abc301_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "public_sha256": {
+        "check.py": "c5d3dac87c202b15fc747d4fb4875ed6653c65bf5c18d979b9a6b7d915de0ea1",
+        "public_tests.json": "7b23f6e005e82e26fe0ceb1df203a8cfb22298d49b2c33c304304ff889238344",
+        "task.json": "1ae44d8d9023919f5d081604ed10c3489fb1c72e9a3e9fde6383f514b5e9143a"
+      }
+    }
+  ],
+  "source_sha256": "2bd02b38beb48e8c46b5b9987095d999ff38cd8efc255ea5d58974317c48f63f"
+}

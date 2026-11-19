@@ -1,0 +1,133 @@
+{
+  "batch": "E:\\CSC2108Local\\optimization\\batches\\dev-native-context",
+  "planned": 1,
+  "completed": 1,
+  "profiles": {
+    "native-opt-32k-4k-p15-r1024": {
+      "n": 1,
+      "passed": 0,
+      "accuracy": 0.0,
+      "difficulty": {
+        "easy": {
+          "n": 0,
+          "passed": 0
+        },
+        "medium": {
+          "n": 1,
+          "passed": 0
+        },
+        "hard": {
+          "n": 0,
+          "passed": 0
+        }
+      },
+      "seconds": {
+        "min": 224.1720000000205,
+        "p25": 224.1720000000205,
+        "median": 224.1720000000205,
+        "p75": 224.1720000000205,
+        "p90": 224.1720000000205,
+        "max": 224.1720000000205
+      },
+      "successful_seconds": null,
+      "failed_seconds": {
+        "min": 224.1720000000205,
+        "p25": 224.1720000000205,
+        "median": 224.1720000000205,
+        "p75": 224.1720000000205,
+        "p90": 224.1720000000205,
+        "max": 224.1720000000205
+      },
+      "totals": {
+        "seconds": 224.1720000000205,
+        "output_tokens": 16019,
+        "prompt_tokens": 184411,
+        "generation_seconds": 168.393044,
+        "prefill_seconds": 6.866795,
+        "load_seconds": 3.2610954,
+        "actions": 20,
+        "model_calls": 20,
+        "format_errors": 0,
+        "format_length_errors": 0,
+        "other_format_errors": 0,
+        "length_responses": 0,
+        "context_events": 0,
+        "public_tests": 1,
+        "public_failure": 1,
+        "public_recovery": 0,
+        "recovery_official_pass": 0,
+        "public_pass_official_fail": 0,
+        "repeated_source_tests": 0,
+        "thinking_chars": 0
+      },
+      "failed_cost": {
+        "seconds": 224.1720000000205,
+        "output_tokens": 16019,
+        "generation_seconds": 168.393044
+      },
+      "terminations": {
+        "ActionLimit": 1
+      },
+      "official_statuses": {
+        "candidate_failure": 1
+      },
+      "unchanged_starter_runs": 0,
+      "offloaded_runs": 0,
+      "missing_gpu_snapshots": 0,
+      "maximum_prompt_tokens": 18793,
+      "unobserved_model_calls": 0,
+      "output_tokens_unobserved_upper_bound": 0,
+      "output_tokens_distribution": {
+        "min": 16019,
+        "p25": 16019,
+        "median": 16019,
+        "p75": 16019,
+        "p90": 16019,
+        "max": 16019
+      },
+      "model_calls_distribution": {
+        "min": 20,
+        "p25": 20,
+        "median": 20,
+        "p75": 20,
+        "p90": 20,
+        "max": 20
+      },
+      "actions_distribution": {
+        "min": 20,
+        "p25": 20,
+        "median": 20,
+        "p75": 20,
+        "p90": 20,
+        "max": 20
+      },
+      "posthoc_direct_checker_events": 0,
+      "official_error_codes": {
+        "-2": 1
+      },
+      "judge_resource_failures": {},
+      "invocation_wall_seconds": {
+        "min": 226.51600000000326,
+        "p25": 226.51600000000326,
+        "median": 226.51600000000326,
+        "p75": 226.51600000000326,
+        "p90": 226.51600000000326,
+        "max": 226.51600000000326
+      },
+      "invocation_wall_total": 226.51600000000326,
+      "invocation_wall_observations": 1,
+      "problem_bootstrap_95": [
+        0,
+        0
+      ],
+      "observed_generation_tokens_per_second": 95.12863251049728
+    }
+  },
+  "paired": [],
+  "descriptive_three_metric_frontier": [
+    "native-opt-32k-4k-p15-r1024"
+  ],
+  "frontier_warning": "Compare only identical complete task/seed coverage; incomplete arms are not comparable.",
+  "pareto_time_metric": "full_child_invocation_wall",
+  "pareto_token_rule": "Dominance requires dominator upper token bound <= dominated observed lower bound when telemetry is incomplete."
+}
