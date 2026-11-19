@@ -2,6 +2,20 @@
 
 Audited from Python imports, subprocess arguments, configuration reads and Docker mounts in `cli.py`, `selected.py`, `runtime.py`, `runner.py`, `judge_watch.py` and the existing tests. [Project structure](../docs/PROJECT_STRUCTURE.md) owns the execution flow; [the interface contract](README.md) owns commands/settings. The tables cover all current files in the three older folders, including overlapping roles.
 
+The tables describe the original Windows path and shared source/test roles. The new portable worker directly reuses the original runtime function/classes, without executing `selected.py` or historical `common.Lock` on POSIX. Its CLI still checks the complete 38-file frozen map, profiles and recommendation; only native image IDs are provisioned/pinned separately. Nothing in the older folders was edited for the port.
+
+## New portable components
+
+| File(s) | Role |
+| --- | --- |
+| `platform_support.py` | Backend detection, configurable external paths, local-only endpoint guard and POSIX/Windows locking |
+| `portable.py` | Explicit infrastructure preparation, native Docker verification and isolated function host bindings; imports original runtime classes and uses its unchanged run bytecode |
+| `portable.Dockerfile`, `requirements.txt` | Native judge recipe using the original judge dependency lock; portable host's five core package pins |
+| `portable_sanity.py` | Separate synthetic fixture export, real sandbox/repair/submission and official judge controls without inference |
+| `test_portable.py`, `test_portable_integration.py` | Host contracts and opt-in real Docker/fake-Ollama integration; no real model inference |
+
+These live under `local_agent/`, outside the immutable `local_optimization/*.py` collection. Portable metadata records adapter file hashes, actual image IDs, host/architecture and endpoint. Setup/details and acceptance limits are in [MACOS.md](../docs/MACOS.md).
+
 ## Role definitions
 
 - **Run**: executed, imported or read as operational configuration by public `local_agent run`, including preflight; mere hash-reading does not qualify.
@@ -73,12 +87,12 @@ Audited from Python imports, subprocess arguments, configuration reads and Docke
 
 Historical flat module names resolve through explicit path changes: `optlib` prepends `local_eval_v2/`; `common` appends `local_baseline/`. Selector/runtime use separate Python processes. They do not import teammates' orchestration loop or archived one-shot/delivery drivers. Names such as `runtime`, `runner`, `probe`, `batch` and `analyze` need their actual process/import context rather than classification by basename alone.
 
-Host subprocesses include Python children, Docker image/info/inspect/exec/run/cleanup/events operations, Git metadata/evaluator checks and `nvidia-smi` telemetry. Docker launches isolated Linux shells/Python. Candidate/official evaluator execution is inside containers; `judge_lcb.py` imports `lcb_runner.evaluation.compute_code_generation_metrics` there. Host `evaluate` copies source bytes but never executes the candidate.
+Host subprocesses include Python children, Docker image/info/inspect/exec/run/cleanup/events operations, Git metadata/evaluator checks and NVIDIA telemetry where available. Explicit portable `prepare` additionally pulls/builds images and clones the pinned evaluator when absent; ordinary task commands do not. Docker launches isolated Linux shells/Python. Candidate/official evaluator execution is inside containers; `judge_lcb.py` imports `lcb_runner.evaluation.compute_code_generation_metrics` there. Host `evaluate` copies source bytes but never executes the candidate.
 
-External dependencies include the existing Python environment, mini-SWE-agent, LiteLLM, requests and locked transitive dependencies, Docker CLI/daemon, Ollama services, Git and NVIDIA telemetry. Offline verification needs Python/package identity but no running services. Host/judge locks and [provenance exports](../evidence/README.md#provenance-and-external-artifacts) record versions; installing latest dependencies or rebuilding images is not part of this cleanup.
+External dependencies include Python, mini-SWE-agent, LiteLLM, requests/transitive packages, Docker, Ollama and Git. NVIDIA telemetry is required by frozen Windows but optional on portable hosts. Offline verification needs Python/core package identity, not services. Historical locks/[provenance](../evidence/README.md#provenance-and-external-artifacts) retain Windows versions; the new portable requirements intentionally use the same core pins while allowing Python 3.11 patch/transitive versions to vary by installation.
 
 ## Integrity and historical layout
 
 Selection checks **38 frozen file hashes**, including inactive modules, before a baseline task. Active and compatibility files must keep their exact locations/bytes. Additional checks link selection/recommendation and match profiles/images. Existing attributes preserve measured line endings: the host lock was measured with CRLF, and optimization/evidence files use byte-preserving attributes. Do not normalize frozen files or edit expected hashes.
 
-The earlier packaging commit `5d07e6326c3a45be7fd2896c9364048fc8047601` relocated 102 report/data/chart files to `evidence/` and removed 24 historical Python drivers from the active tree. That was a separate completed cleanup; this documentation review relocates/deletes nothing. [layout.json](../evidence/layout.json) records original paths/measured hashes; [archive commits](../evidence/README.md#reports-and-archives) preserve complete research trees. Some old drivers still reference former report paths or write research outputs: presence does not imply a supported current CLI.
+The earlier packaging commit `5d07e6326c3a45be7fd2896c9364048fc8047601` relocated 102 report/data/chart files to `evidence/` and removed 24 historical Python drivers from the active tree. That was a separate cleanup; the port relocates/deletes none of those files. [layout.json](../evidence/layout.json) records original paths/hashes; [archives](../evidence/README.md#reports-and-archives) preserve complete research trees. Old drivers may reference former paths or write research outputs: presence does not imply a supported current CLI.

@@ -19,6 +19,8 @@ Observed failures include long planning comments embedded inside Python source e
 
 Earlier thinking, larger-context/output and native-tool studies did not establish a better practical default. The unsuccessful prompt-only intervention does not answer whether substantive frontier planning would help; that remains a future experiment.
 
+The new [portable Mac host adapter](docs/MACOS.md) changes deployment plumbing, not these experimental observations. Its software controls use synthetic fixtures and a fake model server; no new Qwen benchmark or Mac/Metal accuracy claim is added. Keep future portable results separate from these Windows measurements, with their actual hardware/image/environment provenance.
+
 Original evidence, preserved without changing observations:
 
 - [Three-model report](evidence/local_eval_v2/RESULTS.md), [metrics](evidence/local_eval_v2/benchmark_metrics.csv), [summary](evidence/local_eval_v2/benchmark_summary.json), [verification](evidence/local_eval_v2/benchmark_verification.json), [full provenance and prompts](evidence/local_eval_v2/benchmark_provenance.json).

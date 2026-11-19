@@ -1,21 +1,23 @@
 # Public integration interface
 
-Use `E:\CSC2108Local\.venv\Scripts\python.exe -m local_agent` from the checkout root after initializing [env.ps1](../local_baseline/env.ps1). The [root quick start](../README.md#start-here) assumes the existing installation; [project structure](../docs/PROJECT_STRUCTURE.md) explains paths and platform requirements. No editable install is needed on that machine.
+Use `python -m local_agent` from the checkout root. Windows keeps `E:\CSC2108Local\.venv\Scripts\python.exe` and [env.ps1](../local_baseline/env.ps1); Mac users should follow [macOS setup](../docs/MACOS.md). No editable install is required. `--backend auto` (default) selects frozen Windows execution on Windows and the portable adapter on macOS/Linux; put an explicit backend option before the subcommand.
 
-The CLI wraps the existing [selected.py](../local_optimization/selected.py) and [runtime.py](../local_eval_v2/runtime.py) without patching prompts, model parameters, parsing, budgets or action handling. The [dependency audit](dependencies.md) distinguishes those active components from historical modules.
+Windows wraps the existing [selected.py](../local_optimization/selected.py) and [runtime.py](../local_eval_v2/runtime.py). Portable execution reuses the original runtime function's bytecode/classes with host-only bindings for paths, preflight, serving and telemetry. Neither changes prompts, model settings, parsing, budgets or action/repair behavior, and all 38 frozen files remain unchanged. The [dependency audit](dependencies.md) distinguishes execution paths and historical modules.
 
 ## Commands and preflight
 
 | Command | Behavior |
 | --- | --- |
-| `verify --offline` | Checks all 38 frozen file hashes, selection/recommendation consistency, original profile identity, Python 3.11.9 and five package pins; parses the prompt without importing the runtime. No service calls or inference. |
-| `verify` | Adds inspection of both Docker image IDs and Ollama 11435 model digest/quantization/version. No inference. |
-| `run --task PUBLIC_DIRECTORY --output NEW_E_DIRECTORY [--seed 2108]` | Performs `verify`, then invokes the frozen selector/runtime as child processes; the runtime acquires the shared GPU lock and performs isolation/GPU preflight before inference. |
+| `verify --offline` | Checks 38 hashes (normalizing Windows path separators for POSIX), selection/recommendation, original profile and five package pins; Python 3.11.9 on frozen Windows or 3.11.x portable. No service calls/inference. |
+| `verify` | Adds both Docker image checks and project Ollama identity queries. Windows requires original image IDs; portable requires the explicit native image manifest/recipe. No inference. |
+| `run --task PUBLIC_DIRECTORY --output NEW_DIRECTORY [--seed 2108]` | Performs `verify`, then invokes the original selector/runtime on Windows or an isolated portable worker reusing its agent loop. Both lock the model and enforce the same sandbox/budgets. |
 | `evaluate --run COMPLETED_RUN --private-row OFFICIAL_ROW_JSON --output NEW_E_DIRECTORY` | Performs service-enabled `verify` plus a clean evaluator-revision check, then independently judges an extracted candidate. No inference or agent resumption. |
+| `prepare` | Portable only: explicitly provisions pinned native images/evaluator and a local image manifest; no model/dataset download or inference. Never rebuilds Windows defaults. |
+| `fixtures --output NEW_DIRECTORY` | Creates a small synthetic public task and a separate private row, without model calls or candidate execution. |
 
 `verify` alone does **not** prove all run prerequisites: it does not check endpoint 11434, GPU availability, Docker disk settings, prepared bundles, the runtime server log or the evaluator checkout. In particular, **`evaluate` currently requires Ollama 11435 to be reachable for preflight even though judging makes no model generation call**. The ordinary `verify` command does not check the evaluator revision; `evaluate` does.
 
-Output directories must be new, on E: and outside this checkout. The CLI never reuses them, downloads a model or automatically retries a run. No model/profile/budget override is exposed through this public interface.
+Output directories must be new and outside this checkout; frozen Windows additionally requires E:. Portable roots/endpoint/vendor configuration is documented in [macOS setup](../docs/MACOS.md). Task commands never reuse outputs, download a model or retry inference; `prepare` explicitly downloads infrastructure. No model/profile/budget override is exposed.
 
 ## Trusted public task bundle
 
@@ -35,7 +37,7 @@ The standard [public_check.py](../local_eval_v2/public_check.py) uses cases with
 | Setting | Value |
 | --- | --- |
 | Agent / adapter | mini-SWE-agent 2.4.6 / LiteLLM 1.81.16 |
-| Serving endpoint | Ollama `http://127.0.0.1:11435` |
+| Serving endpoint | Ollama `http://127.0.0.1:11435`; portable can configure another dedicated loopback port |
 | Model / quantization | `qwen3.5:9b` / Q4_K_M |
 | Model digest | `56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90` |
 | Profile / protocol | `heredoc-v6-16k-common` / text command fences with literal-heredoc file writes |
@@ -69,6 +71,8 @@ A completed `run` prints one JSON object and saves it as `<output>\result.json`;
 
 `Submitted` and candidate-file presence do not prove authorship or correctness. Inspect the original record and independently evaluate. `usage.observed_generated_tokens` sums captured replies; `usage.unobserved_generated_tokens_upper_bound` adds at most 4,096 tokens per uncaptured call, rather than estimating measured tokens. Ollama generation/prefill/load durations are separate from child-process wall time and private judging time.
 
+Metadata also identifies `backend`, `data_root` and actual endpoint. Portable runtime records include `host_adapter` with platform/architecture, native image pins and log availability. Absent NVIDIA telemetry is explicitly unavailable, rather than fabricated; Ollama model memory information remains in `ollama_ps`. These runs are not pooled with historical Windows measurements.
+
 `run` returns 2 for a child process failure or exact `InfrastructureError` status; other retained agent terminations return 0, including a missing submission. Preflight/unhandled exceptions normally return 1 and can occur before output creation. Interruptions can leave partial artifacts; there is no automatic resume. Always inspect the JSON and logs, rather than treating exit code 0 as a successful solution.
 
 ## Independent evaluation
@@ -88,11 +92,11 @@ Judge output includes `result.json` (summary), `evaluation.json`, the candidate 
 
 ## Validation commands
 
-For a documentation-only review, use only static checks and `verify --offline`; CLI help also performs no inference:
+CLI help and offline verification make no inference calls:
 
 ```powershell
 & $pythonExe -m local_agent --help
 & $pythonExe -m local_agent verify --offline
 ```
 
-Separately, the repository contains `test_interface.py` and legacy unit suites, plus `python -m local_agent.sanity --output NEW_E_DIRECTORY` for integration controls. The latter **executes synthetic code in Docker and invokes the evaluator**, although it makes no model calls; it is not a static check. The prior [handoff validation](../evidence/handoff/README.md) already records those tests and its one synthetic model run. They are not rerun as part of this documentation review.
+The repository includes `test_interface.py`, stdlib-only `test_portable.py` and legacy suites. `python -m local_agent.sanity --output NEW_DIRECTORY` selects the platform's integration controls; portable users can also call `python -m local_agent.portable_sanity`. These **execute synthetic code in Docker and independently judge it**, without model calls. The opt-in `test_portable_integration` uses real mini-SWE-agent/LiteLLM/Docker with a fake Ollama HTTP server, not Qwen inference. See [Mac checks](../docs/MACOS.md#3-check-isolation-then-run-a-task) and [prior Windows handoff](../evidence/handoff/README.md).

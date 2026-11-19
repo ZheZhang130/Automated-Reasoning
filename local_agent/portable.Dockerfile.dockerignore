@@ -1,0 +1,5 @@
+**
+!local_agent/
+!local_agent/portable.Dockerfile
+!local_baseline/
+!local_baseline/judge-requirements.lock

@@ -1,0 +1,6 @@
+# Portable host direct pins. Full historical Windows environment remains frozen.
+mini-swe-agent==2.4.6
+litellm==1.81.16
+pydantic==2.12.5
+pydantic-core==2.41.5
+numpy==2.4.6

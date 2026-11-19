@@ -2,6 +2,8 @@
 
 This is **not just an archived study**: the public component uses `selected.py`, `optlib.py`, the configuration JSON and `judge_watch.py`. Use [python -m local_agent](../local_agent/README.md), not experimental drivers. The [dependency audit](../local_agent/dependencies.md#local_optimization) distinguishes active execution, test-only imports and compatibility-only code for every retained file.
 
+The selector CLI is the frozen Windows path. Portable Mac execution enters through a separate worker, still verifies all frozen hashes/configuration and uses the same official judge monitor with native per-installation image pins. See [Mac setup](../docs/MACOS.md); no file in this historical source collection was changed for portability.
+
 | Important files | Role today |
 | --- | --- |
 | `selected.py`, `optlib.py` | Active source/image/profile verification, path helpers and dispatch to original v2 runtime |

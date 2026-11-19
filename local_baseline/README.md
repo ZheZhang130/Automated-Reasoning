@@ -2,6 +2,8 @@
 
 This folder is **partly active**, despite its historical name. Use [python -m local_agent](../local_agent/README.md), starting with the [root README](../README.md). The [dependency audit](../local_agent/dependencies.md#local_baseline) lists every retained file and its pin/test status.
 
+Portable Mac execution also reuses the unchanged sandbox and container judge adapter here. PowerShell setup and the old probe/model factory remain Windows-specific; Mac setup lives in [docs/MACOS.md](../docs/MACOS.md), not new edits to these frozen helpers.
+
 | Important files | Role today |
 | --- | --- |
 | `runner.py` | Active sandbox base classes, budgets, source extraction, Docker helper and containment checks |

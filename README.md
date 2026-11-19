@@ -2,11 +2,13 @@
 
 Run a local Qwen model through **mini-SWE-agent → LiteLLM → Ollama** to solve a trusted public Python task bundle. The agent writes code, runs public tests and repairs files inside an isolated Docker workspace; it returns the candidate, trajectory and usage records. Official evaluation is a separate command that never feeds private results back to the agent.
 
-Use **`python -m local_agent`** on `feat/csc2108-local-agent-final`. The default remains Qwen3.5 9B Q4_K_M with the frozen `heredoc-v6-16k-common` profile: 16K context, 4K response limit, nonthinking mode, 20 actions, 3 repair groups and a 600-second task budget. [Exact configuration and interface](local_agent/README.md).
+Use **`python -m local_agent`** on `feat/csc2108-local-agent-final`. Windows retains the original frozen execution path; macOS selects a portable host adapter. Both use Qwen3.5 9B Q4_K_M and `heredoc-v6-16k-common`: 16K context, 4K response limit, nonthinking mode, 20 actions, 3 repair groups and 600 seconds. [Exact configuration/interface](local_agent/README.md).
 
 ## Start here
 
-These instructions assume the **already provisioned Windows/E: machine**. Cloning the repository does not install Python packages, models, Docker images, prepared bundles or the external evaluator. Start Docker Desktop and Ollama Desktop; leave endpoint 11434 free of loaded models.
+**On a Mac, follow the [macOS setup guide](docs/MACOS.md)** to create a Python environment, provision native Docker images/evaluator, start local Ollama and run the supplied checks/example. A physical Mac/Metal inference validation remains necessary before collecting research results; development checks cover Windows, POSIX paths/locks and real Docker execution with a fake model server.
+
+The commands below are for the **already provisioned Windows/E: machine** and remain unchanged. Cloning alone installs no packages, models, images, bundles or evaluator. Start Docker Desktop and Ollama Desktop; leave endpoint 11434 free of loaded models.
 
 From this checkout's root in PowerShell:
 
@@ -29,6 +31,7 @@ Read `<output>\result.json` for the candidate/trajectory paths, termination reas
 | Need | Documentation |
 | --- | --- |
 | Complete folder map, execution flow, Windows/Mac limits and future integration | [Project structure](docs/PROJECT_STRUCTURE.md) |
+| Native Mac installation, model serving, provisioning and smoke checks | [macOS guide](docs/MACOS.md) |
 | Task-bundle schema, exact settings, commands, outputs and exit codes | [Integration interface](local_agent/README.md) |
 | Which legacy files are active, test support or hash compatibility | [Dependency audit](local_agent/dependencies.md) |
 | Experimental conclusions | [Results summary](RESULTS_SUMMARY.md) |
@@ -36,4 +39,4 @@ Read `<output>\result.json` for the candidate/trajectory paths, termination reas
 
 The three older source folders contain active dependencies as well as historical code. Read their role notes before using them: [local_baseline](local_baseline/README.md), [local_eval_v2](local_eval_v2/README.md), [local_optimization](local_optimization/README.md). Their legacy CLIs are not the team interface. Frozen files must stay at their recorded paths and bytes.
 
-`orchestration_pilot/` and `timeline/` belong to teammates; they are separate from this runner. Frontier planning/contracts are future integration work. **The current runner does not run on macOS as-is**; a Mac can read the repository/results or be used to access the provisioned Windows host. See [platform requirements](docs/PROJECT_STRUCTURE.md#platform-requirements-and-macos).
+`orchestration_pilot/` and `timeline/` belong to teammates and remain separate. Frontier planning/contracts are future integration work. Existing Windows results and frozen source files are preserved; portable measurements must be recorded separately because hardware and native image identities differ.

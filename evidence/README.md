@@ -2,6 +2,8 @@
 
 Start with [RESULTS_SUMMARY.md](../RESULTS_SUMMARY.md) for current conclusions. This directory holds preserved research documents and aggregate artifacts, **not the runnable agent**. Use the [public interface](../local_agent/README.md) and [project map](../docs/PROJECT_STRUCTURE.md) for current behavior.
 
+Published studies below are Windows measurements. The new [portable Mac adapter](../docs/MACOS.md) preserves these sources/reports; its native image manifest lives outside Git on each installation. Portability software tests do not replace the original evidence or establish new Mac benchmark scores.
+
 ## Reports and archives
 
 Historical documents retain their original wording, date-specific branch/push statements and relative links. Some links or commands refer to the old tree or machine artifacts and do not work from the relocated copy. Do not fix that history by editing the reports: use the original report at its commit below for original directory context, and current documentation for supported commands.

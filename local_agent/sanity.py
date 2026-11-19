@@ -9,6 +9,10 @@ from .cli import REPO, ROOT, VENDOR, fresh_output, save, verify
 
 
 def main():
+    from .platform_support import Settings
+    if Settings.load().backend == 'portable':
+        from .portable_sanity import main as portable_main
+        return portable_main()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()

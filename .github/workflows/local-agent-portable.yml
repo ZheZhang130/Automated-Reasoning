@@ -1,0 +1,33 @@
+name: Local agent portable host
+
+on:
+  push:
+    branches: [feat/csc2108-local-agent-final]
+    paths: ['local_agent/**', '.github/workflows/local-agent-portable.yml']
+  pull_request:
+    paths: ['local_agent/**', '.github/workflows/local-agent-portable.yml']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  host-contracts:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r local_agent/requirements.txt
+      - run: python -m unittest -v local_agent.test_portable
+      - run: python -m local_agent --backend portable verify --offline
+      - name: Import original agent with portable host configuration; no inference
+        run: python -c "from local_agent.platform_support import Settings; from local_agent.portable import load_runtime; load_runtime(Settings.load('portable'))"

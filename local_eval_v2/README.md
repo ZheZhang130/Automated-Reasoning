@@ -1,6 +1,6 @@
 # Original agent runtime and retained evaluation support
 
-The final component **actively executes `runtime.py` here**. Use the [public CLI](../local_agent/README.md) rather than invoking it directly: the wrapper/selector add identity checks, fixed configuration and the result contract. See [project structure](../docs/PROJECT_STRUCTURE.md) and the [complete file audit](../local_agent/dependencies.md#local_eval_v2).
+The final component **actively uses `runtime.py` here**. Windows invokes its original CLI through the frozen selector; portable Mac execution reuses its original run bytecode/classes with separate host bindings. Use the [public CLI](../local_agent/README.md), which supplies identity checks and the result contract. See [project structure](../docs/PROJECT_STRUCTURE.md), [Mac setup](../docs/MACOS.md) and the [file audit](../local_agent/dependencies.md#local_eval_v2).
 
 | Important files | Role today |
 | --- | --- |
