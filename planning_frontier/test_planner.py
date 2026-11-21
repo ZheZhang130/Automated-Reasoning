@@ -65,5 +65,18 @@ class LargerBudgetTests(unittest.TestCase):
         self.assertEqual(payload["options"]["num_ctx"], 8192)
         self.assertEqual(planner.last_response, body)
 
+
+class DefaultBudgetTests(unittest.TestCase):
+    def test_live_local_and_api_defaults_and_compact_override(self):
+        from planner import OllamaPlanner, FrontierPlanner
+        self.assertEqual(OllamaPlanner("http://localhost", "qwen").output_tokens, 6000)
+        self.assertEqual(OllamaPlanner("http://localhost", "qwen").context, 16384)
+        self.assertEqual(FrontierPlanner("provider/model").output_tokens, 6000)
+        self.assertEqual(OllamaPlanner("http://localhost", "qwen", compact=True).output_tokens, 1200)
+        self.assertEqual(FrontierPlanner("provider/model", compact=True).output_tokens, 1200)
+        self.assertEqual(FrontierPlanner("provider/model", output_tokens=2500).output_tokens, 2500)
+        with self.assertRaises(ValueError):
+            FrontierPlanner("provider/model", output_tokens=0)
+
 if __name__ == '__main__':
     unittest.main()

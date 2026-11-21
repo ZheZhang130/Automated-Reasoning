@@ -6,10 +6,13 @@ import sys
 import time
 from pathlib import Path
 
-from planner import FrontierPlanner, OllamaPlanner, SavedPlan, generate_plan
+from planner import (FrontierPlanner, OllamaPlanner, SavedPlan, generate_plan,
+                     DEFAULT_PLAN_OUTPUT_TOKENS, COMPACT_PLAN_OUTPUT_TOKENS,
+                     DEFAULT_CONTEXT_TOKENS, DEFAULT_CODING_OUTPUT_TOKENS,
+                     DEFAULT_PLANNING_TIMEOUT, DEFAULT_TASK_SECONDS)
 
 
-def run(repo, task_dir, output, planner, model, endpoint, context=4096, seconds=300, planning_timeout=120, coding_tokens=2000, *, guidance_kind="plan", guidance_generator=generate_plan):
+def run(repo, task_dir, output, planner, model, endpoint, context=DEFAULT_CONTEXT_TOKENS, seconds=DEFAULT_TASK_SECONDS, planning_timeout=DEFAULT_PLANNING_TIMEOUT, coding_tokens=DEFAULT_CODING_OUTPUT_TOKENS, *, guidance_kind="plan", guidance_generator=generate_plan):
     if guidance_kind not in ("plan", "contract"):
         raise ValueError("guidance_kind must be plan or contract")
     if context < 1024 or seconds < 1:
@@ -115,12 +118,12 @@ def main():
     p.add_argument("--compact-plan", action="store_true", help="Request a guide of at most 250 words.")
     p.add_argument("--local-model", default="qwen3.5:9b")
     p.add_argument("--endpoint", default="http://127.0.0.1:11435")
-    p.add_argument("--plan-tokens", type=int, default=1200)
-    p.add_argument("--plan-context", type=int, default=4096)
-    p.add_argument("--planning-timeout", type=int, default=120)
-    p.add_argument("--coding-tokens", type=int, default=2000, help="Maximum output tokens per local coding response; independent of --plan-tokens.")
-    p.add_argument("--context", type=int, default=4096)
-    p.add_argument("--seconds", type=int, default=300)
+    p.add_argument("--plan-tokens", type=int, default=None, help=f"Planning output cap (default {DEFAULT_PLAN_OUTPUT_TOKENS}; compact mode {COMPACT_PLAN_OUTPUT_TOKENS}).")
+    p.add_argument("--plan-context", type=int, default=DEFAULT_CONTEXT_TOKENS, help="Local planner context capacity (default 16384).")
+    p.add_argument("--planning-timeout", type=int, default=DEFAULT_PLANNING_TIMEOUT, help="Planner timeout in seconds (default 360).")
+    p.add_argument("--coding-tokens", type=int, default=DEFAULT_CODING_OUTPUT_TOKENS, help="Maximum output tokens per local coding response (default 4000); independent of --plan-tokens.")
+    p.add_argument("--context", type=int, default=DEFAULT_CONTEXT_TOKENS, help="Coding context capacity (default 16384).")
+    p.add_argument("--seconds", type=int, default=DEFAULT_TASK_SECONDS, help="Total task deadline in seconds (default 600).")
     group = p.add_mutually_exclusive_group(required=True)
     group.add_argument("--plan-file", type=Path, help="Replay a task-bound externally authored plan JSON.")
     group.add_argument("--no-plan", action="store_true")

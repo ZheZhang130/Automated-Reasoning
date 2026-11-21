@@ -5,6 +5,9 @@ from pathlib import Path
 
 from planning_frontier.planner import OllamaPlanner, FrontierPlanner
 
+DEFAULT_CONTRACT_OUTPUT_TOKENS = 3000
+DEFAULT_CONTRACT_CONTEXT_TOKENS = 8192
+
 PROMPT = """Document a semi-formal behavioral contract for the supplied programming
 task. Use exactly these headings:
 ## Description
@@ -25,13 +28,13 @@ Tested or Verified. Keep the contract within about 400 words.
 
 
 class OllamaContract(OllamaPlanner):
-    def __init__(self, endpoint, model, context=8192, output_tokens=2000):
+    def __init__(self, endpoint, model, context=DEFAULT_CONTRACT_CONTEXT_TOKENS, output_tokens=DEFAULT_CONTRACT_OUTPUT_TOKENS):
         super().__init__(endpoint, model, context, output_tokens=output_tokens)
         self.prompt = PROMPT
 
 
 class FrontierContract(FrontierPlanner):
-    def __init__(self, model, output_tokens=2000):
+    def __init__(self, model, output_tokens=DEFAULT_CONTRACT_OUTPUT_TOKENS):
         super().__init__(model, output_tokens=output_tokens)
         self.prompt = PROMPT
 

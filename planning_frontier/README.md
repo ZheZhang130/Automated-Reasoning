@@ -1,5 +1,33 @@
 # Single-call planning frontier
 
+## Current generation budgets
+
+Updated 2026-11-21 from development smoke-test observations.
+
+| Component | Default output allowance | Local context capacity |
+| --- | ---: | ---: |
+| Full planning, API or Ollama | 6000 | 16384 for Ollama |
+| Compact planning, API or Ollama | 1200 | 16384 for Ollama |
+| Local coding | 4000 | 16384 |
+
+Full Qwen planning was truncated at 1200 and 3000 output tokens; a complete
+guide required 5390 tokens. A complete source-writing response required 2521
+tokens, exceeding the previous 2000 coding cap. These observations motivate
+the new defaults; they do not guarantee completion or correctness.
+
+Override output allowances with --plan-tokens and --coding-tokens. Override local
+contexts with --plan-context and --context. The full planner gets a 360-second
+request allowance within a 600-second total task deadline. API context capacity
+depends on the selected provider model. Compact mode automatically selects 1200
+unless --plan-tokens explicitly overrides it. Saved artifacts trigger no model
+generation and are not truncated by these generation settings.
+
+Larger ceilings allow longer responses; they do not request padding to that
+length. These are project settings, not paper requirements. Historical result
+files retain the configurations used for those runs. No new inference was
+performed to validate these revised defaults.
+
+
 This module implements one planning request before the local coding agent starts.
 The planner receives only the public problem statement. The guide is inserted
 once into the initial user message. Public test observations remain inside the
@@ -57,7 +85,7 @@ The first command uses Qwen as both planner and coder. It validates connectivity
 and the one-way handoff, not frontier-model effectiveness. For the second command,
 set the frontier provider's credentials outside the repository. The local Ollama
 endpoint defaults to http://127.0.0.1:11435 and can be changed with --endpoint.
-The Mac development default is 4096 context tokens and 300 task seconds.
+The current defaults are 16384 coding-context tokens, 4000 coding-output tokens, and 600 task seconds.
 
 Artifacts include plan.json (guide, prompt and planner usage), trajectory.json,
 captured Ollama responses, result.json and submission.py when extraction succeeds.

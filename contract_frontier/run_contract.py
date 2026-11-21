@@ -11,6 +11,7 @@ sys.path.insert(0, str(REPO / "planning_frontier"))
 from plan_once import run
 from contract_frontier.contracts import (
     SavedContract, FrontierContract, OllamaContract, generate_contract,
+    DEFAULT_CONTRACT_OUTPUT_TOKENS, DEFAULT_CONTRACT_CONTEXT_TOKENS,
 )
 
 
@@ -23,8 +24,8 @@ def main():
     parser.add_argument("--context", type=int, default=16384)
     parser.add_argument("--coding-tokens", type=int, default=4000)
     parser.add_argument("--seconds", type=int, default=600)
-    parser.add_argument("--contract-context", type=int, default=8192)
-    parser.add_argument("--contract-tokens", type=int, default=2000)
+    parser.add_argument("--contract-context", type=int, default=DEFAULT_CONTRACT_CONTEXT_TOKENS, help="Local contract context capacity (default 8192).")
+    parser.add_argument("--contract-tokens", type=int, default=DEFAULT_CONTRACT_OUTPUT_TOKENS, help="Contract output cap (default 3000), independent of --coding-tokens.")
     parser.add_argument("--contract-timeout", type=int, default=180)
     source = parser.add_mutually_exclusive_group(required=True)
     source.add_argument("--contract-file", type=Path)

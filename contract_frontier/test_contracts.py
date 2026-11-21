@@ -82,5 +82,14 @@ class ContractTests(unittest.TestCase):
             self.assertEqual(kwargs["guidance_label"],"behavioral contract")
 
 
+    def test_contract_provider_defaults_match_and_allow_override(self):
+        from contract_frontier.contracts import OllamaContract, FrontierContract
+        local=OllamaContract("http://localhost", "qwen")
+        self.assertEqual(local.output_tokens,3000)
+        self.assertEqual(local.context,8192)
+        self.assertEqual(FrontierContract("provider/model").output_tokens,3000)
+        self.assertEqual(FrontierContract("provider/model", output_tokens=2500).output_tokens,2500)
+
+
 if __name__=="__main__":
     unittest.main()

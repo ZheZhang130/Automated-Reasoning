@@ -58,7 +58,7 @@ before replay. An input for another statement is rejected.
 
 Defaults for this new command: local Qwen3.5 9B, 16384 coding context, 4000 coding
 output tokens, 600 task seconds, 20 actions and 3 permitted repair groups.
-The live local contract generator defaults to 8192 context, 2000 output tokens,
+The live local contract generator defaults to 8192 context, 3000 output tokens,
 and 180-second request timeout. These are development choices, not paper settings.
 Saved Codex artifacts require no provider API call in the runner. Their authoring
 time and cost are unknown and excluded from measured local run time.
@@ -81,3 +81,16 @@ The signed-sum fixture is planning_frontier/fixtures/signed_sum.
 The difficult fixture is recreated by planning_frontier/complex-smoke/make_task.py.
 These inputs are synthetic smoke tests, not a benchmark accuracy comparison.
 Generated run artifacts are retained locally in smoke-evidence/ and ignored by Git.
+
+## Output budget rationale
+
+The current contract-output default is 3000 tokens for both API and Ollama
+providers, configurable with --contract-tokens. Local contract context remains
+8192 tokens, and local coding uses 4000 output tokens within 16384 context tokens.
+This is a provisional headroom allowance for the five specification sections.
+The contract smoke tests used saved Codex artifacts, so live-provider contract
+truncation was not measured and this value is not an experimentally established
+minimum. The 180-second contract request timeout still applies within the total
+600-second deadline. Saved contracts are replayed in full without a model call.
+Historical reports preserve their original settings. No additional inference was
+performed for this default change.

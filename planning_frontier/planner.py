@@ -4,6 +4,14 @@ import json
 from urllib.request import Request, urlopen
 from pathlib import Path
 
+DEFAULT_PLAN_OUTPUT_TOKENS = 6000
+COMPACT_PLAN_OUTPUT_TOKENS = 1200
+DEFAULT_CONTEXT_TOKENS = 16384
+DEFAULT_CODING_OUTPUT_TOKENS = 4000
+DEFAULT_PLANNING_TIMEOUT = 360
+DEFAULT_TASK_SECONDS = 600
+
+
 PROMPT = """You are a programming problem planner. Produce a natural-language guide
 with exactly these headings:
 ## Observations
@@ -30,7 +38,9 @@ Choose one approach. Do not brainstorm alternatives or give examples.
 
 
 class OllamaPlanner:
-    def __init__(self, endpoint, model, context=4096, compact=False, output_tokens=1200):
+    def __init__(self, endpoint, model, context=DEFAULT_CONTEXT_TOKENS, compact=False, output_tokens=None):
+        if output_tokens is None:
+            output_tokens = COMPACT_PLAN_OUTPUT_TOKENS if compact else DEFAULT_PLAN_OUTPUT_TOKENS
         if output_tokens < 1 or context <= output_tokens:
             raise ValueError("Planning context must exceed output allowance")
         self.output_tokens = output_tokens
@@ -59,7 +69,9 @@ class OllamaPlanner:
 class FrontierPlanner:
     def __init__(self, model, compact=False, output_tokens=None):
         self.model = model
-        self.output_tokens = output_tokens or (1200 if compact else 1600)
+        self.output_tokens = (COMPACT_PLAN_OUTPUT_TOKENS if compact else DEFAULT_PLAN_OUTPUT_TOKENS) if output_tokens is None else output_tokens
+        if self.output_tokens < 1:
+            raise ValueError("Planning output allowance must be positive")
         self.last_response = None
         self.prompt = COMPACT_PROMPT if compact else PROMPT
 
