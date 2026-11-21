@@ -1,0 +1,16 @@
+{
+  "text": "## Description\nProvide a standalone Python program at `/workspace/solution.py` that reads two signed integers from standard input and prints their sum. The required result is the arithmetic sum of the two supplied values. Positive, negative, and zero values are within the stated input category.\n\n## Preconditions\n- **PRE-1 \u2014 Unverified:** Standard input supplies two signed integers.\n- **PRE-2 \u2014 Unverified:** The program is invoked in an environment that can execute the required standalone Python file.\n\n## Postconditions\n- **POST-1 \u2014 Unverified:** A standalone Python program exists at `/workspace/solution.py`.\n- **POST-2 \u2014 Unverified:** The program reads both supplied integers from standard input.\n- **POST-3 \u2014 Unverified:** Standard output prints the arithmetic sum of those integers.\n- **POST-4 \u2014 Unverified:** The sum requirement applies when either or both operands are negative, positive, or zero.\n- **POST-5 \u2014 Unverified:** The prescribed verification command, `python -I /public/check.py`, has been run. This contract does not claim that execution has occurred or that checks have passed.\n\n## Test suggestions\n- For **PRE-1**, **POST-2**, and **POST-3**, supply two positive integers and compare the printed value with their expected sum.\n- For **POST-3** and **POST-4**, suggest cases containing two negative values, operands with opposite signs, equal magnitudes with opposite signs, and zero operands.\n- For **POST-1** and **PRE-2**, check that the specified file can be invoked as a standalone Python program.\n- For **POST-5**, run the prescribed command and record its result.\n\n## Unspecified behavior\nInteger magnitude limits, exact input whitespace, extra input, malformed input, and exact output whitespace are not specified. No persistent state or behavior across separate invocations is specified.\n",
+  "statement_sha256": "516a976ebc0352f05554ff747c3cdbfb476ac5b402f10d426ad24c72fbd72688",
+  "contract_prompt": "Generate a natural-language contract solely from the supplied public statement. Use Description, Preconditions, Postconditions, Test suggestions, Unspecified behavior headings. Assign condition IDs. Mark every condition Unverified. Test suggestions reference IDs. Do not provide implementation code, algorithms or data structures. Do not invent unspecified validation rules. Aim 200\u2013350 words per task.",
+  "author": "Codex isolated contract author",
+  "public_statement": "Read two signed integers from standard input and print their sum. Save a standalone Python program at /workspace/solution.py. Run python -I /public/check.py to test it.",
+  "provenance": {
+    "task_name": "/root/contract_author",
+    "fork_turns": "none",
+    "tools_used": false,
+    "execution_feedback_provided": false,
+    "formatting_note": "Blank lines normalized; prose unchanged",
+    "cost_usd": null,
+    "generation_seconds": null
+  }
+}

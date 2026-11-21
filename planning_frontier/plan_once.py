@@ -9,7 +9,9 @@ from pathlib import Path
 from planner import FrontierPlanner, OllamaPlanner, SavedPlan, generate_plan
 
 
-def run(repo, task_dir, output, planner, model, endpoint, context=4096, seconds=300, planning_timeout=120, coding_tokens=2000):
+def run(repo, task_dir, output, planner, model, endpoint, context=4096, seconds=300, planning_timeout=120, coding_tokens=2000, *, guidance_kind="plan", guidance_generator=generate_plan):
+    if guidance_kind not in ("plan", "contract"):
+        raise ValueError("guidance_kind must be plan or contract")
     if context < 1024 or seconds < 1:
         raise ValueError("context must be >=1024 and seconds must be positive")
     if not isinstance(coding_tokens, int) or not 0 < coding_tokens < context:
@@ -18,7 +20,8 @@ def run(repo, task_dir, output, planner, model, endpoint, context=4096, seconds=
     output.mkdir(parents=True, exist_ok=False)
     task_dir = Path(task_dir).resolve(strict=True)
     started = time.monotonic()
-    record = {"condition": "C-single-plan" if planner else "A-local-only", "guidance_calls": 0,
+    record = {"condition": ("C-single-plan" if guidance_kind == "plan" else "D-single-contract") if planner else "A-local-only",
+              "guidance_kind": guidance_kind if planner else None, "guidance_calls": 0,
               "local_model": model, "endpoint": endpoint, "context": context,
               "status": "setup_error", "planner_model": planner.model if planner else None,
               "planner_provider": type(planner).__name__ if planner else None, "guidance_feedback_enabled": False}
@@ -26,7 +29,7 @@ def run(repo, task_dir, output, planner, model, endpoint, context=4096, seconds=
     record["planning_context"] = getattr(planner, "context", None)
     record["planning_output_limit"] = getattr(planner, "output_tokens", None)
     record["planning_timeout"] = planning_timeout
-    if isinstance(planner, SavedPlan):
+    if hasattr(planner, "provenance"):
         record["saved_plan_provenance"] = planner.provenance()
     env = agent = budget = None
     events = []
@@ -45,8 +48,10 @@ def run(repo, task_dir, output, planner, model, endpoint, context=4096, seconds=
         plan = None
         if planner:
             record["guidance_calls"] = 1
-            plan = generate_plan(planner, task["statement"], min(planning_timeout, seconds))
-            (output / "plan.json").write_text(json.dumps(plan, indent=2))
+            plan = guidance_generator(planner, task["statement"], min(planning_timeout, seconds))
+            (output / (guidance_kind + ".json")).write_text(json.dumps(plan, indent=2))
+            if guidance_kind == "contract":
+                (output / "contract.spec.md").write_text(plan["text"], encoding="utf-8")
         os.environ.setdefault("MSWEA_GLOBAL_CONFIG_DIR", str(output / "config"))
         os.environ.setdefault("LITELLM_LOCAL_MODEL_COST_MAP", "True")
         sys.path.insert(0, str(repo / "local_eval_v2"))
@@ -76,10 +81,11 @@ def run(repo, task_dir, output, planner, model, endpoint, context=4096, seconds=
         coding_model.capture = capture
         agent = backend.Agent(
             coding_model, env, system_template=backend.PROMPT,
-            instance_template="{{task}}\n\nUpfront implementation guide:\n{{guide}}" if plan else "{{task}}",
+            instance_template="{{task}}\n\nUpfront {{guidance_label}}:\n{{guide}}" if plan else "{{task}}",
             step_limit=28, cost_limit=0, wall_time_limit_seconds=seconds,
             output_path=output / "trajectory.json")
-        result = agent.run(task["statement"], guide=plan["text"] if plan else "")
+        result = agent.run(task["statement"], guide=plan["text"] if plan else "",
+                           guidance_label="implementation guide" if guidance_kind == "plan" else "behavioral contract")
         record.update(status=result.get("exit_status"), actions=budget.actions,
                       repairs=budget.repairs, public_events=events)
     except Exception as error:

@@ -1,0 +1,40 @@
+{
+  "simple": {
+    "condition": "D-single-contract",
+    "guidance_kind": "contract",
+    "guidance_calls": 1,
+    "local_model": "qwen3.5:9b",
+    "context": 16384,
+    "coding_output_limit": 4000,
+    "status": "Submitted",
+    "actions": 3,
+    "repairs": 0,
+    "wall_seconds": 25.05544525012374,
+    "error_type": null,
+    "error": null,
+    "independent": {
+      "passed": 6,
+      "total": 6
+    },
+    "public_invocations": 1
+  },
+  "difficult": {
+    "condition": "D-single-contract",
+    "guidance_kind": "contract",
+    "guidance_calls": 1,
+    "local_model": "qwen3.5:9b",
+    "context": 16384,
+    "coding_output_limit": 4000,
+    "status": "error",
+    "actions": 7,
+    "repairs": 3,
+    "wall_seconds": 523.0799644580111,
+    "error_type": "APIConnectionError",
+    "error": "litellm.APIConnectionError: Ollama_chatException - litellm.Timeout: Connection timed out after 180.0 seconds.",
+    "independent": {
+      "passed": 0,
+      "total": 31
+    },
+    "public_invocations": 3
+  }
+}

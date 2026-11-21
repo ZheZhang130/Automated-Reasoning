@@ -50,3 +50,7 @@ venv/
 # Downloaded model weights belong outside the repository.
 *.gguf
 *.safetensors
+
+# Contract smoke-test outputs; keep reports and reusable contract inputs.
+/contract_frontier/smoke-evidence/
+/contract_frontier/runs/
