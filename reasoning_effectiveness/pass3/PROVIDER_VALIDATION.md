@@ -19,11 +19,48 @@
 
 **Live E diagnoses in the extended benchmark (Codex).** Every triggered E run requested and received a
 diagnosis, and every one was delivered: no timeout, transport, isolation, format or budget failure. The event
-streams held 0 tool events, and the harness wall time was 13–15 s. Counts per seed are in `EXTENDED_BENCHMARK.md`.
+streams held 0 tool events, and the harness wall time was 11–15 s. All 6 of 6 triggered E runs (both seeds)
+were delivered; details are in `EXTENDED_BENCHMARK.md` §4.
 
 ## 2. Paid API requests (pass-3 ledger)
 
-LEDGER_PLACEHOLDER
+**Ledger:** `evidence/api-ledger.json`, sanitized; the private original is in the study root.
+
+* **Use:** 10 of the 12 allowed requests, all `POST /v1/chat/completions` to `gpt-6.2-sol`, effort medium,
+  `max_completion_tokens` 8,000.
+* **Before each request:** the model was checked with one non-billable `GET /v1/models/gpt-6.2-sol` (200),
+  and a conservative bound was reserved first (write-ahead).
+* **Outcome:** every request returned HTTP 200 with `finish_reason = stop`. **0 retries, 0 failures**, and
+  the observed model matched in 10/10.
+
+| # | Kind | Task / state | Input / output tokens | Latency | Cost (standard) | Reserved bound (conservative) |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0 | plan-v1 | abc388_g | 1,069 / 996 (99 reasoning) | 13.0 s | $0.01210 | $0.493 |
+| 1 | contract-v1 | arc195_a | 575 / 473 | 6.4 s | $0.00588 | $0.490 |
+| 2 | diagnosis-v1 | abc390_c, seed 2108 (frozen trigger) | 1,617 / 226 | 4.4 s | $0.00549 | $0.505 |
+| 3 | diagnosis-v1 | arc195_a, seed 2109 (frozen trigger) | 1,545 / 287 | 4.6 s | $0.00596 | $0.505 |
+| 4–6 | B coder turns 1–3 | abc393_d | 678/156, 840/20, 886/21 | 3.5, 1.7, 1.4 s | $0.00678 | $1.48 |
+| 7–9 | B coder turns 1–3 | abc388_g | 1,197/549, 1,616/20, 1,662/21 | 8.6, 1.8, 1.4 s | $0.01485 | $1.50 |
+| | **Total** | | **11,685 / 2,769** | | **$0.05105** | $4.98 (all ≤ $10) |
+
+**Cumulative history:**
+
+| Pass | Requests | Cost (standard) |
+| --- | --- | --- |
+| 1 | 10 | $0.0832 |
+| 2 | 8 | $0.0386 |
+| 3 | 10 | $0.0511 |
+| **All passes** | **28** | **$0.1729** |
+
+**Accounting.**
+
+* **Cost:** cost is computed at the standard price ($2 / $10 per 1M input / output tokens) on the reported
+  usage, with cached input tokens charged at the full input price, so it is an upper estimate.
+* **Reservation:** each request reserved a conservative bound ($12 / $60 per 1M tokens, on the estimated
+  input plus the full `max_completion_tokens`) before sending. The ledger refuses any request that would
+  exceed 12 requests or $10.
+* **Purpose:** no paid request was used for debugging, summarizing, coding, task selection or trajectory
+  analysis.
 
 ## 3. Matched guidance on identical public inputs
 

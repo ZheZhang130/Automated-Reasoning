@@ -18,7 +18,30 @@ Tools (all in `diagnostics/`, rerunnable from the repository root):
 * `repeat_probe.py`: model-only resampling at loop starts;
 * `guidance_uptake.py`, `e_uptake.py`: visible use of C/D guidance and E messages.
 
-PASS3_RESULTS_PLACEHOLDER
+**Pass-3 replication on the extended cohort** (96 fresh attempts; `evidence/analysis/failure-mechanisms-ext.json`,
+`repeat-context-*.json`). Sections 1–2 below were first measured on passes 1–2. The fresh, all-hard cohort
+reproduces every mechanism:
+
+| Measure | Passes 1–2 (original agent) | Pass 3 extended cohort |
+| --- | --- | --- |
+| Truncated responses inside the open heredoc | 98 of 99 | 151 of 158 in A/C/D (96%); 7 stop in prose before the fence |
+| Prose before the fence (median) | 0 characters | 0 characters |
+| Comment lines per truncated body (median) | 221, 35% deliberation wording | 202, median 74 deliberation lines |
+| Start of a ≥10-line comment run (median code lines before it) | 11 | 17 |
+| P(truncated \| previous truncated), A / C / D | 48% / 0/3 / 86% | **77% / 74% / 76%** |
+| P(truncated \| previous complete), A / C / D | 6% / 1% / 0% | 5% / 0% / 7% |
+| First response at the 4,096-token cap: A / C / D | 6/19 and 5/10 / 1/19 and 1/5 / 10/23 and 9/26 | **23/24 / 14/24 / 23/24** |
+| Runs ending without any program: A / C / D / E | 5/29, —, 14/49, 3/16 | **17/24 / 8/24 / 17/24 / 17/24** |
+| Exact consecutive repeats: A / C / D / E | 10 / 12 / 25 / 0 | 23 / 7 / 0 / 0 |
+
+**Notes on the table.**
+
+* **E's truncation counts are not independent of A's.** Every E truncation in pass 3 occurred before any
+  trigger, so the bodies are byte-identical to A's. E is excluded from the composition and persistence rows.
+* **Persistence is much higher on the hard cohort.** Once a response truncates, the next one does too three
+  times in four, in every condition including C.
+* **C differs at the start, not after a truncation.** C still truncates the first response in 14 of 24 runs
+  on these tasks, but in 10 of 24 its first response is a complete program; A and D manage that in 1 of 24.
 
 ## 1. The truncation mechanism
 
@@ -88,16 +111,28 @@ The frozen format-error rule ends a run after three such responses (`RepeatedFor
 
 ## 2. The identical-rewrite mechanism
 
-**What repeats.** In original-agent runs, every exact consecutive repeat of the previous model response follows
-an **empty successful-command acknowledgement**:
+**What repeats.** This covers all three passes (`repeat_context.py`; `evidence/analysis/repeat-context-all.json`).
+An exact consecutive repeat of the previous model response follows a **constant observation**:
 
-| Group | Exact consecutive repeats | Preceded by the empty `<returncode>0</returncode>` | Preceded by an ACI note | Longest streak |
-| --- | --- | --- | --- | --- |
-| Original A | 10 | 10 | — | 5 |
-| Original C | 12 | 12 | — | 9 |
-| Original D | 25 | 25 | — | 16 |
-| ACI A (`aci-v1/v2`) | 32 | 1 | **30** | 19 |
-| ACI D | 16 | 1 | **14** | 15 |
+* **Usually the empty acknowledgement:** 69 of the original agent's 77 repeats follow the empty
+  successful-command `<returncode>0</returncode>`.
+* **The other 8 follow a constant non-empty output.** Seven are in pass-3 abc397_f C at seed 2108: a manual
+  run whose output is always `0`.
+* **It is a streak:** in 69 of the 77, the observation is byte-identical to the one before the previous
+  response.
+
+| Group | Runs | Exact consecutive repeats | After the empty acknowledgement | After another constant output | After an ACI note | Observation identical to the previous one | Longest streak |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Original A | 53 | 33 | 32 | 1 | — | 30 | 9 |
+| Original C | 49 | 19 | 12 | 7 | — | 16 | 9 |
+| Original D | 74 | 25 | 25 | 0 | — | 23 | 16 |
+| Original E | 42 | **0** | — | — | — | — | — |
+| ACI A (`aci-v1/v2`) | 18 | 32 | 1 | 1 (format error) | **30** | 28 | 19 |
+| ACI D | 18 | 16 | 1 | 1 (format error) | **14** | 13 | 15 |
+
+**Where the loops start.** In every pass-3 A run with a repeat loop (abc390_f and abc395_f at seed 2108;
+abc388_f and arc190_c at seed 2109), the loop starts **after the first failed public test**. That is exactly
+where E intervenes, and no E run in any pass has an exact repeat (§6).
 
 A representative trajectory (pass-1 MB2, `abc391_e`, C):
 
@@ -122,14 +157,19 @@ A representative trajectory (pass-1 MB2, `abc391_e`, C):
 * **Wasted budget:** an identical rewrite consumes an action without changing the candidate.
 * **No repair at all:** the agent never retests (re-testing an identical failed candidate is rare: 3 times in
   pass-1 A). It simply rewrites until the action limit.
-* **Scale:** 21 of 38 heredoc writes in pass-1 original A runs reproduced a candidate that had already
-  failed; in pass-1 original C it was 22 of 40.
+* **Scale:** writes that reproduced a candidate that had already failed:
+
+  | Condition | Pass 1 | Pass 3 (extended cohort) |
+  | --- | --- | --- |
+  | A | 21 of 38 heredoc writes | 50 of 64 writes |
+  | C | 22 of 40 | 17 of 34 |
+  | D | — | 31 of 41 |
 
 ## 3. Why the earlier text-feedback interventions failed
 
 * **`aci-v1` (notes only)** and the notes of **`aci-v2`** (unchanged-source note; retest-of-failed note) add
   text to the observation. In the repeat loop that text is *also constant* across repeats, so the decisive
-  suffix stays self-similar. The note itself became the context that precedes the repeat (44 of 46 ACI
+  suffix stays self-similar. The note itself became the context that precedes the repeat (44 of 48 ACI
   repeats), and the loops got longer.
 * **`aci-v2`'s repeat guard** skips executing an identical consecutive action but leaves the duplicate
   assistant message in the history, so the fixed point is untouched.
@@ -145,7 +185,7 @@ These were not controlled comparisons: the ACI runs used pass-1 development and 
 | Candidate | Mechanism addressed | Evidence | Decision |
 | --- | --- | --- | --- |
 | Salvage a truncated heredoc (save its parsable prefix) | Truncation | 0 of 38 salvageable prefixes pass any public test | **Rejected**: nothing usable is lost |
-| Another observation note | Identical rewrite | Constant notes became the repeat context (44/46) | **Rejected**: same failure as aci-v1/v2 |
+| Another observation note | Identical rewrite | Constant notes became the repeat context (44/48) | **Rejected**: same failure as aci-v1/v2 |
 | Resample on an exact repeat (different seed, response not executed) | Identical rewrite | Model-only probe at the loop starts (§5): 12/15 resamples identical; the other 3 still rewrite | **Rejected** at the frozen temperature 0.2: the fixed point does not depend on the seed |
 | Allow or require plain-text planning before the command (thinking on, or a reasoning budget) | Truncation | C shows that removing method uncertainty prevents truncation; the plan comes from outside | **Not tested**: changes the agent's protocol and token budget for every condition. A team-level decision, not an ACI tweak. |
 
@@ -230,8 +270,118 @@ Mechanism measures (`e_uptake.py`):
 
 ## 6. D and E mechanisms
 
-D_E_SECTION
+### 6.1 D: why a contract does not help this agent
+
+**Result.** D passed 0/24 in pass 3: 0 gains and 2 harms against A. Passes 1–2 showed no consistent gain.
+
+**Mechanism (observable).**
+
+* **The contract does not shorten the method search.**
+  * D's first response hits the 4,096-token cap in 23 of 24 runs, the same as A.
+  * Its truncated bodies have the same composition as A's: 12,716 comment lines against 1,294 code lines.
+  * Once truncated, the next response also truncates in 76% of cases.
+  * A contract states *what* to compute (postconditions, edge cases). On hard tasks the bottleneck is *how*,
+    which the contract deliberately leaves out.
+* **Visible uptake is lower than C's.** Distinctive contract vocabulary reappears in a median 13% of comment
+  lines and 0% of code, against C's 21% and 1.6% (`guidance_uptake.py`).
+* **Hand-run checks cost actions.** D ran 5 manual checks (`printf … | python solution.py`), all on
+  arc193_a seed 2108, which reached 18/40. They use budget without changing the verdict.
+* **Both harms are first-response truncations.**
+  * At abc395_f@2108 and arc194_e@2109, A truncated once and then wrote a passing program.
+  * D truncated three times and ended without a program.
+  * The observable difference is only the extra contract text before the same task. It cannot be shown to
+    have caused the longer deliberation.
+* **Partial programs.** When D did produce a program, it was sometimes close (abc388_f: 38/40 at both
+  seeds). The contract's edge cases do not get it over the line.
+
+**Interpretation.** For a 9B agent that has to discover the method inside a 4,096-token response, a
+specification adds information it cannot use until the method is known. A contract may help an agent that
+already has a method, such as **C+D**. That combination is planned only after the individual conditions are
+benchmarked.
+
+### 6.2 E: what the diagnosis changes
+
+**Trigger bound.** E is identical to A until its first failed public test: all untriggered E runs are
+byte-identical to A. On the hard cohort, 17 of 24 E runs never reach a public test, so E triggers in only
+6 of 24. In passes 1–2 it triggered in 5 of 13 live runs. **E's opportunity is set by the agent's
+truncation, not by the diagnosis.**
+
+**At the trigger, E changes what happens next.**
+
+* **A never recovered** after any of the six triggering failures: 0/6 reached a public pass again.
+  * In four, A entered an exact repeat loop, all starting after that failure (§2).
+  * A spent its remaining actions (20-action or repair limit).
+* **E reached a public pass in 5/6** and improved the hidden score in all five runs where A failed:
+  8→13, 21→38, 34→40, 0→34 and 4→40 cases.
+* **No E run entered a repeat loop.** The diagnosis turn replaces the constant observation with
+  task-specific text, which removes the self-similar suffix that sustains a loop.
+* **But only two of those five became hidden passes.**
+
+**What the local model does with a diagnosis.**
+
+* **It always rewrites.** In pass 3, all 6 programs changed after the diagnosis (changed-line ratio
+  0.08–0.85, median 0.65), and in pass 2, 8 of 8.
+* **It does not copy the diagnosis.** Distinctive diagnosis vocabulary reappears mostly in comments (median
+  10%) and rarely in code (median 2.5%; at most 24%, at abc388_f).
+* **Shallow faults are fixed.** Both rescues where A failed (abc395_f@2109, arc193_a@2109), and the pass at
+  abc395_f@2108, came from diagnoses of an **input-parsing slip**: pairs read as two consecutive lists.
+* **Algorithmic faults are only partly fixed.**
+  * abc388_f: the diagnosis named the exact `bisect` fix; E reached 38/40.
+  * arc190_c: the recurrence was fixed but the method stayed too slow (34/40, 6 TLE).
+  * abc390_f: a complete repair recipe was given; the program changed 78% and still failed the public tests.
+* **This confirms the brief's premise:** a correct diagnosis is not always implemented correctly by the local
+  model.
+
+**Content versus perturbation (§5.3).**
+
+* On frozen pass-2 states, a content-free message of the same length reproduced the one development rescue.
+  Genuine diagnoses produced larger edits (median 0.48 against 0.26) and avoided one harm the neutral message
+  caused.
+* The extended cohort is consistent with both parts: E's specific diagnoses produced large, targeted edits,
+  and the recoveries were concentrated on easily localized faults.
+* With n = 6 triggers, the share of E's benefit due to content cannot be separated from the share due to
+  breaking the loop.
 
 ## 7. Should the shared agent remain frozen?
 
-FROZEN_SECTION
+**Recommendation: keep the shared agent frozen for the final benchmark, and do not ship an ACI change.**
+
+**Why.**
+
+1. **Neither mechanism has a fix at the observation level.**
+   * Truncation is the model doing algorithm discovery inside the file; 0 of 38 salvageable prefixes were
+     usable.
+   * The identical rewrite is a deterministic fixed point of a self-similar context. It survives seed changes
+     (12/15), and constant notes reinforced it (44/48).
+   * Every candidate that could work changes the agent's protocol, sampling or token budget **for every
+     condition**: a plain-text planning turn, thinking on, a larger output budget, refusing and rewriting
+     repeated turns, or a higher temperature.
+2. **Any such change also changes what is measured.**
+   * C's advantage runs largely *through* truncation: a plan removes the method search that otherwise fills
+     the 4,096-token response.
+   * An agent that plans for itself, or has more output room, would shrink A's no-program floor and probably
+     C's gain with it.
+   * That is a legitimate research question, but a different one, and it would break comparability with
+     passes 1–3 and with any main-60 results.
+3. **The study does not need it.** A low A baseline is a property of the frozen 9B agent at this
+   configuration, and the guidance conditions are defined relative to it. What matters is that all
+   conditions share the identical agent, and they do (38-file verification on every attempt).
+
+**What the team should know before the final run.**
+
+* **E's opportunity is bounded by A's behaviour.**
+  * E shares A's first message, so on hard tasks where the agent never produces a program, E never triggers
+    (seed 2108: 10 of 12 E runs untriggered for lack of any public test).
+  * E's measured effect therefore mixes "how good is the diagnosis" with "how often does the agent reach a
+    public failure". Report the trigger rate next to every E number.
+  * On the mixed-difficulty development tasks of pass 2, E triggered in 5 of 13 live Codex runs. Its
+    pre-trigger history was byte-identical to A's.
+* **No-program outcomes dominate hard tasks.** On the fresh hard cohort, `RepeatedFormatError` after three
+  truncated responses is the most common A, D and E outcome. The final report should split failures into
+  *no program* and *wrong program* (as `ext_analysis.py` does).
+
+**If the team wants a stronger agent**, freeze it as a **new, separately validated configuration** and run
+it as an additional arm. Candidates: a plain-text planning turn with its own token budget, thinking on, or a
+repeat guard that removes the duplicated turn and adds changed state. It should be validated on the
+development tasks first, with the same integrity checks. Never replace the frozen agent silently or mix the
+two in one table. Replacing mini-SWE-agent as the backend is out of scope without an explicit team decision.

@@ -1,5 +1,9 @@
 # Benchmark readiness: what to freeze for the full LiveCodeBench comparison
 
+**Pass 3 (2026-11-22) supersedes this file where they differ.** See `pass3/FINAL_REPORT.md`, which answers
+the readiness questions, and `pass3/FINAL_BENCHMARK_OPTIONS.md`, which recommends a 90-problem final study and
+lists the four decisions still needed before the freeze. Pass 3 changed no condition, prompt or agent.
+
 **Updated after pass 2 (2026-11-22, branch `feat/csc2108-contract-diagnosis-pass2`).** The pass-2 assessment
 in §0 supersedes the pass-1 status table in §2 where they differ. The full benchmark has still **not** been run.
 
