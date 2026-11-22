@@ -47,28 +47,43 @@ def codex_command(model, effort, workdir, output):
     return command + ['-']
 
 
-def codex_author(*, kind, prompt_id, statement, task_id, out_path, work_root, model='gpt-6.2-sol',
-                 effort='medium', label='codex-replay', timeout=900):
-    """One fresh, ephemeral Codex session in an empty directory; one model response."""
-    system_prompt = guidance.PROMPTS[prompt_id][1]
-    message = CODEX_WRAPPER.format(system=system_prompt, user=statement)
+class CodexIsolationError(RuntimeError):
+    """The event stream showed a tool, command, file or search item, or extra files appeared."""
+
+
+def child_environment():
+    """Strip credentials and repository hints from any frontier child process."""
+    return {k: v for k, v in os.environ.items()
+            if not k.upper().startswith(('OPENAI', 'ANTHROPIC', 'CSC2108', 'FRONTIER', 'GITHUB', 'GH_'))}
+
+
+def codex_infer(*, system, user, evidence, work_root, model='gpt-6.2-sol', effort='medium', timeout=900):
+    """One fresh, ephemeral, tool-less Codex session in an empty directory; exactly one model response.
+
+    Returns {'text', 'isolation', 'usage', 'wall_seconds', 'started_utc'}. Raises subprocess.TimeoutExpired,
+    RuntimeError (no response) or CodexIsolationError. No retries.
+    """
+    message = CODEX_WRAPPER.format(system=system, user=user)
     work_root = Path(work_root)
     work_root.mkdir(parents=True, exist_ok=True)
     isolated = Path(tempfile.mkdtemp(prefix='iso-', dir=work_root))
-    evidence = Path(str(out_path) + '.codex')
+    evidence = Path(evidence)
     evidence.mkdir(parents=True, exist_ok=False)
     last = evidence / 'last-message.txt'
-    # Strip credentials and repository hints from the child environment.
-    env = {k: v for k, v in os.environ.items()
-           if not k.upper().startswith(('OPENAI', 'ANTHROPIC', 'CSC2108', 'FRONTIER', 'GITHUB', 'GH_'))}
+    (evidence / 'input.txt').write_text(message, encoding='utf-8')
     command = codex_command(model, effort, isolated, last)
     started_utc, started = utc_now(), time.monotonic()
-    proc = subprocess.run(command, input=message.encode('utf-8'), capture_output=True, timeout=timeout,
-                          cwd=isolated, env=env)
+    try:
+        proc = subprocess.run(command, input=message.encode('utf-8'), capture_output=True, timeout=timeout,
+                              cwd=isolated, env=child_environment())
+    except subprocess.TimeoutExpired as error:
+        (evidence / 'timeout.txt').write_text(f'timeout after {timeout} s\n', encoding='utf-8')
+        (evidence / 'events.jsonl').write_bytes(error.stdout or b'')
+        shutil.rmtree(isolated, ignore_errors=True)
+        raise
     wall = time.monotonic() - started
     (evidence / 'events.jsonl').write_bytes(proc.stdout)
     (evidence / 'stderr.txt').write_bytes(proc.stderr[-20000:])
-    (evidence / 'input.txt').write_text(message, encoding='utf-8')
     events = [json.loads(line) for line in proc.stdout.decode('utf-8', 'replace').splitlines() if line.strip().startswith('{')]
     items = [e.get('item', {}).get('type') for e in events if e.get('type') == 'item.completed']
     usage = next((e.get('usage') for e in events if e.get('type') == 'turn.completed'), None)
@@ -77,9 +92,9 @@ def codex_author(*, kind, prompt_id, statement, task_id, out_path, work_root, mo
     leftover = sorted(p.name for p in isolated.iterdir())
     text = last.read_text(encoding='utf-8').strip() + '\n' if last.exists() else ''
     if proc.returncode != 0 or not text.strip():
-        raise RuntimeError(f'Codex authoring failed (rc={proc.returncode}); see {evidence}')
+        raise RuntimeError(f'Codex inference failed (rc={proc.returncode}); see {evidence}')
     if violations or leftover or items.count('agent_message') != 1:
-        raise RuntimeError(f'Codex isolation violated: items={items} files={leftover}; see {evidence}')
+        raise CodexIsolationError(f'Codex isolation violated: items={items} files={leftover}; see {evidence}')
     isolation = {
         'mechanism': 'codex exec, fresh ephemeral session, empty temporary working directory, user config '
                      'and exec rules ignored, read-only sandbox, web search and listed features disabled, '
@@ -93,15 +108,27 @@ def codex_author(*, kind, prompt_id, statement, task_id, out_path, work_root, mo
                   'they cannot be removed. Tool isolation is verified post hoc from the event stream, '
                   'which contained no tool, command, file or search events.',
     }
-    record = guidance.artifact(
-        kind=kind, prompt_id=prompt_id, statement=statement, text=text, task_id=task_id,
-        provider='codex-replay', requested_model=model, observed_model=None, reasoning_effort=effort,
-        generation={'interface': 'codex exec --json', 'started_utc': started_utc, 'harness_wall_seconds': round(wall, 2),
-                    'max_output_tokens': None, 'note': 'Harness wall time includes Codex startup; not API latency.'},
-        usage={'codex_reported': usage, 'note': 'Codex token counts include its harness context; not comparable to API usage.'},
-        latency_seconds=None, cost_usd=None, isolation=isolation, label=label)
-    guidance.save_artifact(out_path, record)
     shutil.rmtree(isolated, ignore_errors=True)
+    return {'text': text, 'isolation': isolation, 'usage': usage, 'wall_seconds': round(wall, 2),
+            'started_utc': started_utc}
+
+
+def codex_author(*, kind, prompt_id, statement, task_id, out_path, work_root, model='gpt-6.2-sol',
+                 effort='medium', label='codex-replay', timeout=900):
+    """One fresh, ephemeral Codex session in an empty directory; one model response."""
+    system_prompt = guidance.PROMPTS[prompt_id][1]
+    result = codex_infer(system=system_prompt, user=statement, evidence=Path(str(out_path) + '.codex'),
+                         work_root=work_root, model=model, effort=effort, timeout=timeout)
+    record = guidance.artifact(
+        kind=kind, prompt_id=prompt_id, statement=statement, text=result['text'], task_id=task_id,
+        provider='codex-replay', requested_model=model, observed_model=None, reasoning_effort=effort,
+        generation={'interface': 'codex exec --json', 'started_utc': result['started_utc'],
+                    'harness_wall_seconds': result['wall_seconds'],
+                    'max_output_tokens': None, 'note': 'Harness wall time includes Codex startup; not API latency.'},
+        usage={'codex_reported': result['usage'],
+               'note': 'Codex token counts include its harness context; not comparable to API usage.'},
+        latency_seconds=None, cost_usd=None, isolation=result['isolation'], label=label)
+    guidance.save_artifact(out_path, record)
     return record
 
 
@@ -179,23 +206,35 @@ def api_model_metadata(ledger_path):
     return entry
 
 
-def api_author(*, kind, prompt_id, statement, task_id, out_path, ledger_path, max_completion_tokens=8000,
-               effort='medium', label='openai-api', purpose, timeout=600):
+class ApiRequestError(RuntimeError):
+    """A reserved paid request failed (HTTP or transport). It is never retried."""
+
+
+def api_config():
     config = read_env(env_file())
     model = config['FRONTIER_MODEL']
-    api_model = model.split('/', 1)[1] if model.startswith('openai/') else model
-    system_prompt = guidance.PROMPTS[prompt_id][1]
-    body = {'model': api_model, 'messages': [{'role': 'system', 'content': system_prompt},
-                                             {'role': 'user', 'content': statement}],
-            'max_completion_tokens': max_completion_tokens, 'reasoning_effort': effort}
-    estimated_input = (len(system_prompt) + len(statement)) // 3 + 50  # conservative (~3 chars/token)
+    return config, model, (model.split('/', 1)[1] if model.startswith('openai/') else model)
+
+
+def api_chat(*, messages, ledger_path, entry, max_completion_tokens=8000, effort='medium', timeout=600):
+    """One reserved, ledgered POST /v1/chat/completions. No retries, no fallback.
+
+    ``entry`` holds ledger metadata (purpose, condition, task...). Returns
+    {'payload', 'text', 'finish_reason', 'usage', 'latency_seconds', 'cost_usd', 'request_id',
+    'ledger_index', 'api_model', 'configured_model', 'started_utc'}.
+    """
+    config, model, api_model = api_config()
+    body = {'model': api_model, 'messages': messages, 'max_completion_tokens': max_completion_tokens,
+            'reasoning_effort': effort}
+    characters = sum(len(m.get('content') or '') for m in messages)
+    estimated_input = characters // 3 + 50 * len(messages)  # conservative (~3 chars/token)
     bound = (estimated_input * PRICE_CONSERVATIVE['input'] + max_completion_tokens * PRICE_CONSERVATIVE['output']) / 1e6
     ledger = Ledger(ledger_path)
-    index = ledger.reserve({'task_id': task_id, 'kind': kind, 'prompt_id': prompt_id, 'purpose': purpose,
-                            'configured_model': model, 'api_model': api_model, 'reasoning_effort': effort,
-                            'max_completion_tokens': max_completion_tokens, 'estimated_input_tokens': estimated_input,
-                            'bound_usd_conservative': round(bound, 4), 'reserved_utc': utc_now(),
-                            'request_body_sha256': sha256_text(json.dumps(body, sort_keys=True))})
+    index = ledger.reserve(dict(entry) | {
+        'configured_model': model, 'api_model': api_model, 'reasoning_effort': effort,
+        'max_completion_tokens': max_completion_tokens, 'estimated_input_tokens': estimated_input,
+        'bound_usd_conservative': round(bound, 4), 'reserved_utc': utc_now(),
+        'request_body_sha256': sha256_text(json.dumps(body, sort_keys=True))})
     request = urllib.request.Request('https://api.openai.com/v1/chat/completions', data=json.dumps(body).encode(),
                                      headers={'Content-Type': 'application/json',
                                               'Authorization': 'Bearer ' + config['OPENAI_API_KEY']})
@@ -210,11 +249,11 @@ def api_author(*, kind, prompt_id, statement, task_id, out_path, ledger_path, ma
         detail = error.read()[:4000].decode('utf-8', 'replace')
         ledger.finish(index, state='http_error', http_status=error.code, error=detail,
                       latency_seconds=round(time.monotonic() - started, 2), request_id=error.headers.get('x-request-id'))
-        raise RuntimeError(f'API HTTP {error.code}: {detail[:500]}') from None
+        raise ApiRequestError(f'API HTTP {error.code}: {detail[:500]}') from None
     except Exception as error:
         ledger.finish(index, state='transport_error', error=f'{type(error).__name__}: {error}',
                       latency_seconds=round(time.monotonic() - started, 2))
-        raise
+        raise ApiRequestError(f'API transport error: {type(error).__name__}: {error}') from None
     latency = time.monotonic() - started
     usage = payload.get('usage') or {}
     choice = payload['choices'][0]
@@ -226,17 +265,30 @@ def api_author(*, kind, prompt_id, statement, task_id, out_path, ledger_path, ma
                   observed_model=payload.get('model'), finish_reason=choice.get('finish_reason'),
                   usage=usage, latency_seconds=round(latency, 2), cost_usd_standard=None if cost is None else round(cost, 5),
                   completed_utc=utc_now())
+    return {'payload': payload, 'text': text, 'finish_reason': choice.get('finish_reason'), 'usage': usage,
+            'latency_seconds': round(latency, 2), 'cost_usd': cost, 'request_id': request_id, 'ledger_index': index,
+            'api_model': api_model, 'configured_model': model, 'started_utc': started_utc}
+
+
+def api_author(*, kind, prompt_id, statement, task_id, out_path, ledger_path, max_completion_tokens=8000,
+               effort='medium', label='openai-api', purpose, timeout=600):
+    system_prompt = guidance.PROMPTS[prompt_id][1]
+    result = api_chat(messages=[{'role': 'system', 'content': system_prompt}, {'role': 'user', 'content': statement}],
+                      ledger_path=ledger_path, max_completion_tokens=max_completion_tokens, effort=effort,
+                      timeout=timeout, entry={'task_id': task_id, 'kind': kind, 'prompt_id': prompt_id,
+                                              'purpose': purpose})
     raw_path = Path(str(out_path) + '.response.json')
-    write_json(raw_path, payload)
-    if choice.get('finish_reason') != 'stop':
-        raise RuntimeError(f"API response finish_reason={choice.get('finish_reason')}; raw saved at {raw_path}")
+    write_json(raw_path, result['payload'])
+    if result['finish_reason'] != 'stop':
+        raise RuntimeError(f"API response finish_reason={result['finish_reason']}; raw saved at {raw_path}")
     record = guidance.artifact(
-        kind=kind, prompt_id=prompt_id, statement=statement, text=text, task_id=task_id, provider='openai-api',
-        requested_model=api_model, observed_model=payload.get('model'), reasoning_effort=effort,
+        kind=kind, prompt_id=prompt_id, statement=statement, text=result['text'], task_id=task_id,
+        provider='openai-api', requested_model=result['api_model'], observed_model=result['payload'].get('model'),
+        reasoning_effort=effort,
         generation={'interface': 'POST /v1/chat/completions', 'max_completion_tokens': max_completion_tokens,
-                    'started_utc': started_utc, 'finish_reason': choice.get('finish_reason'),
-                    'request_id': request_id, 'retries': 0, 'ledger_index': index},
-        usage=usage, latency_seconds=round(latency, 2), cost_usd=cost,
+                    'started_utc': result['started_utc'], 'finish_reason': result['finish_reason'],
+                    'request_id': result['request_id'], 'retries': 0, 'ledger_index': result['ledger_index']},
+        usage=result['usage'], latency_seconds=result['latency_seconds'], cost_usd=result['cost_usd'],
         isolation={'mechanism': 'direct HTTPS request; statement-only input'}, label=label)
     guidance.save_artifact(out_path, record)
     return record

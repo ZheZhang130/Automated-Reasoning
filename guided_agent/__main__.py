@@ -106,7 +106,10 @@ def cmd_batch(args, host, study):
         spec = {'backend': args.backend} | item | {
             'run_id': f"{plan['batch']}-{name}-{uuid.uuid4().hex[:8]}", 'output': str(out),
             'batch': plan['batch'], 'cohort': plan.get('cohort'), 'study': str(study)}
-        record = run_child(spec, plan.get('outer_timeout', 960))
+        timeout = plan.get('outer_timeout', 960)
+        if item['condition'] == 'E':  # the supervisor also covers the (separately accounted) frontier wait
+            timeout += int((item.get('diagnosis') or {}).get('timeout', 300)) + 30
+        record = run_child(spec, timeout)
         print(json.dumps({k: record.get(k) for k in ('run_id', 'exit_status', 'raw_exit_status', 'n_actions',
                                                      'n_repairs', 'wall_seconds', 'setup_error')}), flush=True)
 

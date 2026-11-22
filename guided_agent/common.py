@@ -13,9 +13,13 @@ PROFILE = 'heredoc-v6-16k-common'
 SEED = 2108
 ACTIONS, REPAIRS, SECONDS = 20, 3, 600
 LCB_REVISION = '0fe84c3912ea0c4d4a78037083943e8f0c4dd505'
-CONDITIONS = {'A': None, 'C': 'plan', 'D': 'contract'}
-# Reserved so later conditions (B/E/F) can be added without changing artifact schemas.
-FUTURE_CONDITIONS = {'B': 'frontier-only', 'E': 'diagnosis', 'F': 'plan+contract'}
+# Upfront guidance kind per condition (None = no upfront artifact). E's guidance is generated at run time
+# (DYNAMIC), and B substitutes the coding model (CODER); both run on the same frozen agent loop.
+CONDITIONS = {'A': None, 'B': None, 'C': 'plan', 'D': 'contract', 'E': None}
+DYNAMIC = {'E': 'diagnosis'}
+CODER = {'B': 'frontier'}
+# Reserved so a later condition can be added without changing artifact schemas.
+FUTURE_CONDITIONS = {'F': 'plan+contract'}
 
 
 def sha256_bytes(data):

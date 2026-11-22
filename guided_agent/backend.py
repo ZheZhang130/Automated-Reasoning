@@ -68,7 +68,8 @@ def host_base_function(runtime, host_settings):
     return runtime.run, 'windows-frozen-globals'
 
 
-def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, aci=None):
+def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, aci=None, diagnosis=None):
+    """``diagnosis`` (Condition E) is a ``diagnosis.DiagnosisController`` or None (A/B/C/D: unchanged classes)."""
     aci = aci or {}
     v3 = runtime.v3
 
@@ -108,9 +109,22 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 return self.add_messages({'role': 'user', 'content': text,
                                           'extra': {'interrupt_type': 'RepeatGuard', 'model_response': command}})
             self._previous_command = command
-            return super().execute_actions(message)
+            observations = super().execute_actions(message)
+            if diagnosis is not None and diagnosis.pending is not None:
+                # Condition E: the public-test observation is already in the history; the diagnosis follows it
+                # in the SAME conversation, before the next model query. Nothing is reset.
+                observations = observations + (diagnosis.deliver(self) or [])
+            return observations
 
     class JudgedEnvironment(runtime.Environment):
+        def __init__(self, *args, **kwargs):
+            if diagnosis is not None and isinstance(kwargs.get('container_timeout'), str):
+                # The sandbox container's lifetime ("sleep N") must outlast the suspended local deadline. This is a
+                # container lifetime only; the agent's local budgets are unchanged.
+                seconds = int(kwargs['container_timeout'].rstrip('s'))
+                kwargs['container_timeout'] = f'{seconds + int(diagnosis.max_wait_seconds) + 30}s'
+            super().__init__(*args, **kwargs)
+
         def execute(self, action, cwd='', *, timeout=None):
             command = action.get('command', '')
             if isinstance(command, str) and runtime.TEST_PATTERN.fullmatch(command):
@@ -144,6 +158,9 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 attempts[-1]['delivered'] = False
                 self.evidence.append({'command': command, 'action': self.budget.actions, 'source_sha256': digest,
                                       'judge_infrastructure_error': result.get('error') or result.get('status')})
+                if diagnosis is not None:
+                    diagnosis.observe_infrastructure_error(action=self.budget.actions,
+                                                           error=result.get('error') or result.get('status'))
                 raise v3.limits('InfrastructureError')
             returncode = 0 if result['status'] == 'pass' else 1
             report = result.get('report', '')
@@ -161,6 +178,9 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                                                                        'code_sha256', 'tests_sha256', 'judge_version')},
                                   'aci_note': aci_flag, **output})
             self.budget.tested(digest, returncode)
+            if diagnosis is not None:
+                diagnosis.on_public_result(result=result, source=source, digest=digest, budget=self.budget,
+                                           deadline=self.deadline)
             return output
 
     return GuidedAgent, JudgedEnvironment

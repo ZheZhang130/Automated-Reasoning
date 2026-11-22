@@ -12,9 +12,9 @@ import sys
 import time
 from pathlib import Path
 
-from .common import (ACTIONS, CONDITIONS, MODEL, PROFILE, REPAIRS, REPO, SECONDS, SEED, append_jsonl, host_identity,
-                     read_json, sha256_bytes, sha256_file, settings, study_root, utc_now, write_json)
-from . import backend, guidance
+from .common import (ACTIONS, CODER, CONDITIONS, DYNAMIC, MODEL, PROFILE, REPAIRS, REPO, SECONDS, SEED, append_jsonl,
+                     host_identity, read_json, sha256_bytes, sha256_file, settings, study_root, utc_now, write_json)
+from . import backend, diagnosis, frontier_coder, guidance
 from .tasks import load_statement
 
 EXIT_STATUS = {'Submitted': 'submitted', 'ActionLimit': 'action_limit', 'LimitsExceeded': 'action_limit',
@@ -72,7 +72,7 @@ def run_attempt(spec):
               'injection': spec.get('injection', 'inject-v1') if kind else None, 'aci': spec.get('aci') or {},
               'host_identity': host_identity(), 'host_backend': host.backend, 'started_utc': started_utc,
               'cohort': spec.get('cohort'), 'batch': spec.get('batch'), 'source': source_state()}
-    guidance_text = template = None
+    guidance_text = template = controller = None
     attempts = []
     started = time.monotonic()
     try:
@@ -105,24 +105,73 @@ def run_attempt(spec):
             raise RuntimeError('judge-public does not hold this task')
         record['judge_public'] = {k: info.get(k) for k in ('judge_version', 'suite', 'tests_sha256', 'fingerprint')}
         record['judge_public']['image_id'] = judge._image_id()
+        if condition in DYNAMIC:
+            dspec = spec.get('diagnosis') or {'provider': 'codex'}
+            controller = diagnosis.DiagnosisController(
+                provider=diagnosis.make_provider(dspec, study), statement=statement, task_id=task_id,
+                out_dir=out / 'diagnosis', prompt_id=dspec.get('prompt_id', 'diagnosis-v1'),
+                delivery=dspec.get('delivery', 'deliver-v1'), max_wait_seconds=dspec.get('timeout', 300))
+            record['guidance'] = {'kind': 'diagnosis', 'triggered': False, 'delivered': False, 'error': None}
         agent_cls, env_cls = backend.make_classes(runtime, guidance_text=guidance_text, template=template, judge=judge,
-                                                  task_id=task_id, attempts=attempts, aci=spec.get('aci'))
-        run = backend.bound_run(base, agent_cls, env_cls, backend.aci_globals(spec.get('aci')))
+                                                  task_id=task_id, attempts=attempts, aci=spec.get('aci'),
+                                                  diagnosis=controller)
+        extra = backend.aci_globals(spec.get('aci'))
+        model_name = MODEL
+        if spec.get('coder'):
+            coder = frontier_coder.make_coder(spec['coder'], study, out / 'coder')
+            extra |= frontier_coder.non_ollama_globals(base.__globals__, frontier_coder.make_coder_class(runtime, coder),
+                                                       'frontier:' + coder.model_label)
+            model_name = 'frontier:' + coder.model_label
+            record['coding_model'] = model_name
+            record['coder'] = {'provider': spec['coder'].get('provider'), 'model': coder.model_label,
+                               'max_requests': coder.max_requests}
+        elif condition in CODER:
+            raise ValueError('Condition B requires a coder specification')
+        budgets = {'actions': ACTIONS, 'repairs': REPAIRS, 'seconds': SECONDS}
+        if spec.get('smoke'):
+            # Functional smokes only (labelled): reduced budgets for bounded paid tests; never for benchmarks.
+            budgets |= {k: spec['smoke'][k] for k in ('actions', 'seconds') if k in spec['smoke']}
+            record['budgets'] |= budgets
+            record['smoke'] = spec['smoke']
+        run = backend.bound_run(base, agent_cls, env_cls, extra)
         record['host_adapter'] = adapter
         agent_dir = out / ('agent-' + spec['run_id'])
         from local_agent.platform_support import model_lock
         coding_started = time.monotonic()
         with model_lock(host):
-            frozen = run(study / 'bundles' / task_id, agent_dir, MODEL, PROFILE, seed=record['seed'],
-                         actions=ACTIONS, repairs=REPAIRS, seconds=SECONDS)
+            frozen = run(study / 'bundles' / task_id, agent_dir, model_name, PROFILE, seed=record['seed'],
+                         actions=budgets['actions'], repairs=budgets['repairs'], seconds=budgets['seconds'])
         record['local_coding_seconds'] = round(time.monotonic() - coding_started, 2)
+        if controller is not None:
+            trajectory = agent_dir / 'trajectory.json'
+            messages = read_json(trajectory)['messages'] if trajectory.exists() else []
+            record['diagnosis'] = controller.finalize(messages, frozen.get('events') or [])
+            record['diagnosis']['observations'] = controller.observations
+            wait = record['diagnosis']['frontier_wait_seconds']
+            record['frontier_wait_seconds'] = wait
+            record['local_coding_seconds_net'] = round(record['local_coding_seconds'] - wait, 2)
+            record['guidance'] = {'kind': 'diagnosis', 'triggered': record['diagnosis']['trigger_observed'],
+                                  'requested': record['diagnosis']['frontier_requested'],
+                                  'delivered': record['diagnosis']['delivered'],
+                                  'error': record['diagnosis']['error_category']}
+            response = record['diagnosis'].get('response') or {}
+            record['guidance_model'] = response.get('model')
+            record['usage']['guidance'] = [{'usage': response.get('usage'), 'cost_usd': response.get('cost_usd'),
+                                            'latency_seconds': response.get('latency_seconds')}] if response else []
+        if spec.get('coder'):
+            record['coder']['calls'] = coder.calls
+            record['coder']['requests'] = len(coder.calls)
         record['frozen_result'] = str(agent_dir / 'result.json')
         record['raw_exit_status'] = frozen.get('status')
         record['exit_status'] = exit_status(frozen)
         record['frozen_error'] = {k: frozen.get(k) for k in ('error_type', 'error') if frozen.get(k)}
         record['n_actions'], record['n_repairs'] = frozen.get('actions', 0), frozen.get('repairs', 0)
-        record['guidance']['delivered'] = kind is not None and frozen.get('model_calls', 0) > 0
-        record['usage']['coding'] = coding_usage(agent_dir)
+        if kind is not None:
+            record['guidance']['delivered'] = frozen.get('model_calls', 0) > 0
+        record['usage']['coding'] = coding_usage(agent_dir) if not spec.get('coder') else \
+            [{'prompt_tokens': (c.get('usage') or {}).get('prompt_tokens'),
+              'completion_tokens': (c.get('usage') or {}).get('completion_tokens'),
+              'cost_usd': c.get('cost_usd')} for c in coder.calls]
         for key in ('format_errors', 'model_calls', 'token_telemetry_complete', 'sampler_wire_verified', 'inference',
                     'context_events', 'elapsed_seconds'):
             record[key] = frozen.get(key)
