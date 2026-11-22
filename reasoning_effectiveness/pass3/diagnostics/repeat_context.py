@@ -46,18 +46,20 @@ def main(out, *studies):
             group = ('aci' if record.get('aci') else 'probe' if run_dir.parent.name.startswith('probe') else 'original')
             key = f"{group}|{record.get('condition')}"
             messages = json.loads((agents[0] / 'trajectory.json').read_text(encoding='utf-8'))['messages']
-            last_assistant, between, streak = None, None, 0
+            last_assistant, between, previous_between, streak = None, None, None, 0
             for message in messages:
                 if message.get('role') == 'assistant':
                     text = message.get('content') or ''
                     if last_assistant is not None and text == last_assistant:
                         counts[key][kind_of(between)] += 1
+                        # the decisive suffix is self-similar when the observation equals the one before
+                        counts[key]['observation_identical_to_previous'] += between == previous_between
                         streak += 1
                     else:
                         if streak:
                             streaks[key].append(streak)
                         streak = 0
-                    last_assistant, between = text, None
+                    last_assistant, previous_between, between = text, between, None
                 elif message.get('role') == 'user' and last_assistant is not None:
                     between = message.get('content')
             if streak:
