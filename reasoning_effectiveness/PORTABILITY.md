@@ -16,6 +16,24 @@ platform-independent JSON/UTF-8 with LF line endings.
 | Native model inference | ✓ Windows CUDA, Ollama 0.40.17 | **Not validated — no Mac was available** |
 | Benchmark equivalence across hardware | Not established; do not pool | — |
 
+**Pass 2 (B, contract-v3, E), 2026-11-22:**
+
+| Level | Windows 11 desktop | Portable backend / Linux | macOS |
+| --- | --- | --- | --- |
+| Offline tests (`guided_agent.test_guided` + `guided_agent.test_pass2`) | ✓ 40 run, 6 integration skipped | ✓ **Linux container** (Python 3.11.18, pinned requirements): 49 run incl. `local_agent.test_portable`, OK | not run on a Mac |
+| E integration: real frozen runtime + Docker sandbox + judge-public, scripted coder, fixed diagnosis (deadline suspension, delivery position, container lifetime, provider failure, infra error, multiple failures, A control) | ✓ 6/6 (`windows-frozen-globals`) | ✓ 6/6 with `--backend portable` (`portable.adapted_run`, separate data root) on this Windows host | **not run** |
+| Live E (Qwen + live Codex / API diagnosis) | ✓ | not run | **not run** |
+| B functional smokes (Codex coder, API coder) | ✓ | not run | **not run** |
+
+Pass-2 shared logic adds no host-specific code:
+* Codex runs through `shutil.which('codex')` with an argument list.
+* The API uses `urllib`.
+* Time accounting uses `time.monotonic` / `time.time` in the agent process.
+* All artifacts are UTF-8 JSON with LF line endings.
+* The E container-lifetime extension edits the frozen `container_timeout` argument and works for both adapters.
+
+In Git Bash on Windows, set `MSYS_NO_PATHCONV=1` before passing container paths such as `/ca.pem` to `docker run -e`.
+
 The repository's CI workflow (`.github/workflows/local-agent-portable.yml`) still only triggers on `local_agent/**`. Adding `guided_agent/**` and `python -m unittest guided_agent.test_guided` to its matrix would give macOS-runner coverage. That change is not made here because it would alter the branch's CI configuration; it is recommended in `BENCHMARK_READINESS.md`.
 
 ## 1. Requirements (both platforms)

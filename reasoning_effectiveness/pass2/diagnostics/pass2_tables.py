@@ -64,7 +64,8 @@ def main(pass1, pass2, out_dir):
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     p1 = {b: rows(pass1, b) for b in ('dev1-A', 'dev1-CD', 'mb1', 'mb2')}
-    p2 = {b: rows(pass2, b) for b in ('dev-e', 'dev-e-api', 'dev-d', 'val')}
+    p2 = {b: rows(pass2, b) for b in ('dev-e', 'dev-e-api', 'dev-d', 'val', 'dev-s2109', 'val-api')}
+    p1 = p1 | {'dev2': rows(pass1, 'dev2')}
     p1_all = [r for b in p1.values() for r in b]
     dev_tasks = ['lcb-atcoder-' + t for t in ('arc192_a', 'arc195_a', 'abc393_d', 'abc394_c', 'abc390_c', 'abc388_g',
                                              'abc391_e', 'abc391_a')]
@@ -98,6 +99,24 @@ def main(pass1, pass2, out_dir):
     md.append(table('Validation (fresh, outcome-blind; Codex guidance; seed 2108)', val_tasks, [
         ('A', pick(val, 'A')), ('C plan-v1', pick(val, 'C')), ('D-v1', pick(val, 'D', 'v1')),
         ('D-v3', pick(val, 'D', 'v3')), ('E-v1', pick(val, 'E'))]))
+    s2 = p2['dev-s2109']
+    s2_tasks = ['lcb-atcoder-' + t for t in ('abc393_d', 'abc390_c', 'abc394_c', 'arc195_a')]
+    md.append(table('Development, second seed (2109)', s2_tasks, [
+        ('A s2109', lambda t: pick(s2, 'A', 's2109')(t) or pick(p1['dev2'], 'A', 's2109')(t)),
+        ('E-v1 Codex s2109', pick(s2, 'E', 's2109')), ('D-v3 Codex s2109', pick(s2, 'D', 'v3-s2109'))]))
+    api = p2['val-api']
+    md.append(table('Direct-API comparison at the same frozen states (seed 2108)',
+                    ['lcb-atcoder-abc398_d', 'lcb-atcoder-abc399_f', 'lcb-atcoder-abc388_e'], [
+                        ('A', pick(val, 'A')), ('E Codex', pick(val, 'E')), ('E API', pick(api, 'E', 'api')),
+                        ('D-v3 Codex', pick(val, 'D', 'v3')), ('D-v3 API', pick(api, 'D', 'v3-api'))]))
+    e2 = ['### E mechanism details (second seed and API validation)', '', '| Run | trigger | at action | wait s | '
+          'delivered | actions after | public pass after | hidden |', '|' + ' --- |' * 8]
+    for r in [r for r in s2 + api if r.get('condition') == 'E' and not r.get('error')]:
+        e2.append('| ' + ' | '.join(str(x) for x in (r['task_id'].replace('lcb-atcoder-', '') + ' ' + (r.get('variant') or ''),
+                                                       r.get('e_trigger'), r.get('e_trigger_action'), r.get('e_wait_seconds'),
+                                                       r.get('e_delivered'), r.get('e_actions_after'),
+                                                       r.get('e_public_pass_after'), r.get('hidden_status'))) + ' |')
+    md.append('\n'.join(e2) + '\n')
     res = ['### Resources by condition (pass-2 runs)', '',
            '| Cohort / condition | runs | hidden pass | completion tokens | format errors | local s (net) | frontier wait s |',
            '| --- | --- | --- | --- | --- | --- | --- |']

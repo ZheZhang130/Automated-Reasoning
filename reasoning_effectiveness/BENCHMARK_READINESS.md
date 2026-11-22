@@ -1,6 +1,43 @@
 # Benchmark readiness: what to freeze for the full LiveCodeBench comparison
 
-Status after the 2026-11-21/22 overnight pass. The full benchmark was **not** run.
+**Updated after pass 2 (2026-11-22, branch `feat/csc2108-contract-diagnosis-pass2`).** The pass-2 assessment
+in §0 supersedes the pass-1 status table in §2 where they differ. The full benchmark has still **not** been run.
+
+## 0. Pass-2 readiness by condition (exact frozen versions)
+
+All conditions use the same frozen agent:
+
+* `local_eval_v2/runtime.run` (38 hashes verified per attempt), mini-SWE-agent 2.4.6;
+* Qwen3.5 9B Q4_K_M digest `56671c2a…3c90`, `heredoc-v6-16k-common`;
+* budgets: 20 actions, 3 repair groups, 600 s, 180 s per request;
+* judge `csc2108-judge:0.2.1`.
+
+| Condition | Frozen version | Status | Evidence | Before benchmarking |
+| --- | --- | --- | --- | --- |
+| **A** local only | frozen first message `{{task}}` | **Ready** | Pass-2 reruns are token-for-token identical to pass 1 (arc195_a, abc393_d) | — |
+| **B** frontier only | `frontier_coder.ApiCoder` (`gpt-6.2-sol`, effort medium, `max_completion_tokens` 8,000, full history), same text protocol | **Functional; not benchmarked** | Offline tests; scripted multi-step runs; live Codex and API smokes on the synthetic fixture (hidden pass; API: 3 requests, $0.0028) | Run on a few real tasks to measure cost per task; set a per-run `max_requests` and a separate B spend ceiling; decide effort and token cap. Fallback: Codex-replay coder (label it). |
+| **C** plan | `plan-v1` + `inject-v1` (teammates' prompt, unchanged) | **Ready** | Pass 1; unchanged in pass 2 | — |
+| **D** contract | `contract-v1` + `inject-v1` (control) | **Ready to run; not shown to help** | `pass2/CONTRACT_RESEARCH.md` | Use v1. **contract-v3 is not promoted:** better checks, no outcome gain. |
+| **E** diagnosis | `diagnosis-v1` + `deliver-v1`, trigger = first public WA/RE/TLE/CE of a non-empty candidate, one call, timeout 300 s, live isolated Codex or API | **Implemented and validated; ready for benchmarking with the caveats here** | 6/6 integration tests on Windows and portable; live Codex (4 dev + validation) and API (2 dev) diagnoses delivered; `pass2/DIAGNOSIS_INTEGRATION.md` | Fix the provider for the main run (API recommended; Codex replay is development-only). Report trigger rate, the triggered subset and the end-to-end time as well as local time. |
+| **F** plan + contract | not integrated | Optional | — | One injection template with two artifacts |
+
+## 0a. Pass-2 open issues (in addition to §3)
+
+1. **Task pool:** eligible fresh AtCoder stdin tasks outside the main manifest are 1 easy and 25 hard; the
+   medium confirmation pool is empty. The main 60-task cohort is the only remaining medium source, so use it
+   only for the final benchmark, or add a newer pinned shard.
+2. **E trigger rate on this agent is limited by truncation.** Runs that never reach a public test (in-file
+   brainstorming hits the 4,096-token cap) cannot trigger E. Report untriggered runs as local-agent outcomes,
+   not as diagnosis failures.
+3. **Judge:** tolerance and multiple-answer tasks are still unsupported. Pass-2 selection excludes them by
+   statement regex (`selection_pass2.UNSUPPORTED_OUTPUT`). The `build_data.py` CRLF workaround is retained.
+4. **Identical-rewrite loop** (frozen agent) dominates repair failures in D and E alike (abc394_c D-v3,
+   arc195_a E-Codex). Any fix is a shared ACI change that would need its own validation; none is promoted.
+5. **Second seed:** temperature 0.2 with a fixed seed reproduces trajectories exactly. Use ≥3 seeds per
+   task–condition in the benchmark; a different seed is the only source of variation.
+6. **CI:** add `guided_agent/**` and `python -m unittest guided_agent.test_guided guided_agent.test_pass2`
+   to `.github/workflows/local-agent-portable.yml`. Not changed here.
+7. **macOS:** no native run of pass-2 features (see `PORTABILITY.md`).
 
 ## 1. Recommended architecture
 

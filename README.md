@@ -26,7 +26,15 @@ $pythonExe = 'E:\CSC2108Local\.venv\Scripts\python.exe'
 
 Read `<output>\result.json` for the candidate/trajectory paths, termination reason, timings and token usage. `Submitted` does not establish correctness: use the [separate evaluation command](local_agent/README.md#independent-evaluation) afterward if you have the matching official row. No command above downloads a model or changes dependencies; `run` performs inference.
 
-## Frontier guidance (conditions A/C/D) — integrated backend
+## Frontier guidance (conditions A–E) — integrated backend
+
+**Pass 2** adds three conditions on the same frozen agent and judge:
+
+* **E:** one frontier diagnosis of the first qualifying public-test failure, delivered into the *same running* mini-SWE-agent session.
+* **B:** the frontier model as the coding model, through the unchanged action protocol.
+* **contract-v3:** an experimental D prompt grounded in Endres et al. and Tufano et al.
+
+Start with [reasoning_effectiveness/pass2/FINAL_REPORT.md](reasoning_effectiveness/pass2/FINAL_REPORT.md). Then read [DIAGNOSIS_INTEGRATION.md](reasoning_effectiveness/pass2/DIAGNOSIS_INTEGRATION.md), [CONTRACT_RESEARCH.md](reasoning_effectiveness/pass2/CONTRACT_RESEARCH.md), [FRONTIER_ONLY.md](reasoning_effectiveness/pass2/FRONTIER_ONLY.md) and [PAPER_ALIGNMENT.md](reasoning_effectiveness/pass2/PAPER_ALIGNMENT.md).
 
 `python -m guided_agent` runs the **same frozen agent** for local-only (A), upfront frontier plan (C) and upfront behavioral contract (D). Guidance is generated once from the public statement, by isolated Codex replay or the direct OpenAI API. Public tests go through Peter's `judge-public`, and hidden scoring is a separate step. Start with [reasoning_effectiveness/FINAL_REPORT.md](reasoning_effectiveness/FINAL_REPORT.md) (results), [PORTABILITY.md](reasoning_effectiveness/PORTABILITY.md) (Windows/macOS commands), [BENCHMARK_READINESS.md](reasoning_effectiveness/BENCHMARK_READINESS.md) and [INTEGRATION_AUDIT.md](reasoning_effectiveness/INTEGRATION_AUDIT.md). The earlier `planning_frontier/plan_once.py` and `contract_frontier/run_contract.py` remain as the teammates' development runners; their prompts and replay classes are reused unchanged.
 

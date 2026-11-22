@@ -136,5 +136,49 @@ def main(pass1, pass2, out):
     Path(out).write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8', newline='\n')
 
 
+def score_runs(pass1, pass2, out):
+    """Do final programs satisfy the task's contract-v3 K-checks (only checks verified correct vs a reference)?
+
+    This measures prevention of K-detectable mistakes, independently of whether Qwen ran any check itself.
+    """
+    pass1, pass2 = Path(pass1), Path(pass2)
+    report = []
+    for path in sorted(pass2.glob('guidance/*/*.contract-v3.codex.json')):
+        raw = json.loads(path.read_text(encoding='utf-8'))
+        task = raw['task_id']
+        checks = parse_checks(raw['text'], 'contract-v3')
+        references = [p for p in programs(pass1, task).values() if p['status'] == 'pass']
+        if not checks or not references:
+            continue
+        inputs = [c['stdin'] for c in checks]
+        reference = run_program(references[0]['code'], inputs)
+        checks = [c for r, c in zip(reference, checks) if r['rc'] == 0 and tokens(r['stdout']) == tokens(c['expected'])]
+        inputs = [c['stdin'] for c in checks]
+        for study in (pass1, pass2):
+            for result in study.glob('runs/*/*/result.json'):
+                record = json.loads(result.read_text(encoding='utf-8'))
+                if record.get('task_id') != task or record.get('condition') not in ('A', 'C', 'D', 'E') or record.get('aci'):
+                    continue
+                spec = json.loads((result.parent / 'spec.json').read_text(encoding='utf-8')) if (result.parent / 'spec.json').exists() else {}
+                label = record['condition'] + (('/' + spec['variant']) if spec.get('variant') else '') + \
+                    ('' if study == pass2 else ' (pass 1)')
+                if record.get('seed', 2108) != 2108:
+                    label += f" s{record['seed']}"
+                submission = result.parent / 'submission.py'
+                if not submission.exists():
+                    report.append({'task_id': task, 'run': label, 'program': False})
+                    continue
+                outputs = run_program(submission.read_bytes(), inputs)
+                ok = sum(o['rc'] == 0 and tokens(o['stdout']) == tokens(c['expected']) for o, c in zip(outputs, checks))
+                report.append({'task_id': task, 'run': label, 'program': True, 'k_satisfied': ok, 'k_total': len(checks)})
+    Path(out).write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8', newline='\n')
+    for row in sorted(report, key=lambda r: (r['task_id'], r['run'])):
+        print(row['task_id'].replace('lcb-atcoder-', ''), row['run'], f"{row.get('k_satisfied')}/{row.get('k_total')}"
+              if row['program'] else 'no program')
+
+
 if __name__ == '__main__':
-    main(*sys.argv[1:4])
+    if sys.argv[1] == '--score-runs':
+        score_runs(*sys.argv[2:5])
+    else:
+        main(*sys.argv[1:4])
