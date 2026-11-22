@@ -15,6 +15,7 @@ Optional ACI interventions (``aci``) are opt-in, labelled, and applied identical
 """
 import hashlib
 import importlib
+import re
 import sys
 import time
 import types
@@ -22,6 +23,20 @@ import types
 from .common import REPO, utc_now
 
 JUDGE_NAME = 'csc2108re-judge-{suite}'
+WRITE_PATTERN = re.compile(r'(?:cat|tee)\s*>?\s*/workspace/solution\.py|>\s*/workspace/solution\.py')
+
+# Opt-in replacement for the frozen FORMAT_ERROR (rebound global); same variables, more specific length advice.
+FORMAT_ERROR_TRUNCATION_V1 = """Rejected: {{error}}. No action from that response ran.
+Return ONE complete command block with a closing fence. Use a literal heredoc for multiline files.
+```mswea_bash_command
+pwd
+```
+{% if finish_reason == 'length' %}Your response reached the 4096-token output limit before its command block closed, so nothing was saved. Do not reason or brainstorm inside the file. Decide the approach in at most 5 short lines of plain text, then write the complete program with few or no comments.{% endif %}"""
+
+
+def aci_globals(aci):
+    """Frozen-function globals replaced by an ACI intervention (empty for the original control)."""
+    return {'FORMAT_ERROR': FORMAT_ERROR_TRUNCATION_V1} if (aci or {}).get('truncation_note') else {}
 
 
 def judge_client(study, suite):
@@ -67,7 +82,16 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
             command = action.get('command', '')
             if isinstance(command, str) and runtime.TEST_PATTERN.fullmatch(command):
                 return self._public_judge(command)
+            before = self.last_candidate  # the frozen environment's snapshot after the previous action
             output = super().execute(action, cwd, timeout=timeout)
+            if aci.get('unchanged_source_note') and isinstance(command, str) and WRITE_PATTERN.search(command) \
+                    and before is not None and self.last_candidate == before:
+                note = '[harness] /workspace/solution.py is byte-for-byte unchanged by this command.'
+                if hashlib.sha256(before).hexdigest() == self.budget.failed_hash:
+                    note += (' This exact program already failed the public tests, so rewriting it identically '
+                             'cannot fix the failure. Change the program logic.')
+                output['output'] = (output.get('output') or '') + note + '\n'
+                self.evidence[-1]['aci_note'] = 'unchanged_source'
             return output
 
         def _public_judge(self, command):
@@ -90,13 +114,19 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 raise v3.limits('InfrastructureError')
             returncode = 0 if result['status'] == 'pass' else 1
             report = result.get('report', '')
+            if aci.get('unchanged_source_note') and returncode and digest is not None and digest == self.budget.failed_hash:
+                report += ('\n[harness] This exact program already failed these public tests before; '
+                           'change the program before testing again.')
+                aci_flag = 'retest_unchanged'
+            else:
+                aci_flag = None
             output = {'output': report, 'returncode': returncode, 'exception_info': ''}
             self.evidence.append({'command': command, 'action': self.budget.actions,
                                   'elapsed_seconds': time.monotonic() - started, 'source_sha256': digest,
                                   'recognized_public_test': True, 'public_status': result['status'],
                                   'judge': {k: result.get(k) for k in ('status', 'passed', 'total', 'verdict_counts',
                                                                        'code_sha256', 'tests_sha256', 'judge_version')},
-                                  **output})
+                                  'aci_note': aci_flag, **output})
             self.budget.tested(digest, returncode)
             return output
 

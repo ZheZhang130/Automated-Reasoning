@@ -40,6 +40,18 @@ def coding_usage(agent_dir):
              'eval_seconds': (r.get('eval_duration') or 0) / 1e9} for r in read_json(path)]
 
 
+def source_state():
+    try:
+        head = subprocess.run(['git', 'rev-parse', 'HEAD'], cwd=REPO, capture_output=True, text=True).stdout.strip()
+        dirty = subprocess.run(['git', 'status', '--porcelain', '--', 'guided_agent', 'local_eval_v2', 'local_baseline',
+                                'local_agent', 'judge', 'planning_frontier', 'contract_frontier'],
+                               cwd=REPO, capture_output=True, text=True).stdout.strip()
+    except OSError:
+        return {'commit': None, 'dirty': None}
+    files = {p.name: sha256_file(p) for p in sorted((REPO / 'guided_agent').glob('*.py'))}
+    return {'commit': head, 'dirty': bool(dirty), 'dirty_paths': dirty.splitlines()[:20], 'guided_agent_sha256': files}
+
+
 def run_attempt(spec):
     host = settings(spec.get('backend', 'auto'))
     study = study_root(host, spec.get('study'))
@@ -59,7 +71,7 @@ def run_attempt(spec):
               'budgets': {'actions': ACTIONS, 'repairs': REPAIRS, 'seconds': SECONDS, 'request_seconds': 180},
               'injection': spec.get('injection', 'inject-v1') if kind else None, 'aci': spec.get('aci') or {},
               'host_identity': host_identity(), 'host_backend': host.backend, 'started_utc': started_utc,
-              'cohort': spec.get('cohort'), 'batch': spec.get('batch')}
+              'cohort': spec.get('cohort'), 'batch': spec.get('batch'), 'source': source_state()}
     guidance_text = template = None
     attempts = []
     started = time.monotonic()
@@ -95,7 +107,7 @@ def run_attempt(spec):
         record['judge_public']['image_id'] = judge._image_id()
         agent_cls, env_cls = backend.make_classes(runtime, guidance_text=guidance_text, template=template, judge=judge,
                                                   task_id=task_id, attempts=attempts, aci=spec.get('aci'))
-        run = backend.bound_run(base, agent_cls, env_cls)
+        run = backend.bound_run(base, agent_cls, env_cls, backend.aci_globals(spec.get('aci')))
         record['host_adapter'] = adapter
         agent_dir = out / ('agent-' + spec['run_id'])
         from local_agent.platform_support import model_lock
