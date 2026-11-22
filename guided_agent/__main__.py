@@ -88,6 +88,29 @@ def cmd_run_one(args, host, study):
                                                  'n_actions', 'n_repairs', 'wall_seconds', 'setup_error')}))
 
 
+def foreign_models(url='http://127.0.0.1:11434/api/ps'):
+    """Models loaded by the user's own Ollama app endpoint (never unloaded by us)."""
+    import urllib.request
+    try:
+        with urllib.request.urlopen(url, timeout=5) as response:
+            return [m.get('name') for m in json.load(response).get('models', [])]
+    except Exception:
+        return []
+
+
+def wait_for_gpu(max_wait=7200, poll=30):
+    """The frozen runtime refuses to start while another workload holds a model; wait politely instead."""
+    import time
+    waited = 0
+    while (loaded := foreign_models()) and waited < max_wait:
+        if waited % 300 == 0:
+            print(json.dumps({'waiting_for_foreign_models': loaded, 'waited_seconds': waited, 'utc': utc_now()}),
+                  flush=True)
+        time.sleep(poll)
+        waited += poll
+    return waited
+
+
 def cmd_batch(args, host, study):
     from .runner import run_child
     plan = read_json(args.plan)
@@ -106,6 +129,8 @@ def cmd_batch(args, host, study):
         spec = {'backend': args.backend} | item | {
             'run_id': f"{plan['batch']}-{name}-{uuid.uuid4().hex[:8]}", 'output': str(out),
             'batch': plan['batch'], 'cohort': plan.get('cohort'), 'study': str(study)}
+        if not item.get('coder') and host.backend == 'windows':
+            wait_for_gpu()
         timeout = plan.get('outer_timeout', 960)
         if item['condition'] == 'E':  # the supervisor also covers the (separately accounted) frontier wait
             timeout += int((item.get('diagnosis') or {}).get('timeout', 300)) + 30
