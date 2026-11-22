@@ -109,8 +109,9 @@ def fetch(shard, revision):
 def write_cases(directory, cases):
     directory.mkdir(parents=True)
     for index, case in enumerate(cases, 1):
-        (directory / f"{index:02d}.in").write_text(case["input"], encoding="utf-8")
-        (directory / f"{index:02d}.out").write_text(case["output"], encoding="utf-8")
+        # newline="": write LF bytes on every OS, so Windows builds match the manifest hashes
+        (directory / f"{index:02d}.in").write_text(case["input"], encoding="utf-8", newline="")
+        (directory / f"{index:02d}.out").write_text(case["output"], encoding="utf-8", newline="")
 
 
 def build(row, entry, shard, revision, with_hidden):

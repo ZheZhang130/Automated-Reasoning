@@ -1,0 +1,18 @@
+{
+  "description": "Manual output-semantics review (pass 3). Every task in the pilot and main manifests and every task in the pass-3 candidate pool had its public Output section (and, where needed, Constraints) read by hand. Tasks listed here are those with any non-exact cue; every other reviewed task is single-answer and compared exactly. Public statement text only; no hidden tests, solutions or model outcomes were consulted.",
+  "reviewed_utc": "2026-11-22T19:40:00Z",
+  "judge_rule": "judge 0.2.1 outputs_match: stripped lines, equal line count, identical line or equal Decimal lists",
+  "reviewed_sets": ["judge/manifests/pilot.json (8)", "judge/manifests/main.json (60)", "pass-3 candidate pool (25 AtCoder test6 tasks outside main, pass 1 and pass 2)"],
+  "reviews": {
+    "lcb-atcoder-abc392_d": {"category": "tolerance", "evidence": "Your answer is considered correct if the absolute or relative error from the true solution does not exceed 10^{-8}.", "eps": "1e-8", "note": "pass-1 known false negative: 0.3333333333333333 is rejected against 0.333333333333333"},
+    "lcb-atcoder-abc396_e": {"category": "multiple_answers", "evidence": "If there are multiple good sequences with the same minimum sum, printing any of them is accepted.", "note": "pass-1 known false negative; reference validator in guided_agent/checkers.py"},
+    "lcb-atcoder-abc397_d": {"category": "multiple_answers", "evidence": "If there are multiple solutions, printing any one of them is accepted as correct.", "note": "pass-3 pool: excluded"},
+    "lcb-atcoder-abc398_f": {"category": "multiple_answers", "evidence": "If multiple solutions exist, any of them is accepted.", "note": "pass-3 pool: excluded"},
+    "lcb-atcoder-arc190_a": {"category": "multiple_answers", "evidence": "If there are multiple ways that minimize the total cost, printing any one of them is accepted.", "note": "pass-3 pool: excluded"},
+    "lcb-atcoder-arc191_c": {"category": "multiple_answers", "evidence": "If there are multiple valid solutions, any one of them is considered correct.", "note": "pass-3 pool: excluded"},
+    "lcb-atcoder-arc192_b": {"category": "case_insensitive", "evidence": "The judge is case-insensitive; for example, if the correct answer is Fennec, outputs such as fennec, FENNEC, or fEnNeC will also be accepted.", "note": "pass-3 pool: excluded. Missed by the pass-2 keyword regex."},
+    "lcb-atcoder-arc192_a": {"category": "case_insensitive", "evidence": "The judge is case-insensitive; for example, if the correct answer is Yes, outputs such as yes, YES, or yEs will also be accepted.", "note": "pass-1 development task. All 10 pass-1/pass-2 submissions print canonical Yes/No, so no historical false negative arose."},
+    "lcb-atcoder-abc395_a": {"category": "case_insensitive", "evidence": "The judge is case-insensitive. For example, if the correct answer is Yes, any of yes, YES, and yEs will be accepted.", "note": "MAIN manifest. Exact comparison is correct only if the program prints canonical case; false-negative risk for the final benchmark."},
+    "lcb-atcoder-arc195_c": {"category": "multiple_answers", "evidence": "Determine whether there is a way to place the (R+B) pieces satisfying these conditions. If it exists, show one example.", "note": "MAIN manifest. Constructive output with no 'any' wording: exact comparison rejects almost every correct program. Must be excluded or given a validator before the final benchmark."}
+  }
+}
