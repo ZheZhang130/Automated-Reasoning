@@ -1,0 +1,18 @@
+{
+  "batch": "b-real2-codex",
+  "cohort": "pass-3 Condition B on a harder real development task (Codex-replay coder)",
+  "outer_timeout": 2400,
+  "attempts": [
+    {
+      "task_id": "lcb-atcoder-abc388_g",
+      "condition": "B",
+      "seed": 2108,
+      "variant": "codex",
+      "coder": {
+        "provider": "codex",
+        "max_requests": 28,
+        "effort": "medium"
+      }
+    }
+  ]
+}

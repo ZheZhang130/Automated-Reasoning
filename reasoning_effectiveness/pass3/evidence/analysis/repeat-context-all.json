@@ -1,0 +1,74 @@
+{
+  "original|C": {
+    "runs": 49,
+    "runs_with_repeat": 2,
+    "empty_success_ack": 12,
+    "observation_identical_to_previous": 16,
+    "other_output": 7,
+    "streaks": 3,
+    "longest_streak": 9,
+    "repeats_in_streaks_of_3_or_more": 19
+  },
+  "original|D": {
+    "runs": 74,
+    "runs_with_repeat": 2,
+    "empty_success_ack": 25,
+    "observation_identical_to_previous": 23,
+    "streaks": 3,
+    "longest_streak": 16,
+    "repeats_in_streaks_of_3_or_more": 23
+  },
+  "original|A": {
+    "runs": 53,
+    "runs_with_repeat": 3,
+    "empty_success_ack": 32,
+    "observation_identical_to_previous": 30,
+    "other_output": 1,
+    "streaks": 6,
+    "longest_streak": 9,
+    "repeats_in_streaks_of_3_or_more": 32
+  },
+  "aci|A": {
+    "runs": 18,
+    "runs_with_repeat": 2,
+    "empty_success_ack": 1,
+    "observation_identical_to_previous": 28,
+    "aci_note": 30,
+    "format_error": 1,
+    "streaks": 2,
+    "longest_streak": 19,
+    "repeats_in_streaks_of_3_or_more": 32
+  },
+  "aci|C": {
+    "runs": 18,
+    "runs_with_repeat": 0,
+    "streaks": 0,
+    "longest_streak": 0,
+    "repeats_in_streaks_of_3_or_more": 0
+  },
+  "aci|D": {
+    "runs": 18,
+    "runs_with_repeat": 1,
+    "empty_success_ack": 1,
+    "observation_identical_to_previous": 13,
+    "format_error": 1,
+    "aci_note": 14,
+    "streaks": 2,
+    "longest_streak": 15,
+    "repeats_in_streaks_of_3_or_more": 15
+  },
+  "original|E": {
+    "runs": 42,
+    "runs_with_repeat": 0,
+    "streaks": 0,
+    "longest_streak": 0,
+    "repeats_in_streaks_of_3_or_more": 0
+  },
+  "probe|E": {
+    "runs": 5,
+    "runs_with_repeat": 0,
+    "streaks": 0,
+    "longest_streak": 0,
+    "repeats_in_streaks_of_3_or_more": 0
+  }
+}

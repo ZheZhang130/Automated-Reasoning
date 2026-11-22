@@ -2,7 +2,8 @@
 
   python -m reasoning_effectiveness.pass3.diagnostics.export_evidence <pass3_study> [part ...]
 
-Parts: freeze (freeze manifests, selection, plans), guidance (C/D artifacts), ledger, diagnoses (E texts with
+Parts: freeze (freeze manifests, selection, plans), guidance (C/D artifacts), ledger, runs (per-attempt public and
+hidden outcome metadata as hashes and verdict counts), diagnoses (E texts with
 hashes and outcome records), analysis (generated tables and per-run rows). Every JSON copy goes through
 ``guided_agent.privacy.copy_sanitized_json``, which refuses a copy that still contains a home path, user name,
 host name or secret. Excluded always: candidate programs, evidence packets (they embed programs), hidden tests,
@@ -13,7 +14,7 @@ import sys
 from pathlib import Path
 
 from guided_agent import privacy
-from guided_agent.common import REPO
+from guided_agent.common import REPO, sha256_file
 
 OUT = REPO / 'reasoning_effectiveness/pass3/evidence'
 
@@ -60,6 +61,41 @@ def export(study, parts):
         tmp.write_text(json.dumps(rows, indent=1, ensure_ascii=False) + '\n', encoding='utf-8', newline='\n')
         privacy.copy_sanitized_json(tmp, OUT / 'diagnoses.json')
         done['diagnoses'] = len(rows)
+    if 'runs' in parts:
+        # per-attempt metadata: public attempts and hidden outcome as hashes and verdict counts (no code, no tests)
+        rows = []
+        for result in sorted(study.glob('runs/*/*/result.json')):
+            run_dir, batch = result.parent, result.parent.parent.name
+            if batch.startswith('integration') or 'incomplete' in run_dir.name:
+                continue
+            record = json.loads(result.read_text(encoding='utf-8'))
+            public = []
+            attempts = run_dir / 'attempts.jsonl'
+            for line in (attempts.read_text(encoding='utf-8').splitlines() if attempts.exists() else []):
+                item = json.loads(line)
+                res = item.get('result') or {}
+                public.append({'seq': item.get('seq'), 'action': item.get('action'), 'code_sha256': res.get('code_sha256'),
+                               'status': res.get('status'), 'passed': res.get('passed'), 'total': res.get('total'),
+                               'verdict_counts': res.get('verdict_counts'), 'tests_sha256': res.get('tests_sha256')})
+            hidden = None
+            for path in sorted((run_dir.parent / 'eval').glob(f"{record.get('run_id')}.json")):
+                h = json.loads(path.read_text(encoding='utf-8'))
+                hidden = {k: h.get(k) for k in ('status', 'passed', 'total', 'verdict_counts', 'code_sha256',
+                                                'tests_sha256', 'judge_version', 'evaluated_utc')}
+            rows.append({'batch': batch, 'run_id': record.get('run_id'), 'task_id': record.get('task_id'),
+                         'condition': record.get('condition'), 'seed': record.get('seed'),
+                         'exit_status': record.get('exit_status'), 'raw_exit_status': record.get('raw_exit_status'),
+                         'n_actions': record.get('n_actions'), 'n_repairs': record.get('n_repairs'),
+                         'wall_seconds': record.get('wall_seconds'), 'model_digest': record.get('model_digest'),
+                         'frozen_files_verified': (record.get('frozen_verification') or {}).get('frozen_files_verified'),
+                         'submission_sha256': sha256_file(run_dir / 'submission.py')
+                         if (run_dir / 'submission.py').exists() else None,
+                         'public_attempts': public, 'hidden': hidden})
+        tmp = study / 'analysis' / 'runs-export.json'
+        tmp.write_text(json.dumps(rows, indent=1) + '\n', encoding='utf-8', newline='\n')
+        privacy.copy_sanitized_json(tmp, OUT / 'runs.json')
+        tmp.unlink()
+        done['runs'] = len(rows)
     if 'analysis' in parts:
         for path in sorted((study / 'analysis').glob('*')):
             if path.name == 'diagnoses-export.json' or path.stat().st_size > 3_000_000:
@@ -77,4 +113,4 @@ def export(study, parts):
 
 
 if __name__ == '__main__':
-    export(sys.argv[1], set(sys.argv[2:]) or {'freeze', 'guidance', 'ledger', 'diagnoses', 'analysis'})
+    export(sys.argv[1], set(sys.argv[2:]) or {'freeze', 'guidance', 'ledger', 'diagnoses', 'runs', 'analysis'})

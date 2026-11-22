@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc388_g",
+  "text": "## Observations\n\n1. For a query interval \\([L,R]\\), \\(K\\) pairs are feasible if and only if the first \\(K\\) mochi can be paired in order with the last \\(K\\) mochi, with the two groups disjoint. To see why, sort the tops and bottoms of any feasible matching separately. For each \\(j\\), the largest \\(K-j+1\\) tops require that many bottoms at least twice as large as the \\(j\\)-th smallest top. Thus the \\(j\\)-th smallest bottom is large enough for that top. Replacing the sorted tops with the first \\(K\\) mochi can only make them smaller, and replacing the sorted bottoms with the last \\(K\\) can only make them larger.\n2. Let \\(p_i\\) be the first index with \\(A_{p_i}\\ge 2A_i\\), or \\(N+1\\) if none exists. The sequence \\(p_i\\) is nondecreasing because the thresholds \\(2A_i\\) are nondecreasing.\n3. For \\(1\\le K\\le\\lfloor(R-L+1)/2\\rfloor\\), the ordered pairing is feasible exactly when the maximum of \\(p_i-i\\) over \\(L\\le i\\le L+K-1\\) is at most \\(R-K+1-L\\). Indeed, the bottom paired with top \\(i\\) is at index \\(i+(R-K+1-L)\\), which must be at least \\(p_i\\).\n4. Feasibility is monotone in \\(K\\): discarding a pair preserves feasibility for the smaller count, and zero pairs are always feasible.\n\n## Solution sketch\n\n> Let \\(p_i\\) be the first index with \\(A_{p_i}\\ge 2A_i\\), or \\(N+1\\) if none exists. The sequence \\(p_i\\) is nondecreasing because the thresholds \\(2A_i\\) are nondecreasing.\n\n1. Compute all \\(p_i\\) with a single forward pointer. For each \\(i\\) in increasing order, advance the pointer while it is within the array and its mochi is smaller than \\(2A_i\\). Keep the pointer where it stops for the next iteration. Equality qualifies, so duplicate sizes need no special handling. If the pointer reaches \\(N+1\\), leave it there. The sweep takes \\(O(N)\\) time.\n\n> For \\(1\\le K\\le\\lfloor(R-L+1)/2\\rfloor\\), the ordered pairing is feasible exactly when the maximum of \\(p_i-i\\) over \\(L\\le i\\le L+K-1\\) is at most \\(R-K+1-L\\). Indeed, the bottom paired with top \\(i\\) is at index \\(i+(R-K+1-L)\\), which must be at least \\(p_i\\).\n\n2. Build a range-maximum sparse table on the values \\(p_i-i\\). It takes \\(O(N\\log N)\\) time and space to store maxima for intervals of power-of-two lengths. For a positive candidate \\(K\\), obtain the maximum on \\([L,L+K-1]\\) in \\(O(1)\\) time using the two largest power-of-two blocks that fit, one at each end. Their overlap does not affect the maximum. Compare the result with \\(R-K+1-L\\); a sentinel \\(p_i=N+1\\) correctly fails because its proposed bottom is inside the array.\n\n> Feasibility is monotone in \\(K\\): discarding a pair preserves feasibility for the smaller count, and zero pairs are always feasible.\n\n3. For each query, binary-search for the largest feasible \\(K\\) from zero through \\(\\lfloor(R-L+1)/2\\rfloor\\). Treat zero as feasible without looking up an empty range. This returns zero when no pair fits and the upper bound when the maximum possible number of disjoint pairs fits. Output the answers in query order. Each query takes \\(O(\\log(R-L+1))\\) time, giving \\(O(N\\log N+Q\\log N)\\) total time and \\(O(N\\log N)\\) auxiliary space.\n",
+  "statement_sha256": "c656976819b3927be9c059aba26500322da389c536206878f6c39f40e639a0ba",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "c656976819b3927be9c059aba26500322da389c536206878f6c39f40e639a0ba",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "dev-api",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-22T19:31:39Z",
+    "finish_reason": "stop",
+    "request_id": "req_e416c2c6850e4fefabb97ae07e6f20a1",
+    "retries": 0,
+    "ledger_index": 0
+  },
+  "usage": {
+    "prompt_tokens": 1069,
+    "completion_tokens": 996,
+    "total_tokens": 2065,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 1066,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 99,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 12.97,
+  "cost_usd": 0.012098,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 489,
+  "created_utc": "2026-11-22T19:31:52Z"
+}

@@ -1,0 +1,327 @@
+[
+  {
+    "run": "reasoning-effectiveness-pass3/api-checks/lcb-atcoder-abc390_c-E-api-s2108",
+    "task_id": "lcb-atcoder-abc390_c",
+    "provider": "openai-api",
+    "seed": 2108,
+    "message_words": 152,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.193,
+    "ast_identical": false,
+    "loops_before_after": [
+      4,
+      4
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 25,
+    "uptake_response": 0.2,
+    "uptake_comments": 0.2,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/api-checks/lcb-atcoder-arc195_a-E-api-s2109",
+    "task_id": "lcb-atcoder-arc195_a",
+    "provider": "openai-api",
+    "seed": 2109,
+    "message_words": 196,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.533,
+    "ast_identical": false,
+    "loops_before_after": [
+      4,
+      3
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 25,
+    "uptake_response": 0.32,
+    "uptake_comments": 0.32,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/ext-s2108/lcb-atcoder-abc390_f-E",
+    "task_id": "lcb-atcoder-abc390_f",
+    "provider": "codex-live",
+    "seed": 2108,
+    "message_words": 244,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.776,
+    "ast_identical": false,
+    "loops_before_after": [
+      6,
+      6
+    ],
+    "functions_before_after": [
+      1,
+      4
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 40,
+    "uptake_response": 0.25,
+    "uptake_comments": 0.25,
+    "uptake_code": 0.05,
+    "public_pass_after": false,
+    "hidden_status": "candidate_failure"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/ext-s2108/lcb-atcoder-abc395_f-E",
+    "task_id": "lcb-atcoder-abc395_f",
+    "provider": "codex-live",
+    "seed": 2108,
+    "message_words": 178,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.685,
+    "ast_identical": false,
+    "loops_before_after": [
+      4,
+      5
+    ],
+    "functions_before_after": [
+      2,
+      2
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 22,
+    "uptake_response": 0.045,
+    "uptake_comments": 0.045,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/ext-s2109/lcb-atcoder-abc388_f-E",
+    "task_id": "lcb-atcoder-abc388_f",
+    "provider": "codex-live",
+    "seed": 2109,
+    "message_words": 171,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.081,
+    "ast_identical": false,
+    "loops_before_after": [
+      3,
+      3
+    ],
+    "functions_before_after": [
+      2,
+      2
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 21,
+    "uptake_response": 0.333,
+    "uptake_comments": 0.143,
+    "uptake_code": 0.238,
+    "public_pass_after": true,
+    "hidden_status": "candidate_failure"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/ext-s2109/lcb-atcoder-abc395_f-E",
+    "task_id": "lcb-atcoder-abc395_f",
+    "provider": "codex-live",
+    "seed": 2109,
+    "message_words": 238,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.851,
+    "ast_identical": false,
+    "loops_before_after": [
+      0,
+      4
+    ],
+    "functions_before_after": [
+      1,
+      2
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 36,
+    "uptake_response": 0.25,
+    "uptake_comments": 0.25,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/ext-s2109/lcb-atcoder-arc190_c-E",
+    "task_id": "lcb-atcoder-arc190_c",
+    "provider": "codex-live",
+    "seed": 2109,
+    "message_words": 196,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.284,
+    "ast_identical": false,
+    "loops_before_after": [
+      7,
+      7
+    ],
+    "functions_before_after": [
+      2,
+      2
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 35,
+    "uptake_response": 0.029,
+    "uptake_comments": 0.029,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "candidate_failure"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/ext-s2109/lcb-atcoder-arc193_a-E",
+    "task_id": "lcb-atcoder-arc193_a",
+    "provider": "codex-live",
+    "seed": 2109,
+    "message_words": 178,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.614,
+    "ast_identical": false,
+    "loops_before_after": [
+      8,
+      9
+    ],
+    "functions_before_after": [
+      2,
+      2
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 18,
+    "uptake_response": 0.056,
+    "uptake_comments": 0.056,
+    "uptake_code": 0.056,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/probe-neutral/lcb-atcoder-abc390_c-E-neutral-s2108",
+    "task_id": "lcb-atcoder-abc390_c",
+    "provider": "fixed",
+    "seed": 2108,
+    "message_words": 187,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.196,
+    "ast_identical": false,
+    "loops_before_after": [
+      4,
+      4
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 29,
+    "uptake_response": 0.069,
+    "uptake_comments": 0.0,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/probe-neutral/lcb-atcoder-abc393_d-E-neutral-s2108",
+    "task_id": "lcb-atcoder-abc393_d",
+    "provider": "fixed",
+    "seed": 2108,
+    "message_words": 187,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.526,
+    "ast_identical": false,
+    "loops_before_after": [
+      1,
+      1
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 29,
+    "uptake_response": 0.0,
+    "uptake_comments": 0.0,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/probe-neutral/lcb-atcoder-abc398_d-E-neutral-s2108",
+    "task_id": "lcb-atcoder-abc398_d",
+    "provider": "fixed",
+    "seed": 2108,
+    "message_words": 187,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.156,
+    "ast_identical": false,
+    "loops_before_after": [
+      1,
+      1
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 30,
+    "uptake_response": 0.033,
+    "uptake_comments": 0.0,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "candidate_failure"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/probe-neutral/lcb-atcoder-arc195_a-E-neutral-s2108",
+    "task_id": "lcb-atcoder-arc195_a",
+    "provider": "fixed",
+    "seed": 2108,
+    "message_words": 187,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.262,
+    "ast_identical": false,
+    "loops_before_after": [
+      2,
+      3
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 29,
+    "uptake_response": 0.034,
+    "uptake_comments": 0.034,
+    "uptake_code": 0.0,
+    "public_pass_after": false,
+    "hidden_status": "candidate_failure"
+  },
+  {
+    "run": "reasoning-effectiveness-pass3/probe-neutral/lcb-atcoder-arc195_a-E-neutral-s2109",
+    "task_id": "lcb-atcoder-arc195_a",
+    "provider": "fixed",
+    "seed": 2109,
+    "message_words": 187,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.368,
+    "ast_identical": false,
+    "loops_before_after": [
+      4,
+      2
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 29,
+    "uptake_response": 0.0,
+    "uptake_comments": 0.0,
+    "uptake_code": 0.0,
+    "public_pass_after": false,
+    "hidden_status": "candidate_failure"
+  }
+]

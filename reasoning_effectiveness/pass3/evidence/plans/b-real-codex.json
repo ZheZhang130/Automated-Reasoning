@@ -1,0 +1,29 @@
+{
+  "batch": "b-real-codex",
+  "cohort": "pass-3 Condition B on real development tasks (Codex-replay coder)",
+  "outer_timeout": 2400,
+  "attempts": [
+    {
+      "task_id": "lcb-atcoder-abc391_a",
+      "condition": "B",
+      "seed": 2108,
+      "variant": "codex",
+      "coder": {
+        "provider": "codex",
+        "max_requests": 28,
+        "effort": "medium"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc393_d",
+      "condition": "B",
+      "seed": 2108,
+      "variant": "codex",
+      "coder": {
+        "provider": "codex",
+        "max_requests": 28,
+        "effort": "medium"
+      }
+    }
+  ]
+}

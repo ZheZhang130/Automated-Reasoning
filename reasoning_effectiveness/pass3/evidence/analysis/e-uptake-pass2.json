@@ -1,0 +1,202 @@
+[
+  {
+    "run": "reasoning-effectiveness-pass2/dev-e/lcb-atcoder-abc390_c-E",
+    "task_id": "lcb-atcoder-abc390_c",
+    "provider": "codex-live",
+    "seed": 2108,
+    "message_words": 187,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.109,
+    "ast_identical": false,
+    "loops_before_after": [
+      4,
+      4
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 24,
+    "uptake_response": 0.208,
+    "uptake_comments": 0.208,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass2/dev-e/lcb-atcoder-abc393_d-E",
+    "task_id": "lcb-atcoder-abc393_d",
+    "provider": "codex-live",
+    "seed": 2108,
+    "message_words": 200,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.647,
+    "ast_identical": false,
+    "loops_before_after": [
+      1,
+      0
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 36,
+    "uptake_response": 0.306,
+    "uptake_comments": 0.278,
+    "uptake_code": 0.083,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass2/dev-e/lcb-atcoder-arc195_a-E",
+    "task_id": "lcb-atcoder-arc195_a",
+    "provider": "codex-live",
+    "seed": 2108,
+    "message_words": 193,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.404,
+    "ast_identical": false,
+    "loops_before_after": [
+      2,
+      4
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 29,
+    "uptake_response": 0.241,
+    "uptake_comments": 0.241,
+    "uptake_code": 0.0,
+    "public_pass_after": false,
+    "hidden_status": "candidate_failure"
+  },
+  {
+    "run": "reasoning-effectiveness-pass2/dev-e-api/lcb-atcoder-abc393_d-E-api",
+    "task_id": "lcb-atcoder-abc393_d",
+    "provider": "openai-api",
+    "seed": 2108,
+    "message_words": 197,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.581,
+    "ast_identical": false,
+    "loops_before_after": [
+      1,
+      0
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 30,
+    "uptake_response": 0.233,
+    "uptake_comments": 0.233,
+    "uptake_code": 0.067,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass2/dev-e-api/lcb-atcoder-arc195_a-E-api",
+    "task_id": "lcb-atcoder-arc195_a",
+    "provider": "openai-api",
+    "seed": 2108,
+    "message_words": 210,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.6,
+    "ast_identical": false,
+    "loops_before_after": [
+      2,
+      4
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 33,
+    "uptake_response": 0.182,
+    "uptake_comments": 0.152,
+    "uptake_code": 0.061,
+    "public_pass_after": true,
+    "hidden_status": "candidate_failure"
+  },
+  {
+    "run": "reasoning-effectiveness-pass2/dev-s2109/lcb-atcoder-arc195_a-E-s2109",
+    "task_id": "lcb-atcoder-arc195_a",
+    "provider": "codex-live",
+    "seed": 2109,
+    "message_words": 183,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.609,
+    "ast_identical": false,
+    "loops_before_after": [
+      4,
+      3
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 26,
+    "uptake_response": 0.385,
+    "uptake_comments": 0.385,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "pass"
+  },
+  {
+    "run": "reasoning-effectiveness-pass2/val/lcb-atcoder-abc398_d-E",
+    "task_id": "lcb-atcoder-abc398_d",
+    "provider": "codex-live",
+    "seed": 2108,
+    "message_words": 199,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.484,
+    "ast_identical": false,
+    "loops_before_after": [
+      1,
+      1
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 30,
+    "uptake_response": 0.133,
+    "uptake_comments": 0.133,
+    "uptake_code": 0.0,
+    "public_pass_after": true,
+    "hidden_status": "candidate_failure"
+  },
+  {
+    "run": "reasoning-effectiveness-pass2/val-api/lcb-atcoder-abc398_d-E-api",
+    "task_id": "lcb-atcoder-abc398_d",
+    "provider": "openai-api",
+    "seed": 2108,
+    "message_words": 180,
+    "wrote_program_after": true,
+    "changed_line_ratio": 0.431,
+    "ast_identical": false,
+    "loops_before_after": [
+      1,
+      1
+    ],
+    "functions_before_after": [
+      1,
+      1
+    ],
+    "imports_added": [],
+    "distinctive_message_words": 30,
+    "uptake_response": 0.167,
+    "uptake_comments": 0.133,
+    "uptake_code": 0.033,
+    "public_pass_after": true,
+    "hidden_status": "candidate_failure"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "batch": "b-real2-api",
+  "cohort": "pass-3 Condition B on a harder real development task (direct API coder)",
+  "outer_timeout": 1800,
+  "attempts": [
+    {
+      "task_id": "lcb-atcoder-abc388_g",
+      "condition": "B",
+      "seed": 2108,
+      "variant": "api",
+      "coder": {
+        "provider": "api",
+        "max_requests": 4,
+        "effort": "medium",
+        "max_completion_tokens": 8000,
+        "purpose": "Pass-3 Condition B real-task cost/reliability (abc388_g, harder task, cap 4 requests)"
+      }
+    }
+  ]
+}

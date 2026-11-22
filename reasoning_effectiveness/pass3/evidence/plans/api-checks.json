@@ -1,0 +1,45 @@
+{
+  "batch": "api-checks",
+  "cohort": "pass-3 direct-API end-to-end validation (development tasks)",
+  "outer_timeout": 960,
+  "attempts": [
+    {
+      "task_id": "lcb-atcoder-abc388_g",
+      "condition": "C",
+      "seed": 2108,
+      "variant": "api",
+      "guidance": "E:\\CSC2108Local\\reasoning-effectiveness-pass3\\guidance\\dev-api\\lcb-atcoder-abc388_g.plan-v1.api.json"
+    },
+    {
+      "task_id": "lcb-atcoder-arc195_a",
+      "condition": "D",
+      "seed": 2108,
+      "variant": "api",
+      "guidance": "E:\\CSC2108Local\\reasoning-effectiveness-pass3\\guidance\\dev-api\\lcb-atcoder-arc195_a.contract-v1.api.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_c",
+      "condition": "E",
+      "seed": 2108,
+      "variant": "api-s2108",
+      "expected_candidate_prefix": "e6eafc9616",
+      "diagnosis": {
+        "provider": "api",
+        "timeout": 300,
+        "purpose": "Pass-3 provider validation on a consumed development task: E at the frozen abc390_c seed-2108 trigger (Codex counterpart in pass 2)"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc195_a",
+      "condition": "E",
+      "seed": 2109,
+      "variant": "api-s2109",
+      "expected_candidate_prefix": "14660809c5",
+      "diagnosis": {
+        "provider": "api",
+        "timeout": 300,
+        "purpose": "Pass-3 provider validation on a consumed development task: E at the frozen arc195_a seed-2109 trigger (Codex counterpart in pass 2)"
+      }
+    }
+  ]
+}

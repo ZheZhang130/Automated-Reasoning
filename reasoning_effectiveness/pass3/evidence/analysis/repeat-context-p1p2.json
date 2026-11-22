@@ -1,0 +1,60 @@
+{
+  "original|C": {
+    "runs": 24,
+    "runs_with_repeat": 1,
+    "empty_success_ack": 12,
+    "streaks": 2,
+    "longest_streak": 9,
+    "repeats_in_streaks_of_3_or_more": 12
+  },
+  "original|D": {
+    "runs": 49,
+    "runs_with_repeat": 2,
+    "empty_success_ack": 25,
+    "streaks": 3,
+    "longest_streak": 16,
+    "repeats_in_streaks_of_3_or_more": 23
+  },
+  "original|A": {
+    "runs": 29,
+    "runs_with_repeat": 0,
+    "empty_success_ack": 10,
+    "streaks": 2,
+    "longest_streak": 5,
+    "repeats_in_streaks_of_3_or_more": 10
+  },
+  "aci|A": {
+    "runs": 18,
+    "runs_with_repeat": 2,
+    "empty_success_ack": 1,
+    "aci_note": 30,
+    "format_error": 1,
+    "streaks": 2,
+    "longest_streak": 19,
+    "repeats_in_streaks_of_3_or_more": 32
+  },
+  "aci|C": {
+    "runs": 18,
+    "runs_with_repeat": 0,
+    "streaks": 0,
+    "longest_streak": 0,
+    "repeats_in_streaks_of_3_or_more": 0
+  },
+  "aci|D": {
+    "runs": 18,
+    "runs_with_repeat": 1,
+    "empty_success_ack": 1,
+    "format_error": 1,
+    "aci_note": 14,
+    "streaks": 2,
+    "longest_streak": 15,
+    "repeats_in_streaks_of_3_or_more": 15
+  },
+  "original|E": {
+    "runs": 16,
+    "runs_with_repeat": 0,
+    "streaks": 0,
+    "longest_streak": 0,
+    "repeats_in_streaks_of_3_or_more": 0
+  }
+}

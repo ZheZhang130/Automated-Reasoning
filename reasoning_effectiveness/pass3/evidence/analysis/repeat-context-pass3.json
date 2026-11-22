@@ -1,0 +1,42 @@
+{
+  "original|C": {
+    "runs": 25,
+    "runs_with_repeat": 1,
+    "other_output": 7,
+    "observation_identical_to_previous": 6,
+    "streaks": 1,
+    "longest_streak": 7,
+    "repeats_in_streaks_of_3_or_more": 7
+  },
+  "original|E": {
+    "runs": 26,
+    "runs_with_repeat": 0,
+    "streaks": 0,
+    "longest_streak": 0,
+    "repeats_in_streaks_of_3_or_more": 0
+  },
+  "original|D": {
+    "runs": 25,
+    "runs_with_repeat": 0,
+    "streaks": 0,
+    "longest_streak": 0,
+    "repeats_in_streaks_of_3_or_more": 0
+  },
+  "original|A": {
+    "runs": 24,
+    "runs_with_repeat": 3,
+    "empty_success_ack": 22,
+    "observation_identical_to_previous": 22,
+    "other_output": 1,
+    "streaks": 4,
+    "longest_streak": 9,
+    "repeats_in_streaks_of_3_or_more": 22
+  },
+  "probe|E": {
+    "runs": 5,
+    "runs_with_repeat": 0,
+    "streaks": 0,
+    "longest_streak": 0,
+    "repeats_in_streaks_of_3_or_more": 0
+  }
+}
