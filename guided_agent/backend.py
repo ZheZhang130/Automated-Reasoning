@@ -60,6 +60,10 @@ def frozen_runtime(host_settings):
 def host_base_function(runtime, host_settings):
     if host_settings.backend == 'portable':
         from local_agent.portable import adapted_run, verify_images
+        # As local_agent.portable.worker does: an external foreground Ollama may not write this log.
+        log = host_settings.root / 'logs/ollama-project.stderr.log'
+        log.parent.mkdir(parents=True, exist_ok=True)
+        log.touch(exist_ok=True)
         return adapted_run(runtime, host_settings, verify_images(host_settings)), 'portable.adapted_run'
     return runtime.run, 'windows-frozen-globals'
 

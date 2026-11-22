@@ -97,3 +97,30 @@ The easy tasks (abc391_a, abc400_b) were solved by every condition and variant, 
 * Requests 3–10 (MB2: plan-v1 and contract-v1 for abc393_d, abc396_e, abc393_e, abc391_e): all `stop`; 5.8–11.0 s each.
 * **Cumulative: 10 of 12 requests, $0.0832 at standard rates.** The conservative ($12/$60-tier) bound on actual usage is ≈ $0.50. No retries; 2 requests unused.
 * Codex MB1 guidance (12 artifacts) authored 23:34 with frozen prompts plan-v1/contract-v1. Every event stream had one `agent_message` and no tool events. All artifacts passed validation, and none were re-authored.
+
+## 23:37–23:55 — Phase IV, dev3: aci-v2 (repeat guard + truncation message + unchanged-source note), 12 runs
+
+Medium dev tasks, seeds 2108/2109, same Codex v1 guidance as dev1:
+
+| | arc192_a s2108 | arc192_a s2109 | arc195_a s2108 | arc195_a s2109 | Correct |
+| --- | --- | --- | --- | --- | --- |
+| A aci-v2 | ✗ 29/40 | ✗ 39/40 | ✓ (exit `RepairLimit`; prior candidate scored) | ✗ 39/40 | 1/4 (original A: 1/4) |
+| C aci-v2 | ✓ | ✓ | ✓ | ✓ | 4/4 (original C: 4/4) |
+| D aci-v2 | ✗ `RepeatedFormatError` | ✗ 39/40 | ✗ 38/40 | ✓ | 1/4 (original D: 0/4) |
+
+Delivery for A+D across the 8 medium runs: candidates 7/8 (original 4/8), `RepeatedFormatError` 1/8 (original 3/8), action-limit loops 0/8 (aci-v1: 4/6). The guard fired 1–15 times per run, and executed identical rewrites fell to ≤1 per run. Several A/D candidates are now near misses (38–39/40) rather than missing.
+
+**Decision: aci-v2 is promising but experimental.** The pre-set criterion is met (fewer loop/format exits, +1 correct D, C unchanged), but by one task on two repeatedly examined dev tasks. It is **not** made the default. The mini-benchmarks run the original frozen agent as the primary control, plus a separately labeled aci-v2 arm for A/C/D, so the agent change is evaluated on fresh tasks without confounding the guidance comparison.
+
+## 23:56 — Provider comparison (development, separate cohort): API guidance on arc192_a
+
+| | Codex plan (closed-form N mod 4 / parity rule) | API plan (cyclic DP over "center" bits) |
+| --- | --- | --- |
+| C, original agent | ✓ in all 6 runs (seeds × ACI variants) | ✗ 21/40: one truncation; the DP was implemented with a cyclic pair-indexing error; one repair still failed sample 1 |
+| D, original agent | ✗ (20/40; `RepeatedFormatError` on seed 2109) | ✗ `RepeatedFormatError` |
+
+Both plans are correct. The API plan is harder for Qwen to implement, and its comments quote "the stronger model's observation 4", which is direct evidence that the plan was used. With n=1 this shows only that **plan form (implementation complexity), not just correctness, determines transfer**. It says nothing systematic about the providers.
+
+## 23:59 — FREEZE for mini-benchmarks
+
+`E:\CSC2108Local\reasoning-effectiveness\FREEZE-mb.json`: source commit `c580e2f`, original frozen agent (primary), aci-v2 (secondary arm), plan-v1 / contract-v1 / inject-v1, Codex and API `gpt-6.2-sol` at effort `medium`, sha256 of all 20 MB guidance artifacts, task lists, budgets (20 actions / 3 repairs / 600 s / 180 s per request), seed 2108, and the evaluation procedure. Batches mb1, mb2, mb1-aci2 and mb2-aci2 (60 attempts) run sequentially from this commit. No code changes until they finish.
