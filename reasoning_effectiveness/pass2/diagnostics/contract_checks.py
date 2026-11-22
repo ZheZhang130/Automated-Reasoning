@@ -60,6 +60,11 @@ def parse_checks(text, prompt_id):
             if expected and fences:
                 checks.append({'id': f'T-{len(checks) + 1}', 'stdin': fences[0].strip() + '\n',
                                'expected': expected.group(1).strip()})
+        if not checks:  # alternative v2 layout: "Stdin ```text …``` Stdout ```text …```" pairs
+            fences = [re.sub(r'(?m)^\s{0,4}', '', f) for f in FENCE.findall(body)]
+            for i in range(0, len(fences) - 1, 2):
+                checks.append({'id': f'T-{i // 2 + 1}', 'stdin': fences[i].strip() + '\n',
+                               'expected': fences[i + 1].strip()})
     return checks
 
 

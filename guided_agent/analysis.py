@@ -102,7 +102,28 @@ def attempt_metrics(run_dir, eval_dir=None):
         'guidance_prompt': (record.get('guidance_provenance') or {}).get('prompt_id'),
         'context_events': len(record.get('context_events') or []), 'setup_error': record.get('setup_error'),
         'sampler_wire_verified': record.get('sampler_wire_verified'),
+        # D usage: self-run checks with the ordinary tools (e.g. printf '...' | python /workspace/solution.py).
+        'manual_runs': sum(bool(MANUAL_RUN.search(e['command'])) for e in events if isinstance(e.get('command'), str)),
+        **e_metrics(record),
     }
+
+
+MANUAL_RUN = re.compile(r'(?:printf|echo)\b[^\n]*\|\s*python3?\s+(?:-I\s+)?/workspace/solution\.py'
+                        r'|python3?\s+(?:-I\s+)?/workspace/solution\.py\s*<')
+
+
+def e_metrics(record):
+    d = record.get('diagnosis')
+    if not d:
+        return {}
+    return {'e_trigger': d.get('trigger_observed'), 'e_requested': d.get('frontier_requested'),
+            'e_delivered': d.get('delivered'), 'e_error': d.get('error_category'),
+            'e_trigger_action': d.get('trigger_action'), 'e_seconds_left': d.get('local_seconds_left_at_trigger'),
+            'e_wait_seconds': d.get('frontier_wait_seconds'), 'e_actions_after': d.get('local_actions_after'),
+            'e_tests_after': d.get('public_tests_after'), 'e_changed_after': d.get('candidate_changed_after'),
+            'e_public_pass_after': d.get('public_pass_after'), 'e_diagnosis_words': d.get('diagnosis_words'),
+            'e_untriggered_reason': None if d.get('trigger_observed') else (
+                'no_public_test' if not record.get('public_attempts') else 'no_qualifying_failure')}
 
 
 def summarize(batch_dirs, out=None):
