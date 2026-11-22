@@ -31,14 +31,18 @@ Nothing here is statistically significant.
   * Integration tests pass 6/6 on the Windows and portable backends. Live diagnoses from Codex and the
     direct API were delivered to real Qwen.
   * Diagnoses were **accurate in every triggered run** and visibly used.
-  * E **rescued one task** (abc393_d, under both providers: A 9/40 → E 40/40). On validation it tied A at 2/5.
-  * It triggered only 1 of 5 times on fresh tasks: two passed at the first test, and two never reached a
-    public test because of truncation.
-  * When the diagnosis carries an algorithmic fix, Qwen often implements it superficially.
+  * E **rescued one task**: abc393_d, under both providers (A 9/40 → E 40/40). But A itself passes
+    abc393_d at seed 2109, so that rescue is within seed variance.
+  * Across 13 paired (task, seed) comparisons with A (Codex E): **+1, 0 harms**. On validation it tied A at 2/5.
+  * It triggered 1 of 5 times on fresh tasks: two passed at the first test, and two never reached a
+    public test because of truncation. At seed 2109 it triggered 1 of 4 times.
+  * When the diagnosis carries an algorithmic fix, Qwen often adopts the vocabulary and not the method
+    (abc398_d under both providers).
 * **B works end to end through the shared interface** on a synthetic fixture, via the direct API
   (3 requests, $0.0028) and via Codex replay. It has not been benchmarked.
-* **API use this pass: 7 of 12 requests, $0.0327** at standard prices ($0.20 conservative bound). Pass-1
-  history was 10 requests and $0.0832, so the cumulative total is 17 requests and $0.116.
+* **API use this pass: 8 of 12 requests, $0.0386** at standard prices ($0.232 conservative bound), all
+  `finish_reason=stop` with no retries. Pass-1 history was 10 requests and $0.0832, so the cumulative total
+  is 18 requests and $0.122.
 
 ## 1. Results
 
@@ -80,13 +84,40 @@ Paired with A:
 Second seed (2109) and the direct-API comparison at the same frozen states: see §1.3, §1.4 and
 `evidence/pass2-tables.md`.
 
-### 1.3 Second seed (2109)
+### 1.3 Second seed (2109; Codex guidance and diagnosis)
 
-*(filled in below from `evidence/pass2-tables.md`)*
+| Task | A s2109 | E-v1 s2109 | D-v3 s2109 |
+| --- | --- | --- | --- |
+| abc393_d | ✓ 40/40 (3 act) | ✓ (not triggered: first public test passed) | ✓ (11 act) |
+| abc390_c | ✓ | ✓ (not triggered) | ✓ |
+| abc394_c | ✓ | ✓ (not triggered) | ✓ |
+| arc195_a | ✓ 40/40 (9 act; pass 1) | ✓ 40/40 (**triggered** at action 2, repaired 3 actions later) | ✗ 37/40 (20 act) |
 
-### 1.4 Direct-API comparison
+**The seed matters as much as the condition.**
 
-*(filled in below)*
+* abc393_d: A fails at seed 2108 (9/40) but passes at 2109, so E's one development rescue is within seed
+  variance.
+* abc394_c: D-v3's seed-2108 rewrite-loop failure does not recur.
+* arc195_a: E at 2109 reached A's outcome in 5 actions instead of 9.
+
+The benchmark needs ≥3 seeds.
+
+### 1.4 Direct API versus Codex replay at the same frozen states (seed 2108)
+
+| Task | A | E Codex | E API | D-v3 Codex | D-v3 API |
+| --- | --- | --- | --- | --- | --- |
+| arc195_a | ✗ 39/40 | ✗ 39/40 (repair limit; public never passed) | ✗ 39/40 (public passed in 3 actions) | ✗ none | — |
+| abc393_d | ✗ 9/40 | ✓ 40/40 | ✓ 40/40 | ✓ | — |
+| abc398_d | ✗ 36/40 (TLE×4) | ✗ 36/40 | ✗ 36/40 | ✗ 36/40 | — |
+| abc399_f | ✓ | ✓ (not triggered) | — | ✗ 20/40 | ✗ 1/40 |
+| abc388_e | ✗ none | ✗ none (not triggered) | — | ✗ 31/40 | ✗ none (truncated) |
+
+* **E packets were identical across providers** (same candidate and report hashes), so differences come only
+  from the diagnosis text.
+* **The API diagnoses were as accurate as Codex's and a little more specific.** On arc195_a the API version
+  also named the `popleft()` ordering bug that Qwen then avoided, but the hidden result was unchanged.
+* **D-v3's effect on abc399_f is harmful under both providers.** On abc388_e the Codex contract happened to
+  avoid truncation and the API contract did not, so neither effect is robust to contract wording.
 
 ## 2. Answers
 
@@ -139,10 +170,12 @@ any local budget either.
 
 **7. How often did E trigger?**
 
-* **Development:** 3/4 at seed 2108 (tasks chosen because A's first test failed), plus the seed-2109 runs
-  in §1.3.
+* **Development:** 3/4 at seed 2108 (tasks chosen because A's first test failed) and 1/4 at seed 2109.
 * **Validation:** **1/5 (20%)**. The untriggered runs: 2 passed the first public test, and 2 never ran a
   public test (all three responses truncated).
+
+Over all 13 live Codex E runs, 5 triggered (38%). Every triggered run requested a diagnosis and received
+and delivered one: 0 provider failures in 5 Codex and 3 API calls.
 
 **8. Were frontier diagnoses accurate and useful?**
 Accurate in all delivered cases checked: arc195_a (Codex and API), abc393_d (Codex and API), abc390_c and
@@ -158,8 +191,12 @@ Useful in 2 of 4 tasks:
   not its method.
 
 **9. Did E rescue failed local implementations?**
-Once: abc393_d (A 9/40 → E 40/40), reproduced with both providers at the same frozen state. Validation: 0/1
-triggered.
+Once: abc393_d (A 9/40 → E 40/40), reproduced with both providers at the same frozen state. A passes that
+task at seed 2109, so the rescue is within seed variance. Validation: 0/1 triggered (abc398_d), under both
+providers.
+
+Over 13 paired (task, seed) comparisons with A (Codex E), E is +1 / −0. At arc195_a seed 2109, E reached A's correct
+outcome in 5 actions instead of 9.
 
 The paired API-versus-Codex run on arc195_a shows that diagnosis specificity matters for *public* recovery.
 The API diagnosis also named the `popleft()` ordering bug, so Qwen passed the public tests. But the hidden
@@ -238,6 +275,8 @@ input and 0.3k output tokens, at $0.0055–0.0069 each.
 | 4 | E diagnosis, abc393_d frozen trigger | 1,982/290 | $0.0069 |
 | 5 | contract-v3, abc399_f (validation provider check) | 827/641 | $0.0081 |
 | 6 | contract-v3, abc388_e (validation provider check) | 947/766 | $0.0096 |
+| 7 | E diagnosis, abc398_d frozen trigger (validation) | 1,659/260 | $0.0059 |
+| **Total** | **8 of 12 requests** | | **$0.0386** (conservative bound $0.232) |
 
 All requests completed with `finish_reason=stop`: no errors and no retries. Pricing was re-verified on
 2026-11-22: $2 / $10 per 1M input/output tokens (standard), with the ledger bound at $12 / $60.

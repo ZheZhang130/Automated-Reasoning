@@ -1,0 +1,7 @@
+{"batch": "dev-e-api", "cohort": "pass-2 development: E-v1 live direct-API diagnosis at the same frozen trigger states (seed 2108)",
+ "attempts": [
+  {"task_id": "lcb-atcoder-arc195_a", "condition": "E", "variant": "api",
+   "diagnosis": {"provider": "api", "timeout": 300, "purpose": "Condition E API validation: live diagnosis at the frozen arc195_a trigger state (paired with the Codex diagnosis)"}},
+  {"task_id": "lcb-atcoder-abc393_d", "condition": "E", "variant": "api",
+   "diagnosis": {"provider": "api", "timeout": 300, "purpose": "Condition E API validation: live diagnosis at the frozen abc393_d trigger state (paired with the Codex diagnosis)"}}
+ ]}

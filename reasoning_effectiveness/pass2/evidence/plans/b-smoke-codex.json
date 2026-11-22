@@ -1,0 +1,2 @@
+{"batch": "b-smoke-codex", "cohort": "B functional smoke (Codex-replay coder, synthetic fixture)",
+ "attempts": [{"task_id": "fixture-sum-signed", "condition": "B", "coder": {"provider": "codex", "max_requests": 8}}]}

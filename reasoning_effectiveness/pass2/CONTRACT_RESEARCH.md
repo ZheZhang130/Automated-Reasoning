@@ -6,6 +6,8 @@ discriminating. It is **not** a better *intervention* for this local agent. On 8
 
 The reason is not contract content:
 
+* **Validation:** D-v3 solved 1 of 5 fresh tasks, against 2/5 for both D-v1 and A, and a direct-API v3
+  contract did not change that.
 * **Truncation:** 4 of the 5 development failures happen before any program exists. Qwen brainstorms inside
   the file and hits the 4,096-token cap; that is an algorithm-discovery problem.
 * **Rewrite loop:** the fifth is the frozen agent's identical-rewrite loop, after both the contract and the
@@ -123,7 +125,31 @@ prompt search would have been unguided.
 
 ## 6. Frozen validation cohort
 
-*(Filled in after the 25-run validation cohort; see `FINAL_REPORT.md` and `analysis/pass2-tables.md`.)*
+The cohort is 5 fresh, outcome-blind tasks (1 easy + 4 hard), seed 2108, frozen in `FREEZE-val.json`
+before any run, with Codex-authored contracts. A direct-API v3 comparison on the two tasks where D moved
+against A was run afterwards.
+
+| Task | A | D-v1 | D-v3 (Codex) | D-v3 (API) | C (reference) |
+| --- | --- | --- | --- | --- | --- |
+| abc394_b (easy) | ✓ | ✓ | ✓ | — | ✓ |
+| abc399_f | ✓ 40/40 | ✗ 0/40 (repair limit) | ✗ 20/40 (repair limit) | ✗ 1/40 (repair limit) | ✓ |
+| abc398_d | ✗ 36/40 (TLE) | ✗ 36/40 (TLE) | ✗ 36/40 (TLE) | — | ✓ |
+| abc388_e | ✗ no program | **✓ 40/40** | ✗ 31/40 | ✗ no program | ✓ |
+| abc396_f | ✗ no program | ✗ no program | ✗ no program | — | ✗ 5/40 |
+| **Total** | 2/5 | 2/5 | **1/5** | 0/2 | 4/5 |
+
+**Second seed (2109) on development tasks:** D-v3 passed abc393_d, abc390_c and abc394_c, and failed
+arc195_a (37/40, action limit). A passed all four. abc394_c's seed-2108 rewrite-loop failure did not recur.
+
+**Interpretation.**
+
+* **abc399_f:** every contract text (v1, v3-Codex, v3-API) derails a first attempt that A gets right; Qwen
+  takes a different, wrong expansion of the power sum. The contracts contain no method, so this is a
+  harmful perturbation of the first sample.
+* **abc388_e:** D-v1 avoided A's truncation and passed, D-v3-Codex produced a 31/40 program, and D-v3-API
+  truncated like A.
+* **Conclusion:** contract effects on this agent are dominated by prompt-text perturbation of the first
+  attempt and by truncation, not by the specification's content. No contract run executed a K-check.
 
 ## 7. Failed approaches and limitations
 
@@ -132,7 +158,9 @@ prompt search would have been unguided.
 * Small n: 8 development tasks and 5 validation tasks, one seed. The A/D comparison is paired and
   deterministic, but D-v3 differs from D-v1 in *text*, which can flip a near-deterministic first attempt
   either way (abc394_c, arc192_a).
-* Provider: all v3 artifacts are Codex-authored replay; no direct-API v3 was run (budget reserved for E and B).
+* Provider: development and frozen validation used Codex-authored replay. Two direct-API v3 contracts
+  (abc399_f, abc388_e; 2 requests, $0.0176) were run afterwards as a provider check, with no better outcome
+  (0/2).
 
 ## 8. Recommendation and what would plausibly help D
 

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v3",
+  "task_id": "lcb-atcoder-abc388_e",
+  "text": "## Description\nThe input gives the sizes of \\(N\\) mochi in nondecreasing order. Print the maximum number of valid stacks that can be made simultaneously without reusing any mochi.\n\n## Preconditions\n- PRE-1 (Unverified): Standard input contains \\(N\\) on the first line and \\(N\\) integer sizes \\(A_1,\\ldots,A_N\\) on the second line.\n- PRE-2 (Unverified): \\(N\\) is an integer with \\(2\\le N\\le 500{,}000\\), and \\(1\\le A_i\\le 10^9\\) for every \\(i\\).\n- PRE-3 (Unverified): \\(A_i\\le A_{i+1}\\) for every \\(1\\le i<N\\).\n\n## Postconditions\n- POST-1 (Unverified): Standard output contains one nonnegative integer \\(K\\). There exist \\(K\\) ordered pairs of input positions, with no position occurring more than once across all pairs. In each pair, twice the first mochi’s size is at most the second’s size; equality is allowed.\n- POST-2 (Unverified): No collection of more than \\(K\\) pairs satisfies the disjointness and size conditions in POST-1.\n\n## Test suggestions\n**K-1 — POST-2:** Treating exactly half as too large.\n\nStdin:\n```text\n2\n500000000 1000000000\n```\nStdout:\n```text\n1\n```\n\n**K-2 — POST-1:** Reusing a top mochi or allowing a bottom just below twice the top size.\n\nStdin:\n```text\n4\n2 3 4 5\n```\nStdout:\n```text\n1\n```\n\n**K-3 — POST-2:** Treating equal sizes as one mochi, or requiring every mochi to be used.\n\nStdin:\n```text\n5\n2 2 4 4 4\n```\nStdout:\n```text\n2\n```\n\n**K-4 — POST-2:** Accepting a pairing merely because no more pairs can be added to it.\n\nStdin:\n```text\n4\n1 2 2 4\n```\nStdout:\n```text\n2\n```\n\n## Unspecified behavior\nThe statement does not specify behavior for input outside the stated format or constraints. It requires only the count, not a particular pairing when multiple optimal pairings exist.\n",
+  "statement_sha256": "1ce286947935ceca1b3fe68355b8b8c725c72c2aa87bed003c5c5a1aa3ebc46c",
+  "system_prompt": "Write a semi-formal behavioral contract for the programming task below. A separate, smaller\ncoding model will read it before writing its program. The contract states WHAT every correct output\nsatisfies, never HOW to compute it. Use exactly these headings, in this order:\n## Description\nOne or two sentences: what the input is and what a correct output must be.\n## Preconditions\nPRE-1, PRE-2, ...: input format, value ranges and guarantees given by the statement. Mark each\nUnverified. Do not add guarantees the statement does not give.\n## Postconditions\nPOST-1, POST-2, ...: at most 6 properties that every correct output satisfies, each a precise relation\nbetween the input and the output (an equality, a bound, a \"for every ...\" property or an \"if ... then\n...\" rule), not a retelling of the story. Keep each property simple and individually checkable. List\nfirst the properties a plausible but wrong program is most likely to violate: a misread operation or\nrule, an off-by-one or boundary case, ties, duplicates, ordering, minimum-size or all-equal inputs,\nexactness of large values. If several outputs are acceptable, state what makes an output acceptable\ninstead of one expected output. Mark each Unverified.\n## Test suggestions\nK-1 to K-4: small concrete checks, beyond the statement's samples, that a plausible but wrong program\nwould fail. For each give: the POST IDs it checks; the misreading of the requirements it exposes, in a\nfew words (a misreading, never a solution method); the exact stdin in a ```text block; and the exact\nexpected stdout (or, when several outputs are valid, the acceptance property). Derive every expected\noutput by hand from the statement alone and double-check it. Keep inputs small enough to verify by hand.\n## Unspecified behavior\nWhat the statement leaves open, without inventing validation rules.\nNatural language only: no code, pseudocode, algorithm, data structure, complexity or approach hints.\nNo implementation or tests have been inspected; do not mark anything Tested or Verified. At most\nabout 350 words.\n",
+  "system_prompt_sha256": "3dae83acc76cabb361a7b79678626b95176af713fe0cacb4f22ddfd704e00644",
+  "user_message_sha256": "1ce286947935ceca1b3fe68355b8b8c725c72c2aa87bed003c5c5a1aa3ebc46c",
+  "contract_prompt": "Write a semi-formal behavioral contract for the programming task below. A separate, smaller\ncoding model will read it before writing its program. The contract states WHAT every correct output\nsatisfies, never HOW to compute it. Use exactly these headings, in this order:\n## Description\nOne or two sentences: what the input is and what a correct output must be.\n## Preconditions\nPRE-1, PRE-2, ...: input format, value ranges and guarantees given by the statement. Mark each\nUnverified. Do not add guarantees the statement does not give.\n## Postconditions\nPOST-1, POST-2, ...: at most 6 properties that every correct output satisfies, each a precise relation\nbetween the input and the output (an equality, a bound, a \"for every ...\" property or an \"if ... then\n...\" rule), not a retelling of the story. Keep each property simple and individually checkable. List\nfirst the properties a plausible but wrong program is most likely to violate: a misread operation or\nrule, an off-by-one or boundary case, ties, duplicates, ordering, minimum-size or all-equal inputs,\nexactness of large values. If several outputs are acceptable, state what makes an output acceptable\ninstead of one expected output. Mark each Unverified.\n## Test suggestions\nK-1 to K-4: small concrete checks, beyond the statement's samples, that a plausible but wrong program\nwould fail. For each give: the POST IDs it checks; the misreading of the requirements it exposes, in a\nfew words (a misreading, never a solution method); the exact stdin in a ```text block; and the exact\nexpected stdout (or, when several outputs are valid, the acceptance property). Derive every expected\noutput by hand from the statement alone and double-check it. Keep inputs small enough to verify by hand.\n## Unspecified behavior\nWhat the statement leaves open, without inventing validation rules.\nNatural language only: no code, pseudocode, algorithm, data structure, complexity or approach hints.\nNo implementation or tests have been inspected; do not mark anything Tested or Verified. At most\nabout 350 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "val-api",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-22T16:31:57Z",
+    "finish_reason": "stop",
+    "request_id": "req_0e8237ea272446f1844c10daf7409297",
+    "retries": 0,
+    "ledger_index": 6
+  },
+  "usage": {
+    "prompt_tokens": 947,
+    "completion_tokens": 766,
+    "total_tokens": 1713,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 240,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 9.89,
+  "cost_usd": 0.009554,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 282,
+  "created_utc": "2026-11-22T16:32:07Z"
+}

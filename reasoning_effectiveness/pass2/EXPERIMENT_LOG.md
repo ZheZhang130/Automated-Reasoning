@@ -145,3 +145,96 @@ next to a foreign model and must never unload it, so the batch runner now waits 
 The pass-2 A reruns of arc195_a and abc393_d are **token-for-token identical** to the pass-1 A runs (18 and
 13 calls), with byte-identical submissions. The pass-2 backend changes leave A unchanged, so pass-1 A, C and
 D-v1 runs at seed 2108 are valid paired references for development.
+
+## 8. Development: D-v3 versus D-v1 (10:37–10:52)
+
+D-v3 (Codex) solved 3 of 8 development tasks; pass-1 D-v1 solved 4/8 and A 3/8. The provider-matched D-v1
+(Codex) solved abc393_d and failed abc391_e, the same as D-v3.
+
+| Task | D-v3 result | Mechanism |
+| --- | --- | --- |
+| arc192_a, arc195_a, abc388_g, abc391_e | ✗ no program | Truncation (3 × 4,096 tokens) |
+| abc394_c | ✗ 39/40 | Identical-rewrite loop after a public WA on `WWA`, which the contract's K-1 also exposes |
+| abc393_d, abc390_c, abc391_a | ✓ | — |
+
+**Hypothesis test (D-v3 ≥ D-v1, no new delivery failures): not met.** I made no further contract variants:
+no contract content addresses truncation or the rewrite loop, and further prompt search would not have been
+hypothesis-driven.
+
+**K-check test on final programs** (`analysis-kcheck-programs.json`):
+
+* D-v3 programs satisfied 4/4, 4/4, 4/4 and 3/4 of their task's verified K-checks; the 3/4 is the
+  abc394_c failure.
+* Wrong programs from other conditions violated them (e.g. A abc393_d 2/4, D-v1 arc192_a 2/4).
+* **0 self-check commands** in all D-v3 runs.
+
+## 9. Development: E through the direct API (10:52–10:56)
+
+* **API requests 4–5:** arc195_a and abc393_d, at the identical frozen trigger states (same candidate and
+  report hashes as the Codex runs). Latency 5.7 s and 4.9 s; $0.0055 and $0.0069.
+* Both diagnoses were accurate, and both delivered (test 8).
+* **arc195_a:** the API diagnosis also named the `popleft()` ordering bug. Qwen repaired in 3 actions and
+  passed the public tests, but scored 39/40 hidden, the same as A.
+* **abc393_d:** ✓ 40/40 again.
+
+## 10. Frozen validation cohort (10:53–11:31)
+
+| Task | A | C | D-v1 | D-v3 | E (trigger) |
+| --- | --- | --- | --- | --- | --- |
+| abc394_b | ✓ | ✓ | ✓ | ✓ | ✓ (none) |
+| abc399_f | ✓ | ✓ | ✗ 0/40 | ✗ 20/40 | ✓ (none) |
+| abc398_d | ✗ 36/40 TLE | ✓ | ✗ 36/40 TLE | ✗ 36/40 TLE | ✗ 36/40 TLE (triggered) |
+| abc388_e | ✗ none | ✓ | ✓ | ✗ 31/40 | ✗ none (none) |
+| abc396_f | ✗ none | ✗ 5/40 | ✗ none | ✗ none | ✗ none (none) |
+| **Total** | 2/5 | **4/5** | 2/5 | 1/5 | 2/5 |
+
+* **E on abc398_d:** the Codex diagnosis correctly located the off-by-one and also, beyond the public
+  evidence, warned of the quadratic set rebuild that turned out to be the hidden TLE cause. Qwen renamed its
+  variables after the diagnosis (`smoke_offsets`) but kept rebuilding the set: 11 actions, public pass,
+  hidden 36/40 (TLE×4), the same as A.
+* **C on abc396_f:** the run ended as `CommandExecutionError` when Qwen's own `echo … | python` check hung
+  past the frozen 27 s command time-out. This is frozen-agent behavior and the only custom-input run seen in
+  either pass.
+
+## 11. Second seed (2109) and the API comparison on validation (11:31–11:47)
+
+**Seed 2109:**
+
+| Task | A | E | D-v3 |
+| --- | --- | --- | --- |
+| abc393_d | ✓ | ✓ (not triggered) | ✓ |
+| abc390_c | ✓ | ✓ (not triggered) | ✓ |
+| abc394_c | ✓ | ✓ (not triggered) | ✓ |
+| arc195_a | ✓ (9 actions, pass 1) | ✓ (triggered; repaired in 3 actions) | ✗ 37/40 |
+
+A's seed-2108 failure on abc393_d does not recur at 2109, so E's development rescue is within seed variance.
+
+**API comparison:**
+
+* **API requests 6–7:** contract-v3 via the API for abc399_f and abc388_e; 230 and 282 words, valid;
+  $0.0176.
+* **API request 8:** E diagnosis at the abc398_d frozen trigger; $0.0059.
+
+| Run | Result | Same task under Codex |
+| --- | --- | --- |
+| D-v3-API abc399_f | ✗ 1/40 | D-v3 ✗ 20/40 |
+| D-v3-API abc388_e | ✗ no program (truncated) | D-v3 ✗ 31/40 |
+| E-API abc398_d | Diagnosis accurate, same substance as Codex; 5 actions, 36/40 TLE again | E ✗ 36/40 |
+
+**API total this pass: 8 requests, $0.0386 at standard prices** ($0.232 conservative bound). Every request
+finished with `stop`; there were no errors and no retries.
+
+## 12. Run integrity
+
+There were 48 non-test pass-2 runs:
+
+* **48/48** verified all 38 frozen hashes;
+* **0** setup errors and **0** infrastructure errors;
+* **46/46** Qwen runs are sampler-wire verified; the other 2 are the B smokes, which have no Ollama sampler.
+
+**Platforms:**
+
+* Linux container (Python 3.11.18, pinned requirements): 49 tests OK.
+* E integration tests: 6/6 on the Windows backend and 6/6 on the portable backend (`portable.adapted_run`).
+
+The user's Ollama model on port 11434 was never unloaded; the batch runner waited for it to expire (10:23–10:27).

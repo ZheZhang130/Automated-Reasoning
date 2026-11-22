@@ -154,5 +154,23 @@ Hidden correctness comes from the separate evaluation, as for every condition.
 | 5 Multiple failures | `test_5_only_first_of_multiple_failures_triggers` | Trigger at the first failure only; one later failure counted; one diagnosis |
 | 6 Deadline/budget continuity | `test_frontier_wait_is_excluded_from_local_time` (offline), test 1 (integration) | `env.deadline` and the agent wall clock move by exactly the wait; actions and repairs are unchanged |
 | — | `test_6_a_is_unchanged_by_the_e_machinery` | A runs with the frozen 660 s container and no diagnosis fields |
-| 7 Actual Codex diagnosis | dev runs (`EXPERIMENT_LOG.md`) | Live isolated Codex diagnosis delivered to real Qwen |
-| 8 Direct API diagnosis | dev runs (`EXPERIMENT_LOG.md`) | Live API diagnosis delivered to real Qwen |
+| 7 Actual Codex diagnosis | `runs/dev-e`, `runs/val`, `runs/dev-s2109` | **13 live Codex E runs, 5 triggered, 5/5 delivered**, 0 tool events, 8.1–12.8 s harness wall time. Pre-trigger history byte-identical to A's. |
+| 8 Direct API diagnosis | `runs/dev-e-api`, `runs/val-api` | **3 live API diagnoses** at the same frozen trigger states (identical packet hashes), all delivered; 4.4–5.7 s; $0.0055–0.0069 each; no retries |
+
+## 10. Is E ready for full benchmarking?
+
+**Mechanism: yes.** The trigger, delivery, continuity, accounting, provider-failure handling and records all
+behave as specified on both backends, and no live run had an E provider failure.
+
+**Decisions before the benchmark:**
+
+1. **Provider.** Use the direct API for the main run; Codex replay carries harness context. The API cost is
+   about $0.006 per triggered task.
+2. **Reporting.** Report the trigger rate alongside the triggered-subset analysis, as the proposal says.
+   On this agent E triggers in ~20–40% of runs: truncation prevents the public test, and easy tasks pass the
+   first test.
+3. **Seeds.** Use ≥3 seeds. One seed swapped E's apparent rescue for a tie (abc393_d).
+
+**Limitation that is not an E defect.** Triggered runs are often lost to the frozen agent's
+identical-rewrite loop, or to Qwen adopting a diagnosis's vocabulary but not its method (abc398_d,
+arc195_a).
