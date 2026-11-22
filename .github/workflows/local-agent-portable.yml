@@ -61,4 +61,4 @@ jobs:
       - name: Judge unit tests (container tests skip without the judge image)
         if: runner.os != 'Windows'   # container/judge.py imports Linux-only modules (fcntl, resource)
         working-directory: judge
-        run: python -m unittest -v discover -s tests
+        run: python -m unittest discover -v -s tests   # 'discover' must be the first argument
