@@ -1,0 +1,200 @@
+{
+  "created_utc": "2026-11-22T19:23:03Z",
+  "stage": "guidance (before any local run)",
+  "freeze_config_sha256": "6ae5111995958e5f10f01b80ce56da01b648c132ac90f56c2b6334ae15928be9",
+  "artifacts": {
+    "lcb-atcoder-abc397_e:plan-v1": {
+      "sha256": "73aa3a15e0cb17903eb5d4fef068272d0925cc3a6551bb89016db09cd87dd919",
+      "word_count": 525,
+      "validation_problems": [],
+      "statement_sha256": "154519feb2b802186b1df409c6c031d8d428d5709cafc706fc4467a5c9646fc0",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:19:12Z"
+    },
+    "lcb-atcoder-abc397_e:contract-v1": {
+      "sha256": "8fe71c98f52a96bfa473134c3150a327d79b6cb0a74177c8c9435c3572dfc0c1",
+      "word_count": 323,
+      "validation_problems": [],
+      "statement_sha256": "154519feb2b802186b1df409c6c031d8d428d5709cafc706fc4467a5c9646fc0",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:21:38Z"
+    },
+    "lcb-atcoder-abc388_f:plan-v1": {
+      "sha256": "51c6b9c53bd52eca8c99a3c9a1da394c4ba5334b81c748d86ffd5a098230ea34",
+      "word_count": 554,
+      "validation_problems": [],
+      "statement_sha256": "85a4dc81b876097d8b3c5ad2cee4274b912abe47b8428034fd3572a356d95794",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:19:19Z"
+    },
+    "lcb-atcoder-abc388_f:contract-v1": {
+      "sha256": "fd5f3304f6bc88cb50df417b5ace745ccb441bc688ecd722a37a3dbafe64b8e1",
+      "word_count": 359,
+      "validation_problems": [],
+      "statement_sha256": "85a4dc81b876097d8b3c5ad2cee4274b912abe47b8428034fd3572a356d95794",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:21:38Z"
+    },
+    "lcb-atcoder-abc395_f:plan-v1": {
+      "sha256": "b97e2d0f7a039d21d425e1f9a5b4d641a0ab4384eede41090bbeff321762fe42",
+      "word_count": 497,
+      "validation_problems": [],
+      "statement_sha256": "8be69cab5381d0ca844c20f8563f87832ce23ff1bf511d9ec2125e4c3ae87390",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:19:12Z"
+    },
+    "lcb-atcoder-abc395_f:contract-v1": {
+      "sha256": "8a3c3adac1dea85afc76de36775de00c3dea92beae0f7460f850c88291c4c2aa",
+      "word_count": 355,
+      "validation_problems": [],
+      "statement_sha256": "8be69cab5381d0ca844c20f8563f87832ce23ff1bf511d9ec2125e4c3ae87390",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:21:39Z"
+    },
+    "lcb-atcoder-abc389_f:plan-v1": {
+      "sha256": "d2a7296e5f94c795805d7d3b74519e32b2560e0c68f053a95ec72d18ab65c905",
+      "word_count": 483,
+      "validation_problems": [],
+      "statement_sha256": "ddfacd29a5dae065a560d5ed7af42686dda79450356ec5901c7e519d28fd6b5e",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:19:31Z"
+    },
+    "lcb-atcoder-abc389_f:contract-v1": {
+      "sha256": "1fd447c2b1748bdfa5a21b2a495979808029d03b1372e97e3a06be673b818459",
+      "word_count": 345,
+      "validation_problems": [],
+      "statement_sha256": "ddfacd29a5dae065a560d5ed7af42686dda79450356ec5901c7e519d28fd6b5e",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:21:52Z"
+    },
+    "lcb-atcoder-abc397_f:plan-v1": {
+      "sha256": "84e013c7385b56734f12734f0f847919a4f0a5446d0fd667afcdc1d1ad304baf",
+      "word_count": 561,
+      "validation_problems": [],
+      "statement_sha256": "1148ebd912ca62a0a214098be427e077a6f8ef6b8779e9ae81cc23c88752b7ae",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:19:35Z"
+    },
+    "lcb-atcoder-abc397_f:contract-v1": {
+      "sha256": "906cbcd885d6c029c93ae955d9cac743eb98007c168084234bfbbed30681bd5a",
+      "word_count": 272,
+      "validation_problems": [],
+      "statement_sha256": "1148ebd912ca62a0a214098be427e077a6f8ef6b8779e9ae81cc23c88752b7ae",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:21:52Z"
+    },
+    "lcb-atcoder-abc391_f:plan-v1": {
+      "sha256": "d956e89fc385804ce1ac33bfc1942b4c40fb28356a5b802249d048d7e7041850",
+      "word_count": 384,
+      "validation_problems": [],
+      "statement_sha256": "fe43fc6de2d19c30dadfcf5192498c2094978b1d5d72f0318c72a6a0c32c144f",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:19:36Z"
+    },
+    "lcb-atcoder-abc391_f:contract-v1": {
+      "sha256": "0d460b57cc3aad76ee227aa199b2281bf58cf702a33dca12eabdf3582add9d3a",
+      "word_count": 284,
+      "validation_problems": [],
+      "statement_sha256": "fe43fc6de2d19c30dadfcf5192498c2094978b1d5d72f0318c72a6a0c32c144f",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:21:53Z"
+    },
+    "lcb-atcoder-abc390_f:plan-v1": {
+      "sha256": "7e6edc10716488e44c86a81515d031f398682c3c7d179b7424113518f07eb06b",
+      "word_count": 399,
+      "validation_problems": [],
+      "statement_sha256": "ed40013edea1503767bd7c34759e0fb9f245a8c9524bb85969b9c069c39ab832",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:19:53Z"
+    },
+    "lcb-atcoder-abc390_f:contract-v1": {
+      "sha256": "1124850f80718156b902d341bd7be7acb1d9406f28b7a62bc803e64b0c4c1c35",
+      "word_count": 311,
+      "validation_problems": [],
+      "statement_sha256": "ed40013edea1503767bd7c34759e0fb9f245a8c9524bb85969b9c069c39ab832",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:22:10Z"
+    },
+    "lcb-atcoder-arc193_a:plan-v1": {
+      "sha256": "7c99d80b6a3eaf0c3a70a387eacb0338f1345bbcf991b7a539744792aeca63d0",
+      "word_count": 801,
+      "validation_problems": [],
+      "statement_sha256": "89bc084808e7132e745c2fbd5ff21a73fdc3e5a609034629bcae476af61f4bb3",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:20:06Z"
+    },
+    "lcb-atcoder-arc193_a:contract-v1": {
+      "sha256": "eb327bee2686b8efc3c9550105f239d925549cfd8cff818236e739fbd2f141f1",
+      "word_count": 368,
+      "validation_problems": [],
+      "statement_sha256": "89bc084808e7132e745c2fbd5ff21a73fdc3e5a609034629bcae476af61f4bb3",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:22:06Z"
+    },
+    "lcb-atcoder-arc193_b:plan-v1": {
+      "sha256": "1c00379404dac0c1107c7d7c7290aa84636e110f41f724d3c72443a850543704",
+      "word_count": 686,
+      "validation_problems": [],
+      "statement_sha256": "d3f5782c1f03f9d0b7e786f30860d8c006e49aa490147395afc030b0ac1dbf04",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:20:16Z"
+    },
+    "lcb-atcoder-arc193_b:contract-v1": {
+      "sha256": "8623eee1271b6e1fd6d2185cd11be105c4075dac465ec6407fbb3f05b75757c8",
+      "word_count": 330,
+      "validation_problems": [],
+      "statement_sha256": "d3f5782c1f03f9d0b7e786f30860d8c006e49aa490147395afc030b0ac1dbf04",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:22:09Z"
+    },
+    "lcb-atcoder-arc195_d:plan-v1": {
+      "sha256": "2c493757004a896521eec22d5e6eaa16ebcb7e7788e9a7c44a93f38fb966f4b0",
+      "word_count": 993,
+      "validation_problems": [],
+      "statement_sha256": "322e23991b149c9ab0deef7d6ab9c8aa65396d8fdb1c847484727396da262760",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:21:14Z"
+    },
+    "lcb-atcoder-arc195_d:contract-v1": {
+      "sha256": "7dfc8eeffac28c910c92e246151606795ac24827e92404fd395d4a704136e91a",
+      "word_count": 362,
+      "validation_problems": [],
+      "statement_sha256": "322e23991b149c9ab0deef7d6ab9c8aa65396d8fdb1c847484727396da262760",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:22:21Z"
+    },
+    "lcb-atcoder-arc194_e:plan-v1": {
+      "sha256": "cd94c7eb9e7cd36f6737c40bb01e11478e759d19c3c3822b83ca787829c4c963",
+      "word_count": 914,
+      "validation_problems": [],
+      "statement_sha256": "3b4220b9fad20b6d1855855ac131619d0ea8365116a405f6186b57bc16e38fc4",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:21:24Z"
+    },
+    "lcb-atcoder-arc194_e:contract-v1": {
+      "sha256": "b35e571ecc02776c53fd04cd358f55be18f14e6d82720ff24801b24de084708b",
+      "word_count": 341,
+      "validation_problems": [],
+      "statement_sha256": "3b4220b9fad20b6d1855855ac131619d0ea8365116a405f6186b57bc16e38fc4",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:22:24Z"
+    },
+    "lcb-atcoder-arc190_c:plan-v1": {
+      "sha256": "9927da35fb8a53fd93c0f7c812011234821ae9405a143ea6e9b18949af7a75bc",
+      "word_count": 627,
+      "validation_problems": [],
+      "statement_sha256": "efda4fae20b334b74e64bd7711b997f82e178bcb2089f2a3519f966e79231558",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:20:53Z"
+    },
+    "lcb-atcoder-arc190_c:contract-v1": {
+      "sha256": "5198f89967881e4c208f6b143f79f2f3512ff8678ee0128e904a70141e515cc2",
+      "word_count": 389,
+      "validation_problems": [],
+      "statement_sha256": "efda4fae20b334b74e64bd7711b997f82e178bcb2089f2a3519f966e79231558",
+      "observed_model": null,
+      "created_utc": "2026-11-22T19:22:25Z"
+    }
+  },
+  "source_commit": "b3f7163fca41d7bcf6af48b264d3c22b6f01ddb1"
+}
