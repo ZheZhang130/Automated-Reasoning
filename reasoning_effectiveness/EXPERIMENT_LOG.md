@@ -67,3 +67,33 @@ Local completion tokens: A 24,431, C 3,012, D 23,899. Length truncations: A 5, C
 Plan-v1 is not changed: it was correct and effective on every dev task, and there is no evidence that length matters.
 
 **Validation refinement (23:05).** The first contract-v2 authoring tripped my hard "fenced block" check, because Codex wrapped *test inputs* in ```` ```text ```` blocks. I changed the rule to allow plain-text fences whose content is not code-like, and artifacts are revalidated at load time. Nothing was re-authored, so this is not rejection sampling. I hand-checked all 6 arc195_a and 3 abc400_b contract-v2 expected outputs: all correct.
+
+## 23:10–23:31 — Phase IV, dev2: seed replication, aci-v1, contract-v2 (28 runs)
+
+The easy tasks (abc391_a, abc400_b) were solved by every condition and variant, so the comparison rests on the two medium tasks:
+
+| Configuration | arc192_a | arc195_a | Medium correct |
+| --- | --- | --- | --- |
+| A original, seed 2108 / 2109 | ✗ / ✗ (39/40) | ✗ (39/40) / ✓ | 1/4 |
+| C original, seed 2108 / 2109 | ✓ / ✓ | ✓ / ✓ | **4/4** |
+| D original (contract-v1), seed 2108 / 2109 | ✗ / ✗ (`RepeatedFormatError`) | ✗ / ✗ (`RepeatedFormatError`) | 0/4 |
+| A aci-v1 | ✗ (`ActionLimit`, 19 identical rewrites) | ✗ (`ActionLimit`, 14 identical rewrites) | 0/2 |
+| C aci-v1 | ✓ | ✓ | 2/2 |
+| D aci-v1 | ✗ (`RepeatedFormatError`) | ✗ (`ActionLimit`, 17 identical rewrites) | 0/2 |
+| D contract-v2 | ✗ (`ActionLimit`, 18 identical rewrites, never tested) | ✓ | 1/2 |
+
+**aci-v1 → rejected.** The truncation message did help once: arc192_a A produced a complete 284-token program on the third call, where dev1 hit `RepeatedFormatError`. But the unchanged-source note was delivered 14–19 times per run and **ignored**. Qwen re-emitted the byte-identical command each time (283/347 tokens, deterministic at temperature 0.2 with a fixed seed) until the 20-action limit, and correctness did not improve. This exposed a second, pre-existing failure mode: a self-reinforcing repetition loop. It also occurs without notes (dev1 arc195_a A: 6 repeats; dev2 contract-v2 arc192_a: 18 repeats). A text note in the observation does not break it.
+
+**contract-v2 → uncertain, not promoted.** Its one success (arc195_a) did not use its mechanism: the coder never ran the contract's checks. It produced a valid program on the third call after two truncations, ran the public tests once and submitted. The other run never tested at all. The hand-derived checks were correct and discriminating (D's wrong arc192_a heuristic fails two of them), so the contract information was good; the local agent did not use it. The mini-benchmarks keep the teammates' contract-v1.
+
+**Seed replication.** C is stable (4/4 on mediums across seeds, identical first actions). A varies (arc195_a: 39/40 vs 40/40). D-v1 was 0/4 on mediums; its failures are all output-budget/delivery failures caused by algorithm brainstorming.
+
+**Next (aci-v2, same family):** a repeat guard. An action byte-identical to the previous executed action is not executed, its duplicate assistant turn is removed from the history, and the model is told why; it consumes a model call but not an action. It is combined with the truncation message and the unchanged-source note, and run for A/C/D on both mediums with seeds 2108/2109 (dev3). *Success criterion:* fewer action-limit / repeat-loop exits and at least one additional correct A or D run, with C unchanged.
+
+## 23:33–23:36 — Direct API: connectivity, provider comparison and MB2 guidance (10 paid requests)
+
+* 23:02: `GET /v1/models/gpt-6.2-sol` returned 200 (no inference, not billed; logged under `metadata_calls`).
+* Requests 1–2 (dev arc192_a, plan-v1 and contract-v1): both `stop`. Plan: 917 in / 1,415 out (512 reasoning), 22.1 s, $0.0160. Contract: 987 / 497, 7.2 s, $0.0069. The API plan is correct but **uses a different method from Codex's**: a cyclic DP over "center" bits vs Codex's closed-form N mod 4 / parity rule. Queued as a separately labeled provider-comparison run.
+* Requests 3–10 (MB2: plan-v1 and contract-v1 for abc393_d, abc396_e, abc393_e, abc391_e): all `stop`; 5.8–11.0 s each.
+* **Cumulative: 10 of 12 requests, $0.0832 at standard rates.** The conservative ($12/$60-tier) bound on actual usage is ≈ $0.50. No retries; 2 requests unused.
+* Codex MB1 guidance (12 artifacts) authored 23:34 with frozen prompts plan-v1/contract-v1. Every event stream had one `agent_message` and no tool events. All artifacts passed validation, and none were re-authored.
