@@ -42,7 +42,8 @@ def write_json(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     temp = path.with_name(path.name + '.tmp')
-    temp.write_text(json.dumps(value, indent=2, ensure_ascii=False, default=str) + '\n', encoding='utf-8')
+    # newline='\n': identical bytes (and artifact hashes) on Windows and POSIX.
+    temp.write_text(json.dumps(value, indent=2, ensure_ascii=False, default=str) + '\n', encoding='utf-8', newline='\n')
     os.replace(temp, path)
 
 

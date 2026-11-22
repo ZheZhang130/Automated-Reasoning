@@ -14,3 +14,9 @@
 Raw trajectories, candidate programs, hidden tests and Codex event streams stay outside Git under
 `E:\CSC2108Local\reasoning-effectiveness` (`runs/`, `judge/hidden/`, `guidance/*/*.codex/`).
 Reproduce the tables with `python -m guided_agent.report <study> <out> "MB1=mb1" ...`.
+
+**Line endings and hashes.** Tonight's artifacts were written on Windows with CRLF line endings. The sha256 values in
+`FREEZE-mb.json` and in each run's `guidance_provenance.artifact_sha256` describe those runtime copies under
+`E:\CSC2108Local\reasoning-effectiveness`. Git normalizes the committed copies to LF (`.gitattributes`), so their file
+hashes differ, while their JSON content and every `statement_sha256` are identical. From commit after `e2e20b7`,
+`guided_agent.common.write_json` writes LF on every platform.
