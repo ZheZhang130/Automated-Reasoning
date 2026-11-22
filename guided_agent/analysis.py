@@ -45,6 +45,8 @@ def attempt_metrics(run_dir, eval_dir=None):
             call_valid.append(True)
         elif message.get('extra', {}).get('interrupt_type') == 'FormatError':
             call_valid.append(False)
+        elif message.get('extra', {}).get('interrupt_type') == 'RepeatGuard':  # aci-v2: well-formed but not executed
+            call_valid.append(True)
     first_valid = next((i for i, ok in enumerate(call_valid) if ok), None)
     tokens_to_first = seconds_to_first = None
     if first_valid is not None and len(responses) > first_valid:
@@ -91,6 +93,7 @@ def attempt_metrics(run_dir, eval_dir=None):
         'first_valid_call': None if first_valid is None else first_valid + 1,
         'tokens_to_first_valid': tokens_to_first, 'seconds_to_first_valid': seconds_to_first,
         'source_writes': len(writes), 'noop_writes': noop_writes, 'repeated_failed_tests': repeated_failed_tests,
+        'repeat_guards': sum(bool(e.get('repeat_guard')) for e in events),
         'write_comment_ratio': round(comments / lines, 3) if lines else None,
         'other_command_failures': sum(bool(e.get('returncode')) for e in other_cmds),
         'local_coding_seconds': record.get('local_coding_seconds'), 'wall_seconds': record.get('wall_seconds'),

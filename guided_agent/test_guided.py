@@ -116,6 +116,40 @@ class Backend(unittest.TestCase):
             out = env.execute({'command': 'python -I /public/check.py'})
             self.assertEqual('[harness]' in out['output'], expect_note)
 
+    def test_repeat_guard_skips_identical_consecutive_action(self):
+        class Model:
+            def get_template_vars(self):
+                return {}
+
+            def format_observation_messages(self, message, outputs, template_vars=None):
+                return [{'role': 'user', 'content': 'obs'} for _ in outputs]
+
+        class Env:
+            def __init__(self):
+                self.budget, self.evidence, self.executed = self_runtime.v3.Budget(20, 3), [], []
+
+            def execute(self, action):
+                self.executed.append(action['command'])
+                return {'output': '', 'returncode': 0}
+
+            def get_template_vars(self):
+                return {}
+
+        self_runtime = self.runtime
+        for aci, expected in (({}, 2), ({'repeat_guard': True}, 1)):
+            agent_cls, _ = backend.make_classes(self.runtime, guidance_text=None, template=None, judge=None,
+                                                task_id='t', attempts=[], aci=aci)
+            env = Env()
+            agent = agent_cls(Model(), env, system_template='s', instance_template='{{task}}')
+            for _ in range(2):
+                message = {'role': 'assistant', 'content': 'x', 'extra': {'actions': [{'command': 'cat > f'}]}}
+                agent.messages.append(message)
+                agent.execute_actions(message)
+            self.assertEqual(len(env.executed), expected)
+            if aci:
+                self.assertEqual(agent.messages[-1]['extra']['interrupt_type'], 'RepeatGuard')
+                self.assertEqual(sum(m['role'] == 'assistant' for m in agent.messages), 1)
+
     def test_truncation_template_only_with_flag(self):
         self.assertEqual(backend.aci_globals({}), {})
         template = backend.aci_globals({'truncation_note': True})['FORMAT_ERROR']

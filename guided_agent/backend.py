@@ -19,6 +19,7 @@ import re
 import sys
 import time
 import types
+from pathlib import Path
 
 from .common import REPO, utc_now
 
@@ -40,9 +41,11 @@ def aci_globals(aci):
 
 
 def judge_client(study, suite):
+    """One container per study root and suite, so separate studies never recreate each other's judge."""
     sys.path.insert(0, str(REPO / 'judge'))
     from judgekit import Judge
-    return Judge(suite, root=study / 'judge', name=JUDGE_NAME.format(suite=suite))
+    suffix = hashlib.sha256(str(Path(study).resolve()).encode()).hexdigest()[:8]
+    return Judge(suite, root=study / 'judge', name=JUDGE_NAME.format(suite=suite) + '-' + suffix)
 
 
 def frozen_runtime(host_settings):
@@ -71,11 +74,37 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 instance_template = template
             super().__init__(*args, instance_template=instance_template, **kwargs)
             self.instance_template_used = instance_template
+            self._previous_command = None
+            self.repeat_guards = 0
 
         def run(self, task='', **kwargs):
             if guidance_text is not None:
                 kwargs = kwargs | {'guide': guidance_text}
             return super().run(task, **kwargs)
+
+        def execute_actions(self, message):
+            # aci repeat_guard (aci-v2): an action byte-identical to the previous executed action cannot change
+            # the sandbox state. It is not executed, its duplicate assistant turn is dropped from the history
+            # (so the context does not accumulate a self-reinforcing repetition), and the model is told why.
+            # It still consumes a model call (step limit) but no action.
+            actions = message.get('extra', {}).get('actions', [])
+            command = actions[0].get('command') if len(actions) == 1 else None
+            if aci.get('repeat_guard') and command is not None and command == self._previous_command:
+                if self.messages and self.messages[-1] is message:
+                    self.messages.pop()
+                self.repeat_guards += 1
+                failed = self.env.budget.failed_hash is not None
+                self.env.evidence.append({'command': command, 'repeat_guard': True, 'action': self.env.budget.actions})
+                text = ('[harness] Not executed: this command is identical to your previous command, so repeating '
+                        'it cannot change anything. ' +
+                        ('/workspace/solution.py still holds the program that failed the public tests; change its '
+                         'logic before testing again.' if failed else
+                         'If the program has not been tested yet, run python -I /public/check.py; otherwise choose a '
+                         'different next action.'))
+                return self.add_messages({'role': 'user', 'content': text,
+                                          'extra': {'interrupt_type': 'RepeatGuard', 'model_response': command}})
+            self._previous_command = command
+            return super().execute_actions(message)
 
     class JudgedEnvironment(runtime.Environment):
         def execute(self, action, cwd='', *, timeout=None):

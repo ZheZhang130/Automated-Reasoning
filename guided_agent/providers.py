@@ -158,6 +158,27 @@ class Ledger:
         write_json(self.path, self.data)
 
 
+def api_model_metadata(ledger_path):
+    """GET /v1/models/{model}: no inference, no billing; confirms key and model access before paid calls."""
+    config = read_env(env_file())
+    model = config['FRONTIER_MODEL']
+    api_model = model.split('/', 1)[1] if model.startswith('openai/') else model
+    request = urllib.request.Request('https://api.openai.com/v1/models/' + api_model,
+                                     headers={'Authorization': 'Bearer ' + config['OPENAI_API_KEY']})
+    del config
+    ledger = Ledger(ledger_path)
+    entry = {'route': 'GET /v1/models/' + api_model, 'utc': utc_now(), 'billable_inference': False}
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            payload = json.load(response)
+            entry.update(http_status=response.status, model=payload.get('id'), owned_by=payload.get('owned_by'))
+    except urllib.error.HTTPError as error:
+        entry.update(http_status=error.code, error=error.read()[:1000].decode('utf-8', 'replace'))
+    ledger.data['metadata_calls'].append(entry)
+    write_json(ledger.path, ledger.data)
+    return entry
+
+
 def api_author(*, kind, prompt_id, statement, task_id, out_path, ledger_path, max_completion_tokens=8000,
                effort='medium', label='openai-api', purpose, timeout=600):
     config = read_env(env_file())
