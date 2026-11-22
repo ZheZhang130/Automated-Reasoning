@@ -1,0 +1,240 @@
+{
+  "created_utc": "2026-11-22T19:15:50Z",
+  "seed": 2108,
+  "salt": "pass3",
+  "shard": "test6.jsonl",
+  "shard_sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5",
+  "review_sha256": "b1214f8e095dd9844b8b68d4caadcc9f31e044848c46dcea3806ae344ccf6287",
+  "rule": "Deterministic, outcome-blind selection of the pass-3 extended cohort (public metadata and statements only).\n\nPool: AtCoder stdin tasks of the pinned test6 shard (``LCB_REVISION``; the newest official revision and shard\nat selection time) that are not in the main 60-task manifest, not in the 75-ID scored union, not\nteammate-used, and not used anywhere in pass 1 or pass 2.\n\nJudge compatibility: ``output_semantics.classify`` on the public statement and sample outputs, overridden by\nthe manual review file. Only tasks whose decided category is ``exact`` are eligible; an unreviewed cue\nexcludes a task.\n\nOrder: lower public difficulty bands first (the contest letter is public metadata), because LiveCodeBench\nlabels every remaining task \"hard\":\n  band 1 = ABC D/E, band 2 = ABC F, band 3 = ARC A/B, band 4 = ABC G and ARC C or later.\nWithin a band the order is sha256(seed:pass3:band:task_id). The first ``n`` tasks form the cohort; the frozen\norder also defines any predeclared reduction of a second-seed matrix (a prefix of complete task blocks).",
+  "n_requested": 12,
+  "pool_size": 20,
+  "pool_by_band": {
+    "1": 1,
+    "2": 6,
+    "3": 2,
+    "4": 11
+  },
+  "excluded_output_semantics": [
+    {
+      "task_id": "lcb-atcoder-abc397_d",
+      "difficulty": "hard",
+      "title": "Cubes",
+      "contest_date": "2025-03-15",
+      "manifest": null,
+      "band": 1,
+      "output_category": "multiple_answers",
+      "decided_by": "manual",
+      "auto_signals": {
+        "multiple_answers": [
+          "If such a pair exists, print one such pair (x,y).",
+          "If there are multiple solutions, printing any one of them is accepted as correct."
+        ]
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_f",
+      "difficulty": "hard",
+      "title": "ABCBA",
+      "contest_date": "2025-03-22",
+      "manifest": null,
+      "band": 2,
+      "output_category": "multiple_answers",
+      "decided_by": "manual",
+      "auto_signals": {
+        "multiple_answers": [
+          "If multiple solutions exist, any of them is accepted."
+        ]
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc190_a",
+      "difficulty": "hard",
+      "title": "Inside or Outside",
+      "contest_date": "2025-01-12",
+      "manifest": null,
+      "band": 3,
+      "output_category": "multiple_answers",
+      "decided_by": "manual",
+      "auto_signals": {
+        "multiple_answers": [
+          "If the goal is achievable, print one way to achieve it where the total cost of the operations is minimized, in the following format, where K is the minimum total cost of the operations, and \\mathrm{op}_i is the type of operation (0, 1, or 2) chosen for the i-th operation.",
+          "If there are multiple ways that minimize the total cost, printing any one of them is accepted."
+        ]
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc191_c",
+      "difficulty": "hard",
+      "title": "A^n",
+      "contest_date": "2025-01-26",
+      "manifest": null,
+      "band": 4,
+      "output_category": "multiple_answers",
+      "decided_by": "manual",
+      "auto_signals": {
+        "multiple_answers": [
+          "If there are multiple valid solutions, any one of them is considered correct."
+        ]
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc192_b",
+      "difficulty": "hard",
+      "title": "Fennec VS. Snuke 2",
+      "contest_date": "2025-02-09",
+      "manifest": null,
+      "band": 3,
+      "output_category": "case_insensitive",
+      "decided_by": "manual",
+      "auto_signals": {
+        "case_insensitive": [
+          "The judge is case-insensitive; for example, if the correct answer is Fennec, outputs such as fennec, FENNEC, or fEnNeC will also be accepted."
+        ]
+      }
+    }
+  ],
+  "frozen_order": [
+    {
+      "task_id": "lcb-atcoder-abc397_e",
+      "difficulty": "hard",
+      "title": "Path Decomposition of a Tree",
+      "contest_date": "2025-03-15",
+      "manifest": null,
+      "band": 1,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-abc388_f",
+      "difficulty": "hard",
+      "title": "Dangerous Sugoroku",
+      "contest_date": "2025-01-11",
+      "manifest": null,
+      "band": 2,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-abc395_f",
+      "difficulty": "hard",
+      "title": "Smooth Occlusion",
+      "contest_date": "2025-03-01",
+      "manifest": null,
+      "band": 2,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-abc389_f",
+      "difficulty": "hard",
+      "title": "Rated Range",
+      "contest_date": "2025-01-18",
+      "manifest": null,
+      "band": 2,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-abc397_f",
+      "difficulty": "hard",
+      "title": "Variety Split Hard",
+      "contest_date": "2025-03-15",
+      "manifest": null,
+      "band": 2,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-abc391_f",
+      "difficulty": "hard",
+      "title": "K",
+      "contest_date": "2025-02-01",
+      "manifest": null,
+      "band": 2,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_f",
+      "difficulty": "hard",
+      "title": "Double Sum 3",
+      "contest_date": "2025-01-25",
+      "manifest": null,
+      "band": 2,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-arc193_a",
+      "difficulty": "hard",
+      "title": "Complement Interval Graph",
+      "contest_date": "2025-02-23",
+      "manifest": null,
+      "band": 3,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-arc193_b",
+      "difficulty": "hard",
+      "title": "Broken Wheel",
+      "contest_date": "2025-02-23",
+      "manifest": "pilot",
+      "band": 3,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-arc195_d",
+      "difficulty": "hard",
+      "title": "Swap and Erase",
+      "contest_date": "2025-03-23",
+      "manifest": null,
+      "band": 4,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_e",
+      "difficulty": "hard",
+      "title": "Swap 0^X and 1^Y",
+      "contest_date": "2025-03-09",
+      "manifest": null,
+      "band": 4,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    },
+    {
+      "task_id": "lcb-atcoder-arc190_c",
+      "difficulty": "hard",
+      "title": "Basic Grid Problem with Updates",
+      "contest_date": "2025-01-12",
+      "manifest": null,
+      "band": 4,
+      "output_category": "exact",
+      "decided_by": "auto-no-signal",
+      "auto_signals": {}
+    }
+  ],
+  "not_selected": [
+    "lcb-atcoder-abc397_g",
+    "lcb-atcoder-abc390_g",
+    "lcb-atcoder-abc396_g",
+    "lcb-atcoder-abc398_g",
+    "lcb-atcoder-abc394_g",
+    "lcb-atcoder-arc194_d",
+    "lcb-atcoder-arc192_e",
+    "lcb-atcoder-abc392_g"
+  ]
+}
