@@ -61,6 +61,28 @@ def composition(body):
     return dict(counts)
 
 
+MARKERS = re.compile(r"\b(?:wait|actually|hmm|let me|let's|re-?read|reconsider|example|sample|check|but|so |"
+                     r"that means|is it|does it|correct\?|wrong|mistake|maybe|alternatively)\b|\?", re.I)
+
+
+def comment_profile(body):
+    """Where the in-file commentary starts and how much of it reads as deliberation (observable wording)."""
+    lines = [l.strip() for l in body.split('\n')]
+    comments = [l for l in lines if l.startswith('#')]
+    run, start, code_before = 0, None, 0
+    for i, line in enumerate(lines):
+        if line.startswith('#'):
+            run += 1
+            if run == 10 and start is None:
+                start = i - 9
+        else:
+            run = 0
+            if line and start is None:
+                code_before += 1
+    return {'comment_lines': len(comments), 'deliberation_comment_lines': sum(1 for l in comments if MARKERS.search(l)),
+            'first_long_comment_run_line': start, 'code_lines_before_long_comment_run': code_before if start is not None else None}
+
+
 def parsable_prefix(body):
     lines = body.split('\n')
     for end in range(len(lines), 0, -1):
@@ -84,6 +106,7 @@ def response_row(text, done_reason, tokens):
         body = heredoc.group(2)
         row['writes_solution'] = True
         row['composition'] = composition(body)
+        row['comment_profile'] = comment_profile(body)
         n, prefix = parsable_prefix(body)
         row['parsable_prefix_lines'] = n
         row['body_lines'] = body.count('\n') + 1
