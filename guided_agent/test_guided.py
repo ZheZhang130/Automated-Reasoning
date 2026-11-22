@@ -39,6 +39,9 @@ class GuidanceArtifacts(unittest.TestCase):
 
     def test_fenced_code_rejected_but_soft_flags_only_recorded(self):
         self.assertTrue(guidance.validate('plan', PLAN + '```python\nprint(1)\n```\n'))
+        self.assertTrue(guidance.validate('plan', PLAN + '```\nimport sys\n```\n'))
+        self.assertTrue(guidance.validate('plan', PLAN + '```text\n3\n'))
+        self.assertEqual(guidance.validate('contract', CONTRACT + '  ```text\n  3\n  0 1 0\n  ```\n'), [])
         self.assertEqual(guidance.validate('plan', PLAN + 'Then print( the sum.\n'), [])
         self.assertTrue(guidance.soft_flags('print(x)'))
 

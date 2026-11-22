@@ -80,7 +80,9 @@ INJECTION = {
 }
 
 # Hard failures: fenced blocks or shell writes would hand the coder executable material.
-HARD_PATTERNS = [re.compile(p, re.M) for p in (r'^\s*```', r'cat\s*>\s*/workspace', r"<<\s*['\"]?PY")]
+HARD_PATTERNS = [re.compile(p, re.M) for p in (r'cat\s*>\s*/workspace', r"<<\s*['\"]?PY")]
+FENCE = re.compile(r'^[ \t]*```([^\n`]*)\n(.*?)^[ \t]*```', re.M | re.S)
+TEXT_FENCES = {'text', 'txt', 'plaintext', 'console-input', 'input', 'stdin'}
 # Soft flags are recorded for analysis but never used to resample guidance (no rejection sampling).
 SOFT_PATTERNS = [re.compile(p, re.M) for p in (r'^\s*def \w+\(', r'^\s*import \w+', r'^\s*for \w+ in range\(',
                                                r'print\(', r'sys\.stdin')]
@@ -102,6 +104,13 @@ def validate(kind, text):
     for pattern in HARD_PATTERNS:
         if pattern.search(text):
             problems.append('code-like content: ' + pattern.pattern)
+    # Fenced blocks are allowed only as plain-text data (e.g. a test input), never code.
+    # (Refined 23:05 after dev2: v1 rejected all fences, which misclassified ```text test inputs.)
+    for info, body in FENCE.findall(text):
+        if info.strip().lower() not in TEXT_FENCES or soft_flags(body):
+            problems.append('fenced code block: ' + (info.strip() or '(no language)'))
+    if text.count('```') % 2:
+        problems.append('unbalanced code fence')
     return problems
 
 
@@ -142,8 +151,9 @@ def load_for_run(path, statement):
     raw = read_json(path)
     if raw.get('schema') != SCHEMA:
         raise ValueError('Not a csc2108 guidance artifact')
-    if raw['validation_problems']:
-        raise ValueError('Guidance artifact failed validation: ' + '; '.join(raw['validation_problems']))
+    problems = validate(raw['kind'], raw['text'])  # current rules; creation-time result stays in the artifact
+    if problems:
+        raise ValueError('Guidance artifact failed validation: ' + '; '.join(problems))
     if raw['kind'] == 'plan':
         provider = _planner.SavedPlan(path)
         generated = _planner.generate_plan(provider, statement, timeout=1)
