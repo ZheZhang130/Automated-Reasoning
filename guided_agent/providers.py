@@ -100,7 +100,10 @@ def codex_infer(*, system, user, evidence, work_root, model='gpt-6.2-sol', effor
                      'and exec rules ignored, read-only sandbox, web search and listed features disabled, '
                      'credential-like variables removed from the environment',
         'codex_cli_version': subprocess.run([command[0], '--version'], capture_output=True, text=True).stdout.strip(),
-        'command': [c for c in command if c != str(last)], 'disabled_features': list(CODEX_DISABLED),
+        # Pass 3: provenance without machine paths (binary basename, placeholder working directory).
+        'command': [Path(command[0]).name] + ['<isolated-empty-tmpdir>' if c == str(isolated) else c
+                                               for c in command[1:] if c != str(last)],
+        'disabled_features': list(CODEX_DISABLED),
         'thread_id': thread, 'completed_item_types': items, 'tool_events': violations,
         'post_run_workdir_files': leftover, 'events_sha256': sha256_bytes(proc.stdout),
         'input_sha256': sha256_text(message), 'wrapper_sha256': sha256_text(CODEX_WRAPPER),
@@ -153,12 +156,49 @@ def env_file():
 
 
 class Ledger:
-    """Write-ahead ledger: a request is recorded as pending before it is sent."""
+    """Write-ahead ledger: a request is recorded as pending before it is sent.
+
+    Pass 3: every read-modify-write holds an exclusive lock file and re-reads the ledger, so concurrent
+    processes (for example an E run and a B run) can never lose a reservation or exceed the ceilings.
+    """
+    LOCK_TIMEOUT = 60
+
     def __init__(self, path):
         self.path = Path(path)
-        self.data = read_json(self.path) if self.path.exists() else {
+        with self._locked():  # loads under the lock (Windows cannot read a file while it is being replaced)
+            pass
+
+    def _load(self):
+        return read_json(self.path) if self.path.exists() else {
             'max_requests': MAX_REQUESTS, 'max_usd': MAX_USD, 'price_standard_per_1m': PRICE_STANDARD,
             'price_conservative_per_1m': PRICE_CONSERVATIVE, 'requests': [], 'metadata_calls': []}
+
+    def _locked(self):
+        ledger = self
+
+        class _Lock:
+            def __enter__(self):
+                lock = ledger.path.with_name(ledger.path.name + '.lock')
+                lock.parent.mkdir(parents=True, exist_ok=True)
+                deadline = time.monotonic() + ledger.LOCK_TIMEOUT
+                while True:
+                    try:
+                        self.fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                        self.lock = lock
+                        break
+                    except (FileExistsError, PermissionError):  # Windows: a lock being deleted is PermissionError
+                        if time.monotonic() > deadline:
+                            raise RuntimeError(f'ledger lock {lock} held for over {ledger.LOCK_TIMEOUT} s; no paid call')
+                        time.sleep(0.05)
+                ledger.data = ledger._load()
+                return ledger
+
+            def __exit__(self, *exc):
+                os.close(self.fd)
+                os.unlink(self.lock)
+                return False
+
+        return _Lock()
 
     def spent_conservative(self):
         total = 0.0
@@ -172,17 +212,19 @@ class Ledger:
         return total
 
     def reserve(self, entry):
-        if len(self.data['requests']) >= MAX_REQUESTS:
-            raise RuntimeError('API request ceiling reached; no further paid calls')
-        if self.spent_conservative() + entry['bound_usd_conservative'] > MAX_USD:
-            raise RuntimeError('Conservative spending bound would exceed the ceiling')
-        self.data['requests'].append(entry | {'state': 'pending'})
-        write_json(self.path, self.data)
-        return len(self.data['requests']) - 1
+        with self._locked():
+            if len(self.data['requests']) >= min(self.data.get('max_requests', MAX_REQUESTS), MAX_REQUESTS):
+                raise RuntimeError('API request ceiling reached; no further paid calls')
+            if self.spent_conservative() + entry['bound_usd_conservative'] > min(self.data.get('max_usd', MAX_USD), MAX_USD):
+                raise RuntimeError('Conservative spending bound would exceed the ceiling')
+            self.data['requests'].append(entry | {'state': 'pending'})
+            write_json(self.path, self.data)
+            return len(self.data['requests']) - 1
 
     def finish(self, index, **fields):
-        self.data['requests'][index].update(fields)
-        write_json(self.path, self.data)
+        with self._locked():
+            self.data['requests'][index].update(fields)
+            write_json(self.path, self.data)
 
 
 def api_model_metadata(ledger_path):
@@ -201,8 +243,9 @@ def api_model_metadata(ledger_path):
             entry.update(http_status=response.status, model=payload.get('id'), owned_by=payload.get('owned_by'))
     except urllib.error.HTTPError as error:
         entry.update(http_status=error.code, error=error.read()[:1000].decode('utf-8', 'replace'))
-    ledger.data['metadata_calls'].append(entry)
-    write_json(ledger.path, ledger.data)
+    with ledger._locked():
+        ledger.data['metadata_calls'].append(entry)
+        write_json(ledger.path, ledger.data)
     return entry
 
 

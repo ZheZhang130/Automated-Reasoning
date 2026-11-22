@@ -30,7 +30,15 @@ SUBMISSION_CONTRACT = ('A Python 3.11 program saved at /workspace/solution.py th
 
 
 def qualifies(result, source):
-    """(qualifies, reason). Only a judged, non-empty candidate with a candidate-caused verdict qualifies."""
+    """(qualifies, reason). Only a judged, non-empty candidate with a candidate-caused verdict qualifies.
+
+    Defensive checks (pass 3): the result must come from the PUBLIC suite, and when the judge reports the
+    hash of the bytes it judged, that hash must equal the harness snapshot that will be sent to the frontier.
+    """
+    if result.get('suite') not in (None, 'public'):
+        return False, 'not_public_suite:' + str(result.get('suite'))
+    if source and result.get('code_sha256') and result['code_sha256'] != sha256_bytes(source):
+        return False, 'candidate_hash_mismatch'
     status = result.get('status')
     if status == 'pass':
         return False, 'public_pass'

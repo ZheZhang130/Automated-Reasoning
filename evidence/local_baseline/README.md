@@ -73,7 +73,7 @@ All models use temperature 0, seed 2108, 8,192 context tokens and 2,048 generate
 
 The Docker data disk was originally:
 
-`C:\Users\SpaceJesusTM\AppData\Local\Docker\wsl\disk\docker_data.vhdx`
+`C:\Users\<USER>\AppData\Local\Docker\wsl\disk\docker_data.vhdx` (user name redacted in pass 3)
 
 Its length was 10,205,790,208 bytes. After explicit user approval, Docker Desktop 4.71's own relocation interface moved the data disk and control distro to `E:\DockerDesktop`. A checksum-verified pre-move backup is retained under `E:\CSC2108Local\backups\docker-before-relocation-20261116`. Images and volumes were compared before and after; the existing Open WebUI container was preserved and resumed. The relocation used the installed UI's `/app/settings` interface with `vm.resources.wslDataFolder`; the effective setting and WSL registry base path were verified afterward. No registry paths were manually rewritten and no junction was used.
 

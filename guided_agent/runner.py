@@ -117,6 +117,11 @@ def run_attempt(spec):
                                                   diagnosis=controller)
         extra = backend.aci_globals(spec.get('aci'))
         model_name = MODEL
+        if spec.get('coder') and condition not in CODER and spec['coder'].get('provider') != 'scripted':
+            # Only B substitutes a frontier coder; the scripted coder is a labelled test device for any condition.
+            raise ValueError(f'Condition {condition} must not substitute the coding model (B only)')
+        if spec.get('guidance') and not kind:
+            raise ValueError(f'Condition {condition} must not carry upfront guidance')
         if spec.get('coder'):
             coder = frontier_coder.make_coder(spec['coder'], study, out / 'coder')
             extra |= frontier_coder.non_ollama_globals(base.__globals__, frontier_coder.make_coder_class(runtime, coder),
@@ -228,8 +233,17 @@ def evaluate(batch_dir, study):
     eval_dir.mkdir(exist_ok=True)
     results = {}
     for result_path in sorted(Path(batch_dir).glob('*/result.json')):
-        record = read_json(result_path)
-        run_id = record['run_id']
+        try:
+            record = read_json(result_path)
+            run_id = record['run_id']
+            record['task_id'], record['condition']
+        except Exception as error:  # malformed or partial record: score nothing, record why
+            name = result_path.parent.name
+            outcome = {'status': 'malformed_record', 'error': f'{type(error).__name__}: {error}', 'run_dir': name,
+                       'suite': 'hidden', 'evaluated_utc': utc_now()}
+            write_json(eval_dir / f'malformed-{name}.json', outcome)
+            results['malformed-' + name] = outcome
+            continue
         if (eval_dir / f'{run_id}.json').exists():
             results[run_id] = read_json(eval_dir / f'{run_id}.json')
             continue

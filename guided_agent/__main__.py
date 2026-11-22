@@ -16,7 +16,7 @@ import sys
 import uuid
 from pathlib import Path
 
-from .common import CONDITIONS, REPO, read_json, settings, study_root, utc_now, write_json
+from .common import CONDITIONS, REPO, append_jsonl, read_json, settings, study_root, utc_now, write_json
 
 
 def cmd_prepare_tasks(args, host, study):
@@ -98,11 +98,18 @@ def foreign_models(url='http://127.0.0.1:11434/api/ps'):
         return []
 
 
-def wait_for_gpu(max_wait=7200, poll=30):
-    """The frozen runtime refuses to start while another workload holds a model; wait politely instead."""
+def wait_for_gpu(max_wait=1800, poll=30):
+    """The frozen runtime refuses to start while another workload holds a model; wait politely (bounded).
+
+    Returns the seconds waited, or None when the foreign workload was still present after ``max_wait``
+    (the caller then defers the batch with an explicit resource status instead of starting an attempt).
+    The user's models are never unloaded.
+    """
     import time
     waited = 0
-    while (loaded := foreign_models()) and waited < max_wait:
+    while (loaded := foreign_models()):
+        if waited >= max_wait:
+            return None
         if waited % 300 == 0:
             print(json.dumps({'waiting_for_foreign_models': loaded, 'waited_seconds': waited, 'utc': utc_now()}),
                   flush=True)
@@ -112,15 +119,18 @@ def wait_for_gpu(max_wait=7200, poll=30):
 
 
 def cmd_batch(args, host, study):
+    from .integrity import check_unchanged, run_name, validate_plan
     from .runner import run_child
     plan = read_json(args.plan)
     batch_dir = study / 'runs' / plan['batch']
+    problems = validate_plan(plan) + check_unchanged(batch_dir, plan | {'plan_path': str(args.plan)})
+    if problems:
+        print(json.dumps({'plan_refused': problems}, indent=1), flush=True)
+        raise SystemExit(4)
     batch_dir.mkdir(parents=True, exist_ok=True)
     write_json(batch_dir / 'plan.json', plan | {'plan_path': str(args.plan)})
     for item in plan['attempts']:
-        if item['condition'] not in CONDITIONS:
-            raise ValueError('Unsupported condition ' + item['condition'])
-        name = f"{item['task_id']}-{item['condition']}" + (f"-{item['variant']}" if item.get('variant') else '')
+        name = run_name(item)
         out = batch_dir / name
         if (out / 'result.json').exists():
             continue
@@ -130,7 +140,13 @@ def cmd_batch(args, host, study):
             'run_id': f"{plan['batch']}-{name}-{uuid.uuid4().hex[:8]}", 'output': str(out),
             'batch': plan['batch'], 'cohort': plan.get('cohort'), 'study': str(study)}
         if not item.get('coder') and host.backend == 'windows':
-            wait_for_gpu()
+            if wait_for_gpu(max_wait=plan.get('max_resource_wait', 1800)) is None:
+                status = {'resource_unavailable': 'foreign models still loaded on the app endpoint',
+                          'deferred_from': name, 'utc': utc_now(),
+                          'action': 'batch stopped before this attempt; rerun the same plan later to resume'}
+                append_jsonl(batch_dir / 'resource-status.jsonl', status)
+                print(json.dumps(status), flush=True)
+                raise SystemExit(3)
         timeout = plan.get('outer_timeout', 960)
         if item['condition'] == 'E':  # the supervisor also covers the (separately accounted) frontier wait
             timeout += int((item.get('diagnosis') or {}).get('timeout', 300)) + 30
