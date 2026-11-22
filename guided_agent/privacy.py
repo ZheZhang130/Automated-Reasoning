@@ -37,7 +37,7 @@ def _identity():
 
 
 def sanitize_text(text, identity=None):
-    identity = identity or _identity()
+    identity = _identity() if identity is None else identity
     home = identity.get('<HOME>')
     if home:
         for variant in {home, home.replace('\\', '\\\\'), home.replace('\\', '/')}:
@@ -54,7 +54,7 @@ def sanitize_text(text, identity=None):
 
 
 def sanitize(value, identity=None):
-    identity = identity or _identity()
+    identity = _identity() if identity is None else identity
     if isinstance(value, str):
         return sanitize_text(value, identity)
     if isinstance(value, list):
@@ -66,7 +66,7 @@ def sanitize(value, identity=None):
 
 def scan(text, identity=None):
     """Findings (kind, excerpt) of identifying or secret material in ``text``."""
-    identity = identity or _identity()
+    identity = _identity() if identity is None else identity
     findings = []
     for pattern in HOME_PATTERNS:
         findings += [('home_path', m.group(0)) for m in pattern.finditer(text)]
