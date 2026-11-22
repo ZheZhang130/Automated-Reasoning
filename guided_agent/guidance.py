@@ -17,11 +17,36 @@ from contract_frontier import contracts as _contracts  # noqa: E402
 
 SCHEMA = 'csc2108-guidance-v1'
 
-# Phase IV prompt versions are added below only after Phase III evidence motivates them.
+# Phase IV (added after dev1 evidence): contract-v2 targets the observed D failure where a plausible but
+# wrong program passed the public samples (arc192_a: 20/40 hidden) and no contract check was ever run.
+# It must remain a behavioral specification: discriminating examples, never an algorithm.
+CONTRACT_V2 = """Document a semi-formal behavioral contract for the supplied programming task. A separate
+coding model will implement and test the program; the contract states WHAT a correct program must
+output, never HOW to compute it. Use exactly these headings:
+## Description
+One or two sentences on the externally observable input/output behavior.
+## Preconditions
+PRE-1 etc: input format, value ranges and guarantees from the statement. Mark each Unverified.
+## Postconditions
+POST-1 etc: exact properties of a correct output, including boundary behavior, ties, ordering,
+multiplicity, invariants and output format. Prefer properties that separate a correct answer from
+plausible but wrong answers. Mark each Unverified.
+## Test suggestions
+4-6 concrete checks, each tied to PRE/POST IDs, written as a small stdin input and the exact
+expected stdout that you derived by hand from the statement alone. Choose inputs that a plausible
+but wrong program would answer incorrectly (beyond the statement's own samples), plus at least one
+boundary input. Keep every input small enough to check by hand. Do not claim tests were run.
+## Unspecified behavior
+List behavior outside the task's guarantees, without inventing validation rules.
+Use natural language. Do not provide code, pseudocode, algorithms, data structures or complexity
+advice, and do not hint at how to compute the answer. No existing implementation or tests have been
+inspected. Do not mark any condition Tested or Verified. Keep the contract within about 400 words.
+"""
 
 PROMPTS = {
     'plan-v1': ('plan', _planner.PROMPT),
     'contract-v1': ('contract', _contracts.PROMPT),
+    'contract-v2': ('contract', CONTRACT_V2),
 }
 
 HEADINGS = {'plan': ('## Observations', '## Solution sketch'),
@@ -39,6 +64,18 @@ INJECTION = {
                      'A separate, stronger model wrote this contract from the problem statement alone, before '
                      'any code was run. It specifies required behavior, not an algorithm, and has not been '
                      'verified; check it against the statement and the public tests.\n\n{{guide}}'),
+    },
+    # contract-v2 family: D additionally asks the coder to execute the contract's own checks (C unchanged).
+    'inject-v2-contract-checks': {
+        'plan': None,
+        'contract': ('{{task}}\n\n## Behavioral contract from a stronger model\n'
+                     'A separate, stronger model wrote this contract from the problem statement alone, before '
+                     'any code was run. It specifies required behavior, not an algorithm, and has not been '
+                     'verified; check it against the statement and the public tests. Before submitting, run '
+                     'its concrete test suggestions against your program, for example '
+                     "`printf 'INPUT LINES' | python /workspace/solution.py` as separate commands, and compare "
+                     'with the expected output.\n\n'
+                     '{{guide}}'),
     },
 }
 

@@ -38,12 +38,13 @@ def attempt_metrics(run_dir, eval_dir=None):
     events = frozen.get('events', [])
     # Map model calls to outcomes: an assistant message followed by a FormatError user message is invalid.
     messages = trajectory.get('messages', [])
+    # A rejected response is stored only inside the FormatError user message, never as an assistant message.
     call_valid = []
-    for index, message in enumerate(messages):
-        if message.get('role') != 'assistant':
-            continue
-        nxt = messages[index + 1] if index + 1 < len(messages) else {}
-        call_valid.append(not (nxt.get('extra', {}).get('interrupt_type') == 'FormatError'))
+    for message in messages:
+        if message.get('role') == 'assistant':
+            call_valid.append(True)
+        elif message.get('extra', {}).get('interrupt_type') == 'FormatError':
+            call_valid.append(False)
     first_valid = next((i for i, ok in enumerate(call_valid) if ok), None)
     tokens_to_first = seconds_to_first = None
     if first_valid is not None and len(responses) > first_valid:

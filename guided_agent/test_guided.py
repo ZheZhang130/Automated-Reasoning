@@ -50,9 +50,10 @@ class GuidanceArtifacts(unittest.TestCase):
 
     def test_plan_and_contract_templates_are_parallel(self):
         for version in guidance.INJECTION.values():
-            self.assertTrue(version['plan'].startswith('{{task}}') and version['contract'].startswith('{{task}}'))
-            self.assertIn('{{guide}}', version['plan'])
-            self.assertIn('{{guide}}', version['contract'])
+            for template in filter(None, version.values()):
+                self.assertTrue(template.startswith('{{task}}'))
+                self.assertIn('{{guide}}', template)
+                self.assertNotIn('1 2 1', template)  # no task-specific material in shared framing
 
 
 class FakeJudge:
