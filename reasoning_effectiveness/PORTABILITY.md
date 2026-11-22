@@ -10,11 +10,13 @@ platform-independent JSON/UTF-8 with LF line endings.
 
 | Level | Windows 11 desktop (RTX 4080 SUPER) | macOS |
 | --- | --- | --- |
-| Software compatibility (imports, CLI, schemas) | ✓ | Code paths are POSIX-clean (no `E:`, no `nvidia-smi`, `fcntl` lock via `local_agent`). **Not executed on a Mac tonight.** |
-| Mocked / offline host contracts | ✓ `guided_agent.test_guided` (incl. composition with `portable.adapted_run` using `system='Darwin'` settings) and the existing `local_agent.test_portable` | Same tests are platform-neutral; CI matrix covers `local_agent` only (see below) |
-| Portable code path with real Docker + real Qwen | ✓ run on Windows with `--backend portable` (see `EXPERIMENT_LOG.md`, portable smoke) | **Not run** |
+| Software compatibility (imports, CLI, schemas) | ✓ | Code paths are POSIX-clean (no `E:`, no `nvidia-smi`, `fcntl` lock via `local_agent`). Exercised on **Linux**, not on a Mac. |
+| Offline host contracts | ✓ Windows: `guided_agent.test_guided` (18, incl. composition with `portable.adapted_run` under `system='Darwin'` settings) + `local_agent` suites | ✓ **Linux container** (Python 3.11.18, pinned requirements): `guided_agent.test_guided` + `local_agent.test_portable` = 27 passed, real `fcntl` lock; `judge/tests` 24 run (18 Docker-dependent skipped), passed |
+| Portable code path with real Docker + real Qwen | ✓ `--backend portable` on Windows with a separate data root: fixture ✓, arc195_a C ✓, completion tokens **identical call for call** to the Windows backend | **Not run** |
 | Native model inference | ✓ Windows CUDA, Ollama 0.40.17 | **Not validated — no Mac was available** |
 | Benchmark equivalence across hardware | Not established; do not pool | — |
+
+The repository's CI workflow (`.github/workflows/local-agent-portable.yml`) still only triggers on `local_agent/**`. Adding `guided_agent/**` and `python -m unittest guided_agent.test_guided` to its matrix would give macOS-runner coverage. That change is not made here because it would alter the branch's CI configuration; it is recommended in `BENCHMARK_READINESS.md`.
 
 ## 1. Requirements (both platforms)
 
@@ -73,12 +75,17 @@ a failure. **Only one data root per machine should run inference**: locks are pe
 
 ```bash
 python -m guided_agent prepare-fixture
-python -m guided_agent batch plans/smoke.json        # {"batch":"smoke","attempts":[{"task_id":"fixture-sum-signed","condition":"A"}]}
-python -m guided_agent evaluate "$CSC2108_STUDY_ROOT/runs/smoke"
+cat > smoke.json <<'EOF'
+{"batch": "smoke", "attempts": [{"task_id": "fixture-sum-signed", "condition": "A"}]}
+EOF
+python -m guided_agent batch smoke.json
+python -m guided_agent evaluate "$CSC2108_ROOT/reasoning-effectiveness/runs/smoke"
 ```
 
-On Windows add `--backend portable` *before* the subcommand to exercise the portable adapter on the same host.
 Expected: `submitted` after ~3 actions; hidden fixture `pass`.
+To exercise the portable adapter on Windows, set `$env:CSC2108_ROOT` to a separate root holding a provisioned
+`portable-images.json`, then put `--backend portable` *before* the subcommand. `batch` passes the backend to each
+attempt unless an attempt sets its own `"backend"`. Only one data root per machine should run inference at a time.
 
 ## 6. Running A/C/D
 

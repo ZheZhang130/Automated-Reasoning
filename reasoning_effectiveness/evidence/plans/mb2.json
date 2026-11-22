@@ -1,0 +1,64 @@
+{
+ "batch": "mb2",
+ "cohort": "mini-benchmark-2 (direct OpenAI API guidance, original agent)",
+ "outer_timeout": 960,
+ "frozen": true,
+ "attempts": [
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "A"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "C",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc393_d.plan-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "D",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc393_d.contract-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc396_e",
+   "condition": "A"
+  },
+  {
+   "task_id": "lcb-atcoder-abc396_e",
+   "condition": "C",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc396_e.plan-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc396_e",
+   "condition": "D",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc396_e.contract-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_e",
+   "condition": "A"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_e",
+   "condition": "C",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc393_e.plan-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_e",
+   "condition": "D",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc393_e.contract-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc391_e",
+   "condition": "A"
+  },
+  {
+   "task_id": "lcb-atcoder-abc391_e",
+   "condition": "C",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc391_e.plan-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc391_e",
+   "condition": "D",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc391_e.contract-v1.api.json"
+  }
+ ]
+}

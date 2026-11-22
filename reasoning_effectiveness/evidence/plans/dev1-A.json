@@ -1,0 +1,23 @@
+{
+ "batch": "dev1-A",
+ "cohort": "development",
+ "outer_timeout": 960,
+ "attempts": [
+  {
+   "task_id": "lcb-atcoder-abc391_a",
+   "condition": "A"
+  },
+  {
+   "task_id": "lcb-atcoder-abc400_b",
+   "condition": "A"
+  },
+  {
+   "task_id": "lcb-atcoder-arc195_a",
+   "condition": "A"
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "A"
+  }
+ ]
+}

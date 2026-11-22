@@ -1,0 +1,230 @@
+{
+  "frozen_utc": "2026-11-22T04:56:12Z",
+  "source_commit": "c580e2f695ee04987e7be07e0aa72db9fc1dd9f7",
+  "agent": {
+    "runtime": "local_eval_v2/runtime.run (frozen bytecode, 38 verified files)",
+    "profile": "heredoc-v6-16k-common",
+    "profile_config": {
+      "context": 16384,
+      "protocol": "text",
+      "thinking": false,
+      "output_tokens": 4096,
+      "temperature": 0.2,
+      "sampler": {
+        "top_k": 40,
+        "top_p": 0.9,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 64,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    },
+    "model": "qwen3.5:9b",
+    "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "seed": 2108,
+    "budgets": {
+      "actions": 20,
+      "repairs": 3,
+      "seconds": 600,
+      "request_seconds": 180
+    },
+    "primary_aci": {},
+    "secondary_aci_arm": {
+      "variant": "aci2",
+      "aci": {
+        "truncation_note": true,
+        "unchanged_source_note": true,
+        "repeat_guard": true
+      }
+    }
+  },
+  "guidance": {
+    "plan_prompt": "plan-v1",
+    "plan_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+    "contract_prompt": "contract-v1",
+    "contract_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+    "injection": "inject-v1",
+    "codex": {
+      "model": "gpt-6.2-sol",
+      "effort": "medium"
+    },
+    "api": {
+      "model": "gpt-6.2-sol",
+      "effort": "medium",
+      "max_completion_tokens": 8000
+    },
+    "artifact_sha256": {
+      "lcb-atcoder-abc388_g.contract-v1.codex.json": "b03d761e0417e37073e2ed67f84b14c16ef21ff4c904ba6a21794a18277a7caf",
+      "lcb-atcoder-abc388_g.plan-v1.codex.json": "efff1d2ecdcbb9daf4b5577cc66c70b0ec3c24433ec49eb34336014430334eaa",
+      "lcb-atcoder-abc390_c.contract-v1.codex.json": "eec5525ccb5c4874331d631c73a331de33160046a2c5d00fcccdd82ab4782d62",
+      "lcb-atcoder-abc390_c.plan-v1.codex.json": "2c0df6cca6df7d5346553153a34a74f99bf81c796003fa9d38e1aadeee4bd28c",
+      "lcb-atcoder-abc392_d.contract-v1.codex.json": "58eacf2d9c2efac888663e249ec041ac8d52d6d096bd6c453dad07627d8143da",
+      "lcb-atcoder-abc392_d.plan-v1.codex.json": "97f27b46c70803e360ebbf67045f53c245f16e1c9e34b43b907b1149d2a93faa",
+      "lcb-atcoder-abc394_c.contract-v1.codex.json": "91191d94c5149afcf81fc3e2f60904bff2829cf2ffb650c62e0389bf5d563d33",
+      "lcb-atcoder-abc394_c.plan-v1.codex.json": "a2f0122617c729e4395c45cc58c57d4c8e1059bd9a2deda7aa63540ec92c0fad",
+      "lcb-atcoder-abc396_a.contract-v1.codex.json": "bef9cc0788d704351431bf51302a01627dfcec9819b58054e9df7e1510ec784a",
+      "lcb-atcoder-abc396_a.plan-v1.codex.json": "a63bbf1f672be516c3689eba3a81993b75ee99b4f123d4fb1de32d8f81d65c4c",
+      "lcb-atcoder-abc396_d.contract-v1.codex.json": "c80d24088e8099a4484753daf9da054db038d5d812bf39332a7141edd84caba6",
+      "lcb-atcoder-abc396_d.plan-v1.codex.json": "860fda76bd11eaca994336ff786d5525cc8ea936e39d8567b97e5d55d182b23f",
+      "lcb-atcoder-abc391_e.contract-v1.api.json": "128f38d90c3648419f1bc63318d231e4e5dd5cdcd38a25cc1ed252e52c75defb",
+      "lcb-atcoder-abc391_e.plan-v1.api.json": "bf5423ce9e056beba7bbb9f9ea4e1dea2914f1fd8f6bb142ea9c3a8eaf52513e",
+      "lcb-atcoder-abc393_d.contract-v1.api.json": "26b377ebca350a84dbbed56c810f503e490e8d38bfd703d0be0cf32e5da2c8f2",
+      "lcb-atcoder-abc393_d.plan-v1.api.json": "d4f62bb9c6e2c4dcafdb0af9835ac3348cb5e3c2d43953deed9ff4196f151bba",
+      "lcb-atcoder-abc393_e.contract-v1.api.json": "db8944a3c0f9efce41afc85ea11171085d8f08b9f3f67a10145d816479723862",
+      "lcb-atcoder-abc393_e.plan-v1.api.json": "0f8337c6e044e5f639f0b4fb7c530bdb34f23f05c220bf164ab2b0384f2359f3",
+      "lcb-atcoder-abc396_e.contract-v1.api.json": "d2f6497d25908b9a53a023aa3c58e5ffe6c3fbee12d836c3333e49f463826b5f",
+      "lcb-atcoder-abc396_e.plan-v1.api.json": "b59f137edea04026e837a4731a243462669a3ae0be94c89ad00865bd212e9852"
+    }
+  },
+  "evaluation": "judge-public feedback during runs; judge-hidden (csc2108-judge:0.2.1) after all attempts; correct = all hidden cases AC",
+  "cohorts": {
+    "mb1": [
+      {
+        "task_id": "lcb-atcoder-abc396_a",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc396_a",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc396_a.plan-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc396_a",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc396_a.contract-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc392_d",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc392_d",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc392_d.plan-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc392_d",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc392_d.contract-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc390_c",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc390_c",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc390_c.plan-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc390_c",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc390_c.contract-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc396_d",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc396_d",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc396_d.plan-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc396_d",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc396_d.contract-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc394_c",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc394_c",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc394_c.plan-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc394_c",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc394_c.contract-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc388_g",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc388_g",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc388_g.plan-v1.codex.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc388_g",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb1-codex/lcb-atcoder-abc388_g.contract-v1.codex.json"
+      }
+    ],
+    "mb2": [
+      {
+        "task_id": "lcb-atcoder-abc393_d",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc393_d",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc393_d.plan-v1.api.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc393_d",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc393_d.contract-v1.api.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc396_e",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc396_e",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc396_e.plan-v1.api.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc396_e",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc396_e.contract-v1.api.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc393_e",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc393_e",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc393_e.plan-v1.api.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc393_e",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc393_e.contract-v1.api.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc391_e",
+        "condition": "A"
+      },
+      {
+        "task_id": "lcb-atcoder-abc391_e",
+        "condition": "C",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc391_e.plan-v1.api.json"
+      },
+      {
+        "task_id": "lcb-atcoder-abc391_e",
+        "condition": "D",
+        "guidance": "E:/CSC2108Local/reasoning-effectiveness/guidance/mb2-api/lcb-atcoder-abc391_e.contract-v1.api.json"
+      }
+    ]
+  },
+  "tasks_manifest_sha256": "2d1fca47c990112a40abdb1b64ce28b9ae84c31383223748c02884153c4a7851",
+  "selection_sha256": "54ced59b5cadfcc4382c115ab2cf1d5d2d2280126c745b42d30c175f2f206424",
+  "rule": "No prompt, agent, guidance or task change after this point; mini-benchmark outcomes are not used for tuning."
+}

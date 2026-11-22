@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc391_e",
+  "text": "## Description\nReport the smallest number of positions in the input string whose bits must be flipped to reverse its final hierarchical majority value. At each level, the majority values of consecutive, non-overlapping triples form the next string in the same order. After \\(N\\) levels, one bit remains.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input contains an integer \\(N\\) on the first line, with \\(1 \\le N \\le 13\\).\n- **PRE-2 (Unverified):** The second line contains a binary string \\(A\\) of exactly \\(3^N\\) characters.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains a single integer \\(k\\), with no extra explanatory text.\n- **POST-2 (Unverified):** There is a set of exactly \\(k\\) distinct positions in \\(A\\) such that flipping those bits and leaving all others unchanged reverses the final bit under the same ordered majority reduction.\n- **POST-3 (Unverified):** No set of fewer than \\(k\\) positions reverses the final bit. The answer is the number of positions in a smallest such set, not the number of equally small sets.\n\n## Test suggestions\n- For \\(N=1\\), check that `000` and `111` each yield `2`, and that every mixed triple yields `1` (PRE-1, PRE-2; POST-1–POST-3).\n- For \\(N=2\\), check that `010011101` yields `1` and that `000111111` yields `2`. The strings contain the same number of ones but arrange them differently (POST-2, POST-3).\n- At \\(N=13\\), check that an all-zero string of the required length produces the single integer `8192` (PRE-1, PRE-2; POST-1–POST-3).\n\n## Unspecified behavior\n- No behavior is guaranteed for input that does not satisfy PRE-1 or PRE-2.\n",
+  "statement_sha256": "b11f48117815eb7cdec8396d5c4220faf7d06720dd80e433b63713bcde9a97c1",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "b11f48117815eb7cdec8396d5c4220faf7d06720dd80e433b63713bcde9a97c1",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "mb2-api",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-22T04:36:29Z",
+    "finish_reason": "stop",
+    "request_id": "req_53d020724f0349d6b1698299e9c8326e",
+    "retries": 0,
+    "ledger_index": 9
+  },
+  "usage": {
+    "prompt_tokens": 730,
+    "completion_tokens": 429,
+    "total_tokens": 1159,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.81,
+  "cost_usd": 0.00575,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 256,
+  "created_utc": "2026-11-22T04:36:35Z"
+}

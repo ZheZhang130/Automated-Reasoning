@@ -44,6 +44,8 @@ flowchart LR
 4. **Python versions**: the agent sandbox runs 3.11 (frozen) and the judge runs 3.12. Keep this fixed and recorded, or move both together.
 5. **Mac**: run the native validation in `PORTABILITY.md` §8 and keep Mac results a separate hardware cohort.
 6. **Implement B and E** on the same backend before the main run. F remains optional.
+7. **Judge coverage.** The judge compares outputs exactly. Tolerance-output tasks (abc392_d) and multi-answer tasks (abc396_e) are mis-scored, and tonight that produced 5 candidate-level false negatives in the primary cohorts, 10 across both agent arms (`diagnostics/`). The pilot/main manifests contain neither type. Any new task selection must exclude them explicitly, or the judge needs tolerance/special checkers.
+8. **CI:** add `guided_agent/**` paths and `python -m unittest guided_agent.test_guided` to `.github/workflows/local-agent-portable.yml`, so macOS runners exercise the new package.
 
 ## 4. How to run the full A/B/C/D/E comparison without confounds
 

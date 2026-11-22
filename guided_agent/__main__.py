@@ -103,8 +103,9 @@ def cmd_batch(args, host, study):
             continue
         if out.exists():  # interrupted earlier: keep evidence, retry under a new directory name
             out.rename(batch_dir / f'{name}.incomplete-{uuid.uuid4().hex[:6]}')
-        spec = item | {'run_id': f"{plan['batch']}-{name}-{uuid.uuid4().hex[:8]}", 'output': str(out),
-                       'batch': plan['batch'], 'cohort': plan.get('cohort'), 'study': str(study)}
+        spec = {'backend': args.backend} | item | {
+            'run_id': f"{plan['batch']}-{name}-{uuid.uuid4().hex[:8]}", 'output': str(out),
+            'batch': plan['batch'], 'cohort': plan.get('cohort'), 'study': str(study)}
         record = run_child(spec, plan.get('outer_timeout', 960))
         print(json.dumps({k: record.get(k) for k in ('run_id', 'exit_status', 'raw_exit_status', 'n_actions',
                                                      'n_repairs', 'wall_seconds', 'setup_error')}), flush=True)

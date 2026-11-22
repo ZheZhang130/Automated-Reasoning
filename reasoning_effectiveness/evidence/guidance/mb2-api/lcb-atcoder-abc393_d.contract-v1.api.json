@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc393_d",
+  "text": "## Description\nGiven a binary string containing at least one `1`, report the minimum number of adjacent-character swaps needed to make all its `1`s occupy a single contiguous block.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input contains two lines: an integer `N` followed by a string `S`. The integer satisfies `2 ≤ N ≤ 500,000`.\n- **PRE-2 (Unverified):** `S` contains exactly `N` characters, each either `0` or `1`, and contains at least one `1`.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains a single nonnegative integer: the minimum number of swaps required, not a swap sequence or a resulting string.\n- **POST-2 (Unverified):** The reported number is attainable using only swaps of adjacent characters. In the resulting string, every position in one nonempty interval contains `1`, and every position outside it contains `0`. Swaps preserve the number of each character.\n- **POST-3 (Unverified):** No shorter sequence of adjacent swaps can reach any valid block position. The answer is `0` exactly when the input already satisfies the goal, including strings with a single `1` and strings consisting entirely of `1`s.\n\n## Test suggestions\n- Check that the three supplied samples produce `3`, `0`, and `7`, respectively (POST-1–POST-3).\n- At the minimum length allowed by PRE-1, check that `01`, `10`, and `11` each produce `0` (PRE-2, POST-3).\n- Check that `1001` produces `2` even though several final block positions attain that minimum (POST-1–POST-3).\n- At the maximum length allowed by PRE-1, check that a string of all `1`s produces `0` (PRE-2, POST-3).\n\n## Unspecified behavior\nInputs that violate the preconditions have no specified behavior. When several swap sequences or final block positions attain the minimum, no particular sequence or position is required.\n",
+  "statement_sha256": "b10886a71ec47bf8652318ac7b951e98994dacc074e9e1ac2ada7970816c8cb0",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "b10886a71ec47bf8652318ac7b951e98994dacc074e9e1ac2ada7970816c8cb0",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "mb2-api",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-22T04:36:09Z",
+    "finish_reason": "stop",
+    "request_id": "req_98be4f1befbe454b947e44de8c7f5829",
+    "retries": 0,
+    "ledger_index": 6
+  },
+  "usage": {
+    "prompt_tokens": 620,
+    "completion_tokens": 437,
+    "total_tokens": 1057,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 6.31,
+  "cost_usd": 0.00561,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 280,
+  "created_utc": "2026-11-22T04:36:15Z"
+}

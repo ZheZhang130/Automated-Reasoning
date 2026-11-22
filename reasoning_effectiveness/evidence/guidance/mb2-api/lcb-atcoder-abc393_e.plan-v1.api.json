@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc393_e",
+  "text": "## Observations\n\n1. For a fixed index \\(i\\), a positive integer \\(d\\) divides the GCD of some valid selection exactly when \\(d\\) divides \\(A_i\\) and at least \\(K\\) array positions contain multiples of \\(d\\). Repeated values count as separate positions.\n2. The largest divisor satisfying this condition is the maximum achievable GCD: every achievable GCD satisfies the condition, and a selection witnessing the largest feasible divisor cannot have a larger GCD.\n3. Let \\(M=\\max A_i\\). A frequency table lets us count the positions divisible by \\(d\\) by summing the frequencies at \\(d,2d,3d,\\ldots\\) up to \\(M\\).\n4. If feasible divisors are processed from largest to smallest, the first one that visits a value through its multiples is that value’s answer. Equal values therefore share an answer, and every input value is reached because \\(1\\) is feasible.\n5. A full sweep of multiples visits \\(\\sum_{d=1}^{M}\\lfloor M/d\\rfloor=O(M\\log(M+1))\\) entries, and the tables are indexed by value rather than by position.\n\n## Solution sketch\n\n1. “Let \\(M=\\max A_i\\). A frequency table lets us count the positions divisible by \\(d\\) by summing the frequencies at \\(d,2d,3d,\\ldots\\) up to \\(M\\).” Store the input values in order, build the frequency table, and initialize an answer table with zero to mark unassigned values.\n2. “For a fixed index \\(i\\), a positive integer \\(d\\) divides the GCD of some valid selection exactly when \\(d\\) divides \\(A_i\\) and at least \\(K\\) array positions contain multiples of \\(d\\). Repeated values count as separate positions.” Iterate over candidate divisors from \\(M\\) down to \\(1\\). For each divisor, sum frequencies at its multiples, stopping early if the sum reaches \\(K\\). Skip the divisor if the sum never reaches \\(K\\).\n3. “If feasible divisors are processed from largest to smallest, the first one that visits a value through its multiples is that value’s answer. Equal values therefore share an answer, and every input value is reached because \\(1\\) is feasible.” For each divisor that passes the count test, scan its multiples and assign it to each occurring value whose answer is still zero. Never overwrite an assigned answer.\n4. “The largest divisor satisfying this condition is the maximum achievable GCD: every achievable GCD satisfies the condition, and a selection witnessing the largest feasible divisor cannot have a larger GCD.” Print the stored answer for each input value in its original order. No special cases are needed: when \\(K=1\\), each value is its own answer; when \\(K=N\\), every position receives the GCD of the entire array.\n5. “A full sweep of multiples visits \\(\\sum_{d=1}^{M}\\lfloor M/d\\rfloor=O(M\\log(M+1))\\) entries, and the tables are indexed by value rather than by position.” Each divisor triggers at most two scans of its multiples, so the total time is \\(O(N+M\\log(M+1))\\). The tables take \\(O(M)\\) space, and retaining the input order brings total space to \\(O(N+M)\\).\n",
+  "statement_sha256": "516244ae7b03b7a9bbba1d24872d3db8490bfce42d56b94ffaa12ffa27036de0",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "516244ae7b03b7a9bbba1d24872d3db8490bfce42d56b94ffaa12ffa27036de0",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "mb2-api",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-22T04:35:52Z",
+    "finish_reason": "stop",
+    "request_id": "req_003ff5db5d644ecc98438310f4ff85ab",
+    "retries": 0,
+    "ledger_index": 4
+  },
+  "usage": {
+    "prompt_tokens": 631,
+    "completion_tokens": 724,
+    "total_tokens": 1355,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 9.16,
+  "cost_usd": 0.008502,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 462,
+  "created_utc": "2026-11-22T04:36:01Z"
+}

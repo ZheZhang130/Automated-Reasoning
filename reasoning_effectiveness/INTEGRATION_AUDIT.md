@@ -100,3 +100,10 @@ Discovered platform-specific problems: `local_eval_v2/common.py` hardcodes `E:` 
 2. A task builder that reuses `judge/build_data.py` to create judge-format tasks and the agent's public bundle under the data root, outside Git.
 3. Guidance providers: Codex-authored replay (isolated `codex exec`, artifact compatible with `SavedPlan`/`SavedContract`) and a direct OpenAI client with a request/cost ledger.
 4. Peter's run-record handoff per attempt and a separate hidden-evaluation command.
+
+## 10. Post-integration status (added at the end of the session)
+
+* **Implemented:** `guided_agent/`, as planned in §9. Items 1, 2, 3, 5, 6 and 9 of §4 are resolved for A/C/D: same frozen runtime, full sampler, 4,096 tokens, GPU lock, model identity, judge-public feedback and the portable adapter. Item 7 (orchestration's JSON loop) is left as the teammates' protocol pilot and is not used for A/C/D. Item 8 is addressed by the mini-benchmarks in `FINAL_REPORT.md`.
+* **Live API path:** a direct client (`providers.api_author`) with `max_completion_tokens`, `reasoning_effort` and a ledger. 10 real requests, all `stop`. `FrontierPlanner` (LiteLLM) was not exercised.
+* **New platform findings:** (a) `judge/build_data.py` CRLF on Windows (worked around in `guided_agent.tasks`; fix upstream). (b) The judge's exact-match comparison cannot grade tolerance-output (abc392_d) or multi-answer (abc396_e) tasks. Neither appears in the pilot/main manifests, but fresh-task selection must exclude them. (c) Container pip on this host needs the interception CA (`E:\CSC2108Local\judge-build\host-ca.pem`).
+* **Validation:** Windows real inference on both host backends (identical tokens); Linux container offline suites (27 passed); judge unit tests pass on Linux. macOS native inference was **not** run.

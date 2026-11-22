@@ -124,3 +124,36 @@ Both plans are correct. The API plan is harder for Qwen to implement, and its co
 ## 23:59 — FREEZE for mini-benchmarks
 
 `E:\CSC2108Local\reasoning-effectiveness\FREEZE-mb.json`: source commit `c580e2f`, original frozen agent (primary), aci-v2 (secondary arm), plan-v1 / contract-v1 / inject-v1, Codex and API `gpt-6.2-sol` at effort `medium`, sha256 of all 20 MB guidance artifacts, task lists, budgets (20 actions / 3 repairs / 600 s / 180 s per request), seed 2108, and the evaluation procedure. Batches mb1, mb2, mb1-aci2 and mb2-aci2 (60 attempts) run sequentially from this commit. No code changes until they finish.
+
+## 00:00–00:54 — Phase V: frozen mini-benchmarks (60 attempts) and evaluation
+
+Batches ran sequentially from commit `c580e2f`: mb1 (18), mb2 (12), mb1-aci2 (18), mb2-aci2 (12). No infrastructure errors. Hidden scoring: mb1/mb2 at 00:25, while the aci-v2 arm was executing (20-core host; the judge has 4 dedicated CPUs); the aci arms after they finished.
+
+| Cohort | A | C | D |
+| --- | --- | --- | --- |
+| MB1 Codex, original agent (official) | 4/6 | 5/6 | 4/6 |
+| MB2 API, original agent (official) | 1/4 | 2/4 | 2/4 |
+| MB1 aci-v2 arm | 4/6 | 5/6 | 3/6 |
+| MB2 aci-v2 arm | 1/4 | 2/4 | 2/4 |
+
+Rescues on the original agent: C rescued abc388_g (hard; A and D both `RepeatedFormatError`) and abc393_d; D rescued abc393_d. No task solved by A was lost by C or D.
+
+**Judge false negatives (evaluation, not model).** Found by examining aggregate verdicts post hoc; no case content was shown to any model and nothing was tuned.
+* abc392_d: statement accepts ≤1e-8 error; the judge requires exact `Decimal` equality. All 6 candidates (A/C/D × both arms) pass 40/40 under tolerance, vs 15/40 official.
+* abc396_e: statement accepts any minimum-sum sequence; the judge compares exactly against one reference. Special judge: C 40/40 and D 40/40 in both arms; A 24/40 and 27/40.
+* Neither team manifest (pilot, main) contains tolerance or multi-answer tasks, checked by statement text. My selection rule did not filter them, which is a selection flaw to fix for future fresh cohorts.
+
+**aci-v2 on fresh tasks:** no gain. In MB1 D, abc394_c regressed: the truncation message changed the trajectory, then 22 consecutive repeat guards exhausted the 28-call step limit. **Rejected for promotion.**
+
+## 01:00–01:05 — Platform validation
+
+* `--backend portable` on this Windows host, with a separate data root (`portable-root`, copied `portable-images.json` from the 2026-11-18 provisioning), real Docker and real Qwen. The fixture A attempt was ✓. arc195_a C reused the Windows-built Codex artifact (statement hash matched) and was ✓, with **completion tokens identical call for call** to the Windows-backend run. Record: `host_adapter=portable.adapted_run`, `sampler_wire_verified=true`.
+* Fix made before this run (not during a batch): the portable path now creates the server-log file, as `local_agent.portable.worker` does.
+* Linux container (Python 3.11.18, pinned requirements; pip needed the host's interception CA): `guided_agent.test_guided` + `local_agent.test_portable` → 27 passed. `judge/tests` → 24 run, 18 Docker-dependent skipped, all passed (these cannot even import on Windows).
+* **Native macOS inference was not tested.** No Mac was available.
+
+## Remaining uncertainties
+
+* With 10 fresh tasks and one seed, C's +2 (official) / +3 (corrected) over A is suggestive, not significant. D's +1/+2 comes from 2 tasks in the API cohort.
+* Whether plan *form* (closed-form vs DP) systematically governs transfer: n=1 here.
+* Whether Codex-replay and API guidance differ in usefulness: the only matched comparison (arc192_a) differs in method, so provider effects are confounded with sampling.

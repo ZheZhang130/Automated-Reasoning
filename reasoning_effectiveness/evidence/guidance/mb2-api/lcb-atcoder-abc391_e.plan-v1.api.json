@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc391_e",
+  "text": "## Observations\n\n1. Each intermediate bit is the majority of three consecutive bits from the preceding level, and those three bits depend on disjoint groups of original positions.\n2. A subtree can be summarized by its unchanged output bit and the minimum number of original bits that must be flipped to reverse that output. For a single original bit, this cost is one.\n3. If exactly two children agree with the parent’s unchanged output, reversing either one is enough to reverse the parent. If all three agree, at least two children must be reversed.\n4. Once a level has been reduced to the next level, its summaries are no longer needed. The number of summaries decreases by a factor of three per level.\n\n## Solution sketch\n\n1. > A subtree can be summarized by its unchanged output bit and the minimum number of original bits that must be flipped to reverse that output. For a single original bit, this cost is one.\n\n   Read \\(N\\) and the binary string. Give each original position a summary containing its bit and a reversal cost of one.\n\n2. > Each intermediate bit is the majority of three consecutive bits from the preceding level, and those three bits depend on disjoint groups of original positions.\n\n   Process the current summaries in consecutive triples. For each triple, compute the parent’s unchanged output as the majority of the three child bits. Because the children depend on disjoint positions, their minimum reversal costs can be added without interference.\n\n3. > If exactly two children agree with the parent’s unchanged output, reversing either one is enough to reverse the parent. If all three agree, at least two children must be reversed.\n\n   For a split triple, use the smaller reversal cost of the two majority children. Any successful change must reverse at least one of them, and reversing just the cheaper one works. For a unanimous triple, use the sum of the two smallest reversal costs: at least two children must reverse, and reversing exactly those two works. This also handles \\(N=1\\) directly: the answer is one for a split triple and two for a unanimous triple.\n\n4. > Once a level has been reduced to the next level, its summaries are no longer needed. The number of summaries decreases by a factor of three per level.\n\n   Replace the current level with the parent summaries and repeat until one summary remains. Print its reversal cost, not its unchanged output bit. With \\(L=3^N\\), the running time is \\(O(L)\\) because the level sizes form a geometric series. Keeping only the current and next levels uses \\(O(L)\\) space.\n",
+  "statement_sha256": "b11f48117815eb7cdec8396d5c4220faf7d06720dd80e433b63713bcde9a97c1",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "b11f48117815eb7cdec8396d5c4220faf7d06720dd80e433b63713bcde9a97c1",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "mb2-api",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-22T04:36:01Z",
+    "finish_reason": "stop",
+    "request_id": "req_0b934dd0cffc4d83bf14b7b32b76a921",
+    "retries": 0,
+    "ledger_index": 5
+  },
+  "usage": {
+    "prompt_tokens": 660,
+    "completion_tokens": 570,
+    "total_tokens": 1230,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 37,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 7.33,
+  "cost_usd": 0.00702,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 434,
+  "created_utc": "2026-11-22T04:36:09Z"
+}
