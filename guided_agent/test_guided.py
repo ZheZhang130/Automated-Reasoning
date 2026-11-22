@@ -74,8 +74,10 @@ class Backend(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         from local_agent.platform_support import Settings
+        # CI sets CSC2108_TEST_BACKEND=portable so Windows runners (no E: data root) use the portable adapter.
+        portable = os.name != 'nt' or os.environ.get('CSC2108_TEST_BACKEND') == 'portable'
         cls.runtime = backend.frozen_runtime(Settings.load('portable', environ={'CSC2108_ROOT': tempfile.mkdtemp()})) \
-            if os.name != 'nt' else backend.frozen_runtime(Settings.load('windows'))
+            if portable else backend.frozen_runtime(Settings.load('windows'))
 
     def env(self, judge, attempts, source=b'print(1)\n'):
         _, env_cls = backend.make_classes(self.runtime, guidance_text=None, template=None, judge=judge,

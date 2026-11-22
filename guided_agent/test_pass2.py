@@ -25,7 +25,7 @@ def failure(verdict='WA', status='candidate_failure'):
     first = {'name': 'case-2', 'verdict': verdict, 'input': '-3 2\n', 'expected': '-1\n', 'actual': '5\n'}
     return {'suite': 'public', 'task_id': 't', 'status': status, 'passed': 1, 'total': 2, 'first_failure': first,
             'report': 'PUBLIC TESTS: 1/2 passed\nFirst failure: case case-2: WA (wrong answer)\n--- input ---\n-3 2',
-            'code_sha256': 'c', 'tests_sha256': 'd'}
+            'tests_sha256': 'd'}  # no code_sha256: pass 3 checks it against the snapshot when present
 
 
 class FakeBudget:
@@ -115,8 +115,9 @@ class Delivery(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             ctl, env, agent = self.armed(tmp, diagnosis.FixedDiagnoser(GOOD_DIAGNOSIS, delay=0.3))
             ctl.deliver(agent)
-            self.assertGreaterEqual(env.deadline - 500.0, 0.3)
-            self.assertGreaterEqual(agent._start_time - 1000.0, 0.29)
+            # >= 0.28: time.sleep(0.3) measured by the monotonic clock can read 0.296 s on Windows (timer tick)
+            self.assertGreaterEqual(env.deadline - 500.0, 0.28)
+            self.assertGreaterEqual(agent._start_time - 1000.0, 0.28)
             self.assertAlmostEqual(env.deadline - 500.0, ctl.record['frontier_wait_seconds'], places=2)
             self.assertEqual(env.budget.actions, 3)  # no action or repair consumed
 
@@ -211,8 +212,10 @@ class FrontierCoder(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         from local_agent.platform_support import Settings
+        # CI sets CSC2108_TEST_BACKEND=portable so Windows runners (no E: data root) use the portable adapter.
+        portable = os.name != 'nt' or os.environ.get('CSC2108_TEST_BACKEND') == 'portable'
         cls.runtime = backend.frozen_runtime(Settings.load('portable', environ={'CSC2108_ROOT': tempfile.mkdtemp()})) \
-            if os.name != 'nt' else backend.frozen_runtime(Settings.load('windows'))
+            if portable else backend.frozen_runtime(Settings.load('windows'))
 
     def model(self, coder):
         cls = frontier_coder.make_coder_class(self.runtime, coder)

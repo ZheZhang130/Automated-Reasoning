@@ -2,10 +2,12 @@ name: Local agent portable host
 
 on:
   push:
-    branches: [feat/csc2108-local-agent-final]
-    paths: ['local_agent/**', '.github/workflows/local-agent-portable.yml']
+    branches: [feat/csc2108-local-agent-final, feat/csc2108-contract-diagnosis-pass2]
+    paths: ['local_agent/**', 'guided_agent/**', 'judge/**', 'reasoning_effectiveness/pass3/**',
+            '.github/workflows/local-agent-portable.yml']
   pull_request:
-    paths: ['local_agent/**', '.github/workflows/local-agent-portable.yml']
+    paths: ['local_agent/**', 'guided_agent/**', 'judge/**', 'reasoning_effectiveness/pass3/**',
+            '.github/workflows/local-agent-portable.yml']
   workflow_dispatch:
 
 permissions:
@@ -31,3 +33,32 @@ jobs:
       - run: python -m local_agent --backend portable verify --offline
       - name: Import original agent with portable host configuration; no inference
         run: python -c "from local_agent.platform_support import Settings; from local_agent.portable import load_runtime; load_runtime(Settings.load('portable'))"
+
+  # Integrated A/B/C/D/E agent (guided_agent): software tests only. No model inference, no Docker sandbox,
+  # no network and no credentials; providers are scripted or mocked. Passing here is NOT a native-inference
+  # validation of any host (see reasoning_effectiveness/PORTABILITY.md for the Mac inference procedure).
+  guided-agent:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      PYTHONIOENCODING: utf-8
+      CSC2108_TEST_BACKEND: portable   # Windows runners have no E: data root; use the portable adapter
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - run: python -m pip install -r local_agent/requirements.txt
+      - name: Offline integrated-agent tests (trigger, delivery, deadline accounting, B interface, judge semantics, plan integrity, ledger, privacy)
+        run: python -m unittest -v guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3
+      - name: CLI smoke
+        run: python -m guided_agent --help
+      - name: Judge unit tests (container tests skip without the judge image)
+        if: runner.os != 'Windows'   # container/judge.py imports Linux-only modules (fcntl, resource)
+        working-directory: judge
+        run: python -m unittest -v discover -s tests
