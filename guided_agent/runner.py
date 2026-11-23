@@ -14,7 +14,7 @@ from pathlib import Path
 
 from .common import (ACTIONS, CODER, CONDITIONS, DYNAMIC, MODEL, PROFILE, REPAIRS, REPO, SECONDS, SEED, append_jsonl,
                      host_identity, read_json, sha256_bytes, sha256_file, settings, study_root, utc_now, write_json)
-from . import agent_config, backend, contract_checks, diagnosis, frontier_coder, guidance
+from . import agent_config, backend, contract_checks, diagnosis, frontier_coder, guidance, measurement
 from .tasks import load_statement
 
 EXIT_STATUS = {'Submitted': 'submitted', 'ActionLimit': 'action_limit', 'LimitsExceeded': 'action_limit',
@@ -260,6 +260,10 @@ def run_attempt(spec):
         (out / 'attempts.jsonl').write_text(''.join(json.dumps(a) + '\n' for a in attempts), encoding='utf-8')
         record['public_attempts'] = len(attempts)
         write_json(out / 'result.json', record)
+        try:  # the stable measurement record (schema csc2108-run-measurement-v1); never fails the attempt
+            measurement.write(out)
+        except Exception as error:
+            write_json(out / 'measurement-error.json', {'error': f'{type(error).__name__}: {error}'})
     return record
 
 
@@ -323,4 +327,8 @@ def evaluate(batch_dir, study):
                     'suite': 'hidden', 'judge_tests_sha256': info.get('tests_sha256'), 'evaluated_utc': utc_now()}
         write_json(eval_dir / f'{run_id}.json', outcome)
         results[run_id] = outcome
+        try:  # refresh the measurement record with the hidden verdict
+            measurement.write(result_path.parent)
+        except Exception as error:
+            write_json(result_path.parent / 'measurement-error.json', {'error': f'{type(error).__name__}: {error}'})
     return results

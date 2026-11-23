@@ -174,6 +174,35 @@ class DiagnosisV2(unittest.TestCase):
         self.assertEqual(guidance.validate('diagnosis', sample), [])
 
 
+class MeasurementSchema(unittest.TestCase):
+    def test_fields_are_unique_documented_and_units_explicit(self):
+        from guided_agent import measurement
+        paths = [f[0] for f in measurement.FIELDS]
+        self.assertEqual(len(paths), len(set(paths)))
+        for path, kind_type, unit, nullable, source, kind, applies in measurement.FIELDS:
+            self.assertIn(kind, ('measured', 'derived', 'configuration', 'identity', 'modelled'), path)
+            self.assertTrue(source and applies, path)
+            if path.endswith('_seconds'):
+                self.assertIn('s', unit, path)
+            if path.endswith('_usd'):
+                self.assertEqual(unit, 'USD', path)
+        table = measurement.schema_markdown()
+        self.assertEqual(table.count('\n') + 1, len(paths) + 2)
+        # unavailable quantities are never reported as zero; modelled costs are labelled as such
+        self.assertIn('always null', dict((f[0], f[4]) for f in measurement.FIELDS)['local_inference.reasoning_tokens'])
+        self.assertEqual(dict((f[0], f[5]) for f in measurement.FIELDS)['cost.modelled_local_cost_usd'], 'modelled')
+
+    def test_usage_normalization_covers_api_and_codex(self):
+        from guided_agent import measurement
+        api = measurement._usage({'prompt_tokens': 10, 'completion_tokens': 5, 'prompt_tokens_details': {'cached_tokens': 2},
+                                  'completion_tokens_details': {'reasoning_tokens': 3}})
+        codex = measurement._usage({'input_tokens': 10, 'cached_input_tokens': 2, 'output_tokens': 5,
+                                    'reasoning_output_tokens': 3})
+        self.assertEqual(api, codex)
+        self.assertEqual(measurement._usage(None), {'input_tokens': None, 'output_tokens': None, 'reasoning_tokens': None,
+                                                    'cached_input_tokens': None})
+
+
 @unittest.skipUnless(os.environ.get('CSC2108_INTEGRATION') == '1', 'set CSC2108_INTEGRATION=1 (Docker + judge image)')
 class IntegrationPass4(unittest.TestCase):
     """Real frozen runtime + sandbox + judge-public; scripted coder."""
@@ -188,6 +217,11 @@ class IntegrationPass4(unittest.TestCase):
                 'batch': 'integration-tests', 'cohort': 'integration (scripted coder)'} | extra
         record = runner.run_attempt(spec)
         messages = json.loads(next(out.glob('agent-*/trajectory.json')).read_text(encoding='utf-8'))['messages']
+        from guided_agent import measurement
+        document = json.loads((out / 'measurement.json').read_text(encoding='utf-8'))   # written by every attempt
+        self.assertEqual(measurement.conforms(document), [])
+        self.assertEqual(document['identity']['run_id'], record['run_id'])
+        self.assertEqual(document['frontier']['n_requests'], 1 if spec.get('guidance') else 0)  # scripted coder != frontier
         return record, messages, out
 
     def contract_artifact(self, study):

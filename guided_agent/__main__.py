@@ -167,6 +167,24 @@ def cmd_summarize(args, host, study):
     print(json.dumps(summary['table'], indent=1))
 
 
+def cmd_measure(args, host, study):
+    from . import measurement
+    rows = []
+    for result in sorted(Path(args.batch).glob('*/result.json')):
+        if '.incomplete-' in result.parent.name:
+            continue
+        document = measurement.write(result.parent, energy_watts=args.watts, usd_per_kwh=args.usd_per_kwh)
+        rows.append(document)
+    out = Path(args.batch) / 'measurements.jsonl'
+    out.write_text(''.join(json.dumps(r, ensure_ascii=False) + '\n' for r in rows), encoding='utf-8', newline='\n')
+    print(json.dumps({'measured': len(rows), 'file': str(out)}))
+
+
+def cmd_schema(args, host, study):
+    from . import measurement
+    print(measurement.schema_markdown())
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(prog='guided_agent', description=__doc__.splitlines()[0])
     parser.add_argument('--backend', default='auto', choices=['auto', 'windows', 'portable'])
@@ -188,6 +206,10 @@ def main(argv=None):
     p = sub.add_parser('batch'); p.add_argument('plan')
     p = sub.add_parser('evaluate'); p.add_argument('batch')
     p = sub.add_parser('summarize'); p.add_argument('batch')
+    p = sub.add_parser('measure', help='write <run>/measurement.json (schema csc2108-run-measurement-v1) for a batch')
+    p.add_argument('batch'); p.add_argument('--watts', type=float, help='assumed average GPU+host power (modelled energy)')
+    p.add_argument('--usd-per-kwh', type=float, help='assumed electricity price (modelled cost)')
+    sub.add_parser('schema', help='print the measurement schema as a Markdown table')
     args = parser.parse_args(argv)
     host = settings(args.backend)
     study = study_root(host, args.study)

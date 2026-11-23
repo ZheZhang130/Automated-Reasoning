@@ -1,0 +1,80 @@
+{
+ "batch": "p4-b-codex2",
+ "cohort": "pass4 B-vs-C, rest of the pass-3 hard cohort (consumed tasks)",
+ "frozen": false,
+ "outer_timeout": 2400,
+ "attempts": [
+  {
+   "task_id": "lcb-atcoder-abc388_f",
+   "condition": "B",
+   "seed": 2108,
+   "variant": "codex",
+   "coder": {
+    "provider": "codex",
+    "max_requests": 28,
+    "effort": "medium",
+    "model": "gpt-6.2-sol"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc395_f",
+   "condition": "B",
+   "seed": 2108,
+   "variant": "codex",
+   "coder": {
+    "provider": "codex",
+    "max_requests": 28,
+    "effort": "medium",
+    "model": "gpt-6.2-sol"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc397_e",
+   "condition": "B",
+   "seed": 2108,
+   "variant": "codex",
+   "coder": {
+    "provider": "codex",
+    "max_requests": 28,
+    "effort": "medium",
+    "model": "gpt-6.2-sol"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-arc193_a",
+   "condition": "B",
+   "seed": 2108,
+   "variant": "codex",
+   "coder": {
+    "provider": "codex",
+    "max_requests": 28,
+    "effort": "medium",
+    "model": "gpt-6.2-sol"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-arc193_b",
+   "condition": "B",
+   "seed": 2108,
+   "variant": "codex",
+   "coder": {
+    "provider": "codex",
+    "max_requests": 28,
+    "effort": "medium",
+    "model": "gpt-6.2-sol"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-arc194_e",
+   "condition": "B",
+   "seed": 2108,
+   "variant": "codex",
+   "coder": {
+    "provider": "codex",
+    "max_requests": 28,
+    "effort": "medium",
+    "model": "gpt-6.2-sol"
+   }
+  }
+ ]
+}
