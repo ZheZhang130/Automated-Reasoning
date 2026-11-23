@@ -141,3 +141,73 @@ diagnostic, not a condition.
 
 This agrees with the teammates' earlier one-shot pilot (one-shot 4/6 against a shortened agent's 3/6). The original
 agent interface costs Qwen tasks it can solve, and l1 recovers them.
+
+## 6. Stage D: the candidate against the original agent with A and C (`p4-stageD-agent`, 31 attempts)
+
+* **Cells:** pass-4 runs where they exist; otherwise historical original-agent runs with the identical artifact
+  (C) or the same task and seed (A).
+* **Determinism:** both fresh C-frozen spot checks (abc389_f, arc192_a at 2108) reproduced their historical
+  submissions byte for byte.
+
+| Task | A frozen s2108 / s2109 | A l1 s2108 / s2109 | C frozen s2108 / s2109 | C l1 s2108 / s2109 |
+| --- | --- | --- | --- | --- |
+| abc400_b | ✓ / ✓ | ✓ / ✓ | ✓ / ✓ | ✓ / ✓ |
+| abc393_d | ✗ / ✓ | ✓ / ✓ | ✓ / ✓ | ✓ / ✓ |
+| arc195_a | ✗ / ✓ | ✓ / ✗ | ✓ / ✓ | ✓ / ✓ |
+| abc398_d | ✗ / ✗ | ✓ / ✓ | ✓ / ✓ | ✓ / ✓ |
+| abc388_e | no program / ✗ | ✗ / ✗ | ✓ / ✓ | ✓ / ✓ |
+| abc389_f | no program / no program | no program / no program | ✓ / ✓ | **overflow / overflow** |
+| abc397_f | no program / no program | no program / no program | ✗ / no program | **✓ / ✓** |
+| arc192_a | no program / ✗ | ✗ / no program | ✓ / ✓ | **overflow** / ✗ |
+| **Passes** | 1 + 3 = **4/16** | 4 + 3 = **7/16** | **14/16** | **12/16** |
+
+"Overflow" means the session's prompt reached the 16K context. The next model request then failed with an Ollama
+connection error (below), so the run has no correct final program.
+
+**Pre-registered criteria:**
+
+| # | Criterion | Result |
+| --- | --- | --- |
+| 1 | seed 2109, A: net ≥ +1, ≤ 1 loss | **fails**: net 0 (gains abc398_d, loses arc195_a) |
+| 2 | pooled A: net ≥ +3, no more no-program runs | passes: +3 (4 gains, 1 loss), 5 against 6 no-program runs |
+| 3 | C: net ≥ −1 | **fails**: −2 (gains abc397_f ×2; losses abc389_f ×2 by overflow, arc192_a at 2108 by overflow and at 2109) |
+| 4 | pooled A cost ≤ 1.5× | passes: 1.14× local output tokens, 1.12× wall time. C under l1 costs 1.64× tokens and 1.49× time, because of the second plan and longer sessions |
+
+**Decision.** `l1-selfplan-v1` is **not** recommended, and **`frozen-v6` stays the primary shared agent**.
+
+**What stage D shows.**
+
+* **A improves, and the improvement replicates in direction.** Pooled 4 → 7 of 16. At seed 2109 the frozen agent
+  already solves abc393_d and arc195_a, and l1 trades one of them (arc195_a) for abc398_d.
+* **C's advantage over A halves under l1:** frozen C − A = 14 − 4 = **+10**; l1 C − A = 12 − 7 = **+5**.
+  * Part of C's measured benefit is compensation for the original interface, which gives the model no place to
+    plan.
+  * Part is not: C still beats the self-planning agent on 5 of 16 pairs.
+  * This answers the brief's central question for these development tasks. The frontier plan's value persists
+    beyond the truncation problem, but it is about half as large as the original agent suggests.
+* **C with a self-plan can hurt.**
+  * On abc389_f and arc192_a the self-plan step (Qwen re-planning after reading the frontier plan) produced long
+    sessions whose context overflowed 16K: 15.1–16.1K tokens at the failing request.
+  * On abc397_f, where C-frozen fails at both seeds, the self-plan helped at both seeds.
+  * Re-planning adds context and sometimes overrides a correct frontier plan.
+* **Context overflow is a new failure mode for l1.** It occurred in 3 of 16 C-l1 runs, and in 1 frozen-v6 E run
+  (the diagnosis-v2 probe at abc395_f, during a repeat loop).
+  * Under the frozen agent in passes 1–3 no prompt exceeded 13.8K. Adopting l1 would need a larger context
+    window, which is a second change requiring its own validation.
+  * The runner labels these `infra_error`. They are deterministic agent failures, not infrastructure, and the
+    pre-registration counts only judge or Docker errors and outer timeouts as infrastructure. The measurement
+    record now marks them `correctness.context_overflow = true` with `infrastructure_failure = false`.
+* **Sensitivity:** treating the 3 overflow cells as infrastructure exclusions instead gives C net +1 over 13
+  pairs, and criterion 3 would pass. Criterion 1 fails either way, so the decision does not depend on it.
+
+**For the team.** The self-plan step is the most effective single change to the shared agent found in four passes
+(A: 1/8 → 4/8 on the screening cohort; 4/16 → 7/16 over two seeds). It is not adopted here because it did not
+replicate at the second seed for A, it lowered C, and it would also need a larger context.
+
+**Adopting l1 later would require:**
+
+* a validated l1 + 32K-context configuration;
+* a frozen-agent arm kept in the final study so the interface effect can be measured on the holdout;
+* explicit approval, since it changes every local condition and breaks comparability with passes 1–3.
+
+See `CONDITION_FINALIZATION.md` and the open decisions in `FINAL_REPORT.md`.

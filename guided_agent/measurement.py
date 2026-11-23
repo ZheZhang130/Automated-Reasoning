@@ -65,8 +65,9 @@ FIELDS = [
     ('correctness.hidden_total', 'int', 'cases', True, 'eval/<run_id>.json', 'measured', 'all'),
     ('correctness.exit_status', 'str', 'submitted|action_limit|repair_limit|deadline|agent_error|infra_error', False, 'runner.exit_status', 'measured', 'all'),
     ('correctness.raw_exit_status', 'str', '', True, 'mini-SWE-agent exit', 'measured', 'all'),
-    ('correctness.infrastructure_failure', 'bool', '', False, 'exit infra_error or setup error', 'measured', 'all'),
+    ('correctness.infrastructure_failure', 'bool', '', False, 'exit infra_error or setup error, excluding context_overflow', 'derived', 'all'),
     ('correctness.setup_error', 'str', '', True, 'result.json', 'measured', 'all'),
+    ('correctness.context_overflow', 'bool', '', False, 'the model request failed (Ollama connection error) when the last prompt plus output was within 1,024 tokens of num_ctx: the agent exhausted its context; recorded by the runner as infra_error but deterministic, so not an infrastructure failure', 'derived', 'A, C, D, E'),
     ('local_inference.calls', 'int', 'requests', False, 'ollama-responses.json', 'measured', 'A, C, D, E (0 for B)'),
     ('local_inference.prompt_tokens', 'int', 'tokens', True, 'prompt_eval_count', 'measured', 'A, C, D, E'),
     ('local_inference.completion_tokens', 'int', 'tokens', True, 'eval_count (includes thinking)', 'measured', 'A, C, D, E'),
@@ -283,6 +284,9 @@ def build(run_dir, *, energy_watts=None, usd_per_kwh=None):
                 if line.strip()] if (run_dir / 'attempts.jsonl').exists() else []
     re_cases = sum(((a.get('result') or {}).get('verdict_counts') or {}).get('RE', 0) for a in attempts)
     final_public = (attempts[-1].get('result') or {}).get('status') if attempts else 'none'
+    context_overflow = bool(local and responses and (record.get('frozen_error') or {}).get('error_type') == 'APIConnectionError'
+                            and (responses[-1].get('prompt_eval_count') or 0) + (responses[-1].get('eval_count') or 0)
+                            >= (profile.get('context') or 16384) - 1024)
     out = {
         'schema': SCHEMA, 'built_utc': utc_now(),
         'identity': {
@@ -316,8 +320,9 @@ def build(run_dir, *, energy_watts=None, usd_per_kwh=None):
             'final_public_status': final_public, 'public_runtime_error_cases': re_cases,
             'hidden_status': hidden.get('status'), 'hidden_passed': hidden.get('passed'), 'hidden_total': hidden.get('total'),
             'exit_status': record.get('exit_status'), 'raw_exit_status': record.get('raw_exit_status'),
-            'infrastructure_failure': record.get('exit_status') == 'infra_error' or bool(record.get('setup_error')),
+            'infrastructure_failure': (record.get('exit_status') == 'infra_error' or bool(record.get('setup_error'))) and not context_overflow,
             'setup_error': record.get('setup_error'),
+            'context_overflow': context_overflow,
         },
         'local_inference': {
             'calls': len(responses), 'prompt_tokens': _sum(r.get('prompt_eval_count') for r in responses) if responses else None,
