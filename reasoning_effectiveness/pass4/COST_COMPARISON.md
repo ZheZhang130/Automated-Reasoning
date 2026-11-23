@@ -90,3 +90,19 @@ for C without stating its success rate.**
   power, amortized hardware cost and the user's time.
 * **The improved shared agent** (if any is selected) is evaluated with C in `LOCAL_AGENT_EXPERIMENTS.md`. This
   table uses the original agent.
+
+## 5. API spending of pass 4 (ledger, measured)
+
+| # | Kind | Condition | Input / output tokens | USD (standard) |
+| --- | --- | --- | --- | --- |
+| 0–3 | coder turns | B, arc194_e (pass) | 913–1,710 / 119–2,532 | 0.0433 |
+| 4–10 | coder turns | B, arc190_c (public pass, hidden fail; self-repair) | 1,621–4,265 / 20–3,553 | 0.0964 |
+| 11 | plan-v1 | C, arc192_a (end-to-end run: pass 40/40) | 917 / 1,497 | 0.0168 |
+| 12 | contract-v3 | D-active, arc192_a (run produced no program; checks never ran) | 1,267 / 877 | 0.0113 |
+| 13 | diagnosis-v1 | E, abc393_d (triggered, delivered in 6.4 s, repaired, pass) | 1,994 / 300 | 0.0070 |
+| | **Total** | 14 requests (ceiling 20) | | **$0.1748** (conservative bound $1.05; ceiling $10) |
+
+* **No retries.** All 14 requests completed. One free metadata call (`GET /v1/models/gpt-6.2-sol`) confirmed the
+  model identity first; the pricing was rechecked against public listings ($2 / $10 per 1M; cache writes $2.50).
+* **The hard-task plan model checks out.** The measured API hard-task plan ($0.0168) matches the $0.0165 modelled
+  mean used in §2.
