@@ -6,13 +6,22 @@ every test run.
 
 ## Shared agent
 
-See §6 (completed after stage D).
+| Item | Final |
+| --- | --- |
+| Version | **`frozen-v6`** (definition `{}`, sha256 `44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a`): profile `heredoc-v6-16k-common`, frozen prompts and observation format, 38 hash-verified files |
+| Mechanics | mini-SWE-agent 2.4.6 text protocol, one fenced command per response, judge-public for `python -I /public/check.py`, frozen sandbox |
+| Budgets | 20 actions, 3 repair groups, 600 s, 180 s per request, 3 consecutive format errors, 16K context, 4,096 output tokens |
+| Validation | reproduces historical runs byte for byte (pass 4: 8/8 screening tasks, 2/2 C spot checks); 217-run bottleneck audit |
+| Known limitations | no place to reason outside the file being written (deliberation truncates on hard tasks); 16K context can overflow in long sessions (1 pass-4 run under this agent) |
+| Alternative | `l1-selfplan-v1` (sha256 `06b12c078be874b47a9ded3a26f438cd46a0eaf351dbe56e45d18f0203efa30c`): A 4/16 → 7/16 but C 14/16 → 12/16; context overflow in 3/16 C runs. Not promoted under the pre-registered rule (`LOCAL_AGENT_EXPERIMENTS.md` §6) |
+| Reason | the pre-registered rule did not select the candidate; the original agent is reproducible and its limits are now documented |
+| Historical comparability | preserved (unchanged agent) |
 
 ## A: local only
 
 | Item | Final |
 | --- | --- |
-| Version | the shared agent (§6) with the frozen first message `{{task}}` (plus the shared agent's self-plan block if `l1` is selected) |
+| Version | `frozen-v6` with the frozen first message `{{task}}` |
 | Frontier calls | 0 |
 | Budgets | 20 actions, 3 repair groups, 600 s coding time, 180 s per request (frozen) |
 | Validation | 40 screening attempts (pass 4), passes 1–3; determinism verified byte for byte |
@@ -34,7 +43,7 @@ See §6 (completed after stage D).
 | --- | --- |
 | Version | `plan-v1` (teammates' planner prompt, sha256 `f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6`) + `inject-v1` plan template (`e5d9ff35f486775d820fd14ed8681b5e4478b92fbd74b7a8d3934eddd28425cf`) |
 | Frontier calls | 1 per task, before any run; artifact frozen by hash and reused by seeds |
-| Validation | passes 1–3 (13/24 on the hard cohort against A 2/24); stage D (C under the shared-agent candidate) |
+| Validation | passes 1–3 (13/24 on the hard cohort against A 2/24); pass 4: 14/16 on the 8 development tasks (two seeds) against A 4/16; one end-to-end API run (see `EXPERIMENT_LOG.md`) |
 | Known limitations | plan quality decides the outcome (pass 1); one sample per task; the Codex-authored development plans are not API cost measurements |
 | Reason | strongest guided condition; unchanged since pass 1 |
 

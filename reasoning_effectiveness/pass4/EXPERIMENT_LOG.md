@@ -36,3 +36,10 @@ Every batch, probe, failure, cost and decision of pass 4. Study roots (outside G
 | 03:35 | Stage-D D/E batch switched from D-active to the primary D-v1 under the candidate (historical contract-v1 artifacts verified by sha256). |
 | 04:03 | E probe finished (17 attempts; all 11 states reproduced by candidate hash). Hidden passes: A 3, diagnosis-v1 6, neutral 2 (2 harms), diagnosis-v2 5. **diagnosis-v1 retained**; diagnosis content, not interruption, explains E's rescues on the hard states. |
 | 04:06 | One-shot probe started (chain 3); stage D (chain 4) and D/E under l1 (chain 5) queued. |
+| 04:14 | One-shot probe finished: 3/8 (abc400_b, abc393_d, arc195_a); the other 5 hit 8,192 tokens without a final program. Two tasks are interface failures of the original agent (the model solves them one-shot). |
+| 04:15 | **Stage D** (`p4-stageD-agent`, 31 attempts) started. |
+| 04:28 | Direct API authoring for the end-to-end validation: plan-v1 and contract-v3 for arc192_a (2 requests). Ledger 13 requests, $0.168. |
+| 04:53 | Stage D finished. A-l1 7/16 against frozen 4/16; C-l1 12/16 against C-frozen 14/16; seed-2109 A net 0. Criteria 1 and 3 fail, so **frozen-v6 stays primary**. Both determinism spot checks were byte-identical. |
+| 04:55 | 3 C-l1 runs and 1 E (diagnosis-v2) probe run ended `infra_error`. Diagnosed as **context overflow**: the prompt reached 15.4–16.1K tokens, then an Ollama connection error. They are deterministic agent failures, not infrastructure (outside the pre-registered infrastructure categories), and are counted as failures. Sensitivity: excluding them would not change the decision. The measurement record gained `correctness.context_overflow`. |
+| 04:53 | `p4-stageD-de` (D-v1 and E-v1 under l1, 16 attempts) started; the API validation (`p4-api-validation`, under frozen-v6) is queued after it. |
+| 05:00 | Final-branch tree prepared and tested in a scratch export: 71 offline tests, 8 Docker integration tests, `local_agent.test_portable` (9) and `verify --offline` all pass. A plumbing dry run (temporary index, no checkout) built the expected commit. |
