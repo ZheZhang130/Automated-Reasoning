@@ -1,0 +1,246 @@
+{
+ "batch": "p4-stageD-agent",
+ "cohort": "pass4-dev8 stage D: l1-selfplan-v1 vs frozen-v6 with A and C (consumed tasks)",
+ "frozen": false,
+ "outer_timeout": 1000,
+ "attempts": [
+  {
+   "task_id": "lcb-atcoder-abc400_b",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-abc400_b",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc400_b.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc400_b",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc400_b.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc393_d.plan-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc393_d.plan-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "frozen-v6",
+   "variant": "frozen-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc393_d.plan-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-arc195_a",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-arc195_a.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-arc195_a",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-arc195_a",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-arc195_a.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc398_d",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "frozen-v6",
+   "variant": "frozen-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-abc398_d",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "frozen-v6",
+   "variant": "frozen-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc398_d.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc398_d",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-abc398_d",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc398_d.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc398_d",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc398_d.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc388_e",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "frozen-v6",
+   "variant": "frozen-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc388_e.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc388_e",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-abc388_e",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc388_e.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc388_e",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc388_e.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc388_e",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "frozen-v6",
+   "variant": "frozen-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-abc389_f",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc389_f.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc389_f",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc389_f.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc389_f",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "frozen-v6",
+   "variant": "frozen-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc389_f.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc389_f",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-abc397_f",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-abc397_f",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc397_f.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-abc397_f",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-abc397_f.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "frozen-v6",
+   "variant": "frozen-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-arc192_a.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "A",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109"
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-arc192_a.plan-v1.codex.json"
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "C",
+   "seed": 2109,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2109",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-arc192_a.plan-v1.codex.json"
+  }
+ ]
+}

@@ -1,0 +1,208 @@
+{
+ "batch": "p4-stageD-de",
+ "cohort": "pass4-dev8 stage D: D-active and E under l1-selfplan-v1 (consumed tasks)",
+ "frozen": false,
+ "outer_timeout": 1000,
+ "attempts": [
+  {
+   "task_id": "lcb-atcoder-abc400_b",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-active-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-v3/lcb-atcoder-abc400_b.contract-v3.codex.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc400_b",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "diagnosis": {
+    "provider": "codex",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-active-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-v3/lcb-atcoder-abc393_d.contract-v3.codex.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc393_d",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "diagnosis": {
+    "provider": "codex",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-arc195_a",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-active-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-v3/lcb-atcoder-arc195_a.contract-v3.codex.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-arc195_a",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "diagnosis": {
+    "provider": "codex",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc398_d",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-active-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-v3/lcb-atcoder-abc398_d.contract-v3.codex.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc398_d",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "diagnosis": {
+    "provider": "codex",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc388_e",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-active-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-v3/lcb-atcoder-abc388_e.contract-v3.codex.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc388_e",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "diagnosis": {
+    "provider": "codex",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc389_f",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-active-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-v3/lcb-atcoder-abc389_f.contract-v3.codex.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc389_f",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "diagnosis": {
+    "provider": "codex",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc397_f",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-active-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-v3/lcb-atcoder-abc397_f.contract-v3.codex.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-abc397_f",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "diagnosis": {
+    "provider": "codex",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-active-s2108",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-v3/lcb-atcoder-arc192_a.contract-v3.codex.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "l1-selfplan-v1",
+   "variant": "l1-s2108",
+   "diagnosis": {
+    "provider": "codex",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300
+   }
+  }
+ ]
+}

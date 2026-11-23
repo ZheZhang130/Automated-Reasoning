@@ -1,0 +1,596 @@
+{
+ "reference": "frozen-v6",
+ "agents": {
+  "frozen-v6": {
+   "paired_attempts": 8,
+   "totals": {
+    "hidden_pass": 1,
+    "program": 4,
+    "first_response_truncated": 6,
+    "truncated_responses": 17,
+    "exact_repeats": 5,
+    "rewrites_of_failed_candidate": 7,
+    "actions": 35,
+    "repairs": 7,
+    "format_errors": 17,
+    "public_tests": 12,
+    "public_pass": 3,
+    "local_output_tokens_total": 77008,
+    "prompt_tokens": 106551,
+    "eval_seconds": 730.1,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 850.4
+   },
+   "reference_totals": {
+    "hidden_pass": 1,
+    "program": 4,
+    "first_response_truncated": 6,
+    "truncated_responses": 17,
+    "exact_repeats": 5,
+    "rewrites_of_failed_candidate": 7,
+    "actions": 35,
+    "repairs": 7,
+    "format_errors": 17,
+    "public_tests": 12,
+    "public_pass": 3,
+    "local_output_tokens_total": 77008,
+    "prompt_tokens": 106551,
+    "eval_seconds": 730.1,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 850.4
+   },
+   "gains": [],
+   "losses": [],
+   "net": 0,
+   "output_token_ratio": 1.0,
+   "wall_ratio": 1.0,
+   "criteria": {
+    "1_net_plus2_max1_loss": false,
+    "2_no_more_no_program": true,
+    "3_keeps_abc400_b": true,
+    "4_cost_within_2x": true
+   },
+   "qualifies": false,
+   "per_task": {
+    "abc388_e/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc389_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc393_d/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 9,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "repair_limit",
+     "reference_exit": "repair_limit"
+    },
+    "abc397_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc398_d/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 36,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "abc400_b/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "pass",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "arc192_a/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "arc195_a/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 39,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    }
+   }
+  },
+  "l1-selfplan-v1": {
+   "paired_attempts": 8,
+   "totals": {
+    "hidden_pass": 4,
+    "program": 6,
+    "first_response_truncated": 4,
+    "truncated_responses": 10,
+    "exact_repeats": 1,
+    "rewrites_of_failed_candidate": 8,
+    "actions": 35,
+    "repairs": 1,
+    "format_errors": 10,
+    "public_tests": 14,
+    "public_pass": 5,
+    "local_output_tokens_total": 81681,
+    "prompt_tokens": 338056,
+    "eval_seconds": 532.47,
+    "self_plan_eval_seconds": 251.43,
+    "wall_seconds": 923.8
+   },
+   "reference_totals": {
+    "hidden_pass": 1,
+    "program": 4,
+    "first_response_truncated": 6,
+    "truncated_responses": 17,
+    "exact_repeats": 5,
+    "rewrites_of_failed_candidate": 7,
+    "actions": 35,
+    "repairs": 7,
+    "format_errors": 17,
+    "public_tests": 12,
+    "public_pass": 3,
+    "local_output_tokens_total": 77008,
+    "prompt_tokens": 106551,
+    "eval_seconds": 730.1,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 850.4
+   },
+   "gains": [
+    "abc393_d",
+    "abc398_d",
+    "arc195_a"
+   ],
+   "losses": [],
+   "net": 3,
+   "output_token_ratio": 1.061,
+   "wall_ratio": 1.086,
+   "criteria": {
+    "1_net_plus2_max1_loss": true,
+    "2_no_more_no_program": true,
+    "3_keeps_abc400_b": true,
+    "4_cost_within_2x": true
+   },
+   "qualifies": true,
+   "per_task": {
+    "abc388_e/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 31,
+     "reference_hidden": "missing_submission",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "agent_error"
+    },
+    "abc389_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc393_d/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "repair_limit"
+    },
+    "abc397_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc398_d/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "abc400_b/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "pass",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "arc192_a/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 14,
+     "reference_hidden": "missing_submission",
+     "program": true,
+     "exit": "action_limit",
+     "reference_exit": "agent_error"
+    },
+    "arc195_a/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    }
+   }
+  },
+  "l2-think-8k-v1": {
+   "paired_attempts": 8,
+   "totals": {
+    "hidden_pass": 1,
+    "program": 3,
+    "first_response_truncated": 5,
+    "truncated_responses": 17,
+    "exact_repeats": 1,
+    "rewrites_of_failed_candidate": 0,
+    "actions": 14,
+    "repairs": 1,
+    "format_errors": 19,
+    "public_tests": 4,
+    "public_pass": 3,
+    "local_output_tokens_total": 163566,
+    "prompt_tokens": 40190,
+    "eval_seconds": 1567.06,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 1687.61
+   },
+   "reference_totals": {
+    "hidden_pass": 1,
+    "program": 4,
+    "first_response_truncated": 6,
+    "truncated_responses": 17,
+    "exact_repeats": 5,
+    "rewrites_of_failed_candidate": 7,
+    "actions": 35,
+    "repairs": 7,
+    "format_errors": 17,
+    "public_tests": 12,
+    "public_pass": 3,
+    "local_output_tokens_total": 77008,
+    "prompt_tokens": 106551,
+    "eval_seconds": 730.1,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 850.4
+   },
+   "gains": [],
+   "losses": [],
+   "net": 0,
+   "output_token_ratio": 2.124,
+   "wall_ratio": 1.984,
+   "criteria": {
+    "1_net_plus2_max1_loss": false,
+    "2_no_more_no_program": false,
+    "3_keeps_abc400_b": true,
+    "4_cost_within_2x": false
+   },
+   "qualifies": false,
+   "per_task": {
+    "abc388_e/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 31,
+     "reference_hidden": "missing_submission",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "agent_error"
+    },
+    "abc389_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc393_d/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "candidate_failure",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "repair_limit"
+    },
+    "abc397_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc398_d/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 36,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "abc400_b/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "pass",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "arc192_a/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "arc195_a/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "candidate_failure",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "submitted"
+    }
+   }
+  },
+  "l3-out-8k-v1": {
+   "paired_attempts": 8,
+   "totals": {
+    "hidden_pass": 2,
+    "program": 4,
+    "first_response_truncated": 6,
+    "truncated_responses": 15,
+    "exact_repeats": 5,
+    "rewrites_of_failed_candidate": 6,
+    "actions": 33,
+    "repairs": 7,
+    "format_errors": 15,
+    "public_tests": 11,
+    "public_pass": 4,
+    "local_output_tokens_total": 133555,
+    "prompt_tokens": 100277,
+    "eval_seconds": 1276.13,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 1392.58
+   },
+   "reference_totals": {
+    "hidden_pass": 1,
+    "program": 4,
+    "first_response_truncated": 6,
+    "truncated_responses": 17,
+    "exact_repeats": 5,
+    "rewrites_of_failed_candidate": 7,
+    "actions": 35,
+    "repairs": 7,
+    "format_errors": 17,
+    "public_tests": 12,
+    "public_pass": 3,
+    "local_output_tokens_total": 77008,
+    "prompt_tokens": 106551,
+    "eval_seconds": 730.1,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 850.4
+   },
+   "gains": [
+    "abc393_d"
+   ],
+   "losses": [],
+   "net": 1,
+   "output_token_ratio": 1.734,
+   "wall_ratio": 1.638,
+   "criteria": {
+    "1_net_plus2_max1_loss": false,
+    "2_no_more_no_program": true,
+    "3_keeps_abc400_b": true,
+    "4_cost_within_2x": true
+   },
+   "qualifies": false,
+   "per_task": {
+    "abc388_e/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc389_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc393_d/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "repair_limit"
+    },
+    "abc397_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc398_d/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 36,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "abc400_b/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "pass",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "arc192_a/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "arc195_a/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 39,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    }
+   }
+  },
+  "l4-receipt-v1": {
+   "paired_attempts": 8,
+   "totals": {
+    "hidden_pass": 1,
+    "program": 4,
+    "first_response_truncated": 6,
+    "truncated_responses": 17,
+    "exact_repeats": 0,
+    "rewrites_of_failed_candidate": 0,
+    "actions": 28,
+    "repairs": 8,
+    "format_errors": 17,
+    "public_tests": 12,
+    "public_pass": 2,
+    "local_output_tokens_total": 76488,
+    "prompt_tokens": 81526,
+    "eval_seconds": 726.68,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 842.9
+   },
+   "reference_totals": {
+    "hidden_pass": 1,
+    "program": 4,
+    "first_response_truncated": 6,
+    "truncated_responses": 17,
+    "exact_repeats": 5,
+    "rewrites_of_failed_candidate": 7,
+    "actions": 35,
+    "repairs": 7,
+    "format_errors": 17,
+    "public_tests": 12,
+    "public_pass": 3,
+    "local_output_tokens_total": 77008,
+    "prompt_tokens": 106551,
+    "eval_seconds": 730.1,
+    "self_plan_eval_seconds": 0,
+    "wall_seconds": 850.4
+   },
+   "gains": [],
+   "losses": [],
+   "net": 0,
+   "output_token_ratio": 0.993,
+   "wall_ratio": 0.991,
+   "criteria": {
+    "1_net_plus2_max1_loss": false,
+    "2_no_more_no_program": true,
+    "3_keeps_abc400_b": true,
+    "4_cost_within_2x": true
+   },
+   "qualifies": false,
+   "per_task": {
+    "abc388_e/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc389_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc393_d/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 9,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "repair_limit",
+     "reference_exit": "repair_limit"
+    },
+    "abc397_f/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "abc398_d/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 36,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "abc400_b/s2108": {
+     "hidden": "pass",
+     "hidden_passed": 40,
+     "reference_hidden": "pass",
+     "program": true,
+     "exit": "submitted",
+     "reference_exit": "submitted"
+    },
+    "arc192_a/s2108": {
+     "hidden": "missing_submission",
+     "hidden_passed": null,
+     "reference_hidden": "missing_submission",
+     "program": false,
+     "exit": "agent_error",
+     "reference_exit": "agent_error"
+    },
+    "arc195_a/s2108": {
+     "hidden": "candidate_failure",
+     "hidden_passed": 37,
+     "reference_hidden": "candidate_failure",
+     "program": true,
+     "exit": "repair_limit",
+     "reference_exit": "submitted"
+    }
+   }
+  }
+ }
+}

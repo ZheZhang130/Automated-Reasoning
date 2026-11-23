@@ -83,3 +83,32 @@ the packet's candidate hash equals the historical one.
 diagnosis-v2 replaces diagnosis-v1 only if, on the reproduced states, it reaches more hidden passes than **both**
 diagnosis-v1 and the neutral message, by at least 2 states, and harms no state that v1 rescues. A diagnosis benefit
 is claimed only where the neutral message does not achieve the same.
+
+## Screening outcome and stage D pre-registration (written after screening, before stage D ran)
+
+**Screening result.** `l1-selfplan-v1` is the only configuration meeting all four criteria: 4/8 against 1/8, +3
+net (abc393_d, abc398_d, arc195_a), 0 losses, 2 no-program runs against 4, and 1.06× output tokens and 1.09× wall
+time. `l2`, `l3` and `l4` do not qualify. It becomes the **candidate**.
+
+**Stage D** (`p4-stageD-agent`, 8 development tasks):
+
+* A-l1 at seed 2109.
+* C-l1 at seeds 2108 and 2109.
+* The missing frozen cells: A-frozen at 2109 for abc398_d and abc388_e; C-frozen at 2109 for abc393_d, abc398_d
+  and abc388_e.
+* Two fresh C-frozen determinism spot checks at 2108 (abc389_f, arc192_a).
+
+Every other frozen cell is a historical run with the identical artifact; the frozen agent was verified to
+reproduce historical runs byte for byte.
+
+**`l1-selfplan-v1` is recommended as the primary shared agent only if all of these hold:**
+
+1. **Seed 2109, A:** l1 net ≥ +1 over frozen, with at most 1 loss (the direction replicates).
+2. **Both seeds pooled (16 A pairs):** net ≥ +3, and no more no-program runs than frozen.
+3. **C (16 pairs):** C-l1 net ≥ −1 against C-frozen (the improved agent does not materially harm the strongest
+   guided condition).
+4. **Cost (pooled A):** local output tokens and wall time at most 1.5× frozen.
+
+**Otherwise** `frozen-v6` remains primary and l1 is documented as the alternative. Either way, adopting l1 changes
+the shared agent for every condition. It breaks historical comparability with passes 1–3 and is flagged for team
+approval.
