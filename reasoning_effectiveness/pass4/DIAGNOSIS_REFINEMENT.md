@@ -124,6 +124,8 @@ Pass-2 and pass-3 integration tests cover all of this, and they pass again in pa
     words and v2's local-fix framing discouraged, as anticipated in §1.
   * Its diagnoses are shorter (125–164 words against 171–244) and just as fast (7–24 s).
   * On abc390_f the agent truncated three times right after the v2 message and ended without acting on it.
+  * On abc395_f at 2109 the v2 run entered a repeat loop and its context overflowed 16K, so it ended without a
+    correct program (`context_overflow`, counted as a failure; see `BOTTLENECK_AUDIT.md` §7).
 * **Single samples.** Codex diagnoses are not seeded. Each state has one v1 sample (historical) and one v2 sample,
   so a one-state difference between v1 and v2 is within sampling noise. The neutral-versus-diagnosis difference
   (2 against 5–6, with 2 harms) is the robust finding.

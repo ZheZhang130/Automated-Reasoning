@@ -142,3 +142,24 @@ The failure types are separated on the 8 development tasks (plan in `PREREGISTRA
 | Wrong program? | hidden failure with a program; repair behaviour (L4) |
 
 Results are in `LOCAL_AGENT_EXPERIMENTS.md` §5.
+
+## 7. Correction from the pass-4 runs: context exhaustion does occur
+
+§5 found context never binding in the 217 runs of passes 1–3 (largest prompt 13,825 tokens). The pass-4 runs found
+**4 runs whose prompt reached the 16K window**:
+
+* 3 C runs under the self-plan configuration, where the frontier plan, the self-plan and a long history add up;
+* 1 E run under the original agent: the diagnosis-v2 probe at abc395_f, seed 2109, in a repeat loop of identical
+  1,076-token responses.
+
+**What happens at the limit.** The prompt for the next request was about 15.4–16.1K tokens, and Ollama 0.40.17
+logged `chat prompt error … connection forcibly closed`. The frozen runtime has no history truncation, so
+LiteLLM raises `APIConnectionError` and the runner records `infra_error`.
+
+**Why it matters.** These failures are deterministic: the same seed reproduces the same context. They are agent
+failures, not infrastructure, and rerunning them as "infrastructure" would hide a real cost. The measurement record
+therefore derives `correctness.context_overflow` and excludes such runs from `infrastructure_failure`.
+
+**Recommendation for the final study** (team decision): count a context overflow as a failed attempt, report it
+separately, and keep the frozen 16K context. A configuration that adds context (such as `l1`) needs a larger window,
+validated as its own change.
