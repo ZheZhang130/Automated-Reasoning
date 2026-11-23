@@ -10,6 +10,7 @@ import re
 from pathlib import Path
 
 from .agent_config import AGENT_CONFIGS
+from .contract_checks import MODES as CHECK_MODES
 from .common import CODER, CONDITIONS, DYNAMIC, read_json
 
 FROZEN_PROMPTS = {'C': 'plan-v1', 'D': 'contract-v1'}
@@ -50,6 +51,11 @@ def validate_plan(plan):
         seen.setdefault(name, index)
         if item.get('agent') is not None and item['agent'] not in AGENT_CONFIGS:
             problems.append(f"{where}: unknown shared-agent configuration {item['agent']!r}")
+        if item.get('contract_checks'):
+            if condition != 'D':
+                problems.append(f'{where}: contract_checks (D-active) apply to condition D only')
+            elif item['contract_checks'].get('mode', 'active') not in CHECK_MODES:
+                problems.append(f"{where}: unknown contract-check mode {item['contract_checks'].get('mode')!r}")
         if item.get('test_hooks') and (frozen or (item.get('coder') or {}).get('provider') != 'scripted'):
             problems.append(f'{where}: test_hooks are only allowed with a scripted coder outside frozen plans')
         if 'seed' in item and (not isinstance(item['seed'], int) or isinstance(item['seed'], bool)):

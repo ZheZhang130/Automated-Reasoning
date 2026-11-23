@@ -14,7 +14,7 @@ from pathlib import Path
 
 from .common import (ACTIONS, CODER, CONDITIONS, DYNAMIC, MODEL, PROFILE, REPAIRS, REPO, SECONDS, SEED, append_jsonl,
                      host_identity, read_json, sha256_bytes, sha256_file, settings, study_root, utc_now, write_json)
-from . import agent_config, backend, diagnosis, frontier_coder, guidance
+from . import agent_config, backend, contract_checks, diagnosis, frontier_coder, guidance
 from .tasks import load_statement
 
 EXIT_STATUS = {'Submitted': 'submitted', 'ActionLimit': 'action_limit', 'LimitsExceeded': 'action_limit',
@@ -102,6 +102,22 @@ def run_attempt(spec):
                                             'completion_tokens': usage.get('completion_tokens'),
                                             'cost_usd': raw.get('cost_usd')}]
             record['frontier_generation_seconds'] = raw.get('latency_seconds')
+        checker = None
+        if spec.get('contract_checks'):
+            if kind != 'contract':
+                raise ValueError('contract_checks (D-active) apply to condition D only')
+            mode = spec['contract_checks'].get('mode', 'active')
+            parsed = contract_checks.parse_checks(raw['text'])
+            public_cases = read_json(study / 'bundles' / task_id / 'public_tests.json')
+            accepted, labelled = contract_checks.validate(parsed, public_cases)
+            checker = contract_checks.ContractChecker(accepted, mode)
+            record['contract_checks'] = {'mode': mode, 'parsed': len(parsed), 'accepted': len(accepted),
+                                         'labels': labelled, 'module_sha256': sha256_file(Path(contract_checks.__file__))}
+            if mode == 'inputs-only':
+                # Control: the agent never sees the contract text or its expected outputs, only its own program's
+                # output on the contract's inputs. The first message is A's frozen '{{task}}'.
+                guidance_text = template = None
+                record['guidance']['contract_text_injected'] = False
         runtime = backend.frozen_runtime(host)
         base, adapter = backend.host_base_function(runtime, host)
         judge = backend.judge_client(study, 'public')
@@ -138,7 +154,8 @@ def run_attempt(spec):
             receipts = agent_config.Receipts(ACTIONS)
         agent_cls, env_cls = backend.make_classes(runtime, guidance_text=guidance_text, template=template, judge=judge,
                                                   task_id=task_id, attempts=attempts, aci=spec.get('aci'),
-                                                  diagnosis=controller, self_planner=planner, receipts=receipts)
+                                                  diagnosis=controller, self_planner=planner, receipts=receipts,
+                                                  checker=checker)
         model_name = MODEL
         if spec.get('coder') and condition not in CODER and spec['coder'].get('provider') != 'scripted':
             # Only B substitutes a frontier coder; the scripted coder is a labelled test device for any condition.
@@ -172,7 +189,13 @@ def run_attempt(spec):
         agent_dir = out / ('agent-' + spec['run_id'])
         from local_agent.platform_support import model_lock
         coding_started = time.monotonic()
-        with model_lock(host):
+        # A substituted coder (B's frontier model, or a scripted test coder) uses no local model, so it does not take
+        # the GPU lock and may run beside a local batch; ``gpu_lock`` records which case applied. Every attempt that
+        # runs the local model keeps the lock.
+        no_local_model = spec.get('coder') is not None
+        record['gpu_lock'] = not no_local_model
+        import contextlib
+        with (contextlib.nullcontext() if no_local_model else model_lock(host)):
             frozen = run(study / 'bundles' / task_id, agent_dir, model_name, PROFILE, seed=record['seed'],
                          actions=budgets['actions'], repairs=budgets['repairs'], seconds=budgets['seconds'])
         record['local_coding_seconds'] = round(time.monotonic() - coding_started, 2)
@@ -182,6 +205,9 @@ def run_attempt(spec):
                 record['local_coding_seconds'] - (planner.record.get('wall_seconds') or 0), 2)
         if receipts is not None:
             record['receipts'] = {'count': receipts.count, 'versions': len(receipts.versions)}
+        if checker is not None:
+            record['contract_checks_summary'] = checker.summary()
+            record['contract_checks']['runs'] = checker.runs
         if controller is not None:
             trajectory = agent_dir / 'trajectory.json'
             messages = read_json(trajectory)['messages'] if trajectory.exists() else []
@@ -207,7 +233,7 @@ def run_attempt(spec):
         record['frozen_error'] = {k: frozen.get(k) for k in ('error_type', 'error') if frozen.get(k)}
         record['n_actions'], record['n_repairs'] = frozen.get('actions', 0), frozen.get('repairs', 0)
         if kind is not None:
-            record['guidance']['delivered'] = frozen.get('model_calls', 0) > 0
+            record['guidance']['delivered'] = frozen.get('model_calls', 0) > 0 and guidance_text is not None
         record['usage']['coding'] = coding_usage(agent_dir) if not spec.get('coder') else \
             [{'prompt_tokens': (c.get('usage') or {}).get('prompt_tokens'),
               'completion_tokens': (c.get('usage') or {}).get('completion_tokens'),

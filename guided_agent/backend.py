@@ -78,7 +78,7 @@ SYNTAX_SCRIPT = '\n'.join([
 
 
 def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, aci=None, diagnosis=None,
-                 self_planner=None, receipts=None):
+                 self_planner=None, receipts=None, checker=None):
     """``diagnosis`` (Condition E) is a ``diagnosis.DiagnosisController`` or None (A/B/C/D: unchanged classes).
 
     ``self_planner`` (agent configuration l1) and ``receipts`` (l4) are shared-agent mechanisms from
@@ -198,6 +198,12 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 aci_flag = 'retest_unchanged'
             else:
                 aci_flag = None
+            contract_entry = None
+            if checker is not None and source:
+                # D-active: the same judged bytes are still /workspace/solution.py; run the contract's checks on them
+                # inside this sandbox. Part of the same public-test action (no extra action or model call).
+                contract_entry, text = checker.run(v3.docker, self.container_id)
+                report = report + '\n\n' + text
             if receipts is not None:
                 note = receipts.after_test(actions=self.budget.actions, digest=digest, result=result)
                 report = note + '\n' + report
@@ -207,7 +213,7 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                                   'recognized_public_test': True, 'public_status': result['status'],
                                   'judge': {k: result.get(k) for k in ('status', 'passed', 'total', 'verdict_counts',
                                                                        'code_sha256', 'tests_sha256', 'judge_version')},
-                                  'aci_note': aci_flag, **output})
+                                  'aci_note': aci_flag, 'contract_checks': contract_entry, **output})
             self.budget.tested(digest, returncode)
             if diagnosis is not None:
                 diagnosis.on_public_result(result=result, source=source, digest=digest, budget=self.budget,
