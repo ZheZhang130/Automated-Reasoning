@@ -115,7 +115,7 @@ benchmark-safe validation.
 | abc397_f | no program | no program | no program | **✓** | no program |
 | arc192_a | no program | ✗ | no program | no program | no program |
 | **Hidden passes** | 1 | 3 | 2 | **3** | 3 |
-| Runs without a program | 5 | 4 | 4 | 4 | 5 |
+| Runs without a program | 4 | 3 | 4 | 3 | 4 |
 
 **Check execution** (active arm; `evidence/dactive-analysis.json`).
 
