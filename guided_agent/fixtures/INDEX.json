@@ -1,0 +1,86 @@
+[
+  {
+    "role": "a_success",
+    "run_id": "ext-s2109-lcb-atcoder-arc194_e-A-a91faec7",
+    "condition": "A",
+    "exit_status": "submitted",
+    "hidden": "pass"
+  },
+  {
+    "role": "a_selfplan_success",
+    "run_id": "p4-screen-s2108-lcb-atcoder-abc393_d-A-l1-s2108-990dc075",
+    "condition": "A",
+    "exit_status": "submitted",
+    "hidden": "pass"
+  },
+  {
+    "role": "c_success",
+    "run_id": "ext-s2108-lcb-atcoder-abc389_f-C-934b06ea",
+    "condition": "C",
+    "exit_status": "submitted",
+    "hidden": "pass"
+  },
+  {
+    "role": "d_passive_contract",
+    "run_id": "ext-s2108-lcb-atcoder-abc388_f-D-ead9a0d6",
+    "condition": "D",
+    "exit_status": "submitted",
+    "hidden": "candidate_failure"
+  },
+  {
+    "role": "e_triggered_repair",
+    "run_id": "ext-s2108-lcb-atcoder-abc395_f-E-7e764482",
+    "condition": "E",
+    "exit_status": "submitted",
+    "hidden": "pass"
+  },
+  {
+    "role": "e_untriggered",
+    "run_id": "ext-s2108-lcb-atcoder-abc389_f-E-c59dfbe8",
+    "condition": "E",
+    "exit_status": "agent_error",
+    "hidden": "missing_submission"
+  },
+  {
+    "role": "b_frontier_api_repair",
+    "run_id": "p4-b-api-lcb-atcoder-arc190_c-B-api-20059d16",
+    "condition": "B",
+    "exit_status": "submitted",
+    "hidden": "candidate_failure"
+  },
+  {
+    "role": "a_truncated_no_program",
+    "run_id": "ext-s2108-lcb-atcoder-abc389_f-A-c527ada7",
+    "condition": "A",
+    "exit_status": "agent_error",
+    "hidden": "missing_submission"
+  },
+  {
+    "role": "e_provider_error",
+    "run_id": "provider-failure-1795425464733",
+    "condition": "E",
+    "exit_status": "submitted",
+    "hidden": null
+  },
+  {
+    "role": "a_action_budget",
+    "run_id": "p4-action-limit-1795415545831",
+    "condition": "A",
+    "exit_status": "action_limit",
+    "hidden": null
+  },
+  {
+    "role": "infrastructure_error",
+    "run_id": "infra-1795425468423",
+    "condition": "E",
+    "exit_status": "infra_error",
+    "hidden": null
+  },
+  {
+    "role": "c_context_overflow",
+    "run_id": "p4-stageD-agent-lcb-atcoder-arc192_a-C-l1-s2108-bc86a7c8",
+    "condition": "C",
+    "exit_status": "infra_error",
+    "hidden": "candidate_failure"
+  }
+]

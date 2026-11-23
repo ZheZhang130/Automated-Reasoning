@@ -1,0 +1,227 @@
+{
+  "run_id": "ext-s2108-lcb-atcoder-abc389_f-C-934b06ea",
+  "task_id": "lcb-atcoder-abc389_f",
+  "condition": "C",
+  "repeat": 1,
+  "coding_model": "qwen3.5:9b",
+  "guidance_model": "gpt-6.2-sol",
+  "exit_status": "submitted",
+  "raw_exit_status": "Submitted",
+  "submission_sha256": "477a14b183d97d9c4ffb5542164980698e0fc9c31eef9282006b233700a0455b",
+  "n_actions": 7,
+  "n_repairs": 2,
+  "guidance": {
+    "kind": "plan",
+    "triggered": true,
+    "delivered": true,
+    "error": null
+  },
+  "usage": {
+    "coding": [
+      {
+        "prompt_tokens": 2103,
+        "completion_tokens": 1654,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 15.693498
+      },
+      {
+        "prompt_tokens": 3775,
+        "completion_tokens": 18,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 0.165532
+      },
+      {
+        "prompt_tokens": 3889,
+        "completion_tokens": 1079,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 10.337298
+      },
+      {
+        "prompt_tokens": 4986,
+        "completion_tokens": 18,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 0.166508
+      },
+      {
+        "prompt_tokens": 5100,
+        "completion_tokens": 1014,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 9.778713
+      },
+      {
+        "prompt_tokens": 6132,
+        "completion_tokens": 18,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 0.171802
+      },
+      {
+        "prompt_tokens": 6178,
+        "completion_tokens": 19,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 0.177023
+      }
+    ],
+    "guidance": [
+      {
+        "prompt_tokens": null,
+        "completion_tokens": null,
+        "cost_usd": null
+      }
+    ]
+  },
+  "wall_seconds": 58.64,
+  "host": "<HOST>",
+  "backend": "guided_agent/frozen-runtime",
+  "profile": "heredoc-v6-16k-common",
+  "seed": 2108,
+  "budgets": {
+    "actions": 20,
+    "repairs": 3,
+    "seconds": 600,
+    "request_seconds": 180
+  },
+  "injection": "inject-v1",
+  "aci": {},
+  "host_identity": {
+    "system": "Windows",
+    "release": "10",
+    "machine": "AMD64",
+    "node": "<HOST>",
+    "python": "3.11.9"
+  },
+  "host_backend": "windows",
+  "started_utc": "2026-11-22T19:49:10Z",
+  "cohort": "pass-3 extended benchmark (fresh, outcome-blind, hard-heavy)",
+  "batch": "ext-s2108",
+  "source": {
+    "commit": "46158530a0f99c41bb4508fb2ee585f8ccdc4259",
+    "dirty": false,
+    "dirty_paths": [],
+    "guided_agent_sha256": {
+      "__init__.py": "4f73e22afc142221d4e49b2e7fcb87160e3bc2a94e84e384408e445ee3cef320",
+      "__main__.py": "8a493371fdb9cb90c134cc3a3d48bd7d79920a8dd078cd3b03e39afce5cc6c07",
+      "analysis.py": "7df35f208f78c6c69951087ba2518a1a49dda2c5912fee29a749000aeda162e7",
+      "backend.py": "160e73c86f2397e08309f685e077c2e62185bd779d0ae0a0da22200ff30e00b5",
+      "checkers.py": "2a9377b221baed6e432fa7883f68bc0885d4cd9443cfb039fcfd9fcb8cae9ebc",
+      "common.py": "ad91f6f46a5bbda2da0f33b799067f5e22a35e11e65c09b785caa0d99ba26a88",
+      "diagnosis.py": "ab18d257898ac3f0a373d78c08d9dc7ac2bba3f6c3aa28d2912218f6f934cd74",
+      "frontier_coder.py": "6548ef8585e89638e4940c3a63914842bc313209aa5956b427648b9a899b32dc",
+      "guidance.py": "8ec7a9821fbf3ff9fa9e6cb5272926c4d5d752f337c1e4a385f497578cb4e06d",
+      "integrity.py": "2a24f5c0eefc1892e13f5ea4fe7601225b6b637fd9d1342d2e3c12a113026342",
+      "output_semantics.py": "5224678d5cc8143005b26016fbb1f21e209416fa090cc7abfedb909adb47cff7",
+      "privacy.py": "75fd18267621c8690a18dc59cc042f242b60cf0e0376f2be2d7f4eaf4ab131fa",
+      "providers.py": "dfbacbbbad1a74e1f14c4137f6aac0010692a95feb2d8139c5e6b62a7caa5d13",
+      "report.py": "36d09b239f3b95c124af7d9a95f9321762eec3429286b7263ddb01c5b78c017b",
+      "runner.py": "3676d446812e667a3dca5fdc883bd7ccaa8a14c1a0e370146dc8fdad24df5ec5",
+      "selection.py": "7858d07fc4b4931ba4b5948d3a91111bbb763b6672abc5e8f119a7b85186be3d",
+      "selection_pass2.py": "345f1e36d0075c259d1ea355c49d7215dbe2207afba2e337a844b224162521d1",
+      "selection_pass3.py": "5bbe5cbe92d5ce64f3fe9d26373456a0a8e48e220cfe3e9f7a5e2f0ed691f5dd",
+      "tasks.py": "b425704a26788465b5003539962c126b2bcb94f4e8146c83e904e8d688fcc4e8",
+      "test_guided.py": "ffeab7c7b5a17cf56fe0ecf02c089c7c9fbbeb7f9431711f66d3245485fde89c",
+      "test_pass2.py": "dc424d46a269b5ae31d9a36b6db84b4c2b34cfa7144f239140f11907c1fc6698",
+      "test_pass3.py": "2e44cb52d4d9b202629e9a1af2ccc460ca61691628c4f1427567a707352d2dc5"
+    }
+  },
+  "frozen_verification": {
+    "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "frozen_files_verified": 38,
+    "packages": {
+      "mini-swe-agent": "2.4.6",
+      "litellm": "1.81.16",
+      "pydantic": "2.12.5",
+      "pydantic_core": "2.41.5",
+      "numpy": "2.4.6"
+    },
+    "selection_sha256": "8a8ac7f58adbf9073d87ab902cfe32d47fc2a38fea3d4d812086a70c2da0ceb6",
+    "image_ids": {
+      "python:3.11-slim-bookworm": "sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39",
+      "csc2108-lcb-judge:v2": "sha256:00bc9f2a442ad4ec2cc98692313b3e6bab8752a765d724a8a79e47431b0c02ab"
+    },
+    "system_prompt_sha256": "291f0f67e2dd461f777f9798a08c99de14d987b99acb6bc4e5f213162590ef05",
+    "ollama": {
+      "version": "0.40.17"
+    }
+  },
+  "guidance_provenance": {
+    "provider": "codex-replay",
+    "label": "ext-codex",
+    "prompt_id": "plan-v1",
+    "requested_model": "gpt-6.2-sol",
+    "observed_model": null,
+    "reasoning_effort": "medium",
+    "statement_sha256": "ddfacd29a5dae065a560d5ed7af42686dda79450356ec5901c7e519d28fd6b5e",
+    "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+    "latency_seconds": null,
+    "cost_usd": null,
+    "word_count": 483,
+    "soft_code_flags": [],
+    "created_utc": "2026-11-22T19:19:31Z",
+    "artifact": "E:\\CSC2108Local\\reasoning-effectiveness-pass3\\guidance\\ext-codex\\lcb-atcoder-abc389_f.plan-v1.codex.json",
+    "artifact_sha256": "d2a7296e5f94c795805d7d3b74519e32b2560e0c68f053a95ec72d18ab65c905"
+  },
+  "frontier_generation_seconds": null,
+  "judge_public": {
+    "judge_version": "0.2.1",
+    "suite": "public",
+    "tests_sha256": "2f073a5fb093f79dda663ab75758d46523e57afe77009cf388bbbac505d08e7f",
+    "fingerprint": "077af3264f5c19372203b428d6d97c89edc214eb3b51a8cc2b1dc551f61fda3b",
+    "image_id": "sha256:c8e6c9b6aeed7dd368d682c21d147041b46d93d7d7f627802eb21d9e1682c992"
+  },
+  "host_adapter": "windows-frozen-globals",
+  "local_coding_seconds": 57.95,
+  "frozen_result": "E:\\CSC2108Local\\reasoning-effectiveness-pass3\\runs\\ext-s2108\\lcb-atcoder-abc389_f-C\\agent-ext-s2108-lcb-atcoder-abc389_f-C-934b06ea\\result.json",
+  "frozen_error": {},
+  "format_errors": 0,
+  "model_calls": 7,
+  "token_telemetry_complete": true,
+  "sampler_wire_verified": true,
+  "inference": {
+    "calls_captured": 7,
+    "prompt_eval_count": 32163,
+    "eval_count": 3820,
+    "prompt_eval_duration": 1589206000,
+    "eval_duration": 36490374000,
+    "load_duration": 3209974000,
+    "done_reasons": [
+      "stop",
+      "stop",
+      "stop",
+      "stop",
+      "stop",
+      "stop",
+      "stop"
+    ],
+    "maximum_prompt_tokens": 6178
+  },
+  "context_events": [],
+  "elapsed_seconds": 57.75,
+  "model_identity": {
+    "details": {
+      "parent_model": "model.gguf",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "9.0B",
+      "quantization_level": "Q4_K_M",
+      "runner": "llamacpp"
+    },
+    "modified_at": "2026-11-16T11:07:43.5612433-05:00"
+  },
+  "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "agent_image": "sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39",
+  "gpu": {
+    "before": "2350 MiB, 1 %\n",
+    "after": "9376 MiB, 0 %\n"
+  },
+  "finished_utc": "2026-11-22T19:50:09Z",
+  "public_attempts": 3
+}

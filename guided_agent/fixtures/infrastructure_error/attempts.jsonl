@@ -1,0 +1,1 @@
+{"seq": 1, "time": "2026-11-23T09:17:50Z", "result": {"suite": "public", "task_id": "fixture-sum-signed", "status": "infrastructure_error", "error": "simulated", "report": "PUBLIC TESTS: infrastructure error (simulated)"}, "delivered": false, "action": 2, "source_sha256": "4e41da64b744ddc5b9e1988e2ad150e805699f65f15e47f6e0242af40a83bc0c"}

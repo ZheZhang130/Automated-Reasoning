@@ -1,16 +1,16 @@
-"""Batch-plan validation (pass 3): refuse a plan that could mislabel, collide or silently change a run.
+"""Batch-plan validation: refuse a plan that could mislabel, collide or silently change a run.
 
 ``validate_plan`` returns a list of problems; ``cmd_batch`` refuses to start when it is non-empty. A plan with
-``"frozen": true`` (a benchmark cohort) must additionally use only the frozen primary configuration:
-no ACI options, no smoke budgets, C = plan-v1 + inject-v1, D = contract-v1 + inject-v1,
-E = diagnosis-v1 + deliver-v1, and an explicit integer seed on every attempt.
+``"frozen": true`` (a benchmark cohort) must additionally use only the primary configuration: the primary shared
+agent (``agent_config.PRIMARY_AGENT``, named explicitly; B: the plain interface), no smoke budgets or test hooks,
+C = plan-v1 + inject-v1, D = contract-v1 + inject-v1, E = diagnosis-v1 + deliver-v1, and an explicit integer seed on
+every attempt.
 """
 import json
 import re
 from pathlib import Path
 
-from .agent_config import AGENT_CONFIGS
-from .contract_checks import MODES as CHECK_MODES
+from .agent_config import AGENT_CONFIGS, PRIMARY_AGENT
 from .common import CODER, CONDITIONS, DYNAMIC, read_json
 
 FROZEN_PROMPTS = {'C': 'plan-v1', 'D': 'contract-v1'}
@@ -51,11 +51,6 @@ def validate_plan(plan):
         seen.setdefault(name, index)
         if item.get('agent') is not None and item['agent'] not in AGENT_CONFIGS:
             problems.append(f"{where}: unknown shared-agent configuration {item['agent']!r}")
-        if item.get('contract_checks'):
-            if condition != 'D':
-                problems.append(f'{where}: contract_checks (D-active) apply to condition D only')
-            elif item['contract_checks'].get('mode', 'active') not in CHECK_MODES:
-                problems.append(f"{where}: unknown contract-check mode {item['contract_checks'].get('mode')!r}")
         if item.get('test_hooks') and (frozen or (item.get('coder') or {}).get('provider') != 'scripted'):
             problems.append(f'{where}: test_hooks are only allowed with a scripted coder outside frozen plans')
         if 'seed' in item and (not isinstance(item['seed'], int) or isinstance(item['seed'], bool)):
@@ -83,8 +78,17 @@ def validate_plan(plan):
 
 def _frozen_problems(where, condition, item):
     problems = []
-    if item.get('aci'):
-        problems.append(f'{where}: ACI options are not allowed in a frozen benchmark plan')
+    agent = item.get('agent')
+    if condition in CODER:
+        if agent not in (None, 'frozen-v6'):
+            problems.append(f'{where}: B uses the plain shared interface (agent frozen-v6 or none), not {agent}')
+    elif agent is None:
+        problems.append(f'{where}: a frozen plan needs an explicit agent (the primary shared agent is {PRIMARY_AGENT})')
+    elif agent != PRIMARY_AGENT:
+        problems.append(f'{where}: frozen plans use the primary shared agent {PRIMARY_AGENT}, not {agent}')
+    for key in ('aci', 'contract_checks', 'test_hooks'):
+        if item.get(key):
+            problems.append(f'{where}: {key} is not part of the final configuration')
     if item.get('smoke'):
         problems.append(f'{where}: smoke budgets are not allowed in a frozen benchmark plan')
     if not isinstance(item.get('seed'), int):

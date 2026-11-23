@@ -1,0 +1,10 @@
+{
+  "status": "missing_submission",
+  "verdict": "MISSING",
+  "run_id": "ext-s2108-lcb-atcoder-abc389_f-E-c59dfbe8",
+  "task_id": "lcb-atcoder-abc389_f",
+  "condition": "E",
+  "suite": "hidden",
+  "judge_tests_sha256": "1d6bf0df9413900a7ffae96358a76710aa20cc0d37eee414cdaedbef71ef0218",
+  "evaluated_utc": "2026-11-22T21:08:46Z"
+}

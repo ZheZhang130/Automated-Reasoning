@@ -1,9 +1,0 @@
-{
-  "source": "E:\\CSC2108Local\\optimization\\diagnostics\\context-allocation.json",
-  "source_sha256": "32787d9ec513b92521191534ddf715c889a60124b48297d44bfc1a73100249e3",
-  "probes": 3,
-  "output_tokens": 3,
-  "load_prefill_generation_seconds": 10.7446001,
-  "inference_hours": 0.002984611138888889,
-  "note": "One-token allocation checks are stored outside result.json and excluded from the runtime-record budget gate. Itemize separately in the final total; no changed inference/configuration/evidence."
-}

@@ -1,7 +1,0 @@
-{"batch": "dev-e", "cohort": "pass-2 development: E-v1 live Codex diagnosis (original agent, seed 2108)",
- "attempts": [
-  {"task_id": "lcb-atcoder-arc195_a", "condition": "E", "diagnosis": {"provider": "codex", "timeout": 300}},
-  {"task_id": "lcb-atcoder-abc393_d", "condition": "E", "diagnosis": {"provider": "codex", "timeout": 300}},
-  {"task_id": "lcb-atcoder-abc390_c", "condition": "E", "diagnosis": {"provider": "codex", "timeout": 300}},
-  {"task_id": "lcb-atcoder-arc192_a", "condition": "E", "diagnosis": {"provider": "codex", "timeout": 300}}
- ]}

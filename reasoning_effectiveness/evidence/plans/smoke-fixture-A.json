@@ -1,2 +1,0 @@
-{"batch": "smoke-fixture", "cohort": "smoke", "outer_timeout": 960,
- "attempts": [{"task_id": "fixture-sum-signed", "condition": "A"}]}

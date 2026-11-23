@@ -1,4 +1,4 @@
-"""Pass-3 reliability tests: judge semantics, selection, plan integrity, E evidence, ledger, B, privacy, CLI.
+"""Reliability tests (pass 3, kept for the final branch): judge semantics, selection, plan integrity, E evidence, ledger, B, privacy, CLI.
 
 All offline (no model, Docker, network or credentials):   python -m unittest guided_agent.test_pass3
 """
@@ -12,10 +12,10 @@ import unittest
 from pathlib import Path
 from unittest import mock
 
-from guided_agent import checkers, diagnosis, integrity, output_semantics, privacy, selection_pass3
+from guided_agent import agent_config, checkers, diagnosis, integrity, output_semantics, privacy, selection_pass3
 from guided_agent.common import REPO, sha256_bytes, write_json
 
-REVIEW = REPO / 'reasoning_effectiveness/pass3/evidence/output-semantics-review.json'
+REVIEW = REPO / 'guided_agent/data/output-semantics-review.json'
 
 
 class JudgeSemantics(unittest.TestCase):
@@ -149,11 +149,16 @@ class PlanIntegrity(unittest.TestCase):
 
     def test_valid_frozen_plan_passes(self):
         with tempfile.TemporaryDirectory() as tmp:
+            agent = agent_config.PRIMARY_AGENT
             plan = {'batch': 'b1', 'frozen': True, 'attempts': [
-                {'task_id': 't', 'condition': 'A', 'seed': 2108},
-                {'task_id': 't', 'condition': 'C', 'seed': 2108, 'guidance': self.artifact(tmp, 't', 'plan-v1')},
-                {'task_id': 't', 'condition': 'D', 'seed': 2108, 'guidance': self.artifact(tmp, 't', 'contract-v1')},
-                {'task_id': 't', 'condition': 'E', 'seed': 2108, 'diagnosis': {'provider': 'codex'}}]}
+                {'task_id': 't', 'condition': 'A', 'seed': 2108, 'agent': agent},
+                {'task_id': 't', 'condition': 'B', 'seed': 2108, 'coder': {'provider': 'api', 'max_requests': 28,
+                                                                            'purpose': 'p'}},
+                {'task_id': 't', 'condition': 'C', 'seed': 2108, 'agent': agent,
+                 'guidance': self.artifact(tmp, 't', 'plan-v1')},
+                {'task_id': 't', 'condition': 'D', 'seed': 2108, 'agent': agent,
+                 'guidance': self.artifact(tmp, 't', 'contract-v1')},
+                {'task_id': 't', 'condition': 'E', 'seed': 2108, 'agent': agent, 'diagnosis': {'provider': 'codex'}}]}
             self.assertEqual(integrity.validate_plan(plan), [])
 
     def test_mislabelled_colliding_or_unfrozen_attempts_are_refused(self):
@@ -171,7 +176,8 @@ class PlanIntegrity(unittest.TestCase):
                 {'task_id': 't', 'condition': 'Z'}]}
             text = '\n'.join(integrity.validate_plan(bad))
         for fragment in ('duplicates attempt 0', 'must not substitute the coding model', 'must not carry upfront guidance',
-                         'only condition E may carry', 'contract-v3 is not contract-v1', 'ACI options', 'smoke budgets',
+                         'only condition E may carry', 'contract-v3 is not contract-v1', 'aci is not part of the final configuration', 'smoke budgets',
+                         'needs an explicit agent',
                          'explicit integer seed', 'needs a coder', "unknown condition 'Z'"):
             self.assertIn(fragment, text)
 
@@ -296,11 +302,11 @@ class Privacy(unittest.TestCase):
         self.assertEqual(privacy.scan(json.dumps(clean), self.IDENTITY), [])
         self.assertTrue(privacy.scan(json.dumps(record), self.IDENTITY))
 
-    def test_committed_pass3_files_have_no_home_paths_or_secrets(self):
-        root = REPO / 'reasoning_effectiveness/pass3'
+    def test_committed_docs_and_fixtures_have_no_home_paths_or_secrets(self):
+        paths = sorted(REPO.glob('*.md')) + sorted(REPO.glob('*.json')) + sorted((REPO / 'guided_agent/fixtures').rglob('*'))
         findings = []
-        for path in sorted(root.rglob('*')):
-            if path.is_file() and path.suffix in ('.json', '.md', '.txt', '.py', '.jsonl'):
+        for path in paths:
+            if path.is_file() and path.suffix in ('.json', '.md', '.txt', '.jsonl'):
                 text = path.read_text(encoding='utf-8', errors='replace')
                 findings += [(str(path.relative_to(REPO)), f) for f in privacy.scan(text, identity={})]
         self.assertEqual(findings, [])
@@ -311,10 +317,10 @@ class Cli(unittest.TestCase):
         proc = subprocess.run([sys.executable, '-m', 'guided_agent', '--help'], cwd=REPO, capture_output=True, text=True,
                               timeout=120)
         self.assertEqual(proc.returncode, 0, proc.stderr)
-        for command in ('prepare-tasks', 'author', 'batch', 'evaluate', 'summarize'):
+        for command in ('prepare-tasks', 'author', 'batch', 'evaluate', 'summarize', 'measure', 'schema'):
             self.assertIn(command, proc.stdout)
         import guided_agent.analysis  # noqa: F401
-        import guided_agent.report  # noqa: F401
+        import guided_agent.measurement  # noqa: F401
 
 
 if __name__ == '__main__':

@@ -1,6 +1,0 @@
-mb2 lcb-atcoder-abc396_e-A: special_judge: 24 pass, 16 fail
-mb2 lcb-atcoder-abc396_e-C: special_judge: 40 pass, 0 fail
-mb2 lcb-atcoder-abc396_e-D: special_judge: 40 pass, 0 fail
-mb2-aci2 lcb-atcoder-abc396_e-A-aci2: special_judge: 27 pass, 13 fail
-mb2-aci2 lcb-atcoder-abc396_e-C-aci2: special_judge: 40 pass, 0 fail
-mb2-aci2 lcb-atcoder-abc396_e-D-aci2: special_judge: 40 pass, 0 fail

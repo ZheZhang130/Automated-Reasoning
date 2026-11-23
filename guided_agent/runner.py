@@ -14,7 +14,7 @@ from pathlib import Path
 
 from .common import (ACTIONS, CODER, CONDITIONS, DYNAMIC, MODEL, PROFILE, REPAIRS, REPO, SECONDS, SEED, append_jsonl,
                      host_identity, read_json, sha256_bytes, sha256_file, settings, study_root, utc_now, write_json)
-from . import agent_config, backend, contract_checks, diagnosis, frontier_coder, guidance, measurement
+from . import agent_config, backend, diagnosis, frontier_coder, guidance, measurement
 from .tasks import load_statement
 
 EXIT_STATUS = {'Submitted': 'submitted', 'ActionLimit': 'action_limit', 'LimitsExceeded': 'action_limit',
@@ -69,17 +69,17 @@ def run_attempt(spec):
               'usage': {'coding': [], 'guidance': []}, 'wall_seconds': None, 'host': host_identity()['node'],
               'backend': 'guided_agent/frozen-runtime', 'profile': PROFILE, 'seed': spec.get('seed', SEED),
               'budgets': {'actions': ACTIONS, 'repairs': REPAIRS, 'seconds': SECONDS, 'request_seconds': 180},
-              'injection': spec.get('injection', 'inject-v1') if kind else None, 'aci': spec.get('aci') or {},
+              'injection': spec.get('injection', 'inject-v1') if kind else None,
               'host_identity': host_identity(), 'host_backend': host.backend, 'started_utc': started_utc,
               'cohort': spec.get('cohort'), 'batch': spec.get('batch'), 'source': source_state()}
-    guidance_text = template = controller = planner = receipts = None
+    guidance_text = template = controller = planner = None
     attempts = []
     started = time.monotonic()
     try:
         agent_id, agent_def, agent_sha = agent_config.resolve(spec.get('agent'))
         record['agent_config'] = {'id': agent_id, 'definition': agent_def, 'definition_sha256': agent_sha,
                                   'module_sha256': sha256_file(Path(agent_config.__file__))}
-        if condition in CODER and (agent_def.get('profile') or agent_def.get('self_plan')):
+        if condition in CODER and agent_def.get('self_plan'):
             raise ValueError(f'Agent configuration {agent_id} changes the local model; it does not apply to B')
         from local_agent.cli import verify
         record['frozen_verification'] = {k: v for k, v in verify(settings=host).items()
@@ -102,22 +102,6 @@ def run_attempt(spec):
                                             'completion_tokens': usage.get('completion_tokens'),
                                             'cost_usd': raw.get('cost_usd')}]
             record['frontier_generation_seconds'] = raw.get('latency_seconds')
-        checker = None
-        if spec.get('contract_checks'):
-            if kind != 'contract':
-                raise ValueError('contract_checks (D-active) apply to condition D only')
-            mode = spec['contract_checks'].get('mode', 'active')
-            parsed = contract_checks.parse_checks(raw['text'])
-            public_cases = read_json(study / 'bundles' / task_id / 'public_tests.json')
-            accepted, labelled = contract_checks.validate(parsed, public_cases)
-            checker = contract_checks.ContractChecker(accepted, mode)
-            record['contract_checks'] = {'mode': mode, 'parsed': len(parsed), 'accepted': len(accepted),
-                                         'labels': labelled, 'module_sha256': sha256_file(Path(contract_checks.__file__))}
-            if mode == 'inputs-only':
-                # Control: the agent never sees the contract text or its expected outputs, only its own program's
-                # output on the contract's inputs. The first message is A's frozen '{{task}}'.
-                guidance_text = template = None
-                record['guidance']['contract_text_injected'] = False
         runtime = backend.frozen_runtime(host)
         base, adapter = backend.host_base_function(runtime, host)
         judge = backend.judge_client(study, 'public')
@@ -133,15 +117,13 @@ def run_attempt(spec):
                 out_dir=out / 'diagnosis', prompt_id=dspec.get('prompt_id', 'diagnosis-v1'),
                 delivery=dspec.get('delivery', 'deliver-v1'), max_wait_seconds=dspec.get('timeout', 300))
             record['guidance'] = {'kind': 'diagnosis', 'triggered': False, 'delivered': False, 'error': None}
-        extra = backend.aci_globals(spec.get('aci'))
-        if agent_def.get('profile'):
-            extra['read'] = agent_config.profile_reader(base.__globals__['read'], agent_def['profile'])
+        extra = {}
         if agent_def.get('self_plan'):
             sp = agent_def['self_plan']
             hooks = spec.get('test_hooks') or {}
             if hooks and (spec.get('coder') or {}).get('provider') != 'scripted':
                 raise ValueError('test_hooks are only allowed with a scripted coder')
-            profile = dict(base.__globals__['read'](base.__globals__['ROOT'] / 'profiles.json')[PROFILE]) |                 (agent_def.get('profile') or {})
+            profile = dict(base.__globals__['read'](base.__globals__['ROOT'] / 'profiles.json')[PROFILE])
             fixed = hooks.get('self_plan_text')
             planner = agent_config.SelfPlanner(
                 statement=statement, seed=record['seed'], profile=profile, endpoint=base.__globals__['ENDPOINT'],
@@ -150,12 +132,9 @@ def run_attempt(spec):
                 caller=(lambda body: {'message': {'content': fixed}, 'done_reason': 'stop', 'eval_count': 1})
                 if fixed is not None else None)
             template = agent_config.self_plan_template(template if kind else None, kind)
-        if agent_def.get('receipt'):
-            receipts = agent_config.Receipts(ACTIONS)
         agent_cls, env_cls = backend.make_classes(runtime, guidance_text=guidance_text, template=template, judge=judge,
-                                                  task_id=task_id, attempts=attempts, aci=spec.get('aci'),
-                                                  diagnosis=controller, self_planner=planner, receipts=receipts,
-                                                  checker=checker)
+                                                  task_id=task_id, attempts=attempts, diagnosis=controller,
+                                                  self_planner=planner)
         model_name = MODEL
         if spec.get('coder') and condition not in CODER and spec['coder'].get('provider') != 'scripted':
             # Only B substitutes a frontier coder; the scripted coder is a labelled test device for any condition.
@@ -178,8 +157,6 @@ def run_attempt(spec):
             budgets |= {k: spec['smoke'][k] for k in ('actions', 'seconds') if k in spec['smoke']}
             record['budgets'] |= budgets
             record['smoke'] = spec['smoke']
-        if receipts is not None:
-            receipts.action_limit = budgets['actions']
         if planner is not None:
             # After the frozen GPU-exclusivity check, before the agent is constructed (scripted tests: after the no-op).
             extra['exclusive_gpu'] = agent_config.exclusive_then_plan(
@@ -203,11 +180,6 @@ def run_attempt(spec):
             record['self_plan'] = {k: v for k, v in planner.record.items()}
             record['local_coding_seconds_excluding_self_plan'] = round(
                 record['local_coding_seconds'] - (planner.record.get('wall_seconds') or 0), 2)
-        if receipts is not None:
-            record['receipts'] = {'count': receipts.count, 'versions': len(receipts.versions)}
-        if checker is not None:
-            record['contract_checks_summary'] = checker.summary()
-            record['contract_checks']['runs'] = checker.runs
         if controller is not None:
             trajectory = agent_dir / 'trajectory.json'
             messages = read_json(trajectory)['messages'] if trajectory.exists() else []
@@ -233,7 +205,7 @@ def run_attempt(spec):
         record['frozen_error'] = {k: frozen.get(k) for k in ('error_type', 'error') if frozen.get(k)}
         record['n_actions'], record['n_repairs'] = frozen.get('actions', 0), frozen.get('repairs', 0)
         if kind is not None:
-            record['guidance']['delivered'] = frozen.get('model_calls', 0) > 0 and guidance_text is not None
+            record['guidance']['delivered'] = frozen.get('model_calls', 0) > 0
         record['usage']['coding'] = coding_usage(agent_dir) if not spec.get('coder') else \
             [{'prompt_tokens': (c.get('usage') or {}).get('prompt_tokens'),
               'completion_tokens': (c.get('usage') or {}).get('completion_tokens'),

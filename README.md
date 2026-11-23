@@ -1,54 +1,63 @@
-# CSC2108 local coding agent
+# CSC2108: Frontier-guided local coding agents (final agent implementation)
 
-Run a local Qwen model through **mini-SWE-agent → LiteLLM → Ollama** to solve a trusted public Python task bundle. The agent writes code, runs public tests and repairs files inside an isolated Docker workspace; it returns the candidate, trajectory and usage records. Official evaluation is a separate command that never feeds private results back to the agent.
+**Research question.** When and how should a stronger (frontier) model provide reasoning to a small local coding
+agent?
 
-Use **`python -m local_agent`** on `feat/csc2108-local-agent-final`. Windows retains the original frozen execution path; macOS selects a portable host adapter. Both use Qwen3.5 9B Q4_K_M and `heredoc-v6-16k-common`: 16K context, 4K response limit, nonthinking mode, 20 actions, 3 repair groups and 600 seconds. [Exact configuration/interface](local_agent/README.md).
+**What this branch contains.** One shared coding agent and five experimental conditions, ready for the final
+benchmark:
 
-## Start here
+| | Condition | Frontier role |
+| --- | --- | --- |
+| A | local only | none |
+| B | frontier only | the frontier model is the coder, through the same agent interface |
+| C | frontier plan | one upfront natural-language plan |
+| D | frontier contract | one upfront behavioural contract (see `CONDITIONS.md` for the selected variant) |
+| E | frontier diagnosis | one diagnosis at the first failed public test, delivered into the same session |
 
-**On a Mac, follow the [macOS setup guide](docs/MACOS.md)** to create a Python environment, provision native Docker images/evaluator, start local Ollama and run the supplied checks/example. A physical Mac/Metal inference validation remains necessary before collecting research results; development checks cover Windows, POSIX paths/locks and real Docker execution with a fake model server.
+**Shared components.**
 
-The commands below are for the **already provisioned Windows/E: machine** and remain unchanged. Cloning alone installs no packages, models, images, bundles or evaluator. Start Docker Desktop and Ollama Desktop; leave endpoint 11434 free of loaded models.
+* **Local agent:** mini-SWE-agent 2.4.6 with Qwen3.5 9B (Q4_K_M) on Ollama; see `CONDITIONS.md` for the selected
+  shared-agent configuration.
+* **Frontier:** `gpt-6.2-sol` via the OpenAI API. Isolated Codex replay is the free development substitute.
+* **Judge:** the team judge `csc2108-judge:0.2.1` (LiveCodeBench exact comparison).
 
-From this checkout's root in PowerShell:
+## Quick start
 
-```powershell
-. .\local_baseline\env.ps1
-& .\local_baseline\start_ollama.ps1
-$pythonExe = 'E:\CSC2108Local\.venv\Scripts\python.exe'
-& $pythonExe -m local_agent verify
-
-# Runs the existing synthetic public task. Choose a NEW output directory.
-& $pythonExe -m local_agent run `
-  --task E:\CSC2108Local\eval-v2\development-v5\public\dev-negative-squares `
-  --output E:\CSC2108Local\local-agent-runs\my-task-001 --seed 2108
+```bash
+export CSC2108_STUDY_ROOT=/path/outside/checkout/study LITELLM_LOCAL_MODEL_COST_MAP=True PYTHONIOENCODING=utf-8
+python -m local_agent verify                       # frozen agent identity (38 hashes, packages, model digest)
+python -m guided_agent prepare-fixture             # synthetic task; no LiveCodeBench data needed
+python -m guided_agent batch PLAN.json             # attempts (see HANDOFF_TO_PETER.md for plan examples)
+python -m guided_agent evaluate <study>/runs/<batch>
+python -m guided_agent measure  <study>/runs/<batch>
+python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4 local_agent.test_portable
 ```
 
-Read `<output>\result.json` for the candidate/trajectory paths, termination reason, timings and token usage. `Submitted` does not establish correctness: use the [separate evaluation command](local_agent/README.md#independent-evaluation) afterward if you have the matching official row. No command above downloads a model or changes dependencies; `run` performs inference.
+## Documents
 
-## Frontier guidance (conditions A–E) — integrated backend
-
-**Pass 2** adds three conditions on the same frozen agent and judge:
-
-* **E:** one frontier diagnosis of the first qualifying public-test failure, delivered into the *same running* mini-SWE-agent session.
-* **B:** the frontier model as the coding model, through the unchanged action protocol.
-* **contract-v3:** an experimental D prompt grounded in Endres et al. and Tufano et al.
-
-Start with [reasoning_effectiveness/pass2/FINAL_REPORT.md](reasoning_effectiveness/pass2/FINAL_REPORT.md). Then read [DIAGNOSIS_INTEGRATION.md](reasoning_effectiveness/pass2/DIAGNOSIS_INTEGRATION.md), [CONTRACT_RESEARCH.md](reasoning_effectiveness/pass2/CONTRACT_RESEARCH.md), [FRONTIER_ONLY.md](reasoning_effectiveness/pass2/FRONTIER_ONLY.md) and [PAPER_ALIGNMENT.md](reasoning_effectiveness/pass2/PAPER_ALIGNMENT.md).
-
-`python -m guided_agent` runs the **same frozen agent** for local-only (A), upfront frontier plan (C) and upfront behavioral contract (D). Guidance is generated once from the public statement, by isolated Codex replay or the direct OpenAI API. Public tests go through Peter's `judge-public`, and hidden scoring is a separate step. Start with [reasoning_effectiveness/FINAL_REPORT.md](reasoning_effectiveness/FINAL_REPORT.md) (results), [PORTABILITY.md](reasoning_effectiveness/PORTABILITY.md) (Windows/macOS commands), [BENCHMARK_READINESS.md](reasoning_effectiveness/BENCHMARK_READINESS.md) and [INTEGRATION_AUDIT.md](reasoning_effectiveness/INTEGRATION_AUDIT.md). The earlier `planning_frontier/plan_once.py` and `contract_frontier/run_contract.py` remain as the teammates' development runners; their prompts and replay classes are reused unchanged.
-
-## Find your way around
-
-| Need | Documentation |
+| File | For |
 | --- | --- |
-| Complete folder map, execution flow, Windows/Mac limits and future integration | [Project structure](docs/PROJECT_STRUCTURE.md) |
-| Native Mac installation, model serving, provisioning and smoke checks | [macOS guide](docs/MACOS.md) |
-| Task-bundle schema, exact settings, commands, outputs and exit codes | [Integration interface](local_agent/README.md) |
-| Which legacy files are active, test support or hash compatibility | [Dependency audit](local_agent/dependencies.md) |
-| Experimental conclusions | [Results summary](RESULTS_SUMMARY.md) |
-| Original reports, aggregate artifacts, archives and external E: data locations | [Evidence index](evidence/README.md) |
+| `HANDOFF_TO_PETER.md` | running the final evaluation: commands, boundaries, billing, resuming, fixtures |
+| `ARCHITECTURE.md` | how the shared agent and the conditions fit together |
+| `CONDITIONS.md` | one specification per condition: frontier calls, inputs, outputs, triggers, budgets |
+| `MEASUREMENT_SCHEMA.md` | every field of `measurement.json`: type, unit, nullability, source |
+| `FINALIZATION_MANIFEST.json` | commits, configuration IDs, prompt and source hashes, versions, test results |
 
-The three older source folders contain active dependencies as well as historical code. Read their role notes before using them: [local_baseline](local_baseline/README.md), [local_eval_v2](local_eval_v2/README.md), [local_optimization](local_optimization/README.md). Their legacy CLIs are not the team interface. Frozen files must stay at their recorded paths and bytes.
+## Layout
 
-`orchestration_pilot/` and `timeline/` belong to teammates and remain separate. Frontier planning/contracts are future integration work. Existing Windows results and frozen source files are preserved; portable measurements must be recorded separately because hardware and native image identities differ.
+| Path | Role |
+| --- | --- |
+| `guided_agent/` | the integrated A/B/C/D/E runner, providers, measurement, tests and fixtures |
+| `local_agent/` | host adapters (Windows frozen, portable macOS/Linux) and identity verification |
+| `local_eval_v2/`, `local_baseline/`, `local_optimization/` | the **frozen** original agent and its selection (hash-verified; do not edit) |
+| `judge/` | the team judge (public and hidden suites) |
+| `planning_frontier/`, `contract_frontier/` | the teammates' plan and contract prompts and replay classes (used unchanged) |
+| `orchestration/`, `timeline/`, `papers/` | teammates' material (unchanged) |
+| `docs/` | host setup (`MACOS.md`, `GUIDED_AGENT_PORTABILITY.md`) and project structure |
+| `evidence/local_eval_v2/benchmark_provenance.json` | the frozen system-prompt provenance read by `local_agent` tests (the rest of `evidence/` is on the development branch) |
+
+## History
+
+The full development history lives on `feat/csc2108-contract-diagnosis-pass2`: passes 1–4, every experiment,
+diagnostic script, intermediate report and alternative configuration. This branch keeps only what the final system
+needs; links inside the frozen historical folders (`local_*`) may point to reports that exist only there.

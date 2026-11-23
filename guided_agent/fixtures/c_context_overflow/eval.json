@@ -1,0 +1,19 @@
+{
+  "status": "candidate_failure",
+  "passed": 38,
+  "total": 40,
+  "verdict_counts": {
+    "AC": 38,
+    "WA": 2
+  },
+  "judge_version": "0.2.1",
+  "tests_sha256": "c39229b45f2735bd00c3081494e7c0ce42a47f9525d4637fc09ae0a82d704de1",
+  "code_sha256": "191aa4af774fbec04b3523a07cd2b0c4bf549ca7eb8c0586620c1b9e3d1d877d",
+  "error": null,
+  "run_id": "p4-stageD-agent-lcb-atcoder-arc192_a-C-l1-s2108-bc86a7c8",
+  "task_id": "lcb-atcoder-arc192_a",
+  "condition": "C",
+  "suite": "hidden",
+  "judge_tests_sha256": "412f4da2d06e197f8b29b128490846a65e63b8e4c1d766b066db4bfd064c8b41",
+  "evaluated_utc": "2026-11-23T09:52:51Z"
+}

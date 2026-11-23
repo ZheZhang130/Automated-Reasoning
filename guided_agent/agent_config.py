@@ -1,37 +1,34 @@
-"""Versioned shared-agent configurations (pass 4).
+"""Versioned shared-agent configurations.
 
-``frozen-v6`` is the original agent byte for byte: profile ``heredoc-v6-16k-common`` (16K context, 4,096 output
-tokens, thinking off, T=0.2, top_p 0.9, top_k 40, fixed seed), the frozen prompts and the frozen observation format.
+* ``frozen-v6``: the original agent byte for byte. Profile ``heredoc-v6-16k-common`` (16K context, 4,096 output
+  tokens, thinking off, T=0.2, top_p 0.9, top_k 40, fixed seed), the frozen prompts and observation format. It is
+  the historical reference of passes 1–3.
+* ``l1-selfplan-v1``: the frozen agent plus **one bounded local planning step** before the coding session. Qwen
+  itself answers the teammates' plan-v1 prompt, with the frozen sampler, seed and context, 4,096 tokens and no
+  thinking; for C and D it reads the frontier guidance too. Its text is added to the first user message. The call is
+  recorded separately (tokens, durations, truncation), and the coding deadline is moved back by its duration, so
+  every condition keeps the same 600-second coding budget.
 
-Every other configuration changes exactly ONE mechanism, through the same global-rebinding seam the conditions
-already use (``backend.bound_run``). No frozen file is edited, and the 38-file verification still runs. A
-configuration is a property of the shared agent: it must apply identically to A, C, D and E in any comparison.
-
-* ``profile``   overlays keys of the frozen profile (the profile dict is what the frozen ``run`` sends to Ollama,
-                so ``sampler_wire_verified`` checks the overlay on the wire);
-* ``self_plan`` one bounded local planning call before the coding session (same model, same sampler, the
-                teammates' plan-v1 planner prompt); its text is added to the first user message. Recorded
-                separately (tokens, durations, truncation) and never deducted from the coding budget;
-* ``receipt``   a one-line harness state receipt prepended to every observation: action count, whether the
-                command changed /workspace/solution.py (version number, diff size, syntax check inside the
-                sandbox) and whether this exact version was already tested.
+The configuration is a property of the shared agent: it applies identically to A, C, D and E in any comparison,
+and B (frontier coder) never uses it. ``PRIMARY_AGENT`` is what frozen benchmark plans must use: ``frozen-v6``.
+``l1-selfplan-v1`` is the documented alternative (pass 4: A 7/16 against 4/16 on development tasks, but C 12/16 against
+14/16, and its extra context can overflow the 16K window in long C sessions). Adopting it is a team decision; it
+would apply to every local condition and needs its own validation, probably with a larger context. The screening
+evidence and the alternatives that were not promoted (thinking, 8K output, state receipts) are on the development
+branch (``reasoning_effectiveness/pass4``).
 """
-import difflib
-import hashlib
 import json
 import time
 from pathlib import Path
 
-from .common import MODEL, PROFILE, sha256_text, utc_now, write_json
+from .common import MODEL, sha256_text, utc_now, write_json
 
 AGENT_CONFIGS = {
     'frozen-v6': {},
     'l1-selfplan-v1': {'self_plan': {'prompt_id': 'plan-v1', 'output_tokens': 4096, 'timeout': 180}},
-    'l2-think-8k-v1': {'profile': {'thinking': True, 'output_tokens': 8192, 'context': 32768}},
-    'l3-out-8k-v1': {'profile': {'output_tokens': 8192, 'context': 32768}},
-    'l4-receipt-v1': {'receipt': 'v1'},
 }
 DEFAULT_AGENT = 'frozen-v6'
+PRIMARY_AGENT = 'frozen-v6'
 
 SELF_PLAN_BLOCK = ('\n\n## Your own plan, written in a separate planning step\n'
                    'Before this session started, you (the same model) read the problem statement{also} and wrote the '
@@ -46,17 +43,6 @@ def resolve(agent_id):
         raise ValueError(f'Unknown shared-agent configuration {agent_id!r}')
     definition = AGENT_CONFIGS[agent_id]
     return agent_id, definition, sha256_text(json.dumps(definition, sort_keys=True))
-
-
-def profile_reader(original_read, overlay):
-    """Rebinds the frozen ``read`` so the frozen profile gets ``overlay``; every other file is read unchanged."""
-    def read(path):
-        value = original_read(path)
-        if overlay and Path(path).name == 'profiles.json':
-            value = dict(value)
-            value[PROFILE] = dict(value[PROFILE]) | overlay
-        return value
-    return read
 
 
 def self_plan_template(template, kind):
@@ -127,56 +113,3 @@ def exclusive_then_plan(original_exclusive, planner):
         original_exclusive()
         planner()
     return exclusive_gpu
-
-
-class Receipts:
-    """State receipts for ``l4-receipt-v1``. Pure bookkeeping on harness snapshots; never executes the candidate."""
-    def __init__(self, action_limit):
-        self.action_limit = action_limit
-        self.versions = {}      # sha256 -> version number (order of first appearance)
-        self.tested = {}        # sha256 -> (action, verdict text)
-        self.count = 0
-
-    def version(self, digest):
-        if digest not in self.versions:
-            self.versions[digest] = len(self.versions) + 1
-        return self.versions[digest]
-
-    def _head(self, actions):
-        return f'[harness] Action {actions}/{self.action_limit} done ({max(0, self.action_limit - actions)} left).'
-
-    def after_command(self, *, actions, before, after, syntax):
-        self.count += 1
-        head = self._head(actions)
-        if after is None:
-            return head + ' /workspace/solution.py does not exist yet.'
-        digest = hashlib.sha256(after).hexdigest()
-        known = digest in self.versions
-        number = self.version(digest)
-        lines = after.decode('utf-8', 'replace').splitlines()
-        if before == after:
-            text = f' /workspace/solution.py was not changed by this command (still version {number}, {len(lines)} lines).'
-        else:
-            old = (before or b'').decode('utf-8', 'replace').splitlines()
-            diff = list(difflib.unified_diff(old, lines, lineterm='', n=0))
-            added = sum(1 for d in diff if d.startswith('+') and not d.startswith('+++'))
-            removed = sum(1 for d in diff if d.startswith('-') and not d.startswith('---'))
-            text = (f' /workspace/solution.py changed: now version {number}, {len(lines)} lines '
-                    f'(+{added}/-{removed} lines).' + (' It is byte-identical to that earlier version.' if known else ''))
-            text += ' ' + syntax
-        status = self.tested.get(digest)
-        text += (f' Version {number} was already tested at action {status[0]}: {status[1]}.' if status
-                 else f' Version {number} has not been tested.')
-        return head + text
-
-    def after_test(self, *, actions, digest, result):
-        head = self._head(actions)
-        if digest is None:
-            return head + ' There was no /workspace/solution.py to test.'
-        number = self.version(digest)
-        if result.get('status') == 'pass':
-            verdict = 'it passed all public tests'
-        else:
-            verdict = f"it failed the public tests ({result.get('passed')} of {result.get('total')} cases passed)"
-        self.tested[digest] = (actions, verdict)
-        return head + f' Tested version {number}: {verdict}.'

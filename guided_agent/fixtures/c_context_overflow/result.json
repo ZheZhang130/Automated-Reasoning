@@ -1,0 +1,311 @@
+{
+  "run_id": "p4-stageD-agent-lcb-atcoder-arc192_a-C-l1-s2108-bc86a7c8",
+  "task_id": "lcb-atcoder-arc192_a",
+  "condition": "C",
+  "repeat": 1,
+  "coding_model": "qwen3.5:9b",
+  "guidance_model": "gpt-6.2-sol",
+  "exit_status": "infra_error",
+  "raw_exit_status": "InfrastructureError",
+  "submission_sha256": "191aa4af774fbec04b3523a07cd2b0c4bf549ca7eb8c0586620c1b9e3d1d877d",
+  "n_actions": 7,
+  "n_repairs": 1,
+  "guidance": {
+    "kind": "plan",
+    "triggered": true,
+    "delivered": true,
+    "error": null
+  },
+  "usage": {
+    "coding": [
+      {
+        "prompt_tokens": 6095,
+        "completion_tokens": 4096,
+        "cost_usd": null,
+        "done_reason": "length",
+        "eval_seconds": 39.671128
+      },
+      {
+        "prompt_tokens": 6169,
+        "completion_tokens": 4096,
+        "cost_usd": null,
+        "done_reason": "length",
+        "eval_seconds": 39.680037
+      },
+      {
+        "prompt_tokens": 6243,
+        "completion_tokens": 2678,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 25.85315
+      },
+      {
+        "prompt_tokens": 8939,
+        "completion_tokens": 18,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 0.168829
+      },
+      {
+        "prompt_tokens": 9023,
+        "completion_tokens": 1567,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 15.281332
+      },
+      {
+        "prompt_tokens": 10608,
+        "completion_tokens": 18,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 0.170624
+      },
+      {
+        "prompt_tokens": 10692,
+        "completion_tokens": 1567,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 15.414744
+      },
+      {
+        "prompt_tokens": 12277,
+        "completion_tokens": 1567,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 15.559068
+      },
+      {
+        "prompt_tokens": 13862,
+        "completion_tokens": 1567,
+        "cost_usd": null,
+        "done_reason": "stop",
+        "eval_seconds": 15.707662
+      }
+    ],
+    "guidance": [
+      {
+        "prompt_tokens": null,
+        "completion_tokens": null,
+        "cost_usd": null
+      }
+    ]
+  },
+  "wall_seconds": 254.5,
+  "host": "<HOST>",
+  "backend": "guided_agent/frozen-runtime",
+  "profile": "heredoc-v6-16k-common",
+  "seed": 2108,
+  "budgets": {
+    "actions": 20,
+    "repairs": 3,
+    "seconds": 600,
+    "request_seconds": 180
+  },
+  "injection": "inject-v1",
+  "aci": {},
+  "host_identity": {
+    "system": "Windows",
+    "release": "10",
+    "machine": "AMD64",
+    "node": "<HOST>",
+    "python": "3.11.9"
+  },
+  "host_backend": "windows",
+  "started_utc": "2026-11-23T09:46:30Z",
+  "cohort": "pass4-dev8 stage D: l1-selfplan-v1 vs frozen-v6 with A and C (consumed tasks)",
+  "batch": "p4-stageD-agent",
+  "source": {
+    "commit": "c1acf2fb98d316fd9c4e4a23bae82a96e6733fb8",
+    "dirty": false,
+    "dirty_paths": [],
+    "guided_agent_sha256": {
+      "__init__.py": "4f73e22afc142221d4e49b2e7fcb87160e3bc2a94e84e384408e445ee3cef320",
+      "__main__.py": "98754d7d7d73c28bfbda567a5d20986cb65afa39afd5e641f8367998a20de1f4",
+      "agent_config.py": "af8571a4e62bebbe865b9c957d314f569fb50d620191c9b301ec887fb24b2722",
+      "analysis.py": "7df35f208f78c6c69951087ba2518a1a49dda2c5912fee29a749000aeda162e7",
+      "backend.py": "756d4113a585ced5a099cedc774607a6b41acc40de058d42b323fb863001cf7f",
+      "checkers.py": "2a9377b221baed6e432fa7883f68bc0885d4cd9443cfb039fcfd9fcb8cae9ebc",
+      "common.py": "2d6b6f448639ca63b153ba91e744bfe5de6b39fe3f18bb63fa2b9bd7beed4071",
+      "contract_checks.py": "5d86799a9e77f6d2a09669aba86a0512a0fe38f484601c546ffbca3c470238cb",
+      "diagnosis.py": "50da04ad3b5fa8aeb53b3117e4a68145dace31e886787bcd2ce439c9ec9811fd",
+      "frontier_coder.py": "2d648a5be695a39c83ee438c2014e4772c766194edda99e180a680d6fc20e82f",
+      "guidance.py": "801bd0a5a7bf405ddd63196ff7da6575d42b001023f9191ea5a7e84e68a2d3f6",
+      "integrity.py": "d7e6da98fe6e2f61807a2b3455e56600726587eae43dba6445c19e22ce259d3f",
+      "measurement.py": "f582fb5f7b413bd0439b1bd236a686a8cf4e7076bab549180ce2f04f5e40b7c4",
+      "output_semantics.py": "5224678d5cc8143005b26016fbb1f21e209416fa090cc7abfedb909adb47cff7",
+      "privacy.py": "75fd18267621c8690a18dc59cc042f242b60cf0e0376f2be2d7f4eaf4ab131fa",
+      "providers.py": "87338ac25ff4ff69044e8614bf055a52144e633c00cc0d73be5e928d99f749c3",
+      "report.py": "36d09b239f3b95c124af7d9a95f9321762eec3429286b7263ddb01c5b78c017b",
+      "runner.py": "2cb9a4cfd428cdd4594d4a7fd6cbe7d69254cc28cda68be96eae80416fe1e1e2",
+      "selection.py": "7858d07fc4b4931ba4b5948d3a91111bbb763b6672abc5e8f119a7b85186be3d",
+      "selection_pass2.py": "345f1e36d0075c259d1ea355c49d7215dbe2207afba2e337a844b224162521d1",
+      "selection_pass3.py": "5bbe5cbe92d5ce64f3fe9d26373456a0a8e48e220cfe3e9f7a5e2f0ed691f5dd",
+      "tasks.py": "b425704a26788465b5003539962c126b2bcb94f4e8146c83e904e8d688fcc4e8",
+      "test_guided.py": "ffeab7c7b5a17cf56fe0ecf02c089c7c9fbbeb7f9431711f66d3245485fde89c",
+      "test_pass2.py": "dc424d46a269b5ae31d9a36b6db84b4c2b34cfa7144f239140f11907c1fc6698",
+      "test_pass3.py": "3ee27fcaf95ad6f6068686775974ce9436f04af5d1293cf3b959ac347892b4bb",
+      "test_pass4.py": "50a1bc0029cfd6e83149cecad23f54eff7d89d18b635aaca0e6ff1e9d05dbbed"
+    }
+  },
+  "agent_config": {
+    "id": "l1-selfplan-v1",
+    "definition": {
+      "self_plan": {
+        "prompt_id": "plan-v1",
+        "output_tokens": 4096,
+        "timeout": 180
+      }
+    },
+    "definition_sha256": "06b12c078be874b47a9ded3a26f438cd46a0eaf351dbe56e45d18f0203efa30c",
+    "module_sha256": "af8571a4e62bebbe865b9c957d314f569fb50d620191c9b301ec887fb24b2722"
+  },
+  "frozen_verification": {
+    "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "frozen_files_verified": 38,
+    "packages": {
+      "mini-swe-agent": "2.4.6",
+      "litellm": "1.81.16",
+      "pydantic": "2.12.5",
+      "pydantic_core": "2.41.5",
+      "numpy": "2.4.6"
+    },
+    "selection_sha256": "8a8ac7f58adbf9073d87ab902cfe32d47fc2a38fea3d4d812086a70c2da0ceb6",
+    "image_ids": {
+      "python:3.11-slim-bookworm": "sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39",
+      "csc2108-lcb-judge:v2": "sha256:00bc9f2a442ad4ec2cc98692313b3e6bab8752a765d724a8a79e47431b0c02ab"
+    },
+    "system_prompt_sha256": "291f0f67e2dd461f777f9798a08c99de14d987b99acb6bc4e5f213162590ef05",
+    "ollama": {
+      "version": "0.40.17"
+    }
+  },
+  "guidance_provenance": {
+    "provider": "codex-replay",
+    "label": "dev1-codex",
+    "prompt_id": "plan-v1",
+    "requested_model": "gpt-6.2-sol",
+    "observed_model": null,
+    "reasoning_effort": "medium",
+    "statement_sha256": "ea931e4ddfde81a3bc3c5037dd345f732179b5471b48227da6314ff9eb768792",
+    "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+    "latency_seconds": null,
+    "cost_usd": null,
+    "word_count": 629,
+    "soft_code_flags": [],
+    "created_utc": "2026-11-22T03:47:37Z",
+    "artifact": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-dev-plans/lcb-atcoder-arc192_a.plan-v1.codex.json",
+    "artifact_sha256": "b02b7ac3b2c6b7951b18baef02a690d6e84964b122336148f3bd42c5f934efac"
+  },
+  "frontier_generation_seconds": null,
+  "judge_public": {
+    "judge_version": "0.2.1",
+    "suite": "public",
+    "tests_sha256": "0589001b50628dea293c23f74a12306497b393d93156e9e2f252af9973287a8c",
+    "fingerprint": "3fb17446e40284f1f44eb5bd1ef7a91ad8f7cd46c751f0e7afc0ba9ae097bab1",
+    "image_id": "sha256:c8e6c9b6aeed7dd368d682c21d147041b46d93d7d7f627802eb21d9e1682c992"
+  },
+  "host_adapter": "windows-frozen-globals",
+  "gpu_lock": true,
+  "local_coding_seconds": 253.8,
+  "self_plan": {
+    "requested": true,
+    "requested_utc": "2026-11-23T09:46:31Z",
+    "request_sha256": "a64c5cbd4dbe10181a431c45dd4c401a0a30502bf25555f2ccf8211a88bc41e7",
+    "options": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0,
+      "num_ctx": 16384,
+      "num_predict": 4096,
+      "temperature": 0.2,
+      "seed": 2108
+    },
+    "error": null,
+    "wall_seconds": 42.41,
+    "done_reason": "length",
+    "truncated": true,
+    "prompt_tokens": 1762,
+    "completion_tokens": 4096,
+    "prompt_eval_seconds": 0.338406,
+    "eval_seconds": 38.824118,
+    "load_seconds": 3.1967918,
+    "text_sha256": "59de57ed552ebc3458985a9e655f8a189354c15ec5efbc221a6f5fa89a458546",
+    "words": 2386,
+    "delivered": true,
+    "deadline_extension_seconds": 42.41
+  },
+  "local_coding_seconds_excluding_self_plan": 211.39,
+  "frozen_result": "E:\\CSC2108Local\\reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-arc192_a-C-l1-s2108\\agent-p4-stageD-agent-lcb-atcoder-arc192_a-C-l1-s2108-bc86a7c8\\result.json",
+  "frozen_error": {
+    "error_type": "APIConnectionError",
+    "error": "litellm.APIConnectionError: Ollama_chatException - {\"error\":\"read tcp 127.0.0.1:53938-\\u003e127.0.0.1:65068: wsarecv: An existing connection was forcibly closed by the remote host.\"}"
+  },
+  "format_errors": 2,
+  "model_calls": 10,
+  "token_telemetry_complete": false,
+  "sampler_wire_verified": true,
+  "inference": {
+    "calls_captured": 9,
+    "prompt_eval_count": 83908,
+    "eval_count": 17174,
+    "prompt_eval_duration": 4001092000,
+    "eval_duration": 167506574000,
+    "load_duration": 49230900,
+    "done_reasons": [
+      "length",
+      "length",
+      "stop",
+      "stop",
+      "stop",
+      "stop",
+      "stop",
+      "stop",
+      "stop"
+    ],
+    "maximum_prompt_tokens": 13862
+  },
+  "context_events": [],
+  "elapsed_seconds": 253.625,
+  "profile_config": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "model_identity": {
+    "details": {
+      "parent_model": "model.gguf",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "9.0B",
+      "quantization_level": "Q4_K_M",
+      "runner": "llamacpp"
+    },
+    "modified_at": "2026-11-16T11:07:43.5612433-05:00"
+  },
+  "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "agent_image": "sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39",
+  "gpu": {
+    "before": "9308 MiB, 96 %\n",
+    "after": "9310 MiB, 0 %\n"
+  },
+  "finished_utc": "2026-11-23T09:50:45Z",
+  "public_attempts": 2
+}

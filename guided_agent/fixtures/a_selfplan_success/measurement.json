@@ -1,0 +1,145 @@
+{
+  "schema": "csc2108-run-measurement-v1",
+  "built_utc": "2026-11-23T09:55:56Z",
+  "identity": {
+    "run_id": "p4-screen-s2108-lcb-atcoder-abc393_d-A-l1-s2108-990dc075",
+    "task_id": "lcb-atcoder-abc393_d",
+    "condition": "A",
+    "seed": 2108,
+    "batch": "p4-screen-s2108",
+    "agent_config_id": "l1-selfplan-v1",
+    "agent_config_sha256": "06b12c078be874b47a9ded3a26f438cd46a0eaf351dbe56e45d18f0203efa30c",
+    "guidance_prompt_id": null,
+    "injection": null,
+    "diagnosis_prompt_id": null,
+    "diagnosis_delivery": null,
+    "source_commit": "f5907873be4f730d1e47ee8746f5ec5391c1d90e",
+    "source_dirty": false,
+    "coding_model": "qwen3.5:9b",
+    "coding_model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "profile": "heredoc-v6-16k-common",
+    "profile_config": {
+      "context": 16384,
+      "protocol": "text",
+      "thinking": false,
+      "output_tokens": 4096,
+      "temperature": 0.2,
+      "sampler": {
+        "top_k": 40,
+        "top_p": 0.9,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 64,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    },
+    "frontier_provider": null,
+    "frontier_requested_model": null,
+    "frontier_observed_model": null,
+    "dataset_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+    "judge_version": "0.2.1",
+    "judge_public_tests_sha256": "1450d32321a0c061d45eefd445c3ab54d438db911d34f1cf00c7ffff3d7760d3",
+    "guidance_artifact_sha256": null,
+    "frozen_files_verified": 38,
+    "sampler_wire_verified": true,
+    "host": {
+      "system": "Windows",
+      "release": "10",
+      "machine": "AMD64",
+      "node": "<HOST>",
+      "python": "3.11.9"
+    },
+    "host_backend": "windows"
+  },
+  "correctness": {
+    "candidate_produced": true,
+    "submitted": true,
+    "public_tests_invoked": 1,
+    "public_pass": true,
+    "final_public_status": "pass",
+    "public_runtime_error_cases": 0,
+    "hidden_status": "pass",
+    "hidden_passed": 40,
+    "hidden_total": 40,
+    "exit_status": "submitted",
+    "raw_exit_status": "Submitted",
+    "infrastructure_failure": false,
+    "setup_error": null,
+    "context_overflow": false
+  },
+  "local_inference": {
+    "calls": 3,
+    "prompt_tokens": 6502,
+    "completion_tokens": 271,
+    "reasoning_tokens": null,
+    "thinking_chars": 0,
+    "max_prompt_tokens": 2282,
+    "context_tokens_limit": 16384,
+    "output_tokens_limit": 4096,
+    "prompt_eval_seconds": 0.818396,
+    "eval_seconds": 2.607769,
+    "load_seconds": 0.01409,
+    "total_inference_seconds": 3.512937,
+    "truncated_responses": 0,
+    "format_errors": 0,
+    "self_plan": {
+      "delivered": true,
+      "truncated": false,
+      "prompt_tokens": 603,
+      "completion_tokens": 1189,
+      "prompt_eval_seconds": 0.17504,
+      "eval_seconds": 11.255505,
+      "load_seconds": 3.1933256,
+      "wall_seconds": 14.64,
+      "text_sha256": "e783508c93b16e43b02f1cee63d6ef9329b048a5b9b788483cbc8c8998ec2ed6",
+      "error": null
+    }
+  },
+  "agent": {
+    "actions": 3,
+    "repairs": 0,
+    "model_calls": 3,
+    "source_writes": 1,
+    "distinct_sources": 1,
+    "unchanged_writes": 0,
+    "rewrites_of_failed_candidate": 0,
+    "repeated_responses": 0,
+    "public_test_attempts": 1,
+    "seconds_to_first_valid_action": 2.807,
+    "seconds_to_first_executable_candidate": 5.736,
+    "seconds_to_first_public_test": 5.736
+  },
+  "frontier": {
+    "requests": [],
+    "n_requests": 0,
+    "cost_usd": 0.0,
+    "wait_seconds_during_run": 0.0,
+    "provider_failures": 0
+  },
+  "condition": {
+    "guidance": null,
+    "diagnosis": null
+  },
+  "time": {
+    "wall_seconds": 25.38,
+    "local_coding_seconds": 24.7,
+    "local_inference_seconds": 3.512937,
+    "frontier_seconds": 0.0,
+    "public_test_seconds": 0.297,
+    "sandbox_tool_seconds": 0.219,
+    "orchestration_seconds": 6.031,
+    "equal_opportunity_seconds": 10.06
+  },
+  "cost": {
+    "api_cost_usd_run": 0.0,
+    "api_cost_usd_upfront": null,
+    "gpu_memory_sample": {
+      "before": "9942 MiB, 95 %\n",
+      "after": "9962 MiB, 1 %\n"
+    },
+    "modelled_local_energy_kwh": null,
+    "modelled_local_cost_usd": null,
+    "modelling_assumptions": null
+  }
+}

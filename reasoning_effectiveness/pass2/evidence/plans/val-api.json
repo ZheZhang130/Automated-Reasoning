@@ -1,7 +1,0 @@
-{"batch": "val-api", "cohort": "pass-2 validation, direct-API comparison (paired with the frozen Codex runs; seed 2108)",
- "attempts": [
-  {"task_id": "lcb-atcoder-abc398_d", "condition": "E", "variant": "api",
-   "diagnosis": {"provider": "api", "timeout": 300, "purpose": "Condition E API validation: live diagnosis at the frozen abc398_d trigger state (paired with the Codex diagnosis)"}},
-  {"task_id": "lcb-atcoder-abc399_f", "condition": "D", "variant": "v3-api", "injection": "inject-v3-contract", "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass2/guidance/val-api/lcb-atcoder-abc399_f.contract-v3.api.json"},
-  {"task_id": "lcb-atcoder-abc388_e", "condition": "D", "variant": "v3-api", "injection": "inject-v3-contract", "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass2/guidance/val-api/lcb-atcoder-abc388_e.contract-v3.api.json"}
- ]}

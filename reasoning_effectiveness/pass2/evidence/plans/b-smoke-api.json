@@ -1,5 +1,0 @@
-{"batch": "b-smoke-api", "cohort": "B functional smoke (direct API coder, synthetic fixture; not a benchmark)",
- "attempts": [{"task_id": "fixture-sum-signed", "condition": "B",
-   "smoke": {"actions": 4, "seconds": 300, "note": "reduced paid smoke-test limits"},
-   "coder": {"provider": "api", "max_requests": 4, "effort": "medium", "max_completion_tokens": 8000,
-             "purpose": "Condition B functional smoke: frontier model drives the shared mini-SWE-agent interface on the synthetic fixture"}}]}

@@ -3,11 +3,9 @@ name: Local agent portable host
 on:
   push:
     branches: [feat/csc2108-local-agent-final, feat/csc2108-contract-diagnosis-pass2, feat/csc2108-final-agent]
-    paths: ['local_agent/**', 'guided_agent/**', 'judge/**', 'reasoning_effectiveness/pass3/**',
-            'reasoning_effectiveness/pass4/**', '.github/workflows/local-agent-portable.yml']
+    paths: ['local_agent/**', 'guided_agent/**', 'judge/**', '.github/workflows/local-agent-portable.yml']
   pull_request:
-    paths: ['local_agent/**', 'guided_agent/**', 'judge/**', 'reasoning_effectiveness/pass3/**',
-            'reasoning_effectiveness/pass4/**', '.github/workflows/local-agent-portable.yml']
+    paths: ['local_agent/**', 'guided_agent/**', 'judge/**', '.github/workflows/local-agent-portable.yml']
   workflow_dispatch:
 
 permissions:
@@ -36,7 +34,7 @@ jobs:
 
   # Integrated A/B/C/D/E agent (guided_agent): software tests only. No model inference, no Docker sandbox,
   # no network and no credentials; providers are scripted or mocked. Passing here is NOT a native-inference
-  # validation of any host (see reasoning_effectiveness/PORTABILITY.md for the Mac inference procedure).
+  # validation of any host (see docs/GUIDED_AGENT_PORTABILITY.md for the Mac inference procedure).
   guided-agent:
     strategy:
       fail-fast: false

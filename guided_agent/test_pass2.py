@@ -184,30 +184,6 @@ class EvidencePacket(unittest.TestCase):
         self.assertEqual(packet['candidate_sha256'], sha256_bytes(source))
 
 
-class ContractV3(unittest.TestCase):
-    def test_prompt_and_injection_are_versioned_and_task_free(self):
-        self.assertEqual(guidance.PROMPTS['contract-v3'][0], 'contract')
-        self.assertNotEqual(guidance.PROMPTS['contract-v3'][1], guidance.PROMPTS['contract-v1'][1])
-        template = guidance.INJECTION['inject-v3-contract']['contract']
-        self.assertTrue(template.startswith('{{task}}') and '{{guide}}' in template)
-        self.assertNotIn('ARC', template)
-        for word in ('algorithm', 'never HOW'):
-            self.assertIn(word, guidance.PROMPTS['contract-v3'][1])
-
-    def test_contract_v3_artifact_replays_through_teammate_class(self):
-        text = ('## Description\nSum.\n## Preconditions\nPRE-1 (Unverified)\n## Postconditions\n'
-                'POST-1 (Unverified) The output equals A+B.\n## Test suggestions\nK-1 (POST-1) sign dropped.\n'
-                '```text\n-3 2\n```\n```text\n-1\n```\n## Unspecified behavior\nNone.\n')
-        with tempfile.TemporaryDirectory() as tmp:
-            record = guidance.artifact(kind='contract', prompt_id='contract-v3', statement=STATEMENT, text=text,
-                                       task_id='t', provider='codex-replay', requested_model='m', observed_model=None,
-                                       reasoning_effort='medium', generation={}, label='t')
-            path = guidance.save_artifact(Path(tmp) / 'c.json', record)
-            generated, raw = guidance.load_for_run(path, STATEMENT)
-            self.assertEqual(generated['text'], text)
-            self.assertEqual(raw['validation_problems'], [])
-
-
 class FrontierCoder(unittest.TestCase):
     @classmethod
     def setUpClass(cls):

@@ -1,21 +1,20 @@
-"""Run the frozen ``local_eval_v2.runtime.run`` bytecode for A, C and D.
+"""Run the frozen ``local_eval_v2.runtime.run`` bytecode for every condition.
 
-Only two globals of the frozen function are rebound, identically for every condition:
+Only globals of the frozen function are rebound, identically for every condition:
 
-* ``Agent``       -> subclass that appends the upfront guidance block to the first user message
-                     (A keeps the frozen ``{{task}}`` template byte-for-byte).
-* ``Environment`` -> subclass that routes the recognized public-test command
-                     (``python -I /public/check.py``) to the team's judge-public, returning its
-                     ``report`` as the observation. All other commands run in the frozen sandbox.
+* ``Agent``       -> ``GuidedAgent``: the first user message template (C/D guidance block, the shared agent's
+                     self-plan block; A keeps the frozen ``{{task}}`` template byte for byte) and, for E, one
+                     diagnosis message delivered into the running conversation.
+* ``Environment`` -> ``JudgedEnvironment``: the recognized public-test command (``python -I /public/check.py``)
+                     goes to the team's judge-public and its ``report`` is the observation. Every other command runs
+                     in the frozen sandbox.
 
-Model configuration, sampler wiring, prompts, budgets, telemetry, GPU exclusivity, candidate
-extraction and cleanup are the unmodified frozen code. Host differences come from the existing
-``local_agent`` adapters (Windows: original globals; portable: ``portable.adapted_run``).
-Optional ACI interventions (``aci``) are opt-in, labelled, and applied identically to A/C/D.
+Model configuration, sampler wiring, prompts, budgets, telemetry, GPU exclusivity, candidate extraction and cleanup
+are the unmodified frozen code. Host differences come from the existing ``local_agent`` adapters (Windows: original
+globals; portable: ``portable.adapted_run``). B additionally rebinds the model class (``frontier_coder``).
 """
 import hashlib
 import importlib
-import re
 import sys
 import time
 import types
@@ -24,20 +23,6 @@ from pathlib import Path
 from .common import REPO, utc_now
 
 JUDGE_NAME = 'csc2108re-judge-{suite}'
-WRITE_PATTERN = re.compile(r'(?:cat|tee)\s*>?\s*/workspace/solution\.py|>\s*/workspace/solution\.py')
-
-# Opt-in replacement for the frozen FORMAT_ERROR (rebound global); same variables, more specific length advice.
-FORMAT_ERROR_TRUNCATION_V1 = """Rejected: {{error}}. No action from that response ran.
-Return ONE complete command block with a closing fence. Use a literal heredoc for multiline files.
-```mswea_bash_command
-pwd
-```
-{% if finish_reason == 'length' %}Your response reached the 4096-token output limit before its command block closed, so nothing was saved. Do not reason or brainstorm inside the file. Decide the approach in at most 5 short lines of plain text, then write the complete program with few or no comments.{% endif %}"""
-
-
-def aci_globals(aci):
-    """Frozen-function globals replaced by an ACI intervention (empty for the original control)."""
-    return {'FORMAT_ERROR': FORMAT_ERROR_TRUNCATION_V1} if (aci or {}).get('truncation_note') else {}
 
 
 def judge_client(study, suite):
@@ -68,23 +53,9 @@ def host_base_function(runtime, host_settings):
     return runtime.run, 'windows-frozen-globals'
 
 
-SYNTAX_SCRIPT = '\n'.join([
-    'import ast',
-    'try:',
-    "    ast.parse(open('/workspace/solution.py', 'rb').read())",
-    "    print('OK')",
-    'except SyntaxError as e:',
-    "    print('SyntaxError at line %s: %s' % (e.lineno, e.msg))", ''])
-
-
-def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, aci=None, diagnosis=None,
-                 self_planner=None, receipts=None, checker=None):
-    """``diagnosis`` (Condition E) is a ``diagnosis.DiagnosisController`` or None (A/B/C/D: unchanged classes).
-
-    ``self_planner`` (agent configuration l1) and ``receipts`` (l4) are shared-agent mechanisms from
-    ``agent_config``; both are None for the original agent ``frozen-v6``.
-    """
-    aci = aci or {}
+def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, diagnosis=None, self_planner=None):
+    """``diagnosis`` (E) is a ``diagnosis.DiagnosisController``; ``self_planner`` is the shared agent's
+    ``agent_config.SelfPlanner`` (None for ``frozen-v6``)."""
     v3 = runtime.v3
 
     class GuidedAgent(runtime.Agent):
@@ -93,8 +64,6 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 instance_template = template
             super().__init__(*args, instance_template=instance_template, **kwargs)
             self.instance_template_used = instance_template
-            self._previous_command = None
-            self.repeat_guards = 0
             if self_planner is not None and self_planner.record.get('wall_seconds'):
                 # Equal local opportunity (as for C's plan): the self-plan call ran after the frozen deadline was
                 # set, so the coding deadline is moved back by exactly that call's duration. The container was
@@ -110,27 +79,6 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
             return super().run(task, **kwargs)
 
         def execute_actions(self, message):
-            # aci repeat_guard (aci-v2): an action byte-identical to the previous executed action cannot change
-            # the sandbox state. It is not executed, its duplicate assistant turn is dropped from the history
-            # (so the context does not accumulate a self-reinforcing repetition), and the model is told why.
-            # It still consumes a model call (step limit) but no action.
-            actions = message.get('extra', {}).get('actions', [])
-            command = actions[0].get('command') if len(actions) == 1 else None
-            if aci.get('repeat_guard') and command is not None and command == self._previous_command:
-                if self.messages and self.messages[-1] is message:
-                    self.messages.pop()
-                self.repeat_guards += 1
-                failed = self.env.budget.failed_hash is not None
-                self.env.evidence.append({'command': command, 'repeat_guard': True, 'action': self.env.budget.actions})
-                text = ('[harness] Not executed: this command is identical to your previous command, so repeating '
-                        'it cannot change anything. ' +
-                        ('/workspace/solution.py still holds the program that failed the public tests; change its '
-                         'logic before testing again.' if failed else
-                         'If the program has not been tested yet, run python -I /public/check.py; otherwise choose a '
-                         'different next action.'))
-                return self.add_messages({'role': 'user', 'content': text,
-                                          'extra': {'interrupt_type': 'RepeatGuard', 'model_response': command}})
-            self._previous_command = command
             observations = super().execute_actions(message)
             if diagnosis is not None and diagnosis.pending is not None:
                 # Condition E: the public-test observation is already in the history; the diagnosis follows it
@@ -151,23 +99,7 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
             command = action.get('command', '')
             if isinstance(command, str) and runtime.TEST_PATTERN.fullmatch(command):
                 return self._public_judge(command)
-            before = self.last_candidate  # the frozen environment's snapshot after the previous action
-            output = super().execute(action, cwd, timeout=timeout)
-            if receipts is not None:
-                after = self.last_candidate
-                syntax = self._syntax() if after is not None and after != before else ''
-                note = receipts.after_command(actions=self.budget.actions, before=before, after=after, syntax=syntax)
-                output['output'] = note + '\n' + (output.get('output') or '')
-                self.evidence[-1]['receipt'] = note
-            if aci.get('unchanged_source_note') and isinstance(command, str) and WRITE_PATTERN.search(command) \
-                    and before is not None and self.last_candidate == before:
-                note = '[harness] /workspace/solution.py is byte-for-byte unchanged by this command.'
-                if hashlib.sha256(before).hexdigest() == self.budget.failed_hash:
-                    note += (' This exact program already failed the public tests, so rewriting it identically '
-                             'cannot fix the failure. Change the program logic.')
-                output['output'] = (output.get('output') or '') + note + '\n'
-                self.evidence[-1]['aci_note'] = 'unchanged_source'
-            return output
+            return super().execute(action, cwd, timeout=timeout)
 
         def _public_judge(self, command):
             remaining = self.deadline - time.monotonic()
@@ -191,43 +123,18 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                                                            error=result.get('error') or result.get('status'))
                 raise v3.limits('InfrastructureError')
             returncode = 0 if result['status'] == 'pass' else 1
-            report = result.get('report', '')
-            if aci.get('unchanged_source_note') and returncode and digest is not None and digest == self.budget.failed_hash:
-                report += ('\n[harness] This exact program already failed these public tests before; '
-                           'change the program before testing again.')
-                aci_flag = 'retest_unchanged'
-            else:
-                aci_flag = None
-            contract_entry = None
-            if checker is not None and source:
-                # D-active: the same judged bytes are still /workspace/solution.py; run the contract's checks on them
-                # inside this sandbox. Part of the same public-test action (no extra action or model call).
-                contract_entry, text = checker.run(v3.docker, self.container_id)
-                report = report + '\n\n' + text
-            if receipts is not None:
-                note = receipts.after_test(actions=self.budget.actions, digest=digest, result=result)
-                report = note + '\n' + report
-            output = {'output': report, 'returncode': returncode, 'exception_info': ''}
+            output = {'output': result.get('report', ''), 'returncode': returncode, 'exception_info': ''}
             self.evidence.append({'command': command, 'action': self.budget.actions,
                                   'elapsed_seconds': time.monotonic() - started, 'source_sha256': digest,
                                   'recognized_public_test': True, 'public_status': result['status'],
                                   'judge': {k: result.get(k) for k in ('status', 'passed', 'total', 'verdict_counts',
                                                                        'code_sha256', 'tests_sha256', 'judge_version')},
-                                  'aci_note': aci_flag, 'contract_checks': contract_entry, **output})
+                                  **output})
             self.budget.tested(digest, returncode)
             if diagnosis is not None:
                 diagnosis.on_public_result(result=result, source=source, digest=digest, budget=self.budget,
                                            deadline=self.deadline)
             return output
-
-        def _syntax(self):
-            """Parse-only check of the saved file INSIDE the sandbox (never on the host)."""
-            try:
-                proc = v3.docker('exec', self.container_id, 'python', '-I', '-c', SYNTAX_SCRIPT, timeout=10)
-                text = (proc.stdout or '').strip().splitlines()
-                return 'Python syntax: ' + (text[-1] if text else 'unknown') + '.'
-            except Exception:
-                return 'Python syntax: check unavailable.'
 
     return GuidedAgent, JudgedEnvironment
 
