@@ -9,6 +9,7 @@ import json
 import re
 from pathlib import Path
 
+from .agent_config import AGENT_CONFIGS
 from .common import CODER, CONDITIONS, DYNAMIC, read_json
 
 FROZEN_PROMPTS = {'C': 'plan-v1', 'D': 'contract-v1'}
@@ -47,6 +48,10 @@ def validate_plan(plan):
             problems.append(f'{where}: run name {name} duplicates attempt {seen[name]} (a seed or variant must differ '
                             'in the name, or the second attempt would be skipped as already complete)')
         seen.setdefault(name, index)
+        if item.get('agent') is not None and item['agent'] not in AGENT_CONFIGS:
+            problems.append(f"{where}: unknown shared-agent configuration {item['agent']!r}")
+        if item.get('test_hooks') and (frozen or (item.get('coder') or {}).get('provider') != 'scripted'):
+            problems.append(f'{where}: test_hooks are only allowed with a scripted coder outside frozen plans')
         if 'seed' in item and (not isinstance(item['seed'], int) or isinstance(item['seed'], bool)):
             problems.append(f'{where}: seed must be an integer')
         kind = CONDITIONS[condition]

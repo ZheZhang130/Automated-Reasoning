@@ -68,23 +68,45 @@ def host_base_function(runtime, host_settings):
     return runtime.run, 'windows-frozen-globals'
 
 
-def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, aci=None, diagnosis=None):
-    """``diagnosis`` (Condition E) is a ``diagnosis.DiagnosisController`` or None (A/B/C/D: unchanged classes)."""
+SYNTAX_SCRIPT = '\n'.join([
+    'import ast',
+    'try:',
+    "    ast.parse(open('/workspace/solution.py', 'rb').read())",
+    "    print('OK')",
+    'except SyntaxError as e:',
+    "    print('SyntaxError at line %s: %s' % (e.lineno, e.msg))", ''])
+
+
+def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, aci=None, diagnosis=None,
+                 self_planner=None, receipts=None):
+    """``diagnosis`` (Condition E) is a ``diagnosis.DiagnosisController`` or None (A/B/C/D: unchanged classes).
+
+    ``self_planner`` (agent configuration l1) and ``receipts`` (l4) are shared-agent mechanisms from
+    ``agent_config``; both are None for the original agent ``frozen-v6``.
+    """
     aci = aci or {}
     v3 = runtime.v3
 
     class GuidedAgent(runtime.Agent):
         def __init__(self, *args, instance_template, **kwargs):
-            if guidance_text is not None:
+            if guidance_text is not None or self_planner is not None:
                 instance_template = template
             super().__init__(*args, instance_template=instance_template, **kwargs)
             self.instance_template_used = instance_template
             self._previous_command = None
             self.repeat_guards = 0
+            if self_planner is not None and self_planner.record.get('wall_seconds'):
+                # Equal local opportunity (as for C's plan): the self-plan call ran after the frozen deadline was
+                # set, so the coding deadline is moved back by exactly that call's duration. The container was
+                # created after the call, so its lifetime still covers the full coding budget.
+                self.env.deadline += self_planner.record['wall_seconds']
+                self_planner.record['deadline_extension_seconds'] = self_planner.record['wall_seconds']
 
         def run(self, task='', **kwargs):
             if guidance_text is not None:
                 kwargs = kwargs | {'guide': guidance_text}
+            if self_planner is not None:
+                kwargs = kwargs | {'selfplan': self_planner.text or '(The planning step returned no plan.)'}
             return super().run(task, **kwargs)
 
         def execute_actions(self, message):
@@ -131,6 +153,12 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 return self._public_judge(command)
             before = self.last_candidate  # the frozen environment's snapshot after the previous action
             output = super().execute(action, cwd, timeout=timeout)
+            if receipts is not None:
+                after = self.last_candidate
+                syntax = self._syntax() if after is not None and after != before else ''
+                note = receipts.after_command(actions=self.budget.actions, before=before, after=after, syntax=syntax)
+                output['output'] = note + '\n' + (output.get('output') or '')
+                self.evidence[-1]['receipt'] = note
             if aci.get('unchanged_source_note') and isinstance(command, str) and WRITE_PATTERN.search(command) \
                     and before is not None and self.last_candidate == before:
                 note = '[harness] /workspace/solution.py is byte-for-byte unchanged by this command.'
@@ -170,6 +198,9 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 aci_flag = 'retest_unchanged'
             else:
                 aci_flag = None
+            if receipts is not None:
+                note = receipts.after_test(actions=self.budget.actions, digest=digest, result=result)
+                report = note + '\n' + report
             output = {'output': report, 'returncode': returncode, 'exception_info': ''}
             self.evidence.append({'command': command, 'action': self.budget.actions,
                                   'elapsed_seconds': time.monotonic() - started, 'source_sha256': digest,
@@ -182,6 +213,15 @@ def make_classes(runtime, *, guidance_text, template, judge, task_id, attempts, 
                 diagnosis.on_public_result(result=result, source=source, digest=digest, budget=self.budget,
                                            deadline=self.deadline)
             return output
+
+        def _syntax(self):
+            """Parse-only check of the saved file INSIDE the sandbox (never on the host)."""
+            try:
+                proc = v3.docker('exec', self.container_id, 'python', '-I', '-c', SYNTAX_SCRIPT, timeout=10)
+                text = (proc.stdout or '').strip().splitlines()
+                return 'Python syntax: ' + (text[-1] if text else 'unknown') + '.'
+            except Exception:
+                return 'Python syntax: check unavailable.'
 
     return GuidedAgent, JudgedEnvironment
 

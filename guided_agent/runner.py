@@ -14,7 +14,7 @@ from pathlib import Path
 
 from .common import (ACTIONS, CODER, CONDITIONS, DYNAMIC, MODEL, PROFILE, REPAIRS, REPO, SECONDS, SEED, append_jsonl,
                      host_identity, read_json, sha256_bytes, sha256_file, settings, study_root, utc_now, write_json)
-from . import backend, diagnosis, frontier_coder, guidance
+from . import agent_config, backend, diagnosis, frontier_coder, guidance
 from .tasks import load_statement
 
 EXIT_STATUS = {'Submitted': 'submitted', 'ActionLimit': 'action_limit', 'LimitsExceeded': 'action_limit',
@@ -72,10 +72,15 @@ def run_attempt(spec):
               'injection': spec.get('injection', 'inject-v1') if kind else None, 'aci': spec.get('aci') or {},
               'host_identity': host_identity(), 'host_backend': host.backend, 'started_utc': started_utc,
               'cohort': spec.get('cohort'), 'batch': spec.get('batch'), 'source': source_state()}
-    guidance_text = template = controller = None
+    guidance_text = template = controller = planner = receipts = None
     attempts = []
     started = time.monotonic()
     try:
+        agent_id, agent_def, agent_sha = agent_config.resolve(spec.get('agent'))
+        record['agent_config'] = {'id': agent_id, 'definition': agent_def, 'definition_sha256': agent_sha,
+                                  'module_sha256': sha256_file(Path(agent_config.__file__))}
+        if condition in CODER and (agent_def.get('profile') or agent_def.get('self_plan')):
+            raise ValueError(f'Agent configuration {agent_id} changes the local model; it does not apply to B')
         from local_agent.cli import verify
         record['frozen_verification'] = {k: v for k, v in verify(settings=host).items()
                                          if k in ('frozen_files_verified', 'model_digest', 'selection_sha256',
@@ -112,10 +117,28 @@ def run_attempt(spec):
                 out_dir=out / 'diagnosis', prompt_id=dspec.get('prompt_id', 'diagnosis-v1'),
                 delivery=dspec.get('delivery', 'deliver-v1'), max_wait_seconds=dspec.get('timeout', 300))
             record['guidance'] = {'kind': 'diagnosis', 'triggered': False, 'delivered': False, 'error': None}
+        extra = backend.aci_globals(spec.get('aci'))
+        if agent_def.get('profile'):
+            extra['read'] = agent_config.profile_reader(base.__globals__['read'], agent_def['profile'])
+        if agent_def.get('self_plan'):
+            sp = agent_def['self_plan']
+            hooks = spec.get('test_hooks') or {}
+            if hooks and (spec.get('coder') or {}).get('provider') != 'scripted':
+                raise ValueError('test_hooks are only allowed with a scripted coder')
+            profile = dict(base.__globals__['read'](base.__globals__['ROOT'] / 'profiles.json')[PROFILE]) |                 (agent_def.get('profile') or {})
+            fixed = hooks.get('self_plan_text')
+            planner = agent_config.SelfPlanner(
+                statement=statement, seed=record['seed'], profile=profile, endpoint=base.__globals__['ENDPOINT'],
+                out_dir=out, prompt_text=guidance.PROMPTS[sp['prompt_id']][1], output_tokens=sp['output_tokens'],
+                timeout=sp['timeout'], guide=guidance_text if kind else None,
+                caller=(lambda body: {'message': {'content': fixed}, 'done_reason': 'stop', 'eval_count': 1})
+                if fixed is not None else None)
+            template = agent_config.self_plan_template(template if kind else None, kind)
+        if agent_def.get('receipt'):
+            receipts = agent_config.Receipts(ACTIONS)
         agent_cls, env_cls = backend.make_classes(runtime, guidance_text=guidance_text, template=template, judge=judge,
                                                   task_id=task_id, attempts=attempts, aci=spec.get('aci'),
-                                                  diagnosis=controller)
-        extra = backend.aci_globals(spec.get('aci'))
+                                                  diagnosis=controller, self_planner=planner, receipts=receipts)
         model_name = MODEL
         if spec.get('coder') and condition not in CODER and spec['coder'].get('provider') != 'scripted':
             # Only B substitutes a frontier coder; the scripted coder is a labelled test device for any condition.
@@ -138,6 +161,12 @@ def run_attempt(spec):
             budgets |= {k: spec['smoke'][k] for k in ('actions', 'seconds') if k in spec['smoke']}
             record['budgets'] |= budgets
             record['smoke'] = spec['smoke']
+        if receipts is not None:
+            receipts.action_limit = budgets['actions']
+        if planner is not None:
+            # After the frozen GPU-exclusivity check, before the agent is constructed (scripted tests: after the no-op).
+            extra['exclusive_gpu'] = agent_config.exclusive_then_plan(
+                extra.get('exclusive_gpu', base.__globals__['exclusive_gpu']), planner)
         run = backend.bound_run(base, agent_cls, env_cls, extra)
         record['host_adapter'] = adapter
         agent_dir = out / ('agent-' + spec['run_id'])
@@ -147,6 +176,12 @@ def run_attempt(spec):
             frozen = run(study / 'bundles' / task_id, agent_dir, model_name, PROFILE, seed=record['seed'],
                          actions=budgets['actions'], repairs=budgets['repairs'], seconds=budgets['seconds'])
         record['local_coding_seconds'] = round(time.monotonic() - coding_started, 2)
+        if planner is not None:
+            record['self_plan'] = {k: v for k, v in planner.record.items()}
+            record['local_coding_seconds_excluding_self_plan'] = round(
+                record['local_coding_seconds'] - (planner.record.get('wall_seconds') or 0), 2)
+        if receipts is not None:
+            record['receipts'] = {'count': receipts.count, 'versions': len(receipts.versions)}
         if controller is not None:
             trajectory = agent_dir / 'trajectory.json'
             messages = read_json(trajectory)['messages'] if trajectory.exists() else []
@@ -178,7 +213,7 @@ def run_attempt(spec):
               'completion_tokens': (c.get('usage') or {}).get('completion_tokens'),
               'cost_usd': c.get('cost_usd')} for c in coder.calls]
         for key in ('format_errors', 'model_calls', 'token_telemetry_complete', 'sampler_wire_verified', 'inference',
-                    'context_events', 'elapsed_seconds'):
+                    'context_events', 'elapsed_seconds', 'profile_config'):
             record[key] = frozen.get(key)
         record['model_identity'] = {k: (frozen.get('model_metadata') or {}).get(k) for k in ('details', 'modified_at')}
         record['model_digest'] = next((m.get('digest') for m in (frozen.get('tags') or {}).get('models', [])
