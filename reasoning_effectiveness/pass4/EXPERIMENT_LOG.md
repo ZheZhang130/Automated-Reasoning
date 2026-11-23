@@ -21,3 +21,10 @@ Every batch, probe, failure, cost and decision of pass 4. Study roots (outside G
 | 01:11 | Commit `a270e0e`: stage-C plans (D-active with two controls; E probe at 11 frozen trigger states) pre-registered. The chain starts them automatically after screening. |
 | 01:13 | One-shot probe (Phase I §5.5) queued after stage C. Bottleneck evidence over the 217 original-agent runs of passes 1–3 computed. |
 | 01:16 | **Batch `p4-b-codex2`** queued: B Codex on the other 6 tasks of the pass-3 hard cohort, so B and C are compared on all 12. |
+| 01:16 | `p4-b-codex` finished: 6/6 submitted in 3 actions. Hidden 5/6 (arc190_c failed hidden after passing the public tests). |
+| 01:22 | `p4-b-codex2` finished: 6/6 submitted in 3 actions, hidden 6/6. **B (Codex) on the 12-task hard cohort: 11/12**, 0 tool events in 36 coder turns. |
+| 01:23 | Contract-check validity (`check_validity.py`, sandboxed): 32/32 proposed outputs correct against reference programs; 20/27 natural wrong programs caught; abc398_d 0/6 (its wrong programs fail only by TLE). |
+| 01:24 | Pricing rechecked (gpt-6.2-sol standard $2/$10 per 1M; cache writes $2.50) and model identity checked (`GET /v1/models/gpt-6.2-sol` 200, free). Pass-wide ledger `reasoning-effectiveness-pass4/api-ledger.json` created with 20 requests / $10. |
+| 01:25 | **Batch `p4-b-api`** (paid): B direct API on arc194_e (4 requests, $0.0433, hidden pass) and arc190_c (7 requests, $0.0964, public pass, hidden fail; B ran its own brute-force comparison and patched twice). Ledger: 11 requests, $0.1397 standard. |
+| 01:29 | Cost comparison computed (`cost_comparison.py`). A Codex artifact usage-nesting bug in `measurement._usage` was found and fixed (the modelled plan cost went from $0.0016 to $0.0165). |
+| 01:20 | **Incident:** an edit to `guided_agent/__main__.py` briefly contained a syntax error (shell-escaping). The running batch spawns a fresh process per attempt; no attempt started during the window (verified: the next attempt's directory and log are complete). From then on, every edit is followed immediately by an import check. |
