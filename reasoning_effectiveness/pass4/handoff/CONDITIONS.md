@@ -18,7 +18,7 @@ Hashes are sha256 of the exact text the code uses; `FINALIZATION_MANIFEST.json` 
 | Model | `qwen3.5:9b` Q4_K_M, digest `56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90`, project Ollama |
 | Profile | `heredoc-v6-16k-common`: 16,384 context; 4,096 output tokens; thinking off; T 0.2; top_p 0.9; top_k 40; min_p 0; repeat penalty 1.0 over 64; presence and frequency 0; fixed seed per attempt |
 | Plan field | `"agent": "frozen-v6"`, required in frozen plans (`agent_config.PRIMARY_AGENT`) |
-| Alternative | `l1-selfplan-v1`: one bounded local planning step before the session. It is **not primary**: development evidence shows A 4/16 → 7/16 but C 14/16 → 12/16, and context overflows in long C sessions. Adopting it is a team decision (`HANDOFF_TO_PETER.md` §7) |
+| Alternative | `l1-selfplan-v1`: one bounded local planning step before the session. It is **not primary**: development evidence shows A 4/16 → 7/16 but C 14/16 → 12/16, and context overflows in long C sessions. Adopting it is a team decision (see Open decisions below) |
 
 ## A: local only
 

@@ -32,6 +32,9 @@ attempt already wrote, so it can be rerun at any time. The table below is genera
     tests, frontier waits and the self-plan call. It is derived and approximate.
 * **GPU.** `cost.gpu_memory_sample` is two `nvidia-smi` samples (before and after), **not** GPU active time. Use
   `local_inference.total_inference_seconds` as the GPU-busy proxy.
+* **Context overflow:** `correctness.context_overflow = true` marks a run whose prompt reached the 16K context, so
+  the next model request failed. The runner records `infra_error`, but the failure is deterministic. It is **not**
+  an infrastructure failure (`infrastructure_failure = false`); count it as a failed attempt.
 * **Authoritative fields for scoring:** `correctness.hidden_status` / `hidden_passed` / `hidden_total` (judge-hidden
   0.2.1, after all attempts). Count `missing_submission` as a failure. Exclude
   `correctness.infrastructure_failure = true` for that task and repeat across all conditions.
@@ -82,8 +85,9 @@ attempt already wrote, so it can be rerun at any time. The table below is genera
 | `correctness.hidden_total` | int | cases | yes | eval/<run_id>.json | measured | all |
 | `correctness.exit_status` | str | submitted|action_limit|repair_limit|deadline|agent_error|infra_error | no | runner.exit_status | measured | all |
 | `correctness.raw_exit_status` | str |  | yes | mini-SWE-agent exit | measured | all |
-| `correctness.infrastructure_failure` | bool |  | no | exit infra_error or setup error | measured | all |
+| `correctness.infrastructure_failure` | bool |  | no | exit infra_error or setup error, excluding context_overflow | derived | all |
 | `correctness.setup_error` | str |  | yes | result.json | measured | all |
+| `correctness.context_overflow` | bool |  | no | the model request failed (Ollama connection error) when the last prompt plus output was within 1,024 tokens of num_ctx: the agent exhausted its context; recorded by the runner as infra_error but deterministic, so not an infrastructure failure | derived | A, C, D, E |
 | `local_inference.calls` | int | requests | no | ollama-responses.json | measured | A, C, D, E (0 for B) |
 | `local_inference.prompt_tokens` | int | tokens | yes | prompt_eval_count | measured | A, C, D, E |
 | `local_inference.completion_tokens` | int | tokens | yes | eval_count (includes thinking) | measured | A, C, D, E |
