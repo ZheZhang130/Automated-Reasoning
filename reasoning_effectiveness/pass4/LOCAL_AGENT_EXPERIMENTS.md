@@ -211,3 +211,29 @@ replicate at the second seed for A, it lowered C, and it would also need a large
 * explicit approval, since it changes every local condition and breaks comparability with passes 1–3.
 
 See `CONDITION_FINALIZATION.md` and the open decisions in `FINAL_REPORT.md`.
+
+## 7. D and E under l1 (`p4-stageD-de`, seed 2108, 16 attempts; frozen references are historical)
+
+| Task | D-v1 frozen | D-v1 l1 | E-v1 frozen | E-v1 l1 |
+| --- | --- | --- | --- | --- |
+| abc400_b | ✓ | ✓ | ✓ (untriggered) | ✓ |
+| abc393_d | ✓ | ✓ | ✓ (triggered) | ✓ (untriggered) |
+| arc195_a | no program | **✓** | ✗ (triggered) | **✓** (untriggered) |
+| abc398_d | ✗ | **✓** | ✗ (triggered) | **✓** (untriggered) |
+| abc388_e | ✓ | ✗ | no program | ✗ |
+| abc389_f | no program | no program | no program | no program |
+| abc397_f | no program | no program | no program | no program |
+| arc192_a | ✗ | ✗ | no program | ✗ (triggered) |
+| **Hidden passes** | 3 | **4** | 2 | **4** |
+| **E trigger rate** | — | — | 3/8 | **1/8** |
+
+* **D-v1 under l1:** 4/8 against 3/8 (gains arc195_a, abc398_d; loses abc388_e). This mirrors A's gain under l1; the
+  contract adds nothing visible on top.
+* **E under l1 rarely gets to act.** l1 *lowered* the trigger rate from 3/8 to 1/8. With a self-plan, the first
+  tested program either passes the public tests (abc393_d, arc195_a, abc398_d) or is never produced. E's 4/8 under
+  l1 is therefore the same as A-l1 at this seed (4/8): untriggered E runs are A runs.
+  * The brief anticipated that a better agent would reach more public failures. On this cohort the opposite
+    happened, because better first programs pass the public samples.
+* **Nothing here changes the decision.** l1 helps every local condition that does not already get a frontier plan
+  (A, D, E). It is weaker with C and adds context. That is a research-scope trade-off for the team
+  (`FINAL_REPORT.md`, open decisions).

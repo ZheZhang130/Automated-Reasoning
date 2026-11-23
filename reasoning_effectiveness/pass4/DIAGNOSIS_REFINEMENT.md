@@ -145,3 +145,13 @@ is reported separately from diagnosis quality there.
   content from interruption, and it costs no API money (`provider: fixed`). This is recommended as an optional
   control arm on a subset; it is a team decision.
 * **diagnosis-v2** stays in the development archive as a documented alternative.
+
+### 3a. Result of `p4-stageD-de` (E-v1 under l1, seed 2108)
+
+* **Trigger rate:** 1/8 under l1 against 3/8 under the original agent on the same tasks.
+* **Hidden passes:** 4/8, all of them untriggered runs, equal to A-l1. The one triggered run (arc192_a) received
+  its diagnosis and still failed.
+* **Reading:** a stronger local agent reduces E's opportunity on these tasks. Its first tested program more often
+  passes the public samples, and the hard tasks still produce no program at all. E's value is limited to programs
+  that reach a public failure, so the condition's reach depends on the shared agent. Report the trigger rate next
+  to every E result.
