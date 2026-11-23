@@ -278,6 +278,14 @@ class IntegrationPass4(unittest.TestCase):
                          ['unverified', 'unverified', 'contradicts_public'])
         self.assertEqual(record['n_actions'], 5)               # checks add no action
 
+    def test_5_action_budget_is_enforced_with_a_program_on_disk(self):
+        record, messages, out = self.run_spec('action-limit', [WRONG] + ['pwd'] * 22)
+        self.assertEqual(record['exit_status'], 'action_limit', record.get('setup_error'))
+        self.assertEqual(record['n_actions'], 20)
+        self.assertIsNotNone(record['submission_sha256'])        # the last snapshot is still extracted
+        document = json.loads((out / 'measurement.json').read_text(encoding='utf-8'))
+        self.assertEqual((document['correctness']['exit_status'], document['agent']['actions']), ('action_limit', 20))
+
     def test_4_inputs_only_control_hides_the_contract(self):
         study = Path(os.environ['CSC2108_STUDY_ROOT'])
         path = self.contract_artifact(study)
