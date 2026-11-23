@@ -25,3 +25,87 @@ evidence, not a holdout.
 submission sha256, action count and generated-token count on every task with a historical seed-2108 run. Historical
 frozen results with identical artifacts can therefore stand in for reruns in the later stages, and are labelled
 as such.
+
+## 1. Screening results (seed 2108, condition A, 8 tasks × 5 configurations; 40 attempts, 0 infrastructure failures)
+
+| Task | frozen-v6 | l1 self-plan | l2 thinking 8K | l3 output 8K | l4 receipts |
+| --- | --- | --- | --- | --- | --- |
+| abc400_b (easy) | ✓ | ✓ | ✓ | ✓ | ✓ |
+| abc393_d | ✗ repair limit 9/40 | **✓** (3 actions) | no program | **✓** | ✗ repair limit |
+| arc195_a | ✗ 39/40 | **✓** (3 actions) | no program | ✗ (identical to frozen) | ✗ repair limit |
+| arc192_a | no program | ✗ action limit | no program | no program | no program |
+| abc398_d | ✗ 36/40 (TLE) | **✓** (3 actions) | ✗ | ✗ | ✗ |
+| abc388_e | no program | ✗ (3 actions) | ✗ (6 actions) | no program | no program |
+| abc389_f | no program | no program | no program | no program | no program |
+| abc397_f | no program | no program | no program | no program | no program |
+| **Hidden passes** | **1** | **4** | 1 | 2 | 1 |
+| Net vs frozen (gains/losses) | — | **+3 (3/0)** | 0 | +1 (1/0) | 0 |
+| Runs without a program | 4 | **2** | 5 | 4 | 4 |
+| First responses truncated | 6 | 4 | 5 | 6 | 6 |
+| Truncated responses (all) | 17 | 10 | 17 | 15 | 17 |
+| Exact consecutive repeats | 5 | 1 | 1 | 5 | **0** |
+| Writes reproducing a failed candidate | 7 | 8 | 0 | 6 | **0** |
+| Public tests run / reached a public pass | 12 / 3 | 14 / 5 | 4 / 3 | 11 / 4 | 12 / 2 |
+| Local output tokens (incl. self-plan) | 77,008 | 81,681 (1.06×) | 163,566 (2.12×) | 133,555 (1.73×) | 76,488 |
+| Local generation seconds | 730 | 784 | 1,567 | 1,276 | 727 |
+| Wall seconds (sum) | 850 | 924 (1.09×) | 1,688 (1.98×) | 1,393 (1.64×) | 843 |
+| Max prompt tokens | 4,804 | 14,352 | 2,225 | 7,088 | 3,711 |
+| Selection rule | reference | **qualifies** | fails 1, 2, 4 | fails 1 | fails 1 |
+
+All 40 attempts verified the 38 frozen files and the model digest, and every sampler option was verified on the wire.
+There were no context-cap stops.
+
+## 2. What each mechanism did
+
+**L1, self-plan (qualifies).** The plan is the teammates' plan-v1 prompt answered by Qwen itself.
+
+* **Effect.** It cut first-response truncation (6 → 4) and all truncation (17 → 10), and produced 3 hidden gains.
+  In each gain the session was write, test, submit (3 actions), just as C sessions are when the plan is right.
+* **The plan step deliberates too.** On 6 of 8 tasks the plan itself hit its 4,096-token cap (about 42 s), and
+  was delivered with a "cut off" marker. Two of the three gains (abc398_d, arc195_a) came from truncated plans:
+  the plan step gives the deliberation a place where truncation is harmless and its result survives into the
+  session.
+* **Where it does not help:** the two tasks where no configuration produces a program (abc389_f, abc397_f) still
+  truncate in the session after a truncated plan. On arc192_a it produced a program but then looped (8 rewrites of
+  a failed candidate, 20 actions).
+* **Cost:** +4.7K output tokens and +74 s in total over 8 tasks. The plan's tokens stay in the context, so the
+  largest prompt grew from 4.8K to 14.4K tokens (arc192_a, 22 calls). That is still below the 16K context, but a
+  long session on a long statement could reach it.
+
+**L2, thinking at 8K.** It is the expensive negative result the teammates' study predicted.
+
+* In 5 of 8 tasks L2 never executed an action: its responses spent the 8,192-token allowance almost entirely
+  on thinking (620K thinking characters in total). On abc393_d, for example, one response returned no valid
+  command and two stopped at the cap with up to 26.7K characters of thinking.
+* It solved only the easy task and cost 2.1× the tokens and 2.0× the time.
+* The adapter works (§3 of the audit). The model's thinking simply does not converge within 8K on these tasks.
+
+**L3, output 8K.** Mostly more deliberation, not more programs.
+
+* 15 truncated responses, now at 8,192 tokens. The no-program count is unchanged (4), and 1.7× the tokens.
+* It gained abc393_d. The two trajectories are token-identical until a repair response that frozen-v6 cut at
+  4,096 tokens (twice); under 8K those responses completed.
+* On arc195_a only the first response differs: it is truncated at 8,192 instead of 4,096 tokens. The rest of the
+  trajectory, the repeat loop and the final submission (the same sha256) equal frozen's.
+* This is the "a longer response that produces more comments" case the brief warns about. Per the brief, 12K was
+  not tried, because 8K showed no broad benefit.
+
+**L4, state receipts.** The mechanism works; the outcome does not change.
+
+* Every exact repeat (5 → 0) and every rewrite of an already-failed candidate (7 → 0) disappeared. The receipt
+  changes every turn and states whether the file changed and whether this version already failed, so the
+  self-similar context of pass 3 §2 never forms.
+* The freed actions did not produce correct programs: abc393_d and arc195_a ended at the repair limit with
+  *different* wrong programs.
+* This confirms pass 3's reading: the loops are a symptom of a missing algorithm, not the cause of failure. Fixing
+  the interface defect is worth keeping as a reliability improvement, but on its own it is not a correctness
+  intervention.
+
+## 3. Interpretation for the research question (screening only)
+
+* The original agent **is artificially constrained** in one specific way: it has nowhere to reason except inside
+  the file it is writing. Giving the *same local model* one bounded reasoning step outside the action protocol
+  roughly quadruples A on these 8 development tasks (1 → 4).
+* Neither more output (L3) nor native thinking (L2) does the same, so the gain is not about token allowance. It is
+  about **separating planning from acting**, which is exactly what C does with a frontier plan.
+* This makes C's advantage partly an interface effect. Stage D tests whether C still adds value on top of l1.
