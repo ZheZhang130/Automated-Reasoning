@@ -17,7 +17,7 @@ import subprocess
 import time
 from pathlib import Path
 
-from .common import sha256_bytes, sha256_text, utc_now, write_json
+from .common import ledger_path, sha256_bytes, sha256_text, utc_now, write_json
 from . import guidance
 
 QUALIFYING_VERDICTS = {'WA', 'RE', 'TLE', 'CE'}   # candidate-caused per the judge contract (judge.py)
@@ -200,7 +200,7 @@ def make_provider(spec, study):
     if kind == 'api':
         if not spec.get('purpose'):
             raise ValueError('API diagnosis requires a purpose')
-        return ApiDiagnoser(study / 'api-ledger.json', spec['purpose'], effort=spec.get('effort', 'medium'),
+        return ApiDiagnoser(ledger_path(study), spec['purpose'], effort=spec.get('effort', 'medium'),
                             max_completion_tokens=spec.get('max_completion_tokens', 8000), timeout=timeout,
                             meta={'condition': 'E'})
     if kind == 'fixed':

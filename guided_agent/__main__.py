@@ -16,7 +16,7 @@ import sys
 import uuid
 from pathlib import Path
 
-from .common import CONDITIONS, REPO, append_jsonl, read_json, settings, study_root, utc_now, write_json
+from .common import CONDITIONS, REPO, append_jsonl, ledger_path, read_json, settings, study_root, utc_now, write_json
 
 
 def cmd_prepare_tasks(args, host, study):
@@ -66,7 +66,7 @@ def cmd_author(args, host, study):
                                             effort=args.effort, label=args.label)
         else:
             record = providers.api_author(kind=kind, prompt_id=args.prompt_id, statement=statement, task_id=task_id,
-                                          out_path=out, ledger_path=study / 'api-ledger.json', effort=args.effort,
+                                          out_path=out, ledger_path=ledger_path(study), effort=args.effort,
                                           max_completion_tokens=args.max_completion_tokens, label=args.label,
                                           purpose=args.purpose)
         return task_id, str(out), record['word_count'], record['validation_problems']

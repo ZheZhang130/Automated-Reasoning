@@ -80,6 +80,12 @@ def study_root(host_settings, override=None):
     return root
 
 
+def ledger_path(study):
+    """One API ledger per study, or one shared ledger for several study roots (CSC2108_API_LEDGER), so a
+    pass-wide request and spending ceiling holds across all of them."""
+    return Path(os.environ.get('CSC2108_API_LEDGER') or Path(study) / 'api-ledger.json')
+
+
 def normalize_task_id(task_id):
     """Earlier evaluator IDs are 'atcoder-abc397_b'; judge IDs add an 'lcb-' prefix."""
     return task_id[4:] if task_id.startswith('lcb-') else task_id

@@ -21,7 +21,7 @@ from pathlib import Path
 import litellm
 from minisweagent.exceptions import InterruptAgentFlow
 
-from .common import utc_now, write_json
+from .common import ledger_path, utc_now, write_json
 
 
 class FrontierCoderError(RuntimeError):
@@ -145,7 +145,7 @@ def make_coder(spec, study, log_dir):
     if provider == 'api':
         if not spec.get('purpose') or not spec.get('max_requests'):
             raise ValueError('API coder requires purpose and max_requests')
-        return ApiCoder(log_dir=log_dir, ledger_path=study / 'api-ledger.json', purpose=spec['purpose'],
+        return ApiCoder(log_dir=log_dir, ledger_path=ledger_path(study), purpose=spec['purpose'],
                         max_requests=int(spec['max_requests']), effort=spec.get('effort', 'medium'),
                         max_completion_tokens=spec.get('max_completion_tokens', 8000))
     if provider == 'codex':

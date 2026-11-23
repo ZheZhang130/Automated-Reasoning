@@ -251,7 +251,7 @@ class LedgerConcurrency(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'ledger.json'
             write_json(path, {'max_requests': 1000, 'max_usd': 1e6, 'requests': [
-                {'bound_usd_conservative': 0.0, 'usage': {'prompt_tokens': 0, 'completion_tokens': 0}}] * 12})
+                {'bound_usd_conservative': 0.0, 'usage': {'prompt_tokens': 0, 'completion_tokens': 0}}] * providers.MAX_REQUESTS})
             with self.assertRaises(RuntimeError):
                 providers.Ledger(path).reserve({'bound_usd_conservative': 0.0})
             write_json(path, {'max_usd': 1e6, 'requests': []})

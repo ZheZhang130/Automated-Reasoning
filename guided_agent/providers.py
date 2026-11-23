@@ -138,7 +138,7 @@ def codex_author(*, kind, prompt_id, statement, task_id, out_path, work_root, mo
 # ----------------------------------------------------------------------------- direct API
 PRICE_STANDARD = {'input': 2.00, 'output': 10.00}        # USD per 1M tokens, verified 2026-11-21
 PRICE_CONSERVATIVE = {'input': 12.00, 'output': 60.00}   # highest unlabeled tier on the pricing page
-MAX_REQUESTS, MAX_USD = 12, 10.00
+MAX_REQUESTS, MAX_USD = 20, 10.00  # pass 4 brief: at most 20 paid requests and $10 in total
 
 
 def read_env(path):

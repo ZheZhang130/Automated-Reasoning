@@ -1,0 +1,130 @@
+[
+ {
+  "task_id": "lcb-atcoder-abc388_e",
+  "artifact_sha256": "7c7d39023081871dab87f8b6dc4a1cd7e3d5657378014f8ed96157af8fe96f8f",
+  "checks_accepted": 4,
+  "labels": [
+   "unverified",
+   "unverified",
+   "unverified",
+   "unverified"
+  ],
+  "references": 2,
+  "wrong_programs": 1,
+  "correct": 4,
+  "incorrect_ids": [],
+  "wrong_programs_caught": 1
+ },
+ {
+  "task_id": "lcb-atcoder-abc389_f",
+  "artifact_sha256": "03668a0c9fb8d12e86551493eed8ae22285b0be051d7cda1bc99c381d4b9e995",
+  "checks_accepted": 4,
+  "labels": [
+   "unverified",
+   "unverified",
+   "unverified",
+   "unverified"
+  ],
+  "references": 3,
+  "wrong_programs": 0,
+  "correct": 4,
+  "incorrect_ids": [],
+  "wrong_programs_caught": 0
+ },
+ {
+  "task_id": "lcb-atcoder-abc393_d",
+  "artifact_sha256": "908798411e23838206a9faa516efea9eead52a36fa3749d5fde8de0c7ec4a9c3",
+  "checks_accepted": 4,
+  "labels": [
+   "unverified",
+   "unverified",
+   "unverified",
+   "unverified"
+  ],
+  "references": 11,
+  "wrong_programs": 2,
+  "correct": 4,
+  "incorrect_ids": [],
+  "wrong_programs_caught": 2
+ },
+ {
+  "task_id": "lcb-atcoder-abc397_f",
+  "artifact_sha256": "3199a4f65b2fe65fa07e68430c2523d05d3ff1af97914a04b5b3f597802f560e",
+  "checks_accepted": 4,
+  "labels": [
+   "unverified",
+   "unverified",
+   "unverified",
+   "unverified"
+  ],
+  "references": 1,
+  "wrong_programs": 1,
+  "correct": 4,
+  "incorrect_ids": [],
+  "wrong_programs_caught": 1
+ },
+ {
+  "task_id": "lcb-atcoder-abc398_d",
+  "artifact_sha256": "7ebe8c782bb9ec0f1ec86391282c33d034d856ae21ca5a00b0474724eac2f86a",
+  "checks_accepted": 4,
+  "labels": [
+   "unverified",
+   "unverified",
+   "unverified",
+   "unverified"
+  ],
+  "references": 1,
+  "wrong_programs": 6,
+  "correct": 4,
+  "incorrect_ids": [],
+  "wrong_programs_caught": 0
+ },
+ {
+  "task_id": "lcb-atcoder-abc400_b",
+  "artifact_sha256": "4c6340dd5007836d57ffc3bdc1501853c33fefe77528d061eb41b9f4329fbc36",
+  "checks_accepted": 4,
+  "labels": [
+   "unverified",
+   "unverified",
+   "unverified",
+   "unverified"
+  ],
+  "references": 7,
+  "wrong_programs": 0,
+  "correct": 4,
+  "incorrect_ids": [],
+  "wrong_programs_caught": 0
+ },
+ {
+  "task_id": "lcb-atcoder-arc192_a",
+  "artifact_sha256": "9d4130ce2b3ae9b8500622669b3de048c180887c520db09c131afea721d007dc",
+  "checks_accepted": 4,
+  "labels": [
+   "unverified",
+   "unverified",
+   "unverified",
+   "unverified"
+  ],
+  "references": 2,
+  "wrong_programs": 7,
+  "correct": 4,
+  "incorrect_ids": [],
+  "wrong_programs_caught": 6
+ },
+ {
+  "task_id": "lcb-atcoder-arc195_a",
+  "artifact_sha256": "d33289d519a4ea275b64e87f2ad7ba59d4c8af9209662afb84ca32cf99dc1023",
+  "checks_accepted": 4,
+  "labels": [
+   "unverified",
+   "unverified",
+   "unverified",
+   "unverified"
+  ],
+  "references": 8,
+  "wrong_programs": 10,
+  "correct": 4,
+  "incorrect_ids": [],
+  "wrong_programs_caught": 10
+ }
+]
