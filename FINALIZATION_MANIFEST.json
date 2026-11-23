@@ -1,0 +1,170 @@
+{
+ "schema": "csc2108-finalization-manifest-v1",
+ "branch": "feat/csc2108-final-agent",
+ "development_branch": "feat/csc2108-contract-diagnosis-pass2",
+ "development_commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+ "final_code_commit": "fcc554c2b88efb8e3796418e41ebaf6cbf80af77",
+ "selected": {
+  "shared_agent": "frozen-v6",
+  "shared_agent_definition_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "conditions": {
+   "A": {
+    "agent": "frozen-v6",
+    "first_message": "{{task}} (frozen)",
+    "frontier_calls": 0
+   },
+   "B": {
+    "coder": "frontier_coder.ApiCoder",
+    "model": "gpt-6.2-sol",
+    "effort": "medium",
+    "max_completion_tokens": 8000,
+    "recommended_max_requests": 28,
+    "development_substitute": "codex replay (label separately)"
+   },
+   "C": {
+    "agent": "frozen-v6",
+    "prompt_id": "plan-v1",
+    "injection": "inject-v1",
+    "frontier_calls": "1 per task, upfront"
+   },
+   "D": {
+    "agent": "frozen-v6",
+    "prompt_id": "contract-v1",
+    "injection": "inject-v1",
+    "frontier_calls": "1 per task, upfront"
+   },
+   "E": {
+    "agent": "frozen-v6",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "provider": "api",
+    "frontier_calls": "0 or 1 per attempt, at the first qualifying public failure",
+    "timeout_seconds": 300
+   }
+  }
+ },
+ "agent_configurations": {
+  "frozen-v6": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "l1-selfplan-v1": "06b12c078be874b47a9ded3a26f438cd46a0eaf351dbe56e45d18f0203efa30c"
+ },
+ "frozen_agent": {
+  "model": "qwen3.5:9b",
+  "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "profile": "heredoc-v6-16k-common",
+  "profile_config": {
+   "context": 16384,
+   "protocol": "text",
+   "thinking": false,
+   "output_tokens": 4096,
+   "temperature": 0.2,
+   "sampler": {
+    "top_k": 40,
+    "top_p": 0.9,
+    "min_p": 0.0,
+    "repeat_penalty": 1.0,
+    "repeat_last_n": 64,
+    "presence_penalty": 0.0,
+    "frequency_penalty": 0.0
+   }
+  },
+  "frozen_files": 38,
+  "selection_sha256": "8a8ac7f58adbf9073d87ab902cfe32d47fc2a38fea3d4d812086a70c2da0ceb6"
+ },
+ "prompt_sha256": {
+  "plan-v1": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "contract-v1": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "diagnosis-v1": "3d2c77611009163d4d1a8fa20922db5e719f184207f2efa84ff0f65fdc0fefb8"
+ },
+ "injection_template_sha256": {
+  "inject-v1/plan": "e5d9ff35f486775d820fd14ed8681b5e4478b92fbd74b7a8d3934eddd28425cf",
+  "inject-v1/contract": "30e3fb753cd7c7afb042c89372c84ba36ec6510185f276892f0919e04da44c2e"
+ },
+ "diagnosis_delivery_sha256": {
+  "deliver-v1": "dbe4c788c6329843f146737b6d4baf4dcdf95170b4ba846974c92b991d09b954"
+ },
+ "source_sha256": {
+  "guided_agent/__init__.py": "4f73e22afc142221d4e49b2e7fcb87160e3bc2a94e84e384408e445ee3cef320",
+  "guided_agent/__main__.py": "98754d7d7d73c28bfbda567a5d20986cb65afa39afd5e641f8367998a20de1f4",
+  "guided_agent/agent_config.py": "1ebf37c59e1e1080b3dad547fd7c028a0574fe879a02baf4ee9032eb30b56501",
+  "guided_agent/analysis.py": "7df35f208f78c6c69951087ba2518a1a49dda2c5912fee29a749000aeda162e7",
+  "guided_agent/backend.py": "968e0ed5bc2e36ec6a05155a52ebb57ff7e8c24e942f27ada0326660cae03f37",
+  "guided_agent/checkers.py": "2a9377b221baed6e432fa7883f68bc0885d4cd9443cfb039fcfd9fcb8cae9ebc",
+  "guided_agent/common.py": "2d6b6f448639ca63b153ba91e744bfe5de6b39fe3f18bb63fa2b9bd7beed4071",
+  "guided_agent/diagnosis.py": "50da04ad3b5fa8aeb53b3117e4a68145dace31e886787bcd2ce439c9ec9811fd",
+  "guided_agent/frontier_coder.py": "2d648a5be695a39c83ee438c2014e4772c766194edda99e180a680d6fc20e82f",
+  "guided_agent/guidance.py": "69fba6de8d16b8b88d7486c4e5216868893d47e976bbce203da0b2ceafa2c2ea",
+  "guided_agent/integrity.py": "8fd48ad20ff2182d74d7998da6558a746758f9a0ad737d6494defa51835e9685",
+  "guided_agent/measurement.py": "3084c5d3d6e933ca0df62e0dedd8a3a5601ea3a24e593988179d13660e44f982",
+  "guided_agent/output_semantics.py": "5224678d5cc8143005b26016fbb1f21e209416fa090cc7abfedb909adb47cff7",
+  "guided_agent/privacy.py": "75fd18267621c8690a18dc59cc042f242b60cf0e0376f2be2d7f4eaf4ab131fa",
+  "guided_agent/providers.py": "87338ac25ff4ff69044e8614bf055a52144e633c00cc0d73be5e928d99f749c3",
+  "guided_agent/runner.py": "2d63c863234e367abba03c24a48ca1222ea2452c5db2a51c67c512fd16635970",
+  "guided_agent/selection.py": "7858d07fc4b4931ba4b5948d3a91111bbb763b6672abc5e8f119a7b85186be3d",
+  "guided_agent/selection_pass2.py": "345f1e36d0075c259d1ea355c49d7215dbe2207afba2e337a844b224162521d1",
+  "guided_agent/selection_pass3.py": "5bbe5cbe92d5ce64f3fe9d26373456a0a8e48e220cfe3e9f7a5e2f0ed691f5dd",
+  "guided_agent/tasks.py": "b425704a26788465b5003539962c126b2bcb94f4e8146c83e904e8d688fcc4e8",
+  "guided_agent/test_guided.py": "9e1896c9ca5b455c851994aa28d0d71aad7c31e35efbc9553af6f8223e9e2cfe",
+  "guided_agent/test_pass2.py": "2426b2e3b7f7636ab8d213b2cbbce39dce868911bb251fe878a1d538649a10bb",
+  "guided_agent/test_pass3.py": "f3bffc9d9ff3e54da7b9590b2125b3319b9094752f08ebb40fff333e26401897",
+  "guided_agent/test_pass4.py": "0c0d8c84b99c429c22503b00c980db77ff8aa2a243031bbd2062cb4430565b1f"
+ },
+ "dependencies": {
+  "mini-swe-agent": "2.4.6",
+  "litellm": "1.81.16",
+  "pydantic": "2.12.5",
+  "requests": "2.34.2"
+ },
+ "python": "3.11.9",
+ "judge_version": "0.2.1",
+ "dataset_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+ "tests": {
+  "offline_windows_backend": {
+   "command": "python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4",
+   "ran": 71,
+   "skipped": 9,
+   "failures": 0,
+   "errors": 0,
+   "ok": true
+  },
+  "offline_portable_backend": {
+   "command": "CSC2108_TEST_BACKEND=portable python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4",
+   "ran": 71,
+   "skipped": 9,
+   "failures": 0,
+   "errors": 0,
+   "ok": true
+  },
+  "local_agent_portable": {
+   "command": "python -m unittest local_agent.test_portable",
+   "ran": 9,
+   "skipped": 1,
+   "failures": 0,
+   "errors": 0,
+   "ok": true
+  },
+  "docker_integration": {
+   "command": "CSC2108_INTEGRATION=1 python -m unittest guided_agent.test_pass2.IntegrationE guided_agent.test_pass4.IntegrationFinal",
+   "ran": 8,
+   "skipped": 0,
+   "failures": 0,
+   "errors": 0,
+   "ok": true
+  },
+  "host": "Windows 11, Python 3.11.9, Docker Desktop, run 2026-11-23 against the final tree before commit",
+  "manifest_test": "guided_agent.test_pass4.Manifest is skipped until this file exists; it runs on the final branch"
+ },
+ "compatibility": {
+  "windows_frozen_backend": "offline, Docker integration and live model runs (pass 4)",
+  "portable_backend_on_windows": "offline suite passes with CSC2108_TEST_BACKEND=portable",
+  "linux_macos": "CI software tests (macOS, Ubuntu, Windows runners); native macOS inference not validated",
+  "python": "3.11.9 (frozen Windows), 3.11 portable"
+ },
+ "open_decisions": [
+  "shared agent: keep frozen-v6 or adopt l1-selfplan-v1 with a validated larger context (keep a frozen-v6 A arm if adopted)",
+  "D: D-v1 (primary) or D-active as a labelled variant with its inputs-only control",
+  "context_overflow counts as a failed attempt (recommended)",
+  "optional controls: E neutral message; D inputs-only",
+  "API ledger ceilings and B max_requests for the final run",
+  "task pool and judge items (arc195_c, abc395_a, test5 output-semantics review)"
+ ]
+}
