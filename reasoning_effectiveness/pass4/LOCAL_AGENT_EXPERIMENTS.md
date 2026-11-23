@@ -109,3 +109,35 @@ There were no context-cap stops.
 * Neither more output (L3) nor native thinking (L2) does the same, so the gain is not about token allowance. It is
   about **separating planning from acting**, which is exactly what C does with a frontier plan.
 * This makes C's advantage partly an interface effect. Stage D tests whether C still adds value on top of l1.
+
+## 5. Agent versus model: one-shot probe (Phase I §5.5; `diagnostics/oneshot_probe.py`)
+
+**Design.** One direct Qwen call per task: no agent, tools or feedback, the frozen sampler and seed, 8,192 output
+tokens and a 16K context. The program is the last closed `python` block, judged by the team judge. It is a
+diagnostic, not a condition.
+
+| Task | One-shot (tokens) | A frozen-v6 | A l1 | Reading |
+| --- | --- | --- | --- | --- |
+| abc400_b | ✓ (1,495) | ✓ | ✓ | easy |
+| abc393_d | ✓ (2,310) | ✗ repair limit | ✓ | **the model knows a method; the original agent fails to express or repair it** |
+| arc195_a | ✓ (8,158; 8 code blocks while deliberating) | ✗ 39/40 | ✓ | **the same** |
+| abc398_d | no program (8,192 cap) | ✗ TLE | ✓ | the plan step finds the efficient method; free-form generation does not finish |
+| abc388_e | no program (8,192 cap) | no program | ✗ | reasoning does not converge |
+| abc389_f | no program (8,192 cap) | no program | no program | reasoning does not converge |
+| abc397_f | no program (8,192 cap) | no program | no program | reasoning does not converge |
+| arc192_a | no program (8,192 cap) | no program | ✗ | reasoning does not converge |
+| **Hidden passes** | **3** | **1** | **4** | |
+
+**Failure types on the 8 tasks.**
+
+* **Interface failures** (the model can, the original agent does not): **2** (abc393_d, arc195_a). Both are fixed by
+  l1.
+* **Expression or efficiency within the interface:** 1 (abc398_d). The original agent's program is too slow; the
+  self-planned session is not.
+* **Capability or deliberation limits** (no method within 8K tokens, with or without the agent): **4**. Raising the
+  output allowance (l3) or thinking (l2) does not help, and neither does any local configuration. These are the
+  tasks where frontier reasoning (C, B) is needed.
+* **Context or budget exhaustion:** **0** (no context stops; no deadlines).
+
+This agrees with the teammates' earlier one-shot pilot (one-shot 4/6 against a shortened agent's 3/6). The original
+agent interface costs Qwen tasks it can solve, and l1 recovers them.
