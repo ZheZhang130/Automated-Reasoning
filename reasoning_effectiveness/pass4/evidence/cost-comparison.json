@@ -1,0 +1,343 @@
+{
+ "assumptions": {
+  "price_per_1m": {
+   "input": 2.0,
+   "output": 10.0
+  },
+  "modelled_watts": 350.0,
+  "modelled_usd_per_kwh": 0.15
+ },
+ "measured_api_plan_costs": [
+  {
+   "task": "lcb-atcoder-abc388_g",
+   "cost_usd": 0.012098,
+   "input": 1069,
+   "output": 996
+  },
+  {
+   "task": "lcb-atcoder-abc391_e",
+   "cost_usd": 0.00702,
+   "input": 660,
+   "output": 570
+  },
+  {
+   "task": "lcb-atcoder-abc393_d",
+   "cost_usd": 0.00914,
+   "input": 550,
+   "output": 804
+  },
+  {
+   "task": "lcb-atcoder-abc393_e",
+   "cost_usd": 0.008502,
+   "input": 631,
+   "output": 724
+  },
+  {
+   "task": "lcb-atcoder-abc396_e",
+   "cost_usd": 0.009926,
+   "input": 863,
+   "output": 820
+  },
+  {
+   "task": "lcb-atcoder-arc192_a",
+   "cost_usd": 0.015984,
+   "input": 917,
+   "output": 1415
+  }
+ ],
+ "mean_measured_api_plan_cost_usd": 0.01044,
+ "modelled_api_plan_cost_hard_cohort_usd": 0.01654,
+ "b_api_runs_hard": [
+  {
+   "task": "arc190_c",
+   "seed": 2108,
+   "pass": false,
+   "program": true,
+   "local_output_tokens": 0,
+   "local_prompt_tokens": 0,
+   "local_inference_seconds": 0.0,
+   "wall_seconds": 92.5,
+   "frontier_requests": 7,
+   "frontier_output_tokens": 4934,
+   "frontier_input_tokens": 23535,
+   "api_cost_usd": 0.09641,
+   "actions": 7
+  },
+  {
+   "task": "arc194_e",
+   "seed": 2108,
+   "pass": true,
+   "program": true,
+   "local_output_tokens": 0,
+   "local_prompt_tokens": 0,
+   "local_inference_seconds": 0.0,
+   "wall_seconds": 74.19,
+   "frontier_requests": 4,
+   "frontier_output_tokens": 3246,
+   "frontier_input_tokens": 5397,
+   "api_cost_usd": 0.043254,
+   "actions": 4
+  }
+ ],
+ "b_api_runs_easier_pass3": [
+  {
+   "task": "abc393_d",
+   "seed": 2108,
+   "pass": true,
+   "program": true,
+   "local_output_tokens": 0,
+   "local_prompt_tokens": 0,
+   "local_inference_seconds": 0.0,
+   "wall_seconds": 11.62,
+   "frontier_requests": 3,
+   "frontier_output_tokens": 197,
+   "frontier_input_tokens": 2404,
+   "api_cost_usd": 0.006778,
+   "actions": 3
+  },
+  {
+   "task": "abc388_g",
+   "seed": 2108,
+   "pass": true,
+   "program": true,
+   "local_output_tokens": 0,
+   "local_prompt_tokens": 0,
+   "local_inference_seconds": 0.0,
+   "wall_seconds": 16.56,
+   "frontier_requests": 3,
+   "frontier_output_tokens": 590,
+   "frontier_input_tokens": 4475,
+   "api_cost_usd": 0.01485,
+   "actions": 3
+  }
+ ],
+ "summary": [
+  {
+   "label": "A local only (pass-3, 12 hard x 2 seeds)",
+   "attempts": 24,
+   "hidden_passes": 2,
+   "pass_rate": 0.083,
+   "no_program": 17,
+   "local_inference_seconds_total": 3119.9,
+   "local_inference_seconds_per_attempt": 130.0,
+   "local_output_tokens_per_attempt": 13048,
+   "wall_seconds_per_attempt": 143.2,
+   "frontier_requests_per_attempt": 0.0,
+   "modelled_local_energy_kwh_per_attempt": 0.012638,
+   "modelled_local_cost_usd_per_attempt": 0.001896,
+   "note": "",
+   "api_cost_usd_per_attempt": 0.0,
+   "api_cost_usd_per_success": 0.0
+  },
+  {
+   "label": "C one-off plan per attempt (modelled API plan cost)",
+   "attempts": 24,
+   "hidden_passes": 13,
+   "pass_rate": 0.542,
+   "no_program": 8,
+   "local_inference_seconds_total": 1692.3,
+   "local_inference_seconds_per_attempt": 70.5,
+   "local_output_tokens_per_attempt": 6875,
+   "wall_seconds_per_attempt": 81.1,
+   "frontier_requests_per_attempt": 1.0,
+   "modelled_local_energy_kwh_per_attempt": 0.006855,
+   "modelled_local_cost_usd_per_attempt": 0.001028,
+   "note": "plan generated for this attempt only",
+   "api_cost_usd_per_attempt": 0.01654,
+   "api_cost_usd_per_success": 0.03054
+  },
+  {
+   "label": "C plan amortized over 2 seeds",
+   "attempts": 24,
+   "hidden_passes": 13,
+   "pass_rate": 0.542,
+   "no_program": 8,
+   "local_inference_seconds_total": 1692.3,
+   "local_inference_seconds_per_attempt": 70.5,
+   "local_output_tokens_per_attempt": 6875,
+   "wall_seconds_per_attempt": 81.1,
+   "frontier_requests_per_attempt": 1.0,
+   "modelled_local_energy_kwh_per_attempt": 0.006855,
+   "modelled_local_cost_usd_per_attempt": 0.001028,
+   "note": "benchmark reuse; not a one-off cost",
+   "api_cost_usd_per_attempt": 0.00827,
+   "api_cost_usd_per_success": 0.01527
+  },
+  {
+   "label": "C plan amortized over 3 seeds",
+   "attempts": 24,
+   "hidden_passes": 13,
+   "pass_rate": 0.542,
+   "no_program": 8,
+   "local_inference_seconds_total": 1692.3,
+   "local_inference_seconds_per_attempt": 70.5,
+   "local_output_tokens_per_attempt": 6875,
+   "wall_seconds_per_attempt": 81.1,
+   "frontier_requests_per_attempt": 1.0,
+   "modelled_local_energy_kwh_per_attempt": 0.006855,
+   "modelled_local_cost_usd_per_attempt": 0.001028,
+   "note": "benchmark reuse; not a one-off cost",
+   "api_cost_usd_per_attempt": 0.00551,
+   "api_cost_usd_per_success": 0.01018
+  },
+  {
+   "label": "B Codex coder (replay; no API charge; 12 hard x 1)",
+   "attempts": 12,
+   "hidden_passes": 11,
+   "pass_rate": 0.917,
+   "no_program": 0,
+   "local_inference_seconds_total": 0.0,
+   "local_inference_seconds_per_attempt": 0.0,
+   "local_output_tokens_per_attempt": 0,
+   "wall_seconds_per_attempt": 53.9,
+   "frontier_requests_per_attempt": 3.0,
+   "modelled_local_energy_kwh_per_attempt": 0.0,
+   "modelled_local_cost_usd_per_attempt": 0.0,
+   "note": "cost not measured: Codex replay; token counts include Codex harness context"
+  },
+  {
+   "label": "B direct API (2 hard tasks; measured)",
+   "attempts": 2,
+   "hidden_passes": 1,
+   "pass_rate": 0.5,
+   "no_program": 0,
+   "local_inference_seconds_total": 0.0,
+   "local_inference_seconds_per_attempt": 0.0,
+   "local_output_tokens_per_attempt": 0,
+   "wall_seconds_per_attempt": 83.3,
+   "frontier_requests_per_attempt": 5.5,
+   "modelled_local_energy_kwh_per_attempt": 0.0,
+   "modelled_local_cost_usd_per_attempt": 0.0,
+   "note": "",
+   "api_cost_usd_per_attempt": 0.06983,
+   "api_cost_usd_per_success": 0.13966
+  },
+  {
+   "label": "B direct API (pass-3, 2 easier tasks; measured)",
+   "attempts": 2,
+   "hidden_passes": 2,
+   "pass_rate": 1.0,
+   "no_program": 0,
+   "local_inference_seconds_total": 0.0,
+   "local_inference_seconds_per_attempt": 0.0,
+   "local_output_tokens_per_attempt": 0,
+   "wall_seconds_per_attempt": 14.1,
+   "frontier_requests_per_attempt": 3.0,
+   "modelled_local_energy_kwh_per_attempt": 0.0,
+   "modelled_local_cost_usd_per_attempt": 0.0,
+   "note": "",
+   "api_cost_usd_per_attempt": 0.01081,
+   "api_cost_usd_per_success": 0.01081
+  }
+ ],
+ "per_task_hard": {
+  "abc388_f": {
+   "A_passes": 0,
+   "C_passes": 0,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.01261,
+   "C_local_inference_seconds_mean": 122.3
+  },
+  "abc389_f": {
+   "A_passes": 0,
+   "C_passes": 2,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.00971,
+   "C_local_inference_seconds_mean": 74.0
+  },
+  "abc390_f": {
+   "A_passes": 0,
+   "C_passes": 2,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.01083,
+   "C_local_inference_seconds_mean": 30.0
+  },
+  "abc391_f": {
+   "A_passes": 0,
+   "C_passes": 2,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.00873,
+   "C_local_inference_seconds_mean": 30.3
+  },
+  "abc395_f": {
+   "A_passes": 1,
+   "C_passes": 2,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.01054,
+   "C_local_inference_seconds_mean": 8.6
+  },
+  "abc397_e": {
+   "A_passes": 0,
+   "C_passes": 2,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.01049,
+   "C_local_inference_seconds_mean": 12.2
+  },
+  "abc397_f": {
+   "A_passes": 0,
+   "C_passes": 0,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.01145,
+   "C_local_inference_seconds_mean": 118.3
+  },
+  "arc190_c": {
+   "A_passes": 0,
+   "C_passes": 0,
+   "B_codex_pass": false,
+   "B_api_pass": false,
+   "B_api_cost_usd": 0.09641,
+   "C_modelled_plan_cost_usd": 0.01684,
+   "C_local_inference_seconds_mean": 117.2
+  },
+  "arc193_a": {
+   "A_passes": 0,
+   "C_passes": 1,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.01553,
+   "C_local_inference_seconds_mean": 72.0
+  },
+  "arc193_b": {
+   "A_passes": 0,
+   "C_passes": 2,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.01715,
+   "C_local_inference_seconds_mean": 13.6
+  },
+  "arc194_e": {
+   "A_passes": 1,
+   "C_passes": 0,
+   "B_codex_pass": true,
+   "B_api_pass": true,
+   "B_api_cost_usd": 0.043254,
+   "C_modelled_plan_cost_usd": 0.0358,
+   "C_local_inference_seconds_mean": 122.1
+  },
+  "arc195_d": {
+   "A_passes": 0,
+   "C_passes": 0,
+   "B_codex_pass": true,
+   "B_api_pass": null,
+   "B_api_cost_usd": null,
+   "C_modelled_plan_cost_usd": 0.03878,
+   "C_local_inference_seconds_mean": 125.6
+  }
+ }
+}

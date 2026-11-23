@@ -145,6 +145,7 @@ def _iso(value):
 
 def _usage(usage):
     usage = usage or {}
+    usage = usage.get('codex_reported', usage)   # Codex-authored artifacts nest Codex's own counts
     details = usage.get('completion_tokens_details') or {}
     prompt = usage.get('prompt_tokens_details') or {}
     return {'input_tokens': usage.get('prompt_tokens', usage.get('input_tokens')),
