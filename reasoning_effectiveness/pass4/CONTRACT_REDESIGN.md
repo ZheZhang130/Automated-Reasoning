@@ -101,3 +101,69 @@ benchmark-safe validation.
 * **abc398_d's wrong programs are not caught** by small hand-checkable inputs. They produce correct outputs and
   fail only by **time limit**: 36 AC and 4 TLE of 40 hidden cases in all 6 historical failures. A behavioural
   contract with small checks cannot express that, so execution cannot add information the checks do not contain.
+
+## 5. Results (`p4-dactive-s2108`: 24 attempts, original agent, seed 2108; 0 infrastructure failures)
+
+| Task | A (hist) | D-v1 (hist) | v3passive | **active** | inputs (control) |
+| --- | --- | --- | --- | --- | --- |
+| abc400_b | ✓ | ✓ | ✓ | ✓ | ✓ |
+| abc393_d | ✗ | ✓ | ✓ | ✓ | ✓ |
+| arc195_a | ✗ | no program | no program | no program | **✓** |
+| abc398_d | ✗ (TLE) | ✗ | ✗ | ✗ | ✗ |
+| abc388_e | no program | **✓** | ✗ | ✗ | no program |
+| abc389_f | no program | no program | no program | no program | no program |
+| abc397_f | no program | no program | no program | **✓** | no program |
+| arc192_a | no program | ✗ | no program | no program | no program |
+| **Hidden passes** | 1 | 3 | 2 | **3** | 3 |
+| Runs without a program | 5 | 4 | 4 | 4 | 5 |
+
+**Check execution** (active arm; `evidence/dactive-analysis.json`).
+
+* **How often the checks ran:** at every public test of every run that wrote a program (11 public tests in 5 runs),
+  taking 0.19–0.63 s per run in total. No harness error, no added action.
+* **abc397_f, the one task D-active alone solved.**
+  * At actions 2 and 4 the public tests failed (0/2), and **all four** contract checks were also DIFFERENT. After
+    each, the agent changed the program.
+  * At action 18 the program passed the public tests and all four checks, then passed 40/40 hidden.
+  * **This cannot be attributed to the checks alone.** The public failure was also shown, and the trajectory
+    differs from `v3passive` from the very first response, because the injection wording differs. Under
+    `v3passive` the first responses truncated three times.
+* **abc388_e, a correct detection that was not repaired.**
+  * The program passed the public tests (3/3) three times, and each time check **K-3 was DIFFERENT**. K-3 is
+    correct against the reference (§4), so the checks detected a real bug that the public tests miss: exactly
+    the Endres/Tufano bug-detection mechanism.
+  * The agent changed the program twice after the flag but never fixed K-3, then submitted; hidden fail.
+* **Everywhere else** the checks agreed with the program, or the run never produced a program to check.
+  **No proposed output was wrong**, so D-active never misled the agent in this cohort.
+
+**The control.** `inputs` (the same extra executions, no contract) is no worse than the contract arms. It solves
+arc195_a, where its trajectory was A's initial message plus extra outputs, and loses abc388_e. The extra testing
+opportunity alone is therefore worth about as much as the contract information on this cohort.
+
+## 6. Decision
+
+Pre-registered rule: at least +2 net over **both** `v3passive` and `inputs`, losing nothing `v3passive` passes.
+
+| Comparison | Gains | Losses | Net |
+| --- | --- | --- | --- |
+| active vs v3passive | abc397_f | — | **+1** |
+| active vs inputs | abc397_f | arc195_a | **0** |
+| active vs D-v1 (hist) | abc397_f | abc388_e | 0 |
+
+**D-active is not promoted.** **D-v1** (teammates' `contract-v1` + `inject-v1`) stays the primary D: it is the
+proposal's original intervention and the valid control, and it matches D-active's 3/8 here.
+
+**D-active stays documented as an alternative.** It is implemented, tested (Docker integration) and safe:
+benchmark-safe validation, unverified labels, no extra actions or frontier calls. What it shows is mechanistically
+interesting:
+
+* the executed checks **detect** public-passing wrong programs (abc388_e);
+* **repairs** after a detection depend on local capability;
+* detection is impossible when the bug is only performance (abc398_d).
+
+If the team wants a D that "affects actual verification", D-active is the defensible implementation. It should
+then be a **labelled variant** (`D-active`, contract-v3 + `inject-active-v1` + executed checks), not silently
+replace D-v1, and the final study should include the `inputs` control. Otherwise extra testing opportunity is
+confounded with contract content.
+
+**Under the improved shared agent (l1).** Measured in stage D, see `LOCAL_AGENT_EXPERIMENTS.md` §6.
