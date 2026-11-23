@@ -69,3 +69,77 @@ Pass-2 and pass-3 integration tests cover all of this, and they pass again in pa
   * one hand-checked failing input.
 
   It allows method changes when "the cause requires more". Whether that is better is measured in §2, never assumed.
+
+## 2. Diagnosis against interruption at 11 frozen trigger states (brief §8.2; `p4-eprobe`)
+
+**Design.**
+
+* **States:** every trigger state of passes 2 and 3: 5 development and 6 hard-cohort states.
+* **Reproduction:** each state was re-entered by rerunning the original agent at the original seed. The trigger
+  packet's candidate sha256 equalled the historical one in **11/11** neutral and **11/11** diagnosis-v2 runs, so
+  every arm saw the identical failed program and public report.
+* **Arms:**
+  * **A:** the original continuation, without a message (historical);
+  * **diagnosis-v1:** historical Codex;
+  * **neutral:** a fixed, length-matched, content-free message (187 words, same `deliver-v1` wrapper). Pass-2
+    states come from pass 3; pass-3 states are new;
+  * **diagnosis-v2:** new, live isolated Codex.
+* **What stays fixed:** budgets and session continuity are identical; only the delivered text differs.
+
+| State (seed) | A (no message) | diagnosis-v1 | neutral | diagnosis-v2 |
+| --- | --- | --- | --- | --- |
+| abc390_c (2108) | ✓ | ✓ | ✓ | ✓ |
+| abc393_d (2108) | ✗ 9 | **✓** | **✓** | **✓** |
+| abc398_d (2108) | ✗ 36 | ✗ 36 | ✗ 36 | ✗ 36 |
+| arc195_a (2108) | ✗ 39 | ✗ 39 | ✗ 3 | **✓** |
+| arc195_a (2109) | ✓ | ✓ | ✗ 37 | ✗ 10 |
+| abc390_f (2108) | ✗ 8 | ✗ 13 | ✗ 8 | ✗ 8 |
+| abc395_f (2108) | ✓ | ✓ | **✗ 0** | ✓ |
+| abc388_f (2109) | ✗ 21 | ✗ 38 | ✗ 0 | ✗ 38 |
+| abc395_f (2109) | ✗ 34 | **✓** | ✗ 0 | ✗ 0 |
+| arc190_c (2109) | ✗ 0 | ✗ 34 | ✗ 26 | ✗ 26 |
+| arc193_a (2109) | ✗ 4 | **✓** | ✗ 0 | **✓** |
+| **Hidden passes** | 3 | **6** | 2 | 5 |
+| Public pass after the message | — | 9 | 4 | 8 |
+| Harms (pass → fail against A) | — | 0 | **2** | 1 |
+
+(Numbers are hidden cases passed out of 40.)
+
+**Findings.**
+
+* **On the hard states the diagnosis's content matters, not the interruption.** At the 6 new states the neutral
+  message reaches **0** hidden passes. It is worse than no message: 0/40 on abc395_f at 2108, where A passes
+  alone, and on abc388_f and arc193_a. Both diagnoses reach 2–3.
+  * Pooled: diagnosis-v1 rescues 3 states A fails (abc393_d, abc395_f at 2109, arc193_a) and harms none. The
+    neutral message rescues 1 (abc393_d) and harms 2.
+  * This **reverses pass 3's tentative reading** ("the rescue is not the diagnosis's content", from 5 easier
+    states). There, a neutral message reproduced the one development rescue (abc393_d). It still does, but on the
+    harder states it does not.
+* **The neutral message harms by derailing.** After it, the agent rewrote the program (changed-after in 11/11) but
+  usually never got back to a public pass (4/11, against 9/11 for v1). An unexplained interruption at a failure
+  invites a rewrite, not a repair.
+* **diagnosis-v2 does not beat v1.**
+  * It wins arc195_a at 2108, where its shorter "exact repair target" produced a correct fix and v1 did not.
+  * It loses arc195_a at 2109 and abc395_f at 2109. Both of those needed a method change, which v1 described in
+    words and v2's local-fix framing discouraged, as anticipated in §1.
+  * Its diagnoses are shorter (125–164 words against 171–244) and just as fast (7–24 s).
+  * On abc390_f the agent truncated three times right after the v2 message and ended without acting on it.
+* **Single samples.** Codex diagnoses are not seeded. Each state has one v1 sample (historical) and one v2 sample,
+  so a one-state difference between v1 and v2 is within sampling noise. The neutral-versus-diagnosis difference
+  (2 against 5–6, with 2 harms) is the robust finding.
+
+## 3. E under the improved shared agent (brief §8.3)
+
+See `LOCAL_AGENT_EXPERIMENTS.md` §6 (batch `p4-stageD-de`: diagnosis-v1 under `l1-selfplan-v1`). The trigger rate
+is reported separately from diagnosis quality there.
+
+## 4. Decision
+
+* **The pre-registered rule is not met:** v2 must beat both v1 and neutral by at least 2 states and harm no v1
+  rescue. It reaches 5 against 6, and it loses one v1 rescue (abc395_f at 2109).
+* **Primary E remains `diagnosis-v1` + `deliver-v1`:** one call at the first qualifying public failure, at most
+  once per attempt, with the frontier wait excluded from the local clock.
+* **The neutral-interruption control belongs in the final study.** It is the evidence that separates diagnosis
+  content from interruption, and it costs no API money (`provider: fixed`). This is recommended as an optional
+  control arm on a subset; it is a team decision.
+* **diagnosis-v2** stays in the development archive as a documented alternative.
