@@ -9,7 +9,6 @@ python -m guided_agent batch PLAN.json            (guided_agent/__main__.py: val
          ├─ agent_config.resolve(spec.agent)                      shared-agent configuration (versioned)
          ├─ local_agent.cli.verify()                              38 frozen file hashes, packages, images, digest
          ├─ guidance.load_for_run()            C, D               statement-hash-bound artifact (teammates' replay classes)
-         ├─ contract_checks                    D-active only      parse + benchmark-safe validation of K-checks
          ├─ backend.frozen_runtime()                              local_eval_v2/runtime.py (Windows) or portable adapter
          ├─ backend.judge_client('public').up()                   team judge, public suite only
          ├─ diagnosis.DiagnosisController      E                  one-shot trigger + delivery into the live session
@@ -28,11 +27,10 @@ unchanged. Conditions and agent configurations differ **only** through globals r
 
 | Rebound global | Who uses it | Change |
 | --- | --- | --- |
-| `Agent` → `GuidedAgent` | C, D (guidance template), E (diagnosis delivery), l1 (self-plan block) | first user message template; one extra user message for E |
-| `Environment` → `JudgedEnvironment` | all | `python -I /public/check.py` goes to judge-public; l4 receipts; D-active checks |
+| `Agent` → `GuidedAgent` | C, D (guidance template), E (diagnosis delivery), the shared agent `l1-selfplan-v1` (self-plan block) | first user message template; one extra user message for E |
+| `Environment` → `JudgedEnvironment` | all | `python -I /public/check.py` goes to judge-public; E's trigger observation; E container lifetime |
 | `TextModel` → frontier coder | B | the coding model |
-| `read` → profile overlay | l2, l3 | thinking / output tokens / context, verified on the wire |
-| `exclusive_gpu` → check, then self-plan | l1 | one bounded local planning call |
+| `exclusive_gpu` → check, then self-plan | `l1-selfplan-v1` | one bounded local planning call (A, C, D, E) |
 | `exclusive_gpu`, `api`, `MODELS` | B | no local model is touched |
 
 Everything else is the frozen code: system prompt, the regex action parser, format-error handling, observation
@@ -47,7 +45,7 @@ from `local_agent` (Windows: original globals; macOS/Linux: `portable.adapted_ru
 | A | 0 | — | — | the statement (frozen `{{task}}`) |
 | B | one per agent turn (frontier is the coder) | during the run | the full agent transcript | — (no local model) |
 | C | 1 (plan) | before the run, once per task | statement + plan prompt | statement + plan block |
-| D | 1 (contract) | before the run, once per task | statement + contract prompt | statement + contract block (+ D-active: executed check results after each public test) |
+| D | 1 (contract) | before the run, once per task | statement + contract prompt | statement + contract block |
 | E | 0 or 1 (diagnosis) | at the first qualifying public failure | statement + failed program + its public report | one extra user message; same session, files, counters, budgets |
 
 **Never seen by any model:** hidden tests, reference solutions or earlier experiment outcomes. The frontier never

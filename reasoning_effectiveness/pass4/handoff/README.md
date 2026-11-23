@@ -30,7 +30,7 @@ python -m guided_agent prepare-fixture             # synthetic task; no LiveCode
 python -m guided_agent batch PLAN.json             # attempts (see HANDOFF_TO_PETER.md for plan examples)
 python -m guided_agent evaluate <study>/runs/<batch>
 python -m guided_agent measure  <study>/runs/<batch>
-python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4
+python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4 local_agent.test_portable
 ```
 
 ## Documents
@@ -52,10 +52,12 @@ python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent
 | `local_eval_v2/`, `local_baseline/`, `local_optimization/` | the **frozen** original agent and its selection (hash-verified; do not edit) |
 | `judge/` | the team judge (public and hidden suites) |
 | `planning_frontier/`, `contract_frontier/` | the teammates' plan and contract prompts and replay classes (used unchanged) |
-| `orchestration/`, `timeline/`, `papers/`, `docs/` | teammates' and project material |
+| `orchestration/`, `timeline/`, `papers/` | teammates' material (unchanged) |
+| `docs/` | host setup (`MACOS.md`, `GUIDED_AGENT_PORTABILITY.md`) and project structure |
+| `evidence/local_eval_v2/benchmark_provenance.json` | the frozen system-prompt provenance read by `local_agent` tests (the rest of `evidence/` is on the development branch) |
 
 ## History
 
 The full development history lives on `feat/csc2108-contract-diagnosis-pass2`: passes 1–4, every experiment,
 diagnostic script, intermediate report and alternative configuration. This branch keeps only what the final system
-needs.
+needs; links inside the frozen historical folders (`local_*`) may point to reports that exist only there.

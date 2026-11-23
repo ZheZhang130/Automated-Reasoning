@@ -44,7 +44,7 @@ reads. That file is never in Git, never printed, and never passed to Codex or to
 
 ```bash
 python -m guided_agent author --provider api --prompt-id plan-v1     --tasks <ids> --label final-plans     --purpose "final benchmark C guidance"
-python -m guided_agent author --provider api --prompt-id <D prompt>  --tasks <ids> --label final-contracts --purpose "final benchmark D guidance"
+python -m guided_agent author --provider api --prompt-id contract-v1  --tasks <ids> --label final-contracts --purpose "final benchmark D guidance"
 ```
 
 * **Artifacts:** each is a write-once `guidance/<label>/<task>.<prompt>.api.json`, bound to the statement's sha256.
@@ -60,15 +60,15 @@ providers and budgets; budgets are the frozen defaults.
 
 ```json
 {"batch": "final-s2108", "frozen": true, "outer_timeout": 1000, "attempts": [
-  {"task_id": "lcb-atcoder-abc394_b", "condition": "A", "seed": 2108, "agent": "<AGENT>"},
+  {"task_id": "lcb-atcoder-abc394_b", "condition": "A", "seed": 2108, "agent": "frozen-v6"},
   {"task_id": "lcb-atcoder-abc394_b", "condition": "B", "seed": 2108, "variant": "api",
    "coder": {"provider": "api", "max_requests": 28, "purpose": "final B"}},
-  {"task_id": "lcb-atcoder-abc394_b", "condition": "C", "seed": 2108, "agent": "<AGENT>",
+  {"task_id": "lcb-atcoder-abc394_b", "condition": "C", "seed": 2108, "agent": "frozen-v6",
    "guidance": "<study>/guidance/final-plans/lcb-atcoder-abc394_b.plan-v1.api.json"},
-  {"task_id": "lcb-atcoder-abc394_b", "condition": "D", "seed": 2108, "agent": "<AGENT>",
-   "guidance": "<study>/guidance/final-contracts/<artifact>.json"},
-  {"task_id": "lcb-atcoder-abc394_b", "condition": "E", "seed": 2108, "agent": "<AGENT>",
-   "diagnosis": {"provider": "api", "purpose": "final E", "prompt_id": "<E prompt>", "delivery": "deliver-v1"}}
+  {"task_id": "lcb-atcoder-abc394_b", "condition": "D", "seed": 2108, "agent": "frozen-v6",
+   "guidance": "<study>/guidance/final-contracts/lcb-atcoder-abc394_b.contract-v1.api.json"},
+  {"task_id": "lcb-atcoder-abc394_b", "condition": "E", "seed": 2108, "agent": "frozen-v6",
+   "diagnosis": {"provider": "api", "purpose": "final E", "prompt_id": "diagnosis-v1", "delivery": "deliver-v1"}}
 ]}
 ```
 
@@ -78,10 +78,10 @@ python -m guided_agent evaluate <study>/runs/final-s2108     # judge-hidden afte
 python -m guided_agent measure  <study>/runs/final-s2108     # (re)build measurement.json + measurements.jsonl
 ```
 
-Placeholders above (`<AGENT>`, `<D prompt>`, `<E prompt>`) take the values in `CONDITIONS.md`.
+These are the primary configurations of `CONDITIONS.md`. In a `"frozen": true` plan every local attempt must name `"agent": "frozen-v6"` (`agent_config.PRIMARY_AGENT`).
 
-**What `"frozen": true` refuses:** ACI options, smoke budgets, test hooks, non-primary prompts or injections, and
-attempts without an explicit seed.
+**What `"frozen": true` refuses:** a missing or non-primary `agent`, smoke budgets, test hooks, non-primary prompts or
+injections, and attempts without an explicit seed.
 
 **Run identity:** the run directory name is `<task>-<condition>[-<variant>]`, so give every seed a variant (for
 example `"variant": "s2109"`). The plan validator refuses collisions.
@@ -150,10 +150,48 @@ loaded by `evaluate`.
 
 ## 6. Test fixtures for your pipeline
 
-`guided_agent/fixtures/<role>/` holds sanitized records: `result.json`, `measurement.json`, `attempts.jsonl` and
-`eval.json`. There are no programs, statements or model texts; `INDEX.json` lists them. Use them to test
+`guided_agent/fixtures/<role>/` holds sanitized records of 12 roles: A success, self-plan success, truncation
+without a program, action-budget exhaustion, C success, D contract, E triggered with repair, E untriggered, E
+provider error, B API with repair, context overflow, infrastructure error. Each has `result.json`,
+`measurement.json`, `attempts.jsonl` and `eval.json`. There are no programs, statements or model texts;
+`INDEX.json` and `fixtures/README.md` list them. Use them to test
 ingestion without running any model.
 
-## 7. Still yours to decide or do
+**Context overflow** (`correctness.context_overflow`): the prompt reached the 16K window and the next model request
+failed. The runner records `infra_error`, but the failure is deterministic: the same seed reproduces it. Count it
+as a failed attempt; do not rerun it as infrastructure.
 
-See `CONDITIONS.md` §"Open decisions" and the final report.
+## 7. Tests (what proves what)
+
+```bash
+python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4 local_agent.test_portable
+CSC2108_INTEGRATION=1 python -m unittest guided_agent.test_pass2.IntegrationE guided_agent.test_pass4.IntegrationFinal   # Docker + judge
+```
+
+| Required property | Test(s) |
+| --- | --- |
+| A runs without frontier guidance | `test_guided.Backend.test_agent_template_unchanged_for_a`, `test_pass2.IntegrationE.test_6_a_is_unchanged_by_the_e_machinery` |
+| B codes through the same interface | `test_pass2.FrontierCoder.test_actions_use_the_frozen_text_protocol`, `test_non_ollama_globals_never_touch_the_gpu_or_ollama_metadata` |
+| C injects its plan once | `test_guided.GuidanceArtifacts.*` (statement-bound replay, write-once, parallel templates) |
+| D delivers its contract | `test_guided.GuidanceArtifacts.test_plan_and_contract_templates_are_parallel`, `test_replay_through_teammate_classes` |
+| E triggers once on a qualifying public failure | `test_pass2.TriggerPolicy.*`, `IntegrationE.test_5_only_first_of_multiple_failures_triggers` |
+| E preserves the same session | `IntegrationE.test_1_diagnosis_then_same_session_repair_passes` (history only grows, one action counter) |
+| E does not trigger on infrastructure failures | `IntegrationE.test_4_judge_infrastructure_error_requests_nothing`, `test_pass3.EEvidence.*` |
+| Budgets are enforced | `IntegrationFinal.test_2_action_budget_is_enforced_with_a_program_on_disk`, `test_pass2.FrontierCoder.test_request_cap_stops_cleanly_and_errors_are_never_retried`, `test_pass2.Delivery.test_frontier_wait_is_excluded_from_local_time` |
+| API request accounting and caps | `test_guided.Providers.*`, `test_pass3.LedgerConcurrency.*`, `test_pass2.FrontierCoder.test_api_coder_respects_the_ledger_without_network` |
+| Judge interface and candidate extraction | `test_guided.Backend.test_recognized_test_goes_to_judge_and_counts_an_action`, `test_pass3.JudgeSemantics.*`, `IntegrationFinal.test_2` (submission extracted) |
+| Run records follow the measurement schema | `test_pass4.MeasurementSchema.*` (fields, units, every fixture conforms), `IntegrationFinal` (each attempt writes a conforming `measurement.json`) |
+| Windows/Linux/macOS software paths | `test_guided.Backend.test_composes_with_portable_host_adapter`, `local_agent.test_portable`, CI matrix (macOS, Ubuntu, Windows) |
+| Frozen configuration and provenance hashes | `test_pass4.Manifest` (prompts, templates, agent configurations, frozen selection), `local_agent verify` (38 hashes) in every attempt |
+
+## 8. Still yours to decide or do
+
+See `CONDITIONS.md` §"Open decisions". Before the final freeze:
+
+* decide those items;
+* generate and freeze all C and D guidance with the API;
+* set the ledger ceilings;
+* run a small smoke batch of all five conditions on the synthetic fixture and one real task.
+
+The final benchmark design options (60/90/120 tasks, seeds, strata, costs) are on the development branch
+(`reasoning_effectiveness/pass3/FINAL_BENCHMARK_OPTIONS.md`, updated by `pass4/FINAL_REPORT.md`).

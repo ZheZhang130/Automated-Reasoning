@@ -54,7 +54,6 @@ attempt already wrote, so it can be rerun at any time. The table below is genera
 | `identity.injection` | str |  | yes | spec | configuration | C, D |
 | `identity.diagnosis_prompt_id` | str |  | yes | spec | configuration | E |
 | `identity.diagnosis_delivery` | str |  | yes | spec | configuration | E |
-| `identity.contract_check_mode` | str | active|inputs-only | yes | spec | configuration | D-active |
 | `identity.source_commit` | str | git sha | yes | git rev-parse at run time | identity | all |
 | `identity.source_dirty` | bool |  | yes | git status of agent paths | identity | all |
 | `identity.coding_model` | str |  | no | result.json | identity | all |
@@ -132,13 +131,12 @@ attempt already wrote, so it can be rerun at any time. The table below is genera
 | `frontier.wait_seconds_during_run` | float | s | no | E diagnosis wait + B coder latency | measured | B, E |
 | `frontier.provider_failures` | int | requests | no | requests with status != ok | measured | B, C, D, E |
 | `condition.guidance` | object |  | yes | generated, delivered, sha256, generation cost/latency | measured | C, D |
-| `condition.contract_checks` | object |  | yes | D-active summary and per-check labels | measured | D-active |
 | `condition.diagnosis` | object |  | yes | trigger, hashes, delivery, after-effects | measured | E |
 | `time.wall_seconds` | float | s | no | run_attempt wall (setup included) | measured | all |
 | `time.local_coding_seconds` | float | s | yes | frozen run() duration | measured | all |
 | `time.local_inference_seconds` | float | s | yes | = local_inference.total_inference_seconds | measured | A, C, D, E |
 | `time.frontier_seconds` | float | s | no | frontier.wait_seconds_during_run (upfront guidance excluded) | measured | all |
-| `time.public_test_seconds` | float | s | no | judge-public calls (+ D-active checks) | measured | all |
+| `time.public_test_seconds` | float | s | no | judge-public calls | measured | all |
 | `time.sandbox_tool_seconds` | float | s | no | other sandbox commands | measured | all |
 | `time.orchestration_seconds` | float | s | yes | local_coding - inference - tools - tests - frontier - self-plan | derived | all |
 | `time.equal_opportunity_seconds` | float | s | yes | local_coding minus frontier wait and self-plan (the 600 s budget clock) | derived | all |
@@ -159,7 +157,7 @@ attempt already wrote, so it can be rerun at any time. The table below is genera
 | `agent-<run_id>/` | frozen agent output: `trajectory.json`, `ollama-requests.json`, `ollama-responses.json`, `result.json` | raw telemetry |
 | `diagnosis/` (E) | evidence packet, provider log, delivered message | E audit |
 | `coder/` (B) | per-turn coder log | B audit |
-| `self-plan.json` (l1 agent) | the local planning call and its text | l1 audit |
+| `self-plan.json` (`l1-selfplan-v1`) | the local planning call and its text | self-plan audit |
 | `<batch>/eval/<run_id>.json` | hidden verdict | **hidden correctness** |
 
 Never copy hidden-test contents, statements or candidate programs into reports; the measurement record contains
