@@ -1,0 +1,849 @@
+{
+ "candidate": "l1-selfplan-v1",
+ "summary": {
+  "A seeds 2109": {
+   "pairs": 8,
+   "frozen_passes": 3,
+   "candidate_passes": 3,
+   "gains": [
+    "abc398_d/s2109"
+   ],
+   "losses": [
+    "arc195_a/s2109"
+   ],
+   "net": 0,
+   "frozen_no_program": 2,
+   "candidate_no_program": 3,
+   "token_ratio": 1.228,
+   "wall_ratio": 1.16
+  },
+  "A seeds 2108+2109": {
+   "pairs": 16,
+   "frozen_passes": 4,
+   "candidate_passes": 7,
+   "gains": [
+    "abc393_d/s2108",
+    "arc195_a/s2108",
+    "abc398_d/s2108",
+    "abc398_d/s2109"
+   ],
+   "losses": [
+    "arc195_a/s2109"
+   ],
+   "net": 3,
+   "frozen_no_program": 6,
+   "candidate_no_program": 5,
+   "token_ratio": 1.135,
+   "wall_ratio": 1.12
+  },
+  "C seeds 2108+2109": {
+   "pairs": 16,
+   "frozen_passes": 14,
+   "candidate_passes": 12,
+   "gains": [
+    "abc397_f/s2108",
+    "abc397_f/s2109"
+   ],
+   "losses": [
+    "abc389_f/s2108",
+    "abc389_f/s2109",
+    "arc192_a/s2108",
+    "arc192_a/s2109"
+   ],
+   "net": -2,
+   "frozen_no_program": 1,
+   "candidate_no_program": 0,
+   "token_ratio": 1.644,
+   "wall_ratio": 1.493
+  }
+ },
+ "criteria": {
+  "1_seed2109_net_ge1_losses_le1": false,
+  "2_pooled_net_ge3_no_more_no_program": true,
+  "3_C_net_ge_minus1": false,
+  "4_cost_le_1_5x": true
+ },
+ "recommended": false,
+ "determinism_spot_checks": {
+  "abc389_f": {
+   "fresh": "477a14b183d97d9c4ffb5542164980698e0fc9c31eef9282006b233700a0455b",
+   "historical": "477a14b183d97d9c4ffb5542164980698e0fc9c31eef9282006b233700a0455b",
+   "identical": true
+  },
+  "arc192_a": {
+   "fresh": "7c6aba5edc31796b7f9a721d1cc6e44a3cc233d3586c4aa819453bbed77f1e2b",
+   "historical": "7c6aba5edc31796b7f9a721d1cc6e44a3cc233d3586c4aa819453bbed77f1e2b",
+   "identical": true
+  }
+ },
+ "cells": {
+  "A/abc400_b/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc400_b-A-frozen-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "f17b975fe365da5fd0bd5da34e7aff795f7a1a88496c2130619d3740cf3c961e",
+    "exit": "submitted",
+    "output_tokens": 216,
+    "wall_seconds": 14.5,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc400_b-A-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "38d351e3445f434c6fa2ff9b5ec70ba7ec3fcf459d5cc3cc2856d915d80c3679",
+    "exit": "submitted",
+    "output_tokens": 1172,
+    "wall_seconds": 22.73,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc400_b/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\dev2\\lcb-atcoder-abc400_b-A-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "5ddf4c0c8f4fe65b8588b329ead91ed5f99c2490e657cbc6c20165e10d7ba8e3",
+    "exit": "submitted",
+    "output_tokens": 289,
+    "wall_seconds": 15.55,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc400_b-A-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "3fa201513f4359dc39669ed25ef3bdaea009a18f0698b0e4b9d205180303d63f",
+    "exit": "submitted",
+    "output_tokens": 1618,
+    "wall_seconds": 27.27,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc400_b/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\dev1-CD\\lcb-atcoder-abc400_b-C",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "c8473a2db894d39868daf3726f36f34ff3e1daa4151189114ac5eb3d0af5dc84",
+    "exit": "submitted",
+    "output_tokens": 184,
+    "wall_seconds": 14.78,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc400_b-C-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "2e0a45b92da315c019a696729770a712b02a77c4db27ecf349e6920d43166b94",
+    "exit": "submitted",
+    "output_tokens": 910,
+    "wall_seconds": 20.08,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc400_b/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\dev2\\lcb-atcoder-abc400_b-C-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "45e250bf4e1f4f7a2395e22bf70f15447c011f162dd1c1fb18e19310dca24f76",
+    "exit": "submitted",
+    "output_tokens": 240,
+    "wall_seconds": 15.38,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc400_b-C-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "8d35493774e1a80ace8f210d834299d242079ed701f20f1e9d657f7410e96edb",
+    "exit": "submitted",
+    "output_tokens": 880,
+    "wall_seconds": 19.66,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc393_d/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc393_d-A-frozen-s2108",
+    "hidden": "candidate_failure",
+    "hidden_passed": 9,
+    "program": true,
+    "submission": "2184afb3463405fc9e6b699ea65da84947b0502ad700fe25a59fa05641cf51f7",
+    "exit": "repair_limit",
+    "output_tokens": 10955,
+    "wall_seconds": 126.84,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc393_d-A-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "dc33ef99d569ca287faa2f4ef06f35e0be03857fde0abcf2cf751fb7a2f71fbc",
+    "exit": "submitted",
+    "output_tokens": 1460,
+    "wall_seconds": 25.38,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc393_d/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass2\\runs\\dev-s2109\\lcb-atcoder-abc393_d-A-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "223485e8af75ad84e2e578af12b837e01a1674bd0b27bc5efb70f9777519bc25",
+    "exit": "submitted",
+    "output_tokens": 5435,
+    "wall_seconds": 65.74,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc393_d-A-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "14bfe8fcdd085ff900af03e5b1e96a8fd213494115ec0c6d0e2de0873d55db28",
+    "exit": "submitted",
+    "output_tokens": 1528,
+    "wall_seconds": 25.91,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc393_d/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\mb2\\lcb-atcoder-abc393_d-C",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "30fccf0de4f4d4b2167abec01caaf2f9a872292808a49da34671f5822a6f237b",
+    "exit": "submitted",
+    "output_tokens": 339,
+    "wall_seconds": 16.45,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc393_d-C-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "52ea98b81ba35e10b260229198b948b33e72024b0b68deaf94c85757c0af24c8",
+    "exit": "submitted",
+    "output_tokens": 1581,
+    "wall_seconds": 26.58,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc393_d/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc393_d-C-frozen-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "9b80c9e815d1e012c7fe9afd7f5e95789b07ad1b80af86997f9ef528e8468aec",
+    "exit": "submitted",
+    "output_tokens": 330,
+    "wall_seconds": 14.14,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc393_d-C-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "a5695f752e84ef6a5f6514e0747cddb9272b187982234c870dfcd1a370112ff8",
+    "exit": "submitted",
+    "output_tokens": 1421,
+    "wall_seconds": 24.97,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/arc195_a/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-arc195_a-A-frozen-s2108",
+    "hidden": "candidate_failure",
+    "hidden_passed": 39,
+    "program": true,
+    "submission": "73af36c1b197576fe4e9b3cd8531d714437a9cf52745199180ad51f0de29e3d7",
+    "exit": "submitted",
+    "output_tokens": 11760,
+    "wall_seconds": 137.02,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-arc195_a-A-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "ad657124cff1785e0ed532611f7e04a74159a0511efbcf45b4c1167159048404",
+    "exit": "submitted",
+    "output_tokens": 15486,
+    "wall_seconds": 165.99,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/arc195_a/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\dev2\\lcb-atcoder-arc195_a-A-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "83facf32a468718ca1c587ad7a112ec0a047b31c58d7d00df15a339276cab47c",
+    "exit": "submitted",
+    "output_tokens": 10400,
+    "wall_seconds": 127.09,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-arc195_a-A-l1-s2109",
+    "hidden": "candidate_failure",
+    "hidden_passed": 39,
+    "program": true,
+    "submission": "70700c4703f746948d5659c2a5f98ba727a9432e9ea0c0f6a5fea8ada57d22a4",
+    "exit": "submitted",
+    "output_tokens": 4691,
+    "wall_seconds": 56.59,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/arc195_a/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\dev1-CD\\lcb-atcoder-arc195_a-C",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "cfd29e4224e0763746d8e78d092100ebbd4074c72d46a409759578964d3e6e60",
+    "exit": "submitted",
+    "output_tokens": 2118,
+    "wall_seconds": 38.59,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-arc195_a-C-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "659c8e4b70e2387bff9f674cc986a0231b6544067a39b8bdaafff2aace56518f",
+    "exit": "submitted",
+    "output_tokens": 1131,
+    "wall_seconds": 22.33,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/arc195_a/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\dev2\\lcb-atcoder-arc195_a-C-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "84aa1942ce4b388fcb6082c2a4053fc4eac05df0567ba815488dbe48ac4cb97f",
+    "exit": "submitted",
+    "output_tokens": 1534,
+    "wall_seconds": 32.77,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-arc195_a-C-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "214424e8acb1c1f830031caf5c5186ddea62c56b0e30662ad5b70d086eb7d941",
+    "exit": "submitted",
+    "output_tokens": 1136,
+    "wall_seconds": 22.38,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc398_d/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc398_d-A-frozen-s2108",
+    "hidden": "candidate_failure",
+    "hidden_passed": 36,
+    "program": true,
+    "submission": "210c6911b4d02c0ee6d3123a3bbeabe126428d310b894724fc4029243a11d59b",
+    "exit": "submitted",
+    "output_tokens": 4925,
+    "wall_seconds": 58.66,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc398_d-A-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "030df851c68fbcea58fd314f92a74910d20a59965ee3059e417f063bec7e9c2a",
+    "exit": "submitted",
+    "output_tokens": 6021,
+    "wall_seconds": 69.81,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc398_d/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc398_d-A-frozen-s2109",
+    "hidden": "candidate_failure",
+    "hidden_passed": 36,
+    "program": true,
+    "submission": "0e979f396cc57eec4bf6da3b00342b1f1046d4114dd9c9855d42c0ae804986fc",
+    "exit": "submitted",
+    "output_tokens": 4652,
+    "wall_seconds": 57.22,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc398_d-A-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "5c17759557af8498241615bed77d8f4a2f21c0b3c026ee87cace579ec3381083",
+    "exit": "submitted",
+    "output_tokens": 6841,
+    "wall_seconds": 77.56,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc398_d/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass2\\runs\\val\\lcb-atcoder-abc398_d-C",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "907a1212770b2772a2c01ee1fe492409d8b61259e6824021908d25e0970cff24",
+    "exit": "submitted",
+    "output_tokens": 482,
+    "wall_seconds": 15.77,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc398_d-C-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "e3b6f7ad8d59550e54819773023d199a5075a757fd8e681d63f1fa5d4e3c56ba",
+    "exit": "submitted",
+    "output_tokens": 1420,
+    "wall_seconds": 25.12,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc398_d/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc398_d-C-frozen-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "64d47724be767dccd32973736ba1800a809dea35d9b00fd55cd3dd40329b3c87",
+    "exit": "submitted",
+    "output_tokens": 455,
+    "wall_seconds": 15.12,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc398_d-C-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "196293d5ba379d2edf3bb86fedcff818b6588aecab4b7b8957f14a3fc1dc19c6",
+    "exit": "submitted",
+    "output_tokens": 1418,
+    "wall_seconds": 25.11,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc388_e/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc388_e-A-frozen-s2108",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 12288,
+    "wall_seconds": 128.34,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc388_e-A-l1-s2108",
+    "hidden": "candidate_failure",
+    "hidden_passed": 31,
+    "program": true,
+    "submission": "b6d05002b5f01042c6247dd2c5f54024f555dbfbb0bd68a4dd43ba52ff6efcdf",
+    "exit": "submitted",
+    "output_tokens": 4461,
+    "wall_seconds": 54.38,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc388_e/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc388_e-A-frozen-s2109",
+    "hidden": "candidate_failure",
+    "hidden_passed": 31,
+    "program": true,
+    "submission": "7d9acb4bb6dfc721d39677b56a0d8df567d471e8e6891f2e1c559fb93ed322b7",
+    "exit": "submitted",
+    "output_tokens": 10041,
+    "wall_seconds": 110.94,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc388_e-A-l1-s2109",
+    "hidden": "candidate_failure",
+    "hidden_passed": 31,
+    "program": true,
+    "submission": "84545f5e478bd869e3e418a23c4b719fc3a022f83082e11caeaabf21f1748b06",
+    "exit": "submitted",
+    "output_tokens": 11299,
+    "wall_seconds": 122.67,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc388_e/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass2\\runs\\val\\lcb-atcoder-abc388_e-C",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "17d3e8d56db4e3a59f92923342c2eeea89ed7dbb9f88491bb1a1bf455eeb50a2",
+    "exit": "submitted",
+    "output_tokens": 370,
+    "wall_seconds": 14.66,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc388_e-C-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "0eac08e496296278c3164d4bd02a40742d058758adb5285e64c5317cb53070a5",
+    "exit": "submitted",
+    "output_tokens": 1404,
+    "wall_seconds": 24.91,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc388_e/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc388_e-C-frozen-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "2f4a1a64f4b04870b279a13fb02d906b1e246c818013c838fc3b8b7d58d59f16",
+    "exit": "submitted",
+    "output_tokens": 549,
+    "wall_seconds": 16.28,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc388_e-C-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "3dd507e2a98f46795eaeb89d191f32ee4b241ae5af215eac83b19f0cd0f99f78",
+    "exit": "submitted",
+    "output_tokens": 3103,
+    "wall_seconds": 41.23,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc389_f/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc389_f-A-frozen-s2108",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 12288,
+    "wall_seconds": 128.8,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc389_f-A-l1-s2108",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 16384,
+    "wall_seconds": 170.75,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc389_f/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass3\\runs\\ext-s2109\\lcb-atcoder-abc389_f-A",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 12288,
+    "wall_seconds": 129.55,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc389_f-A-l1-s2109",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 16384,
+    "wall_seconds": 170.83,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc389_f/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc389_f-C-frozen-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "477a14b183d97d9c4ffb5542164980698e0fc9c31eef9282006b233700a0455b",
+    "exit": "submitted",
+    "output_tokens": 3820,
+    "wall_seconds": 58.81,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc389_f-C-l1-s2108",
+    "hidden": "candidate_failure",
+    "hidden_passed": 2,
+    "program": true,
+    "submission": "474562afd76065d395198c94419d96c1a7dce3e9aeeb35dbbd6f649153a223f3",
+    "exit": "infra_error",
+    "output_tokens": 13132,
+    "wall_seconds": 190.94,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc389_f/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass3\\runs\\ext-s2109\\lcb-atcoder-abc389_f-C",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "ca863896f9e8a38c94a8d2f05f222ea0357e93d138799d0a292495fbe408ff2c",
+    "exit": "submitted",
+    "output_tokens": 10421,
+    "wall_seconds": 129.97,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc389_f-C-l1-s2109",
+    "hidden": "candidate_failure",
+    "hidden_passed": 4,
+    "program": true,
+    "submission": "b511c2e624af1ec5d786e2ee56fa13117ea4840253e33b227dc358fa36e54c6e",
+    "exit": "infra_error",
+    "output_tokens": 13070,
+    "wall_seconds": 179.27,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc397_f/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc397_f-A-frozen-s2108",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 12288,
+    "wall_seconds": 127.86,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-abc397_f-A-l1-s2108",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 16384,
+    "wall_seconds": 170.09,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/abc397_f/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass3\\runs\\ext-s2109\\lcb-atcoder-abc397_f-A",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 12288,
+    "wall_seconds": 128.99,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc397_f-A-l1-s2109",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 16384,
+    "wall_seconds": 170.42,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc397_f/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass3\\runs\\ext-s2108\\lcb-atcoder-abc397_f-C",
+    "hidden": "candidate_failure",
+    "hidden_passed": 0,
+    "program": true,
+    "submission": "c9c2464785c5dc5a05c2ef9591aaa2c5dfec5217ec682d8346f461eb968bcfe0",
+    "exit": "action_limit",
+    "output_tokens": 11171,
+    "wall_seconds": 145.62,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc397_f-C-l1-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "0d02db2fe7ec14aabdbd12a8cfb48df7a925449567954484661ff50e68f46f7a",
+    "exit": "submitted",
+    "output_tokens": 3422,
+    "wall_seconds": 44.45,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/abc397_f/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass3\\runs\\ext-s2109\\lcb-atcoder-abc397_f-C",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 12288,
+    "wall_seconds": 129.77,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-abc397_f-C-l1-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "03fa0a0770357faba33f83c7a1fdeeddcafd36f465a51d8e2b3585fc6e55dd93",
+    "exit": "submitted",
+    "output_tokens": 4909,
+    "wall_seconds": 58.45,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/arc192_a/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-arc192_a-A-frozen-s2108",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 12288,
+    "wall_seconds": 128.38,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-screen-s2108\\lcb-atcoder-arc192_a-A-l1-s2108",
+    "hidden": "candidate_failure",
+    "hidden_passed": 14,
+    "program": true,
+    "submission": "b6a178420036272285fdde6277dc8844ba2bfe4287bbee4610d4319f0fd2bf51",
+    "exit": "action_limit",
+    "output_tokens": 20313,
+    "wall_seconds": 244.67,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "A/arc192_a/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\dev2\\lcb-atcoder-arc192_a-A-s2109",
+    "hidden": "candidate_failure",
+    "hidden_passed": 39,
+    "program": true,
+    "submission": "892c84258117330eefbccfe5cda639282d3b310385d4eee213d91932f05cdfad",
+    "exit": "submitted",
+    "output_tokens": 5801,
+    "wall_seconds": 73.41,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-arc192_a-A-l1-s2109",
+    "hidden": "missing_submission",
+    "hidden_passed": null,
+    "program": false,
+    "submission": null,
+    "exit": "agent_error",
+    "output_tokens": 16384,
+    "wall_seconds": 170.34,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/arc192_a/s2108": {
+   "frozen": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-arc192_a-C-frozen-s2108",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "7c6aba5edc31796b7f9a721d1cc6e44a3cc233d3586c4aa819453bbed77f1e2b",
+    "exit": "submitted",
+    "output_tokens": 526,
+    "wall_seconds": 15.86,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-arc192_a-C-l1-s2108",
+    "hidden": "candidate_failure",
+    "hidden_passed": 38,
+    "program": true,
+    "submission": "191aa4af774fbec04b3523a07cd2b0c4bf549ca7eb8c0586620c1b9e3d1d877d",
+    "exit": "infra_error",
+    "output_tokens": 21270,
+    "wall_seconds": 254.5,
+    "agent": "l1-selfplan-v1"
+   }
+  },
+  "C/arc192_a/s2109": {
+   "frozen": {
+    "run": "reasoning-effectiveness\\runs\\dev2\\lcb-atcoder-arc192_a-C-s2109",
+    "hidden": "pass",
+    "hidden_passed": 40,
+    "program": true,
+    "submission": "8430ce23019398bb5489d4be4a71534829b41cc274653c9b1d1cd4983576fcd7",
+    "exit": "submitted",
+    "output_tokens": 516,
+    "wall_seconds": 18.25,
+    "agent": "frozen-v6"
+   },
+   "cand": {
+    "run": "reasoning-effectiveness-pass4\\runs\\p4-stageD-agent\\lcb-atcoder-arc192_a-C-l1-s2109",
+    "hidden": "candidate_failure",
+    "hidden_passed": 39,
+    "program": true,
+    "submission": "6aac5dd4c0b9620cb27fba18db66a7df7274ec39e0696c3a287655e129dfd8f8",
+    "exit": "submitted",
+    "output_tokens": 4344,
+    "wall_seconds": 53.72,
+    "agent": "l1-selfplan-v1"
+   }
+  }
+ }
+}

@@ -1,0 +1,42 @@
+{
+ "batch": "p4-api-validation",
+ "cohort": "pass4 paid end-to-end API validation (consumed task)",
+ "frozen": false,
+ "outer_timeout": 1000,
+ "attempts": [
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "C",
+   "seed": 2108,
+   "agent": "frozen-v6",
+   "variant": "api",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-api-validation/lcb-atcoder-arc192_a.plan-v1.api.json"
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "D",
+   "seed": 2108,
+   "agent": "frozen-v6",
+   "variant": "api-active",
+   "guidance": "E:/CSC2108Local/reasoning-effectiveness-pass4/guidance/p4-api-validation/lcb-atcoder-arc192_a.contract-v3.api.json",
+   "injection": "inject-active-v1",
+   "contract_checks": {
+    "mode": "active"
+   }
+  },
+  {
+   "task_id": "lcb-atcoder-arc192_a",
+   "condition": "E",
+   "seed": 2108,
+   "agent": "frozen-v6",
+   "variant": "api",
+   "diagnosis": {
+    "provider": "api",
+    "prompt_id": "diagnosis-v1",
+    "delivery": "deliver-v1",
+    "timeout": 300,
+    "purpose": "pass4 end-to-end API validation of E under the final shared agent"
+   }
+  }
+ ]
+}

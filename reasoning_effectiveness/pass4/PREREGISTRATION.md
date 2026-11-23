@@ -122,3 +122,13 @@ approval.
   live Codex) under the candidate shared agent, at seed 2108, on the 8 development tasks. They are compared with
   the historical frozen-agent D-v1 and E runs. These results describe the candidate's effect on D and E; they are
   not an additional selection criterion.
+
+## Stage-D outcome (recorded after `p4-stageD-agent`; before the API validation)
+
+* **Criterion 1 fails:** at seed 2109, A-l1 is 3/8 against frozen's 3/8 (net 0).
+* **Criterion 2 passes:** pooled A is 7/16 against 4/16 (net +3, fewer no-program runs).
+* **Criterion 3 fails:** C-l1 is 12/16 against C-frozen's 14/16 (net −2).
+* **Criterion 4 passes:** 1.64× tokens, 1.49× wall time.
+
+**`frozen-v6` remains the primary shared agent.** `l1-selfplan-v1` is documented as the alternative and flagged as
+a team decision. The paid end-to-end API validation (`p4-api-validation`) therefore uses `frozen-v6`.
