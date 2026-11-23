@@ -112,3 +112,13 @@ reproduce historical runs byte for byte.
 **Otherwise** `frozen-v6` remains primary and l1 is documented as the alternative. Either way, adopting l1 changes
 the shared agent for every condition. It breaks historical comparability with passes 1–3 and is flagged for team
 approval.
+
+## Stage-C outcomes and the last stage-D batch (written before `p4-stageD-de` ran)
+
+* **D-active:** not promoted (+1 over `v3passive`, 0 over `inputs`); D-v1 stays primary.
+* **E:** diagnosis-v2 5/11 against diagnosis-v1 6/11 and neutral 2/11, so it is not promoted; diagnosis-v1 stays
+  primary.
+* **`p4-stageD-de`** therefore runs the **primary** D (contract-v1, the historical artifacts) and E (diagnosis-v1,
+  live Codex) under the candidate shared agent, at seed 2108, on the 8 development tasks. They are compared with
+  the historical frozen-agent D-v1 and E runs. These results describe the candidate's effect on D and E; they are
+  not an additional selection criterion.

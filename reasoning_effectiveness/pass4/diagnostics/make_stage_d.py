@@ -1,12 +1,13 @@
 """Write the stage-D plans for a selected shared-agent candidate (pass 4).
 
-usage: python reasoning_effectiveness/pass4/diagnostics/make_stage_d.py AGENT_ID SHORT
+usage: python reasoning_effectiveness/pass4/diagnostics/make_stage_d.py AGENT_ID SHORT [E_PROMPT]
 
 Runs only what the historical frozen results (identical artifacts, verified deterministic) do not already cover:
 * p4-stageD-agent:  A-candidate at seed 2109 (8), A-frozen at 2109 where no historical run exists (abc398_d, abc388_e),
                     C-candidate at 2108 and 2109 (16), C-frozen at 2109 where missing (abc393_d, abc398_d, abc388_e),
                     and one fresh C-frozen rerun at 2108 per two tasks as a determinism spot check (abc389_f, arc192_a);
-* p4-stageD-de:     D-active and E (diagnosis-v1, live Codex) under the candidate at seed 2108 (8 + 8).
+* p4-stageD-de:     the primary D (contract-v1) and E (selected diagnosis prompt, live Codex) under the candidate at
+                    seed 2108 (8 + 8).
 """
 import json
 import sys
@@ -24,7 +25,9 @@ def task(t):
     return 'lcb-atcoder-' + t
 
 
-def main(agent, short):
+def main(agent, short, e_prompt='diagnosis-v1'):
+    global E_PROMPT
+    E_PROMPT = e_prompt
     a = []
     for i, t in enumerate(TASKS):
         block = [{'task_id': task(t), 'condition': 'A', 'seed': 2109, 'agent': agent, 'variant': f'{short}-s2109'},
@@ -46,12 +49,12 @@ def main(agent, short):
     (OUT / 'p4-stageD-agent.json').write_text(json.dumps(plan, indent=1) + '\n', encoding='utf-8', newline='\n')
     de = []
     for t in TASKS:
-        de.append({'task_id': task(t), 'condition': 'D', 'seed': 2108, 'agent': agent, 'variant': f'{short}-active-s2108',
-                   'guidance': f'{G}/p4-dev-v3/lcb-atcoder-{t}.contract-v3.codex.json', 'injection': 'inject-active-v1',
-                   'contract_checks': {'mode': 'active'}})
+        # The primary D (contract-v1 + inject-v1, the historical artifacts) and E under the candidate agent.
+        de.append({'task_id': task(t), 'condition': 'D', 'seed': 2108, 'agent': agent, 'variant': f'{short}-v1-s2108',
+                   'guidance': f'{G}/p4-dev-contracts-v1/lcb-atcoder-{t}.contract-v1.codex.json'})
         de.append({'task_id': task(t), 'condition': 'E', 'seed': 2108, 'agent': agent, 'variant': f'{short}-s2108',
-                   'diagnosis': {'provider': 'codex', 'prompt_id': 'diagnosis-v1', 'delivery': 'deliver-v1', 'timeout': 300}})
-    plan = {'batch': 'p4-stageD-de', 'cohort': f'pass4-dev8 stage D: D-active and E under {agent} (consumed tasks)',
+                   'diagnosis': {'provider': 'codex', 'prompt_id': E_PROMPT, 'delivery': 'deliver-v1', 'timeout': 300}})
+    plan = {'batch': 'p4-stageD-de', 'cohort': f'pass4-dev8 stage D: D-v1 and E under {agent} (consumed tasks)',
             'frozen': False, 'outer_timeout': 1000, 'attempts': de}
     (OUT / 'p4-stageD-de.json').write_text(json.dumps(plan, indent=1) + '\n', encoding='utf-8', newline='\n')
     print(len(a), len(de))
