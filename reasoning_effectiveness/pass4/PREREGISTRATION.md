@@ -53,3 +53,33 @@ task flip never decides anything.
 
 Infrastructure failures (judge or Docker errors, outer timeouts) are rerun under a new run ID and reported. Candidate
 failures are never rerun.
+
+## Stage C pre-registration: D-active and the E probe (written before either batch ran)
+
+Both use the original agent `frozen-v6` and seed 2108 (E states: their original seeds), so they do not depend
+on the screening outcome.
+
+**D-active** (`p4-dactive-s2108`, 8 development tasks, one Codex contract-v3 artifact per task, no regeneration):
+
+| Arm | First message | Harness-run checks |
+| --- | --- | --- |
+| `v3passive` | contract-v3 via `inject-v3-contract` (pass-2 framing) | none |
+| `active` | contract-v3 via `inject-active-v1` | K-checks run on the judged candidate at every public test; proposed outputs shown as unverified |
+| `inputs` (control) | A's frozen `{{task}}` (no contract text) | the same K-check inputs, own outputs only, no expected outputs |
+
+Historical A and D-v1 results at seed 2108 serve as further references. Check correctness is labelled offline
+against reference programs that passed all 40 hidden cases (development analysis only, never shown to the model).
+
+D-active is recommended over D-v1 only if it gains at least +2 net hidden passes over **both** `v3passive` and
+`inputs` on the 8 tasks, loses no task that `v3passive` passes, and its wrongly proposed outputs (if any) mislead no
+correct program into a wrong one. Otherwise D-v1 stays the primary D and D-active is reported as an alternative.
+
+**E probe** (`p4-eprobe`): the 11 frozen trigger states of passes 2 and 3. At each state the agent is reproduced
+exactly up to the trigger (same seed and agent) and then receives one of:
+the original continuation (historical A), the historical diagnosis-v1, a length-matched neutral message (pass-2
+states: pass 3; pass-3 states: this batch), or diagnosis-v2 (this batch, live Codex). A state counts only if
+the packet's candidate hash equals the historical one.
+
+diagnosis-v2 replaces diagnosis-v1 only if, on the reproduced states, it reaches more hidden passes than **both**
+diagnosis-v1 and the neutral message, by at least 2 states, and harms no state that v1 rescues. A diagnosis benefit
+is claimed only where the neutral message does not achieve the same.
