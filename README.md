@@ -30,7 +30,8 @@ python -m guided_agent prepare-fixture             # synthetic task; no LiveCode
 python -m guided_agent batch PLAN.json             # attempts (see HANDOFF_TO_PETER.md for plan examples)
 python -m guided_agent evaluate <study>/runs/<batch>
 python -m guided_agent measure  <study>/runs/<batch>
-python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4 local_agent.test_portable
+# The final benchmark runs through `python -m evaluation` instead (tasks, judge, guidance, run, score, metrics).
+python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4 local_agent.test_portable evaluation.test_evaluation
 ```
 
 ## Documents
@@ -48,6 +49,7 @@ python -m unittest guided_agent.test_guided guided_agent.test_pass2 guided_agent
 | Path | Role |
 | --- | --- |
 | `guided_agent/` | the integrated A/B/C/D/E runner, providers, measurement, tests and fixtures |
+| `evaluation/` | the final evaluation: tasks, judge image, plan, guidance freeze, hidden scoring, metrics; full-run steps and why it owns task preparation and scoring in `evaluation/README.md` |
 | `local_agent/` | host adapters (Windows frozen, portable macOS/Linux) and identity verification |
 | `local_eval_v2/`, `local_baseline/`, `local_optimization/` | the **frozen** original agent and its selection (hash-verified; do not edit) |
 | `judge/` | the team judge (public and hidden suites) |

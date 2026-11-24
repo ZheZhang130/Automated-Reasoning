@@ -53,7 +53,7 @@ jobs:
           python-version: '3.11'
       - run: python -m pip install -r local_agent/requirements.txt
       - name: Offline integrated-agent tests (trigger, delivery, deadline accounting, B interface, judge semantics, plan integrity, ledger, privacy)
-        run: python -m unittest -v guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4
+        run: python -m unittest -v guided_agent.test_guided guided_agent.test_pass2 guided_agent.test_pass3 guided_agent.test_pass4 evaluation.test_evaluation
       - name: CLI smoke
         run: python -m guided_agent --help
       - name: Judge unit tests (container tests skip without the judge image)
