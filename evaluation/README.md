@@ -114,6 +114,10 @@ to `guided_agent`.
 | E triggered subset | (task, seed) pairs where E's diagnosis triggered: E vs A pass rate, also restricted to pairs whose A run had a public failure; plus E's trigger rate |
 | Frontier cost | run-time requests (B, E) plus upfront guidance (C, D) counted once per artifact; per pass. `null` when any request has no measured cost (for example Codex replay) |
 | Runtime, tokens | median and IQR of `wall_seconds`, local inference seconds, local prompt/completion tokens |
+| Gap closed toward B | (X − A) / (B − A) with task-level means on (task, seed) pairs that have A, B and X; 1 = reached the frontier coder. 95% CI resamples tasks; resamples with no positive B − A gap are skipped and counted |
+| Seed consistency | per condition, tasks whose seeds all pass, are mixed, or all fail, and the mean over tasks of p(1 − p) (p = pass rate over seeds); tasks with at least two seeds |
+| Frontier tokens | run-time input/output tokens (B, E) and upfront guidance tokens (C, D) counted once per artifact; tokens per pass. Independent of pricing |
+| Upfront guidance | per condition: artifacts, one-off cost, tokens, and authoring latency (median and total). Not part of any run's wall time |
 | Budget usage | mean actions and repairs, repair distribution, exit status counts, outcome categories |
 
 **Exclusions.** A (task, seed) block is dropped from every condition when any of its runs was an infrastructure

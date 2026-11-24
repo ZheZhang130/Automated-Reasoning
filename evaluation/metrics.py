@@ -195,6 +195,11 @@ def run_row(run_dir, item, difficulty):
         'guidance_sha256': ident.get('guidance_artifact_sha256'),
         'frontier_input_tokens': _sum_or_none(r.get('input_tokens') for r in requests) if requests else 0,
         'frontier_output_tokens': _sum_or_none(r.get('output_tokens') for r in requests) if requests else 0,
+        'run_input_tokens': _sum_or_none(r.get('input_tokens') for r in requests if not r.get('upfront')),
+        'run_output_tokens': _sum_or_none(r.get('output_tokens') for r in requests if not r.get('upfront')),
+        'upfront_input_tokens': _sum_or_none(r.get('input_tokens') for r in upfront) if upfront else 0,
+        'upfront_output_tokens': _sum_or_none(r.get('output_tokens') for r in upfront) if upfront else 0,
+        'upfront_latency_seconds': _sum_or_none(r.get('latency_seconds') for r in upfront) if upfront else 0.0,
         'e_triggered': diagnosis.get('trigger_observed'), 'e_delivered': diagnosis.get('delivered'),
         'host_backend': ident.get('host_backend'), 'coding_model': ident.get('coding_model'),
     }
@@ -318,12 +323,22 @@ def condition_summary(rows):
         return None
     passes = sum(r['passed'] for r in rows)
     failed_public = [r for r in rows if r.get('had_public_failure')]
-    artifacts = {}
+    artifacts = {}  # one entry per guidance artifact: authored once, shared by every seed
     for r in rows:
         if r.get('guidance_sha256'):
-            artifacts[r['guidance_sha256']] = r.get('upfront_cost_usd')
+            artifacts[r['guidance_sha256']] = r
     run_cost = _sum_or_none(r.get('frontier_run_cost_usd') for r in rows)
-    upfront_cost = _sum_or_none(artifacts.values()) if artifacts else 0.0
+    upfront_cost = _sum_or_none(a.get('upfront_cost_usd') for a in artifacts.values()) if artifacts else 0.0
+    upfront_cost = None if upfront_cost is None else round(upfront_cost, 6)
+    tokens = {'run_input': _sum_or_none(r.get('run_input_tokens') for r in rows),
+              'run_output': _sum_or_none(r.get('run_output_tokens') for r in rows),
+              'upfront_input': _sum_or_none(a.get('upfront_input_tokens') for a in artifacts.values()) if artifacts else 0,
+              'upfront_output': _sum_or_none(a.get('upfront_output_tokens') for a in artifacts.values()) if artifacts
+              else 0}
+    known = [v for v in tokens.values() if v is not None]
+    tokens['total'] = sum(known) if len(known) == len(tokens) else None
+    tokens['per_pass'] = round(tokens['total'] / passes, 1) if tokens['total'] is not None and passes else None
+    latencies = [a.get('upfront_latency_seconds') for a in artifacts.values()]
     total_cost = None if run_cost is None or upfront_cost is None else round(run_cost + upfront_cost, 6)
     return {
         'runs': n, 'passes': passes, 'pass_rate': round(passes / n, 4),
@@ -351,7 +366,62 @@ def condition_summary(rows):
         'frontier_cost_usd': {'run_time': run_cost, 'upfront_one_off': upfront_cost, 'total': total_cost,
                               'per_pass': round(total_cost / passes, 6) if total_cost is not None and passes else None,
                               'guidance_artifacts': len(artifacts)},
+        'frontier_tokens': tokens,
+        'upfront_guidance': {'artifacts': len(artifacts), 'cost_usd': upfront_cost,
+                             'input_tokens': tokens['upfront_input'], 'output_tokens': tokens['upfront_output'],
+                             'latency_seconds_total': (None if _sum_or_none(latencies) is None
+                                                       else round(_sum_or_none(latencies), 2)),
+                             'latency_seconds': _quantiles(latencies)} if artifacts else None,
+        'seed_consistency': seed_consistency(rows),
     }
+
+
+def seed_consistency(rows):
+    """Per task, how the seeds agree: all pass, mixed, all fail (tasks with at least two seeds only).
+
+    ``mean_seed_variance`` is the mean over tasks of p(1-p), p the task's pass rate over seeds: 0 when every task is
+    decided the same way on every seed, 0.25 at most."""
+    by_task = defaultdict(list)
+    for r in rows:
+        by_task[r['task_id']].append(r['passed'])
+    multi = {t: v for t, v in by_task.items() if len(v) >= 2}
+    if not multi:
+        return None
+    rates = [statistics.fmean(v) for v in multi.values()]
+    return {'tasks': len(multi), 'all_pass': sum(all(v) for v in multi.values()),
+            'mixed': sum(any(v) and not all(v) for v in multi.values()),
+            'all_fail': sum(not any(v) for v in multi.values()),
+            'mean_seed_variance': round(statistics.fmean(p * (1 - p) for p in rates), 4)}
+
+
+def gap_closed(rows, condition, base='A', ceiling='B', resamples=10000, seed=2108):
+    """Share of the base-to-ceiling gap a condition closes: (X - A) / (B - A), on (task, seed) pairs that have all
+    three conditions, with task-level means. 1 means the condition reached the frontier coder; 0 means no gain.
+    The 95% CI resamples tasks; resamples whose B - A gap is not positive are skipped and counted."""
+    by = defaultdict(dict)
+    for r in rows:
+        by[(r['task_id'], r['seed'])][r['condition']] = r['passed']
+    per_task = defaultdict(list)
+    for (task, _seed), v in by.items():
+        if {condition, base, ceiling} <= set(v):
+            per_task[task].append((v[condition], v[base], v[ceiling]))
+    if not per_task:
+        return None
+    means = [tuple(statistics.fmean(x[i] for x in items) for i in range(3)) for items in per_task.values()]
+
+    def ratio(sample):
+        x, a, b = (statistics.fmean(m[i] for m in sample) for i in range(3))
+        return (x - a) / (b - a) if b - a > 0 else None
+    point = ratio(means)
+    rng = random.Random(seed)
+    draws = [ratio([rng.choice(means) for _ in means]) for _ in range(resamples)]
+    valid = sorted(d for d in draws if d is not None)
+    ci = [round(valid[int(0.025 * len(valid))], 4), round(valid[min(len(valid) - 1, int(0.975 * len(valid)))], 4)] \
+        if len(valid) >= 100 else None
+    x, a, b = (statistics.fmean(m[i] for m in means) for i in range(3))
+    return {'tasks': len(means), 'rate': round(x, 4), 'base_rate': round(a, 4), 'ceiling_rate': round(b, 4),
+            'gap_closed': None if point is None else round(point, 4), 'ci95': ci,
+            'resamples_without_gap': resamples - len(valid)}
 
 
 def paired(rows, condition, base='A'):
@@ -489,6 +559,8 @@ def analyze(batch_dirs, manifests):
         'transitions_from_A': {c: transitions(included, c) for c in conditions if c != 'A'} if 'A' in conditions else {},
         'process_vs_A': {c: paired_process(included, c) for c in conditions if c != 'A'} if 'A' in conditions else {},
         'sensitivity_exclude_timeouts': sensitivity_exclude_timeouts(included),
+        'gap_closed_vs_B': {c: gap_closed(included, c) for c in conditions if c not in ('A', 'B')}
+        if {'A', 'B'} <= set(conditions) else {},
         'host_speed': host_speed(rows),
     }, rows
 
@@ -543,6 +615,36 @@ def markdown(report):
             if e[key]:
                 lines.append(f"* {key}: {e[key]['pairs']} pairs, E {_pct(e[key]['E_pass_rate'])} vs "
                              f"A {_pct(e[key]['A_pass_rate'])}")
+    gaps = {c: g for c, g in (report.get('gap_closed_vs_B') or {}).items() if g}
+    if gaps:
+        lines += ['', '## Gap closed toward B: (X − A) / (B − A)', '',
+                  '| Condition | Tasks | Rate | A rate | B rate | Gap closed | 95% CI | resamples without a gap |',
+                  '| --- | --- | --- | --- | --- | --- | --- | --- |']
+        for c, g in gaps.items():
+            lines.append(f"| {c} | {g['tasks']} | {_pct(g['rate'])} | {_pct(g['base_rate'])} | {_pct(g['ceiling_rate'])} "
+                         f"| {'–' if g['gap_closed'] is None else g['gap_closed']} | {g['ci95'] or '–'} "
+                         f"| {g['resamples_without_gap']} |")
+    table = report['summary'].get('all', {})
+    if any(s and s.get('seed_consistency') for s in table.values()):
+        lines += ['', '## Seed consistency (all): tasks with every seed passing, mixed, or failing', '',
+                  '| Condition | Tasks | All pass | Mixed | All fail | Mean seed variance p(1−p) |',
+                  '| --- | --- | --- | --- | --- | --- |']
+        for c, s in table.items():
+            k = s and s.get('seed_consistency')
+            if k:
+                lines.append(f"| {c} | {k['tasks']} | {k['all_pass']} | {k['mixed']} | {k['all_fail']} "
+                             f"| {k['mean_seed_variance']} |")
+    lines += ['', '## Frontier usage (all): tokens, and the one-off guidance cost', '',
+              '| Condition | Run-time tokens in/out | Upfront tokens in/out | Tokens per pass | Guidance artifacts '
+              '| Upfront $ | Authoring s median (total) |', '| --- | --- | --- | --- | --- | --- | --- |']
+    for c, s in table.items():
+        if s:
+            t, u = s['frontier_tokens'], s.get('upfront_guidance')
+            lat = u['latency_seconds'] if u else None
+            lines.append(f"| {c} | {t['run_input']}/{t['run_output']} | {t['upfront_input']}/{t['upfront_output']} "
+                         f"| {t['per_pass'] if t['per_pass'] is not None else '–'} | {u['artifacts'] if u else 0} "
+                         f"| {u['cost_usd'] if u else 0.0} | "
+                         + (f"{lat['median']} ({u['latency_seconds_total']})" if lat else '–') + ' |')
     sens = report.get('sensitivity_exclude_timeouts')
     if sens:
         lines += ['', f"## Sensitivity: local timeouts excluded ({sens['excluded_blocks']} (task, seed) blocks dropped, "

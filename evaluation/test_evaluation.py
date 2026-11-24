@@ -21,7 +21,7 @@ MAIN = REPO / 'judge/manifests/main.json'
 
 def fake_run(batch, item, *, hidden='pass', final_public='pass', public=('pass',), infra=False, overflow=False,
              triggered=None, cost=None, agent_error=None, truncated=0, exit_status=None, responses=(),
-             first_candidate_s=None):
+             first_candidate_s=None, upfront=None):
     run_dir = batch / integrity.run_name(item)
     run_dir.mkdir(parents=True)
     doc = copy.deepcopy(planlib.read_json(FIXTURE))
@@ -45,6 +45,11 @@ def fake_run(batch, item, *, hidden='pass', final_public='pass', public=('pass',
         doc['frontier'] = {'requests': [{'upfront': False, 'cost_usd': cost, 'input_tokens': 10, 'output_tokens': 5,
                                          'status': 'ok'}], 'n_requests': 1, 'provider_failures': 0}
         doc['cost']['api_cost_usd_run'] = cost
+    if upfront:  # (cost, input tokens, output tokens, latency s, artifact sha)
+        c, i, o, lat, sha = upfront
+        doc['frontier']['requests'].append({'upfront': True, 'cost_usd': c, 'input_tokens': i, 'output_tokens': o,
+                                            'latency_seconds': lat, 'status': 'ok'})
+        doc['identity']['guidance_artifact_sha256'] = sha
     doc['condition'] = {'guidance': None, 'diagnosis': {'trigger_observed': triggered} if triggered is not None else None}
     planlib.write_json(run_dir / 'measurement.json', doc)
     planlib.write_json(run_dir / 'result.json', {'run_id': run_id})
@@ -299,6 +304,56 @@ class Reruns(unittest.TestCase):
             self.assertEqual(report['summary']['all']['A']['passes'], 1)
             with self.assertRaises(ValueError):  # two valid runs of the same key are ambiguous
                 metrics.analyze([first, second, second], [MAIN])
+
+
+class AnalysisAdditions(unittest.TestCase):
+    def test_seed_consistency_and_gap_closed(self):
+        def row(task, seed, condition, passed):
+            return {'task_id': task, 'seed': seed, 'condition': condition, 'passed': passed}
+        rows = []
+        # t1: A fails, B passes, C passes -> C closes the gap; t2: all pass; t3: A/C fail, B passes on one seed
+        for seed in (1, 2):
+            rows += [row('t1', seed, 'A', False), row('t1', seed, 'B', True), row('t1', seed, 'C', True),
+                     row('t2', seed, 'A', True), row('t2', seed, 'B', True), row('t2', seed, 'C', True),
+                     row('t3', seed, 'A', False), row('t3', seed, 'B', seed == 1), row('t3', seed, 'C', False)]
+        k = metrics.seed_consistency([r for r in rows if r['condition'] == 'B'])
+        self.assertEqual((k['tasks'], k['all_pass'], k['mixed'], k['all_fail']), (3, 2, 1, 0))
+        self.assertAlmostEqual(k['mean_seed_variance'], round(0.25 / 3, 4))
+        self.assertIsNone(metrics.seed_consistency([row('t1', 1, 'A', True)]))       # one seed: undefined
+        g = metrics.gap_closed(rows, 'C', resamples=2000)
+        # task means: A = 1/3, B = (1 + 1 + .5)/3, C = 2/3 -> (2/3 - 1/3) / (2.5/3 - 1/3) = 2/3
+        self.assertEqual((g['tasks'], g['gap_closed']), (3, round(2 / 3, 4)))
+        self.assertLessEqual(g['ci95'][0], g['gap_closed'])
+        self.assertGreaterEqual(g['ci95'][1], g['gap_closed'])
+        no_gap = [r | {'passed': True} if r['condition'] == 'A' else r for r in rows]
+        self.assertIsNone(metrics.gap_closed(no_gap, 'C', resamples=200)['gap_closed'])
+
+    def test_tokens_split_run_time_from_upfront_counted_once(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            batch = Path(tmp) / 'b'
+            tasks = ['lcb-atcoder-abc387_a']
+            plan = planlib.build_plan(batch='b', task_ids=tasks, seeds=[1, 2], study=Path(tmp),
+                                      conditions=['A', 'B', 'C'])
+            planlib.write_json(batch / 'plan.json', plan)
+            for item in plan['attempts']:
+                if item['condition'] == 'A':
+                    fake_run(batch, item, hidden='WA', final_public='candidate_failure')
+                elif item['condition'] == 'B':
+                    fake_run(batch, item, cost=0.01)                              # 10 in / 5 out per run
+                else:                                                             # same artifact on both seeds
+                    fake_run(batch, item, upfront=(0.02, 700, 400, 9.5, 'artifact-1'))
+            report, _ = metrics.analyze([batch], [MAIN])
+            b, c = report['summary']['all']['B'], report['summary']['all']['C']
+            self.assertEqual(b['frontier_tokens'] | {}, {'run_input': 20, 'run_output': 10, 'upfront_input': 0,
+                                                         'upfront_output': 0, 'total': 30, 'per_pass': 15.0})
+            self.assertEqual((c['frontier_tokens']['upfront_input'], c['frontier_tokens']['run_input']), (700, 0))
+            u = c['upfront_guidance']
+            self.assertEqual((u['artifacts'], u['cost_usd'], u['latency_seconds_total']), (1, 0.02, 9.5))
+            self.assertEqual(c['seed_consistency']['all_pass'], 1)
+            self.assertEqual(report['gap_closed_vs_B']['C']['gap_closed'], 1.0)
+            text = metrics.markdown(report)
+            for section in ('## Gap closed toward B', '## Seed consistency', '## Frontier usage'):
+                self.assertIn(section, text)
 
 
 TASK = 'lcb-atcoder-zzz001_a'
