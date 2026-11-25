@@ -478,6 +478,26 @@ class Budget(unittest.TestCase):
             data = planlib.read_json(ledger)
             self.assertEqual(providers.Ledger(ledger).data['max_requests'], data['max_requests'])
 
+    def test_official_ceilings_cover_the_high_scenario(self):
+        """The request maximum (2000) admits the high-usage scenario (~1,560); the dollar maximum stays $100."""
+        from guided_agent import providers
+        self.assertEqual((providers.MAX_REQUESTS, providers.MAX_USD), (2000, 100.00))
+        with tempfile.TemporaryDirectory() as tmp:
+            study = Path(tmp)
+            plan_path = study / 'plans/p.json'
+            planlib.write_json(plan_path, planlib.build_plan(batch='p', task_ids=planlib.manifest_tasks(FINAL),
+                                                             seeds=[2108, 2109, 2110], study=study))
+            ledger = study / 'api-ledger.json'
+            budget.init_ledger(ledger, 2000, 100.0)
+            out = budget.assess(plan_path, study, ledger)
+            self.assertEqual(out['ceilings']['max_requests'], 2000)
+            self.assertGreater(out['scenarios']['high']['requests']['total'], 1500)
+            self.assertTrue(out['fits_within_ceilings']['expected'])
+            self.assertTrue(out['fits_within_ceilings']['high'])
+            self.assertFalse(out['fits_within_ceilings']['worst'])
+            with self.assertRaises(ValueError):
+                budget.init_ledger(study / 'other.json', 2000, 100.01)
+
 
 # ----------------------------------------------------------------------------- pass@k
 class PassAtK(unittest.TestCase):

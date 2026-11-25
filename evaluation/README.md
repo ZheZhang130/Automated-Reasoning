@@ -44,7 +44,7 @@ git status --short                                               # execution pat
 
 # --- preparation (no paid requests) --------------------------------------------------------------------------------
 & $py -m evaluation plan --batch final-main --seeds 2108 2109 2110 --out $plan --cohort "final windows"
-& $py -m evaluation budget $plan --init-ledger --max-requests 1500 --max-usd 100   # study ledger with the approved ceilings
+& $py -m evaluation budget $plan --init-ledger --max-requests 2000 --max-usd 100   # study ledger with the approved ceilings
 & $py -m evaluation tasks $plan                                  # 60 tasks: judge suites + agent bundles, hashes checked
 & $py -m evaluation judge                                        # judge image, judge-public, selftest
 & $py -m evaluation guidance $plan                               # DRY RUN: 120 missing artifacts = 120 paid requests
@@ -68,7 +68,8 @@ git status --short                                               # execution pat
 Expected resources (from `evaluation budget` on the official plan; estimates, not guarantees): about **794 paid
 requests** (120 guidance, ~584 B coder turns, ~90 E diagnoses), **$39 of the ledger's conservative reservation** and
 **about $5 token-derived** at list prices. In a high-usage scenario (every B run needing 7 requests, every E run
-triggering) the study needs ~1,560 requests, more than the 1,500-request ceiling; see [§7](#7-api-budget). Wall time on
+triggering) the study needs ~1,560 requests, which is why the request ceiling is 2,000 (the $100 ceiling is unchanged);
+see [§7](#7-api-budget). Wall time on
 the reference host: the local conditions take up to 600 s of coding per attempt (A, C, D, E: 720 local attempts), so
 plan for roughly one to three days of machine time; B runs need no GPU.
 
@@ -232,7 +233,7 @@ digest of the study's hidden suite (itself checked against the plan's manifest);
 * **Ledger.** Every paid request is reserved in the study ledger (`<study>\api-ledger.json`, or `CSC2108_API_LEDGER`)
   before it is sent; no retries; no fallback model. A request that would pass a ceiling is refused before sending (B and
   E runs then end as budget-exhausted infrastructure failures).
-* **Ceilings.** The code maximum is `MAX_REQUESTS, MAX_USD = 1500, 100.00` in `guided_agent/providers.py` (a ledger can
+* **Ceilings.** The code maximum is `MAX_REQUESTS, MAX_USD = 2000, 100.00` in `guided_agent/providers.py` (a ledger can
   lower it, never raise it). `evaluation budget $plan --init-ledger --max-requests N --max-usd X` creates a fresh ledger
   with the study's approved ceilings (refused if a ledger exists or a value exceeds the code maximum). Raising the code
   maximum is a reviewed code change, and a new ledger.
@@ -243,18 +244,19 @@ digest of the study's hidden suite (itself checked against the plan's manifest);
 * **Preflight.** `evaluation budget $plan` reports four scenarios against the ledger's remaining room: `expected`
   (historical means: B ≈ 3.2 requests per run, E triggers in half of its runs), `high` (B 7 per run, every E run
   triggers, mean request sizes), `stress` (high counts at the largest observed request sizes) and `worst` (B at
-  `max_requests`, every request at the output cap). For the official plan at 1500 / $100:
+  `max_requests`, every request at the output cap). For the official plan at 2000 / $100:
 
   | Scenario | Requests | Reservation | Token-derived cost | Fits |
   | --- | --- | --- | --- | --- |
   | expected | 794 | $38.84 | $5.10 | yes |
-  | high | 1,560 | $75.42 | $9.60 | no (requests) |
-  | stress | 1,560 | $350.92 | $58.49 | no |
+  | high | 1,560 | $75.42 | $9.60 | yes (did not fit at the earlier 1,500-request maximum) |
+  | stress | 1,560 | $350.92 | $58.49 | no (reservation) |
   | worst | 5,340 | $4,389 | $732 | no |
 
-  1,500 requests / $100 is expected to suffice but is **not guaranteed**: the high-count scenario exceeds the request
-  ceiling by ~60. Raising the ceiling, or rerunning budget-exhausted blocks with a new ledger, is your decision. The
-  provider-side spending limit is set in the OpenAI account, not here.
+  The request maximum was raised from 1,500 to 2,000 before the official freeze because the high-count scenario
+  needed ~1,560; the $100 ceiling was not changed. 2,000 / $100 is expected to suffice but is **not guaranteed**
+  (stress and worst exceed the reservation ceiling). Rerunning budget-exhausted blocks with a new ledger is a
+  deliberate decision. The provider-side spending limit is set in the OpenAI account, not here.
 
 ## 8. Measurement definitions
 

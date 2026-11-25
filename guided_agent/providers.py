@@ -141,8 +141,10 @@ PRICE_CONSERVATIVE = {'input': 12.00, 'output': 60.00}   # highest unlabeled tie
 # Code maximum for one ledger (study-level): the final benchmark budget agreed with the team. A ledger is created with
 # these ceilings or lower ones (``python -m evaluation budget PLAN --init-ledger ...``) and can never raise them;
 # ``max_usd`` is checked against the conservative reservation (PRICE_CONSERVATIVE), not the standard price.
-# Pass 4 used 20 requests / $10.
-MAX_REQUESTS, MAX_USD = 1500, 100.00
+# Pass 4 used 20 requests / $10. The request maximum was raised from 1500 to 2000 before the official freeze because
+# the budget preflight's high-usage scenario needs ~1,560 requests (B 7 per run, every E triggering); the dollar
+# ceiling is unchanged and remains the binding financial limit.
+MAX_REQUESTS, MAX_USD = 2000, 100.00
 
 
 def read_env(path):
