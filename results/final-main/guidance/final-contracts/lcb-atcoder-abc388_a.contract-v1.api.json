@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc388_a",
+  "text": "## Description\nRead a string from standard input and print its first character followed immediately by the literal `UPC`.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies one string \\(S\\) of length 1 through 100, inclusive.\n- **PRE-2 (Unverified):** The first character of \\(S\\) is an uppercase English letter (`A`–`Z`). Every subsequent character, if any, is a lowercase English letter (`a`–`z`).\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains exactly one line of answer text: the first character of \\(S\\), unchanged, followed immediately by `UPC` in that order. The answer is exactly four characters long, excluding the line ending, with no spaces or extra text.\n- **POST-2 (Unverified):** The length and contents of the suffix of \\(S\\) do not affect the answer. This includes the case where \\(S\\) has only one character and the suffix is empty.\n\n## Test suggestions\n- Check that `Kyoto` produces `KUPC` and `Tohoku` produces `TUPC` (PRE-1, PRE-2, POST-1).\n- Compare `A` with a 100-character input consisting of `A` followed by 99 lowercase letters. Both should produce only `AUPC` (PRE-1, PRE-2, POST-1, POST-2).\n\n## Unspecified behavior\nBehavior is unspecified for inputs outside the stated format or constraints, including empty input, multiple strings, strings longer than 100 characters, and invalid letters or capitalization.\n",
+  "statement_sha256": "1bea48e0fbe842b89141fe54aac8dbe3fcdfc0702475a8acb466236224607ba4",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "1bea48e0fbe842b89141fe54aac8dbe3fcdfc0702475a8acb466236224607ba4",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:34:39Z",
+    "finish_reason": "stop",
+    "request_id": "req_fcd9fb67fa064e51ab567fe9b713213d",
+    "retries": 0,
+    "ledger_index": 4
+  },
+  "usage": {
+    "prompt_tokens": 388,
+    "completion_tokens": 343,
+    "total_tokens": 731,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.83,
+  "cost_usd": 0.004206,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 206,
+  "created_utc": "2026-11-25T05:34:44Z"
+}

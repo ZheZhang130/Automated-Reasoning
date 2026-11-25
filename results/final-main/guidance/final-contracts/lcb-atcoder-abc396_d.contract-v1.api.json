@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc396_d",
+  "text": "## Description\nRead a labeled, undirected graph from standard input and print the minimum XOR of the edge labels along any simple path from vertex 1 to vertex N. A simple path visits each vertex at most once.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains integers N and M, with 2 ≤ N ≤ 10 and N−1 ≤ M ≤ N(N−1)/2. The next M lines each contain three integers: two endpoints and an edge label.\n- **PRE-2 (Unverified):** Each edge’s endpoints satisfy 1 ≤ uᵢ < vᵢ ≤ N, and its label satisfies 0 ≤ wᵢ < 2⁶⁰.\n- **PRE-3 (Unverified):** The edge records describe a connected, undirected graph with no repeated endpoint pairs.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains a single integer: the minimum XOR across all simple paths from vertex 1 to vertex N. Connectivity guarantees at least one eligible path.\n- **POST-2 (Unverified):** Every edge on an eligible path contributes its label to the XOR. Paths that revisit a vertex are excluded, even if their XOR is lower. The answer lies in [0, 2⁶⁰−1].\n- **POST-3 (Unverified):** Reordering the edge records does not change the answer. If several paths attain the minimum, that value is still printed only once, without a path or count.\n\n## Test suggestions\n- Check a two-vertex graph with its sole edge labeled 0, then 2⁶⁰−1 (PRE-1–PRE-3, POST-1–POST-2).\n- Check a graph with one simple path whose nonzero labels XOR to zero, and a graph with competing simple paths with different XORs (POST-1–POST-2).\n- Check a graph where a walk that revisits a vertex has a lower XOR than every simple path; confirm that the walk does not affect the result (POST-2).\n- Check tied minima and permute the edge records; confirm that the same single integer is printed (POST-3).\n\n## Unspecified behavior\nHandling of malformed input or graphs outside the stated constraints is not specified.\n",
+  "statement_sha256": "eb779801b6892b01fc044fcf8db1be7984ba9b99835fcea3c9ae85d6ccd2d32c",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "eb779801b6892b01fc044fcf8db1be7984ba9b99835fcea3c9ae85d6ccd2d32c",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:38:14Z",
+    "finish_reason": "stop",
+    "request_id": "req_96322bb6ae4c40819dfe66276c404312",
+    "retries": 0,
+    "ledger_index": 35
+  },
+  "usage": {
+    "prompt_tokens": 899,
+    "completion_tokens": 482,
+    "total_tokens": 1381,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 7.59,
+  "cost_usd": 0.006618,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 318,
+  "created_utc": "2026-11-25T05:38:22Z"
+}

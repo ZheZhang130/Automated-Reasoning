@@ -1,0 +1,160 @@
+﻿{
+ "plan": "E:\\CSC2108Local\\final-study\\plans\\final-main.json",
+ "remaining_attempts": 900,
+ "paid_runs_remaining": {
+  "B": 180,
+  "E": 180
+ },
+ "missing_guidance": {
+  "C": 60,
+  "D": 60
+ },
+ "ledger": "E:\\CSC2108Local\\final-study\\api-ledger.json",
+ "ledger_exists": true,
+ "ceilings": {
+  "max_requests": 2000,
+  "max_usd": 100.0,
+  "code_maximum": {
+   "max_requests": 2000,
+   "max_usd": 100.0
+  }
+ },
+ "used": {
+  "requests": 0,
+  "reservation_usd": 0.0
+ },
+ "room": {
+  "requests": 2000,
+  "reservation_usd": 100.0
+ },
+ "scenarios": {
+  "expected": {
+   "requests": {
+    "plan": 60,
+    "contract": 60,
+    "coder": 584,
+    "diagnosis": 90,
+    "total": 794
+   },
+   "reservation_usd": 38.84,
+   "token_cost_usd": 5.1
+  },
+  "high": {
+   "requests": {
+    "plan": 60,
+    "contract": 60,
+    "coder": 1260,
+    "diagnosis": 180,
+    "total": 1560
+   },
+   "reservation_usd": 75.42,
+   "token_cost_usd": 9.6
+  },
+  "stress": {
+   "requests": {
+    "plan": 60,
+    "contract": 60,
+    "coder": 1260,
+    "diagnosis": 180,
+    "total": 1560
+   },
+   "reservation_usd": 350.92,
+   "token_cost_usd": 58.49
+  },
+  "worst": {
+   "requests": {
+    "plan": 60,
+    "contract": 60,
+    "coder": 5040,
+    "diagnosis": 180,
+    "total": 5340
+   },
+   "reservation_usd": 4389.12,
+   "token_cost_usd": 731.52
+  }
+ },
+ "single_request_reservation_usd_max": 0.84,
+ "fits_within_ceilings": {
+  "expected": true,
+  "high": true,
+  "stress": false,
+  "worst": false
+ },
+ "assumptions": {
+  "history": {
+   "plan": {
+    "n": 7,
+    "input": [
+     801,
+     1069
+    ],
+    "output": [
+     975,
+     1497
+    ],
+    "cached": 0
+   },
+   "contract": {
+    "n": 9,
+    "input": [
+     843,
+     1267
+    ],
+    "output": [
+     581,
+     877
+    ],
+    "cached": 0
+   },
+   "diagnosis": {
+    "n": 6,
+    "input": [
+     1670,
+     1994
+    ],
+    "output": [
+     278,
+     305
+    ],
+    "cached": 0
+   },
+   "coder": {
+    "n": 20,
+    "input": [
+     1837,
+     4265
+    ],
+    "output": [
+     453,
+     3553
+    ],
+    "cached": 1241
+   }
+  },
+  "b_requests_per_run": {
+   "expected": 3.24,
+   "high": 7,
+   "worst": 28
+  },
+  "e_trigger_rate": {
+   "expected": 0.5,
+   "high": 1.0,
+   "worst": 1.0
+  },
+  "reservation_prices_per_1m": {
+   "input": 12.0,
+   "output": 60.0
+  },
+  "research_prices_per_1m": {
+   "input": 2.0,
+   "cached_input": 0.1,
+   "output": 10.0,
+   "tier": "standard",
+   "context": "short (<= 272K input tokens)",
+   "verified_utc": "2026-11-24",
+   "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  "note": "estimates only: requests per B run and E trigger rate are experimental outcomes; the ledger refuses (never exceeds) a request that would pass a ceiling, and that run is then an infrastructure failure to rerun after the ceiling is raised"
+ }
+}
+

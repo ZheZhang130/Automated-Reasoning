@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo00TQ10TNbSpslkeDgzwdZtUQHGk",
+  "object": "chat.completion",
+  "created": 1795585133,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nThe Python 3 program reads each person's integer from standard input. It prints the label of the person with the largest integer that occurs exactly once. If no integer occurs exactly once, it prints `-1`.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains an integer \\(N\\), where \\(1 \\le N \\le 300{,}000\\).\n- **PRE-2 (Unverified):** The second input line contains exactly \\(N\\) integers, each between \\(1\\) and \\(10^9\\) inclusive. The integer in position \\(i\\) belongs to person \\(i\\), with positions numbered from 1.\n\n## Postconditions\n- **POST-1 (Unverified):** If at least one integer occurs exactly once across the entire input list, standard output contains the label of the person holding the largest such integer. Every occurrence of a repeated integer is ineligible, even if the occurrences are not adjacent. The winning label is unique.\n- **POST-2 (Unverified):** If no integer occurs exactly once, standard output contains `-1`.\n- **POST-3 (Unverified):** Standard output contains only the single answer integer, with no prompts or explanation. A positive answer is the person's original input position, not their rank by value.\n\n## Test suggestions\n- Check that a single person holding \\(10^9\\) yields `1` (PRE-1, PRE-2; POST-1, POST-3).\n- Check that the list `9 4 9 2 7` yields `5`: the largest value is repeated in nonadjacent positions, and `7` is the largest value that occurs once (PRE-2; POST-1, POST-3).\n- Check that the all-distinct list `1 8 3` yields `2`, not `8` or a rank (PRE-2; POST-1, POST-3).\n- Check that 300,000 people all holding `1` yields `-1` (PRE-1, PRE-2; POST-2, POST-3).\n\n## Unspecified behavior\nNo behavior is guaranteed for input that does not meet the stated format or constraints.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 535,
+    "completion_tokens": 466,
+    "total_tokens": 1001,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

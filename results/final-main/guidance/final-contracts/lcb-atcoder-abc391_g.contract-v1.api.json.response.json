@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Enzy16UTRIcA8qfTQFNpI1mVzHNuQ",
+  "object": "chat.completion",
+  "created": 1795584981,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead integers \\(N\\) and \\(M\\) and a string \\(S\\) from standard input. For each \\(k\\) from \\(0\\) through \\(N\\), report how many distinct lowercase English strings of length \\(M\\) have a longest common subsequence with \\(S\\) of length exactly \\(k\\), modulo \\(998244353\\). A subsequence preserves character order but need not be contiguous.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains two integers \\(N\\) and \\(M\\), with \\(1 \\le N \\le 10\\) and \\(1 \\le M \\le 100\\).\n- **PRE-2 (Unverified):** The second input line contains \\(S\\), consisting of exactly \\(N\\) lowercase English letters (`a`–`z`).\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains one line of exactly \\(N+1\\) space-separated integers, ordered by increasing \\(k\\) from \\(0\\) through \\(N\\).\n- **POST-2 (Unverified):** The entry for \\(k\\) is the count of eligible strings with longest common subsequence length exactly \\(k\\), expressed as a residue from \\(0\\) through \\(998244352\\). Each string contributes once, regardless of how many longest common subsequences or matching positions it has.\n- **POST-3 (Unverified):** Entries for \\(k>\\min(N,M)\\) are zero. The \\(k=0\\) entry counts exactly the strings that share no letter with \\(S\\).\n- **POST-4 (Unverified):** The sum of the entries is congruent to \\(26^M\\) modulo \\(998244353\\), because each length-\\(M\\) string belongs to exactly one count.\n\n## Test suggestions\n- Use the supplied samples to check output order and counts, including the repeated letters in `aaa` (PRE-1, PRE-2, POST-1, POST-2).\n- Use \\(N=2\\), \\(M=1\\), and \\(S=\\texttt{aa}\\). Expect `25 1 0`: `a` counts once despite matching either position, and length two is impossible (POST-2, POST-3).\n- At \\(N=10\\) and \\(M=100\\), check the number of entries, their residue range, and their sum modulo \\(998244353\\) (PRE-1, POST-1, POST-2, POST-4).\n\n## Unspecified behavior\nNo behavior is specified for malformed input or input outside the stated constraints.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 622,
+    "completion_tokens": 560,
+    "total_tokens": 1182,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

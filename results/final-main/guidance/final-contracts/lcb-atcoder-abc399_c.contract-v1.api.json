@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc399_c",
+  "text": "## Description\nGiven a simple undirected graph, report the minimum number of edges that must be deleted so that no cycle remains. Deleting edges does not remove vertices, and the resulting forest need not be connected.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input contains integers \\(N\\) and \\(M\\), followed by exactly \\(M\\) endpoint pairs, in the stated format. The counts satisfy \\(1 \\le N \\le 200{,}000\\) and \\(0 \\le M \\le \\min(N(N-1)/2, 200{,}000)\\).\n- **PRE-2 (Unverified):** Each pair satisfies \\(1 \\le u_i < v_i \\le N\\), and no pair occurs more than once.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains one integer: the smallest number of edges whose deletion leaves an acyclic graph on the original \\(N\\) vertices. No deletion set is printed.\n- **POST-2 (Unverified):** The answer is zero exactly when the input graph is already a forest. This includes edgeless graphs and the single-vertex graph.\n- **POST-3 (Unverified):** The answer is the sum of the minimum deletion counts for the connected components. Isolated vertices contribute zero, and reordering the input edge pairs does not change the answer.\n\n## Test suggestions\n- Under PRE-1 and PRE-2, check that all three supplied samples yield the stated answers (POST-1).\n- Check a single vertex, multiple isolated vertices, and a nonempty forest; each should yield zero (POST-2).\n- Check two disjoint triangles plus an isolated vertex; the answer should be two. Reorder the edge pairs and check that the answer is unchanged (POST-3).\n- Check a path on \\(200{,}000\\) vertices and then the same path with an edge joining its endpoints. The expected answers are zero and one, respectively (PRE-1, PRE-2, POST-1, POST-2).\n\n## Unspecified behavior\nBehavior is unspecified for inputs that violate PRE-1 or PRE-2. The task does not require identifying any particular set of edges to delete.\n",
+  "statement_sha256": "28fddb877cab57801ff24a4363df564304a2e5b95f083e7502afa930c8b182a9",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "28fddb877cab57801ff24a4363df564304a2e5b95f083e7502afa930c8b182a9",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:39:21Z",
+    "finish_reason": "stop",
+    "request_id": "req_9dd317108eba4b4e881ce45da711a16f",
+    "retries": 0,
+    "ledger_index": 45
+  },
+  "usage": {
+    "prompt_tokens": 549,
+    "completion_tokens": 467,
+    "total_tokens": 1016,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 6.34,
+  "cost_usd": 0.005768,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 298,
+  "created_utc": "2026-11-25T05:39:27Z"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo00ikcHqTPWGIh7xuWNpPTAwOP3k",
+  "object": "chat.completion",
+  "created": 1795585148,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nGiven two strings of equal length, report their Hamming distance: the number of positions at which their characters differ.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies \\(N\\), \\(S\\), and \\(T\\), in that order on three lines.\n- **PRE-2 (Unverified):** \\(N\\) is an integer from 1 through 100, inclusive.\n- **PRE-3 (Unverified):** \\(S\\) and \\(T\\) each contain exactly \\(N\\) lowercase English letters.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains a single integer giving the number of positions where \\(S\\) and \\(T\\) differ. Only characters at the same position are compared, and each differing position contributes exactly one to the count, even when the same pair of letters differs at multiple positions.\n- **POST-2 (Unverified):** The result is between 0 and \\(N\\), inclusive. It is 0 exactly when the strings are identical and \\(N\\) exactly when they differ at every position.\n\n## Test suggestions\n- At \\(N=1\\), check that identical letters produce 0 and different letters produce 1 (PRE-1–PRE-3, POST-1–POST-2).\n- At \\(N=100\\), check identical strings and strings differing at every position (PRE-2–PRE-3, POST-2).\n- Check that `aabb` and `bbaa` produce 4 despite having the same letter frequencies, and that `aaaa` and `abba` produce 2 because the repeated mismatch counts at both positions (PRE-1–PRE-3, POST-1).\n\n## Unspecified behavior\nNo behavior is specified for input that violates the format, length, integer range, or character constraints.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 469,
+    "completion_tokens": 388,
+    "total_tokens": 857,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

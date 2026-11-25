@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo07XODxxRRTLAJScCDtw4aSjGdS4",
+  "object": "chat.completion",
+  "created": 1795585571,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. If two equal values occur at positions \\(i<j\\), the subarray from \\(i\\) through \\(j\\) has length \\(j-i+1\\) and is the shortest subarray containing both positions.\n2. For a fixed right endpoint \\(j\\), the most recent previous occurrence of \\(A_j\\) gives the shortest subarray ending at \\(j\\) that contains an earlier copy of \\(A_j\\).\n3. Every subarray containing a duplicate contains an equal pair, so the answer is the minimum candidate length across all right endpoints. If there are no candidates, the answer is \\(-1\\).\n4. The scan needs only one stored position per distinct value and does a constant number of dictionary operations per element.\n\n## Solution sketch\n\n> If two equal values occur at positions \\(i<j\\), the subarray from \\(i\\) through \\(j\\) has length \\(j-i+1\\) and is the shortest subarray containing both positions.\n\n1. Read \\(N\\) and the sequence from standard input. Start with no best length. Whenever the scan finds an equal pair at positions \\(i<j\\), use \\(j-i+1\\) as its candidate length.\n\n> For a fixed right endpoint \\(j\\), the most recent previous occurrence of \\(A_j\\) gives the shortest subarray ending at \\(j\\) that contains an earlier copy of \\(A_j\\).\n\n2. Scan from left to right with an initially empty dictionary of last-seen positions. At each position \\(j\\), look up \\(A_j\\). If it has a stored position \\(i\\), compare the candidate length with the best length so far and keep the smaller one, or record the candidate if it is the first. Only after the lookup, update the stored position to \\(j\\).\n\n> Every subarray containing a duplicate contains an equal pair, so the answer is the minimum candidate length across all right endpoints. If there are no candidates, the answer is \\(-1\\).\n\n3. Print the best length if one was recorded; otherwise, print \\(-1\\). This covers a one-element sequence and any sequence with all distinct values. Adjacent equal values produce length \\(2\\), the smallest possible answer.\n\n> The scan needs only one stored position per distinct value and does a constant number of dictionary operations per element.\n\n4. With a hash-table dictionary, the scan takes \\(O(N)\\) expected time and uses \\(O(D)\\) auxiliary space, where \\(D\\) is the number of distinct values. Storing the input sequence also takes \\(O(N)\\) space.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 467,
+    "completion_tokens": 547,
+    "total_tokens": 1014,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

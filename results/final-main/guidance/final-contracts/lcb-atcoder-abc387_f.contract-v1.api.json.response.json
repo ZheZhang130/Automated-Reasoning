@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzwFrz1MeFEL5Gs86M6PJQRe6yQX",
+  "object": "chat.completion",
+  "created": 1795584871,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead \\(N\\), \\(M\\), and \\(A\\) from standard input. Print the number of length-\\(N\\) sequences with entries in \\([1,M]\\) that satisfy \\(x_i \\le x_{A_i}\\) at every position, reduced modulo \\(998244353\\).\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains two integers \\(N\\) and \\(M\\), both in \\([1,2025]\\).\n- **PRE-2 (Unverified):** The second input line contains exactly \\(N\\) integers \\(A_1,\\ldots,A_N\\), each in \\([1,N]\\). The entries are interpreted in the order given, with positions numbered from 1. Repeated entries and self-references are allowed.\n\n## Postconditions\n- **POST-1 (Unverified):** The count includes each qualifying sequence exactly once and excludes every sequence that violates a value bound or any inequality. Sequences that differ at any position are distinct.\n- **POST-2 (Unverified):** Standard output contains a single integer: the remainder of the count upon division by \\(998244353\\), in \\([0,998244352]\\).\n- **POST-3 (Unverified):** If \\(M=1\\), the output is \\(1\\). If \\(A_i=i\\) for every \\(i\\), including the case \\(N=1\\), the output is the remainder of \\(M^N\\) upon division by \\(998244353\\).\n\n## Test suggestions\n- Check all three supplied samples against **POST-1** and **POST-2**, including the repeated targets in the second sample permitted by **PRE-2**.\n- For small inputs satisfying **PRE-1** and **PRE-2**, compare the output with a direct tally of qualifying sequences. Include a cycle, which forces equality among its positions, and positions that share a target, which need not have equal values (**POST-1**).\n- Check \\(N=1\\), \\(M=1\\), and an all-self-reference case whose count exceeds the modulus (**POST-2**, **POST-3**).\n\n## Unspecified behavior\nNo behavior is specified for malformed input, missing or extra values, or values outside the stated bounds.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 531,
+    "completion_tokens": 483,
+    "total_tokens": 1014,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

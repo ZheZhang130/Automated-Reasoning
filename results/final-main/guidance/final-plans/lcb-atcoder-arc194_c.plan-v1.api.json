@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc194_c",
+  "text": "## Observations\n\n1. Two consecutive flips of the same index that take it from 0 to 1 and back to 0 can be removed without increasing the cost, even if other indices are flipped between them.\n2. In an optimal sequence of the remaining flips, all removals can come before all additions; removals can be sorted by decreasing weight and additions by increasing weight.\n3. If exactly \\(k\\) indices with \\(A_i=B_i=1\\) are temporarily turned off, choosing the \\(k\\) heaviest such indices is optimal.\n4. The cost of a sorted sequence depends only on the lengths of its two flip lists, the total removed weight, and the sums of the prefix sums of both lists.\n5. Trying the optional weights from heaviest to lightest lets each insertion be evaluated without rebuilding either flip list.\n\n## Solution sketch\n\n> Two consecutive flips of the same index that take it from 0 to 1 and back to 0 can be removed without increasing the cost, even if other indices are flipped between them.\n\n1. Delete such pairs conceptually: the index stays at 0 during the intervening operations, so their costs cannot rise, and the two deleted operations had nonnegative costs. Once no such pair remains, an index changing from 1 to 0 has one mandatory removal, an index changing from 0 to 1 has one mandatory addition, and an index staying at 0 is never flipped. An index staying at 1 can be left alone or removed and later added back.\n\n> In an optimal sequence of the remaining flips, all removals can come before all additions; removals can be sorted by decreasing weight and additions by increasing weight.\n\n2. An addition followed immediately by a removal must involve different indices, since the pairs from step 1 have been eliminated. Swapping the two flips lowers the first post-flip cost and leaves the second unchanged. Repeating this swap puts all removals first. Within each phase, the same adjacent-swap comparison favors the heavier removal first and the lighter addition first, because only the first post-flip cost differs.\n\n> If exactly \\(k\\) indices with \\(A_i=B_i=1\\) are temporarily turned off, choosing the \\(k\\) heaviest such indices is optimal.\n\n3. If a selected optional index is lighter than an unselected one, let the heavier index take the lighter one's two flip positions instead. Both indices start and end at 1, and the total active weight cannot increase at any operation: between those positions the heavier index is off rather than the lighter one, and outside them both are on. Repeating this exchange gives the \\(k\\) heaviest indices. Thus it suffices to sort the optional weights in decreasing order and test every prefix, including the empty one.\n\n> The cost of a sorted sequence depends only on the lengths of its two flip lists, the total removed weight, and the sums of the prefix sums of both lists.\n\n4. Let \\(S\\) be the initial active weight, \\(D\\) the decreasing removal list, and \\(U\\) the increasing addition list. Start both lists with only their mandatory weights. Let \\(m,n\\) be their lengths, \\(T\\) the sum of \\(D\\), and \\(P_D,P_U\\) the sums of their nonempty prefix sums. Each removal costs \\(S\\) minus the corresponding prefix of \\(D\\); each addition costs \\(S-T\\) plus the corresponding prefix of \\(U\\). Therefore the total is \\(mS-P_D+n(S-T)+P_U\\). Evaluate this for the empty optional prefix first. Empty lists have zero aggregates, so this also gives zero when \\(A=B\\) and no flips are needed.\n\n> Trying the optional weights from heaviest to lightest lets each insertion be evaluated without rebuilding either flip list.\n\n5. Precompute prefix sums of the sorted mandatory lists and keep the count and total weight of the optional entries already inserted. When inserting a weight \\(x\\) into a list of current length \\(L\\), let \\(r\\) entries precede it and let their weight sum be \\(Q\\). The new prefix ending at \\(x\\) contributes \\(Q+x\\), and each of the \\(L-r\\) old prefixes after the insertion gains \\(x\\). Thus the sum of prefix sums increases by \\(Q+(L-r+1)x\\). In \\(D\\), insert after all mandatory weights at least \\(x\\) and all previously selected optional weights. In \\(U\\), insert after the mandatory weights strictly below \\(x\\) and before all previously selected optional weights. These rules preserve the required sorting even with ties. Binary search and the precomputed sums give \\(r,Q\\) for both lists. Update the aggregates, evaluate the cost, and keep the minimum over all prefixes. Sorting and processing take \\(O(N\\log N)\\) time and \\(O(N)\\) space. Use exact integer arithmetic, since the total can exceed 32-bit range.\n",
+  "statement_sha256": "4b6ec5efe8bb0fbcba1b6375f6df31265606f2931af184ee104e6211f4a39013",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "4b6ec5efe8bb0fbcba1b6375f6df31265606f2931af184ee104e6211f4a39013",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:53:04Z",
+    "finish_reason": "stop",
+    "request_id": "req_1a1d76e9edc44e28a939b3c28c426c93",
+    "retries": 0,
+    "ledger_index": 115
+  },
+  "usage": {
+    "prompt_tokens": 895,
+    "completion_tokens": 1622,
+    "total_tokens": 2517,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 578,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 27.77,
+  "cost_usd": 0.01801,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 756,
+  "created_utc": "2026-11-25T05:53:32Z"
+}

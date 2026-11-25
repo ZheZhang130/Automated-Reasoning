@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc396_d",
+  "text": "## Observations\n\n1. The graph is undirected, so each edge can be traversed in either direction.\n2. A path stays simple if each extension goes to a vertex not already on the current path.\n3. Extending a path across an edge updates its XOR by XORing the current value with that edge’s label.\n4. A simple path from vertex 1 to vertex N ends as soon as it reaches N, and connectivity guarantees that at least one such path exists.\n5. With at most 10 vertices, every simple path prefix can be enumerated: before reaching N, a prefix consists of vertex 1 followed by an ordered subset of the N−2 intermediate vertices.\n\n## Solution sketch\n\n> The graph is undirected, so each edge can be traversed in either direction.\n\n1. Read the graph into a weighted adjacency list, adding each edge to both endpoints’ lists.\n\n> A path stays simple if each extension goes to a vertex not already on the current path.\n\n2. Start a depth-first search at vertex 1, with only vertex 1 marked and the running XOR set to zero. At each vertex, explore only unmarked neighbors. Mark a neighbor before recursing and unmark it after returning, so the marks describe the current path rather than all vertices ever visited.\n\n> Extending a path across an edge updates its XOR by XORing the current value with that edge’s label.\n\n3. Pass the updated XOR into each recursive call. Keep the parent call’s value unchanged so that each sibling branch starts with the correct prefix XOR.\n\n> A simple path from vertex 1 to vertex N ends as soon as it reaches N, and connectivity guarantees that at least one such path exists.\n\n4. On reaching N, use the running XOR to update the minimum and return without exploring further. The search follows every simple path and never accepts a path with a repeated vertex, so the minimum it prints is the answer. Initialize the minimum to \\(2^{60}\\), which exceeds every possible path XOR. A direct edge, including the case \\(N=2\\), is handled by the first move along that edge, and zero is a valid minimum.\n\n> With at most 10 vertices, every simple path prefix can be enumerated: before reaching N, a prefix consists of vertex 1 followed by an ordered subset of the N−2 intermediate vertices.\n\n5. The number of ordered subsets of \\(N-2\\) vertices is \\(O((N-2)!)\\). Each prefix can also generate at most one call that ends at N, since the graph is simple. Each call scans at most \\(N-1\\) neighbors, so the total time is \\(O(M + N(N-2)!)\\). The adjacency lists, marks, and recursion stack use \\(O(N+M)\\) space.\n",
+  "statement_sha256": "eb779801b6892b01fc044fcf8db1be7984ba9b99835fcea3c9ae85d6ccd2d32c",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "eb779801b6892b01fc044fcf8db1be7984ba9b99835fcea3c9ae85d6ccd2d32c",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:46:44Z",
+    "finish_reason": "stop",
+    "request_id": "req_f02f1c2ecd2f4caf972caa42c5c8e15b",
+    "retries": 0,
+    "ledger_index": 95
+  },
+  "usage": {
+    "prompt_tokens": 829,
+    "completion_tokens": 672,
+    "total_tokens": 1501,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 88,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 10.2,
+  "cost_usd": 0.008378,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 444,
+  "created_utc": "2026-11-25T05:46:54Z"
+}

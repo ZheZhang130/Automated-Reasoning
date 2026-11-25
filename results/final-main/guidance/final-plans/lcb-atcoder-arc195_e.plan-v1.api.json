@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc195_e",
+  "text": "## Observations\n\n1. Choosing each parent \\(P_k\\) independently and uniformly from \\(1,\\ldots,k-1\\) makes all \\((N-1)!\\) trees equally likely, so the requested sum is \\((N-1)!\\) times the expected distance.\n2. Adding vertex \\(k\\) leaves all distances between older vertices unchanged. For an older vertex \\(i\\), the expected distance to \\(k\\) is \\(A_k\\) plus the average expected distance from \\(i\\) to the first \\(k-1\\) vertices, including the zero distance from \\(i\\) to itself.\n3. Summing the expected distances from a new vertex to all older vertices requires only the total expected distance over ordered pairs of older vertices.\n4. Once vertex \\(u\\) exists, adding a later vertex \\(k\\) increases the average expected distance from \\(u\\) to the vertices present by exactly \\(A_k/k\\). These increments are independent of \\(u\\) and can be stored in a prefix sum.\n5. Every divisor used in the expectations is between \\(1\\) and \\(N\\), so it has a modular inverse modulo \\(998244353\\).\n\n## Solution sketch\n\n1. > Every divisor used in the expectations is between \\(1\\) and \\(N\\), so it has a modular inverse modulo \\(998244353\\).\n\n   Precompute the inverses of \\(1,\\ldots,N\\) using the linear modular-inverse recurrence, and compute \\(F=(N-1)!\\) modulo \\(998244353\\). Perform all subsequent arithmetic modulo this prime, replacing division by multiplication by the corresponding inverse.\n\n2. > Summing the expected distances from a new vertex to all older vertices requires only the total expected distance over ordered pairs of older vertices.\n\n   Let \\(T_k\\) be the sum of expected distances over all ordered pairs among the first \\(k\\) vertices, including the zero diagonal. Let \\(R_k\\) be the sum of expected distances from vertex \\(k\\) to the first \\(k\\) vertices. Initialize \\(T_1=R_1=0\\). For \\(k=2,\\ldots,N\\), compute\n   \\[\n   R_k=(k-1)A_k+\\frac{T_{k-1}}{k-1},\n   \\qquad\n   T_k=T_{k-1}+2R_k.\n   \\]\n   The first formula sums the expected distance through the uniformly chosen parent over all \\(k-1\\) older endpoints. The factor of two in the second formula counts both orders of each new pair. Keep only the current value of \\(T_k\\), and store \\(M_k=R_k/k\\), the average expected distance from vertex \\(k\\) when it first appears. Set \\(M_1=0\\).\n\n3. > Once vertex \\(u\\) exists, adding a later vertex \\(k\\) increases the average expected distance from \\(u\\) to the vertices present by exactly \\(A_k/k\\). These increments are independent of \\(u\\) and can be stored in a prefix sum.\n\n   If the old average is \\(m\\), the new vertex contributes an expected distance of \\(m+A_k\\). The new average is therefore \\(((k-1)m+m+A_k)/k=m+A_k/k\\). During the same preprocessing pass, build \\(B_1=0\\) and \\(B_k=B_{k-1}+A_k/k\\). The average expected distance from \\(u\\) to the first \\(v-1\\) vertices is then \\(M_u+B_{v-1}-B_u\\).\n\n4. > Adding vertex \\(k\\) leaves all distances between older vertices unchanged. For an older vertex \\(i\\), the expected distance to \\(k\\) is \\(A_k\\) plus the average expected distance from \\(i\\) to the first \\(k-1\\) vertices, including the zero distance from \\(i\\) to itself.\n\n   For each query \\(u<v\\), the expected distance in the full tree is\n   \\[\n   A_v+M_u+B_{v-1}-B_u.\n   \\]\n   The same formula handles \\(u=1\\) using \\(M_1=B_1=0\\), and when \\(v=u+1\\), the prefix difference is zero. In particular, for \\(N=2\\) the expected distance is simply \\(A_2\\).\n\n5. > Choosing each parent \\(P_k\\) independently and uniformly from \\(1,\\ldots,k-1\\) makes all \\((N-1)!\\) trees equally likely, so the requested sum is \\((N-1)!\\) times the expected distance.\n\n   Multiply each query’s expected distance by \\(F\\) and output the resulting residue in input order. Preprocessing takes \\(O(N)\\) time and \\(O(N)\\) space. Each query takes \\(O(1)\\) time, for \\(O(N+Q)\\) total time and \\(O(N)\\) auxiliary space when queries and answers are processed as they arrive.\n",
+  "statement_sha256": "621b872f123a2d2890ba6faa8e90bc33569e2bb3931debe4fea20c1a6a3c6462",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "621b872f123a2d2890ba6faa8e90bc33569e2bb3931debe4fea20c1a6a3c6462",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:54:11Z",
+    "finish_reason": "stop",
+    "request_id": "req_10250b628ea04451ae7608297bf301b9",
+    "retries": 0,
+    "ledger_index": 118
+  },
+  "usage": {
+    "prompt_tokens": 836,
+    "completion_tokens": 1217,
+    "total_tokens": 2053,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 144,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 15.76,
+  "cost_usd": 0.013842,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 574,
+  "created_utc": "2026-11-25T05:54:27Z"
+}

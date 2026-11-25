@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo00oR8yEj1cmA4eYvawmzMOBnV6c",
+  "object": "chat.completion",
+  "created": 1795585154,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nFor a valid contest input, report each person's rank in person-label order. A person's rank is one plus the number of people who scored strictly higher. People with equal scores share a rank, and each of them counts separately toward the ranks of people with lower scores.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first line of standard input contains an integer \\(N\\) with \\(1 \\le N \\le 100\\).\n- **PRE-2 (Unverified):** The second line contains exactly \\(N\\) integer scores, each from 1 through 100 inclusive. The \\(i\\)-th score belongs to person \\(i\\).\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains exactly \\(N\\) lines, with a single integer on line \\(i\\) giving the rank of person \\(i\\).\n- **POST-2 (Unverified):** Each rank equals one plus the number of people with strictly higher scores. Every rank is therefore between 1 and \\(N\\), inclusive, and every person with a maximum score ranks first.\n- **POST-3 (Unverified):** Equal scores receive equal ranks. If \\(k\\) people share rank \\(r\\) and any lower score exists, the next distinct rank is \\(r+k\\).\n\n## Test suggestions\n- Check a single participant with a boundary score; expect one line containing 1 (PRE-1, PRE-2; POST-1, POST-2).\n- Check 100 participants with identical scores; expect 100 lines containing 1 (PRE-1, PRE-2; POST-1, POST-2, POST-3).\n- Check distinct scores given out of score order; expect ranks in person-label order, not sorted order (PRE-2; POST-1, POST-2).\n- Check scores `3 12 9 9`; expect `4`, `1`, `2`, `2` on separate lines, confirming that both people tied at rank 2 count toward the lower rank (PRE-1, PRE-2; POST-1, POST-2, POST-3).\n\n## Unspecified behavior\nNo behavior is guaranteed for input that does not meet PRE-1 or PRE-2. The task does not specify validation or error reporting for such input.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 822,
+    "completion_tokens": 484,
+    "total_tokens": 1306,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

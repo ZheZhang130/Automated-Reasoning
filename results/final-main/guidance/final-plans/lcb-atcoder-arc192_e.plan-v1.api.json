@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc192_e",
+  "text": "## Observations\n\n1. In the full grid, the number of paths ending at \\((a,b)\\), with any starting point, is \\(F(a,b)=\\binom{a+b+2}{a+1}-1\\). By reflection, the number of paths starting at \\((x,y)\\), with any endpoint, is \\(F(W-x,H-y)\\).\n2. The sum of \\(F(i,j)\\) over \\(0\\le i\\le a\\) and \\(0\\le j\\le b\\) is \\(G(a,b)=\\binom{a+b+4}{a+2}-(a+b+4)-(a+1)(b+1)\\). Hence the number of full-grid paths starting in any given rectangle can be computed by inclusion–exclusion.\n3. Every path that visits the forbidden rectangle either starts there or has a unique first entry through a step from the left or from below. Any path to the predecessor of such a step is automatically outside the forbidden rectangle, because one of its coordinates is still below the rectangle’s lower bound.\n4. All binomial coefficients needed have upper argument at most \\(W+H+4\\), which is less than the prime modulus \\(998244353\\).\n\n## Solution sketch\n\n> 4. All binomial coefficients needed have upper argument at most \\(W+H+4\\), which is less than the prime modulus \\(998244353\\).\n\n1. Precompute factorials and inverse factorials modulo \\(998244353\\) through \\(W+H+4\\). Compute the last inverse factorial using Fermat’s little theorem, then fill the others backwards. Each binomial coefficient can then be evaluated in constant time.\n\n> 1. In the full grid, the number of paths ending at \\((a,b)\\), with any starting point, is \\(F(a,b)=\\binom{a+b+2}{a+1}-1\\). By reflection, the number of paths starting at \\((x,y)\\), with any endpoint, is \\(F(W-x,H-y)\\).\n\n2. Use \\(F\\) to count unrestricted prefixes and suffixes. A start at displacement \\((i,j)\\) from the endpoint contributes \\(\\binom{i+j}{i}\\) paths, so summing over \\(0\\le i\\le a\\) and \\(0\\le j\\le b\\) and applying the hockey-stick identity twice gives \\(F(a,b)\\). The term with \\(i=j=0\\) counts the zero-move path.\n\n> 2. The sum of \\(F(i,j)\\) over \\(0\\le i\\le a\\) and \\(0\\le j\\le b\\) is \\(G(a,b)=\\binom{a+b+4}{a+2}-(a+b+4)-(a+1)(b+1)\\). Hence the number of full-grid paths starting in any given rectangle can be computed by inclusion–exclusion.\n\n3. Initialize the answer to \\(G(W,H)\\), the number of paths in the full grid. To see the formula for \\(G\\), shift the two indices in \\(\\binom{i+j+2}{i+1}\\) up by one. The sum of these shifted terms is \\(F(a+1,b+1)\\) with the two zero-index axes removed; those axes contain \\(a+b+3\\) terms in total, all equal to one. Then subtract the \\((a+1)(b+1)\\) copies of \\(-1\\) in the definition of \\(F\\), meaning subtract one for each original summand. Next, subtract the paths that start inside the forbidden rectangle: use four-term inclusion–exclusion on \\(G\\) over the reflected ranges \\([W-R,W-L]\\) and \\([H-U,H-D]\\). Define \\(G(a,b)=0\\) whenever either argument is negative.\n\n> 3. Every path that visits the forbidden rectangle either starts there or has a unique first entry through a step from the left or from below. Any path to the predecessor of such a step is automatically outside the forbidden rectangle, because one of its coordinates is still below the rectangle’s lower bound.\n\n4. If \\(L>0\\), then for each \\(y=D,\\ldots,U\\), subtract \\(F(L-1,y)F(W-L,H-y)\\) for paths whose first entry is \\((L-1,y)\\to(L,y)\\). If \\(D>0\\), then for each \\(x=L,\\ldots,R\\), subtract \\(F(x,D-1)F(W-x,H-D)\\) for paths whose first entry is \\((x,D-1)\\to(x,D)\\). Each product chooses an unrestricted prefix, the fixed entry step, and an unrestricted suffix. A suffix may visit more forbidden points without creating a duplicate, since only the first entry determines where the path is counted. Even at \\((L,D)\\), the two incoming steps describe disjoint cases. When \\(L=0\\) or \\(D=0\\), skip the corresponding sum because there is no predecessor on that side. The formulas also work for a single-row, single-column, or single-point forbidden rectangle. Print the resulting residue modulo \\(998244353\\). The precomputation and the two boundary sums take \\(O(W+H+1)\\) time for the fixed modulus, and the factorial tables use \\(O(W+H+1)\\) space.\n",
+  "statement_sha256": "a254fd8c3ef15c4ec804f7c61afd54a304fe0beeab33c9c65875d467cb08038c",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "a254fd8c3ef15c4ec804f7c61afd54a304fe0beeab33c9c65875d467cb08038c",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:52:25Z",
+    "finish_reason": "stop",
+    "request_id": "req_9e1febe2327e41ffa0752bb6203f7903",
+    "retries": 0,
+    "ledger_index": 113
+  },
+  "usage": {
+    "prompt_tokens": 601,
+    "completion_tokens": 1854,
+    "total_tokens": 2455,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 708,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 27.48,
+  "cost_usd": 0.019742,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 593,
+  "created_utc": "2026-11-25T05:52:53Z"
+}

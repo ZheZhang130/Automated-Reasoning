@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc398_a",
+  "text": "## Observations\n1. In a palindrome, a lone `=` must occupy the middle position, which exists only when N is odd.\n2. If there are two adjacent `=`s, reflection must swap them, so they occupy the two middle positions and N must be even.\n3. Every position outside the middle `=` or `==` is a `-`, and the two sides have equal length.\n\n## Solution sketch\n1. > In a palindrome, a lone `=` must occupy the middle position, which exists only when N is odd.\n\n   Read N. If N is odd, choose `=` as the center. In particular, for N = 1 this is the entire answer.\n\n2. > If there are two adjacent `=`s, reflection must swap them, so they occupy the two middle positions and N must be even.\n\n   If N is even, choose `==` as the center. For N = 2 this is the entire answer.\n\n3. > Every position outside the middle `=` or `==` is a `-`, and the two sides have equal length.\n\n   Subtract the center’s length from N and divide by two to find the number of dashes on each side. Put that many dashes before and after the center, then print the result. Constructing and printing the string takes O(N) time, and storing it takes O(N) space.\n",
+  "statement_sha256": "3ddd02654f13774b7319e63ca2a8d14c9c81bfea13a2de02106b129c52964e26",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "3ddd02654f13774b7319e63ca2a8d14c9c81bfea13a2de02106b129c52964e26",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:47:13Z",
+    "finish_reason": "stop",
+    "request_id": "req_66747ac325404b539246cff5c358f562",
+    "retries": 0,
+    "ledger_index": 99
+  },
+  "usage": {
+    "prompt_tokens": 268,
+    "completion_tokens": 288,
+    "total_tokens": 556,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 4.38,
+  "cost_usd": 0.003416,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 216,
+  "created_utc": "2026-11-25T05:47:18Z"
+}

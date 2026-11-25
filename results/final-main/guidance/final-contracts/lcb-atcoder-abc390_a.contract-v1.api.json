@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc390_a",
+  "text": "## Description\nGiven a permutation of `1 2 3 4 5`, report whether swapping exactly one pair of neighboring elements can put the sequence in ascending order.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies five space-separated integers in sequence order.\n- **PRE-2 (Unverified):** Each integer from 1 through 5 appears exactly once.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains `Yes` if and only if swapping a single pair of adjacent positions would produce `1 2 3 4 5`. The pair may be anywhere in the sequence, including at either end.\n- **POST-2 (Unverified):** Standard output contains `No` if no single adjacent swap would produce `1 2 3 4 5`. In particular, an already sorted sequence produces `No` because zero swaps do not satisfy the requirement.\n- **POST-3 (Unverified):** The output reports only the decision, not the swapped positions or the resulting sequence.\n\n## Test suggestions\n- For inputs satisfying PRE-1 and PRE-2, check that `2 1 3 4 5`, `1 2 4 3 5`, and `1 2 3 5 4` each produce `Yes` (POST-1).\n- Check that `1 2 3 4 5` produces `No`, and that `3 2 1 4 5` also produces `No` because the two elements whose exchange would sort it are not adjacent (POST-2).\n- For both outcomes, check that no swap details or sequence are printed (POST-3).\n\n## Unspecified behavior\nBehavior is unspecified for input that does not satisfy PRE-1 or PRE-2.\n",
+  "statement_sha256": "1fb19d551a0f90cb91ce5b92b454385cfd9589510d91b16a7b79b921bf04142d",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "1fb19d551a0f90cb91ce5b92b454385cfd9589510d91b16a7b79b921bf04142d",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:35:27Z",
+    "finish_reason": "stop",
+    "request_id": "req_8046f66d28ba4c2294962ccbbdef451e",
+    "retries": 0,
+    "ledger_index": 11
+  },
+  "usage": {
+    "prompt_tokens": 499,
+    "completion_tokens": 378,
+    "total_tokens": 877,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.66,
+  "cost_usd": 0.004778,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 238,
+  "created_utc": "2026-11-25T05:35:33Z"
+}

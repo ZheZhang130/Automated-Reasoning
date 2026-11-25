@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc388_b",
+  "text": "## Observations\n\n1. Each snake’s thickness stays fixed, and its length for increase \\(k\\) is its original length plus \\(k\\).\n2. The answer for increase \\(k\\) is the maximum of the resulting weights, and the answers must be printed in order from \\(1\\) through \\(D\\).\n3. There is at least one snake, and at most \\(100 \\times 100 = 10{,}000\\) weight calculations are needed to check every snake for every increase.\n\n## Solution sketch\n\n1. “Each snake’s thickness stays fixed, and its length for increase \\(k\\) is its original length plus \\(k\\).”\n\n   Read \\(N\\) and \\(D\\), then store each snake’s thickness and original length. Keep the stored lengths unchanged so that each calculation uses the original length rather than accumulating increases.\n\n2. “The answer for increase \\(k\\) is the maximum of the resulting weights, and the answers must be printed in order from \\(1\\) through \\(D\\).”\n\n   For each \\(k\\) from \\(1\\) through \\(D\\), scan all snakes and compute each weight as its thickness times its original length plus \\(k\\) in parentheses: \\(T_i(L_i+k)\\). Start the running maximum with the first snake’s weight, update it as needed, and print it on its own line after the scan. Ties need no special handling because only the weight is printed.\n\n3. “There is at least one snake, and at most \\(100 \\times 100 = 10{,}000\\) weight calculations are needed to check every snake for every increase.”\n\n   A direct scan is sufficient. With one snake, its weight is the maximum; with \\(D=1\\), the algorithm prints just one line. The algorithm takes \\(O(ND)\\) time and \\(O(N)\\) space for the stored snakes, with no need to store the answers.\n",
+  "statement_sha256": "65e2a70318b109c71e04a04f497ceb85fd0d75df7dc3a5dee8348f22fb5e124c",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "65e2a70318b109c71e04a04f497ceb85fd0d75df7dc3a5dee8348f22fb5e124c",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:41:52Z",
+    "finish_reason": "stop",
+    "request_id": "req_f65e3edbf7b548bd8a8069f33035747c",
+    "retries": 0,
+    "ledger_index": 65
+  },
+  "usage": {
+    "prompt_tokens": 500,
+    "completion_tokens": 407,
+    "total_tokens": 907,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.92,
+  "cost_usd": 0.00507,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 272,
+  "created_utc": "2026-11-25T05:41:58Z"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "pass",
+  "passed": 40,
+  "total": 40,
+  "verdict_counts": {
+    "AC": 40
+  },
+  "judge_version": "0.2.1",
+  "tests_sha256": "20fef011ca1594b5027e4c02762d355ae243009807e2ba1a18c9e064080b6850",
+  "code_sha256": "ee447d73f7525617451d02c66a4db3951909968d42de88161b235de2660cfe36",
+  "error": null,
+  "run_id": "final-main-lcb-atcoder-abc389_d-D-s2108-b20b7062",
+  "task_id": "lcb-atcoder-abc389_d",
+  "condition": "D",
+  "suite": "hidden",
+  "judge_tests_sha256": "3f410ec4cf8e9bd883256ba80100c53c67ac4fd96103027145bceb66adf41932",
+  "submission_sha256": "ee447d73f7525617451d02c66a4db3951909968d42de88161b235de2660cfe36",
+  "evaluated_utc": "2026-11-25T21:02:18Z"
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc390_a",
+  "text": "## Observations\n\n1. Because the input is a permutation of the integers 1 through 5, its only ascending arrangement is \\(1,2,3,4,5\\).\n2. There are exactly four possible operations, one for each pair of adjacent positions.\n3. The input qualifies only if at least one swap produces the target arrangement. An already sorted input does not qualify because swapping any two adjacent elements changes it.\n\n## Solution sketch\n\n> Because the input is a permutation of the integers 1 through 5, its only ascending arrangement is \\(1,2,3,4,5\\).\n\n1. Read the five integers and use \\(1,2,3,4,5\\) as the target for comparison.\n\n> There are exactly four possible operations, one for each pair of adjacent positions.\n\n2. Try each adjacent pair in turn. Swap the pair and compare the resulting sequence with the target. If they match, print `Yes` and stop. Otherwise, undo the swap before trying the next pair so that every test starts from the original input.\n\n> The input qualifies only if at least one swap produces the target arrangement. An already sorted input does not qualify because swapping any two adjacent elements changes it.\n\n3. If all four tests fail, print `No`. This also handles an already sorted input because the comparison is made only after a swap. There are at most four comparisons of five elements, so the algorithm uses \\(O(1)\\) time and \\(O(1)\\) auxiliary space.\n",
+  "statement_sha256": "1fb19d551a0f90cb91ce5b92b454385cfd9589510d91b16a7b79b921bf04142d",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "1fb19d551a0f90cb91ce5b92b454385cfd9589510d91b16a7b79b921bf04142d",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:43:00Z",
+    "finish_reason": "stop",
+    "request_id": "req_521df5d3580743cf90caf670c7a106dc",
+    "retries": 0,
+    "ledger_index": 71
+  },
+  "usage": {
+    "prompt_tokens": 429,
+    "completion_tokens": 312,
+    "total_tokens": 741,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.05,
+  "cost_usd": 0.003978,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 228,
+  "created_utc": "2026-11-25T05:43:05Z"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo06iWn6x48SR0o8tXWuIt3jV64qX",
+  "object": "chat.completion",
+  "created": 1795585520,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. The input is a single line containing a string of digits.\n2. A character belongs in the answer exactly when it is `2`.\n3. Scanning from left to right visits the retained characters in their original order.\n4. The string contains at least one `2`, so the answer is never empty.\n5. The answer cannot be longer than the input.\n\n## Solution sketch\n\n1. “The input is a single line containing a string of digits.” Read that line as a string, excluding the line ending.\n2. “A character belongs in the answer exactly when it is `2`.” “Scanning from left to right visits the retained characters in their original order.” Scan the string from left to right, appending each `2` to a result buffer and skipping every other digit.\n3. “The string contains at least one `2`, so the answer is never empty.” Join the buffered characters and print them followed by a newline. No special cases are needed: a single `2` prints unchanged, as does any string made entirely of `2`s.\n4. “The answer cannot be longer than the input.” For an input of length \\(n\\), scanning and joining take \\(O(n)\\) time, and the result buffer uses \\(O(n)\\) extra space in the worst case.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 316,
+    "completion_tokens": 274,
+    "total_tokens": 590,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

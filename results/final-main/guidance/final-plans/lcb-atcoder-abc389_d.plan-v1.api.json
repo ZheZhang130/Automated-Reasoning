@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc389_d",
+  "text": "## Observations\n\n1. For a square centered at \\((i,j)\\), the farthest corner has coordinate magnitudes \\(|i|+\\tfrac12\\) and \\(|j|+\\tfrac12\\). Thus, with \\(x=|i|\\) and \\(y=|j|\\), the square fits exactly when \\((2x+1)^2+(2y+1)^2\\le 4R^2\\).\n2. Neither \\(x\\) nor \\(y\\) can exceed \\(R-1\\), because the corresponding corner coordinate would have magnitude greater than \\(R\\).\n3. For a fixed \\(x\\), the feasible nonnegative \\(y\\) values form a prefix starting at zero, and the largest feasible \\(y\\) cannot increase as \\(x\\) increases.\n4. If the largest feasible \\(y\\) is \\(m\\), there are \\(2m+1\\) signed choices for \\(j\\). The absolute coordinate \\(x=0\\) gives one choice for \\(i\\), while \\(x>0\\) gives two.\n5. The scan visits \\(R\\) values of \\(x\\), and a shared candidate for \\(y\\) can decrease at most \\(R\\) times.\n\n## Solution sketch\n\n> For a square centered at \\((i,j)\\), the farthest corner has coordinate magnitudes \\(|i|+\\tfrac12\\) and \\(|j|+\\tfrac12\\). Thus, with \\(x=|i|\\) and \\(y=|j|\\), the square fits exactly when \\((2x+1)^2+(2y+1)^2\\le 4R^2\\).\n\n1. Read \\(R\\) and compute \\(4R^2\\). Use the integer inequality for every fit test; the non-strict comparison includes corners on the circle without any floating-point rounding.\n\n> Neither \\(x\\) nor \\(y\\) can exceed \\(R-1\\), because the corresponding corner coordinate would have magnitude greater than \\(R\\).\n\n2. Initialize the answer to zero and the candidate \\(y\\) to \\(R-1\\). Visit \\(x\\) in increasing order from \\(0\\) through \\(R-1\\), inclusive.\n\n> For a fixed \\(x\\), the feasible nonnegative \\(y\\) values form a prefix starting at zero, and the largest feasible \\(y\\) cannot increase as \\(x\\) increases.\n\n3. For each \\(x\\), decrease the candidate \\(y\\) until the fit test succeeds or \\(y\\) becomes negative. If it becomes negative, stop: neither the current column nor any later column can contribute. Otherwise, the candidate is the largest feasible \\(y\\) for this column. Keep it as the starting candidate for the next column.\n\n> If the largest feasible \\(y\\) is \\(m\\), there are \\(2m+1\\) signed choices for \\(j\\). The absolute coordinate \\(x=0\\) gives one choice for \\(i\\), while \\(x>0\\) gives two.\n\n4. Add \\(2y+1\\) to the answer for \\(x=0\\), and twice that amount for \\(x>0\\). This counts both axes without duplicating any center. For the smallest input, \\(R=1\\), the scan visits only \\(x=0\\) and counts only the center square. Print the accumulated answer.\n\n> The scan visits \\(R\\) values of \\(x\\), and a shared candidate for \\(y\\) can decrease at most \\(R\\) times.\n\n5. Each fit test either causes a decrease or finishes the current column, so the total running time is \\(O(R)\\). The scan stores only a fixed number of integers, using \\(O(1)\\) auxiliary space.\n",
+  "statement_sha256": "5122846a43431bd6df4dfd0fa88ea80ce325ffa28a5c84bbe7f8f4a7178072fe",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "5122846a43431bd6df4dfd0fa88ea80ce325ffa28a5c84bbe7f8f4a7178072fe",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:42:18Z",
+    "finish_reason": "stop",
+    "request_id": "req_ee0a0d00fa894eefa2d9990a378596d5",
+    "retries": 0,
+    "ledger_index": 69
+  },
+  "usage": {
+    "prompt_tokens": 389,
+    "completion_tokens": 882,
+    "total_tokens": 1271,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 79,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 11.86,
+  "cost_usd": 0.009598,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 423,
+  "created_utc": "2026-11-25T05:42:30Z"
+}

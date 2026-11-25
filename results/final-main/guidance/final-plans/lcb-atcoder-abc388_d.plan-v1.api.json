@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc388_d",
+  "text": "## Observations\n\n1. In year \\(i\\), only aliens who became adults in earlier years can give a stone. If \\(g_i\\) of them give, alien \\(i\\) finishes that year with \\(s_i=A_i+g_i\\) stones.\n2. After year \\(i\\), alien \\(i\\) never receives another stone. It therefore gives one stone in each of the next \\(d_i=\\min(s_i,N-i)\\) years, in a single consecutive interval, and finishes with \\(B_i=s_i-d_i\\).\n3. The gift count \\(g_i\\) is the number of giving intervals that cover year \\(i\\). Each interval starts after the year in which it is determined, so a difference array can maintain this count in a single left-to-right pass.\n\n## Solution sketch\n\n1. > The gift count \\(g_i\\) is the number of giving intervals that cover year \\(i\\). Each interval starts after the year in which it is determined, so a difference array can maintain this count in a single left-to-right pass.\n\n   Initialize a zero-filled difference array indexed through year \\(N+1\\) and a running gift count of zero. Process the aliens in year order. At the start of year \\(i\\), add the difference-array entry for that year to the running count. The result is \\(g_i\\): all intervals covering year \\(i\\) were scheduled in earlier years.\n\n2. > In year \\(i\\), only aliens who became adults in earlier years can give a stone. If \\(g_i\\) of them give, alien \\(i\\) finishes that year with \\(s_i=A_i+g_i\\) stones.\n\n   After applying the changes for year \\(i\\), compute \\(s_i\\) by adding the running count to \\(A_i\\). Do not count alien \\(i\\) as a giver in its own year. In particular, the first alien receives no gifts because no interval has been scheduled yet.\n\n3. > After year \\(i\\), alien \\(i\\) never receives another stone. It therefore gives one stone in each of the next \\(d_i=\\min(s_i,N-i)\\) years, in a single consecutive interval, and finishes with \\(B_i=s_i-d_i\\).\n\n   Compute \\(d_i\\) and record \\(B_i\\). If \\(d_i>0\\), add one to the difference-array entry for year \\(i+1\\) and subtract one at year \\(i+d_i+1\\). This counts the alien as a giver through year \\(i+d_i\\), inclusive. If \\(s_i=0\\) or \\(i=N\\), the interval is empty and no update is needed; when \\(N=1\\), the sole answer is \\(A_1\\). After the pass, print the recorded answers in order, separated by spaces. Each year requires constant work, so the algorithm uses \\(O(N)\\) time and \\(O(N)\\) space.\n",
+  "statement_sha256": "3159b2a539fcd2e85682afc499d456803059dfd2d39a182e71c3f0cb3cb146e7",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "3159b2a539fcd2e85682afc499d456803059dfd2d39a182e71c3f0cb3cb146e7",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:42:05Z",
+    "finish_reason": "stop",
+    "request_id": "req_79052deb4bc34a1588b1dcd06d49cb82",
+    "retries": 0,
+    "ledger_index": 67
+  },
+  "usage": {
+    "prompt_tokens": 659,
+    "completion_tokens": 621,
+    "total_tokens": 1280,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 8.97,
+  "cost_usd": 0.007528,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 381,
+  "created_utc": "2026-11-25T05:42:14Z"
+}

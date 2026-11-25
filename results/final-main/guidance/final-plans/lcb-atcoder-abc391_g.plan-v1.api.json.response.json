@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo05sjacfTCR5gKrwgUP97AsEx3GF",
+  "object": "chat.completion",
+  "created": 1795585468,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. After generating a prefix of the target string, the standard LCS row stores its LCS length with every prefix of S. Appending one letter updates this row using only the old row and the new letter.\n2. Extending a prefix of S by one letter increases its LCS length by either zero or one. Since the first entry of an LCS row is zero, the row is determined by an N-bit mask of these increases, and its final entry is the number of set bits.\n3. Each generated prefix can be extended by any of 26 letters. Different letters may lead to the same next mask, but they still produce distinct strings and must each contribute to the count.\n4. The empty target prefix has the all-zero mask. After M extensions, a string's mask determines its answer bucket, and no bucket above min(N, M) can be reached.\n\n## Solution sketch\n\n1. “Extending a prefix of S by one letter increases its LCS length by either zero or one. Since the first entry of an LCS row is zero, the row is determined by an N-bit mask of these increases, and its final entry is the number of set bits.” Use the integers from 0 through 2^N − 1 as states. Decode a state into an LCS row by taking cumulative sums of its bits from left to right, starting with a zero entry.\n\n2. “After generating a prefix of the target string, the standard LCS row stores its LCS length with every prefix of S. Appending one letter updates this row using only the old row and the new letter.” Precompute the next mask for every state and every letter. Start the new row with zero and fill it from left to right. At position j, if the appended letter matches the j-th letter of S, use the old entry at position j − 1 plus one. Otherwise, take the maximum of the old entry at position j and the new entry at position j − 1. Encode the new row using its adjacent differences.\n\n3. “Each generated prefix can be extended by any of 26 letters. Different letters may lead to the same next mask, but they still produce distinct strings and must each contribute to the count.” Maintain the count of prefixes in each state, starting with one prefix in state zero and none elsewhere. For each of M rounds, clear a fresh count array and, for each state and letter, add the state's count to the precomputed destination modulo 998244353. Each nonempty prefix has a unique shorter prefix and final letter, so it is counted exactly once. Keep only the current and next count arrays. Precomputation takes O(26 · N · 2^N) time, the M rounds take O(26 · M · 2^N) time, and the transition table and rolling arrays use O(26 · 2^N) space.\n\n4. “The empty target prefix has the all-zero mask. After M extensions, a string's mask determines its answer bucket, and no bucket above min(N, M) can be reached.” Initialize N + 1 answer buckets to zero and add each final state's count to the bucket indexed by its number of set bits, again reducing modulo 998244353. Print all buckets in order, including bucket zero and any unreachable buckets. Aggregation takes at most O(N · 2^N) time by counting the bits of each mask directly.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 552,
+    "completion_tokens": 710,
+    "total_tokens": 1262,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

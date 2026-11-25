@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc196_a",
+  "text": "## Observations\n\n1. If an even-length segment of \\(2k\\) elements is deleted completely using only pairs within the segment, its score is at most the sum of its \\(k\\) largest values minus the sum of its \\(k\\) smallest values. Each pair contributes its larger value with a plus sign and its smaller value with a minus sign, so there are exactly \\(k\\) contributions of each sign.\n2. This bound is attainable: label the \\(k\\) largest elements plus and the \\(k\\) smallest elements minus, breaking ties arbitrarily. As long as elements remain, both labels occur, so some adjacent elements have opposite labels. Deleting such a pair preserves the balance of labels and scores the plus value minus the minus value.\n3. When \\(N\\) is odd, no deleted pair can straddle the surviving element, because that element would always separate the pair. Thus the survivor must have an odd 1-based index, and the even-length segments on its left and right can be optimized independently.\n4. As a segment grows by one element, two balanced heaps and their running sums can maintain its lower and upper halves in \\(O(\\log N)\\) time per insertion.\n\n## Solution sketch\n\n> If an even-length segment of \\(2k\\) elements is deleted completely using only pairs within the segment, its score is at most the sum of its \\(k\\) largest values minus the sum of its \\(k\\) smallest values. Each pair contributes its larger value with a plus sign and its smaller value with a minus sign, so there are exactly \\(k\\) contributions of each sign.\n>\n> This bound is attainable: label the \\(k\\) largest elements plus and the \\(k\\) smallest elements minus, breaking ties arbitrarily. As long as elements remain, both labels occur, so some adjacent elements have opposite labels. Deleting such a pair preserves the balance of labels and scores the plus value minus the minus value.\n\n1. Use the upper-half sum minus the lower-half sum as the exact optimum for any even-length segment. Give the empty segment score zero. Equal values need no special handling: if a plus and a minus value are equal, their pair contributes zero.\n\n> As a segment grows by one element, two balanced heaps and their running sums can maintain its lower and upper halves in \\(O(\\log N)\\) time per insertion.\n\n2. Scan from left to right to compute the optimum for every even-length prefix, including the empty prefix. Keep the lower half in a max-heap and the upper half in a min-heap, with every lower-half value at most every upper-half value. Insert each new value into the lower heap if it is empty or the value is at most its maximum; otherwise insert it into the upper heap. Rebalance by moving the maximum of the lower heap or the minimum of the upper heap as needed so that the lower heap has either the same size as the upper heap or one extra element. Update the running sums on every insertion and move. At each even length, record the upper sum minus the lower sum. If \\(N\\) is even, output the score for the whole sequence. Otherwise, repeat the scan from right to left to compute the scores of all even-length suffixes, including the empty suffix. Each scan takes \\(O(N\\log N)\\) time and \\(O(N)\\) space.\n\n> When \\(N\\) is odd, no deleted pair can straddle the surviving element, because that element would always separate the pair. Thus the survivor must have an odd 1-based index, and the even-length segments on its left and right can be optimized independently.\n\n3. For each odd 1-based index \\(i\\), add the score of the prefix of length \\(i-1\\) to the score of the suffix of length \\(N-i\\). Output the largest sum. The empty-segment score handles survivors at either endpoint. This final scan takes \\(O(N)\\) time, so the overall bounds are \\(O(N\\log N)\\) time and \\(O(N)\\) space.\n",
+  "statement_sha256": "776b2a0f14430ed74596722dd94e7b43bc534c7bb80d34730bb55541d8bb1e22",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "776b2a0f14430ed74596722dd94e7b43bc534c7bb80d34730bb55541d8bb1e22",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:54:27Z",
+    "finish_reason": "stop",
+    "request_id": "req_4ae50070a9a043b2a1f666c141e77b23",
+    "retries": 0,
+    "ledger_index": 119
+  },
+  "usage": {
+    "prompt_tokens": 469,
+    "completion_tokens": 877,
+    "total_tokens": 1346,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 30,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 11.8,
+  "cost_usd": 0.009708,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 643,
+  "created_utc": "2026-11-25T05:54:38Z"
+}

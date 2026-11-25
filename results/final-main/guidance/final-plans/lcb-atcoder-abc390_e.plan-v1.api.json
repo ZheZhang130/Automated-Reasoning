@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc390_e",
+  "text": "## Observations\n\n1. Each food contributes to exactly one vitamin, so choices for different vitamins interact only through the total calorie budget.\n2. For a single vitamin, the maximum intake under each calorie budget is a 0/1 knapsack problem, and the resulting intake cannot decrease as the budget increases.\n3. A target intake is achievable for all three vitamins exactly when each vitamin can reach it and the sum of their minimum required calorie budgets is at most \\(X\\).\n4. Target zero is always feasible, and no target can exceed the smallest of the three intakes obtainable when each vitamin is given the full budget \\(X\\).\n5. Each food needs to be processed only in its own vitamin's knapsack table, and the minimum budget for a target can be found by binary search in each table.\n\n## Solution sketch\n\n1. > Each food contributes to exactly one vitamin, so choices for different vitamins interact only through the total calorie budget.\n\n   Create one table per vitamin, indexed by calorie budgets from \\(0\\) through \\(X\\). Each entry starts at zero because the empty subset is allowed. Process each food only in the table for its vitamin.\n\n2. > For a single vitamin, the maximum intake under each calorie budget is a 0/1 knapsack problem, and the resulting intake cannot decrease as the budget increases.\n\n   For a food with \\(C\\) calories and \\(A\\) units of its vitamin, visit budgets \\(b\\) from \\(X\\) down to \\(C\\). At each budget, keep the larger of the current intake and the intake at budget \\(b-C\\) plus \\(A\\). The descending order ensures that the same food cannot be used twice. After all foods are processed, each entry represents the best intake using **at most** its budget, so each table is nondecreasing.\n\n3. > A target intake is achievable for all three vitamins exactly when each vitamin can reach it and the sum of their minimum required calorie budgets is at most \\(X\\).\n\n   To test a target, find the first entry at least that large in each table by binary search. If any table has no such entry, reject the target. Otherwise, add the three indices and accept exactly when their sum is at most \\(X\\). Any valid subset must spend at least those calories on the respective vitamins, and the three choices attaining the target can be combined because their food groups are disjoint.\n\n4. > Target zero is always feasible, and no target can exceed the smallest of the three intakes obtainable when each vitamin is given the full budget \\(X\\).\n\n   Let \\(U\\) be the minimum of the three table entries at budget \\(X\\). Binary-search for the largest feasible integer target, starting with \\(0\\) as a feasible bound and \\(U+1\\) as an infeasible bound. Feasibility is monotone: a subset that reaches a target also reaches every smaller target. Print the largest feasible target. If a vitamin is absent, its table remains zero, so \\(U=0\\) and the answer is immediately zero.\n\n5. > Each food needs to be processed only in its own vitamin's knapsack table, and the minimum budget for a target can be found by binary search in each table.\n\n   The knapsack updates take \\(O(NX)\\) time. The target search adds \\(O(\\log(U+1)\\log(X+1))\\) time. The three tables use \\(O(X)\\) auxiliary space, and foods can be processed as they are read without storing the full list.\n",
+  "statement_sha256": "5720914af521d90cf9131c35414dfbb7a0690f07804aabecc244f4f1c30a29fa",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "5720914af521d90cf9131c35414dfbb7a0690f07804aabecc244f4f1c30a29fa",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:43:26Z",
+    "finish_reason": "stop",
+    "request_id": "req_ac4c3ee0608c42fe928518c213c66929",
+    "retries": 0,
+    "ledger_index": 74
+  },
+  "usage": {
+    "prompt_tokens": 670,
+    "completion_tokens": 804,
+    "total_tokens": 1474,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 66,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 12.92,
+  "cost_usd": 0.00938,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 557,
+  "created_utc": "2026-11-25T05:43:39Z"
+}

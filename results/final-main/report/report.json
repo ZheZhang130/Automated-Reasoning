@@ -1,0 +1,7997 @@
+{
+ "schema": "csc2108-evaluation-report-v2",
+ "status": "official",
+ "problems": [],
+ "warnings": [],
+ "batches": [
+  "E:\\CSC2108Local\\final-study\\runs\\final-main"
+ ],
+ "completeness": {
+  "final-main": {
+   "batch": "E:\\CSC2108Local\\final-study\\runs\\final-main",
+   "scheduled": 900,
+   "counts": {
+    "not_executed": 0,
+    "incomplete": 0,
+    "awaiting_scoring": 0,
+    "scored": 900,
+    "excluded": 0,
+    "invalid": 0
+   },
+   "complete": true,
+   "problems": [],
+   "orphan_verdicts": 0,
+   "not_done": [],
+   "not_done_total": 0
+  }
+ },
+ "scheduled_runs": 900,
+ "included_runs": 900,
+ "replaced_by_rerun": [],
+ "sample_sizes": {
+  "scheduled": 900,
+  "included": 900,
+  "excluded_runs": 0,
+  "excluded_blocks": 0,
+  "excluded_block_reasons": {},
+  "states": {
+   "scored": 900
+  },
+  "by_condition": {
+   "A": {
+    "scheduled": 180,
+    "included": 180
+   },
+   "B": {
+    "scheduled": 180,
+    "included": 180
+   },
+   "C": {
+    "scheduled": 180,
+    "included": 180
+   },
+   "D": {
+    "scheduled": 180,
+    "included": 180
+   },
+   "E": {
+    "scheduled": 180,
+    "included": 180
+   }
+  },
+  "tasks_included": 60,
+  "seeds": [
+   2108,
+   2109,
+   2110
+  ]
+ },
+ "excluded_blocks": [],
+ "hosts": [
+  {
+   "backend": "windows",
+   "coding_model": "qwen3.5:9b",
+   "runs": 720
+  },
+  {
+   "backend": "windows",
+   "coding_model": "frontier:gpt-6.2-sol",
+   "runs": 180
+  }
+ ],
+ "main_table": [
+  {
+   "condition": "A",
+   "label": "A — Local",
+   "runs": 180,
+   "hidden_pass_rate": 0.5333,
+   "pass@1": 0.5333,
+   "pass@1_ci95": [
+    0.4111,
+    0.6556
+   ],
+   "e2e_latency_seconds": {
+    "median": 42.0,
+    "q1": 13.305,
+    "q3": 128.2,
+    "n": 180
+   },
+   "frontier_cost_usd": 0.0,
+   "cost_per_pass_usd": {
+    "value": 0.0
+   },
+   "frontier_tokens": 0,
+   "gap_closed": null
+  },
+  {
+   "condition": "B",
+   "label": "B — Frontier",
+   "runs": 180,
+   "hidden_pass_rate": 0.9667,
+   "pass@1": 0.9667,
+   "pass@1_ci95": [
+    0.9167,
+    1.0
+   ],
+   "e2e_latency_seconds": {
+    "median": 11.975,
+    "q1": 10.3,
+    "q3": 18.005,
+    "n": 180
+   },
+   "frontier_cost_usd": 1.849619,
+   "cost_per_pass_usd": {
+    "value": 0.01063
+   },
+   "frontier_tokens": 650978,
+   "gap_closed": null
+  },
+  {
+   "condition": "C",
+   "label": "C — Planning",
+   "runs": 180,
+   "hidden_pass_rate": 0.7167,
+   "pass@1": 0.7167,
+   "pass@1_ci95": [
+    0.6111,
+    0.8222
+   ],
+   "e2e_latency_seconds": {
+    "median": 25.945,
+    "q1": 18.97,
+    "q3": 72.768,
+    "n": 180
+   },
+   "frontier_cost_usd": 0.57071,
+   "cost_per_pass_usd": {
+    "value": 0.004424
+   },
+   "frontier_tokens": 84463,
+   "gap_closed": 0.4231
+  },
+  {
+   "condition": "D",
+   "label": "D — Contract",
+   "runs": 180,
+   "hidden_pass_rate": 0.5444,
+   "pass@1": 0.5444,
+   "pass@1_ci95": [
+    0.4222,
+    0.6667
+   ],
+   "e2e_latency_seconds": {
+    "median": 36.495,
+    "q1": 19.92,
+    "q3": 136.73,
+    "n": 180
+   },
+   "frontier_cost_usd": 0.35241,
+   "cost_per_pass_usd": {
+    "value": 0.003596
+   },
+   "frontier_tokens": 65993,
+   "gap_closed": 0.0256
+  },
+  {
+   "condition": "E",
+   "label": "E — Diagnosis",
+   "runs": 180,
+   "hidden_pass_rate": 0.55,
+   "pass@1": 0.55,
+   "pass@1_ci95": [
+    0.4278,
+    0.6667
+   ],
+   "e2e_latency_seconds": {
+    "median": 39.335,
+    "q1": 13.277,
+    "q3": 128.175,
+    "n": 180
+   },
+   "frontier_cost_usd": 0.259432,
+   "cost_per_pass_usd": {
+    "value": 0.002621
+   },
+   "frontier_tokens": 81944,
+   "gap_closed": 0.0385
+  }
+ ],
+ "summary": {
+  "all": {
+   "A": {
+    "runs": 180,
+    "passes": 96,
+    "pass_rate": 0.5333,
+    "public_hidden_gap": 0.1,
+    "failure_recovery": {
+     "runs_with_public_failure": 33,
+     "recovered": 11,
+     "rate": 0.3333
+    },
+    "context_overflow": 3,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 96,
+     "context_overflow": 3,
+     "truncated_no_program": 48,
+     "format_errors": 3,
+     "public_pass_hidden_fail": 18,
+     "never_passed_public": 12
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 113,
+     "repair_limit": 3,
+     "agent_error": 51,
+     "action_limit": 10,
+     "infra_error": 3
+    },
+    "outcomes": {
+     "hidden_pass": 96,
+     "never_passed_public:WA": 17,
+     "public_pass_hidden_fail:WA": 9,
+     "public_pass_hidden_fail:TLE": 4,
+     "no_submission:agent_error": 48,
+     "public_pass_hidden_fail:RE": 5,
+     "never_passed_public:none": 1
+    },
+    "actions_mean": 4.022,
+    "repairs_mean": 0.261,
+    "repairs_distribution": {
+     "0": 154,
+     "1": 11,
+     "2": 9,
+     "3": 6
+    },
+    "wall_seconds": {
+     "median": 42.0,
+     "q1": 13.305,
+     "q3": 128.2,
+     "n": 180
+    },
+    "local_inference_seconds": {
+     "median": 30.349,
+     "q1": 6.162,
+     "q3": 120.145,
+     "n": 180
+    },
+    "local_prompt_tokens": {
+     "median": 3180.0,
+     "q1": 2428.25,
+     "q3": 7660.25,
+     "n": 180
+    },
+    "local_completion_tokens": {
+     "median": 2771.0,
+     "q1": 278.25,
+     "q3": 12288.0,
+     "n": 180
+    },
+    "first_response_tokens": {
+     "median": 1124.0,
+     "q1": 221.0,
+     "q3": 4096.0,
+     "n": 180
+    },
+    "seconds_to_first_candidate": {
+     "median": 9.805,
+     "q1": 7.693,
+     "q3": 44.88,
+     "n": 130
+    },
+    "runs_with_truncation": 84,
+    "runs_with_candidate": 132,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.0,
+     "total": 0.0,
+     "per_pass": 0.0,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 0,
+     "total": 0,
+     "per_pass": 0.0
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 42.0,
+       "q1": 13.305,
+       "q3": 128.2,
+       "n": 180
+      },
+      "cold_start_seconds": {
+       "median": 42.0,
+       "q1": 13.305,
+       "q3": 128.2,
+       "n": 180
+      },
+      "amortized_seconds": {
+       "median": 42.0,
+       "q1": 13.305,
+       "q3": 128.2,
+       "n": 180
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "local_inference_seconds": {
+       "median": 30.349,
+       "q1": 6.162,
+       "q3": 120.145,
+       "n": 180
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.0,
+      "total": 0.0,
+      "per_included_attempt": {
+       "value": 0.0
+      },
+      "per_pass": {
+       "value": 0.0
+      },
+      "cold_start_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "amortized_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 0,
+      "total": 0,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 0,
+      "per_attempt": {
+       "value": 0.0
+      },
+      "per_pass": {
+       "value": 0.0
+      }
+     },
+     "tokens": {
+      "input": 0,
+      "output": 0,
+      "cached_input": 0,
+      "reasoning": 0,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 0,
+      "per_pass": {
+       "value": 0.0
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 931,
+      "prompt_tokens": 2626693,
+      "completion_tokens": 1073418,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 4.0,
+       "n": 180
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 60,
+     "all_pass": 29,
+     "mixed": 5,
+     "all_fail": 26,
+     "mean_seed_variance": 0.0185
+    }
+   },
+   "B": {
+    "runs": 180,
+    "passes": 174,
+    "pass_rate": 0.9667,
+    "public_hidden_gap": 0.0333,
+    "failure_recovery": {
+     "runs_with_public_failure": 0,
+     "recovered": 0,
+     "rate": null
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 174,
+     "public_pass_hidden_fail": 6
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 180
+    },
+    "outcomes": {
+     "hidden_pass": 174,
+     "public_pass_hidden_fail:WA": 3,
+     "public_pass_hidden_fail:RE": 3
+    },
+    "actions_mean": 3.172,
+    "repairs_mean": 0.0,
+    "repairs_distribution": {
+     "0": 180
+    },
+    "wall_seconds": {
+     "median": 11.975,
+     "q1": 10.3,
+     "q3": 18.005,
+     "n": 180
+    },
+    "local_inference_seconds": null,
+    "local_prompt_tokens": null,
+    "local_completion_tokens": null,
+    "first_response_tokens": null,
+    "seconds_to_first_candidate": null,
+    "runs_with_truncation": 0,
+    "runs_with_candidate": 180,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 1.849619,
+     "upfront_one_off": 0.0,
+     "total": 1.849619,
+     "per_pass": 0.01063,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 546374,
+     "run_output": 104604,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 152194,
+     "reasoning": 42919,
+     "total": 650978,
+     "per_pass": 3741.3
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 11.975,
+       "q1": 10.3,
+       "q3": 18.005,
+       "n": 180
+      },
+      "cold_start_seconds": {
+       "median": 11.975,
+       "q1": 10.3,
+       "q3": 18.005,
+       "n": 180
+      },
+      "amortized_seconds": {
+       "median": 11.975,
+       "q1": 10.3,
+       "q3": 18.005,
+       "n": 180
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 7.155,
+       "q1": 5.453,
+       "q3": 13.148,
+       "n": 180
+      },
+      "local_inference_seconds": null
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 1.849619,
+      "upfront": 0.0,
+      "total": 1.849619,
+      "per_included_attempt": {
+       "value": 0.010276
+      },
+      "per_pass": {
+       "value": 0.01063
+      },
+      "cold_start_per_attempt": {
+       "median": 0.007,
+       "q1": 0.006,
+       "q3": 0.01,
+       "n": 180
+      },
+      "amortized_per_attempt": {
+       "median": 0.007,
+       "q1": 0.006,
+       "q3": 0.01,
+       "n": 180
+      },
+      "recorded_runtime_cache_unaware": 2.1387879999999995,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 571,
+      "upfront": 0,
+      "total": 571,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 571,
+      "per_attempt": {
+       "value": 3.172222
+      },
+      "per_pass": {
+       "value": 3.281609
+      }
+     },
+     "tokens": {
+      "input": 546374,
+      "output": 104604,
+      "cached_input": 152194,
+      "reasoning": 42919,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 650978,
+      "per_pass": {
+       "value": 3741.252874
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "calls_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 60,
+     "all_pass": 58,
+     "mixed": 0,
+     "all_fail": 2,
+     "mean_seed_variance": 0.0
+    }
+   },
+   "C": {
+    "runs": 180,
+    "passes": 129,
+    "pass_rate": 0.7167,
+    "public_hidden_gap": 0.1056,
+    "failure_recovery": {
+     "runs_with_public_failure": 39,
+     "recovered": 11,
+     "rate": 0.2821
+    },
+    "context_overflow": 4,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 129,
+     "context_overflow": 4,
+     "truncated_no_program": 5,
+     "format_errors": 3,
+     "public_pass_hidden_fail": 19,
+     "never_passed_public": 20
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 148,
+     "action_limit": 12,
+     "repair_limit": 8,
+     "infra_error": 4,
+     "agent_error": 8
+    },
+    "outcomes": {
+     "hidden_pass": 129,
+     "never_passed_public:WA": 23,
+     "public_pass_hidden_fail:WA": 13,
+     "never_passed_public:RE": 4,
+     "public_pass_hidden_fail:RE": 3,
+     "no_submission:agent_error": 5,
+     "public_pass_hidden_fail:TLE": 3
+    },
+    "actions_mean": 5.233,
+    "repairs_mean": 0.411,
+    "repairs_distribution": {
+     "0": 144,
+     "1": 15,
+     "2": 4,
+     "3": 17
+    },
+    "wall_seconds": {
+     "median": 15.82,
+     "q1": 12.89,
+     "q3": 44.197,
+     "n": 180
+    },
+    "local_inference_seconds": {
+     "median": 8.73,
+     "q1": 5.791,
+     "q3": 36.492,
+     "n": 180
+    },
+    "local_prompt_tokens": {
+     "median": 5511.0,
+     "q1": 3823.5,
+     "q3": 10300.0,
+     "n": 180
+    },
+    "local_completion_tokens": {
+     "median": 552.5,
+     "q1": 230.75,
+     "q3": 3406.0,
+     "n": 180
+    },
+    "first_response_tokens": {
+     "median": 415.0,
+     "q1": 193.75,
+     "q3": 1602.25,
+     "n": 180
+    },
+    "seconds_to_first_candidate": {
+     "median": 9.768,
+     "q1": 7.952,
+     "q3": 19.738,
+     "n": 172
+    },
+    "runs_with_truncation": 35,
+    "runs_with_candidate": 175,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.57071,
+     "total": 0.57071,
+     "per_pass": 0.004424,
+     "guidance_artifacts": 60,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 34240,
+     "upfront_output": 50223,
+     "cached_input": 0,
+     "reasoning": 11488,
+     "total": 84463,
+     "per_pass": 654.8
+    },
+    "upfront_guidance": {
+     "artifacts": 60,
+     "cost_usd": 0.57071,
+     "input_tokens": 34240,
+     "output_tokens": 50223,
+     "latency_seconds_total": 800.09,
+     "latency_seconds": {
+      "median": 9.045,
+      "q1": 5.75,
+      "q3": 13.637,
+      "n": 60
+     },
+     "reused_by_attempts": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 15.82,
+       "q1": 12.89,
+       "q3": 44.197,
+       "n": 180
+      },
+      "cold_start_seconds": {
+       "median": 25.945,
+       "q1": 18.97,
+       "q3": 72.768,
+       "n": 180
+      },
+      "amortized_seconds": {
+       "median": 18.875,
+       "q1": 15.057,
+       "q3": 53.867,
+       "n": 180
+      },
+      "upfront_authoring_seconds": {
+       "median": 9.045,
+       "q1": 5.75,
+       "q3": 13.637,
+       "n": 60
+      },
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "local_inference_seconds": {
+       "median": 8.73,
+       "q1": 5.791,
+       "q3": 36.492,
+       "n": 180
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.57071,
+      "total": 0.57071,
+      "per_included_attempt": {
+       "value": 0.003171
+      },
+      "per_pass": {
+       "value": 0.004424
+      },
+      "cold_start_per_attempt": {
+       "median": 0.007,
+       "q1": 0.005,
+       "q3": 0.011,
+       "n": 180
+      },
+      "amortized_per_attempt": {
+       "median": 0.002,
+       "q1": 0.002,
+       "q3": 0.004,
+       "n": 180
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 60
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 60,
+      "total": 60,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 60,
+      "per_attempt": {
+       "value": 0.333333
+      },
+      "per_pass": {
+       "value": 0.465116
+      }
+     },
+     "tokens": {
+      "input": 34240,
+      "output": 50223,
+      "cached_input": 0,
+      "reasoning": 11488,
+      "upfront_input": 34240,
+      "upfront_output": 50223,
+      "total": 84463,
+      "per_pass": {
+       "value": 654.751938
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 1006,
+      "prompt_tokens": 4802027,
+      "completion_tokens": 613108,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 4.0,
+       "n": 180
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 60,
+     "all_pass": 39,
+     "mixed": 8,
+     "all_fail": 13,
+     "mean_seed_variance": 0.0296
+    }
+   },
+   "D": {
+    "runs": 180,
+    "passes": 98,
+    "pass_rate": 0.5444,
+    "public_hidden_gap": 0.0944,
+    "failure_recovery": {
+     "runs_with_public_failure": 35,
+     "recovered": 8,
+     "rate": 0.2286
+    },
+    "context_overflow": 1,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 98,
+     "context_overflow": 1,
+     "truncated_no_program": 44,
+     "format_errors": 3,
+     "public_pass_hidden_fail": 17,
+     "never_passed_public": 17
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 115,
+     "action_limit": 16,
+     "agent_error": 47,
+     "repair_limit": 1,
+     "infra_error": 1
+    },
+    "outcomes": {
+     "hidden_pass": 98,
+     "never_passed_public:WA": 21,
+     "no_submission:agent_error": 44,
+     "public_pass_hidden_fail:RE": 4,
+     "public_pass_hidden_fail:WA": 10,
+     "public_pass_hidden_fail:TLE": 3
+    },
+    "actions_mean": 4.45,
+    "repairs_mean": 0.3,
+    "repairs_distribution": {
+     "0": 149,
+     "1": 15,
+     "2": 9,
+     "3": 7
+    },
+    "wall_seconds": {
+     "median": 29.46,
+     "q1": 13.345,
+     "q3": 128.803,
+     "n": 180
+    },
+    "local_inference_seconds": {
+     "median": 20.101,
+     "q1": 6.196,
+     "q3": 120.73,
+     "n": 180
+    },
+    "local_prompt_tokens": {
+     "median": 4789.0,
+     "q1": 3876.75,
+     "q3": 8831.0,
+     "n": 180
+    },
+    "local_completion_tokens": {
+     "median": 1697.0,
+     "q1": 278.5,
+     "q3": 12288.0,
+     "n": 180
+    },
+    "first_response_tokens": {
+     "median": 947.5,
+     "q1": 241.5,
+     "q3": 4096.0,
+     "n": 180
+    },
+    "seconds_to_first_candidate": {
+     "median": 9.076,
+     "q1": 7.931,
+     "q3": 34.55,
+     "n": 136
+    },
+    "runs_with_truncation": 80,
+    "runs_with_candidate": 136,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.35241,
+     "total": 0.35241,
+     "per_pass": 0.003596,
+     "guidance_artifacts": 60,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 38440,
+     "upfront_output": 27553,
+     "cached_input": 0,
+     "reasoning": 36,
+     "total": 65993,
+     "per_pass": 673.4
+    },
+    "upfront_guidance": {
+     "artifacts": 60,
+     "cost_usd": 0.35241,
+     "input_tokens": 38440,
+     "output_tokens": 27553,
+     "latency_seconds_total": 422.85,
+     "latency_seconds": {
+      "median": 7.26,
+      "q1": 6.075,
+      "q3": 7.827,
+      "n": 60
+     },
+     "reused_by_attempts": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 29.46,
+       "q1": 13.345,
+       "q3": 128.803,
+       "n": 180
+      },
+      "cold_start_seconds": {
+       "median": 36.495,
+       "q1": 19.92,
+       "q3": 136.73,
+       "n": 180
+      },
+      "amortized_seconds": {
+       "median": 31.805,
+       "q1": 15.582,
+       "q3": 131.482,
+       "n": 180
+      },
+      "upfront_authoring_seconds": {
+       "median": 7.26,
+       "q1": 6.075,
+       "q3": 7.827,
+       "n": 60
+      },
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "local_inference_seconds": {
+       "median": 20.101,
+       "q1": 6.196,
+       "q3": 120.73,
+       "n": 180
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.35241,
+      "total": 0.35241,
+      "per_included_attempt": {
+       "value": 0.001958
+      },
+      "per_pass": {
+       "value": 0.003596
+      },
+      "cold_start_per_attempt": {
+       "median": 0.006,
+       "q1": 0.005,
+       "q3": 0.007,
+       "n": 180
+      },
+      "amortized_per_attempt": {
+       "median": 0.002,
+       "q1": 0.002,
+       "q3": 0.002,
+       "n": 180
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 60
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 60,
+      "total": 60,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 60,
+      "per_attempt": {
+       "value": 0.333333
+      },
+      "per_pass": {
+       "value": 0.612245
+      }
+     },
+     "tokens": {
+      "input": 38440,
+      "output": 27553,
+      "cached_input": 0,
+      "reasoning": 36,
+      "upfront_input": 38440,
+      "upfront_output": 27553,
+      "total": 65993,
+      "per_pass": {
+       "value": 673.397959
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 1006,
+      "prompt_tokens": 3658579,
+      "completion_tokens": 1082328,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 4.0,
+       "n": 180
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 60,
+     "all_pass": 30,
+     "mixed": 5,
+     "all_fail": 25,
+     "mean_seed_variance": 0.0185
+    }
+   },
+   "E": {
+    "runs": 180,
+    "passes": 99,
+    "pass_rate": 0.55,
+    "public_hidden_gap": 0.1167,
+    "failure_recovery": {
+     "runs_with_public_failure": 33,
+     "recovered": 14,
+     "rate": 0.4242
+    },
+    "context_overflow": 2,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 99,
+     "context_overflow": 2,
+     "truncated_no_program": 48,
+     "format_errors": 1,
+     "public_pass_hidden_fail": 21,
+     "never_passed_public": 9
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 119,
+     "agent_error": 49,
+     "infra_error": 2,
+     "action_limit": 6,
+     "repair_limit": 4
+    },
+    "outcomes": {
+     "hidden_pass": 99,
+     "public_pass_hidden_fail:WA": 11,
+     "public_pass_hidden_fail:TLE": 4,
+     "no_submission:agent_error": 48,
+     "never_passed_public:WA": 11,
+     "public_pass_hidden_fail:RE": 6,
+     "never_passed_public:none": 1
+    },
+    "actions_mean": 3.617,
+    "repairs_mean": 0.333,
+    "repairs_distribution": {
+     "0": 147,
+     "1": 18,
+     "2": 3,
+     "3": 12
+    },
+    "wall_seconds": {
+     "median": 39.335,
+     "q1": 13.277,
+     "q3": 128.175,
+     "n": 180
+    },
+    "local_inference_seconds": {
+     "median": 29.633,
+     "q1": 6.062,
+     "q3": 120.107,
+     "n": 180
+    },
+    "local_prompt_tokens": {
+     "median": 3180.0,
+     "q1": 2428.25,
+     "q3": 6839.75,
+     "n": 180
+    },
+    "local_completion_tokens": {
+     "median": 2742.5,
+     "q1": 278.25,
+     "q3": 12288.0,
+     "n": 180
+    },
+    "first_response_tokens": {
+     "median": 1124.0,
+     "q1": 221.0,
+     "q3": 4096.0,
+     "n": 180
+    },
+    "seconds_to_first_candidate": {
+     "median": 9.74,
+     "q1": 7.638,
+     "q3": 43.153,
+     "n": 130
+    },
+    "runs_with_truncation": 84,
+    "runs_with_candidate": 132,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0.259432,
+     "upfront_one_off": 0.0,
+     "total": 0.259432,
+     "per_pass": 0.002621,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 70001,
+     "run_output": 11943,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 2849,
+     "total": 81944,
+     "per_pass": 827.7
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 39.335,
+       "q1": 13.277,
+       "q3": 128.175,
+       "n": 180
+      },
+      "cold_start_seconds": {
+       "median": 39.335,
+       "q1": 13.277,
+       "q3": 128.175,
+       "n": 180
+      },
+      "amortized_seconds": {
+       "median": 39.335,
+       "q1": 13.277,
+       "q3": 128.175,
+       "n": 180
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "local_inference_seconds": {
+       "median": 29.633,
+       "q1": 6.062,
+       "q3": 120.107,
+       "n": 180
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0.259432,
+      "upfront": 0.0,
+      "total": 0.259432,
+      "per_included_attempt": {
+       "value": 0.001441
+      },
+      "per_pass": {
+       "value": 0.002621
+      },
+      "cold_start_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "amortized_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 180
+      },
+      "recorded_runtime_cache_unaware": 0.25943200000000005,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 33,
+      "upfront": 0,
+      "total": 33,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 33,
+      "per_attempt": {
+       "value": 0.183333
+      },
+      "per_pass": {
+       "value": 0.333333
+      }
+     },
+     "tokens": {
+      "input": 70001,
+      "output": 11943,
+      "cached_input": 0,
+      "reasoning": 2849,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 81944,
+      "per_pass": {
+       "value": 827.717172
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 858,
+      "prompt_tokens": 2393183,
+      "completion_tokens": 1069530,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 4.0,
+       "n": 180
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 60,
+     "all_pass": 30,
+     "mixed": 5,
+     "all_fail": 25,
+     "mean_seed_variance": 0.0185
+    }
+   }
+  },
+  "easy": {
+   "A": {
+    "runs": 60,
+    "passes": 59,
+    "pass_rate": 0.9833,
+    "public_hidden_gap": 0.0,
+    "failure_recovery": {
+     "runs_with_public_failure": 1,
+     "recovered": 0,
+     "rate": 0.0
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 59,
+     "never_passed_public": 1
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 59,
+     "repair_limit": 1
+    },
+    "outcomes": {
+     "hidden_pass": 59,
+     "never_passed_public:WA": 1
+    },
+    "actions_mean": 3.2,
+    "repairs_mean": 0.05,
+    "repairs_distribution": {
+     "0": 59,
+     "3": 1
+    },
+    "wall_seconds": {
+     "median": 12.38,
+     "q1": 11.875,
+     "q3": 13.58,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 5.267,
+     "q1": 4.772,
+     "q3": 6.471,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 2241.5,
+     "q1": 1812.0,
+     "q3": 3162.75,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 203.5,
+     "q1": 156.0,
+     "q3": 322.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 161.5,
+     "q1": 119.0,
+     "q3": 224.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 7.442,
+     "q1": 6.939,
+     "q3": 8.594,
+     "n": 60
+    },
+    "runs_with_truncation": 2,
+    "runs_with_candidate": 60,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.0,
+     "total": 0.0,
+     "per_pass": 0.0,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 0,
+     "total": 0,
+     "per_pass": 0.0
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 12.38,
+       "q1": 11.875,
+       "q3": 13.58,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 12.38,
+       "q1": 11.875,
+       "q3": 13.58,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 12.38,
+       "q1": 11.875,
+       "q3": 13.58,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 5.267,
+       "q1": 4.772,
+       "q3": 6.471,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.0,
+      "total": 0.0,
+      "per_included_attempt": {
+       "value": 0.0
+      },
+      "per_pass": {
+       "value": 0.0
+      },
+      "cold_start_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 0,
+      "total": 0,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 0,
+      "per_attempt": {
+       "value": 0.0
+      },
+      "per_pass": {
+       "value": 0.0
+      }
+     },
+     "tokens": {
+      "input": 0,
+      "output": 0,
+      "cached_input": 0,
+      "reasoning": 0,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 0,
+      "per_pass": {
+       "value": 0.0
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 194,
+      "prompt_tokens": 160593,
+      "completion_tokens": 24205,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 3.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 19,
+     "mixed": 1,
+     "all_fail": 0,
+     "mean_seed_variance": 0.0111
+    }
+   },
+   "B": {
+    "runs": 60,
+    "passes": 60,
+    "pass_rate": 1.0,
+    "public_hidden_gap": 0.0,
+    "failure_recovery": {
+     "runs_with_public_failure": 0,
+     "recovered": 0,
+     "rate": null
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 60
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 60
+    },
+    "outcomes": {
+     "hidden_pass": 60
+    },
+    "actions_mean": 3.0,
+    "repairs_mean": 0.0,
+    "repairs_distribution": {
+     "0": 60
+    },
+    "wall_seconds": {
+     "median": 9.97,
+     "q1": 9.48,
+     "q3": 10.387,
+     "n": 60
+    },
+    "local_inference_seconds": null,
+    "local_prompt_tokens": null,
+    "local_completion_tokens": null,
+    "first_response_tokens": null,
+    "seconds_to_first_candidate": null,
+    "runs_with_truncation": 0,
+    "runs_with_candidate": 60,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0.311444,
+     "upfront_one_off": 0.0,
+     "total": 0.311444,
+     "per_pass": 0.005191,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 118087,
+     "run_output": 7527,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 36,
+     "total": 125614,
+     "per_pass": 2093.6
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 9.97,
+       "q1": 9.48,
+       "q3": 10.387,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 9.97,
+       "q1": 9.48,
+       "q3": 10.387,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 9.97,
+       "q1": 9.48,
+       "q3": 10.387,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 5.1,
+       "q1": 4.693,
+       "q3": 5.575,
+       "n": 60
+      },
+      "local_inference_seconds": null
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0.311444,
+      "upfront": 0.0,
+      "total": 0.311444,
+      "per_included_attempt": {
+       "value": 0.005191
+      },
+      "per_pass": {
+       "value": 0.005191
+      },
+      "cold_start_per_attempt": {
+       "median": 0.005,
+       "q1": 0.004,
+       "q3": 0.006,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.005,
+       "q1": 0.004,
+       "q3": 0.006,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0.31144400000000005,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 180,
+      "upfront": 0,
+      "total": 180,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 180,
+      "per_attempt": {
+       "value": 3.0
+      },
+      "per_pass": {
+       "value": 3.0
+      }
+     },
+     "tokens": {
+      "input": 118087,
+      "output": 7527,
+      "cached_input": 0,
+      "reasoning": 36,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 125614,
+      "per_pass": {
+       "value": 2093.566667
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "calls_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 20,
+     "mixed": 0,
+     "all_fail": 0,
+     "mean_seed_variance": 0.0
+    }
+   },
+   "C": {
+    "runs": 60,
+    "passes": 60,
+    "pass_rate": 1.0,
+    "public_hidden_gap": 0.0,
+    "failure_recovery": {
+     "runs_with_public_failure": 3,
+     "recovered": 3,
+     "rate": 1.0
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 60
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 60
+    },
+    "outcomes": {
+     "hidden_pass": 60
+    },
+    "actions_mean": 3.233,
+    "repairs_mean": 0.05,
+    "repairs_distribution": {
+     "0": 57,
+     "1": 3
+    },
+    "wall_seconds": {
+     "median": 12.5,
+     "q1": 11.888,
+     "q3": 13.065,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 5.422,
+     "q1": 4.786,
+     "q3": 5.998,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 3299.5,
+     "q1": 2739.75,
+     "q3": 3938.0,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 188.0,
+     "q1": 154.0,
+     "q3": 256.75,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 151.0,
+     "q1": 117.0,
+     "q3": 216.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 7.619,
+     "q1": 6.996,
+     "q3": 8.133,
+     "n": 60
+    },
+    "runs_with_truncation": 0,
+    "runs_with_candidate": 60,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.085472,
+     "total": 0.085472,
+     "per_pass": 0.001425,
+     "guidance_artifacts": 20,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 8936,
+     "upfront_output": 6760,
+     "cached_input": 0,
+     "reasoning": 0,
+     "total": 15696,
+     "per_pass": 261.6
+    },
+    "upfront_guidance": {
+     "artifacts": 20,
+     "cost_usd": 0.085472,
+     "input_tokens": 8936,
+     "output_tokens": 6760,
+     "latency_seconds_total": 102.79,
+     "latency_seconds": {
+      "median": 5.085,
+      "q1": 4.362,
+      "q3": 5.947,
+      "n": 20
+     },
+     "reused_by_attempts": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 12.5,
+       "q1": 11.888,
+       "q3": 13.065,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 17.285,
+       "q1": 16.423,
+       "q3": 19.008,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 13.94,
+       "q1": 13.478,
+       "q3": 15.121,
+       "n": 60
+      },
+      "upfront_authoring_seconds": {
+       "median": 5.085,
+       "q1": 4.362,
+       "q3": 5.947,
+       "n": 20
+      },
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 5.422,
+       "q1": 4.786,
+       "q3": 5.998,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.085472,
+      "total": 0.085472,
+      "per_included_attempt": {
+       "value": 0.001425
+      },
+      "per_pass": {
+       "value": 0.001425
+      },
+      "cold_start_per_attempt": {
+       "median": 0.004,
+       "q1": 0.003,
+       "q3": 0.005,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.001,
+       "q1": 0.001,
+       "q3": 0.002,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 20
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 20,
+      "total": 20,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 20,
+      "per_attempt": {
+       "value": 0.333333
+      },
+      "per_pass": {
+       "value": 0.333333
+      }
+     },
+     "tokens": {
+      "input": 8936,
+      "output": 6760,
+      "cached_input": 0,
+      "reasoning": 0,
+      "upfront_input": 8936,
+      "upfront_output": 6760,
+      "total": 15696,
+      "per_pass": {
+       "value": 261.6
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 194,
+      "prompt_tokens": 241056,
+      "completion_tokens": 14942,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 3.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 20,
+     "mixed": 0,
+     "all_fail": 0,
+     "mean_seed_variance": 0.0
+    }
+   },
+   "D": {
+    "runs": 60,
+    "passes": 60,
+    "pass_rate": 1.0,
+    "public_hidden_gap": 0.0,
+    "failure_recovery": {
+     "runs_with_public_failure": 2,
+     "recovered": 2,
+     "rate": 1.0
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 60
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 60
+    },
+    "outcomes": {
+     "hidden_pass": 60
+    },
+    "actions_mean": 3.183,
+    "repairs_mean": 0.05,
+    "repairs_distribution": {
+     "0": 58,
+     "1": 1,
+     "2": 1
+    },
+    "wall_seconds": {
+     "median": 12.525,
+     "q1": 11.878,
+     "q3": 13.5,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 5.428,
+     "q1": 4.808,
+     "q3": 6.393,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 3395.0,
+     "q1": 2911.25,
+     "q3": 4089.0,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 208.5,
+     "q1": 152.75,
+     "q3": 289.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 171.5,
+     "q1": 115.75,
+     "q3": 247.75,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 7.623,
+     "q1": 7.011,
+     "q3": 8.476,
+     "n": 60
+    },
+    "runs_with_truncation": 1,
+    "runs_with_candidate": 60,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.094942,
+     "total": 0.094942,
+     "per_pass": 0.001582,
+     "guidance_artifacts": 20,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 10336,
+     "upfront_output": 7427,
+     "cached_input": 0,
+     "reasoning": 0,
+     "total": 17763,
+     "per_pass": 296.1
+    },
+    "upfront_guidance": {
+     "artifacts": 20,
+     "cost_usd": 0.094942,
+     "input_tokens": 10336,
+     "output_tokens": 7427,
+     "latency_seconds_total": 114.21,
+     "latency_seconds": {
+      "median": 5.5,
+      "q1": 5.037,
+      "q3": 6.5,
+      "n": 20
+     },
+     "reused_by_attempts": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 12.525,
+       "q1": 11.878,
+       "q3": 13.5,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 18.16,
+       "q1": 16.942,
+       "q3": 20.0,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 14.437,
+       "q1": 13.473,
+       "q3": 15.649,
+       "n": 60
+      },
+      "upfront_authoring_seconds": {
+       "median": 5.5,
+       "q1": 5.037,
+       "q3": 6.5,
+       "n": 20
+      },
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 5.428,
+       "q1": 4.808,
+       "q3": 6.393,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.094942,
+      "total": 0.094942,
+      "per_included_attempt": {
+       "value": 0.001582
+      },
+      "per_pass": {
+       "value": 0.001582
+      },
+      "cold_start_per_attempt": {
+       "median": 0.005,
+       "q1": 0.004,
+       "q3": 0.005,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.002,
+       "q1": 0.001,
+       "q3": 0.002,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 20
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 20,
+      "total": 20,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 20,
+      "per_attempt": {
+       "value": 0.333333
+      },
+      "per_pass": {
+       "value": 0.333333
+      }
+     },
+     "tokens": {
+      "input": 10336,
+      "output": 7427,
+      "cached_input": 0,
+      "reasoning": 0,
+      "upfront_input": 10336,
+      "upfront_output": 7427,
+      "total": 17763,
+      "per_pass": {
+       "value": 296.05
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 192,
+      "prompt_tokens": 253879,
+      "completion_tokens": 20191,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 3.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 20,
+     "mixed": 0,
+     "all_fail": 0,
+     "mean_seed_variance": 0.0
+    }
+   },
+   "E": {
+    "runs": 60,
+    "passes": 60,
+    "pass_rate": 1.0,
+    "public_hidden_gap": 0.0,
+    "failure_recovery": {
+     "runs_with_public_failure": 1,
+     "recovered": 1,
+     "rate": 1.0
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 60
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 60
+    },
+    "outcomes": {
+     "hidden_pass": 60
+    },
+    "actions_mean": 3.067,
+    "repairs_mean": 0.017,
+    "repairs_distribution": {
+     "0": 59,
+     "1": 1
+    },
+    "wall_seconds": {
+     "median": 12.42,
+     "q1": 11.855,
+     "q3": 13.812,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 5.256,
+     "q1": 4.764,
+     "q3": 6.657,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 2241.5,
+     "q1": 1812.0,
+     "q3": 3162.75,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 203.5,
+     "q1": 156.0,
+     "q3": 322.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 161.5,
+     "q1": 119.0,
+     "q3": 224.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 7.418,
+     "q1": 6.963,
+     "q3": 8.624,
+     "n": 60
+    },
+    "runs_with_truncation": 1,
+    "runs_with_candidate": 60,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0.003788,
+     "upfront_one_off": 0.0,
+     "total": 0.003788,
+     "per_pass": 6.3e-05,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 864,
+     "run_output": 206,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 0,
+     "total": 1070,
+     "per_pass": 17.8
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 12.42,
+       "q1": 11.855,
+       "q3": 13.812,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 12.42,
+       "q1": 11.855,
+       "q3": 13.812,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 12.42,
+       "q1": 11.855,
+       "q3": 13.812,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 5.256,
+       "q1": 4.764,
+       "q3": 6.657,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0.003788,
+      "upfront": 0.0,
+      "total": 0.003788,
+      "per_included_attempt": {
+       "value": 6.3e-05
+      },
+      "per_pass": {
+       "value": 6.3e-05
+      },
+      "cold_start_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0.003788,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 1,
+      "upfront": 0,
+      "total": 1,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 1,
+      "per_attempt": {
+       "value": 0.016667
+      },
+      "per_pass": {
+       "value": 0.016667
+      }
+     },
+     "tokens": {
+      "input": 864,
+      "output": 206,
+      "cached_input": 0,
+      "reasoning": 0,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 1070,
+      "per_pass": {
+       "value": 17.833333
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 185,
+      "prompt_tokens": 146196,
+      "completion_tokens": 18881,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 3.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 20,
+     "mixed": 0,
+     "all_fail": 0,
+     "mean_seed_variance": 0.0
+    }
+   }
+  },
+  "hard": {
+   "A": {
+    "runs": 60,
+    "passes": 5,
+    "pass_rate": 0.0833,
+    "public_hidden_gap": 0.1833,
+    "failure_recovery": {
+     "runs_with_public_failure": 15,
+     "recovered": 4,
+     "rate": 0.2667
+    },
+    "context_overflow": 3,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 5,
+     "context_overflow": 3,
+     "truncated_no_program": 35,
+     "public_pass_hidden_fail": 11,
+     "never_passed_public": 6
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "agent_error": 35,
+     "submitted": 16,
+     "repair_limit": 2,
+     "infra_error": 3,
+     "action_limit": 4
+    },
+    "outcomes": {
+     "no_submission:agent_error": 35,
+     "public_pass_hidden_fail:RE": 4,
+     "hidden_pass": 5,
+     "never_passed_public:WA": 9,
+     "public_pass_hidden_fail:WA": 7
+    },
+    "actions_mean": 3.717,
+    "repairs_mean": 0.383,
+    "repairs_distribution": {
+     "0": 48,
+     "1": 5,
+     "2": 3,
+     "3": 4
+    },
+    "wall_seconds": {
+     "median": 128.18,
+     "q1": 94.355,
+     "q3": 128.58,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 120.133,
+     "q1": 78.633,
+     "q3": 120.523,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 3387.0,
+     "q1": 2613.75,
+     "q3": 12578.0,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 12288.0,
+     "q1": 7754.0,
+     "q3": 12288.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 4096.0,
+     "q1": 4096.0,
+     "q3": 4096.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 61.461,
+     "q1": 31.837,
+     "q3": 82.3,
+     "n": 25
+    },
+    "runs_with_truncation": 51,
+    "runs_with_candidate": 25,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.0,
+     "total": 0.0,
+     "per_pass": 0.0,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 0,
+     "total": 0,
+     "per_pass": 0.0
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 128.18,
+       "q1": 94.355,
+       "q3": 128.58,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 128.18,
+       "q1": 94.355,
+       "q3": 128.58,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 128.18,
+       "q1": 94.355,
+       "q3": 128.58,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 120.133,
+       "q1": 78.633,
+       "q3": 120.523,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.0,
+      "total": 0.0,
+      "per_included_attempt": {
+       "value": 0.0
+      },
+      "per_pass": {
+       "value": 0.0
+      },
+      "cold_start_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 0,
+      "total": 0,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 0,
+      "per_attempt": {
+       "value": 0.0
+      },
+      "per_pass": {
+       "value": 0.0
+      }
+     },
+     "tokens": {
+      "input": 0,
+      "output": 0,
+      "cached_input": 0,
+      "reasoning": 0,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 0,
+      "per_pass": {
+       "value": 0.0
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 356,
+      "prompt_tokens": 1398354,
+      "completion_tokens": 662894,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 5.25,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 1,
+     "mixed": 1,
+     "all_fail": 18,
+     "mean_seed_variance": 0.0111
+    }
+   },
+   "B": {
+    "runs": 60,
+    "passes": 57,
+    "pass_rate": 0.95,
+    "public_hidden_gap": 0.05,
+    "failure_recovery": {
+     "runs_with_public_failure": 0,
+     "recovered": 0,
+     "rate": null
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 57,
+     "public_pass_hidden_fail": 3
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 60
+    },
+    "outcomes": {
+     "hidden_pass": 57,
+     "public_pass_hidden_fail:RE": 3
+    },
+    "actions_mean": 3.467,
+    "repairs_mean": 0.0,
+    "repairs_distribution": {
+     "0": 60
+    },
+    "wall_seconds": {
+     "median": 20.79,
+     "q1": 16.595,
+     "q3": 37.685,
+     "n": 60
+    },
+    "local_inference_seconds": null,
+    "local_prompt_tokens": null,
+    "local_completion_tokens": null,
+    "first_response_tokens": null,
+    "seconds_to_first_candidate": null,
+    "runs_with_truncation": 0,
+    "runs_with_candidate": 60,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 1.057878,
+     "upfront_one_off": 0.0,
+     "total": 1.057878,
+     "per_pass": 0.018559,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 264834,
+     "run_output": 76936,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 126921,
+     "reasoning": 37960,
+     "total": 341770,
+     "per_pass": 5996.0
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 20.79,
+       "q1": 16.595,
+       "q3": 37.685,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 20.79,
+       "q1": 16.595,
+       "q3": 37.685,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 20.79,
+       "q1": 16.595,
+       "q3": 37.685,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 15.97,
+       "q1": 11.705,
+       "q3": 32.755,
+       "n": 60
+      },
+      "local_inference_seconds": null
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 1.057878,
+      "upfront": 0.0,
+      "total": 1.057878,
+      "per_included_attempt": {
+       "value": 0.017631
+      },
+      "per_pass": {
+       "value": 0.018559
+      },
+      "cold_start_per_attempt": {
+       "median": 0.011,
+       "q1": 0.009,
+       "q3": 0.019,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.011,
+       "q1": 0.009,
+       "q3": 0.019,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 1.299028,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 208,
+      "upfront": 0,
+      "total": 208,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 208,
+      "per_attempt": {
+       "value": 3.466667
+      },
+      "per_pass": {
+       "value": 3.649123
+      }
+     },
+     "tokens": {
+      "input": 264834,
+      "output": 76936,
+      "cached_input": 126921,
+      "reasoning": 37960,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 341770,
+      "per_pass": {
+       "value": 5995.964912
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "calls_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 19,
+     "mixed": 0,
+     "all_fail": 1,
+     "mean_seed_variance": 0.0
+    }
+   },
+   "C": {
+    "runs": 60,
+    "passes": 19,
+    "pass_rate": 0.3167,
+    "public_hidden_gap": 0.2167,
+    "failure_recovery": {
+     "runs_with_public_failure": 29,
+     "recovered": 5,
+     "rate": 0.1724
+    },
+    "context_overflow": 4,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 19,
+     "context_overflow": 4,
+     "truncated_no_program": 5,
+     "format_errors": 2,
+     "public_pass_hidden_fail": 13,
+     "never_passed_public": 17
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "repair_limit": 7,
+     "submitted": 32,
+     "infra_error": 4,
+     "action_limit": 10,
+     "agent_error": 7
+    },
+    "outcomes": {
+     "never_passed_public:WA": 19,
+     "never_passed_public:RE": 4,
+     "hidden_pass": 19,
+     "public_pass_hidden_fail:RE": 3,
+     "public_pass_hidden_fail:WA": 7,
+     "no_submission:agent_error": 5,
+     "public_pass_hidden_fail:TLE": 3
+    },
+    "actions_mean": 8.4,
+    "repairs_mean": 0.95,
+    "repairs_distribution": {
+     "0": 34,
+     "1": 9,
+     "2": 3,
+     "3": 14
+    },
+    "wall_seconds": {
+     "median": 101.675,
+     "q1": 26.622,
+     "q3": 173.54,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 81.188,
+     "q1": 17.301,
+     "q3": 133.32,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 12829.0,
+     "q1": 7535.25,
+     "q3": 126121.25,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 7715.5,
+     "q1": 1401.5,
+     "q3": 12809.25,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 1947.5,
+     "q1": 967.5,
+     "q3": 4096.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 24.778,
+     "q1": 15.873,
+     "q3": 54.736,
+     "n": 52
+    },
+    "runs_with_truncation": 28,
+    "runs_with_candidate": 55,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.32696,
+     "total": 0.32696,
+     "per_pass": 0.017208,
+     "guidance_artifacts": 20,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 13375,
+     "upfront_output": 30021,
+     "cached_input": 0,
+     "reasoning": 10238,
+     "total": 43396,
+     "per_pass": 2284.0
+    },
+    "upfront_guidance": {
+     "artifacts": 20,
+     "cost_usd": 0.32696,
+     "input_tokens": 13375,
+     "output_tokens": 30021,
+     "latency_seconds_total": 495.39,
+     "latency_seconds": {
+      "median": 18.315,
+      "q1": 12.242,
+      "q3": 23.52,
+      "n": 20
+     },
+     "reused_by_attempts": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 101.675,
+       "q1": 26.622,
+       "q3": 173.54,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 117.925,
+       "q1": 44.362,
+       "q3": 216.608,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 107.195,
+       "q1": 31.217,
+       "q3": 182.852,
+       "n": 60
+      },
+      "upfront_authoring_seconds": {
+       "median": 18.315,
+       "q1": 12.242,
+       "q3": 23.52,
+       "n": 20
+      },
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 81.188,
+       "q1": 17.301,
+       "q3": 133.32,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.32696,
+      "total": 0.32696,
+      "per_included_attempt": {
+       "value": 0.005449
+      },
+      "per_pass": {
+       "value": 0.017208
+      },
+      "cold_start_per_attempt": {
+       "median": 0.013,
+       "q1": 0.009,
+       "q3": 0.018,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.004,
+       "q1": 0.003,
+       "q3": 0.006,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 20
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 20,
+      "total": 20,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 20,
+      "per_attempt": {
+       "value": 0.333333
+      },
+      "per_pass": {
+       "value": 1.052632
+      }
+     },
+     "tokens": {
+      "input": 13375,
+      "output": 30021,
+      "cached_input": 0,
+      "reasoning": 10238,
+      "upfront_input": 13375,
+      "upfront_output": 30021,
+      "total": 43396,
+      "per_pass": {
+       "value": 2284.0
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 558,
+      "prompt_tokens": 3663645,
+      "completion_tokens": 491134,
+      "calls_per_attempt": {
+       "median": 5.0,
+       "q1": 3.0,
+       "q3": 15.25,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 4,
+     "mixed": 4,
+     "all_fail": 12,
+     "mean_seed_variance": 0.0444
+    }
+   },
+   "D": {
+    "runs": 60,
+    "passes": 5,
+    "pass_rate": 0.0833,
+    "public_hidden_gap": 0.2,
+    "failure_recovery": {
+     "runs_with_public_failure": 15,
+     "recovered": 0,
+     "rate": 0.0
+    },
+    "context_overflow": 1,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 5,
+     "context_overflow": 1,
+     "truncated_no_program": 32,
+     "format_errors": 2,
+     "public_pass_hidden_fail": 12,
+     "never_passed_public": 8
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "agent_error": 34,
+     "submitted": 17,
+     "action_limit": 7,
+     "repair_limit": 1,
+     "infra_error": 1
+    },
+    "outcomes": {
+     "no_submission:agent_error": 32,
+     "public_pass_hidden_fail:WA": 9,
+     "public_pass_hidden_fail:RE": 3,
+     "hidden_pass": 5,
+     "never_passed_public:WA": 11
+    },
+    "actions_mean": 4.467,
+    "repairs_mean": 0.483,
+    "repairs_distribution": {
+     "0": 46,
+     "1": 4,
+     "2": 5,
+     "3": 5
+    },
+    "wall_seconds": {
+     "median": 128.81,
+     "q1": 125.432,
+     "q3": 129.805,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 120.758,
+     "q1": 110.897,
+     "q3": 121.159,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 5415.0,
+     "q1": 4467.75,
+     "q3": 21040.0,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 12288.0,
+     "q1": 11140.0,
+     "q3": 12288.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 4096.0,
+     "q1": 4096.0,
+     "q3": 4096.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 51.885,
+     "q1": 18.865,
+     "q3": 79.633,
+     "n": 28
+    },
+    "runs_with_truncation": 51,
+    "runs_with_candidate": 28,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.13442,
+     "total": 0.13442,
+     "per_pass": 0.026884,
+     "guidance_artifacts": 20,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 14775,
+     "upfront_output": 10487,
+     "cached_input": 0,
+     "reasoning": 0,
+     "total": 25262,
+     "per_pass": 5052.4
+    },
+    "upfront_guidance": {
+     "artifacts": 20,
+     "cost_usd": 0.13442,
+     "input_tokens": 14775,
+     "output_tokens": 10487,
+     "latency_seconds_total": 160.56,
+     "latency_seconds": {
+      "median": 7.955,
+      "q1": 7.658,
+      "q3": 8.857,
+      "n": 20
+     },
+     "reused_by_attempts": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 128.81,
+       "q1": 125.432,
+       "q3": 129.805,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 136.74,
+       "q1": 133.47,
+       "q3": 139.065,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 131.49,
+       "q1": 128.112,
+       "q3": 132.837,
+       "n": 60
+      },
+      "upfront_authoring_seconds": {
+       "median": 7.955,
+       "q1": 7.658,
+       "q3": 8.857,
+       "n": 20
+      },
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 120.758,
+       "q1": 110.897,
+       "q3": 121.159,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.13442,
+      "total": 0.13442,
+      "per_included_attempt": {
+       "value": 0.00224
+      },
+      "per_pass": {
+       "value": 0.026884
+      },
+      "cold_start_per_attempt": {
+       "median": 0.007,
+       "q1": 0.006,
+       "q3": 0.007,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.002,
+       "q1": 0.002,
+       "q3": 0.002,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 20
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 20,
+      "total": 20,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 20,
+      "per_attempt": {
+       "value": 0.333333
+      },
+      "per_pass": {
+       "value": 4.0
+      }
+     },
+     "tokens": {
+      "input": 14775,
+      "output": 10487,
+      "cached_input": 0,
+      "reasoning": 0,
+      "upfront_input": 14775,
+      "upfront_output": 10487,
+      "total": 25262,
+      "per_pass": {
+       "value": 5052.4
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 409,
+      "prompt_tokens": 1972612,
+      "completion_tokens": 704133,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 6.25,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 1,
+     "mixed": 1,
+     "all_fail": 18,
+     "mean_seed_variance": 0.0111
+    }
+   },
+   "E": {
+    "runs": 60,
+    "passes": 5,
+    "pass_rate": 0.0833,
+    "public_hidden_gap": 0.2167,
+    "failure_recovery": {
+     "runs_with_public_failure": 15,
+     "recovered": 4,
+     "rate": 0.2667
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 5,
+     "truncated_no_program": 35,
+     "format_errors": 1,
+     "public_pass_hidden_fail": 13,
+     "never_passed_public": 6
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "agent_error": 36,
+     "submitted": 18,
+     "action_limit": 2,
+     "repair_limit": 4
+    },
+    "outcomes": {
+     "no_submission:agent_error": 35,
+     "public_pass_hidden_fail:RE": 5,
+     "hidden_pass": 5,
+     "never_passed_public:WA": 7,
+     "public_pass_hidden_fail:WA": 8
+    },
+    "actions_mean": 3.083,
+    "repairs_mean": 0.517,
+    "repairs_distribution": {
+     "0": 45,
+     "1": 6,
+     "2": 2,
+     "3": 7
+    },
+    "wall_seconds": {
+     "median": 128.18,
+     "q1": 126.542,
+     "q3": 128.863,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 120.125,
+     "q1": 117.633,
+     "q3": 120.655,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 3387.0,
+     "q1": 2613.75,
+     "q3": 11664.75,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 12288.0,
+     "q1": 11136.75,
+     "q3": 12288.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 4096.0,
+     "q1": 4096.0,
+     "q3": 4096.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 61.483,
+     "q1": 31.873,
+     "q3": 82.174,
+     "n": 25
+    },
+    "runs_with_truncation": 52,
+    "runs_with_candidate": 25,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0.148802,
+     "upfront_one_off": 0.0,
+     "total": 0.148802,
+     "per_pass": 0.02976,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 41261,
+     "run_output": 6628,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 2098,
+     "total": 47889,
+     "per_pass": 9577.8
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 128.18,
+       "q1": 126.542,
+       "q3": 128.863,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 128.18,
+       "q1": 126.542,
+       "q3": 128.863,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 128.18,
+       "q1": 126.542,
+       "q3": 128.863,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 1.05,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 120.125,
+       "q1": 117.633,
+       "q3": 120.655,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0.148802,
+      "upfront": 0.0,
+      "total": 0.148802,
+      "per_included_attempt": {
+       "value": 0.00248
+      },
+      "per_pass": {
+       "value": 0.02976
+      },
+      "cold_start_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.002,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.002,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0.14880199999999996,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 15,
+      "upfront": 0,
+      "total": 15,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 15,
+      "per_attempt": {
+       "value": 0.25
+      },
+      "per_pass": {
+       "value": 3.0
+      }
+     },
+     "tokens": {
+      "input": 41261,
+      "output": 6628,
+      "cached_input": 0,
+      "reasoning": 2098,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 47889,
+      "per_pass": {
+       "value": 9577.8
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 323,
+      "prompt_tokens": 1163476,
+      "completion_tokens": 672709,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 5.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 1,
+     "mixed": 1,
+     "all_fail": 18,
+     "mean_seed_variance": 0.0111
+    }
+   }
+  },
+  "medium": {
+   "A": {
+    "runs": 60,
+    "passes": 32,
+    "pass_rate": 0.5333,
+    "public_hidden_gap": 0.1167,
+    "failure_recovery": {
+     "runs_with_public_failure": 17,
+     "recovered": 7,
+     "rate": 0.4118
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 32,
+     "truncated_no_program": 13,
+     "format_errors": 3,
+     "public_pass_hidden_fail": 7,
+     "never_passed_public": 5
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 38,
+     "agent_error": 16,
+     "action_limit": 6
+    },
+    "outcomes": {
+     "public_pass_hidden_fail:WA": 2,
+     "hidden_pass": 32,
+     "public_pass_hidden_fail:TLE": 4,
+     "no_submission:agent_error": 13,
+     "never_passed_public:WA": 7,
+     "public_pass_hidden_fail:RE": 1,
+     "never_passed_public:none": 1
+    },
+    "actions_mean": 5.15,
+    "repairs_mean": 0.35,
+    "repairs_distribution": {
+     "0": 47,
+     "1": 6,
+     "2": 6,
+     "3": 1
+    },
+    "wall_seconds": {
+     "median": 61.175,
+     "q1": 15.855,
+     "q3": 128.31,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 51.735,
+     "q1": 8.833,
+     "q3": 120.196,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 4770.0,
+     "q1": 3101.5,
+     "q3": 10923.5,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 4933.0,
+     "q1": 545.25,
+     "q3": 12288.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 3641.5,
+     "q1": 407.25,
+     "q3": 4096.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 10.97,
+     "q1": 9.817,
+     "q3": 60.241,
+     "n": 45
+    },
+    "runs_with_truncation": 31,
+    "runs_with_candidate": 47,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.0,
+     "total": 0.0,
+     "per_pass": 0.0,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 0,
+     "total": 0,
+     "per_pass": 0.0
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 61.175,
+       "q1": 15.855,
+       "q3": 128.31,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 61.175,
+       "q1": 15.855,
+       "q3": 128.31,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 61.175,
+       "q1": 15.855,
+       "q3": 128.31,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 51.735,
+       "q1": 8.833,
+       "q3": 120.196,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.0,
+      "total": 0.0,
+      "per_included_attempt": {
+       "value": 0.0
+      },
+      "per_pass": {
+       "value": 0.0
+      },
+      "cold_start_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 0,
+      "total": 0,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 0,
+      "per_attempt": {
+       "value": 0.0
+      },
+      "per_pass": {
+       "value": 0.0
+      }
+     },
+     "tokens": {
+      "input": 0,
+      "output": 0,
+      "cached_input": 0,
+      "reasoning": 0,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 0,
+      "per_pass": {
+       "value": 0.0
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 381,
+      "prompt_tokens": 1067746,
+      "completion_tokens": 386319,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 7.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 9,
+     "mixed": 3,
+     "all_fail": 8,
+     "mean_seed_variance": 0.0333
+    }
+   },
+   "B": {
+    "runs": 60,
+    "passes": 57,
+    "pass_rate": 0.95,
+    "public_hidden_gap": 0.05,
+    "failure_recovery": {
+     "runs_with_public_failure": 0,
+     "recovered": 0,
+     "rate": null
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 57,
+     "public_pass_hidden_fail": 3
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 60
+    },
+    "outcomes": {
+     "hidden_pass": 57,
+     "public_pass_hidden_fail:WA": 3
+    },
+    "actions_mean": 3.05,
+    "repairs_mean": 0.0,
+    "repairs_distribution": {
+     "0": 60
+    },
+    "wall_seconds": {
+     "median": 11.87,
+     "q1": 10.95,
+     "q3": 13.902,
+     "n": 60
+    },
+    "local_inference_seconds": null,
+    "local_prompt_tokens": null,
+    "local_completion_tokens": null,
+    "first_response_tokens": null,
+    "seconds_to_first_candidate": null,
+    "runs_with_truncation": 0,
+    "runs_with_candidate": 60,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0.480297,
+     "upfront_one_off": 0.0,
+     "total": 0.480297,
+     "per_pass": 0.008426,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 163453,
+     "run_output": 20141,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 25273,
+     "reasoning": 4923,
+     "total": 183594,
+     "per_pass": 3220.9
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 11.87,
+       "q1": 10.95,
+       "q3": 13.902,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 11.87,
+       "q1": 10.95,
+       "q3": 13.902,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 11.87,
+       "q1": 10.95,
+       "q3": 13.902,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 7.06,
+       "q1": 6.1,
+       "q3": 9.06,
+       "n": 60
+      },
+      "local_inference_seconds": null
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0.480297,
+      "upfront": 0.0,
+      "total": 0.480297,
+      "per_included_attempt": {
+       "value": 0.008005
+      },
+      "per_pass": {
+       "value": 0.008426
+      },
+      "cold_start_per_attempt": {
+       "median": 0.007,
+       "q1": 0.006,
+       "q3": 0.008,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.007,
+       "q1": 0.006,
+       "q3": 0.008,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0.528316,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 183,
+      "upfront": 0,
+      "total": 183,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 183,
+      "per_attempt": {
+       "value": 3.05
+      },
+      "per_pass": {
+       "value": 3.210526
+      }
+     },
+     "tokens": {
+      "input": 163453,
+      "output": 20141,
+      "cached_input": 25273,
+      "reasoning": 4923,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 183594,
+      "per_pass": {
+       "value": 3220.947368
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 0,
+      "prompt_tokens": null,
+      "completion_tokens": null,
+      "calls_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 19,
+     "mixed": 0,
+     "all_fail": 1,
+     "mean_seed_variance": 0.0
+    }
+   },
+   "C": {
+    "runs": 60,
+    "passes": 50,
+    "pass_rate": 0.8333,
+    "public_hidden_gap": 0.1,
+    "failure_recovery": {
+     "runs_with_public_failure": 7,
+     "recovered": 3,
+     "rate": 0.4286
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 50,
+     "format_errors": 1,
+     "public_pass_hidden_fail": 6,
+     "never_passed_public": 3
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "action_limit": 2,
+     "submitted": 56,
+     "repair_limit": 1,
+     "agent_error": 1
+    },
+    "outcomes": {
+     "never_passed_public:WA": 4,
+     "hidden_pass": 50,
+     "public_pass_hidden_fail:WA": 6
+    },
+    "actions_mean": 4.067,
+    "repairs_mean": 0.233,
+    "repairs_distribution": {
+     "0": 53,
+     "1": 3,
+     "2": 1,
+     "3": 3
+    },
+    "wall_seconds": {
+     "median": 15.19,
+     "q1": 13.855,
+     "q3": 22.617,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 8.099,
+     "q1": 6.722,
+     "q3": 14.579,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 5511.0,
+     "q1": 4397.0,
+     "q3": 8105.75,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 477.0,
+     "q1": 333.75,
+     "q3": 1096.25,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 400.0,
+     "q1": 294.75,
+     "q3": 746.25,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 9.897,
+     "q1": 8.901,
+     "q3": 14.39,
+     "n": 60
+    },
+    "runs_with_truncation": 7,
+    "runs_with_candidate": 60,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.158278,
+     "total": 0.158278,
+     "per_pass": 0.003166,
+     "guidance_artifacts": 20,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 11929,
+     "upfront_output": 13442,
+     "cached_input": 0,
+     "reasoning": 1250,
+     "total": 25371,
+     "per_pass": 507.4
+    },
+    "upfront_guidance": {
+     "artifacts": 20,
+     "cost_usd": 0.158278,
+     "input_tokens": 11929,
+     "output_tokens": 13442,
+     "latency_seconds_total": 201.91,
+     "latency_seconds": {
+      "median": 9.345,
+      "q1": 7.293,
+      "q3": 11.582,
+      "n": 20
+     },
+     "reused_by_attempts": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 15.19,
+       "q1": 13.855,
+       "q3": 22.617,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 25.28,
+       "q1": 21.245,
+       "q3": 37.002,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 18.315,
+       "q1": 16.446,
+       "q3": 27.082,
+       "n": 60
+      },
+      "upfront_authoring_seconds": {
+       "median": 9.345,
+       "q1": 7.293,
+       "q3": 11.582,
+       "n": 20
+      },
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 8.099,
+       "q1": 6.722,
+       "q3": 14.579,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.158278,
+      "total": 0.158278,
+      "per_included_attempt": {
+       "value": 0.002638
+      },
+      "per_pass": {
+       "value": 0.003166
+      },
+      "cold_start_per_attempt": {
+       "median": 0.007,
+       "q1": 0.006,
+       "q3": 0.009,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.002,
+       "q1": 0.002,
+       "q3": 0.003,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 20
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 20,
+      "total": 20,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 20,
+      "per_attempt": {
+       "value": 0.333333
+      },
+      "per_pass": {
+       "value": 0.4
+      }
+     },
+     "tokens": {
+      "input": 11929,
+      "output": 13442,
+      "cached_input": 0,
+      "reasoning": 1250,
+      "upfront_input": 11929,
+      "upfront_output": 13442,
+      "total": 25371,
+      "per_pass": {
+       "value": 507.42
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 254,
+      "prompt_tokens": 897326,
+      "completion_tokens": 107032,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 3.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 15,
+     "mixed": 4,
+     "all_fail": 1,
+     "mean_seed_variance": 0.0444
+    }
+   },
+   "D": {
+    "runs": 60,
+    "passes": 33,
+    "pass_rate": 0.55,
+    "public_hidden_gap": 0.0833,
+    "failure_recovery": {
+     "runs_with_public_failure": 18,
+     "recovered": 6,
+     "rate": 0.3333
+    },
+    "context_overflow": 0,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 33,
+     "truncated_no_program": 12,
+     "format_errors": 1,
+     "public_pass_hidden_fail": 5,
+     "never_passed_public": 9
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "action_limit": 9,
+     "submitted": 38,
+     "agent_error": 13
+    },
+    "outcomes": {
+     "never_passed_public:WA": 10,
+     "hidden_pass": 33,
+     "no_submission:agent_error": 12,
+     "public_pass_hidden_fail:RE": 1,
+     "public_pass_hidden_fail:TLE": 3,
+     "public_pass_hidden_fail:WA": 1
+    },
+    "actions_mean": 5.7,
+    "repairs_mean": 0.367,
+    "repairs_distribution": {
+     "0": 45,
+     "1": 10,
+     "2": 3,
+     "3": 2
+    },
+    "wall_seconds": {
+     "median": 43.615,
+     "q1": 14.578,
+     "q3": 128.75,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 33.897,
+     "q1": 7.464,
+     "q3": 120.401,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 6072.0,
+     "q1": 4291.5,
+     "q3": 12692.0,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 3164.5,
+     "q1": 403.25,
+     "q3": 12288.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 2462.5,
+     "q1": 316.75,
+     "q3": 4096.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 11.213,
+     "q1": 8.987,
+     "q3": 49.824,
+     "n": 48
+    },
+    "runs_with_truncation": 28,
+    "runs_with_candidate": 48,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0,
+     "upfront_one_off": 0.123048,
+     "total": 0.123048,
+     "per_pass": 0.003729,
+     "guidance_artifacts": 20,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 0,
+     "run_output": 0,
+     "upfront_input": 13329,
+     "upfront_output": 9639,
+     "cached_input": 0,
+     "reasoning": 36,
+     "total": 22968,
+     "per_pass": 696.0
+    },
+    "upfront_guidance": {
+     "artifacts": 20,
+     "cost_usd": 0.123048,
+     "input_tokens": 13329,
+     "output_tokens": 9639,
+     "latency_seconds_total": 148.08,
+     "latency_seconds": {
+      "median": 7.405,
+      "q1": 6.84,
+      "q3": 7.777,
+      "n": 20
+     },
+     "reused_by_attempts": [
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3
+     ]
+    },
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 43.615,
+       "q1": 14.578,
+       "q3": 128.75,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 50.67,
+       "q1": 22.238,
+       "q3": 136.492,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 45.967,
+       "q1": 17.123,
+       "q3": 131.373,
+       "n": 60
+      },
+      "upfront_authoring_seconds": {
+       "median": 7.405,
+       "q1": 6.84,
+       "q3": 7.777,
+       "n": 20
+      },
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.0,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 33.897,
+       "q1": 7.464,
+       "q3": 120.401,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0,
+      "upfront": 0.123048,
+      "total": 0.123048,
+      "per_included_attempt": {
+       "value": 0.002051
+      },
+      "per_pass": {
+       "value": 0.003729
+      },
+      "cold_start_per_attempt": {
+       "median": 0.006,
+       "q1": 0.006,
+       "q3": 0.006,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.002,
+       "q1": 0.002,
+       "q3": 0.002,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0,
+      "guidance_artifacts": 20
+     },
+     "requests": {
+      "runtime": 0,
+      "upfront": 20,
+      "total": 20,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 20,
+      "per_attempt": {
+       "value": 0.333333
+      },
+      "per_pass": {
+       "value": 0.606061
+      }
+     },
+     "tokens": {
+      "input": 13329,
+      "output": 9639,
+      "cached_input": 0,
+      "reasoning": 36,
+      "upfront_input": 13329,
+      "upfront_output": 9639,
+      "total": 22968,
+      "per_pass": {
+       "value": 696.0
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 405,
+      "prompt_tokens": 1432088,
+      "completion_tokens": 358004,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 5.25,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 9,
+     "mixed": 4,
+     "all_fail": 7,
+     "mean_seed_variance": 0.0444
+    }
+   },
+   "E": {
+    "runs": 60,
+    "passes": 34,
+    "pass_rate": 0.5667,
+    "public_hidden_gap": 0.1333,
+    "failure_recovery": {
+     "runs_with_public_failure": 17,
+     "recovered": 9,
+     "rate": 0.5294
+    },
+    "context_overflow": 2,
+    "local_timeout": 0,
+    "categories": {
+     "hidden_pass": 34,
+     "context_overflow": 2,
+     "truncated_no_program": 13,
+     "public_pass_hidden_fail": 8,
+     "never_passed_public": 3
+    },
+    "guidance_error_runs": 0,
+    "exit_status": {
+     "submitted": 41,
+     "agent_error": 13,
+     "infra_error": 2,
+     "action_limit": 4
+    },
+    "outcomes": {
+     "public_pass_hidden_fail:WA": 3,
+     "hidden_pass": 34,
+     "public_pass_hidden_fail:TLE": 4,
+     "no_submission:agent_error": 13,
+     "never_passed_public:WA": 4,
+     "public_pass_hidden_fail:RE": 1,
+     "never_passed_public:none": 1
+    },
+    "actions_mean": 4.7,
+    "repairs_mean": 0.467,
+    "repairs_distribution": {
+     "0": 43,
+     "1": 11,
+     "2": 1,
+     "3": 5
+    },
+    "wall_seconds": {
+     "median": 64.875,
+     "q1": 16.367,
+     "q3": 127.87,
+     "n": 60
+    },
+    "local_inference_seconds": {
+     "median": 55.728,
+     "q1": 9.14,
+     "q3": 119.566,
+     "n": 60
+    },
+    "local_prompt_tokens": {
+     "median": 4770.0,
+     "q1": 3101.5,
+     "q3": 8508.0,
+     "n": 60
+    },
+    "local_completion_tokens": {
+     "median": 5338.0,
+     "q1": 545.25,
+     "q3": 12288.0,
+     "n": 60
+    },
+    "first_response_tokens": {
+     "median": 3641.5,
+     "q1": 407.25,
+     "q3": 4096.0,
+     "n": 60
+    },
+    "seconds_to_first_candidate": {
+     "median": 11.07,
+     "q1": 9.759,
+     "q3": 60.371,
+     "n": 45
+    },
+    "runs_with_truncation": 31,
+    "runs_with_candidate": 47,
+    "frontier_cost_usd": {
+     "metric": "token-derived API cost (provider usage x list price), not invoiced",
+     "run_time": 0.106842,
+     "upfront_one_off": 0.0,
+     "total": 0.106842,
+     "per_pass": 0.003142,
+     "guidance_artifacts": 0,
+     "requests_missing_usage": 0
+    },
+    "frontier_tokens": {
+     "run_input": 27876,
+     "run_output": 5109,
+     "upfront_input": 0,
+     "upfront_output": 0,
+     "cached_input": 0,
+     "reasoning": 751,
+     "total": 32985,
+     "per_pass": 970.1
+    },
+    "upfront_guidance": null,
+    "efficiency": {
+     "latency": {
+      "warm_start_seconds": {
+       "median": 64.875,
+       "q1": 16.367,
+       "q3": 127.87,
+       "n": 60
+      },
+      "cold_start_seconds": {
+       "median": 64.875,
+       "q1": 16.367,
+       "q3": 127.87,
+       "n": 60
+      },
+      "amortized_seconds": {
+       "median": 64.875,
+       "q1": 16.367,
+       "q3": 127.87,
+       "n": 60
+      },
+      "upfront_authoring_seconds": null,
+      "frontier_wait_seconds_during_run": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 3.913,
+       "n": 60
+      },
+      "local_inference_seconds": {
+       "median": 55.728,
+       "q1": 9.14,
+       "q3": 119.566,
+       "n": 60
+      }
+     },
+     "cost_usd": {
+      "metric": "token-derived API cost (provider usage x list price), not invoiced",
+      "runtime": 0.106842,
+      "upfront": 0.0,
+      "total": 0.106842,
+      "per_included_attempt": {
+       "value": 0.001781
+      },
+      "per_pass": {
+       "value": 0.003142
+      },
+      "cold_start_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.004,
+       "n": 60
+      },
+      "amortized_per_attempt": {
+       "median": 0.0,
+       "q1": 0.0,
+       "q3": 0.004,
+       "n": 60
+      },
+      "recorded_runtime_cache_unaware": 0.10684199999999999,
+      "guidance_artifacts": 0
+     },
+     "requests": {
+      "runtime": 17,
+      "upfront": 0,
+      "total": 17,
+      "failed_runtime": 0,
+      "failed_upfront": 0,
+      "missing_usage": 0,
+      "successful": 17,
+      "per_attempt": {
+       "value": 0.283333
+      },
+      "per_pass": {
+       "value": 0.5
+      }
+     },
+     "tokens": {
+      "input": 27876,
+      "output": 5109,
+      "cached_input": 0,
+      "reasoning": 751,
+      "upfront_input": 0,
+      "upfront_output": 0,
+      "total": 32985,
+      "per_pass": {
+       "value": 970.147059
+      },
+      "note": "output tokens include reasoning tokens (provider usage); reasoning is a breakdown"
+     },
+     "local": {
+      "calls": 350,
+      "prompt_tokens": 1083511,
+      "completion_tokens": 377940,
+      "calls_per_attempt": {
+       "median": 3.0,
+       "q1": 3.0,
+       "q3": 5.0,
+       "n": 60
+      },
+      "note": "a condition without frontier spend still uses local compute (A: zero API cost, not zero computational cost)"
+     }
+    },
+    "seed_consistency": {
+     "tasks": 20,
+     "all_pass": 9,
+     "mixed": 4,
+     "all_fail": 7,
+     "mean_seed_variance": 0.0444
+    }
+   }
+  }
+ },
+ "paired_vs_A": {
+  "all": {
+   "B": {
+    "tasks": 60,
+    "pairs": 180,
+    "pass_rate": 0.9667,
+    "base_pass_rate": 0.5333,
+    "difference": 0.4333,
+    "ci95": [
+     0.3167,
+     0.5556
+    ],
+    "p_permutation": 0.0001,
+    "mcnemar": {
+     "condition_only": 78,
+     "base_only": 0,
+     "p_exact": 0.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "C": {
+    "tasks": 60,
+    "pairs": 180,
+    "pass_rate": 0.7167,
+    "base_pass_rate": 0.5333,
+    "difference": 0.1833,
+    "ci95": [
+     0.1,
+     0.2722
+    ],
+    "p_permutation": 0.0002,
+    "mcnemar": {
+     "condition_only": 34,
+     "base_only": 1,
+     "p_exact": 0.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "D": {
+    "tasks": 60,
+    "pairs": 180,
+    "pass_rate": 0.5444,
+    "base_pass_rate": 0.5333,
+    "difference": 0.0111,
+    "ci95": [
+     -0.0167,
+     0.0444
+    ],
+    "p_permutation": 0.72656,
+    "mcnemar": {
+     "condition_only": 6,
+     "base_only": 4,
+     "p_exact": 0.75391,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "E": {
+    "tasks": 60,
+    "pairs": 180,
+    "pass_rate": 0.55,
+    "base_pass_rate": 0.5333,
+    "difference": 0.0167,
+    "ci95": [
+     0.0,
+     0.0444
+    ],
+    "p_permutation": 0.5,
+    "mcnemar": {
+     "condition_only": 3,
+     "base_only": 0,
+     "p_exact": 0.25,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   }
+  },
+  "easy": {
+   "B": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 1.0,
+    "base_pass_rate": 0.9833,
+    "difference": 0.0167,
+    "ci95": [
+     0.0,
+     0.05
+    ],
+    "p_permutation": 1.0,
+    "mcnemar": {
+     "condition_only": 1,
+     "base_only": 0,
+     "p_exact": 1.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "C": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 1.0,
+    "base_pass_rate": 0.9833,
+    "difference": 0.0167,
+    "ci95": [
+     0.0,
+     0.05
+    ],
+    "p_permutation": 1.0,
+    "mcnemar": {
+     "condition_only": 1,
+     "base_only": 0,
+     "p_exact": 1.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "D": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 1.0,
+    "base_pass_rate": 0.9833,
+    "difference": 0.0167,
+    "ci95": [
+     0.0,
+     0.05
+    ],
+    "p_permutation": 1.0,
+    "mcnemar": {
+     "condition_only": 1,
+     "base_only": 0,
+     "p_exact": 1.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "E": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 1.0,
+    "base_pass_rate": 0.9833,
+    "difference": 0.0167,
+    "ci95": [
+     0.0,
+     0.05
+    ],
+    "p_permutation": 1.0,
+    "mcnemar": {
+     "condition_only": 1,
+     "base_only": 0,
+     "p_exact": 1.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   }
+  },
+  "hard": {
+   "B": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 0.95,
+    "base_pass_rate": 0.0833,
+    "difference": 0.8667,
+    "ci95": [
+     0.7167,
+     1.0
+    ],
+    "p_permutation": 0.0001,
+    "mcnemar": {
+     "condition_only": 52,
+     "base_only": 0,
+     "p_exact": 0.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "C": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 0.3167,
+    "base_pass_rate": 0.0833,
+    "difference": 0.2333,
+    "ci95": [
+     0.0667,
+     0.4167
+    ],
+    "p_permutation": 0.03125,
+    "mcnemar": {
+     "condition_only": 15,
+     "base_only": 1,
+     "p_exact": 0.00052,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "D": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 0.0833,
+    "base_pass_rate": 0.0833,
+    "difference": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "p_permutation": 1.0,
+    "mcnemar": {
+     "condition_only": 1,
+     "base_only": 1,
+     "p_exact": 1.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "E": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 0.0833,
+    "base_pass_rate": 0.0833,
+    "difference": 0.0,
+    "ci95": [
+     0.0,
+     0.0
+    ],
+    "p_permutation": 1.0,
+    "mcnemar": {
+     "condition_only": 0,
+     "base_only": 0,
+     "p_exact": 1.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   }
+  },
+  "medium": {
+   "B": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 0.95,
+    "base_pass_rate": 0.5333,
+    "difference": 0.4167,
+    "ci95": [
+     0.2167,
+     0.6333
+    ],
+    "p_permutation": 0.00195,
+    "mcnemar": {
+     "condition_only": 25,
+     "base_only": 0,
+     "p_exact": 0.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "C": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 0.8333,
+    "base_pass_rate": 0.5333,
+    "difference": 0.3,
+    "ci95": [
+     0.1333,
+     0.4833
+    ],
+    "p_permutation": 0.00391,
+    "mcnemar": {
+     "condition_only": 18,
+     "base_only": 0,
+     "p_exact": 1e-05,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "D": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 0.55,
+    "base_pass_rate": 0.5333,
+    "difference": 0.0167,
+    "ci95": [
+     -0.0667,
+     0.1
+    ],
+    "p_permutation": 1.0,
+    "mcnemar": {
+     "condition_only": 4,
+     "base_only": 3,
+     "p_exact": 1.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "E": {
+    "tasks": 20,
+    "pairs": 60,
+    "pass_rate": 0.5667,
+    "base_pass_rate": 0.5333,
+    "difference": 0.0333,
+    "ci95": [
+     0.0,
+     0.1
+    ],
+    "p_permutation": 1.0,
+    "mcnemar": {
+     "condition_only": 2,
+     "base_only": 0,
+     "p_exact": 0.5,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   }
+  }
+ },
+ "holm_adjusted_p": {
+  "C": 0.0006000000000000001,
+  "E": 1.0,
+  "D": 1.0
+ },
+ "pass_at_k": {
+  "ks": [
+   1,
+   2,
+   3
+  ],
+  "primary": "pass@1",
+  "by_level": {
+   "all": {
+    "A": {
+     "tasks": 60,
+     "attempts": 180,
+     "all_attempts_successful": 0.4833,
+     "all_attempts_failed": 0.4333,
+     "pass@1": {
+      "value": 0.5333,
+      "ci95": [
+       0.4111,
+       0.6556
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@2": {
+      "value": 0.5611,
+      "ci95": [
+       0.4333,
+       0.6833
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@3": {
+      "value": 0.5667,
+      "ci95": [
+       0.45,
+       0.6833
+      ],
+      "eligible_tasks": 60
+     }
+    },
+    "B": {
+     "tasks": 60,
+     "attempts": 180,
+     "all_attempts_successful": 0.9667,
+     "all_attempts_failed": 0.0333,
+     "pass@1": {
+      "value": 0.9667,
+      "ci95": [
+       0.9167,
+       1.0
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@2": {
+      "value": 0.9667,
+      "ci95": [
+       0.9167,
+       1.0
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@3": {
+      "value": 0.9667,
+      "ci95": [
+       0.9167,
+       1.0
+      ],
+      "eligible_tasks": 60
+     }
+    },
+    "C": {
+     "tasks": 60,
+     "attempts": 180,
+     "all_attempts_successful": 0.65,
+     "all_attempts_failed": 0.2167,
+     "pass@1": {
+      "value": 0.7167,
+      "ci95": [
+       0.6111,
+       0.8222
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@2": {
+      "value": 0.7611,
+      "ci95": [
+       0.6556,
+       0.8611
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@3": {
+      "value": 0.7833,
+      "ci95": [
+       0.6833,
+       0.8833
+      ],
+      "eligible_tasks": 60
+     }
+    },
+    "D": {
+     "tasks": 60,
+     "attempts": 180,
+     "all_attempts_successful": 0.5,
+     "all_attempts_failed": 0.4167,
+     "pass@1": {
+      "value": 0.5444,
+      "ci95": [
+       0.4222,
+       0.6667
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@2": {
+      "value": 0.5722,
+      "ci95": [
+       0.45,
+       0.6944
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@3": {
+      "value": 0.5833,
+      "ci95": [
+       0.4667,
+       0.7
+      ],
+      "eligible_tasks": 60
+     }
+    },
+    "E": {
+     "tasks": 60,
+     "attempts": 180,
+     "all_attempts_successful": 0.5,
+     "all_attempts_failed": 0.4167,
+     "pass@1": {
+      "value": 0.55,
+      "ci95": [
+       0.4278,
+       0.6667
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@2": {
+      "value": 0.5778,
+      "ci95": [
+       0.4556,
+       0.7
+      ],
+      "eligible_tasks": 60
+     },
+     "pass@3": {
+      "value": 0.5833,
+      "ci95": [
+       0.4667,
+       0.7
+      ],
+      "eligible_tasks": 60
+     }
+    }
+   },
+   "easy": {
+    "A": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.95,
+     "all_attempts_failed": 0.0,
+     "pass@1": {
+      "value": 0.9833,
+      "ci95": [
+       0.95,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "B": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 1.0,
+     "all_attempts_failed": 0.0,
+     "pass@1": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "C": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 1.0,
+     "all_attempts_failed": 0.0,
+     "pass@1": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "D": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 1.0,
+     "all_attempts_failed": 0.0,
+     "pass@1": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "E": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 1.0,
+     "all_attempts_failed": 0.0,
+     "pass@1": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "eligible_tasks": 20
+     }
+    }
+   },
+   "hard": {
+    "A": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.05,
+     "all_attempts_failed": 0.9,
+     "pass@1": {
+      "value": 0.0833,
+      "ci95": [
+       0.0,
+       0.2167
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.1,
+      "ci95": [
+       0.0,
+       0.25
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.1,
+      "ci95": [
+       0.0,
+       0.25
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "B": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.95,
+     "all_attempts_failed": 0.05,
+     "pass@1": {
+      "value": 0.95,
+      "ci95": [
+       0.85,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.95,
+      "ci95": [
+       0.85,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.95,
+      "ci95": [
+       0.85,
+       1.0
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "C": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.2,
+     "all_attempts_failed": 0.6,
+     "pass@1": {
+      "value": 0.3167,
+      "ci95": [
+       0.1333,
+       0.5
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.3833,
+      "ci95": [
+       0.1833,
+       0.6
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.4,
+      "ci95": [
+       0.2,
+       0.6
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "D": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.05,
+     "all_attempts_failed": 0.9,
+     "pass@1": {
+      "value": 0.0833,
+      "ci95": [
+       0.0,
+       0.2167
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.1,
+      "ci95": [
+       0.0,
+       0.25
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.1,
+      "ci95": [
+       0.0,
+       0.25
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "E": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.05,
+     "all_attempts_failed": 0.9,
+     "pass@1": {
+      "value": 0.0833,
+      "ci95": [
+       0.0,
+       0.2167
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.1,
+      "ci95": [
+       0.0,
+       0.25
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.1,
+      "ci95": [
+       0.0,
+       0.25
+      ],
+      "eligible_tasks": 20
+     }
+    }
+   },
+   "medium": {
+    "A": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.45,
+     "all_attempts_failed": 0.4,
+     "pass@1": {
+      "value": 0.5333,
+      "ci95": [
+       0.3333,
+       0.7333
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.5833,
+      "ci95": [
+       0.3667,
+       0.7833
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.6,
+      "ci95": [
+       0.4,
+       0.8
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "B": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.95,
+     "all_attempts_failed": 0.05,
+     "pass@1": {
+      "value": 0.95,
+      "ci95": [
+       0.85,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.95,
+      "ci95": [
+       0.85,
+       1.0
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.95,
+      "ci95": [
+       0.85,
+       1.0
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "C": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.75,
+     "all_attempts_failed": 0.05,
+     "pass@1": {
+      "value": 0.8333,
+      "ci95": [
+       0.6833,
+       0.95
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.9,
+      "ci95": [
+       0.7833,
+       0.9833
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.95,
+      "ci95": [
+       0.85,
+       1.0
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "D": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.45,
+     "all_attempts_failed": 0.35,
+     "pass@1": {
+      "value": 0.55,
+      "ci95": [
+       0.35,
+       0.7333
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.6167,
+      "ci95": [
+       0.4,
+       0.8167
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.65,
+      "ci95": [
+       0.45,
+       0.85
+      ],
+      "eligible_tasks": 20
+     }
+    },
+    "E": {
+     "tasks": 20,
+     "attempts": 60,
+     "all_attempts_successful": 0.45,
+     "all_attempts_failed": 0.35,
+     "pass@1": {
+      "value": 0.5667,
+      "ci95": [
+       0.3667,
+       0.75
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@2": {
+      "value": 0.6333,
+      "ci95": [
+       0.4333,
+       0.8333
+      ],
+      "eligible_tasks": 20
+     },
+     "pass@3": {
+      "value": 0.65,
+      "ci95": [
+       0.45,
+       0.85
+      ],
+      "eligible_tasks": 20
+     }
+    }
+   }
+  },
+  "versus_A": {
+   "all": {
+    "B": {
+     "pass@1": {
+      "tasks": 60,
+      "rate": 0.9667,
+      "base_rate": 0.5333,
+      "difference": 0.4333,
+      "ci95": [
+       0.3167,
+       0.5556
+      ]
+     },
+     "pass@2": {
+      "tasks": 60,
+      "rate": 0.9667,
+      "base_rate": 0.5611,
+      "difference": 0.4056,
+      "ci95": [
+       0.2833,
+       0.5278
+      ]
+     },
+     "pass@3": {
+      "tasks": 60,
+      "rate": 0.9667,
+      "base_rate": 0.5667,
+      "difference": 0.4,
+      "ci95": [
+       0.2833,
+       0.5167
+      ]
+     }
+    },
+    "C": {
+     "pass@1": {
+      "tasks": 60,
+      "rate": 0.7167,
+      "base_rate": 0.5333,
+      "difference": 0.1833,
+      "ci95": [
+       0.1,
+       0.2778
+      ]
+     },
+     "pass@2": {
+      "tasks": 60,
+      "rate": 0.7611,
+      "base_rate": 0.5611,
+      "difference": 0.2,
+      "ci95": [
+       0.1056,
+       0.3056
+      ]
+     },
+     "pass@3": {
+      "tasks": 60,
+      "rate": 0.7833,
+      "base_rate": 0.5667,
+      "difference": 0.2167,
+      "ci95": [
+       0.1167,
+       0.3333
+      ]
+     }
+    },
+    "D": {
+     "pass@1": {
+      "tasks": 60,
+      "rate": 0.5444,
+      "base_rate": 0.5333,
+      "difference": 0.0111,
+      "ci95": [
+       -0.0167,
+       0.0444
+      ]
+     },
+     "pass@2": {
+      "tasks": 60,
+      "rate": 0.5722,
+      "base_rate": 0.5611,
+      "difference": 0.0111,
+      "ci95": [
+       -0.0222,
+       0.0556
+      ]
+     },
+     "pass@3": {
+      "tasks": 60,
+      "rate": 0.5833,
+      "base_rate": 0.5667,
+      "difference": 0.0167,
+      "ci95": [
+       -0.0333,
+       0.0833
+      ]
+     }
+    },
+    "E": {
+     "pass@1": {
+      "tasks": 60,
+      "rate": 0.55,
+      "base_rate": 0.5333,
+      "difference": 0.0167,
+      "ci95": [
+       0.0,
+       0.0444
+      ]
+     },
+     "pass@2": {
+      "tasks": 60,
+      "rate": 0.5778,
+      "base_rate": 0.5611,
+      "difference": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "pass@3": {
+      "tasks": 60,
+      "rate": 0.5833,
+      "base_rate": 0.5667,
+      "difference": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     }
+    }
+   },
+   "easy": {
+    "B": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 0.9833,
+      "difference": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "C": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 0.9833,
+      "difference": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "D": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 0.9833,
+      "difference": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "E": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 0.9833,
+      "difference": 0.0167,
+      "ci95": [
+       0.0,
+       0.05
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     }
+    }
+   },
+   "hard": {
+    "B": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 0.95,
+      "base_rate": 0.0833,
+      "difference": 0.8667,
+      "ci95": [
+       0.7167,
+       1.0
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 0.95,
+      "base_rate": 0.1,
+      "difference": 0.85,
+      "ci95": [
+       0.7,
+       1.0
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 0.95,
+      "base_rate": 0.1,
+      "difference": 0.85,
+      "ci95": [
+       0.7,
+       1.0
+      ]
+     }
+    },
+    "C": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 0.3167,
+      "base_rate": 0.0833,
+      "difference": 0.2333,
+      "ci95": [
+       0.0667,
+       0.4167
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 0.3833,
+      "base_rate": 0.1,
+      "difference": 0.2833,
+      "ci95": [
+       0.1,
+       0.4833
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 0.4,
+      "base_rate": 0.1,
+      "difference": 0.3,
+      "ci95": [
+       0.1,
+       0.5
+      ]
+     }
+    },
+    "D": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 0.0833,
+      "base_rate": 0.0833,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 0.1,
+      "base_rate": 0.1,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 0.1,
+      "base_rate": 0.1,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     }
+    },
+    "E": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 0.0833,
+      "base_rate": 0.0833,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 0.1,
+      "base_rate": 0.1,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 0.1,
+      "base_rate": 0.1,
+      "difference": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ]
+     }
+    }
+   },
+   "medium": {
+    "B": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 0.95,
+      "base_rate": 0.5333,
+      "difference": 0.4167,
+      "ci95": [
+       0.2167,
+       0.6333
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 0.95,
+      "base_rate": 0.5833,
+      "difference": 0.3667,
+      "ci95": [
+       0.1667,
+       0.5833
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 0.95,
+      "base_rate": 0.6,
+      "difference": 0.35,
+      "ci95": [
+       0.15,
+       0.55
+      ]
+     }
+    },
+    "C": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 0.8333,
+      "base_rate": 0.5333,
+      "difference": 0.3,
+      "ci95": [
+       0.1333,
+       0.4833
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 0.9,
+      "base_rate": 0.5833,
+      "difference": 0.3167,
+      "ci95": [
+       0.1333,
+       0.5167
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 0.95,
+      "base_rate": 0.6,
+      "difference": 0.35,
+      "ci95": [
+       0.15,
+       0.55
+      ]
+     }
+    },
+    "D": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 0.55,
+      "base_rate": 0.5333,
+      "difference": 0.0167,
+      "ci95": [
+       -0.0667,
+       0.1
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 0.6167,
+      "base_rate": 0.5833,
+      "difference": 0.0333,
+      "ci95": [
+       -0.0667,
+       0.1667
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 0.65,
+      "base_rate": 0.6,
+      "difference": 0.05,
+      "ci95": [
+       -0.1,
+       0.25
+      ]
+     }
+    },
+    "E": {
+     "pass@1": {
+      "tasks": 20,
+      "rate": 0.5667,
+      "base_rate": 0.5333,
+      "difference": 0.0333,
+      "ci95": [
+       0.0,
+       0.1
+      ]
+     },
+     "pass@2": {
+      "tasks": 20,
+      "rate": 0.6333,
+      "base_rate": 0.5833,
+      "difference": 0.05,
+      "ci95": [
+       0.0,
+       0.15
+      ]
+     },
+     "pass@3": {
+      "tasks": 20,
+      "rate": 0.65,
+      "base_rate": 0.6,
+      "difference": 0.05,
+      "ci95": [
+       0.0,
+       0.15
+      ]
+     }
+    }
+   }
+  },
+  "gap_closed_vs_B": {
+   "all": {
+    "C": {
+     "pass@1": {
+      "rate": 0.7167,
+      "base_rate": 0.5333,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.4231,
+      "ci95": [
+       0.2571,
+       0.597
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     },
+     "pass@2": {
+      "rate": 0.7611,
+      "base_rate": 0.5611,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.4932,
+      "ci95": [
+       0.3059,
+       0.6857
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     },
+     "pass@3": {
+      "rate": 0.7833,
+      "base_rate": 0.5667,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.5417,
+      "ci95": [
+       0.3333,
+       0.75
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     }
+    },
+    "D": {
+     "pass@1": {
+      "rate": 0.5444,
+      "base_rate": 0.5333,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.0256,
+      "ci95": [
+       -0.0465,
+       0.1014
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     },
+     "pass@2": {
+      "rate": 0.5722,
+      "base_rate": 0.5611,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.0274,
+      "ci95": [
+       -0.0678,
+       0.1235
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     },
+     "pass@3": {
+      "rate": 0.5833,
+      "base_rate": 0.5667,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.0417,
+      "ci95": [
+       -0.1053,
+       0.1852
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     }
+    },
+    "E": {
+     "pass@1": {
+      "rate": 0.55,
+      "base_rate": 0.5333,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.0385,
+      "ci95": [
+       0.0,
+       0.1053
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     },
+     "pass@2": {
+      "rate": 0.5778,
+      "base_rate": 0.5611,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.0411,
+      "ci95": [
+       0.0,
+       0.1385
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     },
+     "pass@3": {
+      "rate": 0.5833,
+      "base_rate": 0.5667,
+      "ceiling_rate": 0.9667,
+      "gap_closed": 0.0417,
+      "ci95": [
+       0.0,
+       0.1429
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 60
+     }
+    }
+   },
+   "easy": {
+    "C": {
+     "pass@1": {
+      "rate": 1.0,
+      "base_rate": 0.9833,
+      "ceiling_rate": 1.0,
+      "gap_closed": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "resamples_without_gap": 3609,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "ceiling_rate": 1.0,
+      "gap_closed": null,
+      "ci95": null,
+      "resamples_without_gap": 10000,
+      "note": "undefined: B does not exceed A",
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "ceiling_rate": 1.0,
+      "gap_closed": null,
+      "ci95": null,
+      "resamples_without_gap": 10000,
+      "note": "undefined: B does not exceed A",
+      "tasks": 20
+     }
+    },
+    "D": {
+     "pass@1": {
+      "rate": 1.0,
+      "base_rate": 0.9833,
+      "ceiling_rate": 1.0,
+      "gap_closed": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "resamples_without_gap": 3609,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "ceiling_rate": 1.0,
+      "gap_closed": null,
+      "ci95": null,
+      "resamples_without_gap": 10000,
+      "note": "undefined: B does not exceed A",
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "ceiling_rate": 1.0,
+      "gap_closed": null,
+      "ci95": null,
+      "resamples_without_gap": 10000,
+      "note": "undefined: B does not exceed A",
+      "tasks": 20
+     }
+    },
+    "E": {
+     "pass@1": {
+      "rate": 1.0,
+      "base_rate": 0.9833,
+      "ceiling_rate": 1.0,
+      "gap_closed": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "resamples_without_gap": 3609,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "ceiling_rate": 1.0,
+      "gap_closed": null,
+      "ci95": null,
+      "resamples_without_gap": 10000,
+      "note": "undefined: B does not exceed A",
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 1.0,
+      "base_rate": 1.0,
+      "ceiling_rate": 1.0,
+      "gap_closed": null,
+      "ci95": null,
+      "resamples_without_gap": 10000,
+      "note": "undefined: B does not exceed A",
+      "tasks": 20
+     }
+    }
+   },
+   "hard": {
+    "C": {
+     "pass@1": {
+      "rate": 0.3167,
+      "base_rate": 0.0833,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.2692,
+      "ci95": [
+       0.087,
+       0.4706
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 0.3833,
+      "base_rate": 0.1,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.3333,
+      "ci95": [
+       0.125,
+       0.5556
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 0.4,
+      "base_rate": 0.1,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.3529,
+      "ci95": [
+       0.125,
+       0.5882
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     }
+    },
+    "D": {
+     "pass@1": {
+      "rate": 0.0833,
+      "base_rate": 0.0833,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 0.1,
+      "base_rate": 0.1,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 0.1,
+      "base_rate": 0.1,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     }
+    },
+    "E": {
+     "pass@1": {
+      "rate": 0.0833,
+      "base_rate": 0.0833,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 0.1,
+      "base_rate": 0.1,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 0.1,
+      "base_rate": 0.1,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.0,
+      "ci95": [
+       0.0,
+       0.0
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     }
+    }
+   },
+   "medium": {
+    "C": {
+     "pass@1": {
+      "rate": 0.8333,
+      "base_rate": 0.5333,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.72,
+      "ci95": [
+       0.48,
+       0.9333
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 0.9,
+      "base_rate": 0.5833,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.8636,
+      "ci95": [
+       0.6923,
+       1.0
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 0.95,
+      "base_rate": 0.6,
+      "ceiling_rate": 0.95,
+      "gap_closed": 1.0,
+      "ci95": [
+       1.0,
+       1.0
+      ],
+      "resamples_without_gap": 2,
+      "tasks": 20
+     }
+    },
+    "D": {
+     "pass@1": {
+      "rate": 0.55,
+      "base_rate": 0.5333,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.04,
+      "ci95": [
+       -0.2143,
+       0.2414
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 0.6167,
+      "base_rate": 0.5833,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.0909,
+      "ci95": [
+       -0.2857,
+       0.381
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 0.65,
+      "base_rate": 0.6,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.1429,
+      "ci95": [
+       -0.5,
+       0.5714
+      ],
+      "resamples_without_gap": 2,
+      "tasks": 20
+     }
+    },
+    "E": {
+     "pass@1": {
+      "rate": 0.5667,
+      "base_rate": 0.5333,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.08,
+      "ci95": [
+       0.0,
+       0.2609
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@2": {
+      "rate": 0.6333,
+      "base_rate": 0.5833,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.1364,
+      "ci95": [
+       0.0,
+       0.4444
+      ],
+      "resamples_without_gap": 0,
+      "tasks": 20
+     },
+     "pass@3": {
+      "rate": 0.65,
+      "base_rate": 0.6,
+      "ceiling_rate": 0.95,
+      "gap_closed": 0.1429,
+      "ci95": [
+       0.0,
+       0.5
+      ],
+      "resamples_without_gap": 2,
+      "tasks": 20
+     }
+    }
+   }
+  },
+  "notes": [
+   "pass@1 is the primary outcome; pass@2 and pass@3 are secondary (the benefit of repeated attempts)",
+   "confidence intervals resample tasks; repeated attempts on one task are not independent problems",
+   "C and D reuse one upfront guidance artifact per task across seeds: their pass@k describes repeated local execution given shared guidance, not independently regenerated frontier guidance",
+   "pass@k counts a task as solved when any of k attempts passes the hidden tests; it does not imply that an agent could identify the correct submission without the hidden tests"
+  ]
+ },
+ "relative_efficiency": {
+  "A": {
+   "vs_B": {
+    "cost_reduction": {
+     "value": 1.0
+    },
+    "token_reduction": {
+     "value": 1.0
+    }
+   },
+   "runtime": {
+    "B": {
+     "cold_start_seconds": {
+      "quantity": "cold_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 25.835,
+       "q1": 2.777,
+       "q3": 103.08,
+       "n": 180
+      },
+      "ratio": {
+       "median": 2.32,
+       "q1": 1.281,
+       "q3": 5.942,
+       "n": 180
+      },
+      "reduction": -1.3197
+     },
+     "warm_start_seconds": {
+      "quantity": "warm_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 25.835,
+       "q1": 2.777,
+       "q3": 103.08,
+       "n": 180
+      },
+      "ratio": {
+       "median": 2.32,
+       "q1": 1.281,
+       "q3": 5.942,
+       "n": 180
+      },
+      "reduction": -1.3197
+     }
+    }
+   }
+  },
+  "B": {
+   "additional_passes_per_usd_vs_A": {
+    "value": 42.1708,
+    "additional_passes": 78,
+    "additional_usd": 1.849619
+   },
+   "runtime": {
+    "A": {
+     "cold_start_seconds": {
+      "quantity": "cold_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": -25.835,
+       "q1": -103.08,
+       "q3": -2.777,
+       "n": 180
+      },
+      "ratio": {
+       "median": 0.431,
+       "q1": 0.168,
+       "q3": 0.781,
+       "n": 180
+      },
+      "reduction": 0.5689
+     },
+     "warm_start_seconds": {
+      "quantity": "warm_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": -25.835,
+       "q1": -103.08,
+       "q3": -2.777,
+       "n": 180
+      },
+      "ratio": {
+       "median": 0.431,
+       "q1": 0.168,
+       "q3": 0.781,
+       "n": 180
+      },
+      "reduction": 0.5689
+     }
+    }
+   }
+  },
+  "C": {
+   "vs_B": {
+    "cost_reduction": {
+     "value": 0.6914
+    },
+    "token_reduction": {
+     "value": 0.8703
+    }
+   },
+   "additional_passes_per_usd_vs_A": {
+    "value": 57.8227,
+    "additional_passes": 33,
+    "additional_usd": 0.57071
+   },
+   "runtime": {
+    "A": {
+     "cold_start_seconds": {
+      "quantity": "cold_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 4.15,
+       "q1": -39.56,
+       "q3": 7.045,
+       "n": 180
+      },
+      "ratio": {
+       "median": 1.316,
+       "q1": 0.503,
+       "q3": 1.45,
+       "n": 180
+      },
+      "reduction": -0.3163
+     },
+     "warm_start_seconds": {
+      "quantity": "warm_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": -0.675,
+       "q1": -52.812,
+       "q3": 0.432,
+       "n": 180
+      },
+      "ratio": {
+       "median": 0.954,
+       "q1": 0.344,
+       "q3": 1.03,
+       "n": 180
+      },
+      "reduction": 0.0457
+     }
+    },
+    "B": {
+     "cold_start_seconds": {
+      "quantity": "cold_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 11.845,
+       "q1": 7.985,
+       "q3": 34.565,
+       "n": 180
+      },
+      "ratio": {
+       "median": 1.944,
+       "q1": 1.723,
+       "q3": 3.037,
+       "n": 180
+      },
+      "reduction": -0.9438
+     },
+     "warm_start_seconds": {
+      "quantity": "warm_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 2.945,
+       "q1": 1.967,
+       "q3": 23.77,
+       "n": 180
+      },
+      "ratio": {
+       "median": 1.291,
+       "q1": 1.177,
+       "q3": 2.464,
+       "n": 180
+      },
+      "reduction": -0.2912
+     }
+    }
+   }
+  },
+  "D": {
+   "vs_B": {
+    "cost_reduction": {
+     "value": 0.8095
+    },
+    "token_reduction": {
+     "value": 0.8986
+    }
+   },
+   "additional_passes_per_usd_vs_A": {
+    "value": 5.6752,
+    "additional_passes": 2,
+    "additional_usd": 0.35241
+   },
+   "runtime": {
+    "A": {
+     "cold_start_seconds": {
+      "quantity": "cold_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 6.435,
+       "q1": 3.885,
+       "q3": 9.28,
+       "n": 180
+      },
+      "ratio": {
+       "median": 1.332,
+       "q1": 1.049,
+       "q3": 1.519,
+       "n": 180
+      },
+      "reduction": -0.3322
+     },
+     "warm_start_seconds": {
+      "quantity": "warm_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 0.105,
+       "q1": -2.098,
+       "q3": 0.783,
+       "n": 180
+      },
+      "ratio": {
+       "median": 1.003,
+       "q1": 0.943,
+       "q3": 1.045,
+       "n": 180
+      },
+      "reduction": -0.003
+     }
+    },
+    "B": {
+     "cold_start_seconds": {
+      "quantity": "cold_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 17.255,
+       "q1": 8.73,
+       "q3": 114.227,
+       "n": 180
+      },
+      "ratio": {
+       "median": 2.212,
+       "q1": 1.835,
+       "q3": 6.526,
+       "n": 180
+      },
+      "reduction": -1.2124
+     },
+     "warm_start_seconds": {
+      "quantity": "warm_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 10.28,
+       "q1": 2.635,
+       "q3": 105.132,
+       "n": 180
+      },
+      "ratio": {
+       "median": 1.682,
+       "q1": 1.256,
+       "q3": 6.064,
+       "n": 180
+      },
+      "reduction": -0.6815
+     }
+    }
+   }
+  },
+  "E": {
+   "vs_B": {
+    "cost_reduction": {
+     "value": 0.8597
+    },
+    "token_reduction": {
+     "value": 0.8741
+    }
+   },
+   "additional_passes_per_usd_vs_A": {
+    "value": 11.5637,
+    "additional_passes": 3,
+    "additional_usd": 0.259432
+   },
+   "runtime": {
+    "A": {
+     "cold_start_seconds": {
+      "quantity": "cold_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 0.0,
+       "q1": -0.145,
+       "q3": 0.11,
+       "n": 180
+      },
+      "ratio": {
+       "median": 1.0,
+       "q1": 0.996,
+       "q3": 1.003,
+       "n": 180
+      },
+      "reduction": 0.0
+     },
+     "warm_start_seconds": {
+      "quantity": "warm_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 0.0,
+       "q1": -0.145,
+       "q3": 0.11,
+       "n": 180
+      },
+      "ratio": {
+       "median": 1.0,
+       "q1": 0.996,
+       "q3": 1.003,
+       "n": 180
+      },
+      "reduction": 0.0
+     }
+    },
+    "B": {
+     "cold_start_seconds": {
+      "quantity": "cold_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 21.555,
+       "q1": 2.727,
+       "q3": 101.988,
+       "n": 180
+      },
+      "ratio": {
+       "median": 2.209,
+       "q1": 1.279,
+       "q3": 6.335,
+       "n": 180
+      },
+      "reduction": -1.209
+     },
+     "warm_start_seconds": {
+      "quantity": "warm_start_seconds",
+      "pairs": 180,
+      "difference_seconds": {
+       "median": 21.555,
+       "q1": 2.727,
+       "q3": 101.988,
+       "n": 180
+      },
+      "ratio": {
+       "median": 2.209,
+       "q1": 1.279,
+       "q3": 6.335,
+       "n": 180
+      },
+      "reduction": -1.209
+     }
+    }
+   }
+  }
+ },
+ "e_subset": {
+  "triggered": {
+   "pairs": 33,
+   "E_pass_rate": 0.4242,
+   "A_pass_rate": 0.3333
+  },
+  "triggered_and_A_failed_public": {
+   "pairs": 33,
+   "E_pass_rate": 0.4242,
+   "A_pass_rate": 0.3333
+  },
+  "trigger_rate": 0.1833,
+  "note": "descriptive: selecting on whether the diagnosis triggered is not a randomized comparison"
+ },
+ "transitions_from_A": {
+  "B": {
+   "pairs": 180,
+   "categories": [
+    "hidden_pass",
+    "context_overflow",
+    "truncated_no_program",
+    "format_errors",
+    "public_pass_hidden_fail",
+    "never_passed_public"
+   ],
+   "matrix": {
+    "hidden_pass": {
+     "hidden_pass": 96
+    },
+    "context_overflow": {
+     "hidden_pass": 3
+    },
+    "truncated_no_program": {
+     "hidden_pass": 47,
+     "public_pass_hidden_fail": 1
+    },
+    "format_errors": {
+     "hidden_pass": 3
+    },
+    "public_pass_hidden_fail": {
+     "hidden_pass": 13,
+     "public_pass_hidden_fail": 5
+    },
+    "never_passed_public": {
+     "hidden_pass": 12
+    }
+   },
+   "fixed": {
+    "context_overflow": {
+     "base_failures": 3,
+     "passed": 3
+    },
+    "truncated_no_program": {
+     "base_failures": 48,
+     "passed": 47
+    },
+    "format_errors": {
+     "base_failures": 3,
+     "passed": 3
+    },
+    "public_pass_hidden_fail": {
+     "base_failures": 18,
+     "passed": 13
+    },
+    "never_passed_public": {
+     "base_failures": 12,
+     "passed": 12
+    }
+   },
+   "broken": 0
+  },
+  "C": {
+   "pairs": 180,
+   "categories": [
+    "hidden_pass",
+    "context_overflow",
+    "truncated_no_program",
+    "format_errors",
+    "public_pass_hidden_fail",
+    "never_passed_public"
+   ],
+   "matrix": {
+    "hidden_pass": {
+     "hidden_pass": 95,
+     "never_passed_public": 1
+    },
+    "context_overflow": {
+     "never_passed_public": 2,
+     "truncated_no_program": 1
+    },
+    "truncated_no_program": {
+     "hidden_pass": 20,
+     "public_pass_hidden_fail": 8,
+     "never_passed_public": 12,
+     "context_overflow": 4,
+     "truncated_no_program": 2,
+     "format_errors": 2
+    },
+    "format_errors": {
+     "public_pass_hidden_fail": 1,
+     "hidden_pass": 1,
+     "format_errors": 1
+    },
+    "public_pass_hidden_fail": {
+     "never_passed_public": 2,
+     "public_pass_hidden_fail": 8,
+     "hidden_pass": 7,
+     "truncated_no_program": 1
+    },
+    "never_passed_public": {
+     "hidden_pass": 6,
+     "never_passed_public": 3,
+     "public_pass_hidden_fail": 2,
+     "truncated_no_program": 1
+    }
+   },
+   "fixed": {
+    "context_overflow": {
+     "base_failures": 3,
+     "passed": 0
+    },
+    "truncated_no_program": {
+     "base_failures": 48,
+     "passed": 20
+    },
+    "format_errors": {
+     "base_failures": 3,
+     "passed": 1
+    },
+    "public_pass_hidden_fail": {
+     "base_failures": 18,
+     "passed": 7
+    },
+    "never_passed_public": {
+     "base_failures": 12,
+     "passed": 6
+    }
+   },
+   "broken": 1
+  },
+  "D": {
+   "pairs": 180,
+   "categories": [
+    "hidden_pass",
+    "context_overflow",
+    "truncated_no_program",
+    "format_errors",
+    "public_pass_hidden_fail",
+    "never_passed_public"
+   ],
+   "matrix": {
+    "hidden_pass": {
+     "hidden_pass": 92,
+     "truncated_no_program": 2,
+     "never_passed_public": 1,
+     "public_pass_hidden_fail": 1
+    },
+    "context_overflow": {
+     "truncated_no_program": 2,
+     "never_passed_public": 1
+    },
+    "truncated_no_program": {
+     "public_pass_hidden_fail": 7,
+     "truncated_no_program": 30,
+     "never_passed_public": 6,
+     "format_errors": 3,
+     "hidden_pass": 2
+    },
+    "format_errors": {
+     "hidden_pass": 2,
+     "truncated_no_program": 1
+    },
+    "public_pass_hidden_fail": {
+     "never_passed_public": 4,
+     "truncated_no_program": 5,
+     "hidden_pass": 1,
+     "public_pass_hidden_fail": 8
+    },
+    "never_passed_public": {
+     "hidden_pass": 1,
+     "never_passed_public": 5,
+     "public_pass_hidden_fail": 1,
+     "truncated_no_program": 4,
+     "context_overflow": 1
+    }
+   },
+   "fixed": {
+    "context_overflow": {
+     "base_failures": 3,
+     "passed": 0
+    },
+    "truncated_no_program": {
+     "base_failures": 48,
+     "passed": 2
+    },
+    "format_errors": {
+     "base_failures": 3,
+     "passed": 2
+    },
+    "public_pass_hidden_fail": {
+     "base_failures": 18,
+     "passed": 1
+    },
+    "never_passed_public": {
+     "base_failures": 12,
+     "passed": 1
+    }
+   },
+   "broken": 4
+  },
+  "E": {
+   "pairs": 180,
+   "categories": [
+    "hidden_pass",
+    "context_overflow",
+    "truncated_no_program",
+    "format_errors",
+    "public_pass_hidden_fail",
+    "never_passed_public"
+   ],
+   "matrix": {
+    "hidden_pass": {
+     "hidden_pass": 96
+    },
+    "context_overflow": {
+     "never_passed_public": 3
+    },
+    "truncated_no_program": {
+     "truncated_no_program": 48
+    },
+    "format_errors": {
+     "public_pass_hidden_fail": 2,
+     "context_overflow": 1
+    },
+    "public_pass_hidden_fail": {
+     "public_pass_hidden_fail": 16,
+     "hidden_pass": 2
+    },
+    "never_passed_public": {
+     "hidden_pass": 1,
+     "public_pass_hidden_fail": 3,
+     "context_overflow": 1,
+     "never_passed_public": 6,
+     "format_errors": 1
+    }
+   },
+   "fixed": {
+    "context_overflow": {
+     "base_failures": 3,
+     "passed": 0
+    },
+    "truncated_no_program": {
+     "base_failures": 48,
+     "passed": 0
+    },
+    "format_errors": {
+     "base_failures": 3,
+     "passed": 0
+    },
+    "public_pass_hidden_fail": {
+     "base_failures": 18,
+     "passed": 2
+    },
+    "never_passed_public": {
+     "base_failures": 12,
+     "passed": 1
+    }
+   },
+   "broken": 0
+  }
+ },
+ "process_vs_A": {
+  "B": {
+   "pairs": 180,
+   "local_completion_tokens": null,
+   "first_response_tokens": null,
+   "seconds_to_first_candidate": null,
+   "candidate_only_in_condition": 48,
+   "candidate_only_in_base": 0
+  },
+  "C": {
+   "pairs": 180,
+   "local_completion_tokens": {
+    "median": -110.5,
+    "pairs": 180
+   },
+   "first_response_tokens": {
+    "median": -55.5,
+    "pairs": 180
+   },
+   "seconds_to_first_candidate": {
+    "median": -0.42,
+    "pairs": 126
+   },
+   "candidate_only_in_condition": 46,
+   "candidate_only_in_base": 3
+  },
+  "D": {
+   "pairs": 180,
+   "local_completion_tokens": {
+    "median": 0.0,
+    "pairs": 180
+   },
+   "first_response_tokens": {
+    "median": 0.0,
+    "pairs": 180
+   },
+   "seconds_to_first_candidate": {
+    "median": -0.01,
+    "pairs": 117
+   },
+   "candidate_only_in_condition": 18,
+   "candidate_only_in_base": 14
+  },
+  "E": {
+   "pairs": 180,
+   "local_completion_tokens": {
+    "median": 0.0,
+    "pairs": 180
+   },
+   "first_response_tokens": {
+    "median": 0.0,
+    "pairs": 180
+   },
+   "seconds_to_first_candidate": {
+    "median": -0.01,
+    "pairs": 130
+   },
+   "candidate_only_in_condition": 0,
+   "candidate_only_in_base": 0
+  }
+ },
+ "sensitivity_exclude_timeouts": {
+  "included_runs": 900,
+  "tasks": 60,
+  "summary": {
+   "A": {
+    "runs": 180,
+    "passes": 96,
+    "pass_rate": 0.5333
+   },
+   "B": {
+    "runs": 180,
+    "passes": 174,
+    "pass_rate": 0.9667
+   },
+   "C": {
+    "runs": 180,
+    "passes": 129,
+    "pass_rate": 0.7167
+   },
+   "D": {
+    "runs": 180,
+    "passes": 98,
+    "pass_rate": 0.5444
+   },
+   "E": {
+    "runs": 180,
+    "passes": 99,
+    "pass_rate": 0.55
+   }
+  },
+  "paired_vs_A": {
+   "B": {
+    "tasks": 60,
+    "pairs": 180,
+    "pass_rate": 0.9667,
+    "base_pass_rate": 0.5333,
+    "difference": 0.4333,
+    "ci95": [
+     0.3167,
+     0.5556
+    ],
+    "p_permutation": 0.0001,
+    "mcnemar": {
+     "condition_only": 78,
+     "base_only": 0,
+     "p_exact": 0.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "C": {
+    "tasks": 60,
+    "pairs": 180,
+    "pass_rate": 0.7167,
+    "base_pass_rate": 0.5333,
+    "difference": 0.1833,
+    "ci95": [
+     0.1,
+     0.2722
+    ],
+    "p_permutation": 0.0002,
+    "mcnemar": {
+     "condition_only": 34,
+     "base_only": 1,
+     "p_exact": 0.0,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "D": {
+    "tasks": 60,
+    "pairs": 180,
+    "pass_rate": 0.5444,
+    "base_pass_rate": 0.5333,
+    "difference": 0.0111,
+    "ci95": [
+     -0.0167,
+     0.0444
+    ],
+    "p_permutation": 0.72656,
+    "mcnemar": {
+     "condition_only": 6,
+     "base_only": 4,
+     "p_exact": 0.75391,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   },
+   "E": {
+    "tasks": 60,
+    "pairs": 180,
+    "pass_rate": 0.55,
+    "base_pass_rate": 0.5333,
+    "difference": 0.0167,
+    "ci95": [
+     0.0,
+     0.0444
+    ],
+    "p_permutation": 0.5,
+    "mcnemar": {
+     "condition_only": 3,
+     "base_only": 0,
+     "p_exact": 0.25,
+     "note": "exploratory: (task, seed) pairs of one task are not independent"
+    }
+   }
+  },
+  "excluded_blocks": 0
+ },
+ "gap_closed_vs_B": {
+  "C": {
+   "tasks": 60,
+   "rate": 0.7167,
+   "base_rate": 0.5333,
+   "ceiling_rate": 0.9667,
+   "gap_closed": 0.4231,
+   "ci95": [
+    0.2609,
+    0.5926
+   ],
+   "resamples_without_gap": 0
+  },
+  "D": {
+   "tasks": 60,
+   "rate": 0.5444,
+   "base_rate": 0.5333,
+   "ceiling_rate": 0.9667,
+   "gap_closed": 0.0256,
+   "ci95": [
+    -0.0471,
+    0.1
+   ],
+   "resamples_without_gap": 0
+  },
+  "E": {
+   "tasks": 60,
+   "rate": 0.55,
+   "base_rate": 0.5333,
+   "ceiling_rate": 0.9667,
+   "gap_closed": 0.0385,
+   "ci95": [
+    0.0,
+    0.1045
+   ],
+   "resamples_without_gap": 0
+  }
+ },
+ "exposure": {
+  "exposed": {
+   "included_runs": 420,
+   "tasks": 28,
+   "summary": {
+    "A": {
+     "runs": 84,
+     "passes": 52,
+     "pass_rate": 0.619
+    },
+    "B": {
+     "runs": 84,
+     "passes": 81,
+     "pass_rate": 0.9643
+    },
+    "C": {
+     "runs": 84,
+     "passes": 68,
+     "pass_rate": 0.8095
+    },
+    "D": {
+     "runs": 84,
+     "passes": 52,
+     "pass_rate": 0.619
+    },
+    "E": {
+     "runs": 84,
+     "passes": 54,
+     "pass_rate": 0.6429
+    }
+   },
+   "paired_vs_A": {
+    "B": {
+     "tasks": 28,
+     "pairs": 84,
+     "pass_rate": 0.9643,
+     "base_pass_rate": 0.619,
+     "difference": 0.3452,
+     "ci95": [
+      0.1786,
+      0.5238
+     ],
+     "p_permutation": 0.00195,
+     "mcnemar": {
+      "condition_only": 29,
+      "base_only": 0,
+      "p_exact": 0.0,
+      "note": "exploratory: (task, seed) pairs of one task are not independent"
+     }
+    },
+    "C": {
+     "tasks": 28,
+     "pairs": 84,
+     "pass_rate": 0.8095,
+     "base_pass_rate": 0.619,
+     "difference": 0.1905,
+     "ci95": [
+      0.0714,
+      0.3333
+     ],
+     "p_permutation": 0.01562,
+     "mcnemar": {
+      "condition_only": 16,
+      "base_only": 0,
+      "p_exact": 3e-05,
+      "note": "exploratory: (task, seed) pairs of one task are not independent"
+     }
+    },
+    "D": {
+     "tasks": 28,
+     "pairs": 84,
+     "pass_rate": 0.619,
+     "base_pass_rate": 0.619,
+     "difference": -0.0,
+     "ci95": [
+      -0.0476,
+      0.0476
+     ],
+     "p_permutation": 1.0,
+     "mcnemar": {
+      "condition_only": 2,
+      "base_only": 2,
+      "p_exact": 1.0,
+      "note": "exploratory: (task, seed) pairs of one task are not independent"
+     }
+    },
+    "E": {
+     "tasks": 28,
+     "pairs": 84,
+     "pass_rate": 0.6429,
+     "base_pass_rate": 0.619,
+     "difference": 0.0238,
+     "ci95": [
+      0.0,
+      0.0714
+     ],
+     "p_permutation": 1.0,
+     "mcnemar": {
+      "condition_only": 2,
+      "base_only": 0,
+      "p_exact": 0.5,
+      "note": "exploratory: (task, seed) pairs of one task are not independent"
+     }
+    }
+   },
+   "classes": {
+    "other_scored": 8,
+    "development": 10,
+    "selection_holdout": 10
+   },
+   "pass_at_k": {
+    "A": {
+     "tasks": 28,
+     "attempts": 84,
+     "all_attempts_successful": 0.6071,
+     "all_attempts_failed": 0.3571,
+     "pass@1": {
+      "value": 0.619,
+      "ci95": [
+       0.4405,
+       0.7857
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@2": {
+      "value": 0.631,
+      "ci95": [
+       0.4524,
+       0.7976
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@3": {
+      "value": 0.6429,
+      "ci95": [
+       0.4643,
+       0.8214
+      ],
+      "eligible_tasks": 28
+     }
+    },
+    "B": {
+     "tasks": 28,
+     "attempts": 84,
+     "all_attempts_successful": 0.9643,
+     "all_attempts_failed": 0.0357,
+     "pass@1": {
+      "value": 0.9643,
+      "ci95": [
+       0.8929,
+       1.0
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@2": {
+      "value": 0.9643,
+      "ci95": [
+       0.8929,
+       1.0
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@3": {
+      "value": 0.9643,
+      "ci95": [
+       0.8929,
+       1.0
+      ],
+      "eligible_tasks": 28
+     }
+    },
+    "C": {
+     "tasks": 28,
+     "attempts": 84,
+     "all_attempts_successful": 0.75,
+     "all_attempts_failed": 0.1071,
+     "pass@1": {
+      "value": 0.8095,
+      "ci95": [
+       0.6667,
+       0.9286
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@2": {
+      "value": 0.8571,
+      "ci95": [
+       0.7262,
+       0.9643
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@3": {
+      "value": 0.8929,
+      "ci95": [
+       0.7857,
+       1.0
+      ],
+      "eligible_tasks": 28
+     }
+    },
+    "D": {
+     "tasks": 28,
+     "attempts": 84,
+     "all_attempts_successful": 0.5714,
+     "all_attempts_failed": 0.3214,
+     "pass@1": {
+      "value": 0.619,
+      "ci95": [
+       0.4405,
+       0.7857
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@2": {
+      "value": 0.6548,
+      "ci95": [
+       0.4881,
+       0.8095
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@3": {
+      "value": 0.6786,
+      "ci95": [
+       0.5,
+       0.8571
+      ],
+      "eligible_tasks": 28
+     }
+    },
+    "E": {
+     "tasks": 28,
+     "attempts": 84,
+     "all_attempts_successful": 0.6071,
+     "all_attempts_failed": 0.3214,
+     "pass@1": {
+      "value": 0.6429,
+      "ci95": [
+       0.4643,
+       0.8095
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@2": {
+      "value": 0.6667,
+      "ci95": [
+       0.4881,
+       0.8214
+      ],
+      "eligible_tasks": 28
+     },
+     "pass@3": {
+      "value": 0.6786,
+      "ci95": [
+       0.5,
+       0.8571
+      ],
+      "eligible_tasks": 28
+     }
+    }
+   }
+  },
+  "potentially_unseen": {
+   "included_runs": 480,
+   "tasks": 32,
+   "summary": {
+    "A": {
+     "runs": 96,
+     "passes": 44,
+     "pass_rate": 0.4583
+    },
+    "B": {
+     "runs": 96,
+     "passes": 93,
+     "pass_rate": 0.9688
+    },
+    "C": {
+     "runs": 96,
+     "passes": 61,
+     "pass_rate": 0.6354
+    },
+    "D": {
+     "runs": 96,
+     "passes": 46,
+     "pass_rate": 0.4792
+    },
+    "E": {
+     "runs": 96,
+     "passes": 45,
+     "pass_rate": 0.4688
+    }
+   },
+   "paired_vs_A": {
+    "B": {
+     "tasks": 32,
+     "pairs": 96,
+     "pass_rate": 0.9688,
+     "base_pass_rate": 0.4583,
+     "difference": 0.5104,
+     "ci95": [
+      0.3438,
+      0.6771
+     ],
+     "p_permutation": 0.0001,
+     "mcnemar": {
+      "condition_only": 49,
+      "base_only": 0,
+      "p_exact": 0.0,
+      "note": "exploratory: (task, seed) pairs of one task are not independent"
+     }
+    },
+    "C": {
+     "tasks": 32,
+     "pairs": 96,
+     "pass_rate": 0.6354,
+     "base_pass_rate": 0.4583,
+     "difference": 0.1771,
+     "ci95": [
+      0.0729,
+      0.3021
+     ],
+     "p_permutation": 0.00684,
+     "mcnemar": {
+      "condition_only": 18,
+      "base_only": 1,
+      "p_exact": 8e-05,
+      "note": "exploratory: (task, seed) pairs of one task are not independent"
+     }
+    },
+    "D": {
+     "tasks": 32,
+     "pairs": 96,
+     "pass_rate": 0.4792,
+     "base_pass_rate": 0.4583,
+     "difference": 0.0208,
+     "ci95": [
+      -0.0208,
+      0.0625
+     ],
+     "p_permutation": 0.625,
+     "mcnemar": {
+      "condition_only": 4,
+      "base_only": 2,
+      "p_exact": 0.6875,
+      "note": "exploratory: (task, seed) pairs of one task are not independent"
+     }
+    },
+    "E": {
+     "tasks": 32,
+     "pairs": 96,
+     "pass_rate": 0.4688,
+     "base_pass_rate": 0.4583,
+     "difference": 0.0104,
+     "ci95": [
+      0.0,
+      0.0312
+     ],
+     "p_permutation": 1.0,
+     "mcnemar": {
+      "condition_only": 1,
+      "base_only": 0,
+      "p_exact": 1.0,
+      "note": "exploratory: (task, seed) pairs of one task are not independent"
+     }
+    }
+   },
+   "classes": {
+    "none_known": 32
+   },
+   "pass_at_k": {
+    "A": {
+     "tasks": 32,
+     "attempts": 96,
+     "all_attempts_successful": 0.375,
+     "all_attempts_failed": 0.5,
+     "pass@1": {
+      "value": 0.4583,
+      "ci95": [
+       0.2917,
+       0.625
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@2": {
+      "value": 0.5,
+      "ci95": [
+       0.3125,
+       0.6562
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@3": {
+      "value": 0.5,
+      "ci95": [
+       0.3125,
+       0.6562
+      ],
+      "eligible_tasks": 32
+     }
+    },
+    "B": {
+     "tasks": 32,
+     "attempts": 96,
+     "all_attempts_successful": 0.9688,
+     "all_attempts_failed": 0.0312,
+     "pass@1": {
+      "value": 0.9688,
+      "ci95": [
+       0.9062,
+       1.0
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@2": {
+      "value": 0.9688,
+      "ci95": [
+       0.9062,
+       1.0
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@3": {
+      "value": 0.9688,
+      "ci95": [
+       0.9062,
+       1.0
+      ],
+      "eligible_tasks": 32
+     }
+    },
+    "C": {
+     "tasks": 32,
+     "attempts": 96,
+     "all_attempts_successful": 0.5625,
+     "all_attempts_failed": 0.3125,
+     "pass@1": {
+      "value": 0.6354,
+      "ci95": [
+       0.4688,
+       0.7917
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@2": {
+      "value": 0.6771,
+      "ci95": [
+       0.5104,
+       0.8333
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@3": {
+      "value": 0.6875,
+      "ci95": [
+       0.5312,
+       0.8438
+      ],
+      "eligible_tasks": 32
+     }
+    },
+    "D": {
+     "tasks": 32,
+     "attempts": 96,
+     "all_attempts_successful": 0.4375,
+     "all_attempts_failed": 0.5,
+     "pass@1": {
+      "value": 0.4792,
+      "ci95": [
+       0.3125,
+       0.6458
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@2": {
+      "value": 0.5,
+      "ci95": [
+       0.3125,
+       0.6562
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@3": {
+      "value": 0.5,
+      "ci95": [
+       0.3125,
+       0.6562
+      ],
+      "eligible_tasks": 32
+     }
+    },
+    "E": {
+     "tasks": 32,
+     "attempts": 96,
+     "all_attempts_successful": 0.4062,
+     "all_attempts_failed": 0.5,
+     "pass@1": {
+      "value": 0.4688,
+      "ci95": [
+       0.3021,
+       0.6354
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@2": {
+      "value": 0.5,
+      "ci95": [
+       0.3125,
+       0.6562
+      ],
+      "eligible_tasks": 32
+     },
+     "pass@3": {
+      "value": 0.5,
+      "ci95": [
+       0.3125,
+       0.6562
+      ],
+      "eligible_tasks": 32
+     }
+    }
+   }
+  }
+ },
+ "hidden_coverage": {
+  "threshold": 40,
+  "tasks": 60,
+  "distribution": {
+   "40": 60
+  },
+  "unknown": [],
+  "below_threshold": [],
+  "sensitivity": {
+   "applicable": false,
+   "note": "every included task has at least 40 hidden tests"
+  }
+ },
+ "study_expenditure": {
+  "ledger": "E:\\CSC2108Local\\final-study\\api-ledger.json",
+  "all": {
+   "requests": 725,
+   "states": {
+    "completed": 724,
+    "http_error": 1
+   },
+   "token_cost_usd_known": 3.032171,
+   "requests_without_usage": 1,
+   "reservation_usd": 20.4594
+  },
+  "attributable_to_included_runs": {
+   "requests": 724,
+   "states": {
+    "completed": 724
+   },
+   "token_cost_usd_known": 3.032171,
+   "requests_without_usage": 0,
+   "reservation_usd": 19.928
+  },
+  "not_attributable": {
+   "requests": 1,
+   "states": {
+    "http_error": 1
+   },
+   "token_cost_usd_known": 0,
+   "requests_without_usage": 1,
+   "reservation_usd": 0.5314
+  },
+  "by_purpose": {
+   "final-main B": {
+    "requests": 571,
+    "states": {
+     "completed": 571
+    },
+    "token_cost_usd_known": 1.849619,
+    "requests_without_usage": 0,
+    "reservation_usd": 12.8327
+   },
+   "final-main E": {
+    "requests": 34,
+    "states": {
+     "completed": 33,
+     "http_error": 1
+    },
+    "token_cost_usd_known": 0.259432,
+    "requests_without_usage": 1,
+    "reservation_usd": 2.088
+   },
+   "final-main guidance": {
+    "requests": 120,
+    "states": {
+     "completed": 120
+    },
+    "token_cost_usd_known": 0.92312,
+    "requests_without_usage": 0,
+    "reservation_usd": 5.5387
+   }
+  },
+  "observed_models": [
+   "gpt-6.2-sol"
+  ],
+  "note": "not_attributable = failed or incomplete calls, excluded or rerun runs, and requests of runs not in this report"
+ },
+ "host_speed": [
+  {
+   "host": "Windows/AMD64/<HOST>",
+   "coding_model": "qwen3.5:9b",
+   "runs": 720,
+   "requests": 3801,
+   "decode_tok_s_median": 105.8,
+   "decode_tok_s_p10": 100.8,
+   "requests_over_near_s": 0,
+   "timed_out_requests": 0,
+   "near_seconds": 150.0,
+   "near_limit_share": 0.0
+  }
+ ],
+ "provenance": {
+  "final-main": {
+   "plan_sha256": "7342a46fb0b0ff5eb0ea9a9144126f499001e758baa72eebb45ad09bc402d052",
+   "benchmark": {
+    "manifest": "judge/manifests/final.json",
+    "manifest_name": "final",
+    "manifest_sha256": "6f11cd410028d613a8f28ed4097e78dd45703894ba5b1b352011f1ab0f9f9d44",
+    "tasks_sha256": "0697c3946df54de8db21a906c7bc4216b8430297313b45c4ef3787ef19e90ac2"
+   },
+   "git": {
+    "commit": "bf160d8958549e2c0957b4be1034fa6905201d0f",
+    "branch": "feat/csc2108-final-evaluation",
+    "execution_paths_dirty": false,
+    "dirty_paths": [],
+    "worktree_status_lines": 2
+   },
+   "code_fingerprint": {
+    "sha256": "40411a72c4e434f7e5341038a1b98178ea880dfdbaa46a859c54c98adac5552e",
+    "files": 122
+   },
+   "hardware_cohort": {
+    "label": "final windows",
+    "system": "Windows",
+    "machine": "AMD64",
+    "node": "<HOST>",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 16376 MiB, 610.88"
+   },
+   "local_model": {
+    "model": "qwen3.5:9b",
+    "expected_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90"
+   },
+   "frontier": {
+    "requested_model": "openai/gpt-6.2-sol",
+    "b_provider": "api",
+    "b_max_requests": 28,
+    "e_provider": "api",
+    "e_timeout_seconds": 300,
+    "reasoning_effort": "medium",
+    "max_completion_tokens": 8000
+   },
+   "pricing": {
+    "research_cost": {
+     "model": "gpt-6.2-sol",
+     "usd_per_1m_tokens": {
+      "input": 2.0,
+      "cached_input": 0.1,
+      "output": 10.0,
+      "tier": "standard",
+      "context": "short (<= 272K input tokens)",
+      "verified_utc": "2026-11-24",
+      "source": "https://developers.openai.com/api/docs/pricing"
+     },
+     "metric": "token-derived API cost (provider usage x list price), not invoiced expenditure",
+     "reasoning_tokens": "included in completion/output tokens by the provider; not added again",
+     "cached_input": "priced at the cached-input rate when the provider reports cached tokens"
+    },
+    "reservation": {
+     "price_conservative_per_1m": {
+      "input": 12.0,
+      "output": 60.0
+     },
+     "code_ceiling": {
+      "max_requests": 2000,
+      "max_usd": 100.0
+     },
+     "ledger_ceiling": {
+      "max_requests": null,
+      "max_usd": null
+     }
+    }
+   }
+  }
+ },
+ "definitions": "evaluation/README.md (Measurement definitions); evaluation/efficiency.py; evaluation/passk.py"
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc395_c",
+  "text": "## Observations\n\n1. If two equal values occur at positions \\(i<j\\), the subarray from \\(i\\) through \\(j\\) has length \\(j-i+1\\) and is the shortest subarray containing both positions.\n2. For a fixed right endpoint \\(j\\), the most recent previous occurrence of \\(A_j\\) gives the shortest subarray ending at \\(j\\) that contains an earlier copy of \\(A_j\\).\n3. Every subarray containing a duplicate contains an equal pair, so the answer is the minimum candidate length across all right endpoints. If there are no candidates, the answer is \\(-1\\).\n4. The scan needs only one stored position per distinct value and does a constant number of dictionary operations per element.\n\n## Solution sketch\n\n> If two equal values occur at positions \\(i<j\\), the subarray from \\(i\\) through \\(j\\) has length \\(j-i+1\\) and is the shortest subarray containing both positions.\n\n1. Read \\(N\\) and the sequence from standard input. Start with no best length. Whenever the scan finds an equal pair at positions \\(i<j\\), use \\(j-i+1\\) as its candidate length.\n\n> For a fixed right endpoint \\(j\\), the most recent previous occurrence of \\(A_j\\) gives the shortest subarray ending at \\(j\\) that contains an earlier copy of \\(A_j\\).\n\n2. Scan from left to right with an initially empty dictionary of last-seen positions. At each position \\(j\\), look up \\(A_j\\). If it has a stored position \\(i\\), compare the candidate length with the best length so far and keep the smaller one, or record the candidate if it is the first. Only after the lookup, update the stored position to \\(j\\).\n\n> Every subarray containing a duplicate contains an equal pair, so the answer is the minimum candidate length across all right endpoints. If there are no candidates, the answer is \\(-1\\).\n\n3. Print the best length if one was recorded; otherwise, print \\(-1\\). This covers a one-element sequence and any sequence with all distinct values. Adjacent equal values produce length \\(2\\), the smallest possible answer.\n\n> The scan needs only one stored position per distinct value and does a constant number of dictionary operations per element.\n\n4. With a hash-table dictionary, the scan takes \\(O(N)\\) expected time and uses \\(O(D)\\) auxiliary space, where \\(D\\) is the number of distinct values. Storing the input sequence also takes \\(O(N)\\) space.\n",
+  "statement_sha256": "551d21aa6a3bd25f8a4c947981714a7f6b3d3bbb45dc8bfbae04e5a3d7f32d1e",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "551d21aa6a3bd25f8a4c947981714a7f6b3d3bbb45dc8bfbae04e5a3d7f32d1e",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:46:10Z",
+    "finish_reason": "stop",
+    "request_id": "req_b4edae83386e4e91b0358b321247ec45",
+    "retries": 0,
+    "ledger_index": 91
+  },
+  "usage": {
+    "prompt_tokens": 467,
+    "completion_tokens": 547,
+    "total_tokens": 1014,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 8.05,
+  "cost_usd": 0.006404,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 375,
+  "created_utc": "2026-11-25T05:46:18Z"
+}

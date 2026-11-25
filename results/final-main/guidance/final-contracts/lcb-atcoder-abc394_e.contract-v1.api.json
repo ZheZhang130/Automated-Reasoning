@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc394_e",
+  "text": "## Description\nRead a labeled directed graph from standard input. For every ordered pair of vertices, print the minimum number of edges in a path whose labels read the same forward and backward, or `-1` if no such path exists. Paths may repeat vertices and edges, and the empty path qualifies.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains an integer \\(N\\) with \\(1 \\le N \\le 100\\). The vertices are numbered from 1 through \\(N\\).\n- **PRE-2 (Unverified):** The next \\(N\\) lines each contain exactly \\(N\\) characters, each a lowercase English letter or `-`. A letter in row \\(i\\), column \\(j\\) denotes exactly one edge from \\(i\\) to \\(j\\) with that label; `-` denotes no such edge. Diagonal entries follow the same rule.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains \\(N\\) rows of \\(N\\) space-separated integers. Row \\(i\\), column \\(j\\) gives the answer from \\(i\\) to \\(j\\), with rows and columns in increasing vertex order.\n- **POST-2 (Unverified):** If at least one qualifying path exists for an ordered pair, its answer is the minimum edge count over all qualifying paths, including paths with repeated vertices or edges. If none exists, its answer is `-1`.\n- **POST-3 (Unverified):** Every diagonal answer is `0`, regardless of self-loops. For distinct vertices, a direct edge guarantees an answer of `1`.\n\n## Test suggestions\n- Check a single vertex both with and without a self-loop; expect one row containing `0` (PRE-1, PRE-2, POST-1, POST-3).\n- Check a 100-vertex graph with no edges; expect `0` on the diagonal and `-1` everywhere else (PRE-1, PRE-2, POST-1–POST-3).\n- Check a graph with a one-way edge and a separate reachable pair whose only path spells a non-palindrome. Confirm that direction is respected and that reachability alone does not qualify (PRE-2, POST-1–POST-3).\n- Check cases with competing palindromic lengths and with a shortest qualifying path that revisits a vertex. Confirm that only the minimum edge count is reported (POST-1, POST-2).\n\n## Unspecified behavior\n- Behavior for input that does not meet PRE-1 or PRE-2 is unspecified.\n- The output does not identify a witness path or distinguish between equally short qualifying paths.\n",
+  "statement_sha256": "1c11e5a3a6eea0533b59a9e597ab68026da0c684464ecfb0c1cf17fe96042329",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "1c11e5a3a6eea0533b59a9e597ab68026da0c684464ecfb0c1cf17fe96042329",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:37:19Z",
+    "finish_reason": "stop",
+    "request_id": "req_9f7b2264bb9648f8b0b6ec9b58c4269f",
+    "retries": 0,
+    "ledger_index": 28
+  },
+  "usage": {
+    "prompt_tokens": 913,
+    "completion_tokens": 560,
+    "total_tokens": 1473,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 9.78,
+  "cost_usd": 0.007426,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 356,
+  "created_utc": "2026-11-25T05:37:29Z"
+}

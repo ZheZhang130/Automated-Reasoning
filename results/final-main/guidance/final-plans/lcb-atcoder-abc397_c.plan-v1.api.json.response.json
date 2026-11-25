@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo08RDEFYfO78romSFFBVyXMyGIHP",
+  "object": "chat.completion",
+  "created": 1795585627,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n1. Before any elements are moved to the left subarray, the right subarray contains the entire sequence, so its distinct count is the number of values with positive frequency.\n2. Moving one element from right to left increases the left distinct count only on its first occurrence on the left, and decreases the right distinct count only on its last occurrence on the right.\n3. A split is valid exactly when the left subarray contains between 1 and N − 1 elements.\n4. Every value is between 1 and N, so frequency and presence checks can use directly indexed arrays in constant time.\n\n## Solution sketch\n> Before any elements are moved to the left subarray, the right subarray contains the entire sequence, so its distinct count is the number of values with positive frequency.\n\n1. Read the sequence and count the occurrences of each value. Initialize the right distinct count to the number of positive frequencies and the left distinct count to zero. Mark every value as unseen on the left.\n\n> Moving one element from right to left increases the left distinct count only on its first occurrence on the left, and decreases the right distinct count only on its last occurrence on the right.\n\n2. Scan from left to right. For each element moved, mark its value as seen on the left and increment the left distinct count if it was previously unseen. Decrement its right frequency, and decrement the right distinct count if that frequency becomes zero. These updates keep both counts exact even when a value occurs on both sides.\n\n> A split is valid exactly when the left subarray contains between 1 and N − 1 elements.\n\n3. Apply the move to the first N − 1 elements only. After each move, compare the sum of the two distinct counts with the best sum so far. Print the maximum. For N = 2, this evaluates the single legal split and gives 2, even if the two values are equal.\n\n> Every value is between 1 and N, so frequency and presence checks can use directly indexed arrays in constant time.\n\n4. Use two arrays of length N + 1 for the right frequencies and left presence flags. Initialization and the scan take O(N) time in total, and the sequence and arrays use O(N) space.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 600,
+    "completion_tokens": 462,
+    "total_tokens": 1062,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc397_a",
+  "text": "## Observations\n\n1. The input is a single temperature \\(X\\) between 30 and 50, given to one decimal place.\n2. Temperatures at or above 38.0 are high fever and map to 1.\n3. Temperatures at or above 37.5 but below 38.0 are fever and map to 2.\n4. Temperatures below 37.5 are normal and map to 3.\n5. The input has bounded length, and the classification uses only two fixed thresholds.\n\n## Solution sketch\n\n> The input is a single temperature \\(X\\) between 30 and 50, given to one decimal place.\n\n1. Read \\(X\\) from standard input as a decimal number.\n\n> Temperatures at or above 38.0 are high fever and map to 1.\n\n2. If \\(X\\) is at least 38.0, print 1 and stop. This includes \\(X = 38.0\\).\n\n> Temperatures at or above 37.5 but below 38.0 are fever and map to 2.\n\n3. Otherwise, if \\(X\\) is at least 37.5, print 2 and stop. The previous check already established that \\(X\\) is below 38.0, and this check includes \\(X = 37.5\\).\n\n> Temperatures below 37.5 are normal and map to 3.\n\n4. If neither check succeeds, print 3: the temperature must be below 37.5.\n\n> The input has bounded length, and the classification uses only two fixed thresholds.\n\n5. Reading the input and making at most two comparisons takes \\(O(1)\\) time and \\(O(1)\\) extra space.\n",
+  "statement_sha256": "645780772546ad66210469fc15edde34609ea5e2dfc028b6e7b5ab02b202bc55",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "645780772546ad66210469fc15edde34609ea5e2dfc028b6e7b5ab02b202bc55",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:46:54Z",
+    "finish_reason": "stop",
+    "request_id": "req_e22303b97ba54f97a3a6534dd910d3df",
+    "retries": 0,
+    "ledger_index": 96
+  },
+  "usage": {
+    "prompt_tokens": 456,
+    "completion_tokens": 364,
+    "total_tokens": 820,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.38,
+  "cost_usd": 0.004552,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 228,
+  "created_utc": "2026-11-25T05:46:59Z"
+}

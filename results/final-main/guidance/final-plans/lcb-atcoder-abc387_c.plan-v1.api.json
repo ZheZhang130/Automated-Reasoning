@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc387_c",
+  "text": "## Observations\n\n1. Once the leading digit is fixed to \\(d\\), every remaining digit independently has \\(d\\) choices: \\(0\\) through \\(d-1\\).\n2. A number is smaller than a bound if it has fewer digits, or if it has the same length and its first differing digit is smaller.\n3. The inclusive range count is the number of Snake numbers at most \\(R\\) minus the number at most \\(L-1\\).\n4. The bounds have at most 19 digits, and every block of valid suffixes can be counted using a power of a digit from 1 through 9.\n\n## Solution sketch\n\n> The inclusive range count is the number of Snake numbers at most \\(R\\) minus the number at most \\(L-1\\).\n\n1. Read \\(L\\) and \\(R\\), and define a prefix count \\(F(X)\\) for Snake numbers at most \\(X\\). Return zero for \\(X<10\\), which handles \\(L-1=9\\) when \\(L=10\\). Print \\(F(R)-F(L-1)\\).\n\n> A number is smaller than a bound if it has fewer digits, or if it has the same length and its first differing digit is smaller.\n\n2. For each bound \\(X\\ge10\\), let \\(n\\) be its digit count and \\(b\\) its leading digit. For each length \\(k\\) from 2 through \\(n-1\\), add \\(d^{k-1}\\) for each leading digit \\(d\\) from 1 through 9. Then add \\(d^{n-1}\\) for each leading digit \\(d<b\\). All these numbers are smaller than \\(X\\), regardless of their valid suffixes.\n\n> Once the leading digit is fixed to \\(d\\), every remaining digit independently has \\(d\\) choices: \\(0\\) through \\(d-1\\).\n\n3. Count the remaining \\(n\\)-digit candidates, whose leading digit is \\(b\\), by scanning the suffix of \\(X\\) from left to right. If the current digit is \\(x\\) and there are \\(r\\) positions after it, there are \\(\\min(x,b)\\) legal digits strictly below \\(x\\). Add \\(\\min(x,b)b^r\\): these candidates first differ from \\(X\\) at this position, so their remaining digits are unrestricted apart from the Snake rule. If \\(x\\ge b\\), stop because no valid candidate can keep matching the bound. If the entire suffix can be matched, add one for \\(X\\) itself. This includes the bound exactly when it is a Snake number.\n\n> The bounds have at most 19 digits, and every block of valid suffixes can be counted using a power of a digit from 1 through 9.\n\n4. Precompute the powers of each digit from 1 through 9, up to exponent \\(D-1\\), where \\(D\\) is the digit count of \\(R\\). Each block count then uses one lookup. The precomputation and both prefix counts together take \\(O(D)\\) time and \\(O(D)\\) extra space, treating the nine possible leading digits as a constant.\n",
+  "statement_sha256": "2c5736a7a5b3e3e3124f315691d6cfec9ad6c12dad473919943347943cc9b0c3",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "2c5736a7a5b3e3e3124f315691d6cfec9ad6c12dad473919943347943cc9b0c3",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:41:26Z",
+    "finish_reason": "stop",
+    "request_id": "req_8b91ed72f9d248c8a03eae0d51adf77c",
+    "retries": 0,
+    "ledger_index": 62
+  },
+  "usage": {
+    "prompt_tokens": 360,
+    "completion_tokens": 675,
+    "total_tokens": 1035,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 9.72,
+  "cost_usd": 0.00747,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 427,
+  "created_utc": "2026-11-25T05:41:36Z"
+}

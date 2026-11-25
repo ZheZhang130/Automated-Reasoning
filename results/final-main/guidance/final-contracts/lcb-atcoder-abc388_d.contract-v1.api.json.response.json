@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzwhgqlFag5EbsMwc59JXhHnIe3w",
+  "object": "chat.completion",
+  "created": 1795584899,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nThe Python 3 program reads the aliens’ initial stone counts from standard input and prints their stone counts after all N coming-of-age celebrations.\n\n## Preconditions\n- **PRE-1 (Unverified):** The input contains an integer N on the first line and exactly N integers on the second line. N is between 1 and 500,000 inclusive, and each stone count is between 0 and 500,000 inclusive.\n- **PRE-2 (Unverified):** Initially, all N aliens are minors, and alien i owns the i-th input stone count. Alien i becomes an adult in year i. No new aliens are born.\n\n## Postconditions\n- **POST-1 (Unverified):** At each celebration, every previously adult alien with at least one stone immediately before the celebration gives exactly one stone to the newly adult alien. Previously adult aliens with zero stones give nothing. The recipient keeps their existing stones and gains one per eligible donor. No other stone counts change at that celebration.\n- **POST-2 (Unverified):** Stone counts remain nonnegative, and their sum remains equal to the initial total throughout the N years.\n- **POST-3 (Unverified):** Standard output contains exactly N integer stone counts separated by spaces, in original alien order. Each count reflects the state after the year-N celebration.\n\n## Test suggestions\n- Use N = 1 with zero stones and with 500,000 stones. With no earlier adults, the only count should remain unchanged (PRE-1, POST-1, POST-3).\n- Use several aliens with all counts zero. Check that nobody gives a stone and that all N output counts are zero (POST-1 through POST-3).\n- Use initial counts `1 0 0 0`. Expect `0 0 0 1`: each recipient can give its received stone at a later celebration, but an alien with no stones gives nothing (POST-1 through POST-3).\n- Check the supplied samples, including the first sample where two eligible donors give to the same recipient in one celebration (POST-1 through POST-3).\n\n## Unspecified behavior\nBehavior for missing, malformed, extra, or out-of-range input is not specified. Only final counts are required; intermediate states need not be reported.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 729,
+    "completion_tokens": 472,
+    "total_tokens": 1201,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

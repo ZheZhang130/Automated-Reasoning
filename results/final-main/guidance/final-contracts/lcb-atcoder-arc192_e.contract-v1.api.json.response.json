@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo01uExKfaEVCpEbUZpThrzgSyWla",
+  "object": "chat.completion",
+  "created": 1795585222,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead six integers from standard input and print the number of distinct paths Snuke can take, modulo 998244353. Blocks occupy the lattice points in the inclusive rectangle from \\((0,0)\\) to \\((W,H)\\), except those in the inclusive rectangle from \\((L,D)\\) to \\((R,U)\\).\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies six integers in the order \\(W,H,L,R,D,U\\).\n- **PRE-2 (Unverified):** \\(0 \\le L \\le R \\le W \\le 10^6\\) and \\(0 \\le D \\le U \\le H \\le 10^6\\).\n- **PRE-3 (Unverified):** At least one block remains outside the excluded rectangle.\n\n## Postconditions\n- **POST-1 (Unverified):** Every counted path starts at a block, and each successive point is a block exactly one unit to the right or one unit above the preceding point. Paths may stop at any block they reach.\n- **POST-2 (Unverified):** Each distinct ordered sequence of visited points is counted exactly once. This includes one zero-move path per block; paths with the same start and end but different intermediate points count separately.\n- **POST-3 (Unverified):** Standard output contains a single integer in the range 0 through 998244352, congruent to the path count modulo 998244353.\n\n## Test suggestions\n- Check all three samples against their stated outputs (PRE-1–PRE-3, POST-1–POST-3).\n- Use \\(W=1,H=0,L=0,R=0,D=0,U=0\\). Only one block remains, so the output should be `1` (PRE-2–PRE-3, POST-1–POST-3).\n- On a \\(3\\times3\\) lattice with only the center excluded, check that the two routes between opposite corners are counted separately and that no path visits the center (POST-1–POST-2).\n- Check a valid case whose exact count exceeds the modulus against its expected residue (POST-3).\n\n## Unspecified behavior\nHandling of malformed input, out-of-range values, or inputs that leave no blocks is not specified.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 671,
+    "completion_tokens": 482,
+    "total_tokens": 1153,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

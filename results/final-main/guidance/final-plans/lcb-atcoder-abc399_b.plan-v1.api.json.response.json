@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo09mkSRetTZqg0XJGAojrY2l8Y5k",
+  "object": "chat.completion",
+  "created": 1795585710,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. A person's rank is one plus the number of people with strictly higher scores. Each higher-scoring group increases the rank counter by its size before the person's own group is reached.\n2. People with equal scores do not count one another as higher-scoring. If everyone has the same score, including when there is only one participant, every rank is 1.\n3. The output must follow the original input order, and there are at most 100 participants, so comparing every person's score with every score is feasible.\n\n## Solution sketch\n\n> The output must follow the original input order, and there are at most 100 participants, so comparing every person's score with every score is feasible.\n\n1. Read \\(N\\) and store the \\(N\\) scores in input order. Visit each score in that same order so its rank can be printed immediately.\n\n> A person's rank is one plus the number of people with strictly higher scores. Each higher-scoring group increases the rank counter by its size before the person's own group is reached.\n\n2. For the current person, start the rank at 1 and scan all \\(N\\) scores. Add 1 for each score strictly greater than the current person's score. Because the contest advances the rank counter once per person in each higher-scoring group, this produces the same rank as the stated procedure.\n\n> People with equal scores do not count one another as higher-scoring. If everyone has the same score, including when there is only one participant, every rank is 1.\n\n3. Print the computed rank on its own line. The strict comparison excludes both the person's own score and any tied scores. If no score is higher, the rank stays at 1.\n\n> The output must follow the original input order, and there are at most 100 participants, so comparing every person's score with every score is feasible.\n\n4. The algorithm performs \\(N\\) comparisons for each of \\(N\\) people, taking \\(O(N^2)\\) time. It uses \\(O(N)\\) space to store the scores and \\(O(1)\\) additional working space.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 752,
+    "completion_tokens": 435,
+    "total_tokens": 1187,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

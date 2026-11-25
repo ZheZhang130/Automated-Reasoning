@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc393_b",
+  "text": "## Description\nGiven a string, print the number of distinct index triples whose characters are `A`, `B`, and `C`, in that order and at equal spacing.\n\n## Preconditions\n- **PRE-1 — Unverified:** Standard input supplies one string `S` on a single line.\n- **PRE-2 — Unverified:** `S` contains only uppercase English letters and has length from 3 through 100, inclusive.\n\n## Postconditions\n- **POST-1 — Unverified:** Standard output contains a single nonnegative integer: the number of triples `(i, j, k)` for which `1 ≤ i < j < k ≤ |S|`, `j − i = k − j`, and the characters at those one-based positions are `A`, `B`, and `C`, respectively.\n- **POST-2 — Unverified:** Each qualifying triple contributes exactly once, even if it shares positions with another qualifying triple. Both adjacent and nonadjacent positions qualify if the spacing is equal. If no triple qualifies, the output is `0`.\n\n## Test suggestions\n- At the minimum length, check that `ABC` prints `1`, while `ACB` and `ARC` print `0` (PRE-2, POST-1, POST-2).\n- Check that `ABXC` prints `0` because its `A`, `B`, and `C` are not equally spaced (POST-1).\n- Check that `AABCC` prints `2`, counting both triples that share the same `B` (POST-2).\n- At the maximum length, check a string of 100 `A` characters and expect `0` (PRE-2, POST-2).\n\n## Unspecified behavior\nInputs outside the stated format, length, or character constraints have no specified behavior.\n",
+  "statement_sha256": "e7f3fccafb29052499d3d3ee15e2fb56e276ec300cc65c205376d065819b95a0",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "e7f3fccafb29052499d3d3ee15e2fb56e276ec300cc65c205376d065819b95a0",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:36:53Z",
+    "finish_reason": "stop",
+    "request_id": "req_47c50ff12bda4cb3947461a5be6e9dce",
+    "retries": 0,
+    "ledger_index": 24
+  },
+  "usage": {
+    "prompt_tokens": 449,
+    "completion_tokens": 376,
+    "total_tokens": 825,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.08,
+  "cost_usd": 0.004658,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 236,
+  "created_utc": "2026-11-25T05:36:59Z"
+}

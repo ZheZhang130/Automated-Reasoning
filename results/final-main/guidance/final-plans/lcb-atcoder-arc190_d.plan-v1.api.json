@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc190_d",
+  "text": "## Observations\n\n1. If \\(p=2\\), every zero must be replaced by \\(1\\), so there is exactly one matrix to square.\n2. In a length-\\(p\\) walk contributing to \\(B^p\\), each replaced entry contributes a power whose exponent is the number of times the walk uses that entry. Summing over replacements factors into independent sums for the zero positions.\n3. Modulo \\(p\\), the sum of the \\(e\\)-th powers of the nonzero residues is \\(-1\\) if \\(p-1\\) divides \\(e\\), including \\(e=0\\), and is \\(0\\) otherwise.\n4. For odd \\(p\\), a surviving walk either uses only nonzero entries of \\(A\\), or uses one zero position exactly \\(p-1\\) times and one nonzero entry once. In either case, summing over the replacements gives the common factor \\((-1)^K\\).\n5. A repeated zero diagonal entry is a loop, so the one nonzero edge must occur before or after all its repetitions. A repeated zero off-diagonal entry needs a return edge between consecutive uses, so it is possible only for \\(p=3\\), when that return edge must be the reverse edge.\n6. The walks using only nonzero entries are accounted for by \\(A^p\\), and binary matrix exponentiation computes it with \\(O(\\log p)\\) matrix multiplications.\n\n## Solution sketch\n\n1. “If \\(p=2\\), every zero must be replaced by \\(1\\), so there is exactly one matrix to square.”\n\n   Handle \\(p=2\\) directly: fill the zeros with \\(1\\), square the resulting matrix modulo \\(2\\), and output it.\n\n2. “In a length-\\(p\\) walk contributing to \\(B^p\\), each replaced entry contributes a power whose exponent is the number of times the walk uses that entry. Summing over replacements factors into independent sums for the zero positions.”\n\n   For odd \\(p\\), count the zero entries \\(K\\). View the \\((i,j)\\) entry of \\(B^p\\) as the sum of the weights of length-\\(p\\) walks from \\(i\\) to \\(j\\), where the weight is the product of the traversed entries. For each walk, sum its weight over all replacements by treating each zero position independently, even when the walk visits that position more than once.\n\n3. “Modulo \\(p\\), the sum of the \\(e\\)-th powers of the nonzero residues is \\(-1\\) if \\(p-1\\) divides \\(e\\), including \\(e=0\\), and is \\(0\\) otherwise.”\n\n   Apply this rule to each zero position. To see why it holds, write the nonzero residues as powers of a generator modulo \\(p\\). Their \\(e\\)-th powers then form a geometric sum, which is zero unless the ratio is \\(1\\). In that case there are \\(p-1\\) terms equal to \\(1\\), giving \\(-1\\) modulo \\(p\\). In particular, even an unused zero position contributes a factor of \\(-1\\).\n\n4. “For odd \\(p\\), a surviving walk either uses only nonzero entries of \\(A\\), or uses one zero position exactly \\(p-1\\) times and one nonzero entry once. In either case, summing over the replacements gives the common factor \\((-1)^K\\).”\n\n   A used zero position must occur a positive multiple of \\(p-1\\) times, and \\(2(p-1)>p\\). Thus no walk can use two such positions or use one more than \\(p-1\\) times and still survive. Set aside the common factor \\((-1)^K\\) until all surviving walk contributions have been added.\n\n5. “The walks using only nonzero entries are accounted for by \\(A^p\\), and binary matrix exponentiation computes it with \\(O(\\log p)\\) matrix multiplications.”\n\n   Initialize the answer matrix with \\(A^p\\bmod p\\), computed by repeated squaring. Any walk that uses a zero entry has weight zero in \\(A^p\\), so this accounts for exactly the first class of surviving walks.\n\n6. “A repeated zero diagonal entry is a loop, so the one nonzero edge must occur before or after all its repetitions. A repeated zero off-diagonal entry needs a return edge between consecutive uses, so it is possible only for \\(p=3\\), when that return edge must be the reverse edge.”\n\n   For every pair \\((i,j)\\), add \\(A_{i,j}\\) if \\(A_{i,i}=0\\), accounting for loops at the start, and add it again if \\(A_{j,j}=0\\), accounting for loops at the end. If \\(p=3\\), also add \\(A_{j,i}\\) whenever \\(i\\ne j\\) and \\(A_{i,j}=0\\): the walk is then \\(i\\to j\\to i\\to j\\). If the reverse entry is zero, this addition is zero, as required. Multiply the resulting matrix by \\((-1)^K\\) and print the residues in \\([0,p-1]\\). These rules also cover \\(K=0\\) and \\(N=1\\) without special cases.\n\n7. “The walks using only nonzero entries are accounted for by \\(A^p\\), and binary matrix exponentiation computes it with \\(O(\\log p)\\) matrix multiplications.”\n\n   Use ordinary matrix multiplication, taking \\(O(N^3)\\) time per product and \\(O(N^2)\\) space. Counting zeros and applying the corrections take \\(O(N^2)\\) time. The total is \\(O(N^3\\log p)\\) time and \\(O(N^2)\\) space; the \\(p=2\\) branch uses just one matrix product.\n",
+  "statement_sha256": "0aa6f0337e09308582051aa99f28b6e5226d9160c89387b7924fd2f076691d4d",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "0aa6f0337e09308582051aa99f28b6e5226d9160c89387b7924fd2f076691d4d",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:49:34Z",
+    "finish_reason": "stop",
+    "request_id": "req_f6a782dcc2f64611bdc44776cc842809",
+    "retries": 0,
+    "ledger_index": 110
+  },
+  "usage": {
+    "prompt_tokens": 905,
+    "completion_tokens": 1560,
+    "total_tokens": 2465,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 303,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 22.08,
+  "cost_usd": 0.01741,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 752,
+  "created_utc": "2026-11-25T05:49:56Z"
+}

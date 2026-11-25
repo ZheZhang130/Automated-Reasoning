@@ -1,0 +1,20 @@
+{
+  "status": "candidate_failure",
+  "passed": 34,
+  "total": 40,
+  "verdict_counts": {
+    "AC": 34,
+    "WA": 6
+  },
+  "judge_version": "0.2.1",
+  "tests_sha256": "17649c69db6252def75954ac35cd104e10f03d77435e797c1345381a60f3ed6c",
+  "code_sha256": "7e23f46779da86755fbaca10554829a53d4d8ff2f2b69a6751d079f4b8b541e7",
+  "error": null,
+  "run_id": "final-main-lcb-atcoder-abc398_g-D-s2110-0f325677",
+  "task_id": "lcb-atcoder-abc398_g",
+  "condition": "D",
+  "suite": "hidden",
+  "judge_tests_sha256": "3f410ec4cf8e9bd883256ba80100c53c67ac4fd96103027145bceb66adf41932",
+  "submission_sha256": "7e23f46779da86755fbaca10554829a53d4d8ff2f2b69a6751d079f4b8b541e7",
+  "evaluated_utc": "2026-11-25T21:22:02Z"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzzcAcS9SFFqLGSxIdy0ZjxFbGta",
+  "object": "chat.completion",
+  "created": 1795585080,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nStarting with exactly 100 cards labeled `0`, process the queries from standard input in the order given. A type 1 query places a card on top of the pile. A type 2 query removes the current top card and reports its label on standard output.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains an integer `Q` from 1 through 100, followed by exactly `Q` query lines.\n- **PRE-2 (Unverified):** Each query line is either `1 x`, where `x` is an integer from 1 through 100, or `2` with no additional value.\n- **PRE-3 (Unverified):** At least one query is of type 2. The pile is nonempty immediately before each type 2 query; this follows from the initial 100 cards and the bound on `Q`.\n\n## Postconditions\n- **POST-1 (Unverified):** Each type 1 query adds exactly one card labeled `x` above all existing cards, preserves their relative order, and produces no output.\n- **POST-2 (Unverified):** Each type 2 query removes exactly the card currently on top and reports its label. All other cards retain their relative order. Cards with equal labels are still separate cards.\n- **POST-3 (Unverified):** Standard output contains exactly one line per type 2 query, in query order, with only the removed card’s integer label on each line.\n\n## Test suggestions\n- Use a single type 2 query and expect one line containing `0` (PRE-1–PRE-3, POST-2–POST-3).\n- Use 100 type 2 queries and expect 100 lines containing `0`; the final query removes the last card (PRE-1–PRE-3, POST-2–POST-3).\n- Add cards labeled `1`, `100`, and `100`, then remove four cards. Expect `100`, `100`, `1`, and `0` on successive lines, with no output from the additions (PRE-2–PRE-3, POST-1–POST-3).\n\n## Unspecified behavior\nInput that does not meet the stated format or constraints is outside the guarantees. No error handling is specified for malformed queries, missing or extra input, or an attempt to remove a card from an empty pile.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 778,
+    "completion_tokens": 496,
+    "total_tokens": 1274,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo01lXacRSeZSexTzXYJihGK7JtCj",
+  "object": "chat.completion",
+  "created": 1795585213,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nGiven a connected, simple, undirected graph and the distinct starting vertices of two labeled pieces, determine whether the pieces can exchange positions without ever occupying the same vertex. If they can, report the fewest moves required.\n\n## Preconditions\n- **PRE-1 — Unverified:** Standard input contains four integers \\(N, M, S, T\\), followed by \\(M\\) lines of two integers \\(u_i, v_i\\) each. The bounds are \\(2 \\le N \\le 200{,}000\\) and \\(N-1 \\le M \\le \\min(N(N-1)/2, 200{,}000)\\).\n- **PRE-2 — Unverified:** Each pair satisfies \\(1 \\le u_i < v_i \\le N\\) and represents one undirected edge. The graph has no duplicate edges and is connected.\n- **PRE-3 — Unverified:** \\(S\\) and \\(T\\) are distinct vertices in \\(1,\\ldots,N\\). Piece A starts at \\(S\\), and piece B starts at \\(T\\).\n\n## Postconditions\n- **POST-1 — Unverified:** Each legal operation moves exactly one piece along one edge to a vertex not occupied by the other piece. The other piece stays in place, so the two positions remain distinct after every move.\n- **POST-2 — Unverified:** If a legal sequence ends with A at \\(T\\) and B at \\(S\\), standard output contains a single integer equal to the minimum number of moves over all such sequences. A move sequence is not printed.\n- **POST-3 — Unverified:** If no legal sequence reaches that labeled goal, standard output contains only the integer `-1`.\n\n## Test suggestions\n- For the two-vertex, one-edge graph with one piece on each vertex (PRE-1–PRE-3), expect `-1`: neither piece can move under POST-1, so POST-3 applies.\n- For a triangle with the pieces on distinct vertices (PRE-1–PRE-3), expect `3`: the third vertex permits a swap, but an immediate move into the other piece’s vertex is forbidden (POST-1, POST-2).\n- Check that Sample 3 yields `4` (POST-2), and that reordering its edge lines without changing the graph (PRE-2) leaves the answer unchanged.\n\n## Unspecified behavior\nBehavior on malformed input or input that violates any precondition is unspecified. When several shortest legal sequences exist, no choice among them is required.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 793,
+    "completion_tokens": 532,
+    "total_tokens": 1325,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

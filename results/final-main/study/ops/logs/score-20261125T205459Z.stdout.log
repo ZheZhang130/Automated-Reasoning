@@ -1,0 +1,27 @@
+{"measured": 900, "file": "E:\\CSC2108Local\\final-study\\runs\\final-main\\measurements.jsonl"}
+{
+ "batch": "E:\\CSC2108Local\\final-study\\runs\\final-main",
+ "scored": 900,
+ "status": {
+  "pass": 596,
+  "candidate_failure": 159,
+  "missing_submission": 145
+ },
+ "completeness": {
+  "batch": "E:\\CSC2108Local\\final-study\\runs\\final-main",
+  "scheduled": 900,
+  "counts": {
+   "not_executed": 0,
+   "incomplete": 0,
+   "awaiting_scoring": 0,
+   "scored": 900,
+   "excluded": 0,
+   "invalid": 0
+  },
+  "complete": true,
+  "problems": [],
+  "orphan_verdicts": 0,
+  "not_done": [],
+  "not_done_total": 0
+ }
+}

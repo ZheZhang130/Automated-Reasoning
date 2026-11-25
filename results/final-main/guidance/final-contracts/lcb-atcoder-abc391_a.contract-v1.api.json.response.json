@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Enzxg49iJDNV3a5OCJNIrep02UJXT",
+  "object": "chat.completion",
+  "created": 1795584960,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nThe program reads one direction abbreviation from standard input and prints the abbreviation for the opposite direction to standard output.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input contains one line giving a single direction abbreviation, `D`.\n- **PRE-2 (Unverified):** `D` is exactly one of `N`, `E`, `W`, `S`, `NE`, `NW`, `SE`, or `SW`.\n\n## Postconditions\n- **POST-1 (Unverified):** The program prints exactly one answer on one line, with no additional text.\n- **POST-2 (Unverified):** The answer is the other abbreviation in the pair containing `D`: `N` and `S`, `E` and `W`, `NE` and `SW`, or `NW` and `SE`.\n\n## Test suggestions\n- Run one case for each of the eight valid inputs (PRE-1, PRE-2). Check the exact output in both directions for each pair (POST-2).\n- For each case, check that standard output contains only the answer line (POST-1).\n\n## Unspecified behavior\nBehavior is unspecified for missing input, unsupported abbreviations, different capitalization, or input that otherwise does not follow the stated format.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 404,
+    "completion_tokens": 265,
+    "total_tokens": 669,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

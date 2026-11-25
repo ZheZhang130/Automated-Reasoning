@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzvzOJFcbmqrnwuZj0IlCOTI54QH",
+  "object": "chat.completion",
+  "created": 1795584855,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead two positive integers, A and B, from standard input and print the square of their sum to standard output.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input contains two space-separated integers, A and B, on one line.\n- **PRE-2 (Unverified):** A and B are each between 1 and 2025, inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** The program prints exactly one integer to standard output: the square of the sum of A and B. It prints no prompts or explanatory text.\n- **POST-2 (Unverified):** Swapping A and B does not change the result. If A and B are equal, both values contribute to the sum.\n\n## Test suggestions\n- Check the lower and upper bounds of PRE-2: `1 1` should print `4`, and `2025 2025` should print `16402500` (POST-1, POST-2).\n- Check `20 25` and `25 20` as separate inputs satisfying PRE-1 and PRE-2. Both should print only `2025` (POST-1, POST-2).\n\n## Unspecified behavior\nNo behavior is specified for input outside PRE-1 or PRE-2, including missing, extra, non-integer, or out-of-range values.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 358,
+    "completion_tokens": 287,
+    "total_tokens": 645,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

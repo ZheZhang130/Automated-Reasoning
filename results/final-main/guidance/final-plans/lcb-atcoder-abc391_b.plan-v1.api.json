@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc391_b",
+  "text": "## Observations\n\n1. An \\(M \\times M\\) subgrid fits inside \\(S\\) exactly when its top-left row and column are both between \\(1\\) and \\(N-M+1\\), inclusive.\n2. A candidate matches \\(T\\) only if every pair of corresponding cells has the same character; one mismatch is enough to reject it.\n3. Exactly one candidate matches, so the search can stop at the first full match.\n4. There are \\((N-M+1)^2\\) candidates, each requiring at most \\(M^2\\) cell comparisons, so direct search is fast enough for \\(N \\le 50\\).\n\n## Solution sketch\n\n1. > An \\(M \\times M\\) subgrid fits inside \\(S\\) exactly when its top-left row and column are both between \\(1\\) and \\(N-M+1\\), inclusive.\n\n   Read the dimensions and store both grids as rows of characters. Visit every valid top-left position \\((a,b)\\) in row-major order, using the inclusive bounds above. When \\(M=N\\), this visits only \\((1,1)\\).\n\n2. > A candidate matches \\(T\\) only if every pair of corresponding cells has the same character; one mismatch is enough to reject it.\n\n   For each candidate, compare \\(T_{i,j}\\) with \\(S_{a+i-1,b+j-1}\\) for all rows and columns of \\(T\\). Move to the next candidate as soon as a character differs. When \\(M=1\\), each candidate requires just one comparison.\n\n3. > Exactly one candidate matches, so the search can stop at the first full match.\n\n   If all comparisons for a candidate succeed, print its 1-based row and column, separated by a space, and stop. The uniqueness guarantee means no fallback output is needed.\n\n4. > There are \\((N-M+1)^2\\) candidates, each requiring at most \\(M^2\\) cell comparisons, so direct search is fast enough for \\(N \\le 50\\).\n\n   The worst-case search time is \\(O((N-M+1)^2M^2)\\), in addition to \\(O(N^2+M^2)\\) time to read the grids. Storing the grids takes \\(O(N^2+M^2)\\) space, and the search uses \\(O(1)\\) extra space.\n",
+  "statement_sha256": "0d468da1e3c5910e83c7bc9971fc5d115de341c1e79ec53d48d62060d4a36058",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "0d468da1e3c5910e83c7bc9971fc5d115de341c1e79ec53d48d62060d4a36058",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:44:04Z",
+    "finish_reason": "stop",
+    "request_id": "req_f465e1e8b63c4f2e95af7a7bcd0fa97c",
+    "retries": 0,
+    "ledger_index": 77
+  },
+  "usage": {
+    "prompt_tokens": 642,
+    "completion_tokens": 506,
+    "total_tokens": 1148,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 6.66,
+  "cost_usd": 0.006344,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 295,
+  "created_utc": "2026-11-25T05:44:10Z"
+}

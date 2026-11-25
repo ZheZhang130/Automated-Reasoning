@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Enzx1oJjbCsxkFin9cunTxAxSbXtv",
+  "object": "chat.completion",
+  "created": 1795584919,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead \\(N\\) and \\(P\\) from standard input. For each edge count from \\(N-1\\) through \\(N(N-1)/2\\), report modulo \\(P\\) the number of connected, undirected, simple graphs on vertices labeled \\(1\\) through \\(N\\) in which equally many vertices are at even and odd shortest-path distances from vertex \\(1\\).\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies two integers in the order \\(N\\), \\(P\\).\n- **PRE-2 (Unverified):** \\(N\\) is even and \\(2 \\le N \\le 30\\).\n- **PRE-3 (Unverified):** \\(P\\) is prime and \\(10^8 \\le P \\le 10^9\\).\n\n## Postconditions\n- **POST-1 (Unverified):** For each edge count \\(M\\) in the stated range, the count includes exactly the connected, undirected graphs with \\(M\\) edges, no loops or repeated edges, and \\(N/2\\) vertices of each distance parity. Vertex \\(1\\) is counted at even distance because its distance from itself is zero.\n- **POST-2 (Unverified):** Each qualifying labeled edge set contributes once. Distinct labeled edge sets are counted separately even if their graphs are isomorphic; multiple shortest paths do not multiply a graph’s contribution.\n- **POST-3 (Unverified):** Standard output contains one line of space-separated integers, one for each \\(M\\) in increasing order, including both endpoints. Each integer is the corresponding count’s residue in \\([0,P-1]\\); a zero residue is printed as `0`, not omitted.\n\n## Test suggestions\n- With \\(N=2\\) and a valid prime, check that the output is the single value `1` (PRE-2, PRE-3; POST-1, POST-3).\n- Check that the supplied \\(N=4\\) case produces `12 9 3 0`, exercising labeled multiplicity, ordering, and a zero count (POST-1–POST-3).\n- For valid \\(N>2\\), check that the last value is `0`: in the complete graph, only vertex \\(1\\) is at even distance (POST-1, POST-3).\n- Check a case with an independently established count at least \\(P\\) to distinguish the required residue from the raw count (PRE-3; POST-3).\n\n## Unspecified behavior\nHandling of input that does not satisfy PRE-1 through PRE-3 is unspecified.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 704,
+    "completion_tokens": 551,
+    "total_tokens": 1255,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

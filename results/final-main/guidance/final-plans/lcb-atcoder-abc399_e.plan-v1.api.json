@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc399_e",
+  "text": "## Observations\n\n1. All positions that start with the same letter stay equal forever. Thus each letter appearing in S must have a unique required destination in T.\n2. Every letter whose required destination differs from itself must be moved at least once. These nonidentity mappings form a directed graph with at most one outgoing edge per letter, so each component leads to a sink or a directed cycle.\n3. A cycle with an incoming edge from outside the cycle can be resolved without an extra operation: the outside letter and one cycle letter have the same required destination, so their groups can be merged before rotating the cycle.\n4. A cycle with no incoming edge from outside the cycle requires one extra operation: its first moved group must go to a temporary letter before it can reach its required destination.\n5. If T uses all 26 letters, any nontrivial change is impossible. Otherwise, a letter absent from T can be made empty before resolving cycles with no outside incoming edge, and reused for all of them.\n\n## Solution sketch\n\n1. “All positions that start with the same letter stay equal forever. Thus each letter appearing in S must have a unique required destination in T.”\n\n   Scan S and T together and record the required destination of each source letter. If a source letter is assigned two different destinations, output −1. Also record which letters appear in T.\n\n2. “If T uses all 26 letters, any nontrivial change is impossible. Otherwise, a letter absent from T can be made empty before resolving cycles with no outside incoming edge, and reused for all of them.”\n\n   Return 0 if there are no nonidentity mappings. Otherwise, if T uses all 26 letters, return −1: S would also have to start with all 26 letters, and the first effective replacement would merge two occupied letters. No later operation can increase the number of distinct letters.\n\n3. “Every letter whose required destination differs from itself must be moved at least once. These nonidentity mappings form a directed graph with at most one outgoing edge per letter, so each component leads to a sink or a directed cycle.”\n\n   Build the graph from the nonidentity mappings and use its edge count as the base answer. Find the cycles by following outgoing edges and marking vertices as unvisited, on the current walk, or finished. A sink needs no move of its own, whether it was initially absent or already holds a group that stays there. In a component leading to a sink, process edges outward from the sink, so each destination has already been settled before its incoming groups are moved into it.\n\n4. “A cycle with an incoming edge from outside the cycle can be resolved without an extra operation: the outside letter and one cycle letter have the same required destination, so their groups can be merged before rotating the cycle.”\n\n   Check whether any vertex on the cycle has more than one incoming edge. If an outside letter points to a cycle vertex, move that vertex’s cycle predecessor into the outside letter, freeing the predecessor’s label. Follow the cycle backward, moving each group into the label just freed, until the common destination becomes empty. Then move the merged group there. This uses one operation per cycle edge and one for the outside edge. Process all remaining incoming edges outward from the resolved cycle, always handling a destination’s own move before moving other groups into it.\n\n5. “A cycle with no incoming edge from outside the cycle requires one extra operation: its first moved group must go to a temporary letter before it can reach its required destination.”\n\n   Add one to the answer for each such cycle. Before its first move, every cycle label still holds its original group, and no other group has the same required destination as the group being moved. That first move therefore cannot finish the group, which proves the extra-operation lower bound. To achieve it, conceptually resolve all other components first. A letter absent from T cannot belong to or lead into a cycle with no outside incoming edge, so it is now empty. Move one cycle group into that letter, rotate the remaining groups into the freed labels, and move the saved group to its destination. This empties the temporary letter for the next cycle.\n\n   Output the base edge count plus the number of cycles requiring an extra operation. Only the counts are needed; there is no need to simulate replacements. The scan and graph analysis take O(N + 26) time and O(26) auxiliary space, excluding the input strings.\n",
+  "statement_sha256": "34dcea2d22a3dcb2b82eb9a9b77dc86a1a0041c6f9f34f367ed9d2cd8cb932ea",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "34dcea2d22a3dcb2b82eb9a9b77dc86a1a0041c6f9f34f367ed9d2cd8cb932ea",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:48:44Z",
+    "finish_reason": "stop",
+    "request_id": "req_10e50c76a37c44efbd004edc96df9259",
+    "retries": 0,
+    "ledger_index": 106
+  },
+  "usage": {
+    "prompt_tokens": 538,
+    "completion_tokens": 1236,
+    "total_tokens": 1774,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 327,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 22.2,
+  "cost_usd": 0.013436,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 768,
+  "created_utc": "2026-11-25T05:49:06Z"
+}

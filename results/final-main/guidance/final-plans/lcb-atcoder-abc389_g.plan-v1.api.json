@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc389_g",
+  "text": "## Observations\n\n1. In a connected graph, the shortest distances from vertex 1 define unique nonempty layers \\(L_0,L_1,\\ldots\\), with \\(L_0=\\{1\\}\\). Edges can only lie within a layer or between consecutive layers, and every vertex outside \\(L_0\\) must have a neighbor in the preceding layer. Conversely, these conditions make the proposed layers the actual shortest-distance layers.\n2. When a layer of size \\(b\\) follows a layer of size \\(a\\), its new edges are counted by the polynomial \\((1+x)^{\\binom b2}((1+x)^a-1)^b\\), where the exponent of \\(x\\) records the number of edges added.\n3. To append a layer, it suffices to know how many even- and odd-distance vertices have been placed, the parity of the last layer, and its size. If \\(e\\) even-distance and \\(o\\) odd-distance vertices have been placed, there are \\(\\binom{N-e-o}{b}\\) ways to choose the labels of the next layer.\n4. A balanced graph uses exactly \\(N/2\\) vertices of each parity. Each transition places at least one vertex, so states can be processed in increasing order of the total number placed, and all states with both parity quotas filled are terminal.\n5. Modular polynomial products can be computed with one big-integer multiplication per product: if \\(D=\\binom N2\\), each ordinary convolution coefficient of two degree-at-most-\\(D\\) polynomials with coefficients in \\([0,P-1]\\) is at most \\((D+1)(P-1)^2\\).\n\n## Solution sketch\n\n> In a connected graph, the shortest distances from vertex 1 define unique nonempty layers \\(L_0,L_1,\\ldots\\), with \\(L_0=\\{1\\}\\). Edges can only lie within a layer or between consecutive layers, and every vertex outside \\(L_0\\) must have a neighbor in the preceding layer. Conversely, these conditions make the proposed layers the actual shortest-distance layers.\n\n1. Count graphs by building their layers outward from vertex 1. The required neighbors give every vertex in \\(L_i\\) a path of length \\(i\\) to the root. No shorter path is possible because an edge changes the layer index by at most one. Thus every completed construction is connected, and no graph is counted under two different layerings.\n\n> When a layer of size \\(b\\) follows a layer of size \\(a\\), its new edges are counted by the polynomial \\((1+x)^{\\binom b2}((1+x)^a-1)^b\\), where the exponent of \\(x\\) records the number of edges added.\n\n2. Precompute these transition polynomials modulo \\(P\\) for \\(1\\le a,b\\le N/2\\). The first factor chooses arbitrary edges inside the new layer; each copy of the second factor chooses a nonempty subset of predecessors for one new vertex. To compute the coefficient of degree \\(k\\), expand the second factor and sum \\((-1)^{b-j}\\binom bj\\binom{\\binom b2+aj}{k}\\) over \\(0\\le j\\le b\\). Precompute binomial coefficients modulo \\(P\\) with Pascal’s rule through row \\(D=\\binom N2\\), taking out-of-range entries as zero.\n\n> To append a layer, it suffices to know how many even- and odd-distance vertices have been placed, the parity of the last layer, and its size. If \\(e\\) even-distance and \\(o\\) odd-distance vertices have been placed, there are \\(\\binom{N-e-o}{b}\\) ways to choose the labels of the next layer.\n\n3. Store a polynomial for each state \\((e,o,\\text{last parity},a)\\), whose degree-\\(m\\) coefficient counts partial labeled graphs with \\(m\\) edges. Initialize the state with \\(e=1\\), \\(o=0\\), even last parity, and \\(a=1\\) to the constant polynomial \\(1\\). For each feasible next size \\(b\\), multiply the current polynomial by the transition polynomial for \\((a,b)\\) and by \\(\\binom{N-e-o}{b}\\). Add the result modulo \\(P\\) to the state with the opposite last parity, last size \\(b\\), and that parity’s vertex count increased by \\(b\\). The unused labels need not be stored: every partial graph in the state has the same number of choices for the next layer.\n\n> A balanced graph uses exactly \\(N/2\\) vertices of each parity. Each transition places at least one vertex, so states can be processed in increasing order of the total number placed, and all states with both parity quotas filled are terminal.\n\n4. Process states in increasing order of \\(e+o\\). Try only positive sizes that do not exceed the remaining quota of the next parity. If that quota is zero, there is no outgoing transition; the state contributes to the answer only if both quotas are filled. Sum all terminal polynomials, regardless of their last parity or size, and output coefficients \\(N-1\\) through \\(D\\), using zero for missing coefficients. For \\(N=2\\), the sole transition adds a singleton odd layer and one edge, giving the single output \\(1\\).\n\n> Modular polynomial products can be computed with one big-integer multiplication per product: if \\(D=\\binom N2\\), each ordinary convolution coefficient of two degree-at-most-\\(D\\) polynomials with coefficients in \\([0,P-1]\\) is at most \\((D+1)(P-1)^2\\).\n\n5. Choose a whole-byte slot width whose base is strictly larger than that bound. Pack coefficients into consecutive slots, lowest degree first, multiply the packed integers, and unpack the product by slicing its byte representation into slots. No coefficient can carry into a neighboring slot. Reduce the unpacked coefficients modulo \\(P\\) while applying the label-choice multiplier and adding to the destination. Cache packed transition polynomials and pack each state once, after all its incoming contributions have been added. There are \\(O(N^3)\\) states and \\(O(N^4)\\) transitions. With \\(w=O(\\log(DP))\\) bits per slot and \\(\\mathcal M(s)\\) the cost of multiplying \\(s\\)-bit integers, the DP takes \\(O(N^4(\\mathcal M(Dw)+D))\\) time with fixed-width coefficient arithmetic. Precomputation takes \\(O(D^2+N^3D)\\) modular operations. Space is \\(O(D^2+N^3D)\\) coefficient-sized slots, including the binomial table and the DP.\n",
+  "statement_sha256": "0eeb2ea0b45787769e39a60c0c3ca62755e262ec389814cfc194970a214529ab",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "0eeb2ea0b45787769e39a60c0c3ca62755e262ec389814cfc194970a214529ab",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:42:30Z",
+    "finish_reason": "stop",
+    "request_id": "req_c428da011f9349888820d22f972f24b7",
+    "retries": 0,
+    "ledger_index": 70
+  },
+  "usage": {
+    "prompt_tokens": 634,
+    "completion_tokens": 1950,
+    "total_tokens": 2584,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 507,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 30.77,
+  "cost_usd": 0.020768,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 867,
+  "created_utc": "2026-11-25T05:43:00Z"
+}

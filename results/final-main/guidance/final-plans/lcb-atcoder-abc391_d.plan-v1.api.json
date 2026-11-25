@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc391_d",
+  "text": "## Observations\n\n1. Blocks never change columns or pass one another. If there have been \\(d\\) bottom-row removals, ranks \\(1\\) through \\(d\\) in every column are gone, where ranks are assigned from bottom to top at time zero.\n2. After the update at integer time \\(t\\), a surviving block of initial rank \\(r\\) and height \\(y\\) is at height \\(\\max(y-t,r-d)\\), where \\(d\\) is the number of removals so far.\n3. For every rank present in every column, its removal time is the maximum initial height among blocks of that rank. A rank missing from even one column can never be removed.\n4. A query at time \\(T+0.5\\) sees the state just after the update at time \\(T\\), so a block exists exactly when its removal time is greater than \\(T\\).\n\n## Solution sketch\n\n> 1. Blocks never change columns or pass one another. If there have been \\(d\\) bottom-row removals, ranks \\(1\\) through \\(d\\) in every column are gone, where ranks are assigned from bottom to top at time zero.\n\n1. Group blocks by column and sort each column by initial height, retaining each block’s input ID. Assign ranks starting at 1. Let \\(m\\) be the size of the shortest column, counting empty columns. Only ranks \\(1\\) through \\(m\\) can be removed.\n\n> 2. After the update at integer time \\(t\\), a surviving block of initial rank \\(r\\) and height \\(y\\) is at height \\(\\max(y-t,r-d)\\), where \\(d\\) is the number of removals so far.\n\n2. Justify the height formula by induction. At time zero it holds because the \\(r\\)-th block has height at least \\(r\\). At a later update, first account for any removal in \\(d\\). During the bottom-to-top movement, each remaining block ends at the maximum of its old height minus one and the lowest height allowed by the floor or the already-updated block below. If there is a block below, its initial height is at most \\(y-1\\), so by the formula its new height plus one is at most \\(\\max(y-t,r-d)\\). If there is no block below, the floor imposes height 1, which is \\(r-d\\). The old height minus one is also at most the claimed value because \\(d\\) increases by at most one per update. Conversely, the block cannot be below \\(y-t\\) because it moves at most one cell per update, nor below \\(r-d\\) because that many surviving ranks must fit at or below it. This proves the formula.\n\n> 3. For every rank present in every column, its removal time is the maximum initial height among blocks of that rank. A rank missing from even one column can never be removed.\n\n3. For each rank \\(r\\) from 1 through \\(m\\), compute the maximum \\(M_r\\) of its initial heights across columns. Once \\(r-1\\) removals have occurred, the height formula at time \\(t-1\\) says that a rank-\\(r\\) block is on the bottom row exactly when its initial height is at most \\(t\\). Thus the whole row is ready for removal at the start of update \\(M_r\\). The maxima increase strictly with rank because heights increase strictly within every column, so each preceding removal has already happened. Record \\(M_r\\) as the removal time for every block of rank \\(r\\), and record infinity for all higher ranks. If a column starts empty, \\(m=0\\), so every block gets infinity.\n\n> 4. A query at time \\(T+0.5\\) sees the state just after the update at time \\(T\\), so a block exists exactly when its removal time is greater than \\(T\\).\n\n4. Look up the queried block’s removal time by input ID. Output `Yes` if it is greater than \\(T\\), and `No` otherwise. In particular, a block removed at exactly \\(T\\) is already gone. Sorting takes \\(O(N\\log N)\\) time in total, the rank and removal-time passes take \\(O(N+W)\\), and the queries take \\(O(Q)\\). With queries processed as they are read, the algorithm uses \\(O(N+W)\\) auxiliary space.\n",
+  "statement_sha256": "0602120978a7642e812bfff71e60b420500d4ccb643086f0c7b35da279f27e5d",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "0602120978a7642e812bfff71e60b420500d4ccb643086f0c7b35da279f27e5d",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:44:10Z",
+    "finish_reason": "stop",
+    "request_id": "req_eb9f4aa2cbca4c578f56645a05b53840",
+    "retries": 0,
+    "ledger_index": 78
+  },
+  "usage": {
+    "prompt_tokens": 813,
+    "completion_tokens": 1096,
+    "total_tokens": 1909,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 152,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 17.22,
+  "cost_usd": 0.012586,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 642,
+  "created_utc": "2026-11-25T05:44:28Z"
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc194_d",
+  "text": "## Observations\n\n1. A valid parenthesis sequence represents an ordered forest: each matched pair is a node, and the pairs immediately inside it are its children. A virtual root holds the top-level pairs, and every nonempty valid substring consists of consecutive whole children of one parent.\n2. Reverse-and-flip reverses the order of the selected children and mirrors each of their subtrees. Mirroring each child once more restores its internal order, so two adjacent children can be swapped without changing either subtree.\n3. The reachable strings are exactly the orderings of the same unordered rooted tree. Two subtrees have the same unordered type if and only if their sorted lists of child type IDs are equal.\n4. At a node with \\(k\\) children, if type \\(t\\) occurs \\(c_t\\) times, there are \\(k!/\\prod_t c_t!\\) distinct orders of the child types. For each such order, the reachable string for each child position can be chosen independently, even when several positions have the same type.\n\n## Solution sketch\n\n1. “A valid parenthesis sequence represents an ordered forest: each matched pair is a node, and the pairs immediately inside it are its children. A virtual root holds the top-level pairs, and every nonempty valid substring consists of consecutive whole children of one parent.”  \n   Scan the string with a stack, starting with a frame for the virtual root. Push a new frame for each opening parenthesis. At its matching closing parenthesis, finalize that node and pass its result to the parent frame. Finalize the virtual root after the scan. This processes children before parents without recursion, even for a fully nested input.\n\n2. “Reverse-and-flip reverses the order of the selected children and mirrors each of their subtrees. Mirroring each child once more restores its internal order, so two adjacent children can be swapped without changing either subtree.”  \n   This makes the counting problem local to each parent: adjacent swaps can produce any sibling order, and those swaps leave the child subtrees intact. Conversely, every operation only changes sibling order at the selected level and within the mirrored subtrees, so it cannot change the underlying unordered tree.\n\n3. “The reachable strings are exactly the orderings of the same unordered rooted tree. Two subtrees have the same unordered type if and only if their sorted lists of child type IDs are equal.”  \n   When finalizing a node, sort its child type IDs and look up the resulting list in a shared dictionary of signatures. Reuse the ID for a signature already seen, or assign a fresh one. Leaves all have the empty signature. The sorted list also puts equal IDs together, so their multiplicities can be read in one pass.\n\n4. “At a node with \\(k\\) children, if type \\(t\\) occurs \\(c_t\\) times, there are \\(k!/\\prod_t c_t!\\) distinct orders of the child types. For each such order, the reachable string for each child position can be chosen independently, even when several positions have the same type.”  \n   Precompute factorials and inverse factorials through \\(N/2\\) modulo \\(998244353\\), using Fermat’s little theorem for the largest inverse factorial. At each node, multiply its multinomial factor by the product of its children’s counts. This does not double-count: the resulting string splits uniquely into its immediate child strings, and each child string determines its unordered type. A leaf contributes one, and a node whose children all share one type has only one type order, though its child positions can still vary independently. Output the virtual root’s count. The child lists contain \\(N/2\\) entries in total, so sorting and dictionary lookup take \\(O(N\\log N)\\) expected time; factorial setup adds \\(O(N+\\log 998244353)\\) time. Space usage is \\(O(N)\\).\n",
+  "statement_sha256": "4388893f8b4c5e47fcc986a93dbdbed95a89604d0f2a89179d38b6b18dec6eb9",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "4388893f8b4c5e47fcc986a93dbdbed95a89604d0f2a89179d38b6b18dec6eb9",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:53:32Z",
+    "finish_reason": "stop",
+    "request_id": "req_e3ed0c3a4a4040c6ab22bd032ce92222",
+    "retries": 0,
+    "ledger_index": 116
+  },
+  "usage": {
+    "prompt_tokens": 526,
+    "completion_tokens": 1069,
+    "total_tokens": 1595,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 263,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 18.38,
+  "cost_usd": 0.011742,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 599,
+  "created_utc": "2026-11-25T05:53:50Z"
+}

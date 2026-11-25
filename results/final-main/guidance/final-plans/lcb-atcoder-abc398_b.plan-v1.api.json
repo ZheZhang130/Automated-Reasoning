@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc398_b",
+  "text": "## Observations\n\n1. Every card value is between 1 and 13, so a table of 13 counts can record how many cards have each value.\n2. A full house is possible exactly when one value occurs at least three times and a different value occurs at least twice. Extra copies can be left unchosen.\n3. There are only 13 possible values, so there are at most 13 × 12 ordered pairs of distinct values to check.\n\n## Solution sketch\n\n1. “Every card value is between 1 and 13, so a table of 13 counts can record how many cards have each value.”\n\n   Read the seven values from standard input. Initialize the counts to zero, then increment the count for each card’s value.\n\n2. “A full house is possible exactly when one value occurs at least three times and a different value occurs at least twice. Extra copies can be left unchosen.”\n\n   Check each ordered pair of distinct values, treating the first as the triple and the second as the pair. If their counts are at least three and two, respectively, print `Yes` and stop. If no pair qualifies, print `No`. Using “at least” allows a value with four or more copies to supply a triple, while requiring distinct values rules out a hand with seven identical cards. A hand with no value appearing at least three times also fails.\n\n3. “There are only 13 possible values, so there are at most 13 × 12 ordered pairs of distinct values to check.”\n\n   Counting takes seven updates, and each pair check takes constant time. Thus the algorithm uses \\(O(7 + 13^2)\\) time and \\(O(13)\\) auxiliary space, both constant under the given constraints.\n",
+  "statement_sha256": "c60dabb98f254c05d23359f507a8e5a2f42b8fadf951cd752ec8f747b74974be",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "c60dabb98f254c05d23359f507a8e5a2f42b8fadf951cd752ec8f747b74974be",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:47:18Z",
+    "finish_reason": "stop",
+    "request_id": "req_6d232394009e4957821ac3188d0e5b49",
+    "retries": 0,
+    "ledger_index": 100
+  },
+  "usage": {
+    "prompt_tokens": 458,
+    "completion_tokens": 360,
+    "total_tokens": 818,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.66,
+  "cost_usd": 0.004516,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 280,
+  "created_utc": "2026-11-25T05:47:23Z"
+}

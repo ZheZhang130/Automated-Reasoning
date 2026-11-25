@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzxbxmVLc5R0DPugOS3tUMy57PpS",
+  "object": "chat.completion",
+  "created": 1795584955,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nThe program reads a positive integer \\(N\\) from standard input and prints the sum, modulo \\(998244353\\), of the integers formed by concatenating the entries of each permutation of \\(1,2,\\ldots,N\\).\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies one integer, \\(N\\).\n- **PRE-2 (Unverified):** \\(1 \\le N \\le 200000\\), inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** Each of the \\(N!\\) permutations contributes exactly once, even if distinct permutations produce the same concatenated integer.\n- **POST-2 (Unverified):** Each permutation contributes the decimal integer formed by writing its entries in permutation order, without separators or leading zeros on any entry.\n- **POST-3 (Unverified):** Standard output contains a single integer: the unique residue of the total in the range \\(0\\) through \\(998244352\\), inclusive.\n\n## Test suggestions\n- Check \\(N=1\\) produces `1`, and \\(N=3\\) produces `1332` (PRE-2, POST-1–POST-3).\n- Compare results for \\(N=9\\) and \\(N=10\\) with independently enumerated sums to check the transition to two-digit entries (POST-1–POST-3).\n- Check the supplied examples \\(N=390\\) and \\(N=79223\\) produce `727611652` and `184895744`, respectively (POST-3).\n- Check \\(N=200000\\) against an independent reference result to cover the inclusive upper bound (PRE-2, POST-3).\n\n## Unspecified behavior\nBehavior is unspecified for missing, malformed, or extra input, and for integers outside the stated range.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 590,
+    "completion_tokens": 382,
+    "total_tokens": 972,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

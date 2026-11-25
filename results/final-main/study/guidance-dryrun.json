@@ -1,0 +1,10 @@
+﻿{
+ "missing": {
+  "final-contracts contract-v1 api": 60,
+  "final-plans plan-v1 api": 60
+ },
+ "requests": 120,
+ "authored": false,
+ "note": "rerun with --yes to author them (one request per artifact)"
+}
+

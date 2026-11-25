@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc399_a",
+  "text": "## Observations\n\n1. The input gives \\(N\\), followed by two strings \\(S\\) and \\(T\\), each of length \\(N\\).\n2. Each position contributes one to the Hamming distance if its characters differ, and zero otherwise.\n3. A single pass checks all \\(N\\) positions, and only a running count needs to be kept in addition to the input strings.\n\n## Solution sketch\n\n1. “The input gives \\(N\\), followed by two strings \\(S\\) and \\(T\\), each of length \\(N\\).” Read the three input lines in that order. The length guarantee ensures that both strings have a character at every position from \\(1\\) through \\(N\\).\n2. “Each position contributes one to the Hamming distance if its characters differ, and zero otherwise.” Start the count at zero. Compare the characters at each corresponding position and increment the count only when they differ. After the scan, print the count. Identical strings produce \\(0\\), strings that differ everywhere produce \\(N\\), and when \\(N=1\\) the single comparison determines the answer.\n3. “A single pass checks all \\(N\\) positions, and only a running count needs to be kept in addition to the input strings.” The algorithm takes \\(O(N)\\) time and \\(O(1)\\) auxiliary space, or \\(O(N)\\) space including the input strings.\n",
+  "statement_sha256": "118c0a3370a5b4b1796323ca75f71673569fbfa3c8265816be7bd5fbd783bc42",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "118c0a3370a5b4b1796323ca75f71673569fbfa3c8265816be7bd5fbd783bc42",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:48:25Z",
+    "finish_reason": "stop",
+    "request_id": "req_92833aae196b4700aa7836dfc2f17d68",
+    "retries": 0,
+    "ledger_index": 103
+  },
+  "usage": {
+    "prompt_tokens": 399,
+    "completion_tokens": 296,
+    "total_tokens": 695,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 4.31,
+  "cost_usd": 0.003758,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 201,
+  "created_utc": "2026-11-25T05:48:30Z"
+}

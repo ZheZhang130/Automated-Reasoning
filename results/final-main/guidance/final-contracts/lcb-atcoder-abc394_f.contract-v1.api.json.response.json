@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Enzz7WcRRSxxzqecRZApoTBEmNo3f",
+  "object": "chat.completion",
+  "created": 1795585049,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nThe Python 3 program reads an undirected tree from standard input and prints the largest number of vertices in an alkane subgraph, or `-1` if none exists. An alkane subgraph is a tree whose vertices all have degree 1 or 4 within the subgraph, with at least one vertex of degree 4.\n\n## Preconditions\n- **PRE-1 (Unverified):** The input contains an integer \\(N\\), where \\(1 \\le N \\le 200{,}000\\), followed by \\(N-1\\) pairs of integer vertex labels.\n- **PRE-2 (Unverified):** Every label is between 1 and \\(N\\), inclusive, and the pairs specify an undirected tree on those \\(N\\) vertices.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains a single integer: the maximum vertex count among all alkane subgraphs if any exist, and `-1` otherwise.\n- **POST-2 (Unverified):** Candidate subgraphs may omit vertices and edges of the input tree. Degree is measured using only the edges in the candidate subgraph; disconnected selections and candidates with no degree-4 vertex do not qualify.\n- **POST-3 (Unverified):** Edge listing order, endpoint order, and consistent relabeling do not change the answer. If multiple subgraphs attain the maximum, only their shared vertex count is printed.\n\n## Test suggestions\n- Under PRE-1 and PRE-2, check that a single-vertex tree and a tree with maximum degree 3 both produce `-1` (POST-1, POST-2).\n- Check that a star with four leaves produces `5`, and that a star with five leaves also produces `5`, since one leaf can be omitted (POST-1, POST-2).\n- Check that the first sample produces `8`, rather than `5` for a smaller qualifying subgraph or `9` for the entire tree (POST-1, POST-2).\n- Check that permuting the edge lines, reversing endpoints, or consistently relabeling vertices leaves the answer unchanged (POST-3).\n- Check that a path on \\(200{,}000\\) vertices produces `-1` at the upper input bound (PRE-1, PRE-2, POST-1).\n\n## Unspecified behavior\nBehavior for input that violates PRE-1 or PRE-2 is not specified. The task does not require identifying, counting, or listing maximizing subgraphs.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 698,
+    "completion_tokens": 524,
+    "total_tokens": 1222,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

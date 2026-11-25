@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc191_d",
+  "text": "## Observations\n\n1. If the distance from S to T is d, every swap costs at least 2d. Two distinct shortest paths allow a swap in 2d moves, and a shortest path together with a path of length d+1 allows a swap in at most 2d+1 moves.\n2. A swap costing at most 2d+1 must give each piece a simple path, and at least one of those paths must be shortest. If both pieces use the same path, they cannot pass each other.\n3. If an internal vertex of a shortest path has degree at least three, the pieces can pass there at a cost of 2d+2 moves by using one neighbor off the path.\n4. If every internal vertex of the chosen shortest path has degree two, deleting its edges isolates its internal vertices. Any remaining S-to-T path is therefore a bypass that, together with the chosen path, allows a swap. Any solution in which a piece traverses such a bypass costs at least d plus the shortest bypass length.\n5. Without a bypass traversal, every excursion off the chosen path returns to the same endpoint. The pieces can reverse their order only by passing on the outward side of S or on the outward side of T.\n6. On the outward side of an endpoint, a chain of degree-two vertices gives the pieces no room to pass. If the first branching vertex is a edges away, passing on that side requires each piece to reach it, take at least one edge farther off the chain, and return. This costs at least 2d+4a+4, and two free neighbors at the branching vertex suffice to attain that bound.\n\n## Solution sketch\n\n1. “If the distance from S to T is d, every swap costs at least 2d. Two distinct shortest paths allow a swap in 2d moves, and a shortest path together with a path of length d+1 allows a swap in at most 2d+1 moves.”\n\n   Run breadth-first searches from S and T. Record the distance d, reconstruct one shortest path P, and count shortest paths from S with counts capped at two. If T has count two, return 2d.\n\n   To see why the two-path swaps work, orient both routes from S to T. A shortest route increases the distance from S at every edge. A route of length d+1 does the same except for one edge that stays in the same distance layer. Thus the routes encounter their common vertices in the same order. Choose a pair of consecutive common vertices between which the routes differ. Bring the pieces to opposite ends of that segment, let them pass along the two internally disjoint branches, and finish along their respective routes. The graph is simple, so at least one branch has an internal vertex where a piece can wait while the other clears its destination.\n\n2. “A swap costing at most 2d+1 must give each piece a simple path, and at least one of those paths must be shortest. If both pieces use the same path, they cannot pass each other.”\n\n   Check whether a path of length d+1 exists by scanning edges in both orientations. For an edge from u to v, require that u and v have the same distance from S and that the distance from S to u, plus one, plus the distance from v to T equals d+1. This test is necessary because a walk of length d+1 has exactly one same-layer edge and no backward edge. It is sufficient because the shortest prefix and suffix in the test increase the distance from S on every edge, so the resulting route is simple. If an edge passes the test, return 2d+1. If neither this step nor the previous step finds an answer, no swap can cost less than 2d+2: a repeated vertex would consume at least two extra moves, and the unique shortest path cannot support a swap by itself.\n\n3. “If an internal vertex of a shortest path has degree at least three, the pieces can pass there at a cost of 2d+2 moves by using one neighbor off the path.”\n\n   Check the internal vertices of P. At a branching vertex, send A one edge into an off-path neighbor, let B pass through the branching vertex, and then bring A back to continue toward T. The neighbor is off P because a shortest path has no chord. This adds exactly two moves to the two direct trips, so return 2d+2 if such a vertex exists.\n\n4. “If every internal vertex of the chosen shortest path has degree two, deleting its edges isolates its internal vertices. Any remaining S-to-T path is therefore a bypass that, together with the chosen path, allows a swap. Any solution in which a piece traverses such a bypass costs at least d plus the shortest bypass length.”\n\n   Run a breadth-first search from S while ignoring the edges of P. If T is reachable at distance q, record d+q as a candidate. The bypass and P are internally disjoint, so the pieces can take these routes in opposite directions. Conversely, if a piece travels off P from one endpoint to the other, that part of its walk costs at least q, and the other piece costs at least d.\n\n5. “Without a bypass traversal, every excursion off the chosen path returns to the same endpoint. The pieces can reverse their order only by passing on the outward side of S or on the outward side of T.”\n\n   Test each endpoint X separately, with Y denoting the other endpoint. Starting at X, follow the chain away from P: while the current vertex has degree two, take the edge other than the one pointing back toward P. Stop on reaching Y or a vertex of degree other than two. If the chain reaches Y or a leaf, there is no candidate on this side. Otherwise, let a be the distance to the branching vertex; a is zero if X itself branches.\n\n   For the lower bound, project each excursion onto the endpoint where it began. On P, the projected order can reverse only through a period when both pieces project to the same endpoint X. At the start of that period one piece is farther out than the other; at the end their outward order is reversed. The chain is a single lane, so this cannot happen at a leaf or on a chain ending at Y: visiting Y during the excursion would itself be a bypass traversal.\n\n6. “On the outward side of an endpoint, a chain of degree-two vertices gives the pieces no room to pass. If the first branching vertex is a edges away, passing on that side requires each piece to reach it, take at least one edge farther off the chain, and return. This costs at least 2d+4a+4, and two free neighbors at the branching vertex suffice to attain that bound.”\n\n   To justify the two extra steps per piece, consider their order on the outward chain, treating a piece beyond the branching vertex as being at that vertex for the comparison. When the pieces first tie there, one must be beyond the vertex so the other can enter it. When they separate in the reverse order, the other must have gone beyond it so the first can come back through. If a is zero, the same requirement follows directly at X: each piece must vacate X to let the other through. Thus both pieces make a round trip of at least a+1 edges outward from X, in addition to their trips between S and T.\n\n   If the branching vertex has two neighbors off the route from itself through X to Y, record 2d+4a+4. Move the piece from X into one of those neighbors, move the piece from Y into the other, then send the first piece to Y and the second back to X. If there are not two such neighbors, an extra neighbor on the route can only be Y: every internal vertex of the route has degree two. That edge already gives a bypass of length at most a+1, so the bypass candidate is no larger than the lower bound for this side; no additional candidate is needed.\n\n   Return the smallest recorded candidate, or -1 if none exists. This also handles a two-vertex graph and a simple path, where neither a bypass nor a usable branch exists. A cycle is handled by the bypass search. The breadth-first searches, edge scans, and two chain walks take O(N+M) time and O(N+M) space.\n",
+  "statement_sha256": "42cbbe4cfa65cee6a19079350cccbc98552347d2fe4d2a8e2f1743d3c4d46cb9",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "42cbbe4cfa65cee6a19079350cccbc98552347d2fe4d2a8e2f1743d3c4d46cb9",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:50:19Z",
+    "finish_reason": "stop",
+    "request_id": "req_2823323f0aef4f5b81aa7d60a6759578",
+    "retries": 0,
+    "ledger_index": 112
+  },
+  "usage": {
+    "prompt_tokens": 723,
+    "completion_tokens": 6330,
+    "total_tokens": 7053,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 4541,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 126.61,
+  "cost_usd": 0.064746,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 1421,
+  "created_utc": "2026-11-25T05:52:25Z"
+}

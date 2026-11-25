@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc400_c",
+  "text": "## Description\nRead a positive integer \\(N\\) from standard input and print the number of distinct good integers in the inclusive range from \\(1\\) through \\(N\\). An integer is good if it can be written as \\(2^a b^2\\) for positive integers \\(a\\) and \\(b\\).\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies a single integer \\(N\\) in the stated input format.\n- **PRE-2 (Unverified):** \\(1 \\le N \\le 10^{18}\\).\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains one decimal integer giving the exact count of good integers \\(X\\) with \\(1 \\le X \\le N\\).\n- **POST-2 (Unverified):** Each qualifying integer contributes exactly once, even if several pairs \\((a,b)\\) represent it. A representation with \\(a=0\\) does not qualify.\n- **POST-3 (Unverified):** The count is \\(0\\) when \\(N=1\\). For consecutive valid bounds, the count increases by one if the new upper bound is good and stays unchanged otherwise.\n\n## Test suggestions\n- Check that \\(N=1\\) gives \\(0\\) and \\(N=2\\) gives \\(1\\) (PRE-2, POST-1, POST-3).\n- Check that \\(N=17,18,19\\) give \\(4,5,5\\), respectively, to exercise inclusion of the upper bound and no increase at a non-good integer (POST-1, POST-3).\n- Check that \\(N=399\\) and \\(N=400\\) give \\(23\\) and \\(24\\), respectively. The integer \\(400\\) contributes once despite having representations \\(2^2\\cdot10^2\\) and \\(2^4\\cdot5^2\\) (POST-2, POST-3).\n- Check the exact count at \\(N=10^{18}\\) against an independently established expected value (PRE-2, POST-1).\n\n## Unspecified behavior\nBehavior is not specified for missing, malformed, or extra input, or for integers outside the stated range.\n",
+  "statement_sha256": "648615b7680bd0ab71c65fcaa530aaf6589e6012be8f2367a13042c6dc1233cd",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "648615b7680bd0ab71c65fcaa530aaf6589e6012be8f2367a13042c6dc1233cd",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:39:40Z",
+    "finish_reason": "stop",
+    "request_id": "req_519e44d3b22044c99e43ac839623bbd3",
+    "retries": 0,
+    "ledger_index": 48
+  },
+  "usage": {
+    "prompt_tokens": 452,
+    "completion_tokens": 514,
+    "total_tokens": 966,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 36,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 7.42,
+  "cost_usd": 0.006044,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 244,
+  "created_utc": "2026-11-25T05:39:48Z"
+}

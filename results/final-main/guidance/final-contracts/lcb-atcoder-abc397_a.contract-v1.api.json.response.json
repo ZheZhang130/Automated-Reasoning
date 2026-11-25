@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Enzzyqn6fUvRJji4FRDQo54KyUiwo",
+  "object": "chat.completion",
+  "created": 1795585102,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nThe Python 3 program reads Takahashi’s body temperature in degrees Celsius from standard input and prints the integer corresponding to its classification.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies a single temperature, X, written to exactly one decimal place.\n- **PRE-2 (Unverified):** X is between 30.0 and 50.0, inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains exactly one classification integer and no explanatory text.\n- **POST-2 (Unverified):** If X is at least 38.0, the output is `1` (High fever).\n- **POST-3 (Unverified):** If X is at least 37.5 but less than 38.0, the output is `2` (Fever).\n- **POST-4 (Unverified):** If X is less than 37.5, the output is `3` (Normal).\n\n## Test suggestions\n- Check both sides of each classification boundary with `37.4` → `3`, `37.5` → `2`, `37.9` → `2`, and `38.0` → `1` (PRE-1, PRE-2, POST-2–POST-4).\n- Check the valid range endpoints with `30.0` → `3` and `50.0` → `1` (PRE-2, POST-2, POST-4).\n- For each case, check that the program prints only the expected integer (POST-1).\n\n## Unspecified behavior\nNo behavior is guaranteed for missing or malformed input, additional input values, temperatures outside the valid range, or temperatures not written to exactly one decimal place.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 526,
+    "completion_tokens": 369,
+    "total_tokens": 895,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Enzwvk2L1ku6lSiEThq5FblWLUP45",
+  "object": "chat.completion",
+  "created": 1795584913,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead a circle radius from standard input and print the number of unit squares in the integer-centered tiling that lie entirely within the circle centered at the origin.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies a single integer radius \\(R\\).\n- **PRE-2 (Unverified):** \\(1 \\le R \\le 10^6\\).\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains one integer: the exact number of integer pairs \\((i,j)\\) for which all four corners \\((i\\pm 0.5,j\\pm 0.5)\\) are at distance at most \\(R\\) from the origin. A corner on the circle boundary satisfies the distance condition.\n- **POST-2 (Unverified):** Each qualifying center contributes exactly once. Distinct centers related by reflection or rotation count separately. A square with any corner outside the circle contributes nothing.\n\n## Test suggestions\n- Check the minimum allowed radius \\(R=1\\): only the square centered at the origin qualifies, so the output should be `1` (PRE-2, POST-1).\n- Check \\(R=2\\): the center square and its four side neighbors qualify, but its diagonal neighbors do not; the output should be `5` (POST-1, POST-2).\n- Check the remaining sample results: `37` for \\(R=4\\) and `2025` for \\(R=26\\) (POST-1).\n- Check \\(R=10^6\\) against an independently established exact count to cover the upper input limit (PRE-2, POST-1).\n\n## Unspecified behavior\nNo behavior is specified for missing input, extra input, non-integer values, or radii outside the stated range.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 459,
+    "completion_tokens": 379,
+    "total_tokens": 838,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc396_c",
+  "text": "## Observations\n\n1. For any fixed number of balls of one color, the largest possible sum comes from choosing that color’s highest values.\n2. If exactly \\(k\\) black balls are chosen, the number of white balls can be any integer from \\(0\\) through \\(\\min(k,M)\\).\n3. As \\(k\\) increases by one, at most one new white-ball count becomes feasible, so the best feasible white sum can be maintained as a running maximum.\n4. Choosing no balls gives a score of zero, and a negative black value can still be worth taking if it allows another valuable white ball.\n\n## Solution sketch\n\n> For any fixed number of balls of one color, the largest possible sum comes from choosing that color’s highest values.\n\n1. Sort the black values and the white values separately in descending order. The sum of the first \\(k\\) values in either list is then the best sum for choosing exactly \\(k\\) balls of that color.\n\n> If exactly \\(k\\) black balls are chosen, the number of white balls can be any integer from \\(0\\) through \\(\\min(k,M)\\).\n\n2. Scan the black counts from \\(1\\) through \\(N\\), adding the next black value to a running sum. For each count \\(k\\), the best total is this black sum plus the largest white prefix sum among the feasible white counts, including the empty prefix.\n\n> As \\(k\\) increases by one, at most one new white-ball count becomes feasible, so the best feasible white sum can be maintained as a running maximum.\n\n3. Start the current white prefix sum and the best white prefix sum at zero. At iteration \\(k\\), if \\(k\\le M\\), add the \\(k\\)-th sorted white value to the current prefix sum and update the best white sum. If \\(k>M\\), keep the best white sum unchanged. Compare the resulting total with the best answer so far.\n\n> Choosing no balls gives a score of zero, and a negative black value can still be worth taking if it allows another valuable white ball.\n\n4. Initialize the answer to zero and scan all \\(N\\) black counts, even after reaching negative black values. Print the best answer found. This returns zero when no nonempty choice improves on the empty choice. Sorting and scanning take \\(O(N\\log N+M\\log M+N+M)\\) time. The stored values and sorting workspace use \\(O(N+M)\\) space, and the scan uses only \\(O(1)\\) extra space.\n",
+  "statement_sha256": "9da5c0a6e26f9d45e9270c4fc0a0c7e20e041d2f44ae3462abefabccb01c1d03",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "9da5c0a6e26f9d45e9270c4fc0a0c7e20e041d2f44ae3462abefabccb01c1d03",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:46:34Z",
+    "finish_reason": "stop",
+    "request_id": "req_78254cf3a5474400abf885648d139a73",
+    "retries": 0,
+    "ledger_index": 94
+  },
+  "usage": {
+    "prompt_tokens": 534,
+    "completion_tokens": 605,
+    "total_tokens": 1139,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 68,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 9.78,
+  "cost_usd": 0.007118,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 391,
+  "created_utc": "2026-11-25T05:46:44Z"
+}

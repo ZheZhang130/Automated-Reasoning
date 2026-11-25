@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo00NIgZvEYJTlCezkwwjYplANrrh",
+  "object": "chat.completion",
+  "created": 1795585127,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nDetermine whether five distinct cards from the seven given cards can form a full house: exactly three cards with one value and exactly two with a different value.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies seven integers in the stated format, one for each card position.\n- **PRE-2 (Unverified):** Each integer is between 1 and 13, inclusive. Values may repeat; positions with equal values still represent distinct cards.\n\n## Postconditions\n- **POST-1 (Unverified):** Print `Yes` to standard output if and only if one value occurs at least three times and a different value occurs at least twice. Occurrences beyond those needed may be left unselected.\n- **POST-2 (Unverified):** Otherwise, print `No` to standard output. In particular, seven identical cards do not form a full house.\n- **POST-3 (Unverified):** The output contains only the answer, with the specified capitalization, and does not depend on the order of the seven cards or the number of valid selections.\n\n## Test suggestions\n- Under PRE-1 and PRE-2, check that multiplicities of 3, 2, 1, and 1 produce `Yes` (POST-1).\n- Use four cards valued 1 and three valued 13 to check that both endpoint values are accepted and that extra matching cards may be omitted (PRE-2, POST-1).\n- Check that seven identical cards, three pairs and a singleton, and a triple with four different singleton values each produce `No` (POST-2).\n- Permute a qualifying input and confirm that each ordering produces only `Yes`, even when multiple five-card selections qualify (POST-3).\n\n## Unspecified behavior\nBehavior is not specified for input that violates PRE-1 or PRE-2.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 528,
+    "completion_tokens": 382,
+    "total_tokens": 910,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

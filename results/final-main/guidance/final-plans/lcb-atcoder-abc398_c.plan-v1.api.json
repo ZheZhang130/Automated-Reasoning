@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc398_c",
+  "text": "## Observations\n\n1. A person qualifies exactly when their integer occurs once in the entire list. A dictionary can count occurrences without allocating space for every possible integer up to \\(10^9\\).\n2. Each qualifying integer belongs to exactly one person, so the largest qualifying integer cannot produce a tie. A person's label is their 1-based position in the input list.\n3. If no integer occurs exactly once, the answer is \\(-1\\). If \\(N=1\\), the only person qualifies and the answer is \\(1\\).\n4. Counting occurrences and then checking each person's integer takes two passes over the list. The dictionary contains at most \\(N\\) entries.\n\n## Solution sketch\n\n1. “A person qualifies exactly when their integer occurs once in the entire list. A dictionary can count occurrences without allocating space for every possible integer up to \\(10^9\\).” Read \\(N\\) and the list of integers, preserving their input order. Scan the list once to build a frequency dictionary.\n2. “Each qualifying integer belongs to exactly one person, so the largest qualifying integer cannot produce a tie. A person's label is their 1-based position in the input list.” Scan the list again with labels starting at \\(1\\). Skip integers whose frequency is not \\(1\\). For each remaining integer, record its value and label if it is the first qualifying integer seen or is larger than the best one recorded so far.\n3. “If no integer occurs exactly once, the answer is \\(-1\\). If \\(N=1\\), the only person qualifies and the answer is \\(1\\).” Print the recorded label, or print \\(-1\\) if no label was recorded. The same scan handles \\(N=1\\) without a special case.\n4. “Counting occurrences and then checking each person's integer takes two passes over the list. The dictionary contains at most \\(N\\) entries.” With expected constant-time dictionary operations, the algorithm takes \\(O(N)\\) expected time and \\(O(N)\\) space for the list and dictionary.\n",
+  "statement_sha256": "8d74c637a5139332355fb13d075fd768a72981778d888681273624fc9598ebdf",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "8d74c637a5139332355fb13d075fd768a72981778d888681273624fc9598ebdf",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:47:23Z",
+    "finish_reason": "stop",
+    "request_id": "req_8f10b2fdca6546f29b2631559dbee0cf",
+    "retries": 0,
+    "ledger_index": 101
+  },
+  "usage": {
+    "prompt_tokens": 465,
+    "completion_tokens": 427,
+    "total_tokens": 892,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 6.23,
+  "cost_usd": 0.0052,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 312,
+  "created_utc": "2026-11-25T05:47:30Z"
+}

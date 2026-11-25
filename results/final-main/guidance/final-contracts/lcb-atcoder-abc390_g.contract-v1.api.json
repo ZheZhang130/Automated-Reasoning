@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc390_g",
+  "text": "## Description\nThe program reads a positive integer \\(N\\) from standard input and prints the sum, modulo \\(998244353\\), of the integers formed by concatenating the entries of each permutation of \\(1,2,\\ldots,N\\).\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies one integer, \\(N\\).\n- **PRE-2 (Unverified):** \\(1 \\le N \\le 200000\\), inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** Each of the \\(N!\\) permutations contributes exactly once, even if distinct permutations produce the same concatenated integer.\n- **POST-2 (Unverified):** Each permutation contributes the decimal integer formed by writing its entries in permutation order, without separators or leading zeros on any entry.\n- **POST-3 (Unverified):** Standard output contains a single integer: the unique residue of the total in the range \\(0\\) through \\(998244352\\), inclusive.\n\n## Test suggestions\n- Check \\(N=1\\) produces `1`, and \\(N=3\\) produces `1332` (PRE-2, POST-1–POST-3).\n- Compare results for \\(N=9\\) and \\(N=10\\) with independently enumerated sums to check the transition to two-digit entries (POST-1–POST-3).\n- Check the supplied examples \\(N=390\\) and \\(N=79223\\) produce `727611652` and `184895744`, respectively (POST-3).\n- Check \\(N=200000\\) against an independent reference result to cover the inclusive upper bound (PRE-2, POST-3).\n\n## Unspecified behavior\nBehavior is unspecified for missing, malformed, or extra input, and for integers outside the stated range.\n",
+  "statement_sha256": "7b0d49e5b42faf6c2bf37d53ed342a6acedfae5e73c9f1ec2e1b17e114e18feb",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "7b0d49e5b42faf6c2bf37d53ed342a6acedfae5e73c9f1ec2e1b17e114e18feb",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:35:54Z",
+    "finish_reason": "stop",
+    "request_id": "req_b382e5c342ba4cf88473dc2722260118",
+    "retries": 0,
+    "ledger_index": 15
+  },
+  "usage": {
+    "prompt_tokens": 590,
+    "completion_tokens": 382,
+    "total_tokens": 972,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.58,
+  "cost_usd": 0.005,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 202,
+  "created_utc": "2026-11-25T05:36:00Z"
+}

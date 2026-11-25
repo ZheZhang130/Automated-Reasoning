@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc393_b",
+  "text": "## Observations\n\n1. Every evenly spaced triple is uniquely determined by its middle position \\(j\\) and its positive gap \\(d\\), with endpoints \\(j-d\\) and \\(j+d\\).\n2. With 1-based indexing and \\(n=|S|\\), both endpoints are in bounds exactly when \\(1\\le d\\le \\min(j-1,n-j)\\).\n3. A triple qualifies only if its middle character is `B`, its left endpoint is `A`, and its right endpoint is `C`.\n4. There are at most \\(n\\) choices of middle position and at most \\(n\\) gaps per position, and each candidate can be checked without storing the triple.\n\n## Solution sketch\n\n> Every evenly spaced triple is uniquely determined by its middle position \\(j\\) and its positive gap \\(d\\), with endpoints \\(j-d\\) and \\(j+d\\).\n\n1. Read the string, initialize a counter to zero, and visit each position \\(j\\) as a potential middle. Enumerating by middle and gap ensures that no triple is counted twice.\n\n> With 1-based indexing and \\(n=|S|\\), both endpoints are in bounds exactly when \\(1\\le d\\le \\min(j-1,n-j)\\).\n\n2. For each middle position, consider only gaps in that range. The first and last positions have no valid gaps. When \\(n=3\\), only the middle position with gap \\(1\\) can qualify.\n\n> A triple qualifies only if its middle character is `B`, its left endpoint is `A`, and its right endpoint is `C`.\n\n3. Skip any middle position that is not `B` before checking its gaps. For each remaining candidate, increment the counter if the left endpoint is `A` and the right endpoint is `C`. Print the final counter, which stays zero if no triple qualifies.\n\n> There are at most \\(n\\) choices of middle position and at most \\(n\\) gaps per position, and each candidate can be checked without storing the triple.\n\n4. Each candidate takes constant time to check, so the algorithm runs in \\(O(n^2)\\) time and uses \\(O(1)\\) extra space beyond the input string.\n",
+  "statement_sha256": "e7f3fccafb29052499d3d3ee15e2fb56e276ec300cc65c205376d065819b95a0",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "e7f3fccafb29052499d3d3ee15e2fb56e276ec300cc65c205376d065819b95a0",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:45:03Z",
+    "finish_reason": "stop",
+    "request_id": "req_55d4483de38646599a534c8030349025",
+    "retries": 0,
+    "ledger_index": 84
+  },
+  "usage": {
+    "prompt_tokens": 379,
+    "completion_tokens": 464,
+    "total_tokens": 843,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 7.08,
+  "cost_usd": 0.005398,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 309,
+  "created_utc": "2026-11-25T05:45:10Z"
+}

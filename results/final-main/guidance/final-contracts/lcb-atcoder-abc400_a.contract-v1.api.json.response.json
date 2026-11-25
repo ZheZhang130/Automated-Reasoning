@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo01APxdWzbyhkZ6nkAcyUljXKgQz",
+  "object": "chat.completion",
+  "created": 1795585176,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nGiven a row count, report how many columns are needed to arrange exactly 400 people in a rectangle with no gaps. If no positive whole-number column count works, report `-1`.\n\n## Preconditions\n- PRE-1 (Unverified): Standard input supplies one integer, A, representing the number of rows.\n- PRE-2 (Unverified): A is between 1 and 400, inclusive.\n\n## Postconditions\n- POST-1 (Unverified): If a positive integer B exists such that A × B = 400, standard output contains that unique value.\n- POST-2 (Unverified): If no such positive integer B exists, standard output contains `-1`.\n- POST-3 (Unverified): Standard output contains exactly one answer and no explanatory text.\n\n## Test suggestions\n- For A = 10, expect `40` (PRE-1, PRE-2, POST-1).\n- For A = 11, expect `-1` (PRE-1, PRE-2, POST-2).\n- Check both allowed endpoints: A = 1 gives `400`, and A = 400 gives `1` (PRE-2, POST-1).\n- In each case, check that only the answer is printed (POST-3).\n\n## Unspecified behavior\nBehavior is unspecified for missing or malformed input, additional input values, or an integer outside the allowed range.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 382,
+    "completion_tokens": 292,
+    "total_tokens": 674,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,169 @@
+{
+  "schema": "csc2108-run-measurement-v1",
+  "built_utc": "2026-11-25T21:29:59Z",
+  "identity": {
+    "run_id": "final-main-lcb-atcoder-abc397_b-E-s2109-a4edd9a3",
+    "task_id": "lcb-atcoder-abc397_b",
+    "condition": "E",
+    "seed": 2109,
+    "batch": "final-main",
+    "agent_config_id": "frozen-v6",
+    "agent_config_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "guidance_prompt_id": null,
+    "injection": null,
+    "diagnosis_prompt_id": "diagnosis-v1",
+    "diagnosis_delivery": "deliver-v1",
+    "source_commit": "bf160d8958549e2c0957b4be1034fa6905201d0f",
+    "source_dirty": false,
+    "coding_model": "qwen3.5:9b",
+    "coding_model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "profile": "heredoc-v6-16k-common",
+    "profile_config": {
+      "context": 16384,
+      "protocol": "text",
+      "thinking": false,
+      "output_tokens": 4096,
+      "temperature": 0.2,
+      "sampler": {
+        "top_k": 40,
+        "top_p": 0.9,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 64,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    },
+    "frontier_provider": "openai-api",
+    "frontier_requested_model": "gpt-6.2-sol",
+    "frontier_observed_model": "gpt-6.2-sol",
+    "dataset_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+    "judge_version": "0.2.1",
+    "judge_public_tests_sha256": "033cbf9a3e50a21bc88328225a7beb386d9fd0a56b0a83ca6f0be8e2cf255f6b",
+    "guidance_artifact_sha256": null,
+    "frozen_files_verified": 38,
+    "sampler_wire_verified": true,
+    "host": {
+      "system": "Windows",
+      "release": "10",
+      "machine": "AMD64",
+      "node": "<HOST>",
+      "python": "3.11.9"
+    },
+    "host_backend": "windows"
+  },
+  "correctness": {
+    "candidate_produced": true,
+    "submitted": true,
+    "public_tests_invoked": 2,
+    "public_pass": true,
+    "final_public_status": "pass",
+    "public_runtime_error_cases": 0,
+    "hidden_status": "candidate_failure",
+    "hidden_passed": 8,
+    "hidden_total": 40,
+    "exit_status": "submitted",
+    "raw_exit_status": "Submitted",
+    "infrastructure_failure": false,
+    "setup_error": null,
+    "context_overflow": false
+  },
+  "local_inference": {
+    "calls": 8,
+    "prompt_tokens": 9154,
+    "completion_tokens": 8806,
+    "reasoning_tokens": null,
+    "thinking_chars": 0,
+    "max_prompt_tokens": 1802,
+    "context_tokens_limit": 16384,
+    "output_tokens_limit": 4096,
+    "prompt_eval_seconds": 1.522741,
+    "eval_seconds": 83.163431,
+    "load_seconds": 3.199004,
+    "total_inference_seconds": 88.082527,
+    "truncated_responses": 2,
+    "format_errors": 2,
+    "self_plan": null
+  },
+  "agent": {
+    "actions": 6,
+    "repairs": 1,
+    "model_calls": 8,
+    "source_writes": 3,
+    "distinct_sources": 2,
+    "unchanged_writes": 1,
+    "rewrites_of_failed_candidate": 0,
+    "repeated_responses": 1,
+    "public_test_attempts": 2,
+    "seconds_to_first_valid_action": 87.143,
+    "seconds_to_first_executable_candidate": 89.76,
+    "seconds_to_first_public_test": 89.76
+  },
+  "frontier": {
+    "requests": [
+      {
+        "type": "diagnosis",
+        "prompt_id": "diagnosis-v1",
+        "provider": "openai-api",
+        "utc": "2026-11-25T12:18:02Z",
+        "input_tokens": 1070,
+        "output_tokens": 212,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "latency_seconds": 4.81,
+        "cost_usd": 0.00426,
+        "status": "ok",
+        "request_sha256": "83013272b0d2d2767115f54332e8fed0d71d10ac3174afe04f756533e6837882",
+        "response_sha256": "42bda4243841e9d748ac305fb1152c4047b8b5287d1664a299d98fe5ec8b9759",
+        "upfront": false
+      }
+    ],
+    "n_requests": 1,
+    "cost_usd": 0.00426,
+    "wait_seconds_during_run": 4.813,
+    "provider_failures": 0
+  },
+  "condition": {
+    "guidance": null,
+    "diagnosis": {
+      "trigger_observed": true,
+      "trigger_reason": "qualifying:WA",
+      "trigger_action": 3,
+      "frontier_requested": true,
+      "frontier_returned": true,
+      "delivered": true,
+      "error_category": null,
+      "frontier_wait_seconds": 4.813,
+      "local_actions_after": 3,
+      "public_tests_after": 1,
+      "candidate_changed_after": true,
+      "public_pass_after": true,
+      "later_public_failures": 0,
+      "diagnosis_sha256": "42bda4243841e9d748ac305fb1152c4047b8b5287d1664a299d98fe5ec8b9759",
+      "diagnosis_words": 148,
+      "failed_candidate_sha256": "9fb264d17b099204b363d6527b6f8c5b2ed6e6cee34c8d6f3c4683f59732aca4",
+      "public_report_sha256": "9409ac5bb14f7460f93c861fee456e80141ac6524da05a254d3409b00647a116"
+    }
+  },
+  "time": {
+    "wall_seconds": 105.31,
+    "local_coding_seconds": 104.64,
+    "local_inference_seconds": 88.082527,
+    "frontier_seconds": 4.813,
+    "public_test_seconds": 0.516,
+    "sandbox_tool_seconds": 0.72,
+    "orchestration_seconds": 10.508,
+    "equal_opportunity_seconds": 99.827
+  },
+  "cost": {
+    "api_cost_usd_run": 0.00426,
+    "api_cost_usd_upfront": null,
+    "gpu_memory_sample": {
+      "before": "2845 MiB, 0 %\n",
+      "after": "9866 MiB, 0 %\n"
+    },
+    "modelled_local_energy_kwh": null,
+    "modelled_local_cost_usd": null,
+    "modelling_assumptions": null
+  }
+}

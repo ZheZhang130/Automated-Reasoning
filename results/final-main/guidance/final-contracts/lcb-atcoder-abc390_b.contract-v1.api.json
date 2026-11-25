@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc390_b",
+  "text": "## Description\nRead a sequence of positive integers from standard input and determine whether it is a geometric progression in the given order. A sequence is geometric if the exact ratio of each term to the preceding term is the same throughout. The common ratio need not be an integer.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains an integer \\(N\\) with \\(2 \\le N \\le 100\\).\n- **PRE-2 (Unverified):** The second input line contains exactly \\(N\\) space-separated integers, each between \\(1\\) and \\(10^9\\), inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** If all consecutive term ratios are equal, standard output contains one line with exactly `Yes`. This includes every valid two-term sequence and every constant sequence.\n- **POST-2 (Unverified):** If any two consecutive term ratios differ, standard output contains one line with exactly `No`. The decision uses the input order without rearranging any terms.\n\n## Test suggestions\n- Check that `10 8` with \\(N=2\\) produces `Yes` despite its noninteger ratio (PRE-1, PRE-2, POST-1).\n- Check that `8 4 2 1` produces `Yes`, while the same terms ordered as `8 2 4 1` produce `No` (PRE-1, PRE-2, POST-1, POST-2).\n- At \\(N=100\\), check that a sequence consisting entirely of \\(10^9\\) produces `Yes`, then change only the final term to \\(10^9-1\\) and expect `No` (PRE-1, PRE-2, POST-1, POST-2).\n\n## Unspecified behavior\nBehavior is unspecified for input outside the stated format or bounds, including missing or extra terms. No error reporting is required.\n",
+  "statement_sha256": "70c4d1ad6ad773a727af81c76f97a0348049b89a4e06529bea46358bc6954e6f",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "70c4d1ad6ad773a727af81c76f97a0348049b89a4e06529bea46358bc6954e6f",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:35:33Z",
+    "finish_reason": "stop",
+    "request_id": "req_65f72528cf834a688cb91245faa42fd8",
+    "retries": 0,
+    "ledger_index": 12
+  },
+  "usage": {
+    "prompt_tokens": 501,
+    "completion_tokens": 400,
+    "total_tokens": 901,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 6.59,
+  "cost_usd": 0.005002,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 241,
+  "created_utc": "2026-11-25T05:35:39Z"
+}

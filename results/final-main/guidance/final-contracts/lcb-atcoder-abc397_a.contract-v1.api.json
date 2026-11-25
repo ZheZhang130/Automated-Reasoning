@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc397_a",
+  "text": "## Description\nThe Python 3 program reads Takahashi’s body temperature in degrees Celsius from standard input and prints the integer corresponding to its classification.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies a single temperature, X, written to exactly one decimal place.\n- **PRE-2 (Unverified):** X is between 30.0 and 50.0, inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains exactly one classification integer and no explanatory text.\n- **POST-2 (Unverified):** If X is at least 38.0, the output is `1` (High fever).\n- **POST-3 (Unverified):** If X is at least 37.5 but less than 38.0, the output is `2` (Fever).\n- **POST-4 (Unverified):** If X is less than 37.5, the output is `3` (Normal).\n\n## Test suggestions\n- Check both sides of each classification boundary with `37.4` → `3`, `37.5` → `2`, `37.9` → `2`, and `38.0` → `1` (PRE-1, PRE-2, POST-2–POST-4).\n- Check the valid range endpoints with `30.0` → `3` and `50.0` → `1` (PRE-2, POST-2, POST-4).\n- For each case, check that the program prints only the expected integer (POST-1).\n\n## Unspecified behavior\nNo behavior is guaranteed for missing or malformed input, additional input values, temperatures outside the valid range, or temperatures not written to exactly one decimal place.\n",
+  "statement_sha256": "645780772546ad66210469fc15edde34609ea5e2dfc028b6e7b5ab02b202bc55",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "645780772546ad66210469fc15edde34609ea5e2dfc028b6e7b5ab02b202bc55",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:38:22Z",
+    "finish_reason": "stop",
+    "request_id": "req_9dd89a731c37470d81c627da0b65f91b",
+    "retries": 0,
+    "ledger_index": 36
+  },
+  "usage": {
+    "prompt_tokens": 526,
+    "completion_tokens": 369,
+    "total_tokens": 895,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.14,
+  "cost_usd": 0.004742,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 203,
+  "created_utc": "2026-11-25T05:38:27Z"
+}

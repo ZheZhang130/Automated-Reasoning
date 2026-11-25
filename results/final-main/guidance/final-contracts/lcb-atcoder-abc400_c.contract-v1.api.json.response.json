@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo01FyehkKuiCVBBkD5sOtSiq6lK6",
+  "object": "chat.completion",
+  "created": 1795585181,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead a positive integer \\(N\\) from standard input and print the number of distinct good integers in the inclusive range from \\(1\\) through \\(N\\). An integer is good if it can be written as \\(2^a b^2\\) for positive integers \\(a\\) and \\(b\\).\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies a single integer \\(N\\) in the stated input format.\n- **PRE-2 (Unverified):** \\(1 \\le N \\le 10^{18}\\).\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains one decimal integer giving the exact count of good integers \\(X\\) with \\(1 \\le X \\le N\\).\n- **POST-2 (Unverified):** Each qualifying integer contributes exactly once, even if several pairs \\((a,b)\\) represent it. A representation with \\(a=0\\) does not qualify.\n- **POST-3 (Unverified):** The count is \\(0\\) when \\(N=1\\). For consecutive valid bounds, the count increases by one if the new upper bound is good and stays unchanged otherwise.\n\n## Test suggestions\n- Check that \\(N=1\\) gives \\(0\\) and \\(N=2\\) gives \\(1\\) (PRE-2, POST-1, POST-3).\n- Check that \\(N=17,18,19\\) give \\(4,5,5\\), respectively, to exercise inclusion of the upper bound and no increase at a non-good integer (POST-1, POST-3).\n- Check that \\(N=399\\) and \\(N=400\\) give \\(23\\) and \\(24\\), respectively. The integer \\(400\\) contributes once despite having representations \\(2^2\\cdot10^2\\) and \\(2^4\\cdot5^2\\) (POST-2, POST-3).\n- Check the exact count at \\(N=10^{18}\\) against an independently established expected value (PRE-2, POST-1).\n\n## Unspecified behavior\nBehavior is not specified for missing, malformed, or extra input, or for integers outside the stated range.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 452,
+    "completion_tokens": 514,
+    "total_tokens": 966,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 36,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,173 @@
+{
+  "schema": "csc2108-experiment-provenance-v1",
+  "batch": "final-main",
+  "git": {
+    "commit": "bf160d8958549e2c0957b4be1034fa6905201d0f",
+    "branch": "feat/csc2108-final-evaluation",
+    "execution_paths_dirty": false,
+    "dirty_paths": [],
+    "worktree_status_lines": 2
+  },
+  "code_fingerprint": {
+    "sha256": "40411a72c4e434f7e5341038a1b98178ea880dfdbaa46a859c54c98adac5552e",
+    "files": 122
+  },
+  "plan": "E:\\CSC2108Local\\final-study\\plans\\final-main.json",
+  "plan_sha256": "7342a46fb0b0ff5eb0ea9a9144126f499001e758baa72eebb45ad09bc402d052",
+  "benchmark": {
+    "manifest": "judge/manifests/final.json",
+    "manifest_name": "final",
+    "manifest_sha256": "6f11cd410028d613a8f28ed4097e78dd45703894ba5b1b352011f1ab0f9f9d44",
+    "tasks_sha256": "0697c3946df54de8db21a906c7bc4216b8430297313b45c4ef3787ef19e90ac2"
+  },
+  "benchmark_manifest_sha256": "6f11cd410028d613a8f28ed4097e78dd45703894ba5b1b352011f1ab0f9f9d44",
+  "built_tasks_sha256": "50a37c6fe47f2a74e51bea1ec441acc4479931d28161c917ede0c48479ee11cf",
+  "dataset": {
+    "name": "livecodebench/code_generation_lite",
+    "revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+    "shard": "test6.jsonl",
+    "shard_sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5"
+  },
+  "guidance_freeze": "E:\\CSC2108Local\\final-study\\plans\\final-main.freeze.json",
+  "guidance_freeze_sha256": "224c492c635ff659f2b546405afac6b16324644907eab7787c642b9ea9b53515",
+  "judge": {
+    "version": "0.2.1",
+    "image": "csc2108-judge:0.2.1",
+    "image_id": "sha256:c8e6c9b6aeed7dd368d682c21d147041b46d93d7d7f627802eb21d9e1682c992"
+  },
+  "local_model": {
+    "model": "qwen3.5:9b",
+    "expected_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90"
+  },
+  "local_model_observed_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "frontier": {
+    "requested_model": "openai/gpt-6.2-sol",
+    "b_provider": "api",
+    "b_max_requests": 28,
+    "e_provider": "api",
+    "e_timeout_seconds": 300,
+    "reasoning_effort": "medium",
+    "max_completion_tokens": 8000
+  },
+  "agent": {
+    "agent": "frozen-v6",
+    "definition_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "profile": "heredoc-v6-16k-common",
+    "profile_config": {
+      "context": 16384,
+      "protocol": "text",
+      "thinking": false,
+      "output_tokens": 4096,
+      "temperature": 0.2,
+      "sampler": {
+        "top_k": 40,
+        "top_p": 0.9,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 64,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    },
+    "budgets": {
+      "actions": 20,
+      "repair_groups": 3,
+      "coding_seconds": 600,
+      "request_seconds": 180
+    },
+    "frozen_files": 38,
+    "selection_sha256": "8a8ac7f58adbf9073d87ab902cfe32d47fc2a38fea3d4d812086a70c2da0ceb6"
+  },
+  "prompts": {
+    "prompts": {
+      "contract-v1": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+      "diagnosis-v1": "3d2c77611009163d4d1a8fa20922db5e719f184207f2efa84ff0f65fdc0fefb8",
+      "plan-v1": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6"
+    },
+    "injection": {
+      "inject-v1/contract": "30e3fb753cd7c7afb042c89372c84ba36ec6510185f276892f0919e04da44c2e",
+      "inject-v1/plan": "e5d9ff35f486775d820fd14ed8681b5e4478b92fbd74b7a8d3934eddd28425cf"
+    },
+    "diagnosis_delivery": {
+      "deliver-v1": "dbe4c788c6329843f146737b6d4baf4dcdf95170b4ba846974c92b991d09b954"
+    }
+  },
+  "seeds": {
+    "seeds": [
+      2108,
+      2109,
+      2110
+    ],
+    "order": "balanced",
+    "sampling": {
+      "context": 16384,
+      "protocol": "text",
+      "thinking": false,
+      "output_tokens": 4096,
+      "temperature": 0.2,
+      "sampler": {
+        "top_k": 40,
+        "top_p": 0.9,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 64,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    }
+  },
+  "hardware_cohort": {
+    "label": "final windows",
+    "system": "Windows",
+    "machine": "AMD64",
+    "node": "<HOST>",
+    "gpu": "NVIDIA GeForce RTX 4080 SUPER, 16376 MiB, 610.88"
+  },
+  "host": {
+    "release": "10",
+    "processor": "Intel64 Family 6 Model 198 Stepping 2, GenuineIntel"
+  },
+  "software": {
+    "python": "3.11.9",
+    "packages": {
+      "mini-swe-agent": "2.4.6",
+      "litellm": "1.81.16",
+      "pydantic": "2.12.5",
+      "pydantic_core": "2.41.5",
+      "numpy": "2.4.6",
+      "requests": "2.34.2"
+    }
+  },
+  "pricing": {
+    "research_cost": {
+      "model": "gpt-6.2-sol",
+      "usd_per_1m_tokens": {
+        "input": 2.0,
+        "cached_input": 0.1,
+        "output": 10.0,
+        "tier": "standard",
+        "context": "short (<= 272K input tokens)",
+        "verified_utc": "2026-11-24",
+        "source": "https://developers.openai.com/api/docs/pricing"
+      },
+      "metric": "token-derived API cost (provider usage x list price), not invoiced expenditure",
+      "reasoning_tokens": "included in completion/output tokens by the provider; not added again",
+      "cached_input": "priced at the cached-input rate when the provider reports cached tokens"
+    },
+    "reservation": {
+      "price_conservative_per_1m": {
+        "input": 12.0,
+        "output": 60.0
+      },
+      "code_ceiling": {
+        "max_requests": 2000,
+        "max_usd": 100.0
+      },
+      "ledger_ceiling": {
+        "max_requests": null,
+        "max_usd": null
+      }
+    }
+  },
+  "first_session_utc": "2026-11-25T05:55:01Z"
+}

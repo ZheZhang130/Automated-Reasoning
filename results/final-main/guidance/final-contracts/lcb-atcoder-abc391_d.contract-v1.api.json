@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc391_d",
+  "text": "## Description\nRead the initial block positions and queries from standard input. For each query, report whether the specified block remains on the grid after the update at time \\(T_j\\) and before the update at time \\(T_j+1\\).\n\n## Preconditions\n- **PRE-1 (Unverified):** The input uses the stated format and contains only integer values, with \\(1\\le N\\le 2\\times10^5\\) and \\(1\\le W\\le N\\).\n- **PRE-2 (Unverified):** The \\(N\\) coordinate pairs identify blocks 1 through \\(N\\) in input order. Their initial cells are distinct, with \\(1\\le X_i\\le W\\) and \\(1\\le Y_i\\le10^9\\).\n- **PRE-3 (Unverified):** There are \\(Q\\) queries, with \\(1\\le Q\\le2\\times10^5\\), \\(1\\le T_j\\le10^9\\), and \\(1\\le A_j\\le N\\).\n\n## Postconditions\n- **POST-1 (Unverified):** At the start of each integer-time update, a full bottom row is removed in its entirety. If the row is not full, no block is removed. Removed blocks never return. A row filled by falling blocks is not cleared until the next update.\n- **POST-2 (Unverified):** After the removal step, each remaining block is considered once, from bottom to top. It falls exactly one row if it is above the bottom row and the cell immediately below it is empty at that point; otherwise it stays. Blocks stay in their original columns, and no two blocks occupy the same cell.\n- **POST-3 (Unverified):** Standard output contains exactly \\(Q\\) lines in query order. Line \\(j\\) is `Yes` if block \\(A_j\\) has not been removed by the end of update \\(T_j\\), and `No` otherwise. Repeated queries receive separate, identical answers.\n\n## Test suggestions\n- Under PRE-1 and PRE-2, compare a bottom row that starts full with one that becomes full during the first update. Check for removal at times 1 and 2 respectively (POST-1, POST-3).\n- Use two vertically adjacent blocks with an empty cell beneath the lower one. Check that both can fall in the same update, then query around their removal times (POST-2, POST-3).\n- Use a grid with an initially empty column and submit repeated queries in nonchronological order, including \\(T_j=10^9\\) (PRE-3). Check that every answer is `Yes` and each query gets its own line (POST-1, POST-3).\n\n## Unspecified behavior\n- Handling of input that violates PRE-1 through PRE-3 is unspecified.\n- No tie-breaking order is prescribed for blocks at the same height; they are in different columns, so their relative processing order does not affect the result.\n",
+  "statement_sha256": "0602120978a7642e812bfff71e60b420500d4ccb643086f0c7b35da279f27e5d",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "0602120978a7642e812bfff71e60b420500d4ccb643086f0c7b35da279f27e5d",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:36:11Z",
+    "finish_reason": "stop",
+    "request_id": "req_891c248c500d4e87adbaf8df42e164c6",
+    "retries": 0,
+    "ledger_index": 18
+  },
+  "usage": {
+    "prompt_tokens": 883,
+    "completion_tokens": 631,
+    "total_tokens": 1514,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 9.75,
+  "cost_usd": 0.008076,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 388,
+  "created_utc": "2026-11-25T05:36:21Z"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzxFpD31v7m6hiPfNWcaIVonzUvm",
+  "object": "chat.completion",
+  "created": 1795584933,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead a sequence of positive integers from standard input and determine whether it is a geometric progression in the given order. A sequence is geometric if the exact ratio of each term to the preceding term is the same throughout. The common ratio need not be an integer.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains an integer \\(N\\) with \\(2 \\le N \\le 100\\).\n- **PRE-2 (Unverified):** The second input line contains exactly \\(N\\) space-separated integers, each between \\(1\\) and \\(10^9\\), inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** If all consecutive term ratios are equal, standard output contains one line with exactly `Yes`. This includes every valid two-term sequence and every constant sequence.\n- **POST-2 (Unverified):** If any two consecutive term ratios differ, standard output contains one line with exactly `No`. The decision uses the input order without rearranging any terms.\n\n## Test suggestions\n- Check that `10 8` with \\(N=2\\) produces `Yes` despite its noninteger ratio (PRE-1, PRE-2, POST-1).\n- Check that `8 4 2 1` produces `Yes`, while the same terms ordered as `8 2 4 1` produce `No` (PRE-1, PRE-2, POST-1, POST-2).\n- At \\(N=100\\), check that a sequence consisting entirely of \\(10^9\\) produces `Yes`, then change only the final term to \\(10^9-1\\) and expect `No` (PRE-1, PRE-2, POST-1, POST-2).\n\n## Unspecified behavior\nBehavior is unspecified for input outside the stated format or bounds, including missing or extra terms. No error reporting is required.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 501,
+    "completion_tokens": 400,
+    "total_tokens": 901,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

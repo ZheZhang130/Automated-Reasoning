@@ -8,3 +8,5 @@
 # selected manifests, freezes and reports).
 /evaluation/** text eol=lf
 /judge/manifests/*.json text eol=lf
+# Exported benchmark results: exact bytes (their sha256 is recorded in results/*/MANIFEST.json).
+/results/** -text

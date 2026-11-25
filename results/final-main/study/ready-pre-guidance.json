@@ -1,0 +1,53 @@
+﻿{
+ "ready": false,
+ "problems": [
+  "360 scheduled C/D attempts have no guidance artifact yet (run `evaluation guidance PLAN --yes`)",
+  "no guidance freeze at E:\\CSC2108Local\\final-study\\plans\\final-main.freeze.json (run `evaluation guidance`)"
+ ],
+ "warnings": [],
+ "checks": {
+  "benchmark_manifest": "E:\\VS Code Projects\\CSC2108Project\\Automated-Reasoning\\judge\\manifests\\final.json",
+  "git": {
+   "commit": "bf160d8958549e2c0957b4be1034fa6905201d0f",
+   "branch": "feat/csc2108-final-evaluation",
+   "execution_paths_dirty": false,
+   "dirty_paths": [],
+   "worktree_status_lines": 2
+  },
+  "frozen_files_verified": 38,
+  "local_model": {
+   "model": "qwen3.5:9b",
+   "expected_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+   "observed_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90"
+  },
+  "judge_image_id": "sha256:c8e6c9b6aeed7dd368d682c21d147041b46d93d7d7f627802eb21d9e1682c992",
+  "frontier_model": "openai/gpt-6.2-sol",
+  "budget": {
+   "ceilings": {
+    "max_requests": 2000,
+    "max_usd": 100.0,
+    "code_maximum": {
+     "max_requests": 2000,
+     "max_usd": 100.0
+    }
+   },
+   "used": {
+    "requests": 0,
+    "reservation_usd": 0.0
+   },
+   "room": {
+    "requests": 2000,
+    "reservation_usd": 100.0
+   },
+   "fits_within_ceilings": {
+    "expected": true,
+    "high": true,
+    "stress": false,
+    "worst": false
+   },
+   "expected_requests": 794,
+   "expected_reservation_usd": 38.84
+  }
+ }
+}
+

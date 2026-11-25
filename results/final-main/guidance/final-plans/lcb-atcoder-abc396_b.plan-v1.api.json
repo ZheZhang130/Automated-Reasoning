@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc396_b",
+  "text": "## Observations\n\n1. The pile starts with exactly 100 cards, all labeled 0.\n2. Both query types act on the top of the pile, so the cards follow last-in, first-out order.\n3. A type 1 query includes a label and produces no output; a type 2 query has no label and prints the value it removes.\n4. Every type 2 query has a card available to remove, and the pile can never contain more than 100 + Q cards.\n\n## Solution sketch\n\n> The pile starts with exactly 100 cards, all labeled 0.\n\n1. Read Q and initialize a list with 100 zeros. Treat the last element as the top of the pile.\n\n> Both query types act on the top of the pile, so the cards follow last-in, first-out order.\n\n2. Process the Q queries in input order. For type 1, append the given label to the list. For type 2, remove the last element and use its value as the answer. This also handles a removal before any insertion: the last element is then an initial zero.\n\n> A type 1 query includes a label and produces no output; a type 2 query has no label and prints the value it removes.\n\n3. Read an extra integer only for type 1. Print each type 2 answer immediately on its own line so the answers appear in query order.\n\n> Every type 2 query has a card available to remove, and the pile can never contain more than 100 + Q cards.\n\n4. No empty-pile check is needed before a removal. Appending takes amortized constant time, and removing from the end takes constant time, so the total time is O(100 + Q). Processing queries one at a time uses O(100 + Q) space for the pile.\n",
+  "statement_sha256": "5a91c3c1a920919a9a8ed7279711897d13d439b7766244f7548b1484300ab666",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "5a91c3c1a920919a9a8ed7279711897d13d439b7766244f7548b1484300ab666",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:46:28Z",
+    "finish_reason": "stop",
+    "request_id": "req_bfad1133b9b246fb9b8356b52304fe95",
+    "retries": 0,
+    "ledger_index": 93
+  },
+  "usage": {
+    "prompt_tokens": 708,
+    "completion_tokens": 375,
+    "total_tokens": 1083,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.78,
+  "cost_usd": 0.005166,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 297,
+  "created_utc": "2026-11-25T05:46:34Z"
+}

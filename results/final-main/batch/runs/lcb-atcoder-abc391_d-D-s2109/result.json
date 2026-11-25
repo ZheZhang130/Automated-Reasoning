@@ -1,0 +1,219 @@
+{
+  "run_id": "final-main-lcb-atcoder-abc391_d-D-s2109-27217621",
+  "task_id": "lcb-atcoder-abc391_d",
+  "condition": "D",
+  "repeat": 1,
+  "coding_model": "qwen3.5:9b",
+  "guidance_model": "gpt-6.2-sol",
+  "exit_status": "agent_error",
+  "raw_exit_status": "RepeatedFormatError",
+  "submission_sha256": null,
+  "n_actions": 0,
+  "n_repairs": 0,
+  "guidance": {
+    "kind": "contract",
+    "triggered": true,
+    "delivered": true,
+    "error": null
+  },
+  "usage": {
+    "coding": [
+      {
+        "prompt_tokens": 1669,
+        "completion_tokens": 4096,
+        "cost_usd": null,
+        "done_reason": "length",
+        "eval_seconds": 38.929587
+      },
+      {
+        "prompt_tokens": 1743,
+        "completion_tokens": 4096,
+        "cost_usd": null,
+        "done_reason": "length",
+        "eval_seconds": 38.929385
+      },
+      {
+        "prompt_tokens": 1817,
+        "completion_tokens": 4096,
+        "cost_usd": null,
+        "done_reason": "length",
+        "eval_seconds": 39.051746
+      }
+    ],
+    "guidance": [
+      {
+        "prompt_tokens": 883,
+        "completion_tokens": 631,
+        "cost_usd": 0.008076
+      }
+    ]
+  },
+  "wall_seconds": 129.16,
+  "host": "<HOST>",
+  "backend": "guided_agent/frozen-runtime",
+  "profile": "heredoc-v6-16k-common",
+  "seed": 2109,
+  "budgets": {
+    "actions": 20,
+    "repairs": 3,
+    "seconds": 600,
+    "request_seconds": 180
+  },
+  "injection": "inject-v1",
+  "host_identity": {
+    "system": "Windows",
+    "release": "10",
+    "machine": "AMD64",
+    "node": "<HOST>",
+    "python": "3.11.9"
+  },
+  "host_backend": "windows",
+  "started_utc": "2026-11-25T11:49:02Z",
+  "cohort": "final windows",
+  "batch": "final-main",
+  "source": {
+    "commit": "bf160d8958549e2c0957b4be1034fa6905201d0f",
+    "dirty": false,
+    "dirty_paths": [],
+    "guided_agent_sha256": {
+      "__init__.py": "4f73e22afc142221d4e49b2e7fcb87160e3bc2a94e84e384408e445ee3cef320",
+      "__main__.py": "98754d7d7d73c28bfbda567a5d20986cb65afa39afd5e641f8367998a20de1f4",
+      "agent_config.py": "1ebf37c59e1e1080b3dad547fd7c028a0574fe879a02baf4ee9032eb30b56501",
+      "analysis.py": "7df35f208f78c6c69951087ba2518a1a49dda2c5912fee29a749000aeda162e7",
+      "backend.py": "968e0ed5bc2e36ec6a05155a52ebb57ff7e8c24e942f27ada0326660cae03f37",
+      "checkers.py": "2a9377b221baed6e432fa7883f68bc0885d4cd9443cfb039fcfd9fcb8cae9ebc",
+      "common.py": "2d6b6f448639ca63b153ba91e744bfe5de6b39fe3f18bb63fa2b9bd7beed4071",
+      "diagnosis.py": "50da04ad3b5fa8aeb53b3117e4a68145dace31e886787bcd2ce439c9ec9811fd",
+      "frontier_coder.py": "2d648a5be695a39c83ee438c2014e4772c766194edda99e180a680d6fc20e82f",
+      "guidance.py": "69fba6de8d16b8b88d7486c4e5216868893d47e976bbce203da0b2ceafa2c2ea",
+      "integrity.py": "8fd48ad20ff2182d74d7998da6558a746758f9a0ad737d6494defa51835e9685",
+      "measurement.py": "3084c5d3d6e933ca0df62e0dedd8a3a5601ea3a24e593988179d13660e44f982",
+      "output_semantics.py": "5224678d5cc8143005b26016fbb1f21e209416fa090cc7abfedb909adb47cff7",
+      "privacy.py": "75fd18267621c8690a18dc59cc042f242b60cf0e0376f2be2d7f4eaf4ab131fa",
+      "providers.py": "57c3ad6691d9898c9c5d939a7d2be3c8385737ca7b506485b61b8cbf16fe4cee",
+      "runner.py": "2d63c863234e367abba03c24a48ca1222ea2452c5db2a51c67c512fd16635970",
+      "selection.py": "7858d07fc4b4931ba4b5948d3a91111bbb763b6672abc5e8f119a7b85186be3d",
+      "selection_pass2.py": "345f1e36d0075c259d1ea355c49d7215dbe2207afba2e337a844b224162521d1",
+      "selection_pass3.py": "5bbe5cbe92d5ce64f3fe9d26373456a0a8e48e220cfe3e9f7a5e2f0ed691f5dd",
+      "tasks.py": "b425704a26788465b5003539962c126b2bcb94f4e8146c83e904e8d688fcc4e8",
+      "test_guided.py": "036566542290836b16950a64fb5ba2888e2d430caaa0a49f885d5a0d8d377647",
+      "test_pass2.py": "2426b2e3b7f7636ab8d213b2cbbce39dce868911bb251fe878a1d538649a10bb",
+      "test_pass3.py": "dbd28367f35d50a810b71c0e449f930afbce0794ae82be2ade752cb328116db1",
+      "test_pass4.py": "0c0d8c84b99c429c22503b00c980db77ff8aa2a243031bbd2062cb4430565b1f"
+    }
+  },
+  "agent_config": {
+    "id": "frozen-v6",
+    "definition": {},
+    "definition_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "module_sha256": "1ebf37c59e1e1080b3dad547fd7c028a0574fe879a02baf4ee9032eb30b56501"
+  },
+  "frozen_verification": {
+    "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "frozen_files_verified": 38,
+    "packages": {
+      "mini-swe-agent": "2.4.6",
+      "litellm": "1.81.16",
+      "pydantic": "2.12.5",
+      "pydantic_core": "2.41.5",
+      "numpy": "2.4.6"
+    },
+    "selection_sha256": "8a8ac7f58adbf9073d87ab902cfe32d47fc2a38fea3d4d812086a70c2da0ceb6",
+    "image_ids": {
+      "python:3.11-slim-bookworm": "sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39",
+      "csc2108-lcb-judge:v2": "sha256:00bc9f2a442ad4ec2cc98692313b3e6bab8752a765d724a8a79e47431b0c02ab"
+    },
+    "system_prompt_sha256": "291f0f67e2dd461f777f9798a08c99de14d987b99acb6bc4e5f213162590ef05",
+    "ollama": {
+      "version": "0.40.17"
+    }
+  },
+  "guidance_provenance": {
+    "provider": "openai-api",
+    "label": "final-contracts",
+    "prompt_id": "contract-v1",
+    "requested_model": "gpt-6.2-sol",
+    "observed_model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "statement_sha256": "0602120978a7642e812bfff71e60b420500d4ccb643086f0c7b35da279f27e5d",
+    "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+    "latency_seconds": 9.75,
+    "cost_usd": 0.008076,
+    "word_count": 388,
+    "soft_code_flags": [],
+    "created_utc": "2026-11-25T05:36:21Z",
+    "artifact": "E:\\CSC2108Local\\final-study\\guidance\\final-contracts\\lcb-atcoder-abc391_d.contract-v1.api.json",
+    "artifact_sha256": "1d1be50e56ddd3ca306b23cd5ab033ab476d18e01f9011dc9aa5bbea2b897f9f"
+  },
+  "frontier_generation_seconds": 9.75,
+  "judge_public": {
+    "judge_version": "0.2.1",
+    "suite": "public",
+    "tests_sha256": "033cbf9a3e50a21bc88328225a7beb386d9fd0a56b0a83ca6f0be8e2cf255f6b",
+    "fingerprint": "deb68027928d480330abc41373bdfbeacea291235f9759e58e4036c485ea2d76",
+    "image_id": "sha256:c8e6c9b6aeed7dd368d682c21d147041b46d93d7d7f627802eb21d9e1682c992"
+  },
+  "host_adapter": "windows-frozen-globals",
+  "gpu_lock": true,
+  "local_coding_seconds": 128.45,
+  "frozen_result": "E:\\CSC2108Local\\final-study\\runs\\final-main\\lcb-atcoder-abc391_d-D-s2109\\agent-final-main-lcb-atcoder-abc391_d-D-s2109-27217621\\result.json",
+  "frozen_error": {},
+  "format_errors": 3,
+  "model_calls": 3,
+  "token_telemetry_complete": true,
+  "sampler_wire_verified": true,
+  "inference": {
+    "calls_captured": 3,
+    "prompt_eval_count": 5229,
+    "eval_count": 12288,
+    "prompt_eval_duration": 1094498000,
+    "eval_duration": 116910718000,
+    "load_duration": 2915645900,
+    "done_reasons": [
+      "length",
+      "length",
+      "length"
+    ],
+    "maximum_prompt_tokens": 1817
+  },
+  "context_events": [],
+  "elapsed_seconds": 128.11000000004424,
+  "profile_config": {
+    "context": 16384,
+    "protocol": "text",
+    "thinking": false,
+    "output_tokens": 4096,
+    "temperature": 0.2,
+    "sampler": {
+      "top_k": 40,
+      "top_p": 0.9,
+      "min_p": 0.0,
+      "repeat_penalty": 1.0,
+      "repeat_last_n": 64,
+      "presence_penalty": 0.0,
+      "frequency_penalty": 0.0
+    }
+  },
+  "model_identity": {
+    "details": {
+      "parent_model": "model.gguf",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "9.0B",
+      "quantization_level": "Q4_K_M",
+      "runner": "llamacpp"
+    },
+    "modified_at": "2026-11-16T11:07:43.5612433-05:00"
+  },
+  "model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "agent_image": "sha256:a83ba18aef0f865b1a4a611c2cf460fe446f2795673bbb9fe43be570439e3b39",
+  "gpu": {
+    "before": "2863 MiB, 0 %\n",
+    "after": "9888 MiB, 93 %\n"
+  },
+  "finished_utc": "2026-11-25T11:51:11Z",
+  "public_attempts": 0
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc390_g",
+  "text": "## Observations\n\n1. In a concatenation, each value \\(x\\) contributes \\(x\\) multiplied by \\(10\\) to the power of the total number of digits after it.\n2. If the set of values after \\(x\\) is a fixed \\(k\\)-element subset of the other values, exactly \\(k!(N-1-k)!\\) permutations realize that set.\n3. Writing \\(w_x=10^{\\operatorname{digits}(x)}\\), the coefficient of \\(t^k\\) in \\(Q(t)/(1+w_xt)\\), where \\(Q(t)=\\prod_{y=1}^{N}(1+w_yt)\\), sums the shift multipliers for all \\(k\\)-element sets after \\(x\\). Values with the same digit length share this polynomial.\n4. There are at most six distinct weights. Grouping equal factors in \\(Q\\) makes its logarithmic derivative a sum with at most six terms, giving a short recurrence for the coefficients of \\(Q\\).\n5. Only coefficients of degrees \\(0\\) through \\(N-1\\) are needed, and every positive integer up to \\(N\\) is invertible modulo \\(998244353\\).\n\n## Solution sketch\n\n> In a concatenation, each value \\(x\\) contributes \\(x\\) multiplied by \\(10\\) to the power of the total number of digits after it.\n\n1. Split \\(1,\\ldots,N\\) into nonempty digit-length groups. For each group \\(d\\), record its count \\(c_d\\), its sum of values \\(s_d\\), and its weight \\(w_d=10^d\\). These can be obtained from the endpoints of each digit range, clipped at \\(N\\). A value in the suffix contributes one factor of its group's weight to the shift multiplier.\n\n> If the set of values after \\(x\\) is a fixed \\(k\\)-element subset of the other values, exactly \\(k!(N-1-k)!\\) permutations realize that set.\n\n2. Precompute factorials through \\(N-1\\) modulo \\(998244353\\). For a suffix set of size \\(k\\), the \\(k\\) suffix values can be ordered independently of the \\(N-1-k\\) prefix values, so its shift multiplier must be counted \\(k!(N-1-k)!\\) times.\n\n> There are at most six distinct weights. Grouping equal factors in \\(Q\\) makes its logarithmic derivative a sum with at most six terms, giving a short recurrence for the coefficients of \\(Q\\).\n\n3. Form the small polynomials\n   \\[\n   R(t)=\\prod_d(1+w_dt),\\qquad\n   H(t)=\\sum_d c_dw_d\\,\\frac{R(t)}{1+w_dt}.\n   \\]\n   Differentiating the grouped product \\(Q(t)=\\prod_d(1+w_dt)^{c_d}\\) gives \\(R(t)Q'(t)=H(t)Q(t)\\). Start with \\(q_0=1\\), where \\(q_m=[t^m]Q(t)\\). For each \\(m=1,\\ldots,N-1\\), compare coefficients of \\(t^{m-1}\\) in the identity. Since \\(R(0)=1\\), the only term involving \\(q_m\\) is \\(m q_m\\) on the left. Move the other left-hand terms to the right and multiply by the modular inverse of \\(m\\). Each coefficient takes work proportional to the number of groups.\n\n> Writing \\(w_x=10^{\\operatorname{digits}(x)}\\), the coefficient of \\(t^k\\) in \\(Q(t)/(1+w_xt)\\), where \\(Q(t)=\\prod_{y=1}^{N}(1+w_yt)\\), sums the shift multipliers for all \\(k\\)-element sets after \\(x\\). Values with the same digit length share this polynomial.\n\n4. For each group \\(d\\), generate the quotient coefficients in order: start with \\(b_0=1\\), then use \\(b_k=q_k-w_db_{k-1}\\). This follows by multiplying the quotient by \\(1+w_dt\\) and matching coefficients. Add\n   \\[\n   s_d\\sum_{k=0}^{N-1} b_k\\,k!(N-1-k)!\n   \\]\n   to the answer. The factorials count the permutations for each suffix set, and \\(s_d\\) accounts for all possible values \\(x\\) in the group. Print the accumulated answer modulo \\(998244353\\).\n\n> Only coefficients of degrees \\(0\\) through \\(N-1\\) are needed, and every positive integer up to \\(N\\) is invertible modulo \\(998244353\\).\n\n5. Perform all coefficient arithmetic modulo \\(998244353\\), precomputing the required inverses in linear time with the standard prime-modulus inverse recurrence. For \\(N=1\\), no inverse or positive-degree coefficient is needed: the single term uses \\(b_0=1\\) and \\(0!=1\\), yielding \\(1\\). With \\(D\\le 6\\) nonempty groups, building \\(R\\) and \\(H\\) takes \\(O(D^2)\\) time using multiplication and exact division by linear factors. The coefficient passes take \\(O(DN)\\) time, and total space is \\(O(N+D)\\) because each quotient needs only its previous coefficient.\n",
+  "statement_sha256": "7b0d49e5b42faf6c2bf37d53ed342a6acedfae5e73c9f1ec2e1b17e114e18feb",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "7b0d49e5b42faf6c2bf37d53ed342a6acedfae5e73c9f1ec2e1b17e114e18feb",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:43:39Z",
+    "finish_reason": "stop",
+    "request_id": "req_535ec8a5202e40d699082ddb939e9fe8",
+    "retries": 0,
+    "ledger_index": 75
+  },
+  "usage": {
+    "prompt_tokens": 520,
+    "completion_tokens": 1414,
+    "total_tokens": 1934,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 261,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 20.39,
+  "cost_usd": 0.01518,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 565,
+  "created_utc": "2026-11-25T05:44:00Z"
+}

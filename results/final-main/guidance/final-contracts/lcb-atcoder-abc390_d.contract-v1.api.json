@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc390_d",
+  "text": "## Description\nRead the initial stone counts for the labeled bags from standard input. Print the number of distinct bitwise XOR values obtainable from the final bag counts after any finite sequence of whole-bag transfers, including no transfers.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains an integer \\(N\\), with \\(2 \\leq N \\leq 12\\).\n- **PRE-2 (Unverified):** The second input line contains exactly \\(N\\) integers in bag-label order, each between \\(1\\) and \\(10^{17}\\), inclusive. Counts may repeat.\n\n## Postconditions\n- **POST-1 (Unverified):** A transfer between distinct bags empties the source, adds its former count to the destination, and leaves all other counts unchanged. The total number of stones is conserved.\n- **POST-2 (Unverified):** The result includes the XOR of the initial counts and the XOR from every reachable final state. Empty bags contribute zero. No XOR value is counted more than once, even if multiple states or transfer sequences produce it.\n- **POST-3 (Unverified):** Standard output contains one integer: the exact number of distinct reachable XOR values. Permuting the initial counts among the bag labels does not change the answer.\n\n## Test suggestions\n- Check that `2 5 7` yields `3`: the reachable XOR values are \\(0\\), \\(12\\), and \\(14\\) (POST-1–POST-3).\n- At the minimum bag count, check that `1 1` yields `2`: no transfers give \\(0\\), and either direction of transfer gives \\(2\\), which is counted only once (PRE-1, PRE-2, POST-2).\n- Check that two counts of \\(10^{17}\\) yield `2`, exercising the upper count bound and a merged count greater than that bound (PRE-2, POST-1–POST-3).\n- At the maximum bag count, check that twelve counts of `1` yield `7`: the reachable XOR values are \\(0,2,4,6,8,10,12\\) (PRE-1, POST-2, POST-3).\n- Permute the counts in a sample and check that the answer remains unchanged (POST-3).\n\n## Unspecified behavior\n- Inputs outside the stated format or bounds.\n- The order of transfers or the final arrangement of bags used to obtain any particular XOR value; neither is part of the output.\n",
+  "statement_sha256": "3f4484af3522ae5ffd28f8d109f3fd986475208b9804f063e815e57fb2a5e309",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "3f4484af3522ae5ffd28f8d109f3fd986475208b9804f063e815e57fb2a5e309",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:35:39Z",
+    "finish_reason": "stop",
+    "request_id": "req_a992e50786ec427bb757fc65488c5667",
+    "retries": 0,
+    "ledger_index": 13
+  },
+  "usage": {
+    "prompt_tokens": 871,
+    "completion_tokens": 523,
+    "total_tokens": 1394,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 7.44,
+  "cost_usd": 0.006972,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 332,
+  "created_utc": "2026-11-25T05:35:47Z"
+}

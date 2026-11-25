@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc388_a",
+  "text": "## Observations\n\n1. The input consists of one line containing the string S.\n2. S is guaranteed to be nonempty, and only its first character is needed.\n3. The output is the first character of S followed immediately by the literal uppercase suffix UPC.\n\n## Solution sketch\n\n> The input consists of one line containing the string S.\n\n1. Read the line from standard input. For a string of length n, reading and storing it takes O(n) time and O(n) space.\n\n> S is guaranteed to be nonempty, and only its first character is needed.\n\n2. Take the first character and ignore the rest. This also works when S has length one, so no special case is needed.\n\n> The output is the first character of S followed immediately by the literal uppercase suffix UPC.\n\n3. Append UPC to the selected character and print the resulting four-character string on its own line. Selecting the character and producing the output take O(1) time and O(1) extra space beyond the stored input.\n",
+  "statement_sha256": "1bea48e0fbe842b89141fe54aac8dbe3fcdfc0702475a8acb466236224607ba4",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "1bea48e0fbe842b89141fe54aac8dbe3fcdfc0702475a8acb466236224607ba4",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:41:48Z",
+    "finish_reason": "stop",
+    "request_id": "req_e7dd91e1afad4f11b20f54f1fd418a7e",
+    "retries": 0,
+    "ledger_index": 64
+  },
+  "usage": {
+    "prompt_tokens": 318,
+    "completion_tokens": 211,
+    "total_tokens": 529,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 3.62,
+  "cost_usd": 0.002746,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 170,
+  "created_utc": "2026-11-25T05:41:52Z"
+}

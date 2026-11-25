@@ -1,0 +1,20 @@
+{
+  "status": "candidate_failure",
+  "passed": 11,
+  "total": 40,
+  "verdict_counts": {
+    "WA": 29,
+    "AC": 11
+  },
+  "judge_version": "0.2.1",
+  "tests_sha256": "9a87605d424467d6cd799c2d8dc03aedfea974e49149acff06061d5b606cf4a7",
+  "code_sha256": "1e22ece64b952852f7d45cbbb64b85382ab5c2ac9315f3ac97e6fb1458e14d9b",
+  "error": null,
+  "run_id": "final-main-lcb-atcoder-abc391_g-C-s2108-5286c865",
+  "task_id": "lcb-atcoder-abc391_g",
+  "condition": "C",
+  "suite": "hidden",
+  "judge_tests_sha256": "3f410ec4cf8e9bd883256ba80100c53c67ac4fd96103027145bceb66adf41932",
+  "submission_sha256": "1e22ece64b952852f7d45cbbb64b85382ab5c2ac9315f3ac97e6fb1458e14d9b",
+  "evaluated_utc": "2026-11-25T21:13:22Z"
+}

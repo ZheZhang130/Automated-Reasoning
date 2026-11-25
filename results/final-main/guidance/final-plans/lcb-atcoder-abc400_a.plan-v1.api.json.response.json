@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo0ANduUpTmeK0iSa5sq28nMbjhxQ",
+  "object": "chat.completion",
+  "created": 1795585747,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. A gapless formation has exactly one person per position, so the number of rows times the number of columns must equal 400.\n2. Since \\(A\\) is positive and at most 400, a positive integer \\(B\\) exists exactly when dividing 400 by \\(A\\) leaves no remainder. In that case, the quotient is the unique answer.\n\n## Solution sketch\n\n1. “A gapless formation has exactly one person per position, so the number of rows times the number of columns must equal 400.”\n\n   Read \\(A\\) from standard input. The required number of columns is determined by dividing the total number of people, 400, by the number of rows.\n\n2. “Since \\(A\\) is positive and at most 400, a positive integer \\(B\\) exists exactly when dividing 400 by \\(A\\) leaves no remainder. In that case, the quotient is the unique answer.”\n\n   Compute the integer quotient and remainder of 400 divided by \\(A\\). Print the quotient if the remainder is zero; otherwise, print \\(-1\\). This rule also handles both endpoints: \\(A=1\\) gives 400 columns, and \\(A=400\\) gives one column. With the given bounds, the algorithm takes \\(O(1)\\) time and \\(O(1)\\) auxiliary space.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 312,
+    "completion_tokens": 286,
+    "total_tokens": 598,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

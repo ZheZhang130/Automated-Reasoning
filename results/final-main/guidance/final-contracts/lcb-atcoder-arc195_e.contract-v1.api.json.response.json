@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo02Ynh0AAyVmlbaNIC4n0O86VIri",
+  "object": "chat.completion",
+  "created": 1795585262,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead a weighted-tree specification and a list of queries from standard input. For each query, sum the weighted distances between its endpoints over all admissible parent sequences, and print the result modulo 998244353.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains integers \\(N\\) and \\(Q\\), with \\(2 \\le N \\le 200{,}000\\) and \\(1 \\le Q \\le 200{,}000\\).\n- **PRE-2 (Unverified):** The second line contains exactly \\(N-1\\) integer weights \\(A_2,\\ldots,A_N\\), in vertex order, each between 1 and \\(10^9\\) inclusive.\n- **PRE-3 (Unverified):** The next \\(Q\\) lines each contain two integers \\(u_i,v_i\\) satisfying \\(1 \\le u_i < v_i \\le N\\). Query pairs may repeat.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains exactly \\(Q\\) answer lines, one integer per line, in input query order. Repeated queries each receive a line and have equal answers.\n- **POST-2 (Unverified):** For each query, its total includes exactly one contribution from each of the \\((N-1)!\\) parent sequences satisfying \\(1 \\le P_j < j\\) for every \\(j=2,\\ldots,N\\). A contribution is the sum of the weights on the unique simple path between the queried vertices in that sequence’s tree, where the edge from \\(j\\) to \\(P_j\\) has weight \\(A_j\\). Equal contributions from distinct sequences are counted separately.\n- **POST-3 (Unverified):** Each printed integer is the remainder of the corresponding total in the range 0 through 998244352.\n\n## Test suggestions\n- At \\(N=2\\) and \\(Q=1\\), check that weight 100 produces 100 and that weight 998244353 produces 0 (PRE-1–PRE-3, POST-1–POST-3).\n- For \\(N=3\\) with weights 1 and 1, check that queries \\((1,3),(1,2),(1,3),(2,3)\\) produce 3, 2, 3, and 3 in that order (PRE-1–PRE-3, POST-1–POST-3).\n- Check a valid case at the upper bounds for \\(N\\) and \\(Q\\), including the answer-line count and the residue range (PRE-1–PRE-3, POST-1, POST-3).\n\n## Unspecified behavior\nNo behavior is guaranteed for malformed input or values outside the stated constraints, including equal or reversed query endpoints.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 906,
+    "completion_tokens": 591,
+    "total_tokens": 1497,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

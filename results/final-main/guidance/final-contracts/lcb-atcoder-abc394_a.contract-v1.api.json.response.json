@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Enzylp4729goaJLjUvxpwhqRUcMUf",
+  "object": "chat.completion",
+  "created": 1795585027,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead a digit string from standard input. Print the string formed by retaining every `2` in its original order and discarding every other digit.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies a single string `S` consisting only of digits, with length from 1 to 100 inclusive.\n- **PRE-2 (Unverified):** `S` contains at least one `2`.\n\n## Postconditions\n- **POST-1 (Unverified):** The answer contains exactly one `2` for each occurrence of `2` in `S`, in the original relative order, and contains no other characters.\n- **POST-2 (Unverified):** Standard output contains the answer on one line, with no prompts or explanatory text.\n\n## Test suggestions\n- Use `2`, the shortest valid input under PRE-1 and PRE-2, and expect `2` (POST-1, POST-2).\n- Use `20250222` and expect `22222` to check that intervening digits are discarded and repeated `2`s are retained (POST-1, POST-2).\n- Use a 100-character string made entirely of `2`s and expect all 100 characters unchanged (PRE-1, POST-1).\n\n## Unspecified behavior\nBehavior is unspecified for input outside PRE-1 or PRE-2, including empty input, extra input lines, non-digit characters, strings longer than 100 characters, or strings with no `2`.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 386,
+    "completion_tokens": 310,
+    "total_tokens": 696,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzwaZHsdznnVAfa8pks1lKv1U9Nr",
+  "object": "chat.completion",
+  "created": 1795584892,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nGiven the sizes of the mochi in nondecreasing order, print the number of distinct pairs that can form a kagamimochi. Mochi of the same size are still distinct if they occupy different input positions.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input gives an integer \\(N\\) on the first line and exactly \\(N\\) integer sizes on the second line, with \\(2 \\le N \\le 500{,}000\\).\n- **PRE-2 (Unverified):** Each size is between \\(1\\) and \\(10^9\\), inclusive, and the sizes are in nondecreasing order.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains a single integer: the exact number of valid pairs of distinct mochi.\n- **POST-2 (Unverified):** A pair is counted exactly once if the smaller mochi is at most half the size of the larger mochi, including when it is exactly half. The smaller mochi is the top. No other pair is counted.\n- **POST-3 (Unverified):** Replacing either mochi in a valid pair with a different mochi of the same size yields a separately counted pair. A pair of equal-sized mochi is not valid because all sizes are positive.\n- **POST-4 (Unverified):** If no valid pair exists, the output is \\(0\\).\n\n## Test suggestions\n- With the minimum \\(N=2\\), check that sizes `2 4` yield `1` and sizes `2 3` yield `0` (PRE-1, POST-1, POST-2, POST-4).\n- Check that `2 2 4 4` yields `4`, counting each choice of top and bottom separately but not counting any equal-sized pair (POST-2, POST-3).\n- At \\(N=500{,}000\\), use 250,000 mochi of size \\(1\\) followed by 250,000 of size \\(10^9\\). The expected count is \\(62{,}500{,}000{,}000\\) (PRE-1, PRE-2, POST-1, POST-3).\n\n## Unspecified behavior\nBehavior is not specified for input that does not meet PRE-1 or PRE-2.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 714,
+    "completion_tokens": 494,
+    "total_tokens": 1208,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

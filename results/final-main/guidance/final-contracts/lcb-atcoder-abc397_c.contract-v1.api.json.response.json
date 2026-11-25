@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo00AEruVDrZHjru7mdu3CCFgfDOt",
+  "object": "chat.completion",
+  "created": 1795585114,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nGiven an ordered sequence of integers, print the largest sum of distinct-value counts obtainable by splitting the sequence at one boundary into two non-empty contiguous parts.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies an integer \\(N\\) on the first line, with \\(2 \\le N \\le 300{,}000\\).\n- **PRE-2 (Unverified):** The second line supplies exactly \\(N\\) integers in sequence order, each between \\(1\\) and \\(N\\), inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** The answer is the maximum score over all \\(N-1\\) boundaries between consecutive elements. Each boundary divides the original sequence into a prefix and the remaining suffix, without reordering elements or allowing either part to be empty.\n- **POST-2 (Unverified):** A boundary’s score counts each distinct value once per part, regardless of its multiplicity within that part. A value present in both parts contributes one to each count.\n- **POST-3 (Unverified):** Standard output contains only the maximum score as a single integer. If several boundaries attain the maximum, the score is still printed once; no boundary is reported.\n\n## Test suggestions\n- Under PRE-1 and PRE-2, check \\(N=2\\) with both equal and unequal elements. Each case has only one legal boundary and should print `2` (POST-1–POST-3).\n- Check that an all-equal sequence prints `2` and an all-distinct sequence prints \\(N\\), including at the upper bound in PRE-1 (POST-1–POST-3).\n- Compare `[1, 1, 2, 2]`, which should print `3`, with `[1, 2, 1, 2]`, which should print `4`. This checks that sequence order affects the available scores even when multiplicities are identical (PRE-2, POST-1–POST-2).\n- Check that the first sample prints `5` exactly once even though two boundaries attain it (POST-3).\n\n## Unspecified behavior\nBehavior is not specified for malformed input or input outside the stated constraints. The task does not prescribe how the answer is computed.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 670,
+    "completion_tokens": 472,
+    "total_tokens": 1142,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

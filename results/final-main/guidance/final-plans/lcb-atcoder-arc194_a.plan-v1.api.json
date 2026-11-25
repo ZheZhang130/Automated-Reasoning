@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc194_a",
+  "text": "## Observations\n\n1. An element that survives to the end is never popped. No push-pop pair can straddle the append of a surviving element, because that element would block the pop.\n2. The operations after the last surviving append, or all operations if nothing survives, therefore form an even-length block. This block can be replaced by consecutive append-delete pairs without changing the final stack.\n3. For a prefix ending at position \\(i\\), if \\(A_i\\) survives, the best final sum is the optimum for the first \\(i-1\\) operations plus \\(A_i\\). If \\(A_i\\) does not survive, the last two operations can be made an append-delete pair, so the best final sum is the optimum for the first \\(i-2\\) operations.\n4. The empty prefix has sum zero, but the first operation must append \\(A_1\\). Each later optimum depends only on the previous two prefix optima.\n\n## Solution sketch\n\n> An element that survives to the end is never popped. No push-pop pair can straddle the append of a surviving element, because that element would block the pop.\n\n1. Let \\(F_i\\) be the maximum final sum after exactly the first \\(i\\) operations. To analyze a run for this prefix, pair each deletion with the append it undoes. Every append that is not paired survives in the final stack. In particular, if \\(A_i\\) does not survive, the last operation must be a deletion.\n\n> The operations after the last surviving append, or all operations if nothing survives, therefore form an even-length block. This block can be replaced by consecutive append-delete pairs without changing the final stack.\n\n2. In the deletion case, the trailing block has length at least two. Replace it by append-delete pairs and remove the final pair. This leaves a legal run of length \\(i-2\\) with the same final stack. Conversely, any run of length \\(i-2\\) can be extended by an append-delete pair to preserve its stack, even if that stack is empty.\n\n> For a prefix ending at position \\(i\\), if \\(A_i\\) survives, the best final sum is the optimum for the first \\(i-1\\) operations plus \\(A_i\\). If \\(A_i\\) does not survive, the last two operations can be made an append-delete pair, so the best final sum is the optimum for the first \\(i-2\\) operations.\n\n3. For each \\(i\\) from \\(2\\) through \\(N\\), compute \\(F_i=\\max(F_{i-1}+A_i,\\ F_{i-2})\\). The two terms cover both possibilities for the last operation, and both can be achieved.\n\n> The empty prefix has sum zero, but the first operation must append \\(A_1\\). Each later optimum depends only on the previous two prefix optima.\n\n4. Initialize \\(F_0=0\\) and \\(F_1=A_1\\), then evaluate the recurrence in input order and print \\(F_N\\). For \\(N=1\\), this prints \\(A_1\\) even if it is negative. Do not clamp the result to zero: an odd number of operations cannot leave an empty stack. The algorithm takes \\(O(N)\\) time and uses \\(O(1)\\) auxiliary space for the dynamic programming state, excluding input storage.\n",
+  "statement_sha256": "3ade05f8faa3ea8b0e255876d3bd7fd96639470e80c5a19f4eae1a04d98a4227",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "3ade05f8faa3ea8b0e255876d3bd7fd96639470e80c5a19f4eae1a04d98a4227",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:52:53Z",
+    "finish_reason": "stop",
+    "request_id": "req_960f328ebe8341fab64f9d277bc2d94c",
+    "retries": 0,
+    "ledger_index": 114
+  },
+  "usage": {
+    "prompt_tokens": 660,
+    "completion_tokens": 803,
+    "total_tokens": 1463,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 89,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 11.14,
+  "cost_usd": 0.00935,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 484,
+  "created_utc": "2026-11-25T05:53:04Z"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzzqakJzGSv2SyxTbuNg2ZNmJx1E",
+  "object": "chat.completion",
+  "created": 1795585094,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead a labeled, undirected graph from standard input and print the minimum XOR of the edge labels along any simple path from vertex 1 to vertex N. A simple path visits each vertex at most once.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains integers N and M, with 2 ≤ N ≤ 10 and N−1 ≤ M ≤ N(N−1)/2. The next M lines each contain three integers: two endpoints and an edge label.\n- **PRE-2 (Unverified):** Each edge’s endpoints satisfy 1 ≤ uᵢ < vᵢ ≤ N, and its label satisfies 0 ≤ wᵢ < 2⁶⁰.\n- **PRE-3 (Unverified):** The edge records describe a connected, undirected graph with no repeated endpoint pairs.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains a single integer: the minimum XOR across all simple paths from vertex 1 to vertex N. Connectivity guarantees at least one eligible path.\n- **POST-2 (Unverified):** Every edge on an eligible path contributes its label to the XOR. Paths that revisit a vertex are excluded, even if their XOR is lower. The answer lies in [0, 2⁶⁰−1].\n- **POST-3 (Unverified):** Reordering the edge records does not change the answer. If several paths attain the minimum, that value is still printed only once, without a path or count.\n\n## Test suggestions\n- Check a two-vertex graph with its sole edge labeled 0, then 2⁶⁰−1 (PRE-1–PRE-3, POST-1–POST-2).\n- Check a graph with one simple path whose nonzero labels XOR to zero, and a graph with competing simple paths with different XORs (POST-1–POST-2).\n- Check a graph where a walk that revisits a vertex has a lower XOR than every simple path; confirm that the walk does not affect the result (POST-2).\n- Check tied minima and permute the edge records; confirm that the same single integer is printed (POST-3).\n\n## Unspecified behavior\nHandling of malformed input or graphs outside the stated constraints is not specified.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 899,
+    "completion_tokens": 482,
+    "total_tokens": 1381,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

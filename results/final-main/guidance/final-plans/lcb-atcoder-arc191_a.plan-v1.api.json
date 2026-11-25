@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-arc191_a",
+  "text": "## Observations\n\n1. All candidate strings have the same length, so maximizing the integer is equivalent to maximizing the string lexicographically.\n2. In the final string, each position either keeps its original digit or takes the digit from a distinct operation. Such a placement is realizable exactly when it uses the final operation: send every unused operation to the position assigned to the final operation, where its write will be overwritten.\n3. If the final operation is temporarily treated as optional, the best choice at each position is to use the largest remaining replacement digit if it strictly improves the original digit, and otherwise keep the original digit.\n4. Let \\(G\\) be the optimal string when all operations are optional, and let \\(d\\) be the final digit of \\(T\\). If \\(G\\) contains \\(d\\), the final operation can produce one such occurrence without changing \\(G\\). If \\(G\\) does not contain \\(d\\), every digit of \\(G\\) is greater than \\(d\\): the final operation is unused, so it could otherwise improve a smaller digit.\n5. There are only nine possible replacement digits, so their remaining counts can be stored in a fixed-size table.\n\n## Solution sketch\n\n> There are only nine possible replacement digits, so their remaining counts can be stored in a fixed-size table.\n\n1. Count all digits of \\(T\\), including its final digit, and remember that final digit as \\(d\\).\n\n> If the final operation is temporarily treated as optional, the best choice at each position is to use the largest remaining replacement digit if it strictly improves the original digit, and otherwise keep the original digit.\n\n2. Build \\(G\\) from left to right. At each position, find the largest digit with a positive count. If it is greater than the original digit there, write it and decrement its count. Otherwise, keep the original digit without spending an operation; this also covers an empty pool. The choice gives the largest possible digit at the current position. If it requires a replacement, every placement matching that digit must spend a copy of it. If it does not, keeping the original leaves at least as many options for the suffix as spending an equal digit.\n\n> In the final string, each position either keeps its original digit or takes the digit from a distinct operation. Such a placement is realizable exactly when it uses the final operation: send every unused operation to the position assigned to the final operation, where its write will be overwritten.\n\n3. If \\(G\\) contains \\(d\\), return \\(G\\). If the final operation is not already assigned, use it at an occurrence of \\(d\\), replacing either an equal original digit or the assignment of another operation with digit \\(d\\). This makes \\(G\\) realizable, and no realizable answer can exceed the optional optimum.\n\n> Let \\(G\\) be the optimal string when all operations are optional, and let \\(d\\) be the final digit of \\(T\\). If \\(G\\) contains \\(d\\), the final operation can produce one such occurrence without changing \\(G\\). If \\(G\\) does not contain \\(d\\), every digit of \\(G\\) is greater than \\(d\\): the final operation is unused, so it could otherwise improve a smaller digit.\n\n4. If \\(G\\) lacks \\(d\\), change only its last digit to \\(d\\). Keep the assignments for all earlier positions and assign the final operation to the last position. For optimality, any answer that differs from \\(G\\) before the last position must be smaller at its first difference, since \\(G\\) is the optional optimum. Any answer that matches that entire prefix must put the mandatory \\(d\\) at the last position, because the prefix has no \\(d\\). This also works for \\(N=1\\), when the prefix is empty, and for \\(M=1\\).\n\n> All candidate strings have the same length, so maximizing the integer is equivalent to maximizing the string lexicographically.\n\n5. Print the result directly as a string, without converting it to an integer. Counting takes \\(O(M)\\) time, and scanning at most nine counts for each position takes \\(O(N)\\) time, for \\(O(N+M)\\) total. The count table uses \\(O(1)\\) auxiliary space beyond the input strings and the \\(O(N)\\) output buffer.\n",
+  "statement_sha256": "3542e112fa6993209a1ec678bfd5e922b0509ecf374ff5448ca06798ae46f6fe",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "3542e112fa6993209a1ec678bfd5e922b0509ecf374ff5448ca06798ae46f6fe",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:49:56Z",
+    "finish_reason": "stop",
+    "request_id": "req_cdb361ddd6a94958855a17f1c86bf548",
+    "retries": 0,
+    "ledger_index": 111
+  },
+  "usage": {
+    "prompt_tokens": 496,
+    "completion_tokens": 1380,
+    "total_tokens": 1876,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 466,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 22.45,
+  "cost_usd": 0.014792,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 681,
+  "created_utc": "2026-11-25T05:50:19Z"
+}

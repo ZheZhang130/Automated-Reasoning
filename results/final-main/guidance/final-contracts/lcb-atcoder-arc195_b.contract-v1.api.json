@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-arc195_b",
+  "text": "## Description\nDetermine whether the two input sequences can be made entirely non-negative with the same sum at every corresponding pair of positions. Entries equal to `-1` may be replaced, and only sequence A may be reordered. Read the input from standard input and report the decision on standard output.\n\n## Preconditions\n- **PRE-1 (Unverified):** The input contains an integer \\(N\\), followed by a row of \\(N\\) integers for A and a row of \\(N\\) integers for B.\n- **PRE-2 (Unverified):** \\(2 \\le N \\le 2000\\), and every entry is between \\(-1\\) and \\(10^9\\), inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** Print `Yes` if and only if there is a permitted final arrangement in which both sequences contain only non-negative integers and all \\(N\\) corresponding pairs have the same sum. Otherwise, print `No`.\n- **POST-2 (Unverified):** A permitted final arrangement preserves every original non-negative entry of A, including its multiplicity, but may move it to another position. Each original `-1` in A contributes one independently chosen non-negative integer. In B, every original non-negative entry stays at its original index, and each original `-1` may independently become any non-negative integer at that index. The \\(10^9\\) input bound does not limit replacement values.\n\n## Test suggestions\n- At the minimum length, check that A = (0, 1) and B = (0, 1) produce `Yes`, since reordering A suffices. (PRE-2, POST-1, POST-2)\n- Check that A = (1, 1, 2) and B = (0, 1, 2) produce `No`; the two copies of 1 must both be retained. (POST-1, POST-2)\n- Check that A = (1, 2, -1) and B = (1, 2, 4) produce `No` even with a replaceable entry. (POST-1, POST-2)\n- At the maximum length, check that two sequences consisting entirely of `-1` produce `Yes`, with zero as a possible common sum. (PRE-2, POST-1, POST-2)\n\n## Unspecified behavior\nBehavior on malformed or out-of-constraint input is not specified. The program need not report a common sum, replacement values, a permutation, or an operation sequence.\n",
+  "statement_sha256": "3665ef4717573ce679b69c9e847e3a216efeb3e6bc6351feaff84f87c28a4194",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "3665ef4717573ce679b69c9e847e3a216efeb3e6bc6351feaff84f87c28a4194",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:40:52Z",
+    "finish_reason": "stop",
+    "request_id": "req_aec9e43625b548aa8b840c8c6429e5aa",
+    "retries": 0,
+    "ledger_index": 57
+  },
+  "usage": {
+    "prompt_tokens": 732,
+    "completion_tokens": 533,
+    "total_tokens": 1265,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 9.09,
+  "cost_usd": 0.006794,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 331,
+  "created_utc": "2026-11-25T05:41:01Z"
+}

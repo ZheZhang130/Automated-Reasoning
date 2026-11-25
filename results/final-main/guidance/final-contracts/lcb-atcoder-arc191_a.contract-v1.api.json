@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-arc191_a",
+  "text": "## Description\n\nRead the two digit strings and their lengths from standard input. Print the greatest integer obtainable from the first string after applying every replacement specified by the second string, in order.\n\n## Preconditions\n\n- **PRE-1 (Unverified):** Standard input contains integers `N` and `M` on the first line, string `S` on the second line, and string `T` on the third line. Both integers are between 1 and 1,000,000 inclusive.\n- **PRE-2 (Unverified):** `S` has exactly `N` characters and `T` has exactly `M` characters. Every character is a digit from `1` through `9`.\n\n## Postconditions\n\n- **POST-1 (Unverified):** The printed value is attainable after exactly `M` replacements. Replacement `k` writes the `k`-th digit of `T` to one position in the current `S`. A position may be chosen repeatedly, and writing the digit already there counts as a replacement. A position never chosen retains its original digit; a chosen position contains the last digit written to it.\n- **POST-2 (Unverified):** No valid sequence of replacements produces a greater integer than the printed value.\n- **POST-3 (Unverified):** Standard output contains only the maximum value in decimal notation, with exactly `N` digits.\n\n## Test suggestions\n\n- Under PRE-1 and PRE-2, check that the three supplied samples print `593`, `993`, and `98888976555`, respectively (POST-1–POST-3).\n- With `N = 1`, check that the result is the last digit of `T`, even if an earlier digit is larger (POST-1–POST-3).\n- With `S = 99` and `T = 1`, check that the result is `91`, not `99`: the replacement is mandatory (POST-1 and POST-2).\n- For small valid inputs, compare the output with the maximum over all legal position choices, including cases with repeated digits and more replacements than positions (POST-1 and POST-2).\n- At the upper length bounds, use strings consisting entirely of `9` and check that the output contains exactly `N` nines (POST-2 and POST-3).\n\n## Unspecified behavior\n\nBehavior on inputs outside PRE-1 or PRE-2 is not specified. The task does not require reporting which positions were chosen or choosing a particular sequence when several yield the same maximum.\n",
+  "statement_sha256": "3542e112fa6993209a1ec678bfd5e922b0509ecf374ff5448ca06798ae46f6fe",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "3542e112fa6993209a1ec678bfd5e922b0509ecf374ff5448ca06798ae46f6fe",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:40:05Z",
+    "finish_reason": "stop",
+    "request_id": "req_69b23c818f4a44ddb9c4fd2a9f63f1c4",
+    "retries": 0,
+    "ledger_index": 51
+  },
+  "usage": {
+    "prompt_tokens": 566,
+    "completion_tokens": 522,
+    "total_tokens": 1088,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 7.52,
+  "cost_usd": 0.006352,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 344,
+  "created_utc": "2026-11-25T05:40:13Z"
+}

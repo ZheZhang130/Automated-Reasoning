@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzxlFJh4QT86Xybg0ZyC6VEsO1Kz",
+  "object": "chat.completion",
+  "created": 1795584965,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead the two grids from standard input and print the one-based row and column of the top-left cell of the unique subgrid of S that matches T exactly. Rows are counted from the top and columns from the left.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains integers N and M with 1 ≤ M ≤ N ≤ 50.\n- **PRE-2 (Unverified):** The next N lines describe S, with N characters per line. The following M lines describe T, with M characters per line. Each grid character is either `.` or `#`.\n- **PRE-3 (Unverified):** Exactly one placement of T lies entirely within S and matches it cell for cell in the given orientation.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains one line with two integers, a followed by b, separated by a single space. The first integer is the row and the second is the column.\n- **POST-2 (Unverified):** Both coordinates are between 1 and N − M + 1 inclusive. For every row i and column j of T, the cell at row a + i − 1 and column b + j − 1 of S equals the cell at row i and column j of T.\n\n## Test suggestions\n- Use the supplied samples to check exact matching and output format (PRE-1–PRE-3, POST-1–POST-2).\n- Use an asymmetric match with different row and column coordinates to detect swapped coordinates (POST-1).\n- Check a unique one-cell match at the bottom-right corner, and check identical grids with M = N, which must produce `1 1` (PRE-1–PRE-3, POST-2).\n- Include a candidate placement that differs from T by one cell alongside the unique exact match (PRE-3, POST-2).\n\n## Unspecified behavior\nBehavior is unspecified for malformed input, dimensions or characters outside the stated constraints, and inputs with no exact match or more than one exact match.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 712,
+    "completion_tokens": 429,
+    "total_tokens": 1141,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc400_a",
+  "text": "## Observations\n\n1. A gapless formation has exactly one person per position, so the number of rows times the number of columns must equal 400.\n2. Since \\(A\\) is positive and at most 400, a positive integer \\(B\\) exists exactly when dividing 400 by \\(A\\) leaves no remainder. In that case, the quotient is the unique answer.\n\n## Solution sketch\n\n1. “A gapless formation has exactly one person per position, so the number of rows times the number of columns must equal 400.”\n\n   Read \\(A\\) from standard input. The required number of columns is determined by dividing the total number of people, 400, by the number of rows.\n\n2. “Since \\(A\\) is positive and at most 400, a positive integer \\(B\\) exists exactly when dividing 400 by \\(A\\) leaves no remainder. In that case, the quotient is the unique answer.”\n\n   Compute the integer quotient and remainder of 400 divided by \\(A\\). Print the quotient if the remainder is zero; otherwise, print \\(-1\\). This rule also handles both endpoints: \\(A=1\\) gives 400 columns, and \\(A=400\\) gives one column. With the given bounds, the algorithm takes \\(O(1)\\) time and \\(O(1)\\) auxiliary space.\n",
+  "statement_sha256": "41c787a98d6ecc8440b043a8bde90cfa2b70d3eda3137b2976aa893b5d9b8a0f",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "41c787a98d6ecc8440b043a8bde90cfa2b70d3eda3137b2976aa893b5d9b8a0f",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:49:06Z",
+    "finish_reason": "stop",
+    "request_id": "req_4a1f5f121318467fbdaa07ff941432b5",
+    "retries": 0,
+    "ledger_index": 107
+  },
+  "usage": {
+    "prompt_tokens": 312,
+    "completion_tokens": 286,
+    "total_tokens": 598,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 4.53,
+  "cost_usd": 0.003484,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 190,
+  "created_utc": "2026-11-25T05:49:11Z"
+}

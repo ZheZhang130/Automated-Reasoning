@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzxTJoNakzTsW42ieZLERm5CMoOe",
+  "object": "chat.completion",
+  "created": 1795584947,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead the calorie budget and food records from standard input. Print the largest achievable minimum intake across vitamins 1, 2, and 3 without exceeding the calorie budget.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input starts with two integers, \\(N\\) and \\(X\\), each between 1 and 5000 inclusive, followed by exactly \\(N\\) food records in the stated format.\n- **PRE-2 (Unverified):** Each record contains three integers \\(V_i\\), \\(A_i\\), and \\(C_i\\), with \\(1 \\leq V_i \\leq 3\\), \\(1 \\leq A_i \\leq 200{,}000\\), and \\(1 \\leq C_i \\leq X\\).\n\n## Postconditions\n- **POST-1 (Unverified):** Each food record represents one independently selectable item. Identical records represent distinct items, but no individual item may be selected more than once. A selection is feasible if its total calories are at most \\(X\\), including when they equal \\(X\\). The empty selection is feasible.\n- **POST-2 (Unverified):** For each selection, a vitamin's intake is the sum of the amounts from selected foods of that type, or zero if none are selected. The reported value is the greatest of the minimum intakes across all feasible selections.\n- **POST-3 (Unverified):** Standard output contains a single integer answer. The answer is zero if no feasible selection supplies all three vitamins, and it is unchanged by reordering the food records.\n\n## Test suggestions\n- Check both supplied examples under PRE-1 and PRE-2, expecting `3` and `0` respectively (POST-2, POST-3).\n- Check that a selection costing exactly \\(X\\) can produce a positive answer, and that lowering the budget can make it impossible to obtain all three vitamins even when all three types appear and every food still satisfies PRE-2 (POST-1 through POST-3).\n- Use identical records that both contribute to the optimum, check that neither can be counted more than once, and reorder the records to confirm the answer is unchanged (POST-1 through POST-3).\n\n## Unspecified behavior\nBehavior for malformed input or values outside PRE-1 and PRE-2 is not specified. The task does not require reporting a selected subset or breaking ties between equally good subsets.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 740,
+    "completion_tokens": 507,
+    "total_tokens": 1247,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

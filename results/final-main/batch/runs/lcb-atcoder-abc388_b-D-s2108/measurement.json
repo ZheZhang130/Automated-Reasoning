@@ -1,0 +1,159 @@
+{
+  "schema": "csc2108-run-measurement-v1",
+  "built_utc": "2026-11-25T21:29:58Z",
+  "identity": {
+    "run_id": "final-main-lcb-atcoder-abc388_b-D-s2108-5f77f9c1",
+    "task_id": "lcb-atcoder-abc388_b",
+    "condition": "D",
+    "seed": 2108,
+    "batch": "final-main",
+    "agent_config_id": "frozen-v6",
+    "agent_config_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+    "guidance_prompt_id": "contract-v1",
+    "injection": "inject-v1",
+    "diagnosis_prompt_id": null,
+    "diagnosis_delivery": null,
+    "source_commit": "bf160d8958549e2c0957b4be1034fa6905201d0f",
+    "source_dirty": false,
+    "coding_model": "qwen3.5:9b",
+    "coding_model_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+    "profile": "heredoc-v6-16k-common",
+    "profile_config": {
+      "context": 16384,
+      "protocol": "text",
+      "thinking": false,
+      "output_tokens": 4096,
+      "temperature": 0.2,
+      "sampler": {
+        "top_k": 40,
+        "top_p": 0.9,
+        "min_p": 0.0,
+        "repeat_penalty": 1.0,
+        "repeat_last_n": 64,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0
+      }
+    },
+    "frontier_provider": "openai-api",
+    "frontier_requested_model": "gpt-6.2-sol",
+    "frontier_observed_model": "gpt-6.2-sol",
+    "dataset_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+    "judge_version": "0.2.1",
+    "judge_public_tests_sha256": "033cbf9a3e50a21bc88328225a7beb386d9fd0a56b0a83ca6f0be8e2cf255f6b",
+    "guidance_artifact_sha256": "09124bb566350db940b8cff6afc41c2125b4fcece4acfd54feb335b0966671d0",
+    "frozen_files_verified": 38,
+    "sampler_wire_verified": true,
+    "host": {
+      "system": "Windows",
+      "release": "10",
+      "machine": "AMD64",
+      "node": "<HOST>",
+      "python": "3.11.9"
+    },
+    "host_backend": "windows"
+  },
+  "correctness": {
+    "candidate_produced": true,
+    "submitted": true,
+    "public_tests_invoked": 1,
+    "public_pass": true,
+    "final_public_status": "pass",
+    "public_runtime_error_cases": 0,
+    "hidden_status": "pass",
+    "hidden_passed": 40,
+    "hidden_total": 40,
+    "exit_status": "submitted",
+    "raw_exit_status": "Submitted",
+    "infrastructure_failure": false,
+    "setup_error": null,
+    "context_overflow": false
+  },
+  "local_inference": {
+    "calls": 3,
+    "prompt_tokens": 4111,
+    "completion_tokens": 241,
+    "reasoning_tokens": null,
+    "thinking_chars": 0,
+    "max_prompt_tokens": 1475,
+    "context_tokens_limit": 16384,
+    "output_tokens_limit": 4096,
+    "prompt_eval_seconds": 0.554184,
+    "eval_seconds": 2.25118,
+    "load_seconds": 2.912741,
+    "total_inference_seconds": 5.760618,
+    "truncated_responses": 0,
+    "format_errors": 0,
+    "self_plan": null
+  },
+  "agent": {
+    "actions": 3,
+    "repairs": 0,
+    "model_calls": 3,
+    "source_writes": 1,
+    "distinct_sources": 1,
+    "unchanged_writes": 0,
+    "rewrites_of_failed_candidate": 0,
+    "repeated_responses": 0,
+    "public_test_attempts": 1,
+    "seconds_to_first_valid_action": 5.102,
+    "seconds_to_first_executable_candidate": 7.935,
+    "seconds_to_first_public_test": 7.935
+  },
+  "frontier": {
+    "requests": [
+      {
+        "type": "guidance",
+        "prompt_id": "contract-v1",
+        "provider": "openai-api",
+        "utc": "2026-11-25T05:34:51Z",
+        "input_tokens": 570,
+        "output_tokens": 432,
+        "reasoning_tokens": 0,
+        "cached_input_tokens": 0,
+        "latency_seconds": 6.77,
+        "cost_usd": 0.00546,
+        "status": "ok",
+        "request_sha256": "65e2a70318b109c71e04a04f497ceb85fd0d75df7dc3a5dee8348f22fb5e124c",
+        "response_sha256": "0bf0e92b397623f357dec70f3da6dc62794992ad6a9e26def0bd20d8355acd9f",
+        "upfront": true
+      }
+    ],
+    "n_requests": 1,
+    "cost_usd": 0.00546,
+    "wait_seconds_during_run": 0.0,
+    "provider_failures": 0
+  },
+  "condition": {
+    "guidance": {
+      "generated": true,
+      "delivered": true,
+      "contract_text_injected": true,
+      "artifact_sha256": "09124bb566350db940b8cff6afc41c2125b4fcece4acfd54feb335b0966671d0",
+      "generation_cost_usd": 0.00546,
+      "generation_latency_seconds": 6.77,
+      "reused_across_seeds": null
+    },
+    "diagnosis": null
+  },
+  "time": {
+    "wall_seconds": 12.83,
+    "local_coding_seconds": 12.16,
+    "local_inference_seconds": 5.760618,
+    "frontier_seconds": 0.0,
+    "public_test_seconds": 0.282,
+    "sandbox_tool_seconds": 0.235,
+    "orchestration_seconds": 5.882,
+    "equal_opportunity_seconds": 12.16
+  },
+  "cost": {
+    "api_cost_usd_run": 0.0,
+    "api_cost_usd_upfront": 0.00546,
+    "gpu_memory_sample": {
+      "before": "2848 MiB, 0 %\n",
+      "after": "9873 MiB, 0 %\n"
+    },
+    "modelled_local_energy_kwh": null,
+    "modelled_local_cost_usd": null,
+    "modelling_assumptions": null
+  }
+}

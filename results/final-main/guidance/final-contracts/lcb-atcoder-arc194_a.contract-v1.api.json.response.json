@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo021grnQCQh8gnnMUkhGtehPewFK",
+  "object": "chat.completion",
+  "created": 1795585229,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\n\nRead an integer sequence from standard input and print the greatest sum attainable in the final stack after processing every element in order. The stack starts empty. At each step, either append the current element or remove the last element already on the stack.\n\n## Preconditions\n\n- **PRE-1 (Unverified):** Standard input contains an integer \\(N\\) on the first line and exactly \\(N\\) integers \\(A_1,\\ldots,A_N\\) on the second line.\n- **PRE-2 (Unverified):** \\(1 \\le N \\le 200{,}000\\), and each \\(A_i\\) is between \\(-10^9\\) and \\(10^9\\), inclusive. Values may repeat.\n\n## Postconditions\n\n- **POST-1 (Unverified):** A legal execution starts with an empty stack and takes exactly one action for each input position, in increasing order. An append adds the current value as a separate element, even if that value already occurs in the stack. A deletion removes only the last element and does not append the current value. When the stack is empty, an append is mandatory.\n- **POST-2 (Unverified):** Standard output contains a single integer: the exact maximum final sum over all legal executions. An empty final stack contributes a sum of zero. The maximum may be negative, and ties do not change the reported value. No operation sequence is printed.\n\n## Test suggestions\n\n- Under PRE-1 and PRE-2, check that the single value \\(-1\\) produces \\(-1\\), exercising the mandatory append and negative result (POST-1, POST-2).\n- Check that \\((-5,-2)\\) produces \\(0\\), exercising a legal empty final stack (POST-1, POST-2).\n- Check that \\((5,-100,5)\\) produces \\(5\\), but \\((5,5,-100)\\) produces \\(10\\), exercising input order and repeated values (POST-1, POST-2).\n- At the upper bound in PRE-2, check that \\(200{,}000\\) copies of \\(10^9\\) produce \\(200{,}000{,}000{,}000{,}000\\) (POST-2).\n\n## Unspecified behavior\n\nBehavior for malformed input or values outside PRE-1 and PRE-2 is unspecified. The task does not require choosing or reporting any particular maximizing execution.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 730,
+    "completion_tokens": 510,
+    "total_tokens": 1240,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

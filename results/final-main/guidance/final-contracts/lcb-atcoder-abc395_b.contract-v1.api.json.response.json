@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzzFRkGjJopmAfVw0dHaUcX81lKg",
+  "object": "chat.completion",
+  "created": 1795585057,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead a grid size from standard input and print a square target pattern to standard output. The outer border is black, and successive layers alternate between white and black.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input supplies one integer, `N`.\n- **PRE-2 (Unverified):** `N` is between 1 and 50, inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains exactly `N` lines, each with exactly `N` characters, all either `#` (black) or `.` (white).\n- **POST-2 (Unverified):** Lines represent rows from top to bottom, and characters within each line represent cells from left to right.\n- **POST-3 (Unverified):** Every cell’s final color is determined by its distance from the nearest grid edge, measured in cell steps. An even distance, including zero at the edge, is black; an odd distance is white. No cell remains uncolored.\n- **POST-4 (Unverified):** The innermost layer is a single cell for odd `N` and a uniformly colored two-by-two square for even `N`. In particular, `N = 1` and `N = 2` produce entirely black grids.\n\n## Test suggestions\n- For `N = 1` and `N = 2`, check the exact output dimensions and confirm every character is `#` (PRE-1, PRE-2, POST-1, POST-4).\n- For `N = 3` and `N = 5`, check that the center is white and black, respectively, and that the surrounding layers alternate (POST-2, POST-3, POST-4).\n- For `N = 50`, check for 50 lines of 50 characters, a black border, alternating layers, and a black two-by-two center (PRE-2, POST-1, POST-3, POST-4).\n\n## Unspecified behavior\nBehavior is unspecified if input is missing, does not supply a single integer, or supplies a value outside the stated range.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 835,
+    "completion_tokens": 444,
+    "total_tokens": 1279,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

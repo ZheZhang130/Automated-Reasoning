@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo06mQOl3ZnAyHe9EElYVZDIDX2Um",
+  "object": "chat.completion",
+  "created": 1795585524,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. In a left-to-right stack scan, each opening bracket is pushed, and each closing bracket must match and pop the top opening bracket.\n2. Scanning an adjacent matching pair leaves the stack unchanged: its opening bracket is pushed and immediately popped. Deleting such a pair therefore does not change whether the scan succeeds with an empty stack.\n3. A scan that succeeds with an empty stack gives a valid deletion order: at each pop, the two matching brackets are adjacent after the earlier pairs have been deleted.\n4. The scan processes each character at most once, and the stack can hold at most as many brackets as the input contains.\n\n## Solution sketch\n\n> In a left-to-right stack scan, each opening bracket is pushed, and each closing bracket must match and pop the top opening bracket.\n\n1. Read the input string and start with an empty stack. Push each opening bracket. For a closing bracket, check that the stack is nonempty and that its top is the corresponding opening bracket. If either check fails, stop and mark the scan as failed; otherwise, pop the top.\n\n> Scanning an adjacent matching pair leaves the stack unchanged: its opening bracket is pushed and immediately popped. Deleting such a pair therefore does not change whether the scan succeeds with an empty stack.\n\n2. If the scan failed or finished with a nonempty stack, print `No`. This covers an unmatched closing bracket, a mismatched closing bracket, and leftover opening brackets. If legal deletions could reduce the input to empty, each deletion would preserve the scan result, and the original input would succeed just as the empty string does.\n\n> A scan that succeeds with an empty stack gives a valid deletion order: at each pop, the two matching brackets are adjacent after the earlier pairs have been deleted.\n\n3. Otherwise, print `Yes`. The top of the stack is the last undeleted bracket before the current closing bracket, so each pop corresponds to a legal deletion. An empty stack at the end means those deletions removed the whole string.\n\n> The scan processes each character at most once, and the stack can hold at most as many brackets as the input contains.\n\n4. For a string of length \\(n\\), each stack operation takes constant time, so the algorithm uses \\(O(n)\\) time and \\(O(n)\\) auxiliary space in the worst case.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 620,
+    "completion_tokens": 522,
+    "total_tokens": 1142,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 34,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc399_e",
+  "text": "## Description\nThe program reads an integer \\(N\\) and two strings \\(S\\) and \\(T\\) from standard input. It prints the minimum number of global letter replacements needed to transform \\(S\\) into \\(T\\), or `-1` if no sequence of replacements can do so.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input contains \\(N\\), \\(S\\), and \\(T\\), in that order on separate lines. \\(N\\) is an integer with \\(1 \\le N \\le 200{,}000\\).\n- **PRE-2 (Unverified):** Both strings have exactly \\(N\\) characters, all lowercase English letters.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains one integer answer, not a sequence of replacements.\n- **POST-2 (Unverified):** If a finite sequence of replacements transforms \\(S\\) into \\(T\\), the answer is the smallest number of operations among all such sequences. Each operation replaces every current occurrence of one chosen lowercase letter with another chosen lowercase letter, counts once regardless of how many positions change, and preserves length and position order.\n- **POST-3 (Unverified):** The answer is `0` exactly when \\(S\\) and \\(T\\) are already identical.\n- **POST-4 (Unverified):** The answer is `-1` exactly when no finite sequence reaches \\(T\\). In particular, positions with equal letters can never be made different, so two occurrences of the same letter in \\(S\\) cannot require different letters in \\(T\\).\n\n## Test suggestions\n- At \\(N=1\\), check both identical letters (answer `0`) and different letters (answer `1`) (PRE-1, PRE-2; POST-2, POST-3).\n- Check `aaaa` → `bbbb` (answer `1`) to confirm that all occurrences change in one operation, and `ab` → `bb` (answer `1`) to confirm that different letters may merge (POST-2).\n- Check `abac` → `abrc` (answer `-1`) for incompatible targets at equal source positions (POST-4).\n- Check `ab` → `ba` (answer `3`), then check a target that swaps `a` and `b` in the full alphabet while leaving all other letters unchanged (answer `-1`) (POST-2, POST-4).\n- At \\(N=200{,}000\\), check that replacing a string of all `a` characters with all `b` characters produces just the answer `1` (PRE-1, PRE-2; POST-1, POST-2).\n\n## Unspecified behavior\nInputs outside PRE-1 or PRE-2 have no guaranteed result. The program need not report a replacement sequence or choose among equally short sequences.\n",
+  "statement_sha256": "34dcea2d22a3dcb2b82eb9a9b77dc86a1a0041c6f9f34f367ed9d2cd8cb932ea",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "34dcea2d22a3dcb2b82eb9a9b77dc86a1a0041c6f9f34f367ed9d2cd8cb932ea",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:39:27Z",
+    "finish_reason": "stop",
+    "request_id": "req_3af5c68e5043435b9c3f89dcc79ccb92",
+    "retries": 0,
+    "ledger_index": 46
+  },
+  "usage": {
+    "prompt_tokens": 608,
+    "completion_tokens": 605,
+    "total_tokens": 1213,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 8.84,
+  "cost_usd": 0.007266,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 356,
+  "created_utc": "2026-11-25T05:39:36Z"
+}

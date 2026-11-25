@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc400_d",
+  "text": "## Observations\n\n1. Moving to an adjacent cell that was originally a road costs no kicks, regardless of whether the current cell was originally a road or a wall.\n2. One kick lets Takahashi reach either of the first two cells in the chosen direction, provided the destination is in bounds, because the kick clears every wall along that segment.\n3. After a kick, Takahashi could have walked immediately to either cell it cleared. Thus, to bound the minimum cost of reaching a previously cleared wall, it is enough to consider the moment it was cleared.\n4. Each cell has at most four zero-cost transitions and eight one-cost transitions, so the graph can be explored without storing its edges.\n\n## Solution sketch\n\n1. “Moving to an adjacent cell that was originally a road costs no kicks, regardless of whether the current cell was originally a road or a wall.” Treat every cell, including every wall, as a graph vertex. From each vertex, allow a cost-zero transition to each in-bounds orthogonal neighbor marked as a road in the input. Keep the input grid unchanged.\n\n2. “One kick lets Takahashi reach either of the first two cells in the chosen direction, provided the destination is in bounds, because the kick clears every wall along that segment.” From each vertex, also allow cost-one transitions to the in-bounds cells one or two steps away in each orthogonal direction, regardless of their original type. Ignore out-of-bounds destinations; a kick can still reach the first cell when the second is outside the grid. Every graph path can be carried out in the town: for each cost-one transition, kick and then walk to its destination.\n\n3. “After a kick, Takahashi could have walked immediately to either cell it cleared. Thus, to bound the minimum cost of reaching a previously cleared wall, it is enough to consider the moment it was cleared.” To prove the graph does not overestimate the answer, follow any real sequence of actions. After \\(k\\) kicks, maintain that the current cell and every wall cleared so far have graph distance at most \\(k\\) from the start. This holds initially. A move onto an original road uses a zero-cost edge; a move onto a cleared wall reaches a cell already covered by the bound. A kick adds cost-one edges from the current cell to all cells it clears, so the bound holds with \\(k+1\\). In particular, the graph distance to the shop is no greater than the cost of any real trip. Together with the previous step, this proves equality.\n\n4. “Each cell has at most four zero-cost transitions and eight one-cost transitions, so the graph can be explored without storing its edges.” Run 0–1 BFS from the start, with its distance set to zero and all others initially infinite. Generate transitions as needed. When a relaxation improves a distance, put the destination at the front of the deque for a zero-cost transition and at the back for a one-cost transition; skip stale entries. Print the shop’s distance. This gives zero if a road-only route exists and handles single-row and single-column grids with the same bounds checks. The shop is always reachable because a kick can clear any adjacent wall. The algorithm uses \\(O(HW)\\) time and \\(O(HW)\\) space.\n",
+  "statement_sha256": "9e9dce6e5dd4f1c8c44567e2ceada22ad1c1af2a6d606157a40c76a4cea6a37e",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "9e9dce6e5dd4f1c8c44567e2ceada22ad1c1af2a6d606157a40c76a4cea6a37e",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:49:23Z",
+    "finish_reason": "stop",
+    "request_id": "req_68a6a5eb65a14e698890f9174affea43",
+    "retries": 0,
+    "ledger_index": 109
+  },
+  "usage": {
+    "prompt_tokens": 1299,
+    "completion_tokens": 735,
+    "total_tokens": 2034,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 1296,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 51,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 11.59,
+  "cost_usd": 0.009948,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 543,
+  "created_utc": "2026-11-25T05:49:34Z"
+}

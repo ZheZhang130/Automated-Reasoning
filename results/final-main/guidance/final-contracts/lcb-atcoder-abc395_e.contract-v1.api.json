@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc395_e",
+  "text": "## Description\nReport the minimum total cost of reaching vertex \\(N\\) from vertex 1 in a directed graph. Each move follows an edge in its current direction and costs 1. Reversing all edges costs \\(X\\) and leaves the current vertex unchanged.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input contains a line with integers \\(N\\), \\(M\\), and \\(X\\), followed by \\(M\\) lines, each containing an ordered pair of integer endpoints \\(u_i, v_i\\).\n- **PRE-2 (Unverified):** \\(2 \\le N \\le 200{,}000\\), \\(1 \\le M \\le 200{,}000\\), \\(1 \\le X \\le 10^9\\), and all endpoints lie in \\([1,N]\\). Each pair denotes an edge from \\(u_i\\) to \\(v_i\\); repeated pairs and self-loops are not excluded.\n- **PRE-3 (Unverified):** Vertex \\(N\\) is reachable from vertex 1 using the permitted operations.\n\n## Postconditions\n- **POST-1 (Unverified):** Every candidate operation sequence starts at vertex 1 with the input edge directions and ends on first reaching vertex \\(N\\). A move changes only the current vertex and costs 1. A reversal changes every edge direction simultaneously, leaves the current vertex unchanged, and costs \\(X\\). After any even number of reversals the directions match the input; after any odd number they are opposite.\n- **POST-2 (Unverified):** Standard output contains only the exact integer minimum of the summed operation costs over all legal sequences. The result is not truncated if it exceeds the 32-bit integer range. Ties between optimal sequences do not change the output.\n\n## Test suggestions\n- Under PRE-1–PRE-3, use \\(N=2\\) with only \\(1\\to2\\), then only \\(2\\to1\\). Expect 1 and \\(X+1\\), respectively (POST-1, POST-2).\n- Use the same graph with two values of \\(X\\) so that a reversal is optimal in one case but not in the other (POST-1, POST-2).\n- Check a graph that forces several reversals and has a known optimum above the 32-bit integer range (POST-1, POST-2).\n- Permute edge lines, duplicate an existing edge, or add a self-loop while staying within PRE-1–PRE-3; check that the minimum is unchanged (POST-2).\n\n## Unspecified behavior\nBehavior is unspecified for malformed input, values outside the stated constraints, or an unreachable destination. No operation sequence or tie-breaking rule is required.\n",
+  "statement_sha256": "9eed1adb946f30986c4f9a76f02a3c22fa5af212b910beb14718587f36cfc5c8",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "9eed1adb946f30986c4f9a76f02a3c22fa5af212b910beb14718587f36cfc5c8",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:37:50Z",
+    "finish_reason": "stop",
+    "request_id": "req_26526e8a7bb34e1e97e31c7f90bdf207",
+    "retries": 0,
+    "ledger_index": 32
+  },
+  "usage": {
+    "prompt_tokens": 1028,
+    "completion_tokens": 573,
+    "total_tokens": 1601,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 1025,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 8.91,
+  "cost_usd": 0.007786,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 350,
+  "created_utc": "2026-11-25T05:37:59Z"
+}

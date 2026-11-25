@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo02H5ZWSSELu1GuNV51xGsEc1ftX",
+  "object": "chat.completion",
+  "created": 1795585245,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead the length and a valid parenthesis sequence from standard input. Print the number of distinct strings reachable from that sequence by zero or more allowed operations, modulo 998244353. An operation selects a contiguous substring that is a valid parenthesis sequence in the current string, reverses its character order, and swaps every opening parenthesis with a closing parenthesis and vice versa.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains an integer \\(N\\) with \\(1 \\le N \\le 5000\\).\n- **PRE-2 (Unverified):** The second input line contains a valid parenthesis sequence \\(S\\) of length exactly \\(N\\). Together with PRE-1, this implies that \\(N\\) is even and at least 2.\n\n## Postconditions\n- **POST-1 (Unverified):** The reachable set includes the original string, because zero operations are allowed. It includes exactly the strings obtainable by a finite sequence of allowed operations, with substring validity checked immediately before each operation.\n- **POST-2 (Unverified):** Each operation leaves characters outside the selected substring unchanged and preserves the length and validity of the whole sequence.\n- **POST-3 (Unverified):** Each reachable string contributes once, regardless of how many operation sequences reach it. Standard output contains a single integer: the residue of that count in the range 0 through 998244352.\n\n## Test suggestions\n- Check that the shortest input permitted by PRE-1 and PRE-2, `()`, prints `1` (POST-1, POST-3).\n- Check that `(())()` prints `2`, counting the original string and `()(())` even though operations can revisit both (POST-1, POST-3).\n- Check that `(()())()` prints `2`: its reachable strings are itself and `()(()())`. This distinguishes the specified operation from ordinary reversal and checks that only valid substrings may be selected (POST-1, POST-2, POST-3).\n- Check that a length-5000 sequence made entirely of consecutive `()` pairs prints `1` (PRE-1, PRE-2, POST-3).\n\n## Unspecified behavior\nBehavior is unspecified for malformed input or input that does not satisfy PRE-1 and PRE-2. No enumeration of reachable strings or operation sequences is required.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 596,
+    "completion_tokens": 491,
+    "total_tokens": 1087,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo07DObU7FiOh6hsaUU7XVTOY942V",
+  "object": "chat.completion",
+  "created": 1795585551,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. If an alkane has \\(I\\) degree-4 vertices and \\(L\\) leaves, the tree degree-sum formula gives \\(4I+L=2(I+L-1)\\), so it has \\(3I+2\\) vertices. Thus it suffices to maximize \\(I\\), subject to \\(I\\ge 1\\).\n2. After rooting the input tree, a selected vertex whose parent edge is used can be a leaf with no selected children, or a degree-4 vertex with exactly three selected children. Different child branches are disjoint, and any child can be used as a leaf.\n3. The degree-4 vertices of an alkane form a connected set: every intermediate vertex on a path between two of them has degree at least two and therefore has degree four. Hence there is a unique shallowest degree-4 vertex. It uses either four child edges, or three child edges and its parent edge, in which case its parent is a leaf.\n4. A parent-before-child traversal can be reversed to process every vertex after its children. Keeping only the four largest child values makes the work at each vertex linear in its number of children.\n\n## Solution sketch\n\n> After rooting the input tree, a selected vertex whose parent edge is used can be a leaf with no selected children, or a degree-4 vertex with exactly three selected children. Different child branches are disjoint, and any child can be used as a leaf.\n\n1. Root the tree at vertex \\(1\\). For each nonroot vertex, define its branch value as the maximum number of degree-4 vertices attainable in its rooted subtree when its parent edge is selected. The leaf option gives value zero. If it has at least three children, the degree-4 option gives one plus the sum of the three largest child branch values. Use the better feasible option.\n\n> The degree-4 vertices of an alkane form a connected set: every intermediate vertex on a path between two of them has degree at least two and therefore has degree four. Hence there is a unique shallowest degree-4 vertex. It uses either four child edges, or three child edges and its parent edge, in which case its parent is a leaf.\n\n2. Evaluate each vertex as the shallowest degree-4 vertex. If it has at least four children, try one plus the sum of its four largest child branch values. If it has a parent and at least three children, also try one plus the sum of its three largest child branch values, selecting its parent as a leaf and no other edge incident to that parent. Each candidate constructs a valid alkane, and every alkane is covered by one of these two cases. Keep the largest candidate.\n\n> A parent-before-child traversal can be reversed to process every vertex after its children. Keeping only the four largest child values makes the work at each vertex linear in its number of children.\n\n3. Build adjacency lists and use an iterative traversal to record parents and a parent-before-child order. Scan that order backward, computing branch values and evaluating candidates in the same pass. Track the four largest values while scanning each vertex’s children rather than sorting them. The algorithm takes \\(O(N)\\) time and \\(O(N)\\) space.\n\n> If an alkane has \\(I\\) degree-4 vertices and \\(L\\) leaves, the tree degree-sum formula gives \\(4I+L=2(I+L-1)\\), so it has \\(3I+2\\) vertices. Thus it suffices to maximize \\(I\\), subject to \\(I\\ge 1\\).\n\n4. If no candidate was found, print \\(-1\\). This covers a single-vertex tree and, more generally, any tree with no vertex of degree at least four. Otherwise, for the largest candidate \\(I\\), print \\(3I+2\\).",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 628,
+    "completion_tokens": 918,
+    "total_tokens": 1546,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 117,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

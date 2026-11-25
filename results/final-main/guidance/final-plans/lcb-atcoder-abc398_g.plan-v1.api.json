@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc398_g",
+  "text": "## Observations\n\n1. Every position is bipartite. Within a connected component, an edge can be added exactly when its endpoints are in opposite color classes and the edge is missing. Between two components, every edge is legal because one component’s coloring can be flipped. Thus a terminal position is a connected complete bipartite graph, allowing an empty color class when \\(N=1\\).\n2. For a component with color-class sizes \\(a,b\\), call \\(ab\\bmod 2\\) its capacity parity. Odd-sized components have capacity parity zero. Merging two even-sized components adds their capacity parities modulo two, regardless of orientation. When two odd-sized components merge, either capacity parity is achievable if at least one is not a singleton; merging two singletons instead always gives capacity parity one.\n3. Let \\(m\\) be the current edge count and let \\(d\\) be the sum of the even-sized components’ capacity parities minus \\(m\\), modulo two. Adding an edge within a component or merging two even-sized components flips \\(d\\). Merging two singletons leaves \\(d\\) unchanged.\n4. When \\(N\\) is even, write \\(2k\\) for the number of odd-sized components and \\(t\\) for the number of those that are not singletons. Only merging two odd-sized components decreases \\(k\\), and it decreases it by one. Every other move leaves \\(t\\) unchanged or increases it. If \\(k>0\\) and \\(m\\) is odd, there is always a move that leaves \\(k\\) unchanged: merge an even-sized component with an odd-sized one if possible; otherwise, some odd-sized component must have a missing edge, since their complete bipartite edge counts are all even.\n\n## Solution sketch\n\n> Every position is bipartite. Within a connected component, an edge can be added exactly when its endpoints are in opposite color classes and the edge is missing. Between two components, every edge is legal because one component’s coloring can be flipped. Thus a terminal position is a connected complete bipartite graph, allowing an empty color class when \\(N=1\\).\n\n1. Read the graph and use iterative BFS or DFS to two-color each connected component, including isolated vertices. Count both color classes to obtain the initial \\(k,t,d\\) for even \\(N\\), and set \\(m=M\\). If \\(N\\) is odd, decide immediately: the terminal graph has an even number of edges because one color class has even size. Thus the number of moves remaining is odd exactly when \\(M\\) is odd. This also handles \\(N=1\\).\n\n> For a component with color-class sizes \\(a,b\\), call \\(ab\\bmod 2\\) its capacity parity. Odd-sized components have capacity parity zero. Merging two even-sized components adds their capacity parities modulo two, regardless of orientation. When two odd-sized components merge, either capacity parity is achievable if at least one is not a singleton; merging two singletons instead always gives capacity parity one.\n\n2. For even \\(N\\), first handle two cases where the winner follows directly from terminal parity. If \\(k=0\\), all subsequent components remain even-sized, so the parity of the remaining number of moves is fixed at \\(d\\). The player to move wins exactly when \\(d=1\\), including losing if there are no legal moves. If \\(k=1\\) and \\(t>0\\), the player to move can merge the two odd-sized components and choose the resulting capacity parity. Choose it so that the opponent receives a \\(k=0\\) position with \\(d=0\\). The player to move therefore wins.\n\n> Let \\(m\\) be the current edge count and let \\(d\\) be the sum of the even-sized components’ capacity parities minus \\(m\\), modulo two. Adding an edge within a component or merging two even-sized components flips \\(d\\). Merging two singletons leaves \\(d\\) unchanged.\n\n3. For \\(k>0\\), establish two more rules: if \\(t=0\\), the player to move wins exactly when \\(d=(k-1)\\bmod 2\\); if \\(t=1\\) or \\(t=2\\), the player to move always wins. Prove them together by induction over positions, since every move increases \\(m\\). For \\(k\\ge 2\\) and \\(t=1\\) or \\(t=2\\), merge a non-singleton odd component with a singleton or merge the two non-singleton odd components, respectively. This leaves \\(k-1\\) pairs of odd components, all singletons, and lets the mover choose \\(d\\) to make that position losing. The \\(k=1,\\ t>0\\) case was already settled. For \\(t=0\\), merging two singletons leaves \\(d\\) unchanged and gives the opponent a losing position exactly when \\(d=(k-1)\\bmod 2\\), using the \\(k=0\\) rule when \\(k=1\\). If this equality fails, every alternative also gives the opponent a winning position: a move among even-sized components flips \\(d\\), and attaching an even-sized component to a singleton gives \\(t=1\\).\n\n> When \\(N\\) is even, write \\(2k\\) for the number of odd-sized components and \\(t\\) for the number of those that are not singletons. Only merging two odd-sized components decreases \\(k\\), and it decreases it by one. Every other move leaves \\(t\\) unchanged or increases it. If \\(k>0\\) and \\(m\\) is odd, there is always a move that leaves \\(k\\) unchanged: merge an even-sized component with an odd-sized one if possible; otherwise, some odd-sized component must have a missing edge, since their complete bipartite edge counts are all even.\n\n4. For \\(t\\ge 3\\), the player to move wins exactly when \\(m\\) is odd. Continue the induction: if \\(m\\) is odd, make a move that keeps \\(k\\) unchanged, leaving \\(t\\ge 3\\) and an even edge count to the opponent. If \\(m\\) is even, every move leaves an odd edge count. A merge can remove at most two non-singleton odd components, so the opponent either still has \\(t\\ge 3\\) and wins by induction, or has \\(t=1\\) or \\(t=2\\) and wins by the previous rule. Apply the appropriate rule to the initial position and print `Aoki` if it is winning, or `Takahashi` otherwise. The component traversal takes \\(O(N+M)\\) time and \\(O(N+M)\\) space, and the winner check takes constant time.\n",
+  "statement_sha256": "b4e39114549ea8dd9fa5f713fa1ef55cbc52b5c5f98157a6a35b079f502f2f09",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "b4e39114549ea8dd9fa5f713fa1ef55cbc52b5c5f98157a6a35b079f502f2f09",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:47:30Z",
+    "finish_reason": "stop",
+    "request_id": "req_de22cdf358ba4806a772ce84b78e0c67",
+    "retries": 0,
+    "ledger_index": 102
+  },
+  "usage": {
+    "prompt_tokens": 700,
+    "completion_tokens": 3278,
+    "total_tokens": 3978,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 1816,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 55.7,
+  "cost_usd": 0.03418,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 931,
+  "created_utc": "2026-11-25T05:48:25Z"
+}

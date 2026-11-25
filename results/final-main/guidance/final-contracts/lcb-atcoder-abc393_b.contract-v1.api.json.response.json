@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzyYiwlMZe8MNXjKwVszzxE1V6lN",
+  "object": "chat.completion",
+  "created": 1795585014,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nGiven a string, print the number of distinct index triples whose characters are `A`, `B`, and `C`, in that order and at equal spacing.\n\n## Preconditions\n- **PRE-1 — Unverified:** Standard input supplies one string `S` on a single line.\n- **PRE-2 — Unverified:** `S` contains only uppercase English letters and has length from 3 through 100, inclusive.\n\n## Postconditions\n- **POST-1 — Unverified:** Standard output contains a single nonnegative integer: the number of triples `(i, j, k)` for which `1 ≤ i < j < k ≤ |S|`, `j − i = k − j`, and the characters at those one-based positions are `A`, `B`, and `C`, respectively.\n- **POST-2 — Unverified:** Each qualifying triple contributes exactly once, even if it shares positions with another qualifying triple. Both adjacent and nonadjacent positions qualify if the spacing is equal. If no triple qualifies, the output is `0`.\n\n## Test suggestions\n- At the minimum length, check that `ABC` prints `1`, while `ACB` and `ARC` print `0` (PRE-2, POST-1, POST-2).\n- Check that `ABXC` prints `0` because its `A`, `B`, and `C` are not equally spaced (POST-1).\n- Check that `AABCC` prints `2`, counting both triples that share the same `B` (POST-2).\n- At the maximum length, check a string of 100 `A` characters and expect `0` (PRE-2, POST-2).\n\n## Unspecified behavior\nInputs outside the stated format, length, or character constraints have no specified behavior.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 449,
+    "completion_tokens": 376,
+    "total_tokens": 825,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

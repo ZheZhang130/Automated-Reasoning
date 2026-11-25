@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo036pADQtrSbiFVBywlZPP3ENLKi",
+  "object": "chat.completion",
+  "created": 1795585296,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. The edges \\(i\\to A_i\\) form a functional graph. Repeatedly removing vertices of indegree zero leaves exactly the directed cycles, including self-loops. Every removed vertex appears before its parent \\(A_i\\) in the removal order.\n2. The inequalities around a directed cycle force all its vertices to have the same value. Every vertex outside a cycle belongs to a tree feeding into one cycle.\n3. For a vertex fixed at value \\(t\\), each attached tree child can take any value from \\(1\\) through \\(t\\). The choices for different children are independent, and prefix sums give the number of choices for a child for every \\(t\\) in \\(O(M)\\) time.\n4. For a fixed cycle value, the counts for trees attached to its vertices multiply. Different values of the same cycle are alternatives, so their counts add; different components are independent, so their totals multiply.\n\n## Solution sketch\n\n> The edges \\(i\\to A_i\\) form a functional graph. Repeatedly removing vertices of indegree zero leaves exactly the directed cycles, including self-loops. Every removed vertex appears before its parent \\(A_i\\) in the removal order.\n\n1. Read \\(N\\), \\(M\\), and \\(A\\), compute all indegrees, and put the vertices of indegree zero into a queue. Record each vertex as it is removed, decrement its parent's indegree, and enqueue the parent if that indegree becomes zero. The recorded order is the order for processing the tree vertices.\n\n> For a vertex fixed at value \\(t\\), each attached tree child can take any value from \\(1\\) through \\(t\\). The choices for different children are independent, and prefix sums give the number of choices for a child for every \\(t\\) in \\(O(M)\\) time.\n\n2. Give every vertex \\(u\\) a table \\(D_u[1],\\ldots,D_u[M]\\), initially all ones. Process the removed vertices in the recorded order. When processing \\(u\\), its table already counts assignments to its attached tree for each fixed value of \\(u\\), since all its children have been processed. Compute the running sum \\(\\sum_{s=1}^{t}D_u[s]\\) as \\(t\\) goes from \\(1\\) to \\(M\\), and multiply \\(D_{A_u}[t]\\) by that sum. Reduce every sum and product modulo \\(998244353\\). A leaf needs no special handling: its initial table already gives one assignment for each fixed value.\n\n> The inequalities around a directed cycle force all its vertices to have the same value. Every vertex outside a cycle belongs to a tree feeding into one cycle.\n\n3. Enumerate the remaining cycles by following \\(A_i\\) from each as-yet unvisited remaining vertex and marking the cycle vertices visited. Do not propagate table updates along cycle edges: the next step handles those constraints by assigning one shared value. A self-loop is a cycle of length one and is processed the same way.\n\n> For a fixed cycle value, the counts for trees attached to its vertices multiply. Different values of the same cycle are alternatives, so their counts add; different components are independent, so their totals multiply.\n\n4. For each cycle \\(C\\), compute \\(\\sum_{t=1}^{M}\\prod_{u\\in C}D_u[t]\\). Multiply these cycle totals modulo \\(998244353\\) and print the result. A cycle with no attached trees contributes \\(M\\); when \\(M=1\\), the result is \\(1\\). Queue processing and cycle discovery take \\(O(N)\\) time. Each tree vertex and each cycle vertex requires \\(O(M)\\) work, so the algorithm takes \\(O(NM)\\) time and \\(O(NM)\\) space.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 461,
+    "completion_tokens": 798,
+    "total_tokens": 1259,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

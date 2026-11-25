@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzzjYSbb6oB4f56d6M7AkMAZgYzX",
+  "object": "chat.completion",
+  "created": 1795585087,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead the values of the black and white balls from standard input and print the maximum total value of a selection containing at least as many black balls as white balls. Selecting no balls is allowed.\n\n## Preconditions\n- **PRE-1 (Unverified):** Standard input follows the specified format: the first line contains integers \\(N\\) and \\(M\\), the second contains exactly \\(N\\) black-ball values, and the third contains exactly \\(M\\) white-ball values.\n- **PRE-2 (Unverified):** \\(1 \\le N,M \\le 200{,}000\\), and every ball value is an integer between \\(-10^9\\) and \\(10^9\\), inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains a single integer equal to the greatest sum over all valid selections. A selection is valid if it contains at least as many black balls as white balls and uses each input ball at most once.\n- **POST-2 (Unverified):** The empty selection has value zero, so the result is never negative and is zero if no valid selection has a positive sum.\n- **POST-3 (Unverified):** Equal-valued balls are distinct and may each be selected. Reordering values within either color does not change the result.\n\n## Test suggestions\n- Under **PRE-1** and **PRE-2**, check the three supplied examples for outputs `19`, `15`, and `0` (**POST-1**, **POST-2**).\n- With one black ball valued at `-2` and two white balls each valued at `5`, expect `3`: selecting a negative-valued black ball is worthwhile, but selecting both white balls is invalid (**POST-1**).\n- With two black balls each valued at `1` and white balls valued at `3`, `3`, and `-1`, expect `8` before and after permuting the white values (**POST-3**).\n- At the upper bounds in **PRE-2**, set every ball value to \\(10^9\\) and expect `400000000000000` (**POST-1**).\n\n## Unspecified behavior\n- Behavior for malformed input or values outside the stated constraints is not specified.\n- If several selections achieve the same maximum, no particular selection needs to be chosen or reported.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 604,
+    "completion_tokens": 491,
+    "total_tokens": 1095,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

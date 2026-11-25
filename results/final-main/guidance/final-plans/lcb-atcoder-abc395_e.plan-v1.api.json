@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc395_e",
+  "text": "## Observations\n\n1. Only the parity of the number of reversals matters: an even number leaves the graph in its original orientation, and an odd number reverses it.\n2. From a state consisting of a vertex and an orientation, moving costs 1 and preserves the orientation; reversing costs \\(X\\) and preserves the vertex.\n3. The initial state is vertex 1 in the original orientation. Either orientation at vertex \\(N\\) is a valid finish, and all transition costs are positive.\n4. The state graph has \\(2N\\) states and \\(2M+2N\\) directed transitions. A shortest path never repeats a state, so its cost is at most \\((2N-1)X\\), which can exceed the 32-bit integer range.\n\n## Solution sketch\n\n> Only the parity of the number of reversals matters: an even number leaves the graph in its original orientation, and an odd number reverses it.\n\n1. Read the input and build two adjacency lists. For each input edge \\(u \\to v\\), put \\(v\\) in the original-orientation list for \\(u\\), and put \\(u\\) in the reversed-orientation list for \\(v\\). Represent each state by its vertex and orientation, so a reversal never requires rebuilding either list.\n\n> From a state consisting of a vertex and an orientation, moving costs 1 and preserves the orientation; reversing costs \\(X\\) and preserves the vertex.\n\n2. Generate transitions on demand. In state \\((v,p)\\), use the adjacency list for orientation \\(p\\) to find moves of cost 1, and also consider switching to \\((v,1-p)\\) at cost \\(X\\). Each transition represents exactly one legal operation, so shortest-path costs in this state graph are the costs sought in the problem. Even a vertex with no available moves can still reverse; self-loops and duplicate edges require no special handling.\n\n> The initial state is vertex 1 in the original orientation. Either orientation at vertex \\(N\\) is a valid finish, and all transition costs are positive.\n\n3. Run Dijkstra’s algorithm with a min-heap, starting with distance 0 at vertex 1 in the original orientation and infinity elsewhere. Skip stale heap entries and push a new entry whenever a transition improves a distance. Print the distance when a non-stale state at vertex \\(N\\) is first popped: Dijkstra settles states in nondecreasing cost order, so this is the cheaper of the two possible finishing orientations. The reachability guarantee ensures such a state is eventually popped.\n\n> The state graph has \\(2N\\) states and \\(2M+2N\\) directed transitions. A shortest path never repeats a state, so its cost is at most \\((2N-1)X\\), which can exceed the 32-bit integer range.\n\n4. Keep costs as Python integers. Each state is expanded at most once, and each successful relaxation adds one heap entry. The resulting worst-case time is \\(O((N+M)\\log(N+M))\\), and the adjacency lists, distances, and heap use \\(O(N+M)\\) space.\n",
+  "statement_sha256": "9eed1adb946f30986c4f9a76f02a3c22fa5af212b910beb14718587f36cfc5c8",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "9eed1adb946f30986c4f9a76f02a3c22fa5af212b910beb14718587f36cfc5c8",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:46:18Z",
+    "finish_reason": "stop",
+    "request_id": "req_31b3a2675eed4c3ab3be98cec5c2cdfb",
+    "retries": 0,
+    "ledger_index": 92
+  },
+  "usage": {
+    "prompt_tokens": 958,
+    "completion_tokens": 656,
+    "total_tokens": 1614,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 9.44,
+  "cost_usd": 0.008476,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 455,
+  "created_utc": "2026-11-25T05:46:28Z"
+}

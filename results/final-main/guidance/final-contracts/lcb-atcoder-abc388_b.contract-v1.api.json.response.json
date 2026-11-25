@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-EnzwTrZPupkn74hyCVs2ewVdFolcK",
+  "object": "chat.completion",
+  "created": 1795584885,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead the snakes’ initial thicknesses and lengths from standard input. For each increase from 1 through D, print the greatest weight among all snakes after adding that increase to every snake’s initial length.\n\n## Preconditions\n- **PRE-1 (Unverified):** The first input line contains integers N and D, each between 1 and 100 inclusive.\n- **PRE-2 (Unverified):** The next N lines each contain two integers: a snake’s thickness and initial length, in that order. Both are between 1 and 100 inclusive.\n\n## Postconditions\n- **POST-1 (Unverified):** Standard output contains exactly D lines, each containing one integer. The lines correspond to length increases 1 through D in ascending order.\n- **POST-2 (Unverified):** The k-th line contains the maximum, over all N snakes, of each snake’s thickness multiplied by its initial length plus k, with the addition performed before multiplication. Thickness stays unchanged, and each increase is measured from the initial length rather than accumulated from previous lines.\n- **POST-3 (Unverified):** If several snakes share the maximum weight for an increase, that weight is printed once on the corresponding line.\n\n## Test suggestions\n- With N = D = 1 and thickness and length both 1, check that the only output line is `2` (PRE-1, PRE-2, POST-1, POST-2).\n- Use the first sample to check that the heaviest snake can change and that a tie produces a single value. Expect `12`, `15`, and `20` on successive lines (POST-1–POST-3).\n- With N = D = 100 and every thickness and length equal to 100, check that there are 100 lines, starting at `10100`, increasing by `100` per line, and ending at `20000` (PRE-1, PRE-2, POST-1–POST-3).\n\n## Unspecified behavior\nBehavior for missing, malformed, extra, or out-of-range input is not specified.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 570,
+    "completion_tokens": 432,
+    "total_tokens": 1002,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

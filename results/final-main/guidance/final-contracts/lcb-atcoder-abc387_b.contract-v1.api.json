@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "contract",
+  "prompt_id": "contract-v1",
+  "task_id": "lcb-atcoder-abc387_b",
+  "text": "## Description\n\nThe Python 3 program reads an integer \\(X\\) from standard input and prints the sum of all entries in the 9-by-9 multiplication table that are not equal to \\(X\\). Each cell is counted separately, even when several cells contain the same value.\n\n## Preconditions\n\n- **PRE-1 (Unverified):** Standard input supplies one integer \\(X\\).\n- **PRE-2 (Unverified):** \\(X\\) is between 1 and 81, inclusive.\n\n## Postconditions\n\n- **POST-1 (Unverified):** Standard output contains a single integer answer. For each row \\(i\\) and column \\(j\\), numbered 1 through 9, the cell contributes \\(i \\times j\\) exactly once if its value differs from \\(X\\), and contributes nothing otherwise.\n- **POST-2 (Unverified):** If no cell contains \\(X\\), the answer is 2025, the sum of all 81 cells.\n\n## Test suggestions\n\n- Check both endpoints of **PRE-2**: \\(X=1\\) should produce 2024, and \\(X=81\\) should produce 1944, as required by **POST-1**.\n- Check \\(X=24\\): the output should be 1929 because all four cells containing 24 are excluded (**POST-1**).\n- Check \\(X=11\\): the output should be 2025 because no cell contains 11 (**POST-2**).\n\n## Unspecified behavior\n\nBehavior is unspecified for missing or malformed input, extra input, or an integer outside the stated range.\n",
+  "statement_sha256": "3d7b1272a5b6c800349ffca682d1e22b1174ff3c6ac9071a2077f25113cf43ff",
+  "system_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "system_prompt_sha256": "97fd739455bc0a55ce04e25fd291dac666d0ce7a93477c5e0cad983508d4b682",
+  "user_message_sha256": "3d7b1272a5b6c800349ffca682d1e22b1174ff3c6ac9071a2077f25113cf43ff",
+  "contract_prompt": "Document a semi-formal behavioral contract for the supplied programming\ntask. Use exactly these headings:\n## Description\nSummarize intended externally observable behavior.\n## Preconditions\nAssign PRE-1 etc to input/state requirements. Mark each Unverified.\n## Postconditions\nAssign POST-1 etc to guaranteed outputs and state transitions. Mark each Unverified.\nCover boundary cases, multiplicity, ordering and invariants only when relevant.\n## Test suggestions\nSuggest behavioral checks referencing PRE/POST IDs. Do not claim tests were run.\n## Unspecified behavior\nList behavior outside the task's guarantees, without inventing validation rules.\nUse natural language. Do not provide code, pseudocode, algorithms or data structures.\nNo existing implementation or tests have been inspected. Do not mark any condition\nTested or Verified. Keep the contract within about 400 words.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-contracts",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:34:20Z",
+    "finish_reason": "stop",
+    "request_id": "req_593559f458184e988b06ce3ca50a62cf",
+    "retries": 0,
+    "ledger_index": 1
+  },
+  "usage": {
+    "prompt_tokens": 496,
+    "completion_tokens": 339,
+    "total_tokens": 835,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 5.22,
+  "cost_usd": 0.004382,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 197,
+  "created_utc": "2026-11-25T05:34:25Z"
+}

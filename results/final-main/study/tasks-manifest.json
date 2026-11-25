@@ -1,0 +1,1207 @@
+{
+  "tasks": {
+    "lcb-atcoder-abc387_a": {
+      "task_id": "lcb-atcoder-abc387_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc387",
+      "contest_date": "2025-01-04T00:00:00",
+      "title": "Happy New Year 2025",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "5bf1fe657dd8da80df1341a5e9109af3b11a89db52ddcc07e1180dacb3337812",
+      "hidden_sha256": "bd9d34e176136d25df00ad45f56db9b4dd44f3f020b2106ed8f3288d84ef019a",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "856c37d619cbbe6ec91806e50e85960faf44ed43f1759a0edceb5ceadd17ee46",
+      "statement_sha256": "cd4841675238a190c6a077be9fa57778e57b07e53ffbb9914c469df13cccd369",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "7a2f2254c7b2a25c973f821f5ba6445c0dacbcc7623989794e6707dcf17542eb",
+        "task.json": "297301abba0cd3320d0c2e9daa0194a70798d75edc7e95490e5d48c6b76b8c4a"
+      }
+    },
+    "lcb-atcoder-abc387_b": {
+      "task_id": "lcb-atcoder-abc387_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc387",
+      "contest_date": "2025-01-04T00:00:00",
+      "title": "9x9 Sum",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "01e61415f2e1c759ba73cfd4ec9a54540b283396315573fff0c32d680399105d",
+      "hidden_sha256": "6a4db9c4b83efb22263afbd4e27991f255d6ed855fcb7d92dcca55673457049f",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "a8b3cad4fe569d82935832c8614fb66aae427d37f321293b0bf638fe9da78b1d",
+      "statement_sha256": "3d7b1272a5b6c800349ffca682d1e22b1174ff3c6ac9071a2077f25113cf43ff",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "39940b074ebb7cf4e8f3a29e845472b05a0f8962084c4ae3bdecc0299b33ada7",
+        "task.json": "f868d1c3af6c3c5382430b1772fead55168232c4d9dfe0c8b21269906962ca8c"
+      }
+    },
+    "lcb-atcoder-abc388_a": {
+      "task_id": "lcb-atcoder-abc388_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc388",
+      "contest_date": "2025-01-11T00:00:00",
+      "title": "?UPC",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "cf930204591a96794812a8adeb9b3f31384124354356a593a0852418bf4bfef4",
+      "hidden_sha256": "1e8e4b5a87e1c62f634baf5c789a9171f41964e5355d5fa9de3d856874fb5e84",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "9c1d8910e30899df2c6791fab497692f352ce4bfa2570b4fdebdb51fdb9fd68c",
+      "statement_sha256": "1bea48e0fbe842b89141fe54aac8dbe3fcdfc0702475a8acb466236224607ba4",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "4a6bc9103e01261a4482b8b607e405852475b2917b00230a1c647253117e8d93",
+        "task.json": "9c14c5d5bbfe8cf14743f94fdbd4074790d00d9f06f5570b5b5b92bf347d717f"
+      }
+    },
+    "lcb-atcoder-abc388_b": {
+      "task_id": "lcb-atcoder-abc388_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc388",
+      "contest_date": "2025-01-11T00:00:00",
+      "title": "Heavy Snake",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "4f8b3b9537c2107d4108f92be6139a89f10067edd97c5aafe2601189d43e7581",
+      "hidden_sha256": "c0c38a9ace534758572e07d500d467585eca9e8596a96169cee2e8f46cb2f148",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "1fea7fec2cfa1a504520f6ddbed7b987d22732c054650388c22a99badc7f41ad",
+      "statement_sha256": "65e2a70318b109c71e04a04f497ceb85fd0d75df7dc3a5dee8348f22fb5e124c",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "7ed0dd756d22db557fda0b336906650046e9d78eac4e7637af501ce2be410c87",
+        "task.json": "707cfe18a36eecdf48705151baec432575b410ecef6df0842ed29304bee0c933"
+      }
+    },
+    "lcb-atcoder-abc389_a": {
+      "task_id": "lcb-atcoder-abc389_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc389",
+      "contest_date": "2025-01-18T00:00:00",
+      "title": "9x9",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "044be10eaeee3537e5a1c881ef4cfd3b673db539fb3978f06e726f5c9c38da38",
+      "hidden_sha256": "4266fb439b690ceaa8a057fbb6aee131ef6bb06866c46191d0d65ad679e44689",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "9f8fe53b5dc0d70c3af1b6c173dbabdb719ef1dbe3ec9cd7801a47a76db6bb77",
+      "statement_sha256": "e722cdcde118803b2d296a19a324d08d4edcb442ee18d1c427f90e02e9165e37",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "48cdfec29f23c6088c6f1d61c130b7f78a8f5004ffa1b149eab1fce81a2f8150",
+        "task.json": "dc4103d571f175ee0a13aa5b186c12fe6e468fb94ca52f5c16e1e4a1e7e1f751"
+      }
+    },
+    "lcb-atcoder-abc390_a": {
+      "task_id": "lcb-atcoder-abc390_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc390",
+      "contest_date": "2025-01-25T00:00:00",
+      "title": "12435",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "b7302c17b2eab51774adce69b1a2adce3bc2f09d4b598c310820b5662a8e13df",
+      "hidden_sha256": "7d9092ad481868a680f1392155a7b65907515823951e28b719330b35eca2cb6d",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "2f08452af038e4a06883847069002b3229d39edc530b3f66057a888e8353f4d2",
+      "statement_sha256": "1fb19d551a0f90cb91ce5b92b454385cfd9589510d91b16a7b79b921bf04142d",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "385f5eb58bd60f1154935c686c6bd9c7ac294410500cc1c6187016a5ce084db9",
+        "task.json": "5cd0916f3dd40f28b4122fbf9b5629d56594f269d424740e4fdb4d7284647cd2"
+      }
+    },
+    "lcb-atcoder-abc390_b": {
+      "task_id": "lcb-atcoder-abc390_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc390",
+      "contest_date": "2025-01-25T00:00:00",
+      "title": "Geometric Sequence",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "790f33e1f5e415221f11b811bde593b0c0ef48aeda9c92ebb98406d6268ca89c",
+      "hidden_sha256": "43a022d4e5c89f7cc5ce902824d3005e062f3289a868333edc07f367a5cff416",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "280d1446e9a03caa8919504e74ea76b9ecc2c0506bb669f8183958e9e3d9a66e",
+      "statement_sha256": "70c4d1ad6ad773a727af81c76f97a0348049b89a4e06529bea46358bc6954e6f",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "9ce893a9651bf99567cece99c8d49112d9eb3d835b52e05b4c4d7ace5171927e",
+        "task.json": "80e74ba5428b8c8bf1568f67466667b9a4094e24675d081f6cd6307a583c95c4"
+      }
+    },
+    "lcb-atcoder-abc391_a": {
+      "task_id": "lcb-atcoder-abc391_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc391",
+      "contest_date": "2025-02-01T00:00:00",
+      "title": "Lucky Direction",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "a57a6a51546de13221eeea616db1fdb359be05992e6bcfbc483816c88f95a03c",
+      "hidden_sha256": "cf0b60c0e0c80528dac135b0002be424f9ef385f1a9e2598cfe83cc844bd9257",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "12a3173644203ea46f03249547bdc6e5df1ccebec6f0403a04089271f2a1ad98",
+      "statement_sha256": "e230b657032021aae0c13d64eb5a32140bb7152115aa597443dcfb57f148e4ba",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "38627267a9031507a611bf6bf905dc18b27301a3643ba714411fb9c203ca22a1",
+        "task.json": "26c11630fef953d2f733ecaf40c8f4cab78e4868e19b7d0ed5c6b697e1346f44"
+      }
+    },
+    "lcb-atcoder-abc391_b": {
+      "task_id": "lcb-atcoder-abc391_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc391",
+      "contest_date": "2025-02-01T00:00:00",
+      "title": "Seek Grid",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "d7a4815fb81c24752aa5dbcadcc6bd402e88b376a4913d8e95ad6032e0184a34",
+      "hidden_sha256": "47e89791dc4ca5c0acc16c1d5bed12774eb5ff73c58921b75eef98417862a78b",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "f60f1c2e6f0d768b664e1174a3ca40c5da575621ad6861731a538449a3fcf4a4",
+      "statement_sha256": "0d468da1e3c5910e83c7bc9971fc5d115de341c1e79ec53d48d62060d4a36058",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "d4747da32e4ae72f8275076690e4010252a2ffba9050032c6d2307c9753ddbe0",
+        "task.json": "8028395ce5f64a1e52d81066c13a0401972e28885fb791d66b0b3b09b1c447df"
+      }
+    },
+    "lcb-atcoder-abc392_a": {
+      "task_id": "lcb-atcoder-abc392_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc392",
+      "contest_date": "2025-02-08T00:00:00",
+      "title": "Shuffled Equation",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "9695f97ab0a92768dde8f8afe286f8ad11263d95a6486dfcebdad288d038d1f9",
+      "hidden_sha256": "3b042222861ae14a12ba5f2221b0123c0caf0dd8f5eb3e9f02e3b516404cb006",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "85ba63925d1f49cf0c18f05f89f76174ce084452b19dbb19c82085cc67fabd2c",
+      "statement_sha256": "ca5b1f137d161a62e2400a73c07d5bfe66fec8781e7ec252bf2a86a6c22fea06",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "33770c851518fa992e67a9d7ff6f1e3ea322cfabff6a3e363883879de4f9bff5",
+        "task.json": "d1e66e870ea805b20145d008496c6f88316197235278a7cba56ba123bb8fd247"
+      }
+    },
+    "lcb-atcoder-abc392_b": {
+      "task_id": "lcb-atcoder-abc392_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc392",
+      "contest_date": "2025-02-08T00:00:00",
+      "title": "Who is Missing?",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "7bcbc1fd5a2f227788caec4e7dcb5ad1a42072b455487d5b00fba87549f90a24",
+      "hidden_sha256": "92dcc676df5d9b4ae5ac464d43a4f4631cc72b9ea754ce5c87c1cfc22f29a1a6",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "2569ca412b4f888a43104de688414ad4095f48c2305640b3a4df01dedab342f5",
+      "statement_sha256": "33c96321b62e6dd80e13f411e4462db2b6e86cd4492e35f82e62fa8e88ce07e1",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "6f3142b49ce70117dcc419fa38ce802f19d3438ec9e898fb09c429a0fcd0040f",
+        "task.json": "b73688e8e3de1332f6deefe5aa815bd589ff5b58ca08e7e59511f4b98a028130"
+      }
+    },
+    "lcb-atcoder-abc393_b": {
+      "task_id": "lcb-atcoder-abc393_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc393",
+      "contest_date": "2025-02-15T00:00:00",
+      "title": "A..B..C",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "e7b7451d5931461d664623f13bb116e57fc09b28f72ea7114bcc29d6771aa9bf",
+      "hidden_sha256": "ebdb4d255bc0ee6a01d4ff1611919654c9daa7f87d7eefcd85ce61480a03fdff",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "bb43e279978dabccaae32d1d0d0daa38a8de85eddf0c3bc869acc1e87873e734",
+      "statement_sha256": "e7f3fccafb29052499d3d3ee15e2fb56e276ec300cc65c205376d065819b95a0",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "56a316831e96dd2095c0304a4b204a565cc2eabbeeca9cfecac2d5df316b91d2",
+        "task.json": "c2d1323fe60f5b5ed829f308ed182b5d8d49af72fea65384a9f90d2f083920d6"
+      }
+    },
+    "lcb-atcoder-abc394_a": {
+      "task_id": "lcb-atcoder-abc394_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc394",
+      "contest_date": "2025-02-22T00:00:00",
+      "title": "22222",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "567c11b29118e3e1666f7b5f09bdffc70159daa0ecb2f05873764c2acb15e461",
+      "hidden_sha256": "4c5b87591974e707bdad53cfa6a89f36e4e4ba27f5983be84ba4989b398466f7",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "2367920b422d138c9276d1dc72e1100cf1659c3dc92a9827e4c242350298d9fe",
+      "statement_sha256": "f47fe3bb01f3559877b6db88a223ed608b4a0b6502c6787d3ea4b74924ac9c49",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "fab7b439df7be2c38265ad3d6b5d0bacd1267f9e58b6bd93fcffdad5b86b7331",
+        "task.json": "273dee52473464b4c79a20b489762b8b8f539b4628c627a1cc8b6bc5bd4f0c65"
+      }
+    },
+    "lcb-atcoder-abc395_b": {
+      "task_id": "lcb-atcoder-abc395_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc395",
+      "contest_date": "2025-03-01T00:00:00",
+      "title": "Make Target",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "b5636fc4418d96c8fdf49c6cb8e5d2cabcc46ba691c387f657f2832d900ba01c",
+      "hidden_sha256": "c8ea330cf317e36652647c1d8294c4ce64708da9841eb508baea35944dced484",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "5de911abf24f596c5956bc08577b12514856295dc4e37f717d8cca0f70f85284",
+      "statement_sha256": "24ff9cfbdcac15a0fd78c85f22c203a067e6bd7e541a52b2e9fe653a951139e2",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "76f9735813b9b1de36850615f4de0cee66cbdc322958924796372b6fcf052748",
+        "task.json": "12129416df38d17d90744cbf32b76693ed047cc724429fa4bd0be571bc49265b"
+      }
+    },
+    "lcb-atcoder-abc396_b": {
+      "task_id": "lcb-atcoder-abc396_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc396",
+      "contest_date": "2025-03-08T00:00:00",
+      "title": "Card Pile",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "8c71dfd2393e6e3136be22923feb0e4d4f101116fc355682df7326feb4311e42",
+      "hidden_sha256": "6317f59d58a05a314e8e6d00232b87a2c93947939d1ef76cbfd33a16fc9e3d08",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "73833f8b5d7c52d666f3b4436829844ac58b63a2a8aef65be2ec034448e46366",
+      "statement_sha256": "5a91c3c1a920919a9a8ed7279711897d13d439b7766244f7548b1484300ab666",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "949c82cf18a1f387fde84cc25af4094d73413809b9c9929d5e1e955c880f1190",
+        "task.json": "087a0a7f3c00ecb9cae4ef16be9731e2f2f6af1dd73e4b54461eb504a823b3ba"
+      }
+    },
+    "lcb-atcoder-abc397_a": {
+      "task_id": "lcb-atcoder-abc397_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc397",
+      "contest_date": "2025-03-15T00:00:00",
+      "title": "Thermometer",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "57527a247f2c2ae5a4cc9e7b3d5c596755f8feb1e88100bc0cf4f23e8cfdb0e3",
+      "hidden_sha256": "20d1ff8d50be7480ceae4bbdf75cb874d16dfe9d49862ff0f853b51c0c747110",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "c6ea028c60ec3eaaabff9cac02527b2f0fdebd98bdd58e63f88f20163efc2290",
+      "statement_sha256": "645780772546ad66210469fc15edde34609ea5e2dfc028b6e7b5ab02b202bc55",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "b83ba799b20b88f8361a4a9603c2f517ffc832353fcd900b93874ec69aa73860",
+        "task.json": "7647c66dcb91a561f752274991a9c59bc56c64ba7d7b4b73d6202035759e7254"
+      }
+    },
+    "lcb-atcoder-abc398_a": {
+      "task_id": "lcb-atcoder-abc398_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc398",
+      "contest_date": "2025-03-22T00:00:00",
+      "title": "Doors in the Center",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "935d3c35b5a1551bc5ced7c1c1d145d68cad071cca93c2d13b24e83a20e85fe6",
+      "hidden_sha256": "27e2a42e3da4e15a289b97294d425ab1fbf304b183f3ad422868fdc43fb7ded4",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "199fe730df471b8c5604c9cf7109a8ae59d5b05b9c3baa10bfefd414b2fb10df",
+      "statement_sha256": "3ddd02654f13774b7319e63ca2a8d14c9c81bfea13a2de02106b129c52964e26",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "49b1d9e709a0332bb11f24ac211ce36ba7d9105c849d5de4a17271b555aa5978",
+        "task.json": "ca81a943228e63a7188dbada6bd39a559c8e48f8d6d568a97bdb5d22633a9aa2"
+      }
+    },
+    "lcb-atcoder-abc399_a": {
+      "task_id": "lcb-atcoder-abc399_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc399",
+      "contest_date": "2025-03-29T00:00:00",
+      "title": "Hamming Distance",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "4e37bb4b298ee8a02ffaada59e7229f750326b90bba80c79cf21d883eb0790fb",
+      "hidden_sha256": "9d7f1ec9dccc06b721ce6a5c142c8460910c3e7755a6dbf4ab106b5b5483abb2",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "9355fc474a0ecec9824430afecca96f6d4dbfb543e3051419263780ad512189f",
+      "statement_sha256": "118c0a3370a5b4b1796323ca75f71673569fbfa3c8265816be7bd5fbd783bc42",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "6182e261ae6a222f0babb54c820a30218106ea6baa8a9014580fa136af9e7e17",
+        "task.json": "4aae374cef1b6b7db4b0e75f39b9e71f5e66d3411b64ba0a12e8e777076fcbb7"
+      }
+    },
+    "lcb-atcoder-abc399_b": {
+      "task_id": "lcb-atcoder-abc399_b",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc399",
+      "contest_date": "2025-03-29T00:00:00",
+      "title": "Ranking with Ties",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "4032b6c7e525707ccbfb9d106f403352e736c5c6a057eb7c428c0390803f1b33",
+      "hidden_sha256": "317b3344717659110d205439da433be12a2a06d7729bdcf41a482fbb29e54363",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "f4b5d0715b92ae319442849646029e6f3709e34fa98ac5ae94a7b3b2938f1f6e",
+      "statement_sha256": "9bbe7e767f04443ec1c1ce74ad5ba460292a1f6622406ef4999f5ba2ac9fadbe",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "8f6175213313c31edfcd4ebd6472807765bb0281f9df4c71e7aff928f43faa69",
+        "task.json": "928aa0bdbd70efadf3599c5bd6ba9dc7f51bc9d244138bb1cc4179c4c70ee427"
+      }
+    },
+    "lcb-atcoder-abc400_a": {
+      "task_id": "lcb-atcoder-abc400_a",
+      "platform": "atcoder",
+      "difficulty": "easy",
+      "contest_id": "abc400",
+      "contest_date": "2025-04-05T00:00:00",
+      "title": "ABC400 Party",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "185b7706ea21c52755cd0ec9fb605b17216bcd4704c32a115b310b35ec4c71d7",
+      "hidden_sha256": "ae2c3be87d0d7b0036f80279bb77512cd2194a9616517cb619d15b50d96cf79b",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "d4a98c8cf3781f42157b9c2599ed369d173c3d5d25816ad54e54eaf88c84a51e",
+      "statement_sha256": "41c787a98d6ecc8440b043a8bde90cfa2b70d3eda3137b2976aa893b5d9b8a0f",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "18c94ad31758e9e8f50c66f04c1536083e76128ed7d303cec77e360314f1b798",
+        "task.json": "5fcbb796a3fa36555807bafc8c57edda128952d6b914c4e281b43d3d415ea481"
+      }
+    },
+    "lcb-atcoder-abc387_c": {
+      "task_id": "lcb-atcoder-abc387_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc387",
+      "contest_date": "2025-01-04T00:00:00",
+      "title": "Snake Numbers",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "eb70c6ad63d5367eb4157d0ce771ba806100ed8f538e766f0722e1a1c4270184",
+      "hidden_sha256": "bc29d9aee5ebb073fa081253837faa8c628b87ce3df18b0a6d48354807f5c670",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "d64375ad5df58869270beb2f4cfaa134a0941123dc8b74b6e88e2b8fee48c244",
+      "statement_sha256": "2c5736a7a5b3e3e3124f315691d6cfec9ad6c12dad473919943347943cc9b0c3",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "bada5ce9ba9faa75c7bc0493c4f2932dfe3a38cb4b930571c3c700e475603ef7",
+        "task.json": "93f32ed7c351ace1d4b4ce21f06a3b72e067775dfef0e9d5f7c4be45363e2c8b"
+      }
+    },
+    "lcb-atcoder-abc388_c": {
+      "task_id": "lcb-atcoder-abc388_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc388",
+      "contest_date": "2025-01-11T00:00:00",
+      "title": "Various Kagamimochi",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "4d5cf6d30e46ad59034a9c545f90158c3d34d64fd06e72b4184edf3ca84cd6a3",
+      "hidden_sha256": "20d9aff9336fd71a0e57ee1cbf8ef790f6d173f51526ae31b8fce187bcd02f01",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "33bd8b26c273072e36e1ac1e2595872f1319349067adbaae8b775a939c8f7129",
+      "statement_sha256": "d7f1d17774564669f733b32f63ab628ece67b1dbf007cc2ed9603cf4d6187de8",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "1641137f1826ce7854299154adb7d6db1a5750975bcfed0a7d9480a0d85a2637",
+        "task.json": "9d38f8c9f2ecef5e3283a09ae92beede055183d757f75bd587dca98bd6e6a27a"
+      }
+    },
+    "lcb-atcoder-abc388_d": {
+      "task_id": "lcb-atcoder-abc388_d",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc388",
+      "contest_date": "2025-01-11T00:00:00",
+      "title": "Coming of Age Celebration",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "ad41abb9076a478193ea6fa3a5682983b648513e6f85727e0ef94a16d5dbbd4a",
+      "hidden_sha256": "57ef17e87b136489ef1e5e83745f3c3fda20e92410d92e357a4a403a226e1439",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "895c7c6f948a9501508a75d1441bc237b96b72fce6f385b2bda8957293a44448",
+      "statement_sha256": "3159b2a539fcd2e85682afc499d456803059dfd2d39a182e71c3f0cb3cb146e7",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "45d134b1f4e1d66041326a28dbb75eb9a995d318517c5ead0468fe01f3cdcf91",
+        "task.json": "0bbfb722c7756966ddea606f1a697c68a4e9ce1ea41f74d9345bbc02437ce753"
+      }
+    },
+    "lcb-atcoder-abc389_d": {
+      "task_id": "lcb-atcoder-abc389_d",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc389",
+      "contest_date": "2025-01-18T00:00:00",
+      "title": "Squares in Circle",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "244c7dcee4a5defb1f4e3749ae4234af419a7ebb200dd75a736ff4a05941a6df",
+      "hidden_sha256": "990b8a8be8139cf395ea61b862e905d2c5c3792cadf3951ed0c82774d59de4ec",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "20fef011ca1594b5027e4c02762d355ae243009807e2ba1a18c9e064080b6850",
+      "statement_sha256": "5122846a43431bd6df4dfd0fa88ea80ce325ffa28a5c84bbe7f8f4a7178072fe",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "56d0e314f6bdb894a3f9d502c462f7de8c9ad443c872ddec3ac533e91a85adf4",
+        "task.json": "7c93c12c8e09bfb5bb12ca1bc4d243e2a611968d55d5751552cfabfcdc3d21d5"
+      }
+    },
+    "lcb-atcoder-abc390_d": {
+      "task_id": "lcb-atcoder-abc390_d",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc390",
+      "contest_date": "2025-01-25T00:00:00",
+      "title": "Stone XOR",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "8731a8e9df83725b02e4b8f08232819a601e090fbb49cf89ff4bc19cf093e4d7",
+      "hidden_sha256": "50b7421b2f57ba5070632aae0620a36d17f59fe291a4670ad9fc9b4344b087b0",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "b153685721b3db5f4aee36a56e09cc321eb8396931af73f59a8a558dd38b9406",
+      "statement_sha256": "3f4484af3522ae5ffd28f8d109f3fd986475208b9804f063e815e57fb2a5e309",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "46f741a527dd75487dba8900083602af8403ca0962fa93928a8d64a0f303f1d2",
+        "task.json": "f1deb9f352986f7b4f39a17f7c551ff0eb0ec9f424e14580ed48217744c538d3"
+      }
+    },
+    "lcb-atcoder-abc391_d": {
+      "task_id": "lcb-atcoder-abc391_d",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc391",
+      "contest_date": "2025-02-01T00:00:00",
+      "title": "Gravity",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "c27a264b1770ce4508a100ed857152e9bcaa83e2764e801494104aa91d37b72d",
+      "hidden_sha256": "7cb63067c694767c170013eb3d4b3acbf99ec63dacbce971cfb59ed8648de814",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "cd219951372afbe91bb0fd3be33b5bff460fb6fbeb1a40e260c8a96dbcdd4259",
+      "statement_sha256": "0602120978a7642e812bfff71e60b420500d4ccb643086f0c7b35da279f27e5d",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "8acf494e9fb66626f29feb95c52c043da5f7cb4bd33585af1fd16a4bf851dbce",
+        "task.json": "cde384787feb86e07bc8d181ed0d296202cbe6aeb5477f0a6501f12d148b2db6"
+      }
+    },
+    "lcb-atcoder-abc392_c": {
+      "task_id": "lcb-atcoder-abc392_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc392",
+      "contest_date": "2025-02-08T00:00:00",
+      "title": "Bib",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "e1792bff0f3615dc0fe0ec1ec8e0a30606f4c379f66d79b9068273a8b4eec73b",
+      "hidden_sha256": "7454940916ab8570d767516ee95e5cc4ec647c1405a73a225ff3272ce2cee4f8",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "f6fd8b3d821a3d3148178c720e19a86bd70c35445be6c13e36ecbf9e7011a794",
+      "statement_sha256": "57c7fb633a8207838f90d2b302bff09e1a0717577715a32286b1de839081fe5e",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "4d53f9427c7f3500b9a8e7001194a831449ef64f4d18a812f2d09ce4fa9a4da4",
+        "task.json": "d17acb6c0752ba3950a8931dc88db638a2abb1d3a304218c7ee92dcae21c5501"
+      }
+    },
+    "lcb-atcoder-abc394_d": {
+      "task_id": "lcb-atcoder-abc394_d",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc394",
+      "contest_date": "2025-02-22T00:00:00",
+      "title": "Colorful Bracket Sequence",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "e23ac4bebbee6450c2217d4bae562269ca95962e7203256f9a7607fd7ea0c078",
+      "hidden_sha256": "948cdac205da6eff4356346b03c400f13bcb9d2cb57fbe4f661da3acc762346e",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "51b4daea3a1bf5aa8ddb35a172353b313ec784e3316cc695ec703cd399dd1212",
+      "statement_sha256": "c92b9b77c0ab9b10ab814b3e3a8877fc1e6a69462059c7f59e9b52a39b9fd7ce",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "2b3ea577c6b1b60ace168d4bd74a66df17a344939ab02c334ae48dfb452f5a98",
+        "task.json": "6406f90838e25dbd9166d4413a10b6bb21c7fe82aaef89fbabaee2a0e354ca22"
+      }
+    },
+    "lcb-atcoder-abc395_c": {
+      "task_id": "lcb-atcoder-abc395_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc395",
+      "contest_date": "2025-03-01T00:00:00",
+      "title": "Shortest Duplicate Subarray",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "e50c5bb159d261d3790d808f0276fac6cde712110aaa8473fe3eda03679f0f81",
+      "hidden_sha256": "54540af08dd2d61f6ffa9cf5eec38ae33020f3664445708d797c51677aac01d0",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "0cca4ee4428af01c68791c931d68c45b4c2d6589da3ab0a8135a0149b68b602c",
+      "statement_sha256": "551d21aa6a3bd25f8a4c947981714a7f6b3d3bbb45dc8bfbae04e5a3d7f32d1e",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "a5cac3498b807efa88d0d24f89731a6ce0ba9fc1bd1174a72adad62bea9fa253",
+        "task.json": "8e6f059e47a3a88b1a5c8de4a26518ecbba1ea49a8f937f98b63c4916ca56976"
+      }
+    },
+    "lcb-atcoder-abc396_c": {
+      "task_id": "lcb-atcoder-abc396_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc396",
+      "contest_date": "2025-03-08T00:00:00",
+      "title": "Buy Balls",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "85282b75e757e9b7c31b9fb7099401ee493abfe8450cd5a2bb91c7970baaeb78",
+      "hidden_sha256": "9876de68329b0859a0f16fa4e93ac51fdf31d7875af303309dbea6be33c0a130",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "7f6ed6f9d8c658e27b5f6af31d8a38a932a0426b74ce4f691ea37dc1ed01706e",
+      "statement_sha256": "9da5c0a6e26f9d45e9270c4fc0a0c7e20e041d2f44ae3462abefabccb01c1d03",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "d98eb8cffc07259dc7956ff19d6ec5a5be01269275f7eadf762ef9e2caea2db0",
+        "task.json": "4eb1290938b60f5caa309b2ba7f1d8cce99462a7c7d4d15da6f9c4f62ba6dfa1"
+      }
+    },
+    "lcb-atcoder-abc396_d": {
+      "task_id": "lcb-atcoder-abc396_d",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc396",
+      "contest_date": "2025-03-08T00:00:00",
+      "title": "Minimum XOR Path",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "7b24ba412021cfee9ed6d5e896e87c065748e65254a1f561e321089bff0c9fe2",
+      "hidden_sha256": "983aec28c52fddb56980b8e39ff569b8253f76a22bc94aef6a4a76d6beaaab1b",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "d4f839acbef656009fc0ed58a5bd602056d6c1b9c3dd20b68a2b359300522b93",
+      "statement_sha256": "eb779801b6892b01fc044fcf8db1be7984ba9b99835fcea3c9ae85d6ccd2d32c",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "804db175252a1c40ad21deaa2e2c0fc26841ad8fd0dfc88ef27750c7034a3ceb",
+        "task.json": "dcf6354dc0479365fac9dd189221c7c247d412cab9e3cc3fa3a13160b9896433"
+      }
+    },
+    "lcb-atcoder-abc397_b": {
+      "task_id": "lcb-atcoder-abc397_b",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc397",
+      "contest_date": "2025-03-15T00:00:00",
+      "title": "Ticket Gate Log",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "03d33a48d96f2259748844b83a2826da753e4ee7782b32e2917bc69086a7bf7c",
+      "hidden_sha256": "11922718893378855491d59ca3b5a919e1ca6e2ddf5e60986103ad88f7b328d2",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "c21f98bb5d7ce6b72b170bb4b24e5cd142d20508f50b8b502d309d73650eb592",
+      "statement_sha256": "d6d81d514ed45bf5601ef346589506f1975eefb08163cd3b63d6e5bfc2d90f0c",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "c28755ae58e1921dcf0e3c8dbd69f13fb25a6c64d2e4fb12ed8522df39fe9d36",
+        "task.json": "a3a6564492a282d143a53a94cec7eb15b80e90320361b0922043fca142f77072"
+      }
+    },
+    "lcb-atcoder-abc397_c": {
+      "task_id": "lcb-atcoder-abc397_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc397",
+      "contest_date": "2025-03-15T00:00:00",
+      "title": "Variety Split Easy",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "5a12f128d4d847ce927d61ac604fc4b987edc6897159089be0478c2ef630ff88",
+      "hidden_sha256": "e47f06524dc604d87f7b3f0bc05578ae85d103d3e9879cb23a3e6f2a24312b99",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "15825cd6ce4f902c2448fd5fc2889bdd6bec0be8f2f70923f67d50b8ad0892b5",
+      "statement_sha256": "ce07370e73b430d57303d1e85fc0368a09badb88401d82eaffb26bad414bde9a",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "d779e50952bd1237d73051f6f891075f0e9f8ccc656283ca8b780cabd83f8078",
+        "task.json": "bfa9cfa82992bcad9ad61b0675f4b4d8da7c9c454d15cfe29c4b9314d52db833"
+      }
+    },
+    "lcb-atcoder-abc398_b": {
+      "task_id": "lcb-atcoder-abc398_b",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc398",
+      "contest_date": "2025-03-22T00:00:00",
+      "title": "Full House 3",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "6fc0fc50decccbd322689c59b09bfe4bfadb8bb54359ef4a3d803ec9418a5817",
+      "hidden_sha256": "a332a13106fdcadcb98a4aafd1dbedee05b904076d7c9aec69c57afcc9b3618e",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "3629cad4673a45646073473d698226a986cee1e0db524fcbb8b81a8b2aa8d446",
+      "statement_sha256": "c60dabb98f254c05d23359f507a8e5a2f42b8fadf951cd752ec8f747b74974be",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "15d500d4913cbcd1abf1fd8bc58842684cfce4aaf92b66b9c11ce725443286c1",
+        "task.json": "e12694cd43a0abb65a245bb75d09962ee19685fd71daf7113836087d42c428c5"
+      }
+    },
+    "lcb-atcoder-abc398_c": {
+      "task_id": "lcb-atcoder-abc398_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc398",
+      "contest_date": "2025-03-22T00:00:00",
+      "title": "Uniqueness",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "fe4e72c2b09fa7a78e09bdc5bd6a75aae457c10424c19378f1d08abde2025f9a",
+      "hidden_sha256": "959b0aabfe1a301ae93b13ec5b30e1b36e46146f8b2c79c32057b8b7292b9ac1",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "d88d7cb143837a4744841d173744fa6ac24b0037c83c269ef4d9a911d59a2618",
+      "statement_sha256": "8d74c637a5139332355fb13d075fd768a72981778d888681273624fc9598ebdf",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "d46a36c428f22e570cf3a20abaaaf7f01e75556a0d9a464adf72f3102740bc0c",
+        "task.json": "cd4bdd10ad90aaf373ad310319d44097a34f4bab757dd93627657bfb6b0d1947"
+      }
+    },
+    "lcb-atcoder-abc399_c": {
+      "task_id": "lcb-atcoder-abc399_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc399",
+      "contest_date": "2025-03-29T00:00:00",
+      "title": "Make it Forest",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "a22883396fa9dd725586e0b2c22998fd0b5d5bcfef881d90187fd9e00a8c2f5c",
+      "hidden_sha256": "b419249acc1916344c8a13a9c827e89aabd88e1dc4e9581059e7769a06150594",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "df17c4e12252046774fbedab86882edbac31286fbce05455d8105b78bea16d0d",
+      "statement_sha256": "28fddb877cab57801ff24a4363df564304a2e5b95f083e7502afa930c8b182a9",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "fe491366430b2c9cb0f0d147be4131ec1d3b2aa3202fef519d86ac41c2b26648",
+        "task.json": "b0eb1d7fefd543e45f67507ffb664813bab029111fb0a035207fd98ce2ececc4"
+      }
+    },
+    "lcb-atcoder-abc400_c": {
+      "task_id": "lcb-atcoder-abc400_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc400",
+      "contest_date": "2025-04-05T00:00:00",
+      "title": "2^a b^2",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "ec35a66eed967b9ef78f2e229dbc5a7ac3a780e34e5b0e401e2bf5034547019d",
+      "hidden_sha256": "6f45863b492de0ba8d7b3a942fce2509fc638269fcd2a20344474a88a0f1f147",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "d13fa03b82b8c5f2a66fdd6cd3037f0a8d3397a4daedc036ae3699c5ab4f016e",
+      "statement_sha256": "648615b7680bd0ab71c65fcaa530aaf6589e6012be8f2367a13042c6dc1233cd",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "a97b953f5f36810914b38a942bc0ef214fe8be56a8fc2556f3bdaf0048da5a25",
+        "task.json": "34795f14f54c9e0ac526341f610bddb62217875ca1b2b7880ecb756d298ad8d4"
+      }
+    },
+    "lcb-atcoder-abc400_d": {
+      "task_id": "lcb-atcoder-abc400_d",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc400",
+      "contest_date": "2025-04-05T00:00:00",
+      "title": "Takahashi the Wall Breaker",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "ccad795d327ec06e706bb4f42664a3b034402c1e21bc467fb9bd7622f8d91ae4",
+      "hidden_sha256": "7da23186892a927dd98a5679edd5e90230a50a70984ed7f62276d88df73d5842",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "ca7d6c147b8cfc39a22c3112b1138bd04b9d12272ed3ae0fdf40f27a53c9b679",
+      "statement_sha256": "9e9dce6e5dd4f1c8c44567e2ceada22ad1c1af2a6d606157a40c76a4cea6a37e",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "92be2bdaa3e7b48726b7643c13bfafd4d859f34c35a508a9850e8c93cdcf5e24",
+        "task.json": "4df38c9d61268838193a7ef6da88b9858b8f3f483d35d4cd25fb27992fbc3bba"
+      }
+    },
+    "lcb-atcoder-arc191_a": {
+      "task_id": "lcb-atcoder-arc191_a",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "arc191",
+      "contest_date": "2025-01-26T00:00:00",
+      "title": "Replace Digits",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "a8bfb04172d6e5a4e231832e31f090f1e7776352e1aff06ad7f0ff61200ba623",
+      "hidden_sha256": "85277fda24e9ff5e6b3ffaebdc566d5fcb5d27afbfc447cd6241b7bf9ec1000b",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "b4f9ce24fdaa91995654a41485b3e7f3f9f8480bf91e60e4166cf724bf759481",
+      "statement_sha256": "3542e112fa6993209a1ec678bfd5e922b0509ecf374ff5448ca06798ae46f6fe",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "bd9b8b9e2c89d93a37d2188ccd0745df3b4a23f5c85a6487cd879151a8a8c9d8",
+        "task.json": "66f47e265713a8669b92b83771fddd08db27b779340567bb777a6537f4464a58"
+      }
+    },
+    "lcb-atcoder-arc194_a": {
+      "task_id": "lcb-atcoder-arc194_a",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "arc194",
+      "contest_date": "2025-03-09T00:00:00",
+      "title": "Operations on a Stack",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "e674d2aef99860caa2a29d18811832942099291f28f27058583072404fea785b",
+      "hidden_sha256": "0f2e6ea4fb01f928eed359dde340971b882baa348cd9278f9909904077c59c70",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "ac75e1ead2e1ce8007dbe6299e14d94d63865ceed29523bf2d66816f11bb7bc5",
+      "statement_sha256": "3ade05f8faa3ea8b0e255876d3bd7fd96639470e80c5a19f4eae1a04d98a4227",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "c68e6bb9ea37b0a80e44922a5d1025137356249837fe6bb2db66336a8906f361",
+        "task.json": "dbc503d4f072764687aa0a5f577e1d652760ad100dc740939cc442b3bd1fd789"
+      }
+    },
+    "lcb-atcoder-abc387_f": {
+      "task_id": "lcb-atcoder-abc387_f",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc387",
+      "contest_date": "2025-01-04T00:00:00",
+      "title": "Count Arrays",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "7b190cc154cf6498d786b3a0ac033c9804c6e0262c0ce413b4bb1d2f4f39c636",
+      "hidden_sha256": "ceeb961d6cbd85125575f05b246e2ef5e1634a4b162db591c8fbcf96e506ac37",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "4211b79c23a48e9c349e6ac8768e1996ec291d0213179f4e65609cd0856b3b71",
+      "statement_sha256": "8528206fee37bebeccbf584b2b37a2fd4473fe70ac9ef958387a4df157f21815",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "dc0eae239472ba1fb5c8983b2401c1b29ebb64f34420467b5cd14d661722b84e",
+        "task.json": "067e6a09a15556844becc6110f0fd2aadabcdd66198f62a0d11df0aab95aedd7"
+      }
+    },
+    "lcb-atcoder-abc389_g": {
+      "task_id": "lcb-atcoder-abc389_g",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc389",
+      "contest_date": "2025-01-18T00:00:00",
+      "title": "Odd Even Graph",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "75caf926a1f645721ade00b8e04e534fcaf2d662aa50fc93317750f2a3ca037d",
+      "hidden_sha256": "c3faa683b873518ce8018e9974cc3ea0ff63189eededac590d23829c560360f8",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "5af589bde6e2c05ee69feb52e16c5a511f82438a219cfdf17965c188759b5055",
+      "statement_sha256": "0eeb2ea0b45787769e39a60c0c3ca62755e262ec389814cfc194970a214529ab",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "c54e446d99e0b669a118571a4dad11b134d88d57799a85326564600a6d90f787",
+        "task.json": "58d3e5ff8bc0a7655477f99cf7430ed6aca9c4cb3db1be59edf3db554bfc3891"
+      }
+    },
+    "lcb-atcoder-abc390_e": {
+      "task_id": "lcb-atcoder-abc390_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc390",
+      "contest_date": "2025-01-25T00:00:00",
+      "title": "Vitamin Balance",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "905e0fd8c1fe6c29b820259e28103bd43558b6aabe2d7b6a429abe9528e2a686",
+      "hidden_sha256": "989ed5f57d3f51bee278340365acacf81a33d4dbcf4fab992b756f48c38ffac2",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "9687b97e043e4c909c20f729092afed6bcf695f5e4c745f731419bc665e1a999",
+      "statement_sha256": "5720914af521d90cf9131c35414dfbb7a0690f07804aabecc244f4f1c30a29fa",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "35035721c4a9ea97f05885df5223003a1d41407a271c4a7e0752a34be085f698",
+        "task.json": "97467bbf8c8de7943ebc99b803d1332d1121e766d60133081c7977aebd2d9eaf"
+      }
+    },
+    "lcb-atcoder-abc390_g": {
+      "task_id": "lcb-atcoder-abc390_g",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc390",
+      "contest_date": "2025-01-25T00:00:00",
+      "title": "Permutation Concatenation",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "328b6331c3d188cdd56f69e04f2fb4707cebd7e6d7701daa193eeee7dc1ae29d",
+      "hidden_sha256": "08123b4d0dce3400d28e277b9db54de4901cceb7de453d84e55a166d98bf81aa",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "a97b5fe4ee93daa9bd4756f1b574be57ebf3350b3e49c36fed7e274424d8cf5c",
+      "statement_sha256": "7b0d49e5b42faf6c2bf37d53ed342a6acedfae5e73c9f1ec2e1b17e114e18feb",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "718d372918612410244b58b1438ad9b68e7f6b2cfaf0164a4af87ca6e6ad4a34",
+        "task.json": "f961aa33d6afa1512732c62e063b7d766e5456510eeef9e068a67c7ca5a3fd4b"
+      }
+    },
+    "lcb-atcoder-abc391_g": {
+      "task_id": "lcb-atcoder-abc391_g",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc391",
+      "contest_date": "2025-02-01T00:00:00",
+      "title": "Many LCS",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "465a436e4f56c1105a9b356d4a085b0e82c3714c5c1bb366a29c6dd1ccc79b7b",
+      "hidden_sha256": "65cf2a950ee9414cb8029ab3abb1dd891eb01eaf25965cb7a138975c454cf800",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "9a87605d424467d6cd799c2d8dc03aedfea974e49149acff06061d5b606cf4a7",
+      "statement_sha256": "6415a6f7cf5b8ac43dfed65d8dcfe71834a4ef95aa5f71c166986a206d472ae4",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "a0b2672503b84872fb2f7ce9945fa283cf5fd9324a95e6365e748e67be15fb6f",
+        "task.json": "0c29a06431fea4e7afdd8562da36f84e90e6eb0a826e232774044687db942628"
+      }
+    },
+    "lcb-atcoder-abc392_f": {
+      "task_id": "lcb-atcoder-abc392_f",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc392",
+      "contest_date": "2025-02-08T00:00:00",
+      "title": "Insert",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "ad9cb1441014ab7b72aabe983be65daf16ccf310611a71e452aaf5540d0234da",
+      "hidden_sha256": "6606aa73ac565d2117d5718eecf2c4a1c4701dd68c45878dffa9c6ccec5fa112",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "16a3e1f1491134a1afd68f971a101437bbd10bed6138340e38ea7447a884bd0d",
+      "statement_sha256": "ee8c4fac6714c786eff6acb5bd0cee298bb9f24bf7d41674334ee63afa900b5d",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "8316408ad556f648dec98256045a9bec55bd52d94bd5ff556654a7189688d394",
+        "task.json": "3410c8968ca304be6232ad8d4e2e0773ad71e8c72b9ceeb60908bb70d119dac6"
+      }
+    },
+    "lcb-atcoder-abc393_f": {
+      "task_id": "lcb-atcoder-abc393_f",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc393",
+      "contest_date": "2025-02-15T00:00:00",
+      "title": "Prefix LIS Query",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "6c49842cac42fa2ecbece1c58c638c1d70af9de6329488c952e21059852554fc",
+      "hidden_sha256": "aba0a175b31619b0d6ab681f15086eb2962b3a60f070e6de81ec78567187d91c",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "7f936ea637b6de2497d0f677f33c0c31c924578c86451865d114b17d6fa3a7fb",
+      "statement_sha256": "2c40157085ffd481e9b58ae4d06b95821dbf732ad077c9467bfd95cd94e91ffe",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "ec5d988efc873c1c6b1d88d410c0f23b4ff28ea6ac8e6be3c7ce7935aea62050",
+        "task.json": "aa0820d63ed27cdfdf1d5beefdd6af6cd5d8cf6d8b3b3ee8667f3c3f1eb986e9"
+      }
+    },
+    "lcb-atcoder-abc394_e": {
+      "task_id": "lcb-atcoder-abc394_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc394",
+      "contest_date": "2025-02-22T00:00:00",
+      "title": "Palindromic Shortest Path",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "b28a5b59055591cf378b79befa24d47a3247068fa0c2356bb13fab65a42174a2",
+      "hidden_sha256": "f80f624e286472b505ef7a21cea1397cbcb36018f3c4659001f7dd0e6d064804",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "66b6464d2ceca397e915f1c5a66ef011195dca91ae2ddb1520bd84614b067444",
+      "statement_sha256": "1c11e5a3a6eea0533b59a9e597ab68026da0c684464ecfb0c1cf17fe96042329",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "c8d04dca2975462ac843f941f650bf0eb160fc91747880bdbc9e48054495f205",
+        "task.json": "91c14520c12d3cf63756b5ee181b29ff8f96c9e1e0cc7aa64b73785bc4908ba3"
+      }
+    },
+    "lcb-atcoder-abc394_f": {
+      "task_id": "lcb-atcoder-abc394_f",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc394",
+      "contest_date": "2025-02-22T00:00:00",
+      "title": "Alkane",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "cfe7353052c6531beec080e8a8a31b8550653cda275585ac88836cae830577e4",
+      "hidden_sha256": "22f4daf3b2ca0c6d92223114ec9879f88ffdadb8bd40b361f361b7e731425866",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "bca35db4b3c06ea2292f4a2ab0f9c92f4135c257ebd4778d38ac1955e167ce3d",
+      "statement_sha256": "b1691506c10afa00a25b7022b40d0571d17817babba8cbf6e87aa9c17dfc9906",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "45529178d4d0ee88afeb2cc80a3526d30c9f8501674d6d552cba42d53a151014",
+        "task.json": "8e1dfdfa807cdf105202c2f10c998947fccd6a6fa9f3e54105f95717dd3eb0d7"
+      }
+    },
+    "lcb-atcoder-abc395_e": {
+      "task_id": "lcb-atcoder-abc395_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc395",
+      "contest_date": "2025-03-01T00:00:00",
+      "title": "Flip Edge",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "c793d7b85093a558c373646d19b0d6e6b347d4be79da2ad02b8fc22ee7b80bf1",
+      "hidden_sha256": "8113b29ba20d78f4e96a29a97563aa6d547fe07986409e2a1a012a4791494fad",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "1c03b21c405b3464dcdd4a4ab1210a9ea11eb90f64fa8c35ec781dc315fc8e29",
+      "statement_sha256": "9eed1adb946f30986c4f9a76f02a3c22fa5af212b910beb14718587f36cfc5c8",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "6e7ed07bf173f8df37eccdaa7dd0c5b883dc4ac9f3d997c831354a363d3e342d",
+        "task.json": "7a7dd41b1876d7e8acd7d5c286011b204cd79c28bb66f0d063d46503ad13888e"
+      }
+    },
+    "lcb-atcoder-abc398_g": {
+      "task_id": "lcb-atcoder-abc398_g",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc398",
+      "contest_date": "2025-03-22T00:00:00",
+      "title": "Not Only Tree Game",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "bae1a45d74a26d85814b7a94ce5d6ccefcf9846f21501020bd16f4a4d39d6f81",
+      "hidden_sha256": "25c91cf22f07a4883df84a89e3f3ddcfef6f223b99f4c08ae3b917037ca41406",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "17649c69db6252def75954ac35cd104e10f03d77435e797c1345381a60f3ed6c",
+      "statement_sha256": "b4e39114549ea8dd9fa5f713fa1ef55cbc52b5c5f98157a6a35b079f502f2f09",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "6c895fca38a307a3ddb33bed964c94e6126defe0cca7b52a70de6526150fee1b",
+        "task.json": "e7ecf0487d82a933cced42c7f7ac4463a85b49f108098dba8f234b632e01e93d"
+      }
+    },
+    "lcb-atcoder-abc399_e": {
+      "task_id": "lcb-atcoder-abc399_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc399",
+      "contest_date": "2025-03-29T00:00:00",
+      "title": "Replace",
+      "n_public": 4,
+      "manifest": "final",
+      "public_sha256": "abfb79f4bd5deb385fcf4327ed7dfc56daf3b8785c80573f5308100f5a4bfcc0",
+      "hidden_sha256": "4ec5bc6be35e324a39255b6cd4b532b241004594d823c212c71359f3a379b432",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "3ed5f451254c1e038944cf49fe81c20862697fb1b6158875efdaa453bdb9df8b",
+      "statement_sha256": "34dcea2d22a3dcb2b82eb9a9b77dc86a1a0041c6f9f34f367ed9d2cd8cb932ea",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "e67def41a3a0350c7d6c8defae95486cd6615fe7db105454d1819a6f6c4977a2",
+        "task.json": "9453a1e506420e0529e02872a5c20f7f258328716e33d266af16ba1503ddd80f"
+      }
+    },
+    "lcb-atcoder-arc190_d": {
+      "task_id": "lcb-atcoder-arc190_d",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc190",
+      "contest_date": "2025-01-12T00:00:00",
+      "title": "Matrix Pow Sum",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "2b8ad16a5a2750c6c5e15b5b3d7c4c69caed6581802e0f15138f079246784922",
+      "hidden_sha256": "41b29862fff8441153af3c22b671b1ab5d6c9c91afa23213aa3d9c1ccda77f06",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "c864241484c04c6c049a9e9acf3111be4c1857723416d96dece8448d49a1a99f",
+      "statement_sha256": "0aa6f0337e09308582051aa99f28b6e5226d9160c89387b7924fd2f076691d4d",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "8c0a75da7f268373e13231d5f99bcb59553984707186e74b218f169f013a7e05",
+        "task.json": "fc7b9af353072b413bd79261c4d973f522c9af6eddb6f5d645d325abb9c84d2f"
+      }
+    },
+    "lcb-atcoder-arc191_d": {
+      "task_id": "lcb-atcoder-arc191_d",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc191",
+      "contest_date": "2025-01-26T00:00:00",
+      "title": "Moving Pieces on Graph",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "5c530779c93430ebac422025e83faceef6681682e4d93879327def061798e020",
+      "hidden_sha256": "8a91e062bb290d1bc549e75c9b646bff3274d3a9805466cb55213eae07236262",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "42997136a525f486f66fb23b25570ce950248a87806a603c1cd13966ddbd2f4e",
+      "statement_sha256": "42cbbe4cfa65cee6a19079350cccbc98552347d2fe4d2a8e2f1743d3c4d46cb9",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "fa18b61299a9ff647f0cd962ac336cd20685fe2a80d1ed01184ff1a23c257978",
+        "task.json": "7ebb754794a6956a16b31db1671092962926d0e37e5fbc784a91934fe387bad4"
+      }
+    },
+    "lcb-atcoder-arc192_e": {
+      "task_id": "lcb-atcoder-arc192_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc192",
+      "contest_date": "2025-02-09T00:00:00",
+      "title": "Snuke's Kyoto Trip",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "e59e0dad33914e1138bdb67a51eb19dbd53dce6d8b46bd954c6b7dfe9f174de6",
+      "hidden_sha256": "0d75a0fd966a55e0c119f59e8c4c3dd68809773977e45be04bfa4998d6846ced",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "8739238935d98296c31f71790873a68923578ade8f388d29074a6705b5027fcf",
+      "statement_sha256": "a254fd8c3ef15c4ec804f7c61afd54a304fe0beeab33c9c65875d467cb08038c",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "d7b1a02a094804d5d7c4315fe3d9589ba535caf5db1d9e1992f1b47b183c7832",
+        "task.json": "41f79a6e6f75b3bbfb7ba5c7f19abf0bb6da1b9f9a991563f5a914baf1789dfb"
+      }
+    },
+    "lcb-atcoder-arc194_c": {
+      "task_id": "lcb-atcoder-arc194_c",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc194",
+      "contest_date": "2025-03-09T00:00:00",
+      "title": "Cost to Flip",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "f33768cafc90b1f7e3f81264fe3351853da2986c4be6f187a34fe88f031efb95",
+      "hidden_sha256": "58fe25ab679c5b94c4b59a09e81456ff0e08d6ae8060c9dcf4315941c4c715d9",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "e296a2fa55dcef936dbd6536a4b700ed8d63ec4d91a61b73c66654635c60bf22",
+      "statement_sha256": "4b6ec5efe8bb0fbcba1b6375f6df31265606f2931af184ee104e6211f4a39013",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "acd2ef0f81967ae13d794f1b03951e69a12cf59437324d18909a7eb21bd20fa2",
+        "task.json": "36ba861b1f5785731ca300128c13b5e48ec66b10611e5946d68808886e388e48"
+      }
+    },
+    "lcb-atcoder-arc194_d": {
+      "task_id": "lcb-atcoder-arc194_d",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc194",
+      "contest_date": "2025-03-09T00:00:00",
+      "title": "Reverse Brackets",
+      "n_public": 2,
+      "manifest": "final",
+      "public_sha256": "f04090f8a213fee1638238117fbda1642ba0f5b5e00bacd1639f6c46235635e4",
+      "hidden_sha256": "7af6ea380ee85e0e84b9bb02a2b51274ae9fd648b4a4917894006a5d9e2c4b32",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "4af31546d5a830350e74adfbf3e52af5ae5188b72df3e40d77c33cc8aadea49a",
+      "statement_sha256": "4388893f8b4c5e47fcc986a93dbdbed95a89604d0f2a89179d38b6b18dec6eb9",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "4425814ea19574bb7221f93a4716f5aa24ee2ec9702c63627ebd92aa69cbaed4",
+        "task.json": "9bfea47c735d3a063bdd3cc89a6a85cf78e5c7cbb669972b1c29abe026a77459"
+      }
+    },
+    "lcb-atcoder-arc195_b": {
+      "task_id": "lcb-atcoder-arc195_b",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc195",
+      "contest_date": "2025-03-23T00:00:00",
+      "title": "Uniform Sum",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "5489a8ffd8cf31dd72a96a43c6b710b4f9bd32b4971509162a64720c183c0d3f",
+      "hidden_sha256": "868915cca25de38396fef295d87cea4793a8cdafa5fe2598a5e2bcf2307febd3",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "44d04e9a4020f006283e96b8d5ac6128e2d0f43af0a4e3985ac0705e3f96e9d0",
+      "statement_sha256": "3665ef4717573ce679b69c9e847e3a216efeb3e6bc6351feaff84f87c28a4194",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "24caa7638d112d9890401f6c37062190b4a0454ac5b0188fdea4d915af48e1ec",
+        "task.json": "8446076f3852a56fef7343f13a173bad29de50096e2f06c03cba674240011981"
+      }
+    },
+    "lcb-atcoder-arc195_e": {
+      "task_id": "lcb-atcoder-arc195_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc195",
+      "contest_date": "2025-03-23T00:00:00",
+      "title": "Random Tree Distance",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "dc94f406948748fb1bbd5d87763a616ef84a23fb7aeef0a5011a55b01593fb61",
+      "hidden_sha256": "da392062c803ae9bcc32f9cf62ee132cf1399be39753732d5cdb84412aea32df",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "4533707a35564c5585a7ac1b836d407c10b9e4a838bb1219dff7c7dc39d2d3d6",
+      "statement_sha256": "621b872f123a2d2890ba6faa8e90bc33569e2bb3931debe4fea20c1a6a3c6462",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "131f4081be84263b6c38bf858f2aa9a7c42a22d7cd2e592969c70ffee8f5b185",
+        "task.json": "47d97f9cf6b9432d2aff0aa273d38d4bbaf9e4a9fb45787c7d1bc2ebe9818423"
+      }
+    },
+    "lcb-atcoder-arc196_a": {
+      "task_id": "lcb-atcoder-arc196_a",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc196",
+      "contest_date": "2025-04-06T00:00:00",
+      "title": "Adjacent Delete",
+      "n_public": 3,
+      "manifest": "final",
+      "public_sha256": "913b8e2e7854b5dde4ff33d12b014ecee5a05793f602522f217ab72b611a0e7d",
+      "hidden_sha256": "3fb4e812e00f4a6552bc8efb20938ac6745430fd5339fa5b16d77c2435eb777d",
+      "n_hidden": 40,
+      "hidden_judge_sha256": "eb8f0def757cea50024c12b1ba2486e9e7b33e818cf76149898fa3f323721480",
+      "statement_sha256": "776b2a0f14430ed74596722dd94e7b43bc534c7bb80d34730bb55541d8bb1e22",
+      "bundle_sha256": {
+        "check.py": "283ac1c85c7e74d3d1c993f8d3e38f59c0d76751d3a4a8187e64c90a408439ef",
+        "public_tests.json": "d8b39d08c82983a4b6eabdc44b6c3c4bc408a2c1ec9f517a33be89b33a78ccdf",
+        "task.json": "d4953ac98ec961ca1b4984bb69a7a631035978c7e0fe8c462fb94460c88a8c0c"
+      }
+    }
+  },
+  "hf_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+  "shard_sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5",
+  "shard": "E:\\CSC2108Local\\eval-v2\\cache\\test6.jsonl"
+}

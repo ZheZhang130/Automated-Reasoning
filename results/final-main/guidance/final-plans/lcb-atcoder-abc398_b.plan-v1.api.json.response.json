@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo08c5mZfzvPp5MUCmbHfs3FYtPT1",
+  "object": "chat.completion",
+  "created": 1795585638,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Observations\n\n1. Every card value is between 1 and 13, so a table of 13 counts can record how many cards have each value.\n2. A full house is possible exactly when one value occurs at least three times and a different value occurs at least twice. Extra copies can be left unchosen.\n3. There are only 13 possible values, so there are at most 13 × 12 ordered pairs of distinct values to check.\n\n## Solution sketch\n\n1. “Every card value is between 1 and 13, so a table of 13 counts can record how many cards have each value.”\n\n   Read the seven values from standard input. Initialize the counts to zero, then increment the count for each card’s value.\n\n2. “A full house is possible exactly when one value occurs at least three times and a different value occurs at least twice. Extra copies can be left unchosen.”\n\n   Check each ordered pair of distinct values, treating the first as the triple and the second as the pair. If their counts are at least three and two, respectively, print `Yes` and stop. If no pair qualifies, print `No`. Using “at least” allows a value with four or more copies to supply a triple, while requiring distinct values rules out a hand with seven identical cards. A hand with no value appearing at least three times also fails.\n\n3. “There are only 13 possible values, so there are at most 13 × 12 ordered pairs of distinct values to check.”\n\n   Counting takes seven updates, and each pair check takes constant time. Thus the algorithm uses \\(O(7 + 13^2)\\) time and \\(O(13)\\) auxiliary space, both constant under the given constraints.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 458,
+    "completion_tokens": 360,
+    "total_tokens": 818,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

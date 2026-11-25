@@ -1,0 +1,36 @@
+{
+  "id": "chatcmpl-Eo01MvPJl0lepsKMaMLdUjwhT2IhG",
+  "object": "chat.completion",
+  "created": 1795585188,
+  "model": "gpt-6.2-sol",
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "role": "assistant",
+        "content": "## Description\nRead a town grid, a starting cell, and a fish shop cell from standard input. Print the minimum number of front kicks Takahashi needs to reach the shop. Ordinary moves do not count toward this total.\n\n## Preconditions\n- **PRE-1 (Unverified):** The input starts with integers \\(H\\) and \\(W\\), each from 1 through 1000, followed by exactly \\(H\\) grid strings, each of length \\(W\\) and containing only `.` (road) and `#` (wall).\n- **PRE-2 (Unverified):** The final input line contains integers \\(A,B,C,D\\). The start \\((A,B)\\) and shop \\((C,D)\\) are distinct, in-bounds road cells, using one-based row and column coordinates.\n\n## Postconditions\n- **POST-1 (Unverified):** Takahashi starts at \\((A,B)\\). An ordinary move changes his position to an orthogonally adjacent, in-bounds cell that is currently a road. It leaves the grid and kick count unchanged.\n- **POST-2 (Unverified):** Each front kick counts once and leaves Takahashi in place. It turns every wall one or two steps away in the chosen cardinal direction into a road, regardless of whether the first cell is a wall or a road. Opened cells remain roads for subsequent actions. Existing roads, including the shop, remain unchanged. Cells beyond the grid have no effect and do not prevent the kick.\n- **POST-3 (Unverified):** Standard output contains one integer: the least kick count among all legal sequences of moves and kicks that reach \\((C,D)\\). The result is zero exactly when the shop is reachable using only the original roads.\n\n## Test suggestions\n- Check that a road-only route yields zero even if it takes more moves than a route through a wall (PRE-1, PRE-2, POST-1, POST-3).\n- Check that `.` `#` `#` `.` in one row, with endpoints as start and shop, yields one kick rather than two (PRE-1, PRE-2, POST-2, POST-3).\n- Check the supplied \\(2\\times2\\) boundary case and the one-row case where a kick reaches the shop; both should yield one (PRE-1, PRE-2, POST-2, POST-3).\n\n## Unspecified behavior\nMalformed inputs or inputs that violate the preconditions are outside the guarantees. No route, final grid, or tie-breaking rule between equally good sequences is required.",
+        "refusal": null,
+        "annotations": []
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 1369,
+    "completion_tokens": 540,
+    "total_tokens": 1909,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 1366,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "service_tier": "default",
+  "system_fingerprint": null
+}

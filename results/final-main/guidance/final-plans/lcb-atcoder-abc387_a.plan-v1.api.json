@@ -1,0 +1,52 @@
+{
+  "schema": "csc2108-guidance-v1",
+  "kind": "plan",
+  "prompt_id": "plan-v1",
+  "task_id": "lcb-atcoder-abc387_a",
+  "text": "## Observations\n1. The input contains two whitespace-separated integers, A and B.\n2. The required answer is the square of the sum, not the sum of the squares.\n3. The sum is between 2 and 4050, so the answer is between 4 and 16,402,500. The same calculation works at both bounds.\n4. The task uses two bounded integers and requires only a fixed number of arithmetic operations.\n\n## Solution sketch\n1. “The input contains two whitespace-separated integers, A and B.” Read the two values from standard input and interpret them as integers.\n2. “The required answer is the square of the sum, not the sum of the squares.” Add A and B first, then multiply the sum by itself and print the result.\n3. “The sum is between 2 and 4050, so the answer is between 4 and 16,402,500. The same calculation works at both bounds.” No special cases are needed for the smallest or largest allowed inputs.\n4. “The task uses two bounded integers and requires only a fixed number of arithmetic operations.” The algorithm takes O(1) time and O(1) auxiliary space.\n",
+  "statement_sha256": "cd4841675238a190c6a077be9fa57778e57b07e53ffbb9914c469df13cccd369",
+  "system_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "system_prompt_sha256": "f4f830d2f2fba0f664778577e06dd6a60d61215b54445ced792b2c67d8f74da6",
+  "user_message_sha256": "cd4841675238a190c6a077be9fa57778e57b07e53ffbb9914c469df13cccd369",
+  "planning_prompt": "You are a programming problem planner. Produce a natural-language guide\nwith exactly these headings:\n## Observations\nGive numbered, useful observations derived from the problem specification.\n## Solution sketch\nDescribe one coherent algorithm as numbered steps. Before each step quote the\nrelevant observation exactly, then explain how that observation supports the step.\nCover edge cases and time/space complexity in the sketch.\nReturn prose only, without Python implementation or command blocks.\nThe guide will be implemented by a separate coding agent.\n",
+  "author": "openai-api:gpt-6.2-sol",
+  "provider": "openai-api",
+  "label": "final-plans",
+  "requested_model": "gpt-6.2-sol",
+  "observed_model": "gpt-6.2-sol",
+  "reasoning_effort": "medium",
+  "generation": {
+    "interface": "POST /v1/chat/completions",
+    "max_completion_tokens": 8000,
+    "started_utc": "2026-11-25T05:41:18Z",
+    "finish_reason": "stop",
+    "request_id": "req_93938b6d3665409896112c587a828cba",
+    "retries": 0,
+    "ledger_index": 60
+  },
+  "usage": {
+    "prompt_tokens": 288,
+    "completion_tokens": 248,
+    "total_tokens": 536,
+    "prompt_tokens_details": {
+      "cached_tokens": 0,
+      "cache_write_tokens": 0,
+      "audio_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0,
+      "audio_tokens": 0,
+      "accepted_prediction_tokens": 0,
+      "rejected_prediction_tokens": 0
+    }
+  },
+  "latency_seconds": 3.78,
+  "cost_usd": 0.003056,
+  "isolation": {
+    "mechanism": "direct HTTPS request; statement-only input"
+  },
+  "validation_problems": [],
+  "soft_code_flags": [],
+  "word_count": 183,
+  "created_utc": "2026-11-25T05:41:22Z"
+}
