@@ -90,7 +90,23 @@ AtCoder subset; hidden tests are not formal verification; C/D guidance is shared
 conditions have different budgets; timings are specific to the Windows RTX 4080 SUPER host; costs are token-derived,
 not invoiced; contracts are passive and diagnosis is conditional on a public failure.
 
-## Overnight operation
+## Official run record
+
+Study root `E:\CSC2108Local\final-study` (outside the checkout; archive it with this commit), batch `final-main`, plan
+sha256 `7342a46f…d052`, freeze sha256 `224c492c…3515`, code commit `bf160d8` (both provenance sessions carry the same
+binding sha256 `8822ddd7…805c`).
+
+* Launched 2026-11-25 05:55 UTC; execution pass finished 20:50 UTC; the one set-aside attempt was rerun at 20:53;
+  hidden scoring 20:55–21:30; official report accepted 21:30 UTC (`report\report.md`, `report.json`, `runs.csv`,
+  `tasks.csv`).
+* 900/900 attempts `scored`; 0 excluded blocks, 0 invalid, 0 orphan verdicts; no infrastructure failures among the
+  included runs.
+* One incident: an E diagnosis request (`abc395_e`, seed 2109) received API HTTP 503 (`server_is_overloaded`), a
+  frontier provider fault. Per README §5, before any hidden scoring, the run was moved to
+  `set-aside\final-main\` (kept, with `SET_ASIDE_LOG.jsonl`) and rerun by resuming the same plan; the rerun's
+  diagnosis was delivered. The failed request remains in the ledger as `not_attributable`.
+* API ledger: 725 requests (724 completed, 1 HTTP error), $3.03 token-derived at list prices, $20.46 conservative
+  reservation, of 2000 requests / $100.
 
 Host-specific helpers in `evaluation/ops/` (copies of `E:\CSC2108Local\ops\`): `ev.ps1` (run any step with the
 project environment), `launch.ps1` (one detached step with logs, refuses duplicates), `detach.ps1` (start a process
