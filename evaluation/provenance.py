@@ -48,11 +48,13 @@ def execution_files():
 
 
 def code_fingerprint():
+    """Hash of the execution sources, line-ending-insensitive (a Windows and a macOS checkout of the same commit agree;
+    the 38 frozen files are additionally verified byte for byte by ``local_agent verify`` in every attempt)."""
     files = {}
     for rel in execution_files():
         path = REPO / rel
         if path.is_file():
-            files[rel] = hashlib.sha256(path.read_bytes()).hexdigest()
+            files[rel] = hashlib.sha256(path.read_bytes().replace(b'\r\n', b'\n')).hexdigest()
     return {'sha256': planlib.canonical_sha256(files), 'files': len(files)}
 
 
