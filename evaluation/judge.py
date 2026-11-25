@@ -71,7 +71,10 @@ def down(study):
 
 
 def score_run(judge, result_path, judge_tests_sha256):
-    """The hidden verdict for one finished run, in the schema the measurement and metrics read."""
+    """The hidden verdict for one finished run, in the schema the measurement and metrics read.
+
+    Same fields as ``guided_agent evaluate`` plus ``submission_sha256`` (the run record's), which binds the verdict to
+    the record it was written for."""
     record = read_json(result_path)
     run_id = record['run_id']
     record['task_id'], record['condition']  # a record without them is malformed
@@ -88,28 +91,63 @@ def score_run(judge, result_path, judge_tests_sha256):
                                                    'tests_sha256', 'code_sha256', 'error')}
     return run_id, outcome | {'run_id': run_id, 'task_id': record['task_id'], 'condition': record['condition'],
                               'suite': 'hidden', 'judge_tests_sha256': judge_tests_sha256,
-                              'evaluated_utc': utc_now()}
+                              'submission_sha256': record.get('submission_sha256'), 'evaluated_utc': utc_now()}
 
 
-def score(batch_dir, study, judge=None):
-    """Score every finished run of a batch on the hidden tests. Already scored runs are kept as they are.
+class ScoringRefused(RuntimeError):
+    """The batch is not ready to score, or a stored verdict no longer matches its run."""
 
-    Returns run_id -> outcome. A malformed or partial record is not scored; its reason is written instead."""
+
+def score(batch_dir, study, judge=None, *, plan=None, allow_incomplete=False, rescore_stale=False):
+    """Score every finished run of a batch on the hidden tests. Returns run_id -> outcome.
+
+    * With a plan (``<batch>/plan.json`` when present), scoring is refused while any scheduled attempt has not
+      finished (``allow_incomplete`` scores what exists; such a batch can only give a preliminary report).
+    * A stored verdict is reused only while it still matches its run (submission hash, hidden-test digest, judge
+      version, identity). A stale one stops scoring with a list (``rescore_stale`` moves it to ``eval/stale/`` and
+      scores the run again).
+    * A malformed or partial record is not scored; its reason is written instead.
+    * Every verdict is written atomically, so an interrupted scoring run resumes where it stopped."""
+    from . import validate
     batch_dir = Path(batch_dir)
+    if plan is None and (batch_dir / 'plan.json').exists():
+        plan = read_json(batch_dir / 'plan.json')
+    if plan is not None:
+        status = validate.batch_status(batch_dir, study, plan)
+        waiting = [a['run_dir'].name for a in status['attempts'] if a['state'] in ('not_executed', 'incomplete')]
+        if waiting and not allow_incomplete:
+            raise ScoringRefused(f'{len(waiting)} scheduled attempts have not finished (e.g. {waiting[:3]}); finish '
+                                 'the batch first (rerun `evaluation run`), or pass --allow-incomplete for a '
+                                 'preliminary score')
+    expected = validate.expected_hidden(study)
     judge = judge or client(study, 'hidden')
     info = judge.up()
     eval_dir = batch_dir / 'eval'
     eval_dir.mkdir(exist_ok=True)
-    results = {}
+    results, stale = {}, []
     for result_path in sorted(batch_dir.glob('*/result.json')):
         if '.incomplete-' in result_path.parent.name:
             continue
         name = result_path.parent.name
         try:
-            run_id = read_json(result_path)['run_id']
-            if (eval_dir / f'{run_id}.json').exists():
-                results[run_id] = read_json(eval_dir / f'{run_id}.json')
-                continue
+            record = read_json(result_path)
+            run_id = record['run_id']
+            cached = eval_dir / f'{run_id}.json'
+            if cached.exists():
+                verdict = read_json(cached)
+                problems = validate.verdict_problems(verdict, record, result_path.parent,
+                                                     expected.get(record.get('task_id')))
+                # a recorded submission-hash mismatch stays a mismatch: rescoring cannot change it (the report marks
+                # such runs invalid); every other problem means the verdict no longer describes the run
+                problems = [p for p in problems if 'tampered or replaced submission' not in p]
+                if not problems:
+                    results[run_id] = verdict
+                    continue
+                if not rescore_stale:
+                    stale.append({'run_id': run_id, 'problems': problems})
+                    continue
+                (eval_dir / 'stale').mkdir(exist_ok=True)
+                cached.replace(eval_dir / 'stale' / f"{run_id}.{utc_now().replace(':', '')}.json")
             run_id, outcome = score_run(judge, result_path, info.get('tests_sha256'))
         except Exception as error:
             outcome = {'status': 'malformed_record', 'error': f'{type(error).__name__}: {error}', 'run_dir': name,
@@ -119,4 +157,7 @@ def score(batch_dir, study, judge=None):
             continue
         write_json(eval_dir / f'{run_id}.json', outcome)
         results[run_id] = outcome
+    if stale:
+        raise ScoringRefused(f'{len(stale)} stored verdicts no longer match their runs, e.g. {stale[:2]}; '
+                             'investigate, then rerun with --rescore-stale to move them to eval/stale/ and rescore')
     return results

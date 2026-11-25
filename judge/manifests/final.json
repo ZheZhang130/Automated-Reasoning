@@ -1,0 +1,1184 @@
+{
+  "name": "final",
+  "seed": 2108,
+  "dataset": "livecodebench/code_generation_lite",
+  "hf_revision": [
+    "0fe84c3912ea0c4d4a78037083943e8f0c4dd505"
+  ],
+  "shards": [
+    "test6.jsonl"
+  ],
+  "counts": {
+    "easy": 20,
+    "medium": 20,
+    "hard": 20
+  },
+  "selection": {
+    "rule": "outcome-blind: explicit tasks, then eligible base members, then same-stratum replacements and the remaining quota by sha256(seed:salt:difficulty:task_id); see evaluation/selection.py",
+    "salt": "final-v1",
+    "config": {
+      "counts": {
+        "easy": 20,
+        "medium": 20,
+        "hard": 20
+      },
+      "tasks": [],
+      "base": "main.json",
+      "base_sha256": "e4c7707c43eed7abbe5a96550afcc75ab7d78c89f7beb67b76430a0239657022",
+      "seed": 2108,
+      "min_hidden_tests": 40,
+      "exclude_previously_used": false,
+      "prefer_unexposed": true,
+      "reserved_manifests": [
+        "pilot.json"
+      ]
+    },
+    "shard_sha256": "bb4c364f71921c4495a6ad15abe1a927350b720009f4933e2e71f8af0f6fd1f5",
+    "output_semantics_audit_sha256": "d67183252bd3aa0ebb26ffd22a82ac0deca0abd09cb8cea35ed5a9486d541eab",
+    "exposure_registry_sha256": "dcd9a4d25e88a09b50071969070ee2db1a35644158285bb6498f77ad67432f75",
+    "removed": [
+      {
+        "task_id": "lcb-atcoder-abc395_a",
+        "difficulty": "easy",
+        "n_hidden": 40,
+        "reasons": [
+          "output semantics: case_insensitive"
+        ]
+      },
+      {
+        "task_id": "lcb-atcoder-abc399_d",
+        "difficulty": "medium",
+        "n_hidden": 1,
+        "reasons": [
+          "1 hidden tests < 40"
+        ]
+      },
+      {
+        "task_id": "lcb-atcoder-abc400_e",
+        "difficulty": "hard",
+        "n_hidden": 4,
+        "reasons": [
+          "4 hidden tests < 40"
+        ]
+      },
+      {
+        "task_id": "lcb-atcoder-abc400_g",
+        "difficulty": "hard",
+        "n_hidden": 4,
+        "reasons": [
+          "4 hidden tests < 40"
+        ]
+      },
+      {
+        "task_id": "lcb-atcoder-arc195_c",
+        "difficulty": "hard",
+        "n_hidden": 4,
+        "reasons": [
+          "output semantics: multiple_answers",
+          "4 hidden tests < 40"
+        ]
+      },
+      {
+        "task_id": "lcb-atcoder-arc196_b",
+        "difficulty": "hard",
+        "n_hidden": 1,
+        "reasons": [
+          "1 hidden tests < 40"
+        ]
+      }
+    ],
+    "replacements": [
+      {
+        "removed": "lcb-atcoder-abc395_a",
+        "replacement": "lcb-atcoder-abc391_a",
+        "difficulty": "easy",
+        "stratum": "easy/abc"
+      },
+      {
+        "removed": "lcb-atcoder-abc399_d",
+        "replacement": "lcb-atcoder-abc396_d",
+        "difficulty": "medium",
+        "stratum": "medium/abc"
+      },
+      {
+        "removed": "lcb-atcoder-abc400_e",
+        "replacement": "lcb-atcoder-abc390_g",
+        "difficulty": "hard",
+        "stratum": "hard/abc"
+      },
+      {
+        "removed": "lcb-atcoder-abc400_g",
+        "replacement": "lcb-atcoder-abc398_g",
+        "difficulty": "hard",
+        "stratum": "hard/abc"
+      },
+      {
+        "removed": "lcb-atcoder-arc195_c",
+        "replacement": "lcb-atcoder-arc194_d",
+        "difficulty": "hard",
+        "stratum": "hard/arc"
+      },
+      {
+        "removed": "lcb-atcoder-arc196_b",
+        "replacement": "lcb-atcoder-arc192_e",
+        "difficulty": "hard",
+        "stratum": "hard/arc"
+      }
+    ],
+    "eligible_counts": {
+      "easy": {
+        "pool": 26,
+        "eligible": 22,
+        "ineligible_by_reason": {
+          "reserved by pilot.json": 3,
+          "output semantics: case_insensitive": 1
+        }
+      },
+      "medium": {
+        "pool": 26,
+        "eligible": 20,
+        "ineligible_by_reason": {
+          "reserved by pilot.json": 3,
+          "output semantics: tolerance": 1,
+          "hidden tests < 40": 1,
+          "output semantics: case_insensitive": 1
+        }
+      },
+      "hard": {
+        "pool": 60,
+        "eligible": 45,
+        "ineligible_by_reason": {
+          "reserved by pilot.json": 2,
+          "hidden tests < 40": 8,
+          "output semantics: multiple_answers": 6,
+          "output semantics: case_insensitive": 1
+        }
+      }
+    },
+    "exposure_counts": {
+      "none_known": 32,
+      "selection_holdout": 10,
+      "development": 10,
+      "other_scored": 8
+    },
+    "hidden_test_counts": {
+      "40": 60
+    }
+  },
+  "tasks": [
+    {
+      "task_id": "lcb-atcoder-abc387_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "5bf1fe657dd8da80df1341a5e9109af3b11a89db52ddcc07e1180dacb3337812",
+      "hidden_sha256": "bd9d34e176136d25df00ad45f56db9b4dd44f3f020b2106ed8f3288d84ef019a",
+      "contest_date": "2025-01-04T00:00:00",
+      "contest_id": "abc387",
+      "title": "Happy New Year 2025",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc387_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "01e61415f2e1c759ba73cfd4ec9a54540b283396315573fff0c32d680399105d",
+      "hidden_sha256": "6a4db9c4b83efb22263afbd4e27991f255d6ed855fcb7d92dcca55673457049f",
+      "contest_date": "2025-01-04T00:00:00",
+      "contest_id": "abc387",
+      "title": "9x9 Sum",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc388_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "cf930204591a96794812a8adeb9b3f31384124354356a593a0852418bf4bfef4",
+      "hidden_sha256": "1e8e4b5a87e1c62f634baf5c789a9171f41964e5355d5fa9de3d856874fb5e84",
+      "contest_date": "2025-01-11T00:00:00",
+      "contest_id": "abc388",
+      "title": "?UPC",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc388_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "4f8b3b9537c2107d4108f92be6139a89f10067edd97c5aafe2601189d43e7581",
+      "hidden_sha256": "c0c38a9ace534758572e07d500d467585eca9e8596a96169cee2e8f46cb2f148",
+      "contest_date": "2025-01-11T00:00:00",
+      "contest_id": "abc388",
+      "title": "Heavy Snake",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc389_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "044be10eaeee3537e5a1c881ef4cfd3b673db539fb3978f06e726f5c9c38da38",
+      "hidden_sha256": "4266fb439b690ceaa8a057fbb6aee131ef6bb06866c46191d0d65ad679e44689",
+      "contest_date": "2025-01-18T00:00:00",
+      "contest_id": "abc389",
+      "title": "9x9",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "b7302c17b2eab51774adce69b1a2adce3bc2f09d4b598c310820b5662a8e13df",
+      "hidden_sha256": "7d9092ad481868a680f1392155a7b65907515823951e28b719330b35eca2cb6d",
+      "contest_date": "2025-01-25T00:00:00",
+      "contest_id": "abc390",
+      "title": "12435",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: selection split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "790f33e1f5e415221f11b811bde593b0c0ef48aeda9c92ebb98406d6268ca89c",
+      "hidden_sha256": "43a022d4e5c89f7cc5ce902824d3005e062f3289a868333edc07f367a5cff416",
+      "contest_date": "2025-01-25T00:00:00",
+      "contest_id": "abc390",
+      "title": "Geometric Sequence",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: selection split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc391_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "a57a6a51546de13221eeea616db1fdb359be05992e6bcfbc483816c88f95a03c",
+      "hidden_sha256": "cf0b60c0e0c80528dac135b0002be424f9ef385f1a9e2598cfe83cc844bd9257",
+      "contest_date": "2025-02-01T00:00:00",
+      "contest_id": "abc391",
+      "title": "Lucky Direction",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "Qwen local optimization: held-out split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)",
+        "reasoning effectiveness pass 1",
+        "reasoning effectiveness pass 2",
+        "reasoning effectiveness pass 3"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc391_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "d7a4815fb81c24752aa5dbcadcc6bd402e88b376a4913d8e95ad6032e0184a34",
+      "hidden_sha256": "47e89791dc4ca5c0acc16c1d5bed12774eb5ff73c58921b75eef98417862a78b",
+      "contest_date": "2025-02-01T00:00:00",
+      "contest_id": "abc391",
+      "title": "Seek Grid",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc392_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "9695f97ab0a92768dde8f8afe286f8ad11263d95a6486dfcebdad288d038d1f9",
+      "hidden_sha256": "3b042222861ae14a12ba5f2221b0123c0caf0dd8f5eb3e9f02e3b516404cb006",
+      "contest_date": "2025-02-08T00:00:00",
+      "contest_id": "abc392",
+      "title": "Shuffled Equation",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc392_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "7bcbc1fd5a2f227788caec4e7dcb5ad1a42072b455487d5b00fba87549f90a24",
+      "hidden_sha256": "92dcc676df5d9b4ae5ac464d43a4f4631cc72b9ea754ce5c87c1cfc22f29a1a6",
+      "contest_date": "2025-02-08T00:00:00",
+      "contest_id": "abc392",
+      "title": "Who is Missing?",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "agent delivery pilot",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc393_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "e7b7451d5931461d664623f13bb116e57fc09b28f72ea7114bcc29d6771aa9bf",
+      "hidden_sha256": "ebdb4d255bc0ee6a01d4ff1611919654c9daa7f87d7eefcd85ce61480a03fdff",
+      "contest_date": "2025-02-15T00:00:00",
+      "contest_id": "abc393",
+      "title": "A..B..C",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "Qwen local optimization: development split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "567c11b29118e3e1666f7b5f09bdffc70159daa0ecb2f05873764c2acb15e461",
+      "hidden_sha256": "4c5b87591974e707bdad53cfa6a89f36e4e4ba27f5983be84ba4989b398466f7",
+      "contest_date": "2025-02-22T00:00:00",
+      "contest_id": "abc394",
+      "title": "22222",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: held-out split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc395_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "b5636fc4418d96c8fdf49c6cb8e5d2cabcc46ba691c387f657f2832d900ba01c",
+      "hidden_sha256": "c8ea330cf317e36652647c1d8294c4ce64708da9841eb508baea35944dced484",
+      "contest_date": "2025-03-01T00:00:00",
+      "contest_id": "abc395",
+      "title": "Make Target",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc396_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "8c71dfd2393e6e3136be22923feb0e4d4f101116fc355682df7326feb4311e42",
+      "hidden_sha256": "6317f59d58a05a314e8e6d00232b87a2c93947939d1ef76cbfd33a16fc9e3d08",
+      "contest_date": "2025-03-08T00:00:00",
+      "contest_id": "abc396",
+      "title": "Card Pile",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "one-shot ablation",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc397_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "57527a247f2c2ae5a4cc9e7b3d5c596755f8feb1e88100bc0cf4f23e8cfdb0e3",
+      "hidden_sha256": "20d1ff8d50be7480ceae4bbdf75cb874d16dfe9d49862ff0f853b51c0c747110",
+      "contest_date": "2025-03-15T00:00:00",
+      "contest_id": "abc397",
+      "title": "Thermometer",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "935d3c35b5a1551bc5ced7c1c1d145d68cad071cca93c2d13b24e83a20e85fe6",
+      "hidden_sha256": "27e2a42e3da4e15a289b97294d425ab1fbf304b183f3ad422868fdc43fb7ded4",
+      "contest_date": "2025-03-22T00:00:00",
+      "contest_id": "abc398",
+      "title": "Doors in the Center",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc399_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "4e37bb4b298ee8a02ffaada59e7229f750326b90bba80c79cf21d883eb0790fb",
+      "hidden_sha256": "9d7f1ec9dccc06b721ce6a5c142c8460910c3e7755a6dbf4ab106b5b5483abb2",
+      "contest_date": "2025-03-29T00:00:00",
+      "contest_id": "abc399",
+      "title": "Hamming Distance",
+      "output_semantics": "exact",
+      "exposure": "other_scored",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "local evaluation v2 benchmark",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc399_b",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "4032b6c7e525707ccbfb9d106f403352e736c5c6a057eb7c428c0390803f1b33",
+      "hidden_sha256": "317b3344717659110d205439da433be12a2a06d7729bdcf41a482fbb29e54363",
+      "contest_date": "2025-03-29T00:00:00",
+      "contest_id": "abc399",
+      "title": "Ranking with Ties",
+      "output_semantics": "exact",
+      "exposure": "other_scored",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "local evaluation v2 benchmark",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc400_a",
+      "version": "1",
+      "difficulty": "easy",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "185b7706ea21c52755cd0ec9fb605b17216bcd4704c32a115b310b35ec4c71d7",
+      "hidden_sha256": "ae2c3be87d0d7b0036f80279bb77512cd2194a9616517cb619d15b50d96cf79b",
+      "contest_date": "2025-04-05T00:00:00",
+      "contest_id": "abc400",
+      "title": "ABC400 Party",
+      "output_semantics": "exact",
+      "exposure": "other_scored",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "local evaluation v2 benchmark",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc387_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "eb70c6ad63d5367eb4157d0ce771ba806100ed8f538e766f0722e1a1c4270184",
+      "hidden_sha256": "bc29d9aee5ebb073fa081253837faa8c628b87ce3df18b0a6d48354807f5c670",
+      "contest_date": "2025-01-04T00:00:00",
+      "contest_id": "abc387",
+      "title": "Snake Numbers",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "Qwen local optimization: development split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc388_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "4d5cf6d30e46ad59034a9c545f90158c3d34d64fd06e72b4184edf3ca84cd6a3",
+      "hidden_sha256": "20d9aff9336fd71a0e57ee1cbf8ef790f6d173f51526ae31b8fce187bcd02f01",
+      "contest_date": "2025-01-11T00:00:00",
+      "contest_id": "abc388",
+      "title": "Various Kagamimochi",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc388_d",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "ad41abb9076a478193ea6fa3a5682983b648513e6f85727e0ef94a16d5dbbd4a",
+      "hidden_sha256": "57ef17e87b136489ef1e5e83745f3c3fda20e92410d92e357a4a403a226e1439",
+      "contest_date": "2025-01-11T00:00:00",
+      "contest_id": "abc388",
+      "title": "Coming of Age Celebration",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: held-out split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc389_d",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "244c7dcee4a5defb1f4e3749ae4234af419a7ebb200dd75a736ff4a05941a6df",
+      "hidden_sha256": "990b8a8be8139cf395ea61b862e905d2c5c3792cadf3951ed0c82774d59de4ec",
+      "contest_date": "2025-01-18T00:00:00",
+      "contest_id": "abc389",
+      "title": "Squares in Circle",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_d",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "8731a8e9df83725b02e4b8f08232819a601e090fbb49cf89ff4bc19cf093e4d7",
+      "hidden_sha256": "50b7421b2f57ba5070632aae0620a36d17f59fe291a4670ad9fc9b4344b087b0",
+      "contest_date": "2025-01-25T00:00:00",
+      "contest_id": "abc390",
+      "title": "Stone XOR",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "one-shot ablation",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc391_d",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "c27a264b1770ce4508a100ed857152e9bcaa83e2764e801494104aa91d37b72d",
+      "hidden_sha256": "7cb63067c694767c170013eb3d4b3acbf99ec63dacbce971cfb59ed8648de814",
+      "contest_date": "2025-02-01T00:00:00",
+      "contest_id": "abc391",
+      "title": "Gravity",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: held-out split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc392_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "e1792bff0f3615dc0fe0ec1ec8e0a30606f4c379f66d79b9068273a8b4eec73b",
+      "hidden_sha256": "7454940916ab8570d767516ee95e5cc4ec647c1405a73a225ff3272ce2cee4f8",
+      "contest_date": "2025-02-08T00:00:00",
+      "contest_id": "abc392",
+      "title": "Bib",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "one-shot ablation",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_d",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "e23ac4bebbee6450c2217d4bae562269ca95962e7203256f9a7607fd7ea0c078",
+      "hidden_sha256": "948cdac205da6eff4356346b03c400f13bcb9d2cb57fbe4f661da3acc762346e",
+      "contest_date": "2025-02-22T00:00:00",
+      "contest_id": "abc394",
+      "title": "Colorful Bracket Sequence",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc395_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "e50c5bb159d261d3790d808f0276fac6cde712110aaa8473fe3eda03679f0f81",
+      "hidden_sha256": "54540af08dd2d61f6ffa9cf5eec38ae33020f3664445708d797c51677aac01d0",
+      "contest_date": "2025-03-01T00:00:00",
+      "contest_id": "abc395",
+      "title": "Shortest Duplicate Subarray",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: held-out split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc396_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "85282b75e757e9b7c31b9fb7099401ee493abfe8450cd5a2bb91c7970baaeb78",
+      "hidden_sha256": "9876de68329b0859a0f16fa4e93ac51fdf31d7875af303309dbea6be33c0a130",
+      "contest_date": "2025-03-08T00:00:00",
+      "contest_id": "abc396",
+      "title": "Buy Balls",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc396_d",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "7b24ba412021cfee9ed6d5e896e87c065748e65254a1f561e321089bff0c9fe2",
+      "hidden_sha256": "983aec28c52fddb56980b8e39ff569b8253f76a22bc94aef6a4a76d6beaaab1b",
+      "contest_date": "2025-03-08T00:00:00",
+      "contest_id": "abc396",
+      "title": "Minimum XOR Path",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "reasoning effectiveness pass 1"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc397_b",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "03d33a48d96f2259748844b83a2826da753e4ee7782b32e2917bc69086a7bf7c",
+      "hidden_sha256": "11922718893378855491d59ca3b5a919e1ca6e2ddf5e60986103ad88f7b328d2",
+      "contest_date": "2025-03-15T00:00:00",
+      "contest_id": "abc397",
+      "title": "Ticket Gate Log",
+      "output_semantics": "exact",
+      "exposure": "other_scored",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "local evaluation v2 benchmark",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc397_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "5a12f128d4d847ce927d61ac604fc4b987edc6897159089be0478c2ef630ff88",
+      "hidden_sha256": "e47f06524dc604d87f7b3f0bc05578ae85d103d3e9879cb23a3e6f2a24312b99",
+      "contest_date": "2025-03-15T00:00:00",
+      "contest_id": "abc397",
+      "title": "Variety Split Easy",
+      "output_semantics": "exact",
+      "exposure": "other_scored",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "local evaluation v2 benchmark",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_b",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "6fc0fc50decccbd322689c59b09bfe4bfadb8bb54359ef4a3d803ec9418a5817",
+      "hidden_sha256": "a332a13106fdcadcb98a4aafd1dbedee05b904076d7c9aec69c57afcc9b3618e",
+      "contest_date": "2025-03-22T00:00:00",
+      "contest_id": "abc398",
+      "title": "Full House 3",
+      "output_semantics": "exact",
+      "exposure": "other_scored",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "local evaluation v2 benchmark",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "fe4e72c2b09fa7a78e09bdc5bd6a75aae457c10424c19378f1d08abde2025f9a",
+      "hidden_sha256": "959b0aabfe1a301ae93b13ec5b30e1b36e46146f8b2c79c32057b8b7292b9ac1",
+      "contest_date": "2025-03-22T00:00:00",
+      "contest_id": "abc398",
+      "title": "Uniqueness",
+      "output_semantics": "exact",
+      "exposure": "other_scored",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "local evaluation v2 benchmark",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc399_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "a22883396fa9dd725586e0b2c22998fd0b5d5bcfef881d90187fd9e00a8c2f5c",
+      "hidden_sha256": "b419249acc1916344c8a13a9c827e89aabd88e1dc4e9581059e7769a06150594",
+      "contest_date": "2025-03-29T00:00:00",
+      "contest_id": "abc399",
+      "title": "Make it Forest",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: selection split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc400_c",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "ec35a66eed967b9ef78f2e229dbc5a7ac3a780e34e5b0e401e2bf5034547019d",
+      "hidden_sha256": "6f45863b492de0ba8d7b3a942fce2509fc638269fcd2a20344474a88a0f1f147",
+      "contest_date": "2025-04-05T00:00:00",
+      "contest_id": "abc400",
+      "title": "2^a b^2",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: selection split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-abc400_d",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "ccad795d327ec06e706bb4f42664a3b034402c1e21bc467fb9bd7622f8d91ae4",
+      "hidden_sha256": "7da23186892a927dd98a5679edd5e90230a50a70984ed7f62276d88df73d5842",
+      "contest_date": "2025-04-05T00:00:00",
+      "contest_id": "abc400",
+      "title": "Takahashi the Wall Breaker",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "agent delivery pilot",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-arc191_a",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "a8bfb04172d6e5a4e231832e31f090f1e7776352e1aff06ad7f0ff61200ba623",
+      "hidden_sha256": "85277fda24e9ff5e6b3ffaebdc566d5fcb5d27afbfc447cd6241b7bf9ec1000b",
+      "contest_date": "2025-01-26T00:00:00",
+      "contest_id": "arc191",
+      "title": "Replace Digits",
+      "output_semantics": "exact",
+      "exposure": "development",
+      "exposure_sources": [
+        "agent delivery pilot",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_a",
+      "version": "1",
+      "difficulty": "medium",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "e674d2aef99860caa2a29d18811832942099291f28f27058583072404fea785b",
+      "hidden_sha256": "0f2e6ea4fb01f928eed359dde340971b882baa348cd9278f9909904077c59c70",
+      "contest_date": "2025-03-09T00:00:00",
+      "contest_id": "arc194",
+      "title": "Operations on a Stack",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc387_f",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "7b190cc154cf6498d786b3a0ac033c9804c6e0262c0ce413b4bb1d2f4f39c636",
+      "hidden_sha256": "ceeb961d6cbd85125575f05b246e2ef5e1634a4b162db591c8fbcf96e506ac37",
+      "contest_date": "2025-01-04T00:00:00",
+      "contest_id": "abc387",
+      "title": "Count Arrays",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc389_g",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "75caf926a1f645721ade00b8e04e534fcaf2d662aa50fc93317750f2a3ca037d",
+      "hidden_sha256": "c3faa683b873518ce8018e9974cc3ea0ff63189eededac590d23829c560360f8",
+      "contest_date": "2025-01-18T00:00:00",
+      "contest_id": "abc389",
+      "title": "Odd Even Graph",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_e",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "905e0fd8c1fe6c29b820259e28103bd43558b6aabe2d7b6a429abe9528e2a686",
+      "hidden_sha256": "989ed5f57d3f51bee278340365acacf81a33d4dbcf4fab992b756f48c38ffac2",
+      "contest_date": "2025-01-25T00:00:00",
+      "contest_id": "abc390",
+      "title": "Vitamin Balance",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_g",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "328b6331c3d188cdd56f69e04f2fb4707cebd7e6d7701daa193eeee7dc1ae29d",
+      "hidden_sha256": "08123b4d0dce3400d28e277b9db54de4901cceb7de453d84e55a166d98bf81aa",
+      "contest_date": "2025-01-25T00:00:00",
+      "contest_id": "abc390",
+      "title": "Permutation Concatenation",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc391_g",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "465a436e4f56c1105a9b356d4a085b0e82c3714c5c1bb366a29c6dd1ccc79b7b",
+      "hidden_sha256": "65cf2a950ee9414cb8029ab3abb1dd891eb01eaf25965cb7a138975c454cf800",
+      "contest_date": "2025-02-01T00:00:00",
+      "contest_id": "abc391",
+      "title": "Many LCS",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc392_f",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "ad9cb1441014ab7b72aabe983be65daf16ccf310611a71e452aaf5540d0234da",
+      "hidden_sha256": "6606aa73ac565d2117d5718eecf2c4a1c4701dd68c45878dffa9c6ccec5fa112",
+      "contest_date": "2025-02-08T00:00:00",
+      "contest_id": "abc392",
+      "title": "Insert",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc393_f",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "6c49842cac42fa2ecbece1c58c638c1d70af9de6329488c952e21059852554fc",
+      "hidden_sha256": "aba0a175b31619b0d6ab681f15086eb2962b3a60f070e6de81ec78567187d91c",
+      "contest_date": "2025-02-15T00:00:00",
+      "contest_id": "abc393",
+      "title": "Prefix LIS Query",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_e",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "b28a5b59055591cf378b79befa24d47a3247068fa0c2356bb13fab65a42174a2",
+      "hidden_sha256": "f80f624e286472b505ef7a21cea1397cbcb36018f3c4659001f7dd0e6d064804",
+      "contest_date": "2025-02-22T00:00:00",
+      "contest_id": "abc394",
+      "title": "Palindromic Shortest Path",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_f",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "cfe7353052c6531beec080e8a8a31b8550653cda275585ac88836cae830577e4",
+      "hidden_sha256": "22f4daf3b2ca0c6d92223114ec9879f88ffdadb8bd40b361f361b7e731425866",
+      "contest_date": "2025-02-22T00:00:00",
+      "contest_id": "abc394",
+      "title": "Alkane",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc395_e",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "c793d7b85093a558c373646d19b0d6e6b347d4be79da2ad02b8fc22ee7b80bf1",
+      "hidden_sha256": "8113b29ba20d78f4e96a29a97563aa6d547fe07986409e2a1a012a4791494fad",
+      "contest_date": "2025-03-01T00:00:00",
+      "contest_id": "abc395",
+      "title": "Flip Edge",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_g",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "bae1a45d74a26d85814b7a94ce5d6ccefcf9846f21501020bd16f4a4d39d6f81",
+      "hidden_sha256": "25c91cf22f07a4883df84a89e3f3ddcfef6f223b99f4c08ae3b917037ca41406",
+      "contest_date": "2025-03-22T00:00:00",
+      "contest_id": "abc398",
+      "title": "Not Only Tree Game",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-abc399_e",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 4,
+      "n_hidden": 40,
+      "public_sha256": "abfb79f4bd5deb385fcf4327ed7dfc56daf3b8785c80573f5308100f5a4bfcc0",
+      "hidden_sha256": "4ec5bc6be35e324a39255b6cd4b532b241004594d823c212c71359f3a379b432",
+      "contest_date": "2025-03-29T00:00:00",
+      "contest_id": "abc399",
+      "title": "Replace",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-arc190_d",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "2b8ad16a5a2750c6c5e15b5b3d7c4c69caed6581802e0f15138f079246784922",
+      "hidden_sha256": "41b29862fff8441153af3c22b671b1ab5d6c9c91afa23213aa3d9c1ccda77f06",
+      "contest_date": "2025-01-12T00:00:00",
+      "contest_id": "arc190",
+      "title": "Matrix Pow Sum",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: held-out split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-arc191_d",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "5c530779c93430ebac422025e83faceef6681682e4d93879327def061798e020",
+      "hidden_sha256": "8a91e062bb290d1bc549e75c9b646bff3274d3a9805466cb55213eae07236262",
+      "contest_date": "2025-01-26T00:00:00",
+      "contest_id": "arc191",
+      "title": "Moving Pieces on Graph",
+      "output_semantics": "exact",
+      "exposure": "selection_holdout",
+      "exposure_sources": [
+        "Qwen local optimization: selection split",
+        "executed run directory on the reference host",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-arc192_e",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "e59e0dad33914e1138bdb67a51eb19dbd53dce6d8b46bd954c6b7dfe9f174de6",
+      "hidden_sha256": "0d75a0fd966a55e0c119f59e8c4c3dd68809773977e45be04bfa4998d6846ced",
+      "contest_date": "2025-02-09T00:00:00",
+      "contest_id": "arc192",
+      "title": "Snuke's Kyoto Trip",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_c",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "f33768cafc90b1f7e3f81264fe3351853da2986c4be6f187a34fe88f031efb95",
+      "hidden_sha256": "58fe25ab679c5b94c4b59a09e81456ff0e08d6ae8060c9dcf4315941c4c715d9",
+      "contest_date": "2025-03-09T00:00:00",
+      "contest_id": "arc194",
+      "title": "Cost to Flip",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_d",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 2,
+      "n_hidden": 40,
+      "public_sha256": "f04090f8a213fee1638238117fbda1642ba0f5b5e00bacd1639f6c46235635e4",
+      "hidden_sha256": "7af6ea380ee85e0e84b9bb02a2b51274ae9fd648b4a4917894006a5d9e2c4b32",
+      "contest_date": "2025-03-09T00:00:00",
+      "contest_id": "arc194",
+      "title": "Reverse Brackets",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-arc195_b",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "5489a8ffd8cf31dd72a96a43c6b710b4f9bd32b4971509162a64720c183c0d3f",
+      "hidden_sha256": "868915cca25de38396fef295d87cea4793a8cdafa5fe2598a5e2bcf2307febd3",
+      "contest_date": "2025-03-23T00:00:00",
+      "contest_id": "arc195",
+      "title": "Uniform Sum",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    },
+    {
+      "task_id": "lcb-atcoder-arc195_e",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "dc94f406948748fb1bbd5d87763a616ef84a23fb7aeef0a5011a55b01593fb61",
+      "hidden_sha256": "da392062c803ae9bcc32f9cf62ee132cf1399be39753732d5cdb84412aea32df",
+      "contest_date": "2025-03-23T00:00:00",
+      "contest_id": "arc195",
+      "title": "Random Tree Distance",
+      "output_semantics": "exact",
+      "exposure": "other_scored",
+      "exposure_sources": [
+        "executed run directory on the reference host",
+        "local evaluation v2 benchmark",
+        "previously scored union (75 IDs)"
+      ]
+    },
+    {
+      "task_id": "lcb-atcoder-arc196_a",
+      "version": "1",
+      "difficulty": "hard",
+      "n_public": 3,
+      "n_hidden": 40,
+      "public_sha256": "913b8e2e7854b5dde4ff33d12b014ecee5a05793f602522f217ab72b611a0e7d",
+      "hidden_sha256": "3fb4e812e00f4a6552bc8efb20938ac6745430fd5339fa5b16d77c2435eb777d",
+      "contest_date": "2025-04-06T00:00:00",
+      "contest_id": "arc196",
+      "title": "Adjacent Delete",
+      "output_semantics": "exact",
+      "exposure": "none_known",
+      "exposure_sources": []
+    }
+  ]
+}

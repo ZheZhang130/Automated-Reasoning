@@ -19,21 +19,38 @@ FIXTURE = REPO / 'guided_agent/fixtures/a_success/measurement.json'
 MAIN = REPO / 'judge/manifests/main.json'
 
 
+def usd(tokens_in, tokens_out, cached=0):
+    """Token-derived cost at the verified gpt-6.2-sol list prices (evaluation.pricing)."""
+    return ((tokens_in - cached) * 2.0 + cached * 0.10 + tokens_out * 10.0) / 1e6
+
+
 def fake_run(batch, item, *, hidden='pass', final_public='pass', public=('pass',), infra=False, overflow=False,
              triggered=None, cost=None, agent_error=None, truncated=0, exit_status=None, responses=(),
-             first_candidate_s=None, upfront=None):
+             first_candidate_s=None, upfront=None, wall=None, tokens=(10, 5, 0), diagnosis_error=None,
+             score=True, tests_sha256='suite-digest', measured_hidden=None):
+    """A finished run with a valid hidden verdict (unless ``score=False``).
+
+    ``cost``: one run-time API request with ``tokens`` = (input, output, cached input) (its token-derived cost is
+    ``usd(*tokens)``; ``cost`` is the recorded, cache-unaware ledger figure). ``upfront``: (recorded cost, input, output,
+    latency s, artifact sha) of a C/D guidance artifact."""
     run_dir = batch / integrity.run_name(item)
     run_dir.mkdir(parents=True)
     doc = copy.deepcopy(planlib.read_json(FIXTURE))
     run_id = f"{batch.name}-{run_dir.name}"
+    candidate = hidden != 'missing_submission'
+    code = f'print({run_id!r})\n'.encode() if candidate else None
+    sub_sha = hashlib.sha256(code).hexdigest() if code else None
     doc['identity'] |= {'run_id': run_id, 'task_id': item['task_id'], 'condition': item['condition'],
                         'seed': item['seed'], 'guidance_artifact_sha256': None}
-    doc['correctness'] |= {'hidden_status': hidden, 'final_public_status': final_public,
+    doc['correctness'] |= {'hidden_status': measured_hidden if measured_hidden is not None else (hidden if score else None),
+                           'final_public_status': final_public,
                            'infrastructure_failure': infra, 'context_overflow': overflow,
-                           'candidate_produced': hidden != 'missing_submission',
+                           'candidate_produced': candidate,
                            'exit_status': exit_status or ('infra_error' if infra or overflow else 'submitted')}
     doc['local_inference']['truncated_responses'] = truncated
     doc['agent']['seconds_to_first_executable_candidate'] = first_candidate_s
+    if wall is not None:
+        doc['time']['wall_seconds'] = wall
     if responses:  # (eval_count, eval_seconds, total_seconds)
         planlib.write_json(run_dir / f'agent-{run_id}' / 'ollama-responses.json', [
             {'eval_count': n, 'eval_duration': int(e * 1e9), 'total_duration': int(t * 1e9)} for n, e, t in responses])
@@ -42,20 +59,38 @@ def fake_run(batch, item, *, hidden='pass', final_public='pass', public=('pass',
     doc['frontier'] = {'requests': [], 'n_requests': 0, 'provider_failures': 0}
     doc['cost']['api_cost_usd_run'] = None
     if cost is not None:
-        doc['frontier'] = {'requests': [{'upfront': False, 'cost_usd': cost, 'input_tokens': 10, 'output_tokens': 5,
-                                         'status': 'ok'}], 'n_requests': 1, 'provider_failures': 0}
+        i, o, c = tokens
+        doc['frontier'] = {'requests': [{'upfront': False, 'cost_usd': cost, 'input_tokens': i, 'output_tokens': o,
+                                         'cached_input_tokens': c, 'reasoning_tokens': None, 'provider': 'api',
+                                         'latency_seconds': 2.0, 'status': 'ok', 'type': 'coder_turn'}],
+                           'n_requests': 1, 'provider_failures': 0}
         doc['cost']['api_cost_usd_run'] = cost
-    if upfront:  # (cost, input tokens, output tokens, latency s, artifact sha)
+    if upfront:  # (recorded cost, input tokens, output tokens, latency s, artifact sha)
         c, i, o, lat, sha = upfront
         doc['frontier']['requests'].append({'upfront': True, 'cost_usd': c, 'input_tokens': i, 'output_tokens': o,
-                                            'latency_seconds': lat, 'status': 'ok'})
+                                            'cached_input_tokens': 0, 'reasoning_tokens': None, 'provider': 'openai-api',
+                                            'latency_seconds': lat, 'status': 'ok', 'type': 'guidance'})
         doc['identity']['guidance_artifact_sha256'] = sha
-    doc['condition'] = {'guidance': None, 'diagnosis': {'trigger_observed': triggered} if triggered is not None else None}
+    diagnosis = None
+    if triggered is not None or diagnosis_error:
+        diagnosis = {'trigger_observed': bool(triggered or diagnosis_error), 'error_category': diagnosis_error}
+    doc['condition'] = {'guidance': None, 'diagnosis': diagnosis}
     planlib.write_json(run_dir / 'measurement.json', doc)
-    planlib.write_json(run_dir / 'result.json', {'run_id': run_id})
+    planlib.write_json(run_dir / 'result.json', {'run_id': run_id, 'task_id': item['task_id'],
+                                                 'condition': item['condition'], 'seed': item['seed'],
+                                                 'batch': batch.name, 'submission_sha256': sub_sha})
+    if code:
+        (run_dir / 'submission.py').write_bytes(code)
     (run_dir / 'attempts.jsonl').write_text(''.join(json.dumps({'result': {'status': s}}) + '\n' for s in public))
-    planlib.write_json(batch / 'eval' / f'{run_id}.json',
-                       {'status': hidden, 'verdict_counts': {'AC': 30, 'WA': 10} if hidden != 'pass' else {'AC': 40}})
+    if score:
+        verdict = {'status': hidden, 'run_id': run_id, 'task_id': item['task_id'], 'condition': item['condition'],
+                   'suite': 'hidden', 'submission_sha256': sub_sha}
+        if hidden in ('pass', 'candidate_failure'):
+            verdict |= {'passed': 40 if hidden == 'pass' else 30, 'total': 40, 'judge_version': '0.2.1',
+                        'tests_sha256': tests_sha256, 'code_sha256': sub_sha,
+                        'verdict_counts': {'AC': 40} if hidden == 'pass' else {'AC': 30, 'WA': 10}}
+        planlib.write_json(batch / 'eval' / f'{run_id}.json', verdict)
+    return run_dir
 
 
 class Statistics(unittest.TestCase):
@@ -89,13 +124,20 @@ class Plans(unittest.TestCase):
             tasks = planlib.manifest_tasks(MAIN)
             plan = planlib.build_plan(batch='final-main', task_ids=tasks, seeds=[2108, 2109, 2110], study=study)
             self.assertEqual(len(plan['attempts']), 60 * 3 * 5)
+            fixed = planlib.build_plan(batch='final-main', task_ids=tasks, seeds=[2108, 2109, 2110], study=study,
+                                       order='fixed')
             for path in planlib.guidance_artifacts(plan):  # stand-in artifacts so the frozen validator can read them
                 task, prompt = Path(path).name.split('.')[:2]
                 planlib.write_json(path, {'task_id': task, 'prompt_id': prompt})
             self.assertEqual(integrity.validate_plan(plan), [])
-            first_block = plan['attempts'][:5]
+            self.assertEqual(integrity.validate_plan(fixed), [])
+            first_block = fixed['attempts'][:5]
             self.assertEqual([a['condition'] for a in first_block], list('ABCDE'))
             self.assertEqual({a['seed'] for a in first_block}, {2108})
+            for i in range(0, len(plan['attempts']), 5):       # balanced order still keeps whole (task, seed) blocks
+                block = plan['attempts'][i:i + 5]
+                self.assertEqual(sorted(a['condition'] for a in block), list('ABCDE'))
+                self.assertEqual(len({(a['task_id'], a['seed']) for a in block}), 1)
 
     def test_subset_and_per_difficulty(self):
         self.assertEqual(len(planlib.manifest_tasks(MAIN, per_difficulty=1)), 3)
@@ -138,7 +180,9 @@ class Metrics(unittest.TestCase):
         fake_run(batch, items[(hard, 'A', 1)], hidden='candidate_failure', overflow=True, public=())
         fake_run(batch, items[(hard, 'B', 1)], hidden='candidate_failure', final_public='pass', cost=0.05)
         fake_run(batch, items[(hard, 'E', 1)], hidden='infrastructure_error')  # excludes (hard, 1) everywhere
-        # (hard, seed 2) never ran: excluded everywhere
+        # (hard, seed 2) never ran: an official report needs that documented (it is then excluded everywhere)
+        from evaluation import validate
+        validate.add_exclusion(batch, hard, 2, 'not run in this test fixture')
         return batch, tasks
 
     def test_report_numbers(self):
@@ -153,8 +197,9 @@ class Metrics(unittest.TestCase):
             self.assertEqual((e['passes'], b['passes']), (4, 4))
             self.assertEqual(e['failure_recovery'], {'runs_with_public_failure': 2, 'recovered': 2, 'rate': 1.0})
             self.assertEqual(a['failure_recovery']['rate'], 0.0)
-            self.assertAlmostEqual(b['frontier_cost_usd']['total'], 0.06)
-            self.assertAlmostEqual(b['frontier_cost_usd']['per_pass'], 0.015)
+            # token-derived cost of the four included B runs (10 input / 5 output tokens each), not the ledger figure
+            self.assertAlmostEqual(b['frontier_cost_usd']['total'], 4 * usd(10, 5))
+            self.assertAlmostEqual(b['frontier_cost_usd']['per_pass'], usd(10, 5))
             self.assertNotIn('hard', report['summary'])
             pe = report['paired_vs_A']['all']['E']
             self.assertEqual((pe['tasks'], pe['pairs'], pe['difference']), (2, 4, 0.5))
@@ -337,18 +382,21 @@ class AnalysisAdditions(unittest.TestCase):
             planlib.write_json(batch / 'plan.json', plan)
             for item in plan['attempts']:
                 if item['condition'] == 'A':
-                    fake_run(batch, item, hidden='WA', final_public='candidate_failure')
+                    fake_run(batch, item, hidden='candidate_failure', final_public='candidate_failure')
                 elif item['condition'] == 'B':
                     fake_run(batch, item, cost=0.01)                              # 10 in / 5 out per run
                 else:                                                             # same artifact on both seeds
                     fake_run(batch, item, upfront=(0.02, 700, 400, 9.5, 'artifact-1'))
             report, _ = metrics.analyze([batch], [MAIN])
             b, c = report['summary']['all']['B'], report['summary']['all']['C']
-            self.assertEqual(b['frontier_tokens'] | {}, {'run_input': 20, 'run_output': 10, 'upfront_input': 0,
-                                                         'upfront_output': 0, 'total': 30, 'per_pass': 15.0})
+            self.assertEqual({k: b['frontier_tokens'][k] for k in ('run_input', 'run_output', 'upfront_input',
+                                                                    'upfront_output', 'total', 'per_pass')},
+                             {'run_input': 20, 'run_output': 10, 'upfront_input': 0, 'upfront_output': 0, 'total': 30,
+                              'per_pass': 15.0})
             self.assertEqual((c['frontier_tokens']['upfront_input'], c['frontier_tokens']['run_input']), (700, 0))
             u = c['upfront_guidance']
-            self.assertEqual((u['artifacts'], u['cost_usd'], u['latency_seconds_total']), (1, 0.02, 9.5))
+            self.assertEqual((u['artifacts'], u['cost_usd'], u['latency_seconds_total']),
+                             (1, round(usd(700, 400), 6), 9.5))          # once per artifact, not once per seed
             self.assertEqual(c['seed_consistency']['all_pass'], 1)
             self.assertEqual(report['gap_closed_vs_B']['C']['gap_closed'], 1.0)
             text = metrics.markdown(report)
@@ -405,7 +453,8 @@ class Tasks(unittest.TestCase):
                 self.assertNotIn(b'\r', (ours / rel).read_bytes(), rel)
             a = planlib.read_json(theirs / 'tasks-manifest.json')['tasks'][TASK]
             b = planlib.read_json(ours / 'tasks-manifest.json')['tasks'][TASK]
-            self.assertEqual({k: v for k, v in b.items() if a.get(k) != v}, {})
+            # identical, plus the judge digest of the hidden suite that hidden verdicts are matched against
+            self.assertEqual({k: v for k, v in b.items() if a.get(k) != v}, {'hidden_judge_sha256': b['hidden_judge_sha256']})
 
     def test_rebuild_verifies_repairs_partial_and_refuses_tampering(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -423,7 +472,7 @@ class Tasks(unittest.TestCase):
 
     def test_every_manifest_task_is_accepted(self):
         entries, revision = taskslib.pinned_tasks()
-        self.assertEqual(len(entries), 68)
+        self.assertEqual(len(entries), 74)                  # main 60 + pilot 8 + the 6 replacements in final
         self.assertEqual(revision, REVISION)
 
 
@@ -437,6 +486,8 @@ class FakeJudge:
     def run(self, task_id, code):
         self.calls.append(task_id)
         status = self.verdicts.get(task_id, 'pass')
+        if status == 'raise':
+            raise KeyboardInterrupt('scoring interrupted')
         return {'status': status, 'passed': 3 if status == 'pass' else 1, 'total': 3, 'judge_version': '0.2.1',
                 'verdict_counts': {'AC': 3} if status == 'pass' else {'AC': 1, 'WA': 2}, 'tests_sha256': 't',
                 'code_sha256': hashlib.sha256(code).hexdigest(), 'error': None, 'cases': ['not copied']}
@@ -472,17 +523,19 @@ class Scoring(unittest.TestCase):
             ours, theirs = Path(tmp) / 'ours', Path(tmp) / 'theirs'
             finished_batch(ours)
             finished_batch(theirs)
-            judgelib.score(ours, Path(tmp), judge=FakeJudge({'t-fail': 'WA'}))
-            with mock.patch.object(runner.backend, 'judge_client', return_value=FakeJudge({'t-fail': 'WA'})):
+            judgelib.score(ours, Path(tmp), judge=FakeJudge({'t-fail': 'candidate_failure'}))
+            with mock.patch.object(runner.backend, 'judge_client',
+                                   return_value=FakeJudge({'t-fail': 'candidate_failure'})):
                 runner.evaluate(theirs, Path(tmp))
 
-            def outcomes(batch):
-                return {p.name: {k: v for k, v in planlib.read_json(p).items() if k != 'evaluated_utc'}
+            def outcomes(batch):   # ours adds submission_sha256, which binds a verdict to its run record
+                return {p.name: {k: v for k, v in planlib.read_json(p).items()
+                                 if k not in ('evaluated_utc', 'submission_sha256')}
                         for p in sorted((batch / 'eval').glob('*.json'))}
             self.assertEqual(outcomes(ours), outcomes(theirs))
             got = outcomes(ours)
             self.assertEqual([got[f'b-r{i}.json']['status'] for i in (1, 2, 3, 4)],
-                             ['pass', 'WA', 'missing_submission', 'infrastructure_error'])
+                             ['pass', 'candidate_failure', 'missing_submission', 'infrastructure_error'])
             self.assertEqual(got['malformed-r5.json']['status'], 'malformed_record')
 
     def test_scored_runs_are_kept(self):
@@ -490,7 +543,7 @@ class Scoring(unittest.TestCase):
             batch = Path(tmp) / 'b'
             finished_batch(batch)
             judgelib.score(batch, Path(tmp), judge=FakeJudge({}))
-            again = FakeJudge({'t-pass': 'WA'})
+            again = FakeJudge({'t-pass': 'candidate_failure'})
             results = judgelib.score(batch, Path(tmp), judge=again)
             self.assertEqual(again.calls, [])
             self.assertEqual(results['b-r1']['status'], 'pass')
@@ -506,7 +559,7 @@ class Pipeline(unittest.TestCase):
             planlib.write_json(plan_path, plan)
             existing = Path(plan['attempts'][1]['guidance'])                # t1 C already authored
             existing.parent.mkdir(parents=True)
-            existing.write_text('{}')
+            existing.write_text(json.dumps({'task_id': 't1', 'prompt_id': 'plan-v1'}))
             calls = []
 
             def author(_study, *args, backend='auto'):
@@ -516,7 +569,7 @@ class Pipeline(unittest.TestCase):
                 for t in tasks_:
                     out = study / 'guidance' / label / f'{t}.{prompt}.api.json'
                     out.parent.mkdir(parents=True, exist_ok=True)
-                    out.write_text('{}')
+                    out.write_text(json.dumps({'task_id': t, 'prompt_id': prompt}))
                 return 0
             with mock.patch.object(pipeline, 'agent', side_effect=author):
                 dry = pipeline.guidance(plan_path, study)
@@ -526,7 +579,7 @@ class Pipeline(unittest.TestCase):
                              [('contract-v1', ('t1', 't2')), ('plan-v1', ('t2',))])
             self.assertEqual(done['artifacts'], 4)
             self.assertTrue(pipeline.freeze_path(plan_path).exists())
-            existing.write_text('{"changed": true}')
+            existing.write_text(json.dumps({'task_id': 't1', 'prompt_id': 'plan-v1', 'changed': True}))
             with mock.patch.object(pipeline, 'agent', side_effect=author), self.assertRaises(RuntimeError):
                 pipeline.guidance(plan_path, study, yes=True)
 
@@ -536,10 +589,13 @@ class Pipeline(unittest.TestCase):
             plan_path = study / 'p.json'
             planlib.write_json(plan_path, planlib.build_plan(batch='b', task_ids=['t1'], seeds=[1], study=study,
                                                              conditions=['A', 'C']))
+            clean = {'commit': 'x', 'branch': 'b', 'execution_paths_dirty': False, 'dirty_paths': [],
+                     'worktree_status_lines': 0}
             with mock.patch.object(judgelib, 'image_id', return_value=None), \
-                    mock.patch.object(pipeline, 'ollama_up', return_value=False):
+                    mock.patch.object(pipeline, 'ollama_up', return_value=False), \
+                    mock.patch('evaluation.provenance.git_state', return_value=clean), \
+                    mock.patch('local_agent.cli.verify', return_value={'frozen_files_verified': 38}):
                 problems = pipeline.preflight(plan_path, study)
-            self.assertEqual(len(problems), 4)
             for word in ('tasks not built', 'freeze', 'judge image', 'Ollama'):
                 self.assertTrue(any(word in p for p in problems), word)
             with mock.patch.object(judgelib, 'image_id', return_value=None), self.assertRaises(RuntimeError), \

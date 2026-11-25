@@ -4,3 +4,7 @@
 /local_agent/** text eol=lf
 /README.md text eol=lf
 /RESULTS_SUMMARY.md text eol=lf
+# Hashed evaluation data and benchmark manifests: identical bytes on every OS (their sha256 is recorded in plans,
+# selected manifests, freezes and reports).
+/evaluation/** text eol=lf
+/judge/manifests/*.json text eol=lf

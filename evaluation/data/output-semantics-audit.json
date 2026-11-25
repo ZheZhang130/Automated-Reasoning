@@ -1,0 +1,719 @@
+{
+  "schema": "csc2108-output-semantics-audit-v1",
+  "reviewed_utc": "2026-11-24",
+  "scope": "every AtCoder stdin task of livecodebench/code_generation_lite test6.jsonl at revision 0fe84c3912ea0c4d4a78037083943e8f0c4dd505 (112 tasks; the 63 LeetCode tasks are functional, not stdin)",
+  "judge_rule": "judge 0.2.1 outputs_match: stripped lines, equal line count, identical line or equal Decimal lists. Correct only for tasks with exactly one acceptable output text (category exact).",
+  "method": [
+    "guided_agent.output_semantics.classify over the full public statement and sample outputs",
+    "the pass-3 manual review (guided_agent/data/output-semantics-review.json) for every flagged task",
+    "a manual read of the Output section of every unflagged task, plus a full-statement search for \"any order\", \"arbitrary\", \"either\", \"not unique\", \"several\", \"multiple\", \"any of\", \"one of them\", \"case\", \"error\", \"precision\", \"decimal\", \"floating\", \"real number\", \"round\"; every hit concerned the input or the allowed operations, not the output",
+    "public statement text only: no hidden tests, reference solutions or model outcomes"
+  ],
+  "base_review": {
+    "path": "guided_agent/data/output-semantics-review.json",
+    "sha256": "b1214f8e095dd9844b8b68d4caadcc9f31e044848c46dcea3806ae344ccf6287"
+  },
+  "counts": {
+    "exact": 102,
+    "tolerance": 1,
+    "multiple_answers": 6,
+    "case_insensitive": 3,
+    "interactive": 0
+  },
+  "tasks": {
+    "lcb-atcoder-abc387_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc387_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc387_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc387_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc388_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc388_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc388_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc388_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc388_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc388_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc388_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc389_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc389_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc389_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc389_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc389_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc389_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc390_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc390_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc390_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc390_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc390_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc390_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc390_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc391_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc391_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc391_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc391_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc391_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc391_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc392_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc392_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc392_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc392_d": {
+      "category": "tolerance",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "Your answer is considered correct if the absolute or relative error from the true solution does not exceed 10^{-8}.",
+      "auto_signals": [
+        "decimal_sample_output",
+        "tolerance"
+      ]
+    },
+    "lcb-atcoder-abc392_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc392_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc393_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc393_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc393_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc393_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc393_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc394_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc394_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc394_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc394_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc394_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc394_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc394_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc395_a": {
+      "category": "case_insensitive",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "The judge is case-insensitive. For example, if the correct answer is Yes, any of yes, YES, and yEs will be accepted.",
+      "auto_signals": [
+        "case_insensitive",
+        "multiple_answers"
+      ]
+    },
+    "lcb-atcoder-abc395_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc395_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc395_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc395_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc396_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc396_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc396_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc396_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc396_e": {
+      "category": "multiple_answers",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "If there are multiple good sequences with the same minimum sum, printing any of them is accepted.",
+      "auto_signals": [
+        "multiple_answers"
+      ]
+    },
+    "lcb-atcoder-abc396_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc396_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc397_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc397_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc397_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc397_d": {
+      "category": "multiple_answers",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "If there are multiple solutions, printing any one of them is accepted as correct.",
+      "auto_signals": [
+        "multiple_answers"
+      ]
+    },
+    "lcb-atcoder-abc397_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc397_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc397_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc398_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc398_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc398_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc398_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc398_f": {
+      "category": "multiple_answers",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "If multiple solutions exist, any of them is accepted.",
+      "auto_signals": [
+        "multiple_answers"
+      ]
+    },
+    "lcb-atcoder-abc398_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc399_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc399_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc399_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc399_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc399_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc399_f": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc400_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc400_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc400_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc400_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc400_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-abc400_g": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc190_a": {
+      "category": "multiple_answers",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "If there are multiple ways that minimize the total cost, printing any one of them is accepted.",
+      "auto_signals": [
+        "multiple_answers"
+      ]
+    },
+    "lcb-atcoder-arc190_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc190_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc191_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc191_c": {
+      "category": "multiple_answers",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "If there are multiple valid solutions, any one of them is considered correct.",
+      "auto_signals": [
+        "multiple_answers"
+      ]
+    },
+    "lcb-atcoder-arc191_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc192_a": {
+      "category": "case_insensitive",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "The judge is case-insensitive; for example, if the correct answer is Yes, outputs such as yes, YES, or yEs will also be accepted.",
+      "auto_signals": [
+        "case_insensitive"
+      ]
+    },
+    "lcb-atcoder-arc192_b": {
+      "category": "case_insensitive",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "The judge is case-insensitive; for example, if the correct answer is Fennec, outputs such as fennec, FENNEC, or fEnNeC will also be accepted.",
+      "auto_signals": [
+        "case_insensitive"
+      ]
+    },
+    "lcb-atcoder-arc192_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc192_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc193_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc193_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc193_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc194_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc194_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc194_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc194_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc194_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc195_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc195_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc195_c": {
+      "category": "multiple_answers",
+      "decided_by": "manual review (pass 3), re-read in the final audit",
+      "evidence": "Determine whether there is a way to place the (R+B) pieces satisfying these conditions. If it exists, show one example.",
+      "auto_signals": [
+        "multiple_answers"
+      ]
+    },
+    "lcb-atcoder-arc195_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc195_e": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc196_a": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc196_b": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc196_c": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    },
+    "lcb-atcoder-arc196_d": {
+      "category": "exact",
+      "decided_by": "manual read in the final audit (Output section and full statement)",
+      "evidence": "single canonical output; no tolerance, multiple-answer, case-insensitive or interactive wording",
+      "auto_signals": []
+    }
+  }
+}

@@ -71,16 +71,24 @@ def build_data():
     return module
 
 
-def pinned_tasks():
-    """task_id -> manifest entry (plus the manifest name), and the one pinned dataset revision."""
+def pinned_tasks(extra=()):
+    """task_id -> manifest entry (plus the manifest name), and the one pinned dataset revision.
+
+    ``extra``: further manifests (for example the one a plan was built from, written by ``evaluation select``
+    outside ``judge/manifests``). They must pin the same revision and shard, and a task listed twice must carry the
+    same hashes everywhere."""
     entries, revisions = {}, set()
-    for path in sorted((REPO / 'judge/manifests').glob('*.json')):
+    paths = sorted((REPO / 'judge/manifests').glob('*.json')) + [Path(p) for p in extra]
+    for path in paths:
         manifest = read_json(path)
         revisions.update(manifest['hf_revision'])
         if manifest['shards'] != [SHARD]:
             raise ValueError(f'{path.name}: expected shards [{SHARD}], found {manifest["shards"]}')
         for entry in manifest['tasks']:
-            entries[entry['task_id']] = entry | {'manifest': manifest['name']}
+            old = entries.get(entry['task_id'])
+            if old and (old['public_sha256'], old['hidden_sha256']) != (entry['public_sha256'], entry['hidden_sha256']):
+                raise ValueError(f"{entry['task_id']}: {path.name} pins other test hashes than {old['manifest']}")
+            entries.setdefault(entry['task_id'], entry | {'manifest': manifest['name']})
     if len(revisions) != 1:
         raise ValueError(f'manifests must pin exactly one dataset revision, found {sorted(revisions)}')
     return entries, revisions.pop()
@@ -139,17 +147,24 @@ def _record(bd, task_id, entry, paths):
             'n_public': meta['n_public'], 'manifest': entry['manifest'],
             'public_sha256': bd.sha256_dir(paths['task'] / 'tests/public'),
             'hidden_sha256': bd.sha256_dir(paths['hidden']), 'n_hidden': entry['n_hidden'],
+            'hidden_judge_sha256': judge_tests_digest(paths['hidden']),
             'statement_sha256': hashlib.sha256(statement.encode('utf-8')).hexdigest(),
             'bundle_sha256': {p.name: sha256_file(p) for p in sorted(paths['bundle'].iterdir())}}
 
 
-def prepare(study, task_ids, shard=None):
+def judge_tests_digest(task_dir):
+    """The judge container's per-task digest of a suite, so hidden verdicts can be matched to the built tests."""
+    from .validate import judge_tests_digest as digest
+    return digest(task_dir)
+
+
+def prepare(study, task_ids, shard=None, manifests=()):
     """Build (or re-verify) ``task_ids`` under ``study``. Returns {'built': [...], 'verified': [...]}.
 
     Raises on a task outside the manifests, on any hash mismatch, and on a complete task whose tests changed
     (that study root is then not trustworthy; use a fresh one)."""
     study = Path(study)
-    entries, revision = pinned_tasks()
+    entries, revision = pinned_tasks(manifests) if manifests else pinned_tasks()
     unknown = sorted(set(task_ids) - set(entries))
     if unknown:
         raise ValueError(f'not in judge/manifests: {unknown}')

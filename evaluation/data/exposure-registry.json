@@ -1,0 +1,3053 @@
+{
+  "schema": "csc2108-exposure-registry-v1",
+  "definitions": {
+    "development": "the agent ran on the task in an agent or condition development experiment (outcomes observed)",
+    "selection_holdout": "the agent ran on the task in a configuration-selection, screening or held-out validation experiment",
+    "other_scored": "the task is in another previously scored list (an earlier benchmark evaluation or a scored union) or has an executed run directory on the reference host",
+    "uncertain": "documented as used, but no run record exists",
+    "none_known": "absent from every registry source: potentially unseen, not verified unseen"
+  },
+  "git_sources": [
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "evidence/local_baseline/lcb_manifest.json",
+      "blob": "71b71ec6b5287dc997aee8a10ff8fbb12f9790e5",
+      "class": "development",
+      "experiment": "mini-SWE local pilot",
+      "n_tasks": 3
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "evidence/local_eval_v2/evaluation_manifest.json",
+      "blob": "5ac1854e73689e6fef3d9164d7aba96eba99e846",
+      "class": "other_scored",
+      "experiment": "local evaluation v2 benchmark",
+      "n_tasks": 24
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "local_optimization/development_manifest.json",
+      "blob": "7512c3b793fc8bfd83be49bc58425934023adb3d",
+      "class": "development",
+      "experiment": "Qwen local optimization: development split",
+      "n_tasks": 6
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "local_optimization/selection_manifest.json",
+      "blob": "84da19406469df6c745ed963be0cc9e337e56144",
+      "class": "selection_holdout",
+      "experiment": "Qwen local optimization: selection split",
+      "n_tasks": 12
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "local_optimization/heldout_manifest.json",
+      "blob": "4545bb6d49f49d34829708a833ccc9123c392624",
+      "class": "selection_holdout",
+      "experiment": "Qwen local optimization: held-out split",
+      "n_tasks": 20
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "evidence/agent_delivery_pilot/manifest.json",
+      "blob": "030f2994df61ec0caaaf658c2ac647f1c79facd2",
+      "class": "development",
+      "experiment": "agent delivery pilot",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "evidence/one_shot_ablation/manifest.json",
+      "blob": "18d26c3011aa0375d8340bdef8f27bcb5bc5ba09",
+      "class": "development",
+      "experiment": "one-shot ablation",
+      "n_tasks": 6
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "evidence/agent_delivery_pilot/future_exclusions.json",
+      "blob": "8255d54192486fdea20a822b2e859ad34c8c8a64",
+      "class": "other_scored",
+      "experiment": "previously scored union (75 IDs)",
+      "n_tasks": 75
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/dev-provider.json",
+      "blob": "97c4981382a2c555ce4c6b6620810090afed158b",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/dev1-A.json",
+      "blob": "5d2adc23feea40fabce70801f94d9a9d56ac350d",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/dev1-CD.json",
+      "blob": "7c9dacd999ee364af4505188f7e3b13d4ab50666",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/dev2.json",
+      "blob": "589deec259ac88e3b35125651b616a41808fa984",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/dev3.json",
+      "blob": "315c6875998c898779cf3256b26bd36003bbd9aa",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 2
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/mb1-aci2.json",
+      "blob": "fb9656e9f9535c71d166207baa039cb867d9934d",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 6
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/mb1.json",
+      "blob": "eb2540b59a37cae6f0a379ffda2955d5bd3d42dc",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 6
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/mb2-aci2.json",
+      "blob": "d5ae0ffd2699873224c0ca87a5b5edd9ba3fad9d",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/mb2.json",
+      "blob": "4f8dcc66b337d67c8ca705dc49eb5f2491b21b86",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/portable-smoke.json",
+      "blob": "041c0d9f2d265151cace674ec9d1689effe9c2b8",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 2
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/evidence/plans/smoke-fixture-A.json",
+      "blob": "82734a7b9eda429763eb472e29af9dd1de36609d",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 1",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass2/evidence/plans/dev-d.json",
+      "blob": "ca247e9f25c51240773451bd7975c8a5d19db2dc",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 2",
+      "n_tasks": 8
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass2/evidence/plans/dev-e-api.json",
+      "blob": "ce9168a9834ba09ba35f04a09870c09305895c2d",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 2",
+      "n_tasks": 2
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass2/evidence/plans/dev-e.json",
+      "blob": "6f0b7a6f541bc7d8b852163a44736231773f8f95",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 2",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass2/evidence/plans/dev-s2109.json",
+      "blob": "af9fd54263b9766282f67e98c951d6c469ba8709",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 2",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass2/evidence/plans/b-smoke-api.json",
+      "blob": "4065bce59577912dfad6cde30cf1f355089a6475",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 2",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass2/evidence/plans/b-smoke-codex.json",
+      "blob": "20051c6b9d465b3c7a9a09812d5e93a5a8677d06",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 2",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass2/evidence/plans/val-api.json",
+      "blob": "8fb0777be3372d62fba8b79f071cadcecb0e93ad",
+      "class": "selection_holdout",
+      "experiment": "reasoning effectiveness pass 2 validation cohort",
+      "n_tasks": 3
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass2/evidence/plans/val.json",
+      "blob": "d642ef28ccbb75f472a9ab24f1863c0a1dca73d1",
+      "class": "selection_holdout",
+      "experiment": "reasoning effectiveness pass 2 validation cohort",
+      "n_tasks": 5
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/plans/api-checks.json",
+      "blob": "356950fb46c4028cb93c07fbebcdc272901a5fb2",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 3
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/plans/b-real-api.json",
+      "blob": "729480ea847fbe1b6e6fe9cd3672bb208795f510",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/plans/b-real-codex.json",
+      "blob": "a2b338644b019df01f01a7356b21edcc625a9535",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 2
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/plans/b-real2-api.json",
+      "blob": "b9db2470c1eb2d62cb056aa4af0f370d6f5f2bb2",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/plans/b-real2-codex.json",
+      "blob": "7754e0495ce0852469177ec9cf254580ec9ab7a1",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json",
+      "blob": "0436b004c77ba59b6fa75394382132392253c8bf",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 12
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json",
+      "blob": "e06ca5125ed9201fe0cf60d21c56464a36bdecf7",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 12
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/plans/probe-neutral.json",
+      "blob": "eb1ba172f4717d5958de177c22bb7b412ff1997a",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 4
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass3/evidence/runs.json",
+      "blob": "031aeed1549f0c42cb7312da47ee3bc7f19c58ee",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 3",
+      "n_tasks": 18
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass4/plans/p4-screen-s2108.json",
+      "blob": "f1a4cf47c3795f4532cfa12e8df2df9ebd00d639",
+      "class": "selection_holdout",
+      "experiment": "pass 4 agent-configuration screening",
+      "n_tasks": 8
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass4/plans/p4-api-validation-e.json",
+      "blob": "d9994f7f56809b101f6292a042da947372e91171",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 4",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass4/plans/p4-api-validation.json",
+      "blob": "68e41dc3b0233e05e0e86b3a2c200ca6ed1373bc",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 4",
+      "n_tasks": 1
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass4/plans/p4-b-api.json",
+      "blob": "11c8b37baf6fc945167e9a09ae6be59ec20e8446",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 4",
+      "n_tasks": 2
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass4/plans/p4-b-codex.json",
+      "blob": "ea237d2918ed7442650b8c99a144f52f461af086",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 4",
+      "n_tasks": 6
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass4/plans/p4-b-codex2.json",
+      "blob": "ec50a8b015921b20c6fd82c33c1e9d943a2372b6",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 4",
+      "n_tasks": 6
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json",
+      "blob": "fcd15101e8c2f2887b98aaab7ffe6b754776a9d9",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 4",
+      "n_tasks": 8
+    },
+    {
+      "commit": "900d33f7c10c6cf24dc647e12033b9dffc9024c2",
+      "path": "reasoning_effectiveness/pass4/plans/p4-eprobe.json",
+      "blob": "6c28dfe5480dd4c5a505f505626862c1270a2193",
+      "class": "development",
+      "experiment": "reasoning effectiveness pass 4",
+      "n_tasks": 9
+    }
+  ],
+  "manual_sources": [
+    {
+      "class": "development",
+      "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+      "manifest": "judge/manifests/pilot.json",
+      "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git",
+      "tasks": [
+        "lcb-atcoder-abc390_c",
+        "lcb-atcoder-abc393_a",
+        "lcb-atcoder-abc394_b",
+        "lcb-atcoder-abc394_c",
+        "lcb-atcoder-abc394_g",
+        "lcb-atcoder-abc396_a",
+        "lcb-atcoder-arc193_b",
+        "lcb-atcoder-arc195_a"
+      ]
+    },
+    {
+      "class": "uncertain",
+      "experiment": "orchestration smoke example",
+      "evidence": "guided_agent/selection.py TEAMMATE_USED and orchestration/MERGED_INTEGRATION.md (a documented command; the committed orchestration runs use only the synthetic fixture)",
+      "tasks": [
+        "lcb-atcoder-abc393_a"
+      ]
+    }
+  ],
+  "local_sources": {
+    "description": "run directory names under the Windows reference host data root",
+    "roots": [
+      "agent-delivery-pilot",
+      "artifacts",
+      "backups",
+      "eval-v2",
+      "final-agent-handoff",
+      "lcb-v1",
+      "one-shot-ablation",
+      "optimization",
+      "portability-validation",
+      "reasoning-effectiveness",
+      "reasoning-effectiveness-pass2",
+      "reasoning-effectiveness-pass3",
+      "reasoning-effectiveness-pass4",
+      "reasoning-effectiveness-pass4-b",
+      "reasoning-effectiveness-pass4-tests"
+    ],
+    "n_tasks": 102
+  },
+  "limitations": [
+    "none_known means potentially unseen: only this repository and the reference host were searched",
+    "teammates may have used tasks on other machines without a committed record",
+    "model pre-training data may contain the problems (contest dates 2025-01 to 2025-04)"
+  ],
+  "tasks": {
+    "lcb-atcoder-abc301_a": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "mini-SWE local pilot",
+          "evidence": "900d33f:evidence/local_baseline/lcb_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2, lcb-v1"
+        }
+      ]
+    },
+    "lcb-atcoder-abc301_c": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "mini-SWE local pilot",
+          "evidence": "900d33f:evidence/local_baseline/lcb_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2, lcb-v1"
+        }
+      ]
+    },
+    "lcb-atcoder-abc301_e": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "mini-SWE local pilot",
+          "evidence": "900d33f:evidence/local_baseline/lcb_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: lcb-v1"
+        }
+      ]
+    },
+    "lcb-atcoder-abc387_c": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "Qwen local optimization: development split",
+          "evidence": "900d33f:local_optimization/development_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc388_d": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc388_e": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "reasoning effectiveness pass 2 validation cohort",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/val-api.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "reasoning effectiveness pass 2 validation cohort",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/val.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "pass 4 agent-configuration screening",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-screen-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass2, reasoning-effectiveness-pass4"
+        }
+      ]
+    },
+    "lcb-atcoder-abc388_f": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-abc388_g": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-d.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/api-checks.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/b-real2-api.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/b-real2-codex.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness, reasoning-effectiveness-pass2, reasoning-effectiveness-pass3"
+        }
+      ]
+    },
+    "lcb-atcoder-abc389_b": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc389_e": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc389_f": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "pass 4 agent-configuration screening",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-screen-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-abc390_a": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc390_b": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc390_c": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-d.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-e.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/api-checks.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/probe-neutral.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "development",
+          "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+          "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness, reasoning-effectiveness-pass2, reasoning-effectiveness-pass3, reasoning-effectiveness-pass4"
+        }
+      ]
+    },
+    "lcb-atcoder-abc390_d": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "one-shot ablation",
+          "evidence": "900d33f:evidence/one_shot_ablation/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: one-shot-ablation"
+        }
+      ]
+    },
+    "lcb-atcoder-abc390_f": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-abc391_a": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev1-A.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev1-CD.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-d.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/b-real-codex.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization, reasoning-effectiveness, reasoning-effectiveness-pass2, reasoning-effectiveness-pass3"
+        }
+      ]
+    },
+    "lcb-atcoder-abc391_d": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc391_e": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb2-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-d.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness, reasoning-effectiveness-pass2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc391_f": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-abc392_b": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "agent delivery pilot",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: agent-delivery-pilot"
+        }
+      ]
+    },
+    "lcb-atcoder-abc392_c": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "one-shot ablation",
+          "evidence": "900d33f:evidence/one_shot_ablation/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: one-shot-ablation"
+        }
+      ]
+    },
+    "lcb-atcoder-abc392_d": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness"
+        }
+      ]
+    },
+    "lcb-atcoder-abc393_a": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+          "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git"
+        },
+        {
+          "class": "uncertain",
+          "experiment": "orchestration smoke example",
+          "evidence": "guided_agent/selection.py TEAMMATE_USED and orchestration/MERGED_INTEGRATION.md (a documented command; the committed orchestration runs use only the synthetic fixture)"
+        }
+      ]
+    },
+    "lcb-atcoder-abc393_b": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "Qwen local optimization: development split",
+          "evidence": "900d33f:local_optimization/development_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc393_d": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb2-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-d.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-e-api.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-e.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/b-real-api.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/b-real-codex.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/probe-neutral.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "pass 4 agent-configuration screening",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-screen-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-api-validation-e.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness, reasoning-effectiveness-pass2, reasoning-effectiveness-pass3, reasoning-effectiveness-pass4"
+        }
+      ]
+    },
+    "lcb-atcoder-abc393_e": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb2-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb2.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness"
+        }
+      ]
+    },
+    "lcb-atcoder-abc394_a": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc394_b": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "reasoning effectiveness pass 2 validation cohort",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/val.json"
+        },
+        {
+          "class": "development",
+          "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+          "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc394_c": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-d.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+          "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness, reasoning-effectiveness-pass2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc394_g": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+          "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git"
+        }
+      ]
+    },
+    "lcb-atcoder-abc395_c": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc395_f": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-abc396_a": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1.json"
+        },
+        {
+          "class": "development",
+          "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+          "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness"
+        }
+      ]
+    },
+    "lcb-atcoder-abc396_b": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "one-shot ablation",
+          "evidence": "900d33f:evidence/one_shot_ablation/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: one-shot-ablation"
+        }
+      ]
+    },
+    "lcb-atcoder-abc396_d": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb1.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness"
+        }
+      ]
+    },
+    "lcb-atcoder-abc396_e": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb2-aci2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/mb2.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness"
+        }
+      ]
+    },
+    "lcb-atcoder-abc396_f": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "reasoning effectiveness pass 2 validation cohort",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/val.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc397_b": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc397_c": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc397_e": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex2.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-abc397_f": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "pass 4 agent-configuration screening",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-screen-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-abc398_b": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc398_c": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc398_d": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "reasoning effectiveness pass 2 validation cohort",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/val-api.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "reasoning effectiveness pass 2 validation cohort",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/val.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/probe-neutral.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "pass 4 agent-configuration screening",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-screen-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass2, reasoning-effectiveness-pass3, reasoning-effectiveness-pass4"
+        }
+      ]
+    },
+    "lcb-atcoder-abc399_a": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc399_b": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc399_c": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc399_f": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "reasoning effectiveness pass 2 validation cohort",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/val-api.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "reasoning effectiveness pass 2 validation cohort",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/val.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc400_a": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-abc400_b": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev1-A.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev1-CD.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev2.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "pass 4 agent-configuration screening",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-screen-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2, reasoning-effectiveness, reasoning-effectiveness-pass4"
+        }
+      ]
+    },
+    "lcb-atcoder-abc400_c": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-abc400_d": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "agent delivery pilot",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: agent-delivery-pilot"
+        }
+      ]
+    },
+    "lcb-atcoder-abc400_g": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-arc190_c": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-api.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-arc190_d": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-arc191_a": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "agent delivery pilot",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: agent-delivery-pilot"
+        }
+      ]
+    },
+    "lcb-atcoder-arc191_d": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-arc192_a": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev-provider.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev1-A.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev1-CD.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev3.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-d.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-e.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "pass 4 agent-configuration screening",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-screen-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-api-validation.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization, reasoning-effectiveness, reasoning-effectiveness-pass2, reasoning-effectiveness-pass4"
+        }
+      ]
+    },
+    "lcb-atcoder-arc192_d": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-arc193_a": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-arc193_b": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+          "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-arc193_d": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "one-shot ablation",
+          "evidence": "900d33f:evidence/one_shot_ablation/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: one-shot-ablation"
+        }
+      ]
+    },
+    "lcb-atcoder-arc194_b": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "Qwen local optimization: development split",
+          "evidence": "900d33f:local_optimization/development_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-atcoder-arc194_e": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-api.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex2.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-arc195_a": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev1-A.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev1-CD.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev2.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/dev3.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/portable-smoke.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-d.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-e-api.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-e.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/dev-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/api-checks.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/probe-neutral.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "selection_holdout",
+          "experiment": "pass 4 agent-configuration screening",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-screen-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-dactive-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-eprobe.json"
+        },
+        {
+          "class": "development",
+          "experiment": "evaluation pipeline pilot (judge/manifests/pilot.json)",
+          "evidence": "commit 0409ddd: \"re-scoring the 80 pilot runs reproduces their eval/ files\"; the run records are not in git"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2, reasoning-effectiveness, reasoning-effectiveness-pass2, reasoning-effectiveness-pass3, reasoning-effectiveness-pass4"
+        }
+      ]
+    },
+    "lcb-atcoder-arc195_d": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2108.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/plans/ext-s2109.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 3",
+          "evidence": "900d33f:reasoning_effectiveness/pass3/evidence/runs.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 4",
+          "evidence": "900d33f:reasoning_effectiveness/pass4/plans/p4-b-codex.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: reasoning-effectiveness-pass3, reasoning-effectiveness-pass4-b"
+        }
+      ]
+    },
+    "lcb-atcoder-arc195_e": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-arc196_c": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-atcoder-arc196_d": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-fixture-sum-signed": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/portable-smoke.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 1",
+          "evidence": "900d33f:reasoning_effectiveness/evidence/plans/smoke-fixture-A.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/b-smoke-api.json"
+        },
+        {
+          "class": "development",
+          "experiment": "reasoning effectiveness pass 2",
+          "evidence": "900d33f:reasoning_effectiveness/pass2/evidence/plans/b-smoke-codex.json"
+        }
+      ]
+    },
+    "lcb-leetcode-3674": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3677": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "one-shot ablation",
+          "evidence": "900d33f:evidence/one_shot_ablation/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: one-shot-ablation"
+        }
+      ]
+    },
+    "lcb-leetcode-3687": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3701": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3714": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3720": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "agent delivery pilot",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: agent-delivery-pilot"
+        }
+      ]
+    },
+    "lcb-leetcode-3723": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3733": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3736": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3737": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3748": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3750": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3751": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3753": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "one-shot ablation",
+          "evidence": "900d33f:evidence/one_shot_ablation/manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: one-shot-ablation"
+        }
+      ]
+    },
+    "lcb-leetcode-3759": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "Qwen local optimization: development split",
+          "evidence": "900d33f:local_optimization/development_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3760": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3768": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3770": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "Qwen local optimization: development split",
+          "evidence": "900d33f:local_optimization/development_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3773": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3777": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3778": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: held-out split",
+          "evidence": "900d33f:local_optimization/heldout_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3784": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3788": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3789": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3793": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3794": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3795": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3799": {
+      "class": "development",
+      "sources": [
+        {
+          "class": "development",
+          "experiment": "Qwen local optimization: development split",
+          "evidence": "900d33f:local_optimization/development_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3801": {
+      "class": "selection_holdout",
+      "sources": [
+        {
+          "class": "selection_holdout",
+          "experiment": "Qwen local optimization: selection split",
+          "evidence": "900d33f:local_optimization/selection_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: optimization"
+        }
+      ]
+    },
+    "lcb-leetcode-3805": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3809": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3811": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3817": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    },
+    "lcb-leetcode-3832": {
+      "class": "other_scored",
+      "sources": [
+        {
+          "class": "other_scored",
+          "experiment": "local evaluation v2 benchmark",
+          "evidence": "900d33f:evidence/local_eval_v2/evaluation_manifest.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "previously scored union (75 IDs)",
+          "evidence": "900d33f:evidence/agent_delivery_pilot/future_exclusions.json"
+        },
+        {
+          "class": "other_scored",
+          "experiment": "executed run directory on the reference host",
+          "evidence": "study roots: eval-v2"
+        }
+      ]
+    }
+  }
+}

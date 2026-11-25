@@ -231,6 +231,8 @@ class EEvidence(unittest.TestCase):
 
 
 class LedgerConcurrency(unittest.TestCase):
+    # 20 threads race for a 20-request ceiling: the rule under test, independent of the configured study budget
+    @mock.patch('guided_agent.providers.MAX_REQUESTS', 20)
     def test_concurrent_reservations_never_lose_entries_or_exceed_the_ceiling(self):
         from guided_agent import providers
         with tempfile.TemporaryDirectory() as tmp:
@@ -252,6 +254,7 @@ class LedgerConcurrency(unittest.TestCase):
             self.assertEqual(sorted(o for o in outcomes if o != 'refused'), list(range(providers.MAX_REQUESTS)))
             self.assertFalse(path.with_name('ledger.json.lock').exists())
 
+    @mock.patch('guided_agent.providers.MAX_REQUESTS', 20)
     def test_a_ledger_file_cannot_raise_the_ceilings_in_code(self):
         from guided_agent import providers
         with tempfile.TemporaryDirectory() as tmp:

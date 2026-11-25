@@ -142,6 +142,7 @@ class Providers(unittest.TestCase):
             self.assertIn(flag, ' '.join(command))
         self.assertIn('shell_tool', command)
 
+    @mock.patch.object(providers, 'MAX_REQUESTS', 20)   # the rule, independent of the configured study budget
     def test_ledger_enforces_request_and_cost_ceilings_before_sending(self):
         with tempfile.TemporaryDirectory() as tmp:
             ledger = providers.Ledger(Path(tmp) / 'ledger.json')
@@ -154,6 +155,7 @@ class Providers(unittest.TestCase):
                 fresh.reserve({'bound_usd_conservative': providers.MAX_USD + 1})
             self.assertEqual(json.loads((Path(tmp) / 'ledger.json').read_text())['requests'][0]['state'], 'pending')
 
+    @mock.patch.object(providers, 'MAX_REQUESTS', 20)
     def test_api_refuses_when_ledger_full_without_network(self):
         with tempfile.TemporaryDirectory() as tmp:
             env = Path(tmp) / '.env'
