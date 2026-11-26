@@ -1,0 +1,5521 @@
+{
+  "schema": "csc2108-mutant-pool-v1",
+  "created_utc": "2026-11-26T07:18:32Z",
+  "source": "results/final-main",
+  "summary": {
+    "total_tasks_in_final_main": 60,
+    "tasks_with_ref_and_any_mutant": 28,
+    "tasks_with_ref_and_public_pass_mutant": 18,
+    "tasks_with_b_ref_and_public_pass_mutant": 18,
+    "distinct_references": 153,
+    "distinct_all_mutants": 123,
+    "distinct_public_pass_mutants": 46,
+    "distinct_public_pass_mutants_b_solved": 46,
+    "public_pass_mutants_by_verdict": {
+      "WA": 33,
+      "TLE": 8,
+      "RE": 5
+    }
+  },
+  "tasks": {
+    "lcb-atcoder-abc387_c": {
+      "task_id": "lcb-atcoder-abc387_c",
+      "difficulty": "medium",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "2b1f830e9b3e526888922f2686ff6c2c05cbb0849885308c2df0ef39082da3af",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-B-s2109-64eeac91"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "78cffe77d4981865705abfd679badf1f1f8d486c6d18b61acfdd8d84f171157e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-C-s2109-fa144a25"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "eb3cbdbad7eb5c7d67b42e09de003f5fb46d60ad687697555d13dd1039aa6920",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-B-s2108-13c9b178"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "edd3ba2ccc0b800318ffcc52de122cd65a9bc4096d1bed33fc19d0e72717d6db",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-A-s2109-5dfcb6d3",
+            "final-main-lcb-atcoder-abc387_c-E-s2109-76c45cfa"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "f1463c43ac717c9d9a645a2e7a0e134b6c754054bb773ffbc4dd742098a16564",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-B-s2110-961c0aa3"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "c74f635e487af6e8274c1992c0634ab0535d0f387c8d3ac462cbb8e33db99c78",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-A-s2108-fcde28d3",
+            "final-main-lcb-atcoder-abc387_c-E-s2108-45dc8aea"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 27,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 27,
+            "WA": 13
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "342ce03af814ce723117a12ff93f5c86b5b5ea06daad853f9ff1147302b01745",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-E-s2110-e164ced9"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 5,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 35,
+            "AC": 5
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "3ba57333e85b10bd05a2956e39bfed8a0cbb19d408f897202719fd1d7a857875",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-A-s2110-8d9942e4"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 40
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "3e090f6c513d55aa61b055d3a78fc5e4f59b5a7db0d713cb97fe7ea85d84c7db",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-D-s2109-a227186b"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 4,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 36,
+            "AC": 4
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "7c0c5edd448d870e9af156daf87fb859b8349e1f8879144ae0a6539efa5f140e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-C-s2110-6f0f88bc"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 14,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 26,
+            "AC": 14
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "9e6508ba38dbc64481cf3ab7c646b57cf433ab19757368c61eb1c9f7defdd809",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-D-s2110-c378b541"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 1,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 39,
+            "AC": 1
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "adb9df19cc641bb8ff524afdbad5d8800e39611ff67418ce912f82635252b98c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-C-s2108-a3b6ffdc"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 4,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 36,
+            "AC": 4
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "b6ec4406341728fa0655337f38c7df9ca47cb9b9c65fee2a335c99d43f0771b7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_c-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_c-D-s2108-d3f22295"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 2,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 38,
+            "AC": 2
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc387_f": {
+      "task_id": "lcb-atcoder-abc387_f",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "800c723cfd07a71da47e9a40777afb917b32fca7814e0187bce964f62444f8cf",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_f-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_f-B-s2110-0c200e6e"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a09c7230e66d97f504910520a89a14b2bee46132813ce9d782e7c9164d009bec",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_f-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_f-B-s2108-24ed852c"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "b504456437735fde47b4fdbb0607511d990f3ad06924886865f0d9693cb3d6f9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_f-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_f-B-s2109-3c9afbff"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "72ae2544ddb1a812653de4f2809d8dac4182c1ff8bac90d30daa586874de718d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_f-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_f-C-s2110-3b247d65"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 33,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 33,
+            "TLE": 7
+          },
+          "dominant_verdict": "TLE"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "3d81c350f7740f2dfe74a1378b64c15ca7244cf9afd67c93b42ddd8c32fdc635",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_f-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_f-C-s2109-58d0a9db"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 13,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 13,
+            "WA": 27
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "98bcd3ee565fef5cb9ab67d5bfd37ccb3b54d819b69b6a58e625031af764c7f2",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc387_f-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc387_f-C-s2108-ca25c8fd"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 13,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 13,
+            "WA": 27
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc389_d": {
+      "task_id": "lcb-atcoder-abc389_d",
+      "difficulty": "medium",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "095cd641271b482da55bc9e2eb3695af8e8730e1d357111f258962b0e17a541d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-C-s2110-0bbf2d79"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "3f36aae3ea1e7fbc46428fc6a7b7e216059e35c957e8d573b97ca959cf4ca549",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-D-s2110-f4b14c75"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "516758fb352f0d58710047d2422c5397182b6f899147f96f9b910474b2d690f2",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-C-s2109-2fe3c731"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "60fea9ea80f224739700fecc23682587cb6550552f2e7d1a62e8df3e67edf958",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-D-s2109-daa61aa8"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "7ef6dbd1036c83091fac08e25336356b488194833fe756617f6c5812bdfbb6e0",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-C-s2108-05bbefc1"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "8d6c00cc18d360fcbdf517f08738906129de73f0ba4508ba08a1c688b73b15cd",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-E-s2108-74e5fb03",
+            "final-main-lcb-atcoder-abc389_d-A-s2108-aaceac5d"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "930bd7cae44efa3f3cb401366685ef1a5937f058b53cf102e4ebfb795f6e72ce",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-E-s2109-4a54d336",
+            "final-main-lcb-atcoder-abc389_d-A-s2109-06bc4847"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "9461670f64a2d60f7350ac117e3ecdab9251911dda68270b90caa54bb9e1bcea",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-B-s2109-b719149d"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "baec69a14aa66acb80b7457bfe24e90096cb64aa5b159164fbc14b35636f72d3",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-B-s2108-f6f5bb5e"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "ec3babd1d36825f6db77d51dcf147c9a19519de4750aea813e723ae15cca1975",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-B-s2110-f756104a"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "ee447d73f7525617451d02c66a4db3951909968d42de88161b235de2660cfe36",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-D-s2108-b20b7062"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "48b47fe71028dec4093acbede37117207767e79c3b5d692b9b54085fb7933ff8",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-E-s2110-3d75a9fb"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 32,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 32,
+            "TLE": 8
+          },
+          "dominant_verdict": "TLE"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "a2f79ff5fee598ba905863215f62d3eb43f93a343d8051ced34a2a1c59ea708e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_d-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_d-A-s2110-1068152b"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 40
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc389_g": {
+      "task_id": "lcb-atcoder-abc389_g",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "13c7ba651cf8f7dedecf123b388adbc223bea5ab6671df95e79555eda2602993",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_g-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_g-B-s2110-cadcf65f"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "3d69e2849157d3b31d91f6d76de4a11b799dffd308745bb4e06f0897b31578c5",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_g-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_g-B-s2109-53d69093"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "8921fb48cd1957f89cd1f1b0e728cd2f50fd3d73f2a020a27e26ccf12e3f2c3b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_g-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_g-B-s2108-4865fe61"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "20897e5d2c976377be654e7205935728fb8c1f810d04b7d08cc6a393f755134f",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_g-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_g-C-s2108-3edee645"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "TLE": 22,
+            "RE": 9,
+            "WA": 9
+          },
+          "dominant_verdict": "TLE"
+        },
+        {
+          "submission_sha256": "a1ab04c734aa478de192ed5e79a8fe69a08850cd325f52999164bae4ac4d0a0d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_g-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_g-C-s2109-34d6d687"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "TLE": 2,
+            "RE": 38
+          },
+          "dominant_verdict": "RE"
+        },
+        {
+          "submission_sha256": "cb6aef61685f6b31e7a8ed8496a81b09ce74509c74d8f5e010e108a5417d0b5c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc389_g-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc389_g-C-s2110-89a3c3ae"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "TLE": 4,
+            "RE": 36
+          },
+          "dominant_verdict": "RE"
+        }
+      ]
+    },
+    "lcb-atcoder-abc390_d": {
+      "task_id": "lcb-atcoder-abc390_d",
+      "difficulty": "medium",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "1b9330741ed3738cfc12650adb80c1a3052f4d7a4dabec907b726769cf2d5afb",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-B-s2109-1f29b491"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "58dcb8714cd9c4bf51ac9d71315d3b77612aec73c2e4bc33fa15469bb23c8719",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-B-s2110-bab2bd41"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "6107e46b4a9a9cea17a23421f197319f3dc59c96f8805a148661677203b136e7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-C-s2108-95c7f910"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "9c17917ba66184025d4053b55965bdc980c049b52363e8469e7c38383473faf4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-C-s2109-9aded1e5"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "c7bd32ec4c2fd9cabefb16d7c1adcd55afd2377b5b45582c5f18584b881068f6",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-C-s2110-3dd5c06d"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "fc46dedfe5961c677357a66800e3970e82687f22c9773125f6ce1e9b3d24022e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-B-s2108-7ebb5470"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "0d8f2d2ab6aa15530af30e5da8c1d7af40bdcc6bd9e5819162893b70a4a126b4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-D-s2108-f24fbc07"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "RE": 2,
+            "AC": 38
+          },
+          "dominant_verdict": "RE"
+        },
+        {
+          "submission_sha256": "d0b76b083e6da3c1eb35241358ef0f8671caec2ca077c388bb6c5fa529160df5",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-E-s2110-5d90eac3",
+            "final-main-lcb-atcoder-abc390_d-A-s2110-acdecb21"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "RE": 2,
+            "AC": 38
+          },
+          "dominant_verdict": "RE"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "7dc82db93100d7940ea8768281d95495fc4c30c81d8056cdd7cf1eee8df62c14",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-D-s2109-f2ac9d36"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 40
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "f8e407fbc1ceffcf3217066ce27ba098ac9dc9032b65c8ab3dc0b071b6c63861",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_d-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_d-D-s2110-762a3459"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 9,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 31,
+            "AC": 9
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc390_e": {
+      "task_id": "lcb-atcoder-abc390_e",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "171dd53f325b4ba82edc9da549f6b8b4f714f2e5f69436e522606716c6306c7d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-B-s2110-e886de43"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "3d22a8949497a11dbf1deb5d5b7422e29664290320adb6ac1ef11b7ea574bcd2",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-C-s2110-e3030189"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "3e61793c174bb29d257647fd031e8909a0c09197e6521f475c917feeadff0c7d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-C-s2108-6bdca5c7"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "88e69d56a99728dd2b73d17316a1e54e3c6aad94a0ca5b00aa9730485ce4fe40",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-B-s2108-5c149944"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "99dee8a28efcd6c19c1e1b9b8b3ca8937097bfa7b6c424a49b453a8bc2c936ba",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-B-s2109-6ea7ae88"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "eb0354784670638869e5872f64e0c9bd0e6c769c0724858dac0069419c28655a",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-C-s2109-dd9a7a26"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "43f922aea2750ca5420c21e44938aa7c89aee5de37e71267a89a95672ff38cf8",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-E-s2109-5468c029"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "RE": 2
+          },
+          "dominant_verdict": "RE"
+        },
+        {
+          "submission_sha256": "4eb4462a413385877621e9779ebb1162504ea1f39e9964ff2e55e7b7800d8a91",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-E-s2110-adf28613",
+            "final-main-lcb-atcoder-abc390_e-A-s2110-0b9ec142"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 24,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 24,
+            "WA": 16
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "779f9f3a7e97ae0d444c0d92d9328f45d902f1b149f398c31740292cffdab8bd",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-D-s2108-ea3a54be"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 28,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 28,
+            "WA": 12
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "78d6cb14cbdb6df5e8affc4dbd630ac546a5fe40f040a2bb67269848448d19b5",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-D-s2110-7e91c665"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 26,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 26,
+            "WA": 14
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "a39454d129cdccb8d4a40b98734963877deafabdde18c23f67dc37b17de0728e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_e-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_e-A-s2109-08320c7c"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 18,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 18,
+            "WA": 17,
+            "RE": 5
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc390_g": {
+      "task_id": "lcb-atcoder-abc390_g",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "a628494961a6fcb2c005c71fa643ffba000d8929f4ee822a1e35f112d8955cd3",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-B-s2109-3399cb0f"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "b8cbebc4cfc64f943ed22170ff57dbd0453ab0784f1bad664b07adace9ec7d4a",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-B-s2108-c3a565e2"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "e70b5a1b9927130d75699e8818a139b3235a99748077dbd029a7015dedd1a47f",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-B-s2110-68f1daa8"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "007f84cfbc1092407a574205daa314d2e79ae1bc1128350c5cf1944aa5f3c953",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-C-s2109-df273cff"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 1,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 39,
+            "AC": 1
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "16e16e83731d313e16f41b8419ee45818600f7b73a1291bb91ba8ae3b4ca0b13",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-C-s2108-a9f96c03"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 1,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 25,
+            "TLE": 14,
+            "AC": 1
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "672ea35b0b1825f03760e16d48c3b22eee308c3d7a351f1b1b23e198389d3e0b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-D-s2110-d5775499"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 40
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "715e79c48380b8650c9ac90332969f4d14d9eb32cf3fab09e79c7d58ab3824c6",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-A-s2109-f9506123"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 40
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "916b4db21650c28374dddc6ddab8f6437b0263f020a586ff82469745df3e18ca",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-E-s2109-7bf61739"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 40
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "e59c1e36997bcd3529be6ad05056b5cb4824e30cc4ffb4dcf6fdca40b0718f4b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc390_g-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc390_g-C-s2110-64f58c61"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 1,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 28,
+            "TLE": 11,
+            "AC": 1
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc391_d": {
+      "task_id": "lcb-atcoder-abc391_d",
+      "difficulty": "medium",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "1c4b83f43ff67e3c865fb6b5cf1c1fe4f8a07fc9a2e48c49ac20eb28864d402c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_d-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_d-B-s2110-b3c4a283"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "6363ffaa3f230f21df913563a7cbfb116b6c47e1497ad0cb3e758731386c8c4c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_d-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_d-C-s2110-29aca561"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "ac4d5d68495eca0314a121b9fbf04b9191dd3662d3dbacdba681b134d4a60078",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_d-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_d-B-s2109-4f4327e1"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "ca82ffef8eda68d185373802f6dc86f344ff915d1747f593dffca87b1b4eca76",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_d-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_d-B-s2108-d99f6317"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "0151d3d2292db9dd36a539e593c784b99dff5fc6bedb12973f08d6178da20bbb",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_d-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_d-C-s2109-1cce4ac3"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 30,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 10,
+            "AC": 30
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "ed180f583a62c75c73eacbda90018ce2770b78fdddbc3d88d9dc144b5adc88f0",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_d-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_d-C-s2108-dfe2d93b"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 30,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 30,
+            "WA": 10
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": []
+    },
+    "lcb-atcoder-abc391_g": {
+      "task_id": "lcb-atcoder-abc391_g",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "842de1a4243a6c5c900a45a7cde06942e1d5c037995130e629476c7b625f9298",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_g-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_g-B-s2109-a0da5434"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "e7cef4f5c8195dbd022d7f4c00f3f46e3fa8e9178f61d9b3231545d214bfe7d0",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_g-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_g-B-s2108-a17d66d6"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "fa85f9d24165542fb08147a27f76a451ea900e29d088c1871a991003e67460f9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_g-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_g-B-s2110-e4938460"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "1e22ece64b952852f7d45cbbb64b85382ab5c2ac9315f3ac97e6fb1458e14d9b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_g-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_g-C-s2108-5286c865"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 11,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 29,
+            "AC": 11
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "d501f002ad6fc4e0538b126acecb14f66e8af54d37c76ab22593c38b625383e6",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_g-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_g-C-s2109-c5d4195f"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 8,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 32,
+            "AC": 8
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "fd4bd0c55a73b01ce4ab8e51fc590c019464b5026936b1aa52c24338b357c3c0",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc391_g-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc391_g-C-s2110-3b945bc2"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 8,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 32,
+            "AC": 8
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc394_e": {
+      "task_id": "lcb-atcoder-abc394_e",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "2cf4ff3ad90b0e0caa188179537fe837c4d2132f968dec685eefda4bbb2f4710",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_e-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_e-B-s2108-942903b0"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "5781d5fe35725b56cdfb9633907c7e60b2a772afe95b8cd4ab812f3460c96afb",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_e-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_e-C-s2108-54dff6b1"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "bfda7064ca4309e118f7aed935d31f53226064d77f1735eaf5a80a650da93f4c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_e-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_e-B-s2109-2f0528ac"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "da69cd54bd9ef497de6caeabfabc1e16f2983a54dea2d9e9f5c93df7e1ba6562",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_e-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_e-B-s2110-0325644d"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "8a8944d7c41f956d9d8e6d61dfb65b7bf9410a59cb9be5df11dbb4861c3d4a6e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_e-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_e-E-s2110-8c55eeb5"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 17,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "RE": 23,
+            "AC": 17
+          },
+          "dominant_verdict": "RE"
+        },
+        {
+          "submission_sha256": "97dc833fd9a1956e0e323dc20151a0f9fbad30affdaa4b459b3d5be585bd22ab",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_e-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_e-A-s2110-186cacd6"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 17,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "RE": 23,
+            "AC": 17
+          },
+          "dominant_verdict": "RE"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "013279fbbe26e58440bd9ea328420f2d4f4e15253f2c7eacc3429bd1eee2cdaa",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_e-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_e-C-s2109-3544438e"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 3,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 37,
+            "AC": 3
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "2e66ff4bc4a11f4e1fc4e59c72cc3b1e26b5226d1e74d1d4c367a5296d32f395",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_e-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_e-C-s2110-5c4279ea"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 6,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 34,
+            "AC": 6
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc394_f": {
+      "task_id": "lcb-atcoder-abc394_f",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "2577965c071ce0f0e5f5f7b693c61a0e9fe8738cd77a6c5c2a13a2878820b558",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_f-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_f-B-s2109-e648c87a"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "7db97094e41d20d45596313d6f710a9e9b0374e9418ac34cb76da8edf5f85254",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_f-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_f-B-s2108-57cfdc9c"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "b560cb9ce01ea60b0f552f8bdef1939af28e96dae639cbadfc247d39a736321c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_f-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_f-B-s2110-de0a3dfd"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "186395ffeb04cecbcf450c410e731a8918b4e0763b26ce1a98d451bd5fc36475",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_f-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_f-D-s2110-56027119"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "WA": 2
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "c2a1a74e26975b6acc6c2dd2e41cc47141f4e3ff29c8616aaa5c9d5877001307",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_f-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_f-C-s2110-60c9d9b1"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "WA": 2
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "deada1c770c45d4ed5ed80e9fbceb62f733bfa90f35786f8a11bdda4ef844629",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_f-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_f-C-s2108-a84f438f"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "WA": 2
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "ecfbb384e1127cf950a36bee4ba355ce344f9d666f279b0343135243450af116",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_f-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_f-A-s2110-fb7a9dab",
+            "final-main-lcb-atcoder-abc394_f-E-s2110-51c69fe4"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "WA": 2
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "b8007e4eba3791a9a671dea51bf6a256c3bf7afad0c3b296fd13209c8c65ccf7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc394_f-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc394_f-C-s2109-ff97fa91"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 14,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 14,
+            "WA": 26
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc395_e": {
+      "task_id": "lcb-atcoder-abc395_e",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "105f76c7243487fe6a13c7fe8e10890d5ebafdd1b7c8cf1c8fce4d5a463140f4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-E-s2109-f8fad947"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "22fe5b95e5ba9f9999b704f56d329c110259de4fd00c6f4c995b75ebedae43f2",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-E-s2110-539bb7bf"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "26901fb34da5d59b2cd89e9b0f0c7df329652fefae0fec53ead674b8c4d67514",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-C-s2108-1dd45216"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "29b01425581181085243c2f45c53804e90150463e0895d770400ce931f8c69a2",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-A-s2110-97f1dfa2"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "4eef10c1746756fd83890d239388960097b856c791a7265b30a16d8cd5f8d245",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-A-s2108-4185041c"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "50415e9f313b00712fee5c430ed83e03b5fdba16d5ca04809cd94203560768a4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-A-s2109-0bdcac8a"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "8043e91d7f1e6b2039fc6cf0561100d88b3c58df334ddb5d0363f38dc7022b71",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-B-s2110-947a6c0d"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "8ae44255cd39b5f10b6803502eebe1d098c6da8cffcf4d712aa8a53f4d9f4789",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-D-s2109-e9354248"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "996a986c17e3e0cc491d7657c1cfcfe5911830a15cd19b8764b030451abbde6b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-C-s2110-de41a127"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "9e38b259dd6cd8a09f9cdc7841b2e6fb293fa3bc0bd4f7bb769f595a0492e9f1",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-D-s2110-3cdc65b8"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "9eac78ed56d6594ed281999ff18b338fa3c9633b3a8987e664ecb3c14173f22c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-D-s2108-1224c5f0"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "aa6a2811b5ae9d65c2d5e56bd49119da393acf9623ff611830b5b35b6723dbf5",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-B-s2109-f0241c39"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "c8c740904d393eddee263211ab34043ef33ac4f40e07b03c80012b1bd4a35904",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-B-s2108-eee83185"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "e0a58522e7071f4d0a1d27d600e623571e9abe5ac4a94fb28268c226083baeea",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-E-s2108-83928699"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "9a8695f461cdbac82b57b84ceac6f2d820b137acfd4c3920c3278275c22acd73",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc395_e-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc395_e-C-s2109-04579997"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "RE": 40
+          },
+          "dominant_verdict": "RE"
+        }
+      ]
+    },
+    "lcb-atcoder-abc397_b": {
+      "task_id": "lcb-atcoder-abc397_b",
+      "difficulty": "medium",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "39fb53df4537266ded39671e8db25998b516fa7daaaba7f7c1d9a78839a15b60",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-C-s2108-0da5cac7"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "478a26ca85ff3a6a7e24cf8e25fd7f98d3a6e90d977c2f26f03fa660d6de627c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-B-s2109-fa21c985"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "bb900913d5553f2f5da86215a05c4012e219d609ae7e85b1a46a43ee800f5e32",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-C-s2110-3d0d5961"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "cf53470f89c4d59df77e2f70845e7ee0666d5090da01b876e6d232211af5120a",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-D-s2109-94f85aec"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "d85a137cd79baa17c43d170cd7767eb72942438d886e12914d868a744dc1ba12",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-B-s2110-82c7dade"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "f78e331e3f1360ed293c91380674c7f53e0bb8f9f16e27ee72ba5d574d9ba3b7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-B-s2108-4a45fb9c"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "945e3cdd7766b8a171ade32349c1b1786faa8a182ee22adf8e4d46fd245c54e7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-E-s2108-9360bd45"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 8,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 8,
+            "WA": 32
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "abea60602a8465ddc0133b756c0b225ac03ad44388b06c06309e1c9aec7f8c9a",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-E-s2109-a4edd9a3"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 8,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 8,
+            "WA": 32
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "b5e66bb9c56c20eddcd054c0ca79d4399c5a8c865a02dbabcc99cf1fbb04af61",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-C-s2109-50372e8b"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 8,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 8,
+            "WA": 32
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "6af39319d11d560ce1d414d5021f2b1fdfce21da8dcdbb0b971f964a3b952993",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-D-s2108-95cc2b9c"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 8,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 32,
+            "AC": 8
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "72442e9e285a726220d4a1b2d806427ec58a02c24e1b23697a2e7f226fe3d5c0",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-A-s2108-e03a2a50"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 9,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 31,
+            "AC": 9
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "9fb264d17b099204b363d6527b6f8c5b2ed6e6cee34c8d6f3c4683f59732aca4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-A-s2109-a75d5971"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 16,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 16,
+            "WA": 24
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "cf925170c6726bc3f81cc83dfc5e6f26b45781cf5bbbf70ec13473b48c30f2d9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc397_b-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc397_b-A-s2110-d3301949",
+            "final-main-lcb-atcoder-abc397_b-E-s2110-c312577a"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 9,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 31,
+            "AC": 9
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc398_a": {
+      "task_id": "lcb-atcoder-abc398_a",
+      "difficulty": "easy",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "044332061337e188480c1bbf42b5857d24720569903fbac910f4940d62f42adc",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-B-s2108-8946dd0e"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "1fb7474c375fd42be2fd8e5398c9249842e26053a70528b1e1350fa7b4c64053",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-C-s2109-a9e0aeea"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "2d9d30e0a65e136a3d7814775597ce90e0a751acf99ad6387660c69646b66f3b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-E-s2109-6fbb5f6d",
+            "final-main-lcb-atcoder-abc398_a-A-s2109-e3f6f100"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "5a84f520c321ea4a95ec994b79414e09da8a270c7d13f9fff5973125a6b89d16",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-C-s2110-346c6887"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "676ad58904bd706b83bc370a909058ee7e0353e52939e3312b1c368fa3f20820",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-D-s2110-e53f1508"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "9353b3d17cea7a77aa79147235c97a7141dca4c91cbafb21d823483456011345",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-B-s2109-d57cc37c"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "9ce7466985440d4b01aac20c8802b60ce230c8e3e48ec77fb4656c0b030d7ea7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-D-s2108-c3d2cefa"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a8b75540a8f7f53def1ca54dde1fc3da07a767fb8972a934e9dbd32d497725bb",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-E-s2110-482becfd",
+            "final-main-lcb-atcoder-abc398_a-A-s2110-1bff7ed9"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "bc45f099a41c9a0501509866c692aa067e70ddbb6422969e73412062b7de7ac2",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-E-s2108-b55e40ac"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "c82e51bd1fe4b3503384c48403e6dce596a20a26ee06d87a632f9ed8b51ca412",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-B-s2110-bb8f6100"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "eeb39e3e06f0abb12239f72c78b57bfd600bc7bad3175d2cf7b467c993553781",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-C-s2108-01199e83"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "fcff8eb243d8419d8bff4dd20964358ba423fbc3400e76d330d7639804de8ed4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-D-s2109-a1d94338"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "585ed326cf004a4017f65e8f3fd0ff3bc17726c68ffecc054d520cb85a5ed7e5",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_a-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_a-A-s2108-df6e0e43"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 40
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc398_b": {
+      "task_id": "lcb-atcoder-abc398_b",
+      "difficulty": "medium",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "1732277cd3e2e9900a25645d03fc86e883334171614d8e958678bbf88d6b05df",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-D-s2110-bb2c7e6f"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "1ce54b125ec5cbe81e64dd0aa906a299ece9066ebc2b5570ed66a992278b2243",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-D-s2108-97ce656d"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "2087e9b8f87da3ec986567aba480898f80431e1a6fbe879cf969d14353de75e0",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-E-s2108-a4776976",
+            "final-main-lcb-atcoder-abc398_b-A-s2108-aa554af2"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "2217a62d1f0ea36d0be44287e6ddb2b45e624aa499095eda8ed8eb5775b80b58",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-B-s2109-fd084e84"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "22d704b2c5abb54d42fb84609b5c1c4d803a5623349daf214757b5e6df7dca21",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-C-s2109-e15fffb6"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "97791dd043ad2d5ac9329ff485ffd9764538b09bdfd8cc416d45c530bba0062c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-C-s2110-457ba91c"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "9b027d0f12a2c965721809ccc710b2918e84c321c65876637494d26ad19f755b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-B-s2108-2c6a7b46"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a08b61a0e58664f707feaf360ee31086965be15f3fab7a41fe5be58723d3ce8c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-B-s2110-fc388c3f"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a3d92ae2a72476d9730c86cc2841f607a13d79744b5b7c2e213fb659efcbde38",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-E-s2109-bde94ac7",
+            "final-main-lcb-atcoder-abc398_b-A-s2109-685342b1"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "baddbd26d7f8dde3f2d809643214ae1926602f2b08408a8d00b65bd4aae78216",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-C-s2108-eacdfccc"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "c35967ef21ad3a02cbe355ebf5778b0fe9e0ae231737c35c95ae6746e3e0dfb3",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-E-s2110-a741d653",
+            "final-main-lcb-atcoder-abc398_b-A-s2110-ee79cda2"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "944d6314ac8a4a32dca3f295ac5204caa1ba35fb2484a349df5a0df5c4aa4086",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_b-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_b-D-s2109-6d5de56b"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 28,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 12,
+            "AC": 28
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": []
+    },
+    "lcb-atcoder-abc398_g": {
+      "task_id": "lcb-atcoder-abc398_g",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "6c7af5b2cb41c6df26b3f56f080c5610005a77d1d73686b01121a93556817e2c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-B-s2109-a1b2e255"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "7b1b45bfc36216bcc630a42fee9c0f5486f48dce5c0551b07c72e16154a6ccf7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-B-s2108-d476d483"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "9f25f39fb17d88adc50677779dd4d535b09ea3ff74306fe8279ef39f811f0651",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-B-s2110-5bdf5ca7"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "2a5464feccefc261ef68b93df4db38f67f7b86538646437b1dffd88e94cd9e40",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-C-s2110-217b6939"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "WA": 2
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "456b4e65618fa569fb17f3ab7fbaf9b843b8eff694c4e46040c12aad753783a7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-A-s2109-79fa7f67",
+            "final-main-lcb-atcoder-abc398_g-E-s2109-c9a6cec1"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "WA": 2
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "8a7b65c9ad02f42690f08192a8ab924e8b51a4c5184e7e90fc689f8c509c9da5",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-C-s2109-377ddaf8"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 39,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 39,
+            "WA": 1
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "d440a94d544686a3d3aa19fb8da0cd4bb81bc635f06467d207ec5bc8b3f358a7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-C-s2108-c02d390e"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 28,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 28,
+            "WA": 12
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "dbcc1a151c0dc54a54adf9fc736260ef740ad4c191d55bab84d703470c027018",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-A-s2110-755dcdf6",
+            "final-main-lcb-atcoder-abc398_g-E-s2110-7f99b1f7"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "WA": 2
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "0b341c6a7ff4dd51588e9c8b5a234032ea8dd8d252e45f3f8cc849b6908637d0",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-D-s2108-fbf892f4"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 34,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 34,
+            "WA": 6
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "7e23f46779da86755fbaca10554829a53d4d8ff2f2b69a6751d079f4b8b541e7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-D-s2110-0f325677"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 34,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 34,
+            "WA": 6
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "941cea9b948d3a2c0d00add08825b12dac444cbaeda5e29f546a0c52ee498997",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-A-s2108-c4cec3a3"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 34,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 34,
+            "WA": 6
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "f32e01ea54b556e9f0e023f5f005df09f399f1d9260d16cf1d8ccfb7d0319a66",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-E-s2108-9a4dcc01"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 34,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 34,
+            "WA": 6
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "f8e0240488b937fc0a8b2b73c5df2e3d856240fed0b8f9bb539b13045780c0be",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc398_g-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc398_g-D-s2109-937f0dfc"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 35,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 35,
+            "WA": 5
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc399_e": {
+      "task_id": "lcb-atcoder-abc399_e",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "08949c51ef72d35866d9776f2719e6b0ec3b27cef85f4719fb9c8fa1681c7ff8",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-C-s2108-054f59b0"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "6b0623231fde60b5141e9041b9e4ee5dcdd201310beb84775232697245035ece",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-B-s2109-64a5b779"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "936728009bcbca2c614359b702cbd8fd7f5b18cd7cb12a45be8f27f98ce5a131",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-B-s2108-1084073d"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a58dd65688f7f05037d729c0b8e0dfb3eae88be4db72a9e6d3c5aa85d378fc50",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-C-s2110-3a61766a"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "b042b430ebe3ec2b2648e8f9df6bf0ea894bc7200c146895b4691e6e99e05bb7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-B-s2110-0d8e86a1"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "1c72534c58bb8324350066bd1f63d07a3060f93edec4574c835f028c26168120",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-C-s2109-21b2072d"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 39,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 39,
+            "WA": 1
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "327b9937fc63e03fd66f043663242e9d713233d9245b626e2ad57a5c29b2f532",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-E-s2110-008d7699"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 36,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 36,
+            "WA": 4
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "7571855fa7aece59410dc0da087bc321d59706595a89534fb2281b30b46f8f45",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-D-s2110-ce8bd67d"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 37,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 37,
+            "WA": 3
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "aebc1c38b8bf812022a5908a38c34ea2c9193f8003e73c61d88c41c3e9ed8209",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-A-s2110-bda995f1"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 35,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 35,
+            "WA": 5
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "efb444b6ba208ec2731b6f56b63e5b00ff932fde247c48df0f49a56f2e16552d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc399_e-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc399_e-D-s2108-0080d282"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 36,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 36,
+            "WA": 4
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-abc400_c": {
+      "task_id": "lcb-atcoder-abc400_c",
+      "difficulty": "medium",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "3cdc10636711b3cad5e3d93bc154abe5842c3c0abe0c2f4e011bd3ab39907c16",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-D-s2108-bb6bddb6"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "3ee7a0fe4d2ce8504592a448a16a3c34dbdb4bdd6894e7de3220581a8b1f31ae",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-E-s2108-e44abefb"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "5f4dc06b9c1f70d516fd3064c8a9fd75f00a6408806df1e2933b9191825e5c91",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-C-s2108-1358c917"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "62c0d2c0965d2594458f7d00a3449f37cfe3dabecf27e8f951d32c3957331ae4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-B-s2108-38a169ed"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "676e2935466ec8a383af3b315d5a19794f3aecb1b32b3c7ffdf2a4106108d396",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-C-s2110-cad08d8d"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "707d06e7b68649210b3939b6ee10f1dc791871ead65e2b4fb8598de19e0b9721",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-C-s2109-21d96f06"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "79b32cf2b986372e77be6946836eef7752b34f28b3d25a58ce02024fe1fd139c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-B-s2109-6569ba8d"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "ab87795804b1dd1e4bb4e6175060e2c7be448104e88739b7c50a022acb9106d3",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-B-s2110-3db92bca"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "f60fd77a9f83037c65c0e890500cbbb10e221957f09e7b602a3661a1eab4fdce",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-E-s2110-dd891a69"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "11a3f467c3674e79d1a3791fcb1473ec8272ed23d1bf3d9632500e6e1cb3b3e9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-E-s2109-74c273b2"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 36,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 36,
+            "TLE": 4
+          },
+          "dominant_verdict": "TLE"
+        },
+        {
+          "submission_sha256": "17127eb52f0957ea2c0ed9dec003ccbaa885bc6246550931bccca999b1d1baba",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-A-s2110-d0c11c65"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 37,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 37,
+            "TLE": 3
+          },
+          "dominant_verdict": "TLE"
+        },
+        {
+          "submission_sha256": "30a7d3e784ee745b921c6a17e55206b476c25eda638f8f7f530a8f0ecfdc0902",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-D-s2110-299fb04b"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 37,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 37,
+            "TLE": 3
+          },
+          "dominant_verdict": "TLE"
+        },
+        {
+          "submission_sha256": "7d6c4f63dd2d2e7da39bdd7c30d67fd370d5ef703fa84994c4f644b70ab9de8e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-A-s2108-2d42c8fb"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 36,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 36,
+            "TLE": 4
+          },
+          "dominant_verdict": "TLE"
+        },
+        {
+          "submission_sha256": "a079a4cca2bfc43d07ecd01da633a469ff9a2714b6d76ae10e7f4dcaee68ea98",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-abc400_c-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-abc400_c-A-s2109-b9f07503"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 36,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 36,
+            "WA": 4
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": []
+    },
+    "lcb-atcoder-arc190_d": {
+      "task_id": "lcb-atcoder-arc190_d",
+      "difficulty": "hard",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "3bd1a5e4c6d1e16385904ffcad884a771cc400b67fe9160be0d68d062a38e02b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-B-s2109-c2ce344a"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "518a716d9eadfd31bdf4a30e5084f1fe77ab95b2eda2a3b12600cbc7230d4b28",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-B-s2110-a72bcac6"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "e3878e48875a7da66c472a18f039e3ec69afdcd2b4c14c796b558c519c44c1a6",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-B-s2108-b5afc19c"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "5053bd0e44513c24e4bf72009e958fc9c8fb21f7469580edd4941c17adde67d8",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-C-s2110-078e1165"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 4,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 4,
+            "WA": 36
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "6e2a90f1ace70aeeb9e18bf4a42ee7b8feea0076957d604fcfb66cfc5bdfdc45",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-C-s2108-529bacff"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 3,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 3,
+            "WA": 37
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "74253fc042d535ad42ab118364743ed94310155e74ee7016c02a80d449e7ab31",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-A-s2108-c261b211"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 31,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 9,
+            "AC": 31
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "a395cff2d5cd5b07148b373a39ce2f3e45fb2013a3e9779541d93cb8e6083616",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-D-s2109-c4b79ed4"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 20,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 20,
+            "WA": 20
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "a6f75e20f10b989c8ea7043b1f4c6f5a6b504e5dd5d00ab396b88375d9d1518e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-C-s2109-390157ef"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 3,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 3,
+            "WA": 37
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "ad9ca7d8044257977501d65fef23013ef24ead0ab5ca0f6251f996ef55a61d52",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc190_d-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc190_d-E-s2108-ae68200b"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 23,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 23,
+            "WA": 17
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-arc191_a": {
+      "task_id": "lcb-atcoder-arc191_a",
+      "difficulty": "medium",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "1011e59657e8fab0f33a100a2bbd3e9ca91416fe2c91613e97e44587b0210c21",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-B-s2109-0c87f3b7"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "26eaf75c236af93cd6ebd7b5d2199c36ee9d83ecfc1cd66bb40e91506e1ebb65",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-C-s2109-6e5f3a46"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "8e8cf7a5052b2863ca9ba86595d4c2fefffaa051828a8cc7a478ca9d2742c58c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-B-s2110-8bd3a341"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a9af195ce2696ccb1ee94dc7671aaef60293f7e70c81f3d6d076921eb17ededa",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-B-s2108-aaf22d5a"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "4e8416715c24e0dda0c884222210e91f4d7e02b0d0c7f153b0edbc478a8ef55d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-D-s2108-c98e89e6"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 4,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 30,
+            "RE": 6,
+            "AC": 4
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "87a94a9d8209fbd24b36f43b046c160ce7fbeff7937d11939deeef10947835a9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-A-s2110-2d88aaa8"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 13,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 13,
+            "WA": 27
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "8c05b288affd2d229cd19455f188c1ef54f3f649a03aa2ab515569646ea311ac",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-E-s2109-1ef5c225"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 9,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 31,
+            "AC": 9
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "ace9467ad7c66ae27144af78b8f05b6c0e97a7a41018fd55861e70e4d33ba837",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-E-s2110-e0060d98"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 13,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 13,
+            "WA": 27
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "be0b22b8db58ff9e9ae3ada8bfa2383485b06e193e38da1352bbef5a71a27b0a",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-C-s2108-1884ebf1"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 3,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 37,
+            "AC": 3
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "ea9eed0e6276e6d5ce7b9e9f5fd94c232b34fd17489c1d25d32a6667e3a2cf16",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-C-s2110-acad0cd3"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 12,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 28,
+            "AC": 12
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "ed921362750da2bfa089e247739c2afedbde394b78d50094376ad1f87c4bda02",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-A-s2109-829ab4bd"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 13,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 13,
+            "WA": 27
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "efda0aaadcd66259a72eb6d2e182e0b8b235c5c50f777d54fb95dbe1576f66a7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-E-s2108-94ee5b9e"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 26,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 14,
+            "AC": 26
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "fa8ca99a3250f40552f0179347a1fb62658ed2b59889a00e75b12cdb015ee995",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_a-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_a-A-s2108-9bbeed53"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 23,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 23,
+            "WA": 17
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-arc191_d": {
+      "task_id": "lcb-atcoder-arc191_d",
+      "difficulty": "hard",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "0148d088f5472903d0eb59b1128b4fbe7fa874c4fd0f625d005f510d7c76984f",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-B-s2109-88271445"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "4b4d10a5cc1e6b9058e03acf4b2e62224c7d552fd435cf21d675c8e1844336e4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-B-s2108-db79d334"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "5d8cfe4877b7cee2c2027b7f6e1e3194e8fba90d011a870440e38492ca1d2ba6",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-B-s2110-d971982f"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "2c99512179afb6799e546282cc3f109ee798c1cb5ea02660472677320ea841c9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-C-s2108-41ae5feb"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 38,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 38,
+            "WA": 2
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "41f0d4dcf014595798f9afb1bb178629cc61f56c34166600ade3e29d51816ee4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-E-s2108-57cf0a64"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 34,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 34,
+            "WA": 6
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "6d1b98f8febcab2c3c418c799c6a9d80b3de3d038c76162fb5f8dadd7e5ae859",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-D-s2109-bdeb88d2"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 34,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 34,
+            "WA": 6
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "82d05131df32c9afc2536cae9482dc419393da0dbd4aae510bae80e8b54cfdc7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-D-s2108-557638f9"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 34,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 34,
+            "WA": 6
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "49482ccb09c5caa80e6beceecb51c4f50e49a5fefa01949d4d6087ada976c71f",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-C-s2110-c8f3339a"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 21,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 19,
+            "AC": 21
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "b3b986d8acc90d122311a55fc5e947a79a546ade81dc70b894bb69bae39c68dc",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-A-s2108-b1471964"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 17,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 23,
+            "AC": 17
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "dbabacc7ea636b697438f1a77e619cc9b4d6d59ff2b90edc94bbe1855297d102",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc191_d-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc191_d-C-s2109-d137bb2a"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 18,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 22,
+            "AC": 18
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-arc192_e": {
+      "task_id": "lcb-atcoder-arc192_e",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "411b26b582494357cd75236718033553969d7ac8398dcae3c9934a9c63b86c56",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc192_e-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc192_e-B-s2110-269e2ee3"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "e18925a2adb7266bdf586b89c2e2f6478c0872eaf174cf31e2b4e43eb307f482",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc192_e-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc192_e-B-s2108-18eb01e5"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "f8c8ca18df36299b222e5d7efc06c869bbfae7803793d7e8ff20a7263baad4ce",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc192_e-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc192_e-B-s2109-ef1dc733"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "31de394e68059cfac9cd10e55dcaf7f6ca630f157ff3f4ffaf680c5759b00cf1",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc192_e-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc192_e-C-s2110-ca9e0d85"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 35,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 35,
+            "TLE": 5
+          },
+          "dominant_verdict": "TLE"
+        },
+        {
+          "submission_sha256": "4a126a472cd06fc2a70f33fe2854b1de5cc6b1477612ad1e9c0d11d816f2c2e3",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc192_e-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc192_e-C-s2109-04f669f7"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 35,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 35,
+            "TLE": 5
+          },
+          "dominant_verdict": "TLE"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "1cdced8a31ceb8030a3d294bf19e8f30e2e3c4a75237fe6be193dd87b2da3741",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc192_e-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc192_e-C-s2108-9e7a9cbf"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 0,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 40
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-arc194_a": {
+      "task_id": "lcb-atcoder-arc194_a",
+      "difficulty": "medium",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "57e4f039dba193e00457c10faad003bb60595c944a18b193f15790801a8f5a1c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-C-s2110-5e127bc0"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "65ff8ebe74eb9e3c2fd27a449848555c7cf8f272b19cf258d5cb3bf6fbfc1e54",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-B-s2109-a1fc9773"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "72a73fe3aeae4c74b4f106e0362dcb2c8e780d15377e78d9f6d76993297a0bd7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-B-s2110-32ac9223"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "93a5861625f5ad1689fa0902b4db08c993e0e513e78db1ebe9993a05bde91f65",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-C-s2109-524ba194"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a08b61a7f2868dce8aaba5ad3815806613f9b98eed435fa5d4c97f76d9d2a6a2",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-C-s2108-7b27701e"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "d60993986c6e390621b82e24c16939e62154b53cdfaae102586cf651e535707f",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-B-s2108-88ea743c"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "c9079ab5ef4bf0c26b0908c5d214c71e52ef2735281c1505e55902e11e816b68",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-D-s2109-849ce476"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 17,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 23,
+            "AC": 17
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "f51b9e2b74a9914afc8a35ce100bd97f5a4786c7992c88591c7155311dab1547",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-D-s2108-d23fa9ad"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 17,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 23,
+            "AC": 17
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "f8ea1dd72223f25a63fdab82e5bb510dabfd997f5e094cb6551221d9435b1eab",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_a-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_a-D-s2110-5305ad9a"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 17,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 23,
+            "AC": 17
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-arc194_c": {
+      "task_id": "lcb-atcoder-arc194_c",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "8b3f432e0b3d3aa9167a592e2ab54803c577a0a07b22a636f5da53568e018508",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-B-s2110-a2feb375"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a557eae292df35b138504a0626d08369e67a69d3b81e64b5dca3ece10e425aec",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-B-s2108-4f43e52f"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "c3c831cb745307727126d0d846c19c01df4e374ad4c18ed8f9778c13bb58eb3b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-B-s2109-de7ae1d9"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "0d5a317213a26be3f71653686e2351a158b2a82825f15200acb050a48ba65fb0",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-A-s2110-baf49216"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 8,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 32,
+            "AC": 8
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "1efae7c16a1dc4cb36c82066de17637b342b985edad38210ced8892f8d11855b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-A-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-A-s2108-bc56a809"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 24,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 16,
+            "AC": 24
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "41aa8193b09cd44ddc6bd2a9e57bac24770e5d3e6b12781931e7b786b2b4d103",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-E-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-E-s2110-07c4f70f"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 24,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 16,
+            "AC": 24
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "44a0b1f447a9e3ef3a05e105f42f87119c0f5e50716a38ad8cc9f400e9aab8e9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-E-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-E-s2108-fbbbafea"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 13,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 26,
+            "TLE": 1,
+            "AC": 13
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "4cf5a94c5c530e802f995ba5abeeef00355d04042b84ca90173d80f714b66386",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-C-s2108-672af27a"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 24,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 16,
+            "AC": 24
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "d713f91bc0cdab7fb4d0f0ac8e323bbefaafd0e9d5db312e7b2f996fe5f4feee",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-D-s2110-1c1ab013"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 24,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 16,
+            "AC": 24
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "d7e44cd5f98d58ab6e6b568fd264408ba9ced54c7b969eb0defc9d5e0f46a6b9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-D-s2108-83b9ce66"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 8,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 32,
+            "AC": 8
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "e39c6333f51353b83ec154ec38e62ccdb49b5310887af4c8a5ed965435214fed",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-E-s2109-974b139e"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 14,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 26,
+            "AC": 14
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "f951baddb1195f0dcfd0b60d387b9c0c566c64c2c28bf77f06a525599f551539",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_c-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_c-A-s2109-708652ae"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 24,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 16,
+            "AC": 24
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-arc194_d": {
+      "task_id": "lcb-atcoder-arc194_d",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "3e73371fdbb929ca9e6fbf6490840f50ae6da67106bb8821eefb4b203f5ea3a7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_d-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_d-B-s2109-4519b023"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "57878f3b0f89403a88f26f7fb5f43c26413be82d3fa878f6c68972191bef059b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_d-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_d-B-s2110-b22359bd"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "a7d6fd25f13662f83ec3227bca90213555de5a5f274c04353418541fe7993a09",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_d-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_d-B-s2108-0441cceb"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "16d582d47fdbfb2ab7c7e5d6b016eb5facbec7815e13281fd1badb659361f100",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_d-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_d-A-s2109-40b93a6b"
+          ],
+          "conditions": [
+            "A"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 22,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 22,
+            "WA": 18
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "7a9dac1fcb91e59d321363df19fd6330bcb7de0332002e88e5483f88eb3a568b",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_d-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_d-D-s2108-d2a5eca6"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 22,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 22,
+            "WA": 18
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "9b19a3cbb45c8666a31dd72045b257c1727df38458d3f6d9c04014c362fd8721",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_d-D-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_d-D-s2109-07dac4f5"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 22,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 22,
+            "WA": 18
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "d8a243191b0c17b027232d23d05cc081840a38461f8e9fdd7b7c3130e1eaab3c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_d-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_d-D-s2110-a63ed782"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 22,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 22,
+            "WA": 18
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "dcedfd1afc6a04d27c3aad6485d8c8628d4fd74e51411c07958dbfdb6706db38",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc194_d-E-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc194_d-E-s2109-9bf754b6"
+          ],
+          "conditions": [
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 22,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 22,
+            "WA": 18
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": []
+    },
+    "lcb-atcoder-arc195_b": {
+      "task_id": "lcb-atcoder-arc195_b",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "0ac132aaf8e7a91fe5c97d954a83a5fd95163b2198bb2166800af413a301fc37",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_b-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_b-C-s2110-efb2f673"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "5259914cc3c7f79b8670eccce7bd27e817eae5effdd31a93646d95f2a04f8eb9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_b-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_b-B-s2109-21d76661"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "7748a955c6886f12cc4c49c5bc8e4294ba61feb1a6e8b3e8b0a287d0cc76f6c6",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_b-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_b-C-s2109-1015127e"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "7bffebcd829220e2f8dbe83d6168feb1bebacb616ba105e6a969b1bdd9db06e7",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_b-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_b-C-s2108-a5c7abae"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "b50eb3170fe5976b9545990f525c1b30ec931d75a03c000ea566064cc9e2f41d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_b-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_b-B-s2110-ac21e863"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "f9b14ab05bbfeb24a0474518a8b55b80ae6ab617685b4b9725f4dc18676cc3f9",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_b-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_b-B-s2108-3f0f469c"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "2c4a8f36152ea1fc086f152b64990cc3c2ca30e3754e83b3bbb8522dd73ecadf",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_b-A-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_b-A-s2110-ae893b4a",
+            "final-main-lcb-atcoder-arc195_b-E-s2110-cb32ead0"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 36,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 36,
+            "WA": 4
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "e9a4689af83f0ff47262fbb430384d0f6e9ea47094d96f92ff50dbf9daab3b00",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_b-A-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_b-A-s2109-a76de6ec",
+            "final-main-lcb-atcoder-arc195_b-E-s2109-f62118e5"
+          ],
+          "conditions": [
+            "A",
+            "E"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 36,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 36,
+            "WA": 4
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": []
+    },
+    "lcb-atcoder-arc195_e": {
+      "task_id": "lcb-atcoder-arc195_e",
+      "difficulty": "hard",
+      "exposure_subgroup": "exposed",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "1675b81ae17bc032564742714a817aeb10eb6925bfe837c8f42348cbc3de1953",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_e-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_e-B-s2109-047e03dd"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "4b2e91a9149fc7a1e120b7d99944711fac630eedd0c7a41f7d6c629b175156c4",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_e-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_e-C-s2108-2436fd50"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "66234efd0ea09ca8958362a2daf90a64383e479d11a308175097177c15d27274",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_e-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_e-C-s2110-d9cab1ae"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "81eeefca19492cad7b1774c3d0dc551ad6d89a767745b05ff698e45b91d3e597",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_e-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_e-B-s2108-645fdb07"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "8cd768407efc9915ceabae30cdbd1ded4f23ae25f49c4037f566a533cc6cbf4d",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_e-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_e-B-s2110-be869d03"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "90d7d5df4966a9ef783097caaccca23597ec3af045c35349972a063089ba250e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_e-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_e-C-s2109-80cbf484"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "48a944e1d2f2418e6f3aee2392b1e532b58f12020ac1a4db6e87615e5301cbb3",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc195_e-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc195_e-D-s2110-081a9afb"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 2,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 38,
+            "AC": 2
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    },
+    "lcb-atcoder-arc196_a": {
+      "task_id": "lcb-atcoder-arc196_a",
+      "difficulty": "hard",
+      "exposure_subgroup": "potentially_unseen",
+      "b_passes": 3,
+      "b_total": 3,
+      "b_solved": true,
+      "references": [
+        {
+          "submission_sha256": "30a87215ed18dd17cb0bcf95e49434beef5de3ba37f127f6ad75ddd383875712",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc196_a-B-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc196_a-B-s2110-43ee06c5"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "38fb070173d2933fa94a959cee67f34f7cd7ba737c298d7054b20ecddeecaa3e",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc196_a-C-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc196_a-C-s2108-92452b64"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "4cfd77148146cccc0bb5a541880165b2ce963b589e04b96e3053819d2544f043",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc196_a-B-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc196_a-B-s2108-f0b191e2"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "724eeb250dfaa99ed4d666da28e07bed76b17734a9954cfc81c4ab8c3d145be5",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc196_a-C-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc196_a-C-s2109-03954340"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        },
+        {
+          "submission_sha256": "ba8eeb2fdc3ea3b3bd05f385ad11d5296d3db8d63d4816e84aafeaa3185ac5bc",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc196_a-B-s2109/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc196_a-B-s2109-d39a8e5e"
+          ],
+          "conditions": [
+            "B"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "pass",
+          "hidden_passed": 40,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 40
+          },
+          "dominant_verdict": "AC"
+        }
+      ],
+      "public_pass_mutants": [
+        {
+          "submission_sha256": "c8df7904e3852022f354eef7f0a0fb0c8e24f3d0e6ec60d1f720da186a10c62c",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc196_a-D-s2108/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc196_a-D-s2108-eb9d98c1"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": true,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 17,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 23,
+            "AC": 17
+          },
+          "dominant_verdict": "WA"
+        }
+      ],
+      "public_fail_mutants": [
+        {
+          "submission_sha256": "012adcf3176bd11b50a6d7fb064d359ed604ae561f510b10320fb9a22cc56184",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc196_a-C-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc196_a-C-s2110-554c2958"
+          ],
+          "conditions": [
+            "C"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 19,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "AC": 19,
+            "WA": 21
+          },
+          "dominant_verdict": "WA"
+        },
+        {
+          "submission_sha256": "2fb66781299f72a5b9ea7aba2fab94608e2bf5d012b9a96e0f2336229cba0a15",
+          "rel_path": "results/final-main/batch/runs/lcb-atcoder-arc196_a-D-s2110/submission.py",
+          "run_ids": [
+            "final-main-lcb-atcoder-arc196_a-D-s2110-6d509244"
+          ],
+          "conditions": [
+            "D"
+          ],
+          "any_public_pass": false,
+          "hidden_status": "candidate_failure",
+          "hidden_passed": 21,
+          "hidden_total": 40,
+          "verdict_counts": {
+            "WA": 19,
+            "AC": 21
+          },
+          "dominant_verdict": "WA"
+        }
+      ]
+    }
+  }
+}

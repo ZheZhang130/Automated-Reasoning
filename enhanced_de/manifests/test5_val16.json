@@ -1,0 +1,212 @@
+{
+  "schema": "csc2108-enhanced-de-cohort-v1",
+  "created_utc": "2026-11-26T07:18:39Z",
+  "shard": "test5.jsonl",
+  "shard_sha256": "7f77571c2a6df0c2a72a3277650309f67e01e0008e18117e624633df53f81214",
+  "hf_revision": "0fe84c3912ea0c4d4a78037083943e8f0c4dd505",
+  "seed": 2108,
+  "salt": "enhanced-de-v2-test5",
+  "rule": "Deterministic sha256(seed:salt:difficulty:task_id) over AtCoder stdin tasks in test5.jsonl with auto_category==\"exact\" and needs_review==False (zero output-semantics cues), n_hidden>=10, zero overlap with final.json/exposure-registry.",
+  "eligible_counts": {
+    "easy": 23,
+    "medium": 22,
+    "hard": 51
+  },
+  "excluded_count": 9,
+  "selected_counts": {
+    "medium": 8,
+    "hard": 8
+  },
+  "tasks": [
+    {
+      "task_id": "lcb-atcoder-abc384_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc384",
+      "contest_date": "2024-12-14T00:00:00",
+      "title": "Perfect Standings",
+      "n_public": 3,
+      "n_hidden": 40,
+      "selection_hash": "27800f1352628d2a4af15833b586d141c65ca1cd524b2e460d2cd8d9d2896e28"
+    },
+    {
+      "task_id": "lcb-atcoder-abc383_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc383",
+      "contest_date": "2024-12-07T00:00:00",
+      "title": "Humidifier 3",
+      "n_public": 3,
+      "n_hidden": 40,
+      "selection_hash": "2c188e8d522fca548c03a7bbc2049cf33b4ae50b94929dfd37a9d0c0ee9c40ac"
+    },
+    {
+      "task_id": "lcb-atcoder-abc377_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc377",
+      "contest_date": "2024-10-26T00:00:00",
+      "title": "Avoid Knight Attack",
+      "n_public": 3,
+      "n_hidden": 32,
+      "selection_hash": "2fa2ccb9adb33bafa61c07f531dc476655e44e93d6d8aeea59981ed27315a0a5"
+    },
+    {
+      "task_id": "lcb-atcoder-abc385_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc385",
+      "contest_date": "2024-12-21T00:00:00",
+      "title": "Illuminate Buildings",
+      "n_public": 3,
+      "n_hidden": 40,
+      "selection_hash": "63e5623832890306f0274cf2c4292b4765c35522b73e2bbdd4a432451800e90d"
+    },
+    {
+      "task_id": "lcb-atcoder-abc383_b",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc383",
+      "contest_date": "2024-12-07T00:00:00",
+      "title": "Humidifier 2",
+      "n_public": 3,
+      "n_hidden": 40,
+      "selection_hash": "6f2655ef5a75fd5e7a9955b352280c2b3bb29bf91be7aa05a19a1e9bc31270f1"
+    },
+    {
+      "task_id": "lcb-atcoder-abc380_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc380",
+      "contest_date": "2024-11-16T00:00:00",
+      "title": "Move Segment",
+      "n_public": 2,
+      "n_hidden": 40,
+      "selection_hash": "70153181c91afe7b21f21c7bc7a5408b90d256b53274290bfadc873e5b1e6112"
+    },
+    {
+      "task_id": "lcb-atcoder-abc375_c",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc375",
+      "contest_date": "2024-10-12T00:00:00",
+      "title": "Spiral Rotation",
+      "n_public": 3,
+      "n_hidden": 33,
+      "selection_hash": "835032ca9f4a2da43b9da6c99c006c5de3b6c26056bef17261c1666ac3c73741"
+    },
+    {
+      "task_id": "lcb-atcoder-abc377_d",
+      "platform": "atcoder",
+      "difficulty": "medium",
+      "contest_id": "abc377",
+      "contest_date": "2024-10-26T00:00:00",
+      "title": "Many Segments 2",
+      "n_public": 3,
+      "n_hidden": 29,
+      "selection_hash": "860c484e4270d04cbbf5819f2bdda4584db8aa639077fba7c9a6fc8e88390374"
+    },
+    {
+      "task_id": "lcb-atcoder-abc379_g",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc379",
+      "contest_date": "2024-11-09T00:00:00",
+      "title": "Count Grid 3",
+      "n_public": 3,
+      "n_hidden": 40,
+      "selection_hash": "011cabd2ab07599e4f3884553f87b5dda0fa4919c635bf443bf3a329543f9ff3"
+    },
+    {
+      "task_id": "lcb-atcoder-abc376_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc376",
+      "contest_date": "2024-10-19T00:00:00",
+      "title": "Max \u00d7 Sum",
+      "n_public": 1,
+      "n_hidden": 37,
+      "selection_hash": "025e5dbfa2314687513d2836316572a36b41aac06d2e49720a0f5020571f075f"
+    },
+    {
+      "task_id": "lcb-atcoder-arc189_c",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc189",
+      "contest_date": "2024-12-08T00:00:00",
+      "title": "Balls and Boxes",
+      "n_public": 4,
+      "n_hidden": 40,
+      "selection_hash": "029650e21193114856bee7236db31663f943b0a3ee4ad92f0fbf60272ac94a6f"
+    },
+    {
+      "task_id": "lcb-atcoder-abc376_g",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc376",
+      "contest_date": "2024-10-19T00:00:00",
+      "title": "Treasure Hunting",
+      "n_public": 1,
+      "n_hidden": 38,
+      "selection_hash": "0a3c14921cad8456980a233007996925355e6efbb5c6740ceb471db3582224b7"
+    },
+    {
+      "task_id": "lcb-atcoder-arc185_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc185",
+      "contest_date": "2024-10-13T00:00:00",
+      "title": "Adjacent GCD",
+      "n_public": 3,
+      "n_hidden": 40,
+      "selection_hash": "0f94d5c5796f14e8de8a3612dd6ff4e3d90bee084eb4f481d1cf81a04cb6860b"
+    },
+    {
+      "task_id": "lcb-atcoder-abc382_d",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc382",
+      "contest_date": "2024-11-30T00:00:00",
+      "title": "Keep Distance",
+      "n_public": 1,
+      "n_hidden": 40,
+      "selection_hash": "2104de446e247d560f03ae791bf69f1c4e79563bf5627a75511a747f4ac99fb9"
+    },
+    {
+      "task_id": "lcb-atcoder-arc184_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "arc184",
+      "contest_date": "2024-09-22T00:00:00",
+      "title": "Accumulating Many Times",
+      "n_public": 2,
+      "n_hidden": 40,
+      "selection_hash": "222dd9fb91f54b3a594258113467a983372bb2fee12dd5c8c0cb95ad3eaa447a"
+    },
+    {
+      "task_id": "lcb-atcoder-abc378_e",
+      "platform": "atcoder",
+      "difficulty": "hard",
+      "contest_id": "abc378",
+      "contest_date": "2024-11-02T00:00:00",
+      "title": "Mod Sigma Problem",
+      "n_public": 2,
+      "n_hidden": 40,
+      "selection_hash": "2282d5712f214c43acc677ccd11cdde2c6f9e03f0a3fa3bea6c591435b31943c"
+    }
+  ],
+  "replacements": {
+    "medium": [
+      "lcb-atcoder-abc382_c",
+      "lcb-atcoder-abc381_c",
+      "lcb-atcoder-abc376_b",
+      "lcb-atcoder-abc386_c"
+    ],
+    "hard": [
+      "lcb-atcoder-arc185_d",
+      "lcb-atcoder-abc379_e",
+      "lcb-atcoder-abc384_f",
+      "lcb-atcoder-abc379_f"
+    ]
+  }
+}
