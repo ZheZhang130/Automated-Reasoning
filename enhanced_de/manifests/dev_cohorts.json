@@ -1,0 +1,72 @@
+{
+  "schema": "csc2108-enhanced-de-dev-cohorts-v1",
+  "note": "Pre-registered development cohorts drawn strictly from already-exposed final-main tasks for mechanism iteration. Outcome-blind validation uses test5_val16.json.",
+  "phase0_offline_mutant_pool_tasks": [
+    "lcb-atcoder-abc387_c",
+    "lcb-atcoder-abc387_f",
+    "lcb-atcoder-abc389_d",
+    "lcb-atcoder-abc390_d",
+    "lcb-atcoder-abc390_e",
+    "lcb-atcoder-abc391_d",
+    "lcb-atcoder-abc394_e",
+    "lcb-atcoder-abc394_f",
+    "lcb-atcoder-abc397_b",
+    "lcb-atcoder-abc398_b",
+    "lcb-atcoder-abc398_g",
+    "lcb-atcoder-abc399_e",
+    "lcb-atcoder-abc400_c",
+    "lcb-atcoder-arc191_d",
+    "lcb-atcoder-arc192_e",
+    "lcb-atcoder-arc194_d",
+    "lcb-atcoder-arc195_b",
+    "lcb-atcoder-arc196_a"
+  ],
+  "phase1a_d2_and_review_pphf_pairs": [
+    {"task_id": "lcb-atcoder-abc387_c", "seed": 2108, "difficulty": "medium", "a_verdict": "WA", "a_passed": 27},
+    {"task_id": "lcb-atcoder-abc390_d", "seed": 2110, "difficulty": "medium", "a_verdict": "RE", "a_passed": 38},
+    {"task_id": "lcb-atcoder-abc400_c", "seed": 2108, "difficulty": "medium", "a_verdict": "TLE", "a_passed": 36},
+    {"task_id": "lcb-atcoder-abc400_c", "seed": 2109, "difficulty": "medium", "a_verdict": "WA", "a_passed": 36},
+    {"task_id": "lcb-atcoder-abc390_e", "seed": 2110, "difficulty": "hard", "a_verdict": "WA", "a_passed": 24},
+    {"task_id": "lcb-atcoder-abc394_e", "seed": 2110, "difficulty": "hard", "a_verdict": "RE", "a_passed": 17},
+    {"task_id": "lcb-atcoder-abc394_f", "seed": 2110, "difficulty": "hard", "a_verdict": "WA", "a_passed": 38},
+    {"task_id": "lcb-atcoder-abc398_g", "seed": 2109, "difficulty": "hard", "a_verdict": "WA", "a_passed": 38},
+    {"task_id": "lcb-atcoder-arc194_d", "seed": 2109, "difficulty": "hard", "a_verdict": "WA", "a_passed": 22},
+    {"task_id": "lcb-atcoder-arc195_b", "seed": 2109, "difficulty": "hard", "a_verdict": "WA", "a_passed": 36}
+  ],
+  "phase1a_safety_nonregression_pairs": [
+    {"task_id": "lcb-atcoder-abc389_d", "seed": 2108, "difficulty": "medium"},
+    {"task_id": "lcb-atcoder-abc397_b", "seed": 2110, "difficulty": "medium"},
+    {"task_id": "lcb-atcoder-abc398_b", "seed": 2108, "difficulty": "medium"},
+    {"task_id": "lcb-atcoder-abc393_f", "seed": 2108, "difficulty": "hard"},
+    {"task_id": "lcb-atcoder-abc395_e", "seed": 2108, "difficulty": "hard"},
+    {"task_id": "lcb-atcoder-abc399_e", "seed": 2108, "difficulty": "hard"}
+  ],
+  "phase1b_e2_strict_triggered_failure_pairs": [
+    {"task_id": "lcb-atcoder-abc389_d", "seed": 2110, "difficulty": "medium", "e1_category": "public_pass_hidden_fail:TLE"},
+    {"task_id": "lcb-atcoder-abc390_e", "seed": 2109, "difficulty": "hard", "e1_category": "public_pass_hidden_fail:RE"},
+    {"task_id": "lcb-atcoder-abc394_e", "seed": 2110, "difficulty": "hard", "e1_category": "public_pass_hidden_fail:RE"},
+    {"task_id": "lcb-atcoder-abc397_b", "seed": 2108, "difficulty": "medium", "e1_category": "public_pass_hidden_fail:WA"},
+    {"task_id": "lcb-atcoder-abc400_c", "seed": 2109, "difficulty": "medium", "e1_category": "public_pass_hidden_fail:TLE"},
+    {"task_id": "lcb-atcoder-arc191_d", "seed": 2108, "difficulty": "hard", "e1_category": "public_pass_hidden_fail:WA"},
+    {"task_id": "lcb-atcoder-arc194_d", "seed": 2109, "difficulty": "hard", "e1_category": "public_pass_hidden_fail:WA"},
+    {"task_id": "lcb-atcoder-abc387_c", "seed": 2110, "difficulty": "medium", "e1_category": "never_passed_public"},
+    {"task_id": "lcb-atcoder-abc398_g", "seed": 2108, "difficulty": "hard", "e1_category": "never_passed_public"},
+    {"task_id": "lcb-atcoder-abc399_e", "seed": 2110, "difficulty": "hard", "e1_category": "never_passed_public"},
+    {"task_id": "lcb-atcoder-arc191_a", "seed": 2108, "difficulty": "medium", "e1_category": "context_overflow"},
+    {"task_id": "lcb-atcoder-arc194_c", "seed": 2109, "difficulty": "hard", "e1_category": "never_passed_public"}
+  ],
+  "phase1c_e2_stall_truncation_pairs": [
+    {"task_id": "lcb-atcoder-abc390_d", "seed": 2108, "difficulty": "medium", "stratum": "medium_c_pass"},
+    {"task_id": "lcb-atcoder-abc391_d", "seed": 2110, "difficulty": "medium", "stratum": "medium_c_pass"},
+    {"task_id": "lcb-atcoder-abc400_d", "seed": 2108, "difficulty": "medium", "stratum": "medium_c_pass"},
+    {"task_id": "lcb-atcoder-arc194_a", "seed": 2108, "difficulty": "medium", "stratum": "medium_c_pass"},
+    {"task_id": "lcb-atcoder-abc390_e", "seed": 2108, "difficulty": "hard", "stratum": "hard_c_pass"},
+    {"task_id": "lcb-atcoder-abc394_e", "seed": 2108, "difficulty": "hard", "stratum": "hard_c_pass"},
+    {"task_id": "lcb-atcoder-arc195_b", "seed": 2108, "difficulty": "hard", "stratum": "hard_c_pass"},
+    {"task_id": "lcb-atcoder-arc195_e", "seed": 2108, "difficulty": "hard", "stratum": "hard_c_pass"},
+    {"task_id": "lcb-atcoder-abc387_f", "seed": 2108, "difficulty": "hard", "stratum": "hard_c_fail"},
+    {"task_id": "lcb-atcoder-abc390_g", "seed": 2108, "difficulty": "hard", "stratum": "hard_c_fail"},
+    {"task_id": "lcb-atcoder-abc394_f", "seed": 2108, "difficulty": "hard", "stratum": "hard_c_fail"},
+    {"task_id": "lcb-atcoder-arc192_e", "seed": 2108, "difficulty": "hard", "stratum": "hard_c_fail"}
+  ]
+}
