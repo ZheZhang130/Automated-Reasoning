@@ -1,0 +1,170 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-abc394_f",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-6f73d685f6786693 statement>>>\n# Alkane\n\nYou are given an undirected tree T with N vertices, numbered 1, 2, \\ldots, N. The i-th edge is an undirected edge connecting vertices A_i and B_i.\nA graph is defined to be an alkane if and only if it satisfies the following conditions:\n\n- The graph is an undirected tree.\n- Every vertex has degree 1 or 4, and there is at least one vertex of degree 4.\n\nDetermine whether there exists a subgraph of T that is an alkane, and if so, find the maximum number of vertices in such a subgraph.\n\nInput\n\nThe input is given from Standard Input in the following format:\nN\nA_1 B_1\nA_2 B_2\n\\vdots\nA_{N - 1} B_{N - 1}\n\nOutput\n\nIf there exists a subgraph of T that is an alkane, print the maximum number of vertices in such a subgraph. Otherwise, print -1.\n\nConstraints\n\n\n- 1 \\leq N \\leq 2 \\times 10^5\n- 1 \\leq A_i, B_i \\leq N\n- The given graph is an undirected tree.\n- All input values are integers.\n\nSample Input 1\n\n9\n1 2\n2 3\n3 4\n4 5\n2 6\n2 7\n3 8\n3 9\n\nSample Output 1\n\n8\n\nLet (u, v) denote an undirected edge between vertices u and v.\nA subgraph consisting of vertices 1,2,3,4,6,7,8,9 and edges (1,2),(2,3),(3,4),(2,6),(2,7),(3,8),(3,9) is an alkane.\n\nSample Input 2\n\n7\n1 2\n1 3\n2 4\n2 5\n3 6\n3 7\n\nSample Output 2\n\n-1\n\nSample Input 3\n\n15\n8 5\n2 9\n1 12\n6 11\n9 3\n15 1\n7 12\n7 13\n10 5\n6 9\n5 1\n1 9\n4 5\n6 14\n\nSample Output 3\n\n11\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-6f73d685f6786693>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 ecfbb384e1127cf950a36bee4ba355ce344f9d666f279b0343135243450af116, 7132 bytes)\n<<<DATA-6f73d685f6786693 program>>>\nimport sys\nfrom collections import deque\n\ndef solve():\n    input = sys.stdin.read\n    data = input().split()\n    it = iter(data)\n    N = int(next(it))\n    adj = [[] for _ in range(N + 1)]\n    for _ in range(N - 1):\n        u = int(next(it))\n        v = int(next(it))\n        adj[u].append(v)\n        adj[v].append(u)\n\n    # We need to find a subgraph that is a tree where every vertex has degree 1 or 4,\n    # and at least one vertex has degree 4.\n    # This means the subgraph is a \"4-regular tree with some leaves\".\n    # In such a subgraph, internal nodes have degree 4, leaves have degree 1.\n    # Let k be the number of internal nodes (degree 4).\n    # Let l be the number of leaves (degree 1).\n    # Total vertices = k + l.\n    # Sum of degrees = 4*k + l = 2*(k+l-1)  (since it's a tree with k+l vertices)\n    # 4k + l = 2k + 2l - 2\n    # 2k = l - 2  => l = 2k + 2\n    # Total vertices = k + (2k + 2) = 3k + 2.\n    # So we need to find a connected subgraph with k internal nodes (degree 4) and 2k+2 leaves (degree 1).\n    # The internal nodes must form a connected structure where each has 4 neighbors in the subgraph.\n    # Actually, the internal nodes themselves don't have to be connected to each other directly,\n    # but the whole subgraph must be connected.\n    # However, if we pick a set of internal nodes, each must have exactly 4 neighbors in the subgraph.\n    # Since the subgraph is a tree, the internal nodes must be connected via paths that go through leaves?\n    # No, that doesn't make sense. In a tree, if you have internal nodes, they must be connected.\n    # But if an internal node is connected to another internal node, that edge counts for both.\n    # Let's think differently.\n    # We are looking for a subtree where some nodes have degree 4 and others degree 1.\n    # Let S be the set of vertices in the subgraph.\n    # For each v in S, deg_S(v) is 1 or 4.\n    # And there is at least one v with deg_S(v) = 4.\n    # Let I be the set of internal nodes (deg 4), L be the set of leaves (deg 1).\n    # |I| = k, |L| = l.\n    # Sum of degrees = 4k + l = 2(|I| + |L| - 1) = 2(k+l-1).\n    # 4k + l = 2k + 2l - 2 => 2k = l - 2 => l = 2k + 2.\n    # Total vertices = k + l = 3k + 2.\n    # So we need to find a connected subgraph with k internal nodes such that each internal node\n    # has exactly 4 neighbors in the subgraph, and the remaining neighbors (to make the subgraph connected)\n    # are leaves.\n    # Actually, the internal nodes must form a connected component? Not necessarily directly connected,\n    # but the whole subgraph is connected.\n    # However, if an internal node is connected to a leaf, that leaf has degree 1.\n    # If two internal nodes are connected, that edge contributes to both.\n    # Let's consider the structure: the internal nodes must be connected to each other?\n    # Suppose we have a set of internal nodes I. Each v in I must have 4 neighbors in S.\n    # Some neighbors are in I, some are in L.\n    # Let d_I(v) be the number of neighbors of v in I, and d_L(v) be the number of neighbors in L.\n    # d_I(v) + d_L(v) = 4.\n    # Also, the subgraph induced by I must be connected? Not necessarily, but the whole S must be connected.\n    # However, if I is not connected, then there must be paths between components of I going through L.\n    # But L nodes have degree 1, so they can only be endpoints. They cannot be part of a path between two I nodes.\n    # Therefore, the subgraph induced by I must be connected.\n    # So I must induce a connected subgraph (a tree itself).\n    # And each v in I has d_I(v) neighbors in I, and 4 - d_I(v) neighbors in L.\n    # The total number of leaves l = sum_{v in I} (4 - d_I(v)).\n    # But we also know l = 2k + 2.\n    # So sum_{v in I} (4 - d_I(v)) = 2k + 2.\n    # 4k - sum_{v in I} d_I(v) = 2k + 2.\n    # sum_{v in I} d_I(v) = 2k - 2.\n    # But sum_{v in I} d_I(v) = 2 * |E(I)|, where E(I) is the set of edges within I.\n    # Since I induces a tree, |E(I)| = k - 1.\n    # So sum_{v in I} d_I(v) = 2(k - 1) = 2k - 2.\n    # This matches! So the condition is automatically satisfied if I induces a tree.\n    # Therefore, we just need to find a connected subgraph I such that for every v in I,\n    # the degree of v in the original tree T is at least 4.\n    # Because if deg_T(v) >= 4, we can choose 4 neighbors for v in S.\n    # But we need to choose exactly 4 neighbors in S, and some of them must be in I and some in L.\n    # Specifically, if v has d_I(v) neighbors in I, then it must have 4 - d_I(v) neighbors in L.\n    # So we need deg_T(v) >= 4 - d_I(v) + d_I(v) = 4? No.\n    # The neighbors in L must be actual neighbors in T.\n    # So for each v in I, we need deg_T(v) >= 4.\n    # And we need to be able to select exactly 4 neighbors for v in S.\n    # The neighbors in I are fixed (they are the edges within I).\n    # The neighbors in L must be chosen from the remaining neighbors of v in T.\n    # So we need deg_T(v) - d_I(v) >= 4 - d_I(v) => deg_T(v) >= 4.\n    # So the condition is: I is a connected subgraph (induced by edges in T) such that every v in I has deg_T(v) >= 4.\n    # And then we can always complete it to a valid alkane by adding leaves.\n    # The number of vertices would be 3k + 2, where k = |I|.\n    # So we need to find the largest connected subgraph I such that every node in I has deg_T(v) >= 4.\n    # This is equivalent to finding the largest connected component in the subgraph of T induced by vertices with deg_T(v) >= 4.\n    # Let V4 = {v | deg_T(v) >= 4}.\n    # Find the largest connected component in the subgraph induced by V4.\n    # Let its size be k.\n    # Then the answer is 3k + 2.\n    # But wait, we need at least one vertex of degree 4. So k >= 1.\n    # If there is no vertex with deg >= 4, then answer is -1.\n    # Also, we need to check if the component is non-empty.\n    # So algorithm:\n    # 1. Compute degrees of all vertices in T.\n    # 2. Identify vertices with deg >= 4.\n    # 3. Build a subgraph of T containing only these vertices and edges between them.\n    # 4. Find the largest connected component in this subgraph.\n    # 5. Let k be the size of the largest component.\n    # 6. If k == 0, output -1.\n    # 7. Else, output 3*k + 2.\n\n    deg = [0] * (N + 1)\n    for u in range(1, N + 1):\n        deg[u] = len(adj[u])\n\n    V4 = [i for i in range(1, N + 1) if deg[i] >= 4]\n    if not V4:\n        print(-1)\n        return\n\n    # Build adjacency for V4 subgraph\n    adj_v4 = {v: [] for v in V4}\n    for u in V4:\n        for v in adj[u]:\n            if v in V4:\n                adj_v4[u].append(v)\n\n    visited = set()\n    max_k = 0\n    for start in V4:\n        if start not in visited:\n            stack = [start]\n            visited.add(start)\n            component = []\n            while stack:\n                u = stack.pop()\n                component.append(u)\n                for v in adj_v4[u]:\n                    if v not in visited:\n                        visited.add(v)\n                        stack.append(v)\n            k = len(component)\n            if k > max_k:\n                max_k = k\n\n    if max_k == 0:\n        print(-1)\n    else:\n        print(3 * max_k + 2)\n\nsolve()\n<<<END-DATA-6f73d685f6786693>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 3/3 public cases passed)\n<<<DATA-6f73d685f6786693 report>>>\nPUBLIC TESTS: 3/3 passed\n<<<END-DATA-6f73d685f6786693>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-6f73d685f6786693 static-analysis>>>\n- Structure: 47 code lines (89 comments), max loop depth 3, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.035s), 02:AC(0.033s), 03:AC(0.033s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-6f73d685f6786693>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 527 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "6f73d685f6786693",
+    "statement_sha256": "b1691506c10afa00a25b7022b40d0571d17817babba8cbf6e87aa9c17dfc9906",
+    "candidate_sha256": "ecfbb384e1127cf950a36bee4ba355ce344f9d666f279b0343135243450af116",
+    "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+    "user_message_sha256": "abb98e119a7106db0db835f04ff947d5325d5f32d25c32db587d9d32191aaa49",
+    "static_summary_sha256": "836e1e7567a484235d1c9ea51633aec5d7ff49c746208733bf9c8fa57fd4c793",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 3,
+    "public_total": 3,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "ecfbb384e1127cf950a36bee4ba355ce344f9d666f279b0343135243450af116",
+    "judge_tests_sha256": "ef563550991af48f7da55fa5a1aab85dbf862c5ee2f6dc6b7f422e958d584516",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\n\nDEFECT — On C-1, the program prints 20, but the largest alkane has 17 vertices.\n\n## Likely bug\n\n`k = len(component)` assumes every vertex in a connected component of `V4` can be internal in the same alkane. If a vertex has five neighbors in that component, keeping all of them internal forces the alkane to include all five edges, since the input is a tree.\n\n## Counterexample\n\nC-1\n```text\n21\n1 2\n1 3\n1 4\n1 5\n1 6\n2 7\n2 8\n2 9\n3 10\n3 11\n3 12\n4 13\n4 14\n4 15\n5 16\n5 17\n5 18\n6 19\n6 20\n6 21\n```\n```text\n17\n```\n\nOnly vertices 1 through 6 can be internal. Using all six would force vertex 1 to have degree 5. Using vertex 1, any four of its five neighbors, and their twelve leaves gives a valid 17-vertex alkane. An alkane with \\(k\\) internal vertices has \\(3k+2\\) vertices, so five internal vertices attain the maximum.\n\n## Repair direction\n\nUse tree dynamic programming to maximize the number of connected internal vertices of original degree at least four, with at most four internal neighbors per vertex. A vertex with a selected parent can keep up to three child branches, and the highest selected vertex can keep up to four. Use the original degree array to test neighbor eligibility in constant time.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 14365,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 435,
+        "reasoning_output_tokens": 87
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 11.62,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a2175b-d645-70f0-a6a0-2821df044785",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "8f7cb0600d60ce016ffa78fa4db3b8d94fb636a8d1861d61bb3013dfdf5d7205",
+      "input_sha256": "4ee6c0a05b502173fdda14984556cd7bcc9ed0ed56c29f5b7af10574d257f159",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": "[Frontier review — verified counterexample] A separate, stronger model reviewed the program that just passed the public tests and proposed the test input below. The harness ran your current program, unchanged, on that input in an isolated sandbox: on C-1 it printed output different from the reviewer's expected output. The expected output is the reviewer's own hand-computed answer, not an official test, and the input may be imperfect; check both against the statement before changing anything. Your files, history and remaining budget are unchanged (18 actions left). If you confirm the defect, revise /workspace/solution.py and run python -I /public/check.py again.\n\n## Likely bug\n`k = len(component)` assumes every vertex in a connected component of `V4` can be internal in the same alkane. If a vertex has five neighbors in that component, keeping all of them internal forces the alkane to include all five edges, since the input is a tree.\n\n## Counterexample\n\nC-1\nInput:\n```text\n21\n1 2\n1 3\n1 4\n1 5\n1 6\n2 7\n2 8\n2 9\n3 10\n3 11\n3 12\n4 13\n4 14\n4 15\n5 16\n5 17\n5 18\n6 19\n6 20\n6 21\n```\nReviewer's expected output:\n```text\n17\n```\nYour program printed:\n```text\n20\n```\n\n## Repair direction\nUse tree dynamic programming to maximize the number of connected internal vertices of original degree at least four, with at most four internal neighbors per vertex. A vertex with a selected parent can keep up to three child branches, and the highest selected vertex can keep up to four. Use the original degree array to test neighbor eligibility in constant time.",
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": true,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 11.906,
+    "provider_wait_seconds": 11.625,
+    "harness_check_seconds": 0.281,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "verified_delivered",
+    "review_verdict": "DEFECT",
+    "counterexamples": [
+      {
+        "id": "C-1",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "b203ed2f951af85e934f26ee96e21c93e41aa25ea262c34b9fdcd30e41d2e56b",
+        "expected_sha256": "54183f4323f377b737433a1e98229ead0fdc686f93bab057ecb612daa94002b5",
+        "candidate_outcome": "WA",
+        "verified": true
+      }
+    ],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T10:17:04Z",
+    "local_seconds_left_at_trigger": 527.7,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-abc394_f",
+      "nonce": "6f73d685f6786693",
+      "statement_sha256": "b1691506c10afa00a25b7022b40d0571d17817babba8cbf6e87aa9c17dfc9906",
+      "candidate_sha256": "ecfbb384e1127cf950a36bee4ba355ce344f9d666f279b0343135243450af116",
+      "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+      "user_message_sha256": "abb98e119a7106db0db835f04ff947d5325d5f32d25c32db587d9d32191aaa49",
+      "static_summary_sha256": "836e1e7567a484235d1c9ea51633aec5d7ff49c746208733bf9c8fa57fd4c793",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 3,
+      "public_total": 3,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "ecfbb384e1127cf950a36bee4ba355ce344f9d666f279b0343135243450af116",
+      "judge_tests_sha256": "ef563550991af48f7da55fa5a1aab85dbf862c5ee2f6dc6b7f422e958d584516",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T10:17:04Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 14365,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 435,
+          "reasoning_output_tokens": 87
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 11.62,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a2175b-d645-70f0-a6a0-2821df044785",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "8f7cb0600d60ce016ffa78fa4db3b8d94fb636a8d1861d61bb3013dfdf5d7205",
+        "input_sha256": "4ee6c0a05b502173fdda14984556cd7bcc9ed0ed56c29f5b7af10574d257f159",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "fb9138b24ba019037d9b8d93ead9f1500d0f67f98b7b45c7401fcabf5d02a365",
+    "delivered_utc": "2026-11-26T10:17:16Z",
+    "diagnosis_sha256": "160b74621513366adeecfa0838012bfa7788ff96dc4c955db829f40114706433",
+    "delivered_message_sha256": "1d9eba2ce876033563e47986d9a07ae3d7a17c84acbc62a1cd80c7f3254880fc",
+    "diagnosis_words": 173,
+    "delivered_message_index": 7,
+    "delivered_after_action": 2,
+    "soft_code_flags": []
+  }
+}

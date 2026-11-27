@@ -1,0 +1,185 @@
+{
+  "batch": "phase2-test5-official-codex-s2108",
+  "frozen": true,
+  "outer_timeout": 1000,
+  "cohort": "val-test5-16",
+  "attempts": [
+    {
+      "task_id": "lcb-atcoder-abc384_c",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc384_c.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc383_c",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc383_c.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc377_c",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc377_c.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc385_c",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc385_c.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc383_b",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc383_b.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc380_c",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc380_c.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc375_c",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc375_c.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc377_d",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc377_d.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc379_g",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc379_g.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc376_e",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc376_e.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-arc189_c",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-arc189_c.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc376_g",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc376_g.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-arc185_e",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-arc185_e.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc382_d",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc382_d.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-arc184_e",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-arc184_e.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc378_e",
+      "condition": "C",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "guidance": "E:\\CSC2108Local\\enhanced-de-v2-study\\guidance\\test5-plans-codex\\lcb-atcoder-abc378_e.plan-v1.codex.json"
+    },
+    {
+      "task_id": "lcb-atcoder-abc383_c",
+      "condition": "E",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc385_c",
+      "condition": "E",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc377_d",
+      "condition": "E",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc376_g",
+      "condition": "E",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    }
+  ],
+  "note": "Official guided_agent runner; C uses isolated Codex plan-v1 artifacts; E (E-v1) runs only on tasks whose A trajectory reaches a public failure (trigger partitioning)."
+}

@@ -1,0 +1,153 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-abc384_c",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-7ec70f3b1f19b5c0 statement>>>\n# Perfect Standings\n\nTakahashi decided to hold a programming contest.\nThe contest consists of five problems: A, B, C, D, E, with scores a, b, c, d, e, respectively.\nThere are 31 participants, and all of them solved at least one problem.\nMore specifically, for every non-empty subsequence (not necessarily contiguous) of the string ABCDE, there is a participant named after that subsequence who solved the problems corresponding to the letters in their name and did not solve the other problems.\nFor example, participant A solved only problem A, and participant BCE solved problems B, C, and E.\nPrint the names of the participants in order of their obtained scores, from the largest to the smallest.\nThe score obtained by a participant is the sum of the scores of the problems they solved.\nIf two participants obtained the same score, print the one whose name is lexicographically smaller first.\nWhat does \"lexicographically smaller\" mean?\nIn short, \"lexicographically smaller\" refers to the order in which words would appear in a dictionary.\nMore precisely, for distinct strings S,T consisting of uppercase English letters, S is lexicographically smaller than T if either of the following conditions holds:\n\n- The length |S| of S is less than the length of T, and the first |S| characters of T match S.\n- There exists an integer 1\\leq i\\leq\\min\\{ |S|,|T|\\} that satisfy both of the following two conditions:\n- For every integer j with 1\\leq j\\lt i, the j-th character of S equals the j-th character of T.\n- The i-th character of S is alphabetically smaller than the i-th character of T.\n\n\nFor example, if S= AB and T= ABC, the first condition holds, so S is lexicographically smaller than T.\nIf S= ABD and T= ACD, the second condition holds for i=2, so S is lexicographically smaller than T.\n\nInput\n\nThe input is given from Standard Input in the following format:\na b c d e\n\nOutput\n\nPrint 31 lines.\nThe i-th line (1\\leq i\\leq 31) should contain the name of the participant who obtained the i-th highest score.\nIf multiple participants have the same score, print them in lexicographical order.\n\nConstraints\n\n\n- 100\\leq a\\leq b\\leq c\\leq d\\leq e\\leq 2718\n- All input values are integers.\n\nSample Input 1\n\n400 500 600 700 800\n\nSample Output 1\n\nABCDE\nBCDE\nACDE\nABDE\nABCE\nABCD\nCDE\nBDE\nADE\nBCE\nACE\nBCD\nABE\nACD\nABD\nABC\nDE\nCE\nBE\nCD\nAE\nBD\nAD\nBC\nAC\nAB\nE\nD\nC\nB\nA\n\nThe score of each participant is as follows:\n\nFor example, ADE and BCE obtained the same score, and ADE is lexicographically smaller, so print ADE before BCE.\n\nSample Input 2\n\n800 800 900 900 1000\n\nSample Output 2\n\nABCDE\nACDE\nBCDE\nABCE\nABDE\nABCD\nCDE\nACE\nADE\nBCE\nBDE\nABE\nACD\nBCD\nABC\nABD\nCE\nDE\nAE\nBE\nCD\nAC\nAD\nBC\nBD\nAB\nE\nC\nD\nA\nB\n\nSample Input 3\n\n128 256 512 1024 2048\n\nSample Output 3\n\nABCDE\nBCDE\nACDE\nCDE\nABDE\nBDE\nADE\nDE\nABCE\nBCE\nACE\nCE\nABE\nBE\nAE\nE\nABCD\nBCD\nACD\nCD\nABD\nBD\nAD\nD\nABC\nBC\nAC\nC\nAB\nB\nA\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-7ec70f3b1f19b5c0>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 dfa878e576e7901cd77766a90ee1cd959a83121096b3b8ff6f2d059be04e3e16, 1134 bytes)\n<<<DATA-7ec70f3b1f19b5c0 program>>>\nimport sys\nfrom itertools import combinations\n\ndef solve():\n    # Read input\n    line = sys.stdin.readline().strip()\n    if not line:\n        return\n    scores = list(map(int, line.split()))\n    # scores[0] -> A, scores[1] -> B, scores[2] -> C, scores[3] -> D, scores[4] -> E\n    score_map = {'A': scores[0], 'B': scores[1], 'C': scores[2], 'D': scores[3], 'E': scores[4]}\n    \n    # Generate all non-empty subsequences of \"ABCDE\"\n    # There are 2^5 - 1 = 31 such subsequences\n    participants = []\n    for i in range(1, 32):\n        mask = i\n        name = \"\"\n        for char in \"ABCDE\":\n            if mask & 1:\n                name += char\n            mask >>= 1\n        if name:\n            # Calculate score\n            total_score = 0\n            for char in name:\n                total_score += score_map[char]\n            participants.append((total_score, name))\n    \n    # Sort: primary by score descending, secondary by name ascending (lexicographically)\n    participants.sort(key=lambda x: (-x[0], x[1]))\n    \n    # Print names\n    for _, name in participants:\n        print(name)\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-7ec70f3b1f19b5c0>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 3/3 public cases passed)\n<<<DATA-7ec70f3b1f19b5c0 report>>>\nPUBLIC TESTS: 3/3 passed\n<<<END-DATA-7ec70f3b1f19b5c0>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-7ec70f3b1f19b5c0 static-analysis>>>\n- Structure: 26 code lines (7 comments), max loop depth 2, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.017s), 02:AC(0.017s), 03:AC(0.017s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-7ec70f3b1f19b5c0>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 587 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "7ec70f3b1f19b5c0",
+    "statement_sha256": "441fa0a1f2c6f956fff15631dd6c9e9073a6bab86565fad37776073487598619",
+    "candidate_sha256": "dfa878e576e7901cd77766a90ee1cd959a83121096b3b8ff6f2d059be04e3e16",
+    "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+    "user_message_sha256": "9e7561a59360b7ecae4ebe187411dcd329c76be079a290acea3e4563df360849",
+    "static_summary_sha256": "b4c745999a9861d94ff9ae22ad5f2a106fac1809a4a1dba10f7dcec96c3d900d",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 3,
+    "public_total": 3,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "dfa878e576e7901cd77766a90ee1cd959a83121096b3b8ff6f2d059be04e3e16",
+    "judge_tests_sha256": "de48cc1f1251e38427a68aba61bae662d6535b95b83668524fd36dbf6dff23b3",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\n\nNO-DEFECT. The program enumerates all 31 nonempty subsequences exactly once and sorts them by descending total score, breaking ties in ascending lexicographic order.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 12953,
+        "cached_input_tokens": 9344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 42,
+        "reasoning_output_tokens": 0
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 3.64,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a29-5326-7480-860c-bed036c5fcf2",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "c6fa517a78382e0e68577fac7f88c37f3811453d0039c6e0c3bca8ba67d95227",
+      "input_sha256": "804a2c2a6d3b7940e1c71484d9a5d616a4b85989241294bd282883dfa0174f6a",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": null,
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": false,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 3.656,
+    "provider_wait_seconds": 3.656,
+    "harness_check_seconds": 0.0,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "no_defect",
+    "review_verdict": "NO-DEFECT",
+    "counterexamples": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T23:20:45Z",
+    "local_seconds_left_at_trigger": 587.09,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-abc384_c",
+      "nonce": "7ec70f3b1f19b5c0",
+      "statement_sha256": "441fa0a1f2c6f956fff15631dd6c9e9073a6bab86565fad37776073487598619",
+      "candidate_sha256": "dfa878e576e7901cd77766a90ee1cd959a83121096b3b8ff6f2d059be04e3e16",
+      "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+      "user_message_sha256": "9e7561a59360b7ecae4ebe187411dcd329c76be079a290acea3e4563df360849",
+      "static_summary_sha256": "b4c745999a9861d94ff9ae22ad5f2a106fac1809a4a1dba10f7dcec96c3d900d",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 3,
+      "public_total": 3,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "dfa878e576e7901cd77766a90ee1cd959a83121096b3b8ff6f2d059be04e3e16",
+      "judge_tests_sha256": "de48cc1f1251e38427a68aba61bae662d6535b95b83668524fd36dbf6dff23b3",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T23:20:45Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 12953,
+          "cached_input_tokens": 9344,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 42,
+          "reasoning_output_tokens": 0
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 3.64,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a29-5326-7480-860c-bed036c5fcf2",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "c6fa517a78382e0e68577fac7f88c37f3811453d0039c6e0c3bca8ba67d95227",
+        "input_sha256": "804a2c2a6d3b7940e1c71484d9a5d616a4b85989241294bd282883dfa0174f6a",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "2bdf053bf65b4960fcddd09cd2a32f12d44a749701ca0b552b10762168d7ebe0"
+  }
+}

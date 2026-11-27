@@ -1,0 +1,173 @@
+{
+  "packet": {
+    "kind": "strict",
+    "trigger_kind": "public_failure",
+    "prompt_id": "E2_STRICT_V1",
+    "task_id": "lcb-atcoder-arc194_d",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-54eeee9c46af0556 statement>>>\n# Reverse Brackets\n\nA string is defined to be a valid parenthesis sequence if and only if it satisfies one of the following conditions:\n\n- It is an empty string.\n- There exists a valid parenthesis sequence A such that the string is obtained by concatenating (, A, and ) in this order.\n- There exist non-empty valid parenthesis sequences A and B such that the string is obtained by concatenating A and B in this order.\n\nYou are given a valid parenthesis sequence S of length N. You can perform the following operation any number of times:\n\n- Choose a contiguous substring of S that is a valid parenthesis sequence, and reverse it.\n\nHere, reversing the substring of S from the l-th character to the r-th character means the following:\n\n- For every integer i satisfying l \\leq i \\leq r, simultaneously replace S_i with ) if S_{l+r-i} is (, and with ( if S_{l+r-i} is ).(Note that reversing here is different from the usual definition of reversing.)\n\nFind the number, modulo 998244353, of distinct strings S that you can have at the end of the process.\n\nInput\n\nThe input is given from Standard Input in the following format:\nN\nS\n\nOutput\n\nPrint the answer.\n\nConstraints\n\n\n- 1 \\leq N \\leq 5000\n- |S| = N\n- S is a valid parenthesis sequence.\n\nSample Input 1\n\n6\n(())()\n\nSample Output 1\n\n2\n\nFor example, you can transform S into ()(()) by doing the following:\n\n- Choose the substring from the 1st to the 6th character of S. This is a valid parenthesis sequence. S becomes ()(()).\n\nThe only other string that can be formed is (())(). Thus, the answer is 2.\n\nSample Input 2\n\n2\n()\n\nSample Output 2\n\n1\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-54eeee9c46af0556>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 3ed6bb46dbabff437ea14b378e3b6bc078939f89a2c29daf76d8e38087e015da, 9769 bytes)\n<<<DATA-54eeee9c46af0556 program>>>\nimport sys\n\ndef solve():\n    try:\n        data = sys.stdin.read().split()\n        if not data:\n            return\n        N = int(data[0])\n        S = data[1]\n    except:\n        return\n\n    MOD = 998244353\n\n    # dp[i][j] = number of valid parenthesis sequences of length (i+j) with i '(' and j ')'\n    # But we need to track the structure.\n    # Actually, the key insight is that any valid parenthesis sequence can be transformed\n    # into any other valid parenthesis sequence with the same number of '(' and ')' (which is N/2 each)\n    # by reversing operations? No, that's not true.\n    #\n    # Let's reconsider. The operation is: choose a valid substring and reverse it (swap ( with ) and vice versa).\n    # This operation preserves the number of '(' and ')'.\n    #\n    # Key observation: The operation allows us to \"move\" parentheses around.\n    # Specifically, if we have a valid sequence, we can reverse any valid substring.\n    #\n    # Let's think about what strings are reachable.\n    # The operation is: pick a valid substring, and reverse it (swap brackets).\n    #\n    # Important: The operation preserves the \"depth\" structure in a way.\n    # Actually, let's think about the canonical form.\n    #\n    # Consider the structure of valid parenthesis sequences.\n    # Any valid parenthesis sequence can be uniquely decomposed into a sequence of \"primitive\" valid sequences.\n    # A primitive valid sequence is one that cannot be split into two non-empty valid sequences.\n    #\n    # When we reverse a valid substring:\n    # If the substring is primitive, say (A), then reversing gives )A( which is not valid unless A is empty.\n    # Wait, the problem says: \"replace S_i with ) if S_{l+r-i} is (, and with ( if S_{l+r-i} is (\"\n    # This is exactly reversing the string and swapping brackets.\n    #\n    # Let's think differently. What if we consider the sequence of operations as a way to permute the brackets?\n    #\n    # Actually, there's a known result: The set of reachable strings from a valid parenthesis sequence\n    # by reversing valid substrings (with bracket swap) is exactly the set of all valid parenthesis sequences\n    # with the same number of '(' and ')'.\n    #\n    # But wait, Sample 1: N=6, S=\"(())()\", answer=2.\n    # The two strings are \"(())()\" and \"()(())\".\n    # What about \"()()()\"? Is it reachable?\n    # Let's see: (())() -> reverse the whole thing: ()(()) -> that's one.\n    # Can we get ()()()?\n    # From ()(()), can we get ()()()?\n    # ()(()) -> the substring from index 2 to 5 (0-indexed: 1 to 4) is \"(())\", which is valid.\n    # Reverse it: swap brackets -> \")(()\" which is not valid.\n    # Wait, the operation requires the substring to be a valid parenthesis sequence BEFORE reversing.\n    #\n    # Let me re-read: \"Choose a contiguous substring of S that is a valid parenthesis sequence, and reverse it.\"\n    # Reversing means: for each position, swap the bracket.\n    #\n    # So if we have \"(())\", reversing gives \")(()\" which is NOT a valid parenthesis sequence.\n    # But the operation is allowed only if the substring is valid BEFORE the operation.\n    # After the operation, the substring becomes the \"reversed\" version (with brackets swapped).\n    #\n    # So the operation transforms a valid substring into its \"complement\" (brackets swapped and reversed).\n    #\n    # Let's think about the structure.\n    # A valid parenthesis sequence can be represented as a Dyck path.\n    # The operation on a valid substring corresponds to some transformation on the Dyck path.\n    #\n    # Actually, I think the key is that we can only reverse \"primitive\" components or combinations.\n    #\n    # Let me think about the sample again.\n    # (())() has two components: (()) and ().\n    # We can reverse the whole thing: (())() -> ()(())\n    # Can we reverse just (())? That would give )(() which is not valid, so we can't do that operation.\n    # Can we reverse just ()? That would give () which is the same.\n    #\n    # So from (())(), we can only get ()(()).\n    # From ()(()), what can we do?\n    # The valid substrings are:\n    # - The whole string ()(())\n    # - The first () \n    # - The last (())\n    # Reversing the whole: ()(()) -> (())()\n    # Reversing the first (): () -> same\n    # Reversing the last (()): (()) -> same (but wait, reversing (()) gives )(()) which is not valid, so we can't do that)\n    #\n    # Wait, I'm confused. Let me re-read the operation.\n    # \"Choose a contiguous substring of S that is a valid parenthesis sequence, and reverse it.\"\n    # \"reversing the substring ... means: replace S_i with ) if S_{l+r-i} is (, and with ( if S_{l+r-i} is (\"\n    #\n    # So if the substring is \"()\", reversing it:\n    # Position l: S_l = '(', S_{l+r-l} = S_r = ')', so we replace S_l with ')'\n    # Position r: S_r = ')', S_{l+r-r} = S_l = '(', so we replace S_r with '('\n    # So \"()\" becomes \"()\", same.\n    #\n    # If the substring is \"(())\", reversing it:\n    # Original: ( ( ) )\n    # After: ) ) ( (\n    # But wait, the operation says: replace S_i with ) if S_{l+r-i} is (, and with ( if S_{l+r-i} is (\n    # So for \"(())\":\n    # i=l: S_l = '(', S_{l+r-l} = S_r = ')', so we replace S_l with ')'\n    # i=l+1: S_{l+1} = '(', S_{l+r-(l+1)} = S_{r-1} = ')', so we replace S_{l+1} with ')'\n    # i=r-1: S_{r-1} = ')', S_{l+r-(r-1)} = S_{l+1} = '(', so we replace S_{r-1} with '('\n    # i=r: S_r = ')', S_{l+r-r} = S_l = '(', so we replace S_r with '('\n    # So \"(())\" becomes \"))((\", which is NOT a valid parenthesis sequence.\n    #\n    # But the operation is allowed only if the substring is valid BEFORE the operation.\n    # After the operation, the substring becomes \"))((\", which is not valid.\n    #\n    # So the operation transforms a valid substring into its \"complement\" (brackets swapped and reversed).\n    #\n    # Now, the question is: what strings are reachable?\n    #\n    # Let's think about the structure of valid parenthesis sequences.\n    # Any valid parenthesis sequence can be uniquely decomposed into a sequence of primitive valid sequences.\n    # A primitive valid sequence is one that starts with '(' and ends with ')', and the first ')' matches the first '('.\n    #\n    # When we reverse a valid substring:\n    # If the substring is primitive, say P, then reversing it gives P' which is the complement.\n    # But P' is not a valid parenthesis sequence, so we can't use it as a substring for further operations.\n    #\n    # Wait, but the operation is: choose a valid substring, reverse it (swap brackets).\n    # After the operation, the substring is no longer valid (unless it was \"()\").\n    #\n    # So the operation allows us to \"break\" a valid substring into its complement.\n    #\n    # Let's think about the sample again.\n    # (())() -> reverse the whole thing -> ()(())\n    # Now, from ()(()), can we get back to (())()? Yes, by reversing the whole thing again.\n    # Can we get ()()()?\n    # To get ()()(), we need to transform (()) into ()().\n    # But (()) is a primitive sequence, and its complement is ))((, which is not valid.\n    #\n    # So it seems we can only reverse the whole string or parts that are valid.\n    #\n    # Actually, I think the key insight is that the operation allows us to permute the \"primitive components\".\n    #\n    # Let me think about it differently.\n    # Consider the sequence of primitive components.\n    # For (())(), the primitive components are (()) and ().\n    # For ()(()), the primitive components are () and (()).\n    #\n    # It seems that the operation allows us to swap adjacent primitive components?\n    #\n    # Let's check: (())() -> ()(())\n    # The primitive components are swapped.\n    #\n    # What if we have ()()()?\n    # Primitive components: (), (), ()\n    # Can we get any permutation?\n    #\n    # Actually, I think the answer is that we can achieve any permutation of the primitive components.\n    #\n    # So the number of reachable strings is the number of distinct permutations of the primitive components.\n    #\n    # Let's verify with Sample 1:\n    # (())() has primitive components: (()) and ().\n    # Permutations: (())(), ()(()) -> 2 distinct strings. Matches sample output.\n    #\n    # Sample 2:\n    # () has primitive component: ().\n    # Permutations: () -> 1 distinct string. Matches sample output.\n    #\n    # So the algorithm is:\n    # 1. Decompose the string into primitive components.\n    # 2. Count the frequency of each primitive component.\n    # 3. The answer is the multinomial coefficient: N! / (n1! * n2! * ... * nk!)\n    #    where ni is the count of the i-th distinct primitive component.\n    #\n    # But wait, we need to handle the fact that some primitive components might be the same.\n    #\n    # Let's implement this.\n\n    def get_primitive_components(s):\n        # Decompose into primitive components\n        components = []\n        depth = 0\n        start = 0\n        for i, c in enumerate(s):\n            if c == '(':\n                depth += 1\n            else:\n                depth -= 1\n            if depth == 0:\n                components.append(s[start:i+1])\n                start = i + 1\n        return components\n\n    components = get_primitive_components(S)\n    \n    # Count frequencies\n    from collections import Counter\n    freq = Counter(components)\n    \n    # Calculate multinomial coefficient\n    # N = len(S)\n    # answer = N! / (prod(ni!))\n    \n    # Precompute factorials\n    fact = [1] * (N + 1)\n    for i in range(2, N + 1):\n        fact[i] = fact[i-1] * i % MOD\n    \n    numerator = fact[N]\n    denominator = 1\n    for count in freq.values():\n        denominator = denominator * fact[count] % MOD\n    \n    # Modular inverse\n    def mod_inverse(a, m):\n        return pow(a, m - 2, m)\n    \n    answer = numerator * mod_inverse(denominator, MOD) % MOD\n    \n    print(answer)\n\nsolve()\n<<<END-DATA-54eeee9c46af0556>>>\n\nPUBLIC TEST REPORT shown to the coding model (status candidate_failure, 0/2 public cases passed, first failing case 01, verdict WA)\n<<<DATA-54eeee9c46af0556 report>>>\nPUBLIC TESTS: 0/2 passed\nFirst failure: case 01: WA (wrong answer)\n--- input ---\n6\n(())()\n--- expected ---\n2\n--- actual ---\n720\n<<<END-DATA-54eeee9c46af0556>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-54eeee9c46af0556 static-analysis>>>\n- Structure: 39 code lines (167 comments), max loop depth 1, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:WA(0.033s), 02:WA(0.033s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-54eeee9c46af0556>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 523 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "54eeee9c46af0556",
+    "statement_sha256": "4388893f8b4c5e47fcc986a93dbdbed95a89604d0f2a89179d38b6b18dec6eb9",
+    "candidate_sha256": "3ed6bb46dbabff437ea14b378e3b6bc078939f89a2c29daf76d8e38087e015da",
+    "report_sha256": "0254f6c12261ec31159c2de70f8a6906a2a4db2d267cfa0080a7dcb14f836582",
+    "user_message_sha256": "313e28e27a6a2659cc5bd5e9405c64995cab8d428918aa0b52d84953b15ab84f",
+    "static_summary_sha256": "49f638075f41441314d9b2c7629d2cdee7520c0744ba4705204d08705c4a739e",
+    "static_risk_flags": [],
+    "verdict": "WA",
+    "first_case": "01",
+    "public_status": "candidate_failure",
+    "public_passed": 0,
+    "public_total": 2,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "3ed6bb46dbabff437ea14b378e3b6bc078939f89a2c29daf76d8e38087e015da",
+    "judge_tests_sha256": "6ff17946ea292c5b0ef8c76ffc0635a9a1af59362c3d6ae338a876131195d5e9",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Observed failure\n\nPublic case 01 failed with a wrong answer. For `N = 6` and `S = (())()`, the expected output was `2` and the program printed `720`. The report shows 0 of 2 public cases passed.\n\n## Likely cause\n\n`numerator = fact[N]` counts permutations of characters, which explains the reported `720 = 6!` because both top-level components occur once. The deeper error is that `get_primitive_components(S)` and `Counter(components)` treat those components as fixed strings, even though valid substrings can also be reversed inside each matched pair.\n\n## Repair mode\n\nMETHOD-CHANGE\n\nChanging the factorial index fixes the reported example, but counting permutations only at the outermost level misses rearrangements inside matched pairs.\n\n## Repair direction\n\nParse the sequence into a rooted tree with one node per matched pair and a virtual root for the whole sequence. Every valid substring consists of consecutive children of one node. Reversing it reverses their order and reverse-complements each child. You can swap two adjacent children without changing their interiors by reversing their concatenation and then reversing each child separately. Thus sibling order can vary independently at every node, while the unordered tree shape stays fixed.\n\nProcess nodes bottom-up with an explicit stack to handle deep nesting. Intern each node’s unordered type using the sorted tuple of its children’s type IDs. For a node with `k` children, compute `k! / ∏ m!` modulo `998244353`, where each `m` is the multiplicity of one child type. Multiply by the arrangement count of every child occurrence, including repeated types. Return the count at the virtual root.\n\n## Verification target\n\nRerun both public tests. In V-1, the outer pair contains one `()` and one `(())`, so the two possible orders give exactly two strings.\n\nV-1\n```text\n8\n((())())\n```\n```text\n2\n```\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 14800,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 520,
+        "reasoning_output_tokens": 108
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 17.09,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a2177d-f7ac-7093-bd8b-879ae7d9b55f",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "18af64fe2e3a53ae41e2421c31350e23a83c5321757f7bf29db5b3e66daf2d13",
+      "input_sha256": "c42977ce54aae48efa8bd491a322e35f8790c3bb0365cec4da8e4b389191809f",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": "[Frontier diagnosis] A separate, stronger model read the task, the exact program you just tested, the public-test report above and a static analysis of the program, and wrote the diagnosis below. It has not seen any hidden tests and may be wrong; weigh it against the evidence. Your files, history and remaining budget are unchanged (18 actions left). Revise /workspace/solution.py yourself, then run python -I /public/check.py again.\n\n## Observed failure\n\nPublic case 01 failed with a wrong answer. For `N = 6` and `S = (())()`, the expected output was `2` and the program printed `720`. The report shows 0 of 2 public cases passed.\n\n## Likely cause\n\n`numerator = fact[N]` counts permutations of characters, which explains the reported `720 = 6!` because both top-level components occur once. The deeper error is that `get_primitive_components(S)` and `Counter(components)` treat those components as fixed strings, even though valid substrings can also be reversed inside each matched pair.\n\n## Repair mode\n\nMETHOD-CHANGE\n\nChanging the factorial index fixes the reported example, but counting permutations only at the outermost level misses rearrangements inside matched pairs.\n\n## Repair direction\n\nParse the sequence into a rooted tree with one node per matched pair and a virtual root for the whole sequence. Every valid substring consists of consecutive children of one node. Reversing it reverses their order and reverse-complements each child. You can swap two adjacent children without changing their interiors by reversing their concatenation and then reversing each child separately. Thus sibling order can vary independently at every node, while the unordered tree shape stays fixed.\n\nProcess nodes bottom-up with an explicit stack to handle deep nesting. Intern each node’s unordered type using the sorted tuple of its children’s type IDs. For a node with `k` children, compute `k! / ∏ m!` modulo `998244353`, where each `m` is the multiplicity of one child type. Multiply by the arrangement count of every child occurrence, including repeated types. Return the count at the virtual root.\n\n## Verification target\n\nRerun both public tests. In V-1, the outer pair contains one `()` and one `(())`, so the two possible orders give exactly two strings.\n\nV-1\n```text\n8\n((())())\n```\n```text\n2\n```",
+  "record": {
+    "assigned": true,
+    "controller": "e2-strict",
+    "mode": null,
+    "prompt_id": "E2_STRICT_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_failure",
+    "trigger_reason": "qualifying:WA",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": true,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 17.375,
+    "provider_wait_seconds": 17.11,
+    "harness_check_seconds": 0.265,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": "METHOD-CHANGE",
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "enable_advisory_vchecks": true,
+    "vcheck_alignment": "aligned",
+    "vchecks": [
+      {
+        "id": "V-1",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "9b38871ca4a711e42fca6cfc915448ae56cabd489265cca1db2dba01ed5f427d",
+        "expected_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+        "trigger_outcome": "WA",
+        "aligned": true
+      }
+    ],
+    "advisories": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T10:54:18Z",
+    "local_seconds_left_at_trigger": 523.97,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "strict",
+      "trigger_kind": "public_failure",
+      "prompt_id": "E2_STRICT_V1",
+      "task_id": "lcb-atcoder-arc194_d",
+      "nonce": "54eeee9c46af0556",
+      "statement_sha256": "4388893f8b4c5e47fcc986a93dbdbed95a89604d0f2a89179d38b6b18dec6eb9",
+      "candidate_sha256": "3ed6bb46dbabff437ea14b378e3b6bc078939f89a2c29daf76d8e38087e015da",
+      "report_sha256": "0254f6c12261ec31159c2de70f8a6906a2a4db2d267cfa0080a7dcb14f836582",
+      "user_message_sha256": "313e28e27a6a2659cc5bd5e9405c64995cab8d428918aa0b52d84953b15ab84f",
+      "static_summary_sha256": "49f638075f41441314d9b2c7629d2cdee7520c0744ba4705204d08705c4a739e",
+      "static_risk_flags": [],
+      "verdict": "WA",
+      "first_case": "01",
+      "public_status": "candidate_failure",
+      "public_passed": 0,
+      "public_total": 2,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "3ed6bb46dbabff437ea14b378e3b6bc078939f89a2c29daf76d8e38087e015da",
+      "judge_tests_sha256": "6ff17946ea292c5b0ef8c76ffc0635a9a1af59362c3d6ae338a876131195d5e9",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T10:54:18Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 14800,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 520,
+          "reasoning_output_tokens": 108
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 17.09,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a2177d-f7ac-7093-bd8b-879ae7d9b55f",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "18af64fe2e3a53ae41e2421c31350e23a83c5321757f7bf29db5b3e66daf2d13",
+        "input_sha256": "c42977ce54aae48efa8bd491a322e35f8790c3bb0365cec4da8e4b389191809f",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "d73a83b7a24a8cbc372d62effeb4280c77241310982214949f5333d777e911a9",
+    "hedge_terms": [],
+    "vchecks_aligned": 1,
+    "delivered_utc": "2026-11-26T10:54:36Z",
+    "diagnosis_sha256": "d73a83b7a24a8cbc372d62effeb4280c77241310982214949f5333d777e911a9",
+    "delivered_message_sha256": "e15a1c65c9927459efc4153bb4063a52a08e297aa129c55adbf06b3575c8e37a",
+    "diagnosis_words": 293,
+    "delivered_message_index": 7,
+    "delivered_after_action": 2,
+    "soft_code_flags": []
+  }
+}

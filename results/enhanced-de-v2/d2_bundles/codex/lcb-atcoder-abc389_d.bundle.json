@@ -1,0 +1,34 @@
+{
+  "schema": "csc2108-d2-bundle-v1",
+  "task_id": "lcb-atcoder-abc389_d",
+  "provider": "codex",
+  "prompt_id": "D2_BUNDLE_V1",
+  "statement_sha256": "5122846a43431bd6df4dfd0fa88ea80ce325ffa28a5c84bbe7f8f4a7178072fe",
+  "prompt_sha256": "ed4757974cef12b60537de1e65cfdf9dcd2c83415216e59d259dad5737dc4fbf",
+  "contract_md": "- **POST-1** The input contains exactly one base-10 integer \\(R\\), with \\(1 \\le R \\le 10^6\\).\n- **POST-2** The output contains exactly one base-10 integer. Its value is the number of integer pairs \\((i,j)\\) for which every corner \\((i\\pm 0.5,j\\pm 0.5)\\) has distance at most \\(R\\) from the origin. Each qualifying pair contributes once.\n- **POST-3** The answer lies between \\(4R-3\\) and \\((2R-1)^2\\), inclusive, and is congruent to \\(1\\) modulo \\(4\\). In particular, \\(R=1\\) gives \\(1\\).\n- **POST-4** Increasing \\(R\\) cannot decrease the answer.\n- **POST-5** The program must be practical at \\(R=10^6\\). Work proportional to \\(R^2\\) is infeasible at that bound.",
+  "module_code": "import random\nimport re\n\nMAX_RADIUS = 10**6\nREFERENCE_LIMIT = 32\nSMALL_RADII = (1, 2, 4, 26, 3, 5, 6, 7, 8)\nMONOTONE_CASES = ((1, 2), (2, 3), (3, 4), (4, 26), (25, 26))\n\n\ndef _integer_token(text: str) -> str | None:\n    tokens = text.split()\n    if len(tokens) != 1:\n        return None\n    token = tokens[0]\n    if re.fullmatch(r\"[+-]?[0-9]+\", token) is None:\n        return None\n    return token\n\n\ndef _bounded_integer(token: str, max_magnitude: int) -> int | None:\n    digits = token.lstrip(\"+-\").lstrip(\"0\") or \"0\"\n    limit = str(max_magnitude)\n    if len(digits) > len(limit):\n        return None\n    value = int(digits)\n    if value > max_magnitude:\n        return None\n    return -value if token.startswith(\"-\") else value\n\n\ndef _radius(inp: str) -> int | None:\n    token = _integer_token(inp)\n    if token is None:\n        return None\n    radius = _bounded_integer(token, MAX_RADIUS)\n    if radius is None or radius < 1:\n        return None\n    return radius\n\n\ndef validate_input(inp: str) -> bool:\n    return _radius(inp) is not None\n\n\ndef gen_small(seed: int, n: int) -> list[str]:\n    rng = random.Random(seed)\n    radii = list(SMALL_RADII[:max(0, n)])\n    radii.extend(rng.randint(1, 8) for _ in range(n - len(radii)))\n    return [f\"{radius}\\n\" for radius in radii]\n\n\ndef gen_stress(seed: int) -> list[str]:\n    rng = random.Random(seed)\n    nearby = MAX_RADIUS - rng.randint(1, 1000)\n    return [f\"{MAX_RADIUS}\\n\", f\"{nearby}\\n\"]\n\n\ndef check_postconditions(inp: str, out: str) -> list[tuple[str, str]]:\n    radius = _radius(inp)\n    if radius is None:\n        return []\n\n    token = _integer_token(out)\n    if token is None:\n        return [(\"POST-2\", \"Expected exactly one base-10 integer.\")]\n\n    lower = 4 * radius - 3\n    upper = (2 * radius - 1) ** 2\n    value = _bounded_integer(token, upper)\n    if value is None or value < lower:\n        return [(\"POST-3\", f\"The answer must be in [{lower}, {upper}].\")]\n    if value % 4 != 1:\n        return [(\"POST-3\", \"The answer must be congruent to 1 modulo 4.\")]\n    return []\n\n\ndef metamorphic_pairs(seed: int, n: int) -> list[tuple[str, str, str, str]]:\n    rng = random.Random(seed)\n    pairs = list(MONOTONE_CASES[:max(0, n)])\n    for _ in range(n - len(pairs)):\n        smaller = rng.randint(1, REFERENCE_LIMIT - 1)\n        larger = rng.randint(smaller + 1, REFERENCE_LIMIT)\n        pairs.append((smaller, larger))\n    return [\n        (\"POST-4\", \"le\", f\"{smaller}\\n\", f\"{larger}\\n\")\n        for smaller, larger in pairs\n    ]\n\n\ndef reference_small(inp: str) -> str | None:\n    radius = _radius(inp)\n    if radius is None or radius > REFERENCE_LIMIT:\n        return None\n\n    # Coordinates outside this range have a corner outside the circle.\n    centers = range(-radius, radius + 1)\n    squared_diameter = (2 * radius) ** 2\n    total = 0\n    for i in centers:\n        for j in centers:\n            # Double each corner coordinate to test the distance exactly.\n            if all(\n                (2 * i + di) ** 2 + (2 * j + dj) ** 2 <= squared_diameter\n                for di in (-1, 1)\n                for dj in (-1, 1)\n            ):\n                total += 1\n    return f\"{total}\\n\"",
+  "response_sha256": "a131e1918916e4b24f6d84c3cf61193c98e28e4a8efc37106a2a2fc69189b4a1",
+  "created_utc": "2026-11-26T07:41:42Z",
+  "isolation": {
+    "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+    "thread_id": "01a216cd-0d0f-7242-9b9d-be3e539b68e0",
+    "started_item_types": [],
+    "completed_item_types": [
+      "agent_message"
+    ],
+    "tool_events": [],
+    "malformed_lines": [],
+    "post_run_workdir_files": [],
+    "events_sha256": "fb4656110154d107ddbe0b610ee4c39bd3ae6617c36446ea9cccb14b803f2ecb",
+    "input_sha256": "2bd0009d1fa0bbe821adf67513d82e6092e60ef0b6eaf1ea4a5d0fb361330e8c",
+    "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+  },
+  "usage": {
+    "input_tokens": 11812,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1678,
+    "reasoning_output_tokens": 516
+  },
+  "wall_seconds": 35.91
+}

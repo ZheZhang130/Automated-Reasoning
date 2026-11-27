@@ -1,0 +1,153 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-abc377_c",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-93072ef4e3faef4b statement>>>\n# Avoid Knight Attack\n\nThere is a grid of N^2 squares with N rows and N columns.\nLet (i,j) denote the square at the i-th row from the top (1\\leq i\\leq N) and j-th column from the left (1\\leq j\\leq N).\nEach square is either empty or has a piece placed on it.\nThere are M pieces placed on the grid, and the k-th (1\\leq k\\leq M) piece is placed on square (a_k,b_k).\nYou want to place your piece on an empty square in such a way that it cannot be captured by any of the existing pieces.\nA piece placed on square (i,j) can capture pieces that satisfy any of the following conditions:\n\n- Placed on square (i+2,j+1)\n- Placed on square (i+1,j+2)\n- Placed on square (i-1,j+2)\n- Placed on square (i-2,j+1)\n- Placed on square (i-2,j-1)\n- Placed on square (i-1,j-2)\n- Placed on square (i+1,j-2)\n- Placed on square (i+2,j-1)\n\nHere, conditions involving non-existent squares are considered to never be satisfied.\nFor example, a piece placed on square (4,4) can capture pieces placed on the squares shown in blue in the following figure:\n\nHow many squares can you place your piece on?\n\nInput\n\nThe input is given from Standard Input in the following format:\nN M\na_1 b_1\na_2 b_2\n\\vdots\na_M b_M\n\nOutput\n\nPrint the number of empty squares where you can place your piece without it being captured by any existing pieces.\n\nConstraints\n\n\n- 1\\leq N\\leq10^9\n- 1\\leq M\\leq2\\times10^5\n- 1\\leq a_k\\leq N,1\\leq b_k\\leq N\\ (1\\leq k\\leq M)\n- (a_k,b_k)\\neq(a_l,b_l)\\ (1\\leq k\\lt l\\leq M)\n- All input values are integers.\n\nSample Input 1\n\n8 6\n1 4\n2 1\n3 8\n4 5\n5 2\n8 3\n\nSample Output 1\n\n38\n\nThe existing pieces can capture pieces placed on the squares shown in blue in the following figure:\n\nTherefore, you can place your piece on the remaining 38 squares.\n\nSample Input 2\n\n1000000000 1\n1 1\n\nSample Output 2\n\n999999999999999997\n\nOut of 10^{18} squares, only 3 squares cannot be used: squares (1,1), (2,3), and (3,2).\nNote that the answer may be 2^{32} or greater.\n\nSample Input 3\n\n20 10\n1 4\n7 11\n7 15\n8 10\n11 6\n12 5\n13 1\n15 2\n20 10\n20 15\n\nSample Output 3\n\n338\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-93072ef4e3faef4b>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 fa1fc06f8e314e7387fae31f669fe51517710699a2c4a2c6ec77ac22811eae2b, 2389 bytes)\n<<<DATA-93072ef4e3faef4b program>>>\nimport sys\nfrom collections import defaultdict\n\ndef solve():\n    input_data = sys.stdin.read().split()\n    if not input_data:\n        return\n    \n    iterator = iter(input_data)\n    N = int(next(iterator))\n    M = int(next(iterator))\n    \n    pieces = set()\n    for _ in range(M):\n        a = int(next(iterator))\n        b = int(next(iterator))\n        pieces.add((a, b))\n    \n    # For each piece, calculate the squares it can attack\n    # Attack offsets from a piece at (a, b):\n    # (a+2, b+1), (a+1, b+2), (a-1, b+2), (a-2, b+1),\n    # (a-2, b-1), (a-1, b-2), (a+1, b-2), (a+2, b-1)\n    \n    # We need to count empty squares that are NOT attacked by any piece\n    # Total empty squares = N*N - M\n    # Attacked squares that are empty = (union of all attacked squares) - (attacked squares that are occupied)\n    # But we need to be careful: we only care about empty squares that are attacked.\n    # So: answer = (N*N - M) - (number of attacked squares that are empty)\n    #           = (N*N - M) - (|union of attacked squares| - |union of attacked squares intersect pieces|)\n    #           = (N*N - M) - |union of attacked squares| + |union of attacked squares intersect pieces|\n    \n    # Since M is up to 2*10^5, we can compute the union of attacked squares.\n    # However, N can be up to 10^9, so we cannot iterate over all squares.\n    # We need to compute the size of the union of attacked squares efficiently.\n    \n    # Each piece attacks at most 8 squares.\n    # Total attacked squares (with duplicates) = M * 8.\n    # We can use a set to store attacked squares.\n    \n    attacked = set()\n    \n    for (a, b) in pieces:\n        offsets = [\n            (2, 1), (1, 2), (-1, 2), (-2, 1),\n            (-2, -1), (-1, -2), (1, -2), (2, -1)\n        ]\n        for da, db in offsets:\n            na, nb = a + da, b + db\n            if 1 <= na <= N and 1 <= nb <= N:\n                attacked.add((na, nb))\n    \n    # Now we need to count how many of these attacked squares are empty.\n    # An attacked square is empty if it is not in pieces.\n    # So: |attacked squares that are empty| = |attacked| - |attacked intersect pieces|\n    \n    attacked_occupied = attacked.intersection(pieces)\n    attacked_empty = len(attacked) - len(attacked_occupied)\n    \n    total_empty = N * N - M\n    answer = total_empty - attacked_empty\n    \n    print(answer)\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-93072ef4e3faef4b>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 3/3 public cases passed)\n<<<DATA-93072ef4e3faef4b report>>>\nPUBLIC TESTS: 3/3 passed\n<<<END-DATA-93072ef4e3faef4b>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-93072ef4e3faef4b static-analysis>>>\n- Structure: 31 code lines (20 comments), max loop depth 2, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.033s), 02:AC(0.033s), 03:AC(0.033s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-93072ef4e3faef4b>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 583 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "93072ef4e3faef4b",
+    "statement_sha256": "ebe7382238154542c844f8e55c7001072e19969e77b3a974c17d36466484bb95",
+    "candidate_sha256": "fa1fc06f8e314e7387fae31f669fe51517710699a2c4a2c6ec77ac22811eae2b",
+    "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+    "user_message_sha256": "bd9df6443e05147cc31ff781bcba4f6a9f27be5c058e67a242f0050f94c8a020",
+    "static_summary_sha256": "9179e7d365ad9b76c24c1b829d7927ff3386fd136ca560b9fc9d0282155a3620",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 3,
+    "public_total": 3,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "fa1fc06f8e314e7387fae31f669fe51517710699a2c4a2c6ec77ac22811eae2b",
+    "judge_tests_sha256": "ccaefe3b83b82ca15c346c6d88c105ad3db13b15d85330d8e6ca7d4dd788ebb2",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\n\nNO-DEFECT. The program counts each attacked square once, excludes occupied squares correctly, and no valid input is known to make it fail.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 13144,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 91,
+        "reasoning_output_tokens": 53
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 4.09,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a2a-93af-7123-914d-f58ffbdbdb16",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "32548676d8b9d4d63a85fcdd24927479ee9d31f599e2c79333eb6046cf1f3bb8",
+      "input_sha256": "060e5bfacc67816f5387659f47dfc0759998cace261f1f0723a0e001077adbf0",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": null,
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": false,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 4.094,
+    "provider_wait_seconds": 4.094,
+    "harness_check_seconds": 0.0,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "no_defect",
+    "review_verdict": "NO-DEFECT",
+    "counterexamples": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T23:22:07Z",
+    "local_seconds_left_at_trigger": 583.36,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-abc377_c",
+      "nonce": "93072ef4e3faef4b",
+      "statement_sha256": "ebe7382238154542c844f8e55c7001072e19969e77b3a974c17d36466484bb95",
+      "candidate_sha256": "fa1fc06f8e314e7387fae31f669fe51517710699a2c4a2c6ec77ac22811eae2b",
+      "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+      "user_message_sha256": "bd9df6443e05147cc31ff781bcba4f6a9f27be5c058e67a242f0050f94c8a020",
+      "static_summary_sha256": "9179e7d365ad9b76c24c1b829d7927ff3386fd136ca560b9fc9d0282155a3620",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 3,
+      "public_total": 3,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "fa1fc06f8e314e7387fae31f669fe51517710699a2c4a2c6ec77ac22811eae2b",
+      "judge_tests_sha256": "ccaefe3b83b82ca15c346c6d88c105ad3db13b15d85330d8e6ca7d4dd788ebb2",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T23:22:07Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 13144,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 91,
+          "reasoning_output_tokens": 53
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 4.09,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a2a-93af-7123-914d-f58ffbdbdb16",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "32548676d8b9d4d63a85fcdd24927479ee9d31f599e2c79333eb6046cf1f3bb8",
+        "input_sha256": "060e5bfacc67816f5387659f47dfc0759998cace261f1f0723a0e001077adbf0",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "097ee46aba681c0a739c95c25e7341d72b9a24aee9fbf9351ef948af0c223fd0"
+  }
+}

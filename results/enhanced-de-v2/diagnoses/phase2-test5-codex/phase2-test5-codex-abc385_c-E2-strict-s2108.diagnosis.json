@@ -1,0 +1,173 @@
+{
+  "packet": {
+    "kind": "strict",
+    "trigger_kind": "public_failure",
+    "prompt_id": "E2_STRICT_V1",
+    "task_id": "lcb-atcoder-abc385_c",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-c47f5400c91a0c49 statement>>>\n# Illuminate Buildings\n\nThere are N buildings arranged in a line at equal intervals. The height of the i-th building from the front is H_i.\nYou want to decorate some of these buildings with illuminations so that both of the following conditions are satisfied:\n\n- The chosen buildings all have the same height.\n- The chosen buildings are arranged at equal intervals.\n\nWhat is the maximum number of buildings you can choose? If you choose exactly one building, it is considered to satisfy the conditions.\n\nInput\n\nThe input is given from Standard Input in the following format:\nN\nH_1 \\ldots H_N\n\nOutput\n\nPrint the answer.\n\nConstraints\n\n\n- 1 \\leq N \\leq 3000\n- 1 \\leq H_i \\leq 3000\n- All input values are integers.\n\nSample Input 1\n\n8\n5 7 5 7 7 5 7 7\n\nSample Output 1\n\n3\n\nChoosing the 2nd, 5th, and 8th buildings from the front satisfies the conditions.\n\nSample Input 2\n\n10\n100 200 300 400 500 600 700 800 900 1000\n\nSample Output 2\n\n1\n\nChoosing just one building is considered to satisfy the conditions.\n\nSample Input 3\n\n32\n3 1 4 1 5 9 2 6 5 3 5 8 9 7 9 3 2 3 8 4 6 2 6 4 3 3 8 3 2 7 9 5\n\nSample Output 3\n\n3\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-c47f5400c91a0c49>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 95fc48a7dfd9f1694adcce66f492083115491102b335291c2b44e927a123b307, 1536 bytes)\n<<<DATA-c47f5400c91a0c49 program>>>\nimport sys\nfrom collections import defaultdict\n\ndef solve():\n    data = sys.stdin.read().split()\n    if not data:\n        return\n    n = int(data[0])\n    h = [int(data[i+1]) for i in range(n)]\n\n    if n == 1:\n        print(1)\n        return\n\n    # Group indices by height\n    height_to_indices = defaultdict(list)\n    for i, height in enumerate(h):\n        height_to_indices[height].append(i)\n\n    max_count = 1\n\n    for height, indices in height_to_indices.items():\n        if len(indices) == 1:\n            continue\n        \n        # For each pair of indices (i, j) with i < j, the interval is d = j - i.\n        # We count how many indices in the list are at positions i, i+d, i+2d, ...\n        \n        indices = indices\n        m = len(indices)\n        \n        # For each starting index in the list\n        for start_idx in range(m):\n            start_pos = indices[start_idx]\n            # Try all possible intervals d\n            for end_idx in range(start_idx + 1, m):\n                end_pos = indices[end_idx]\n                d = end_pos - start_pos\n                \n                # Count how many indices are at start_pos, start_pos + d, start_pos + 2d, ...\n                count = 0\n                current = start_pos\n                while current < n:\n                    if current in indices:\n                        count += 1\n                    current += d\n                \n                if count > max_count:\n                    max_count = count\n\n    print(max_count)\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-c47f5400c91a0c49>>>\n\nPUBLIC TEST REPORT shown to the coding model (status candidate_failure, 1/3 public cases passed, first failing case 01, verdict WA)\n<<<DATA-c47f5400c91a0c49 report>>>\nPUBLIC TESTS: 1/3 passed\nFirst failure: case 01: WA (wrong answer)\n--- input ---\n8\n5 7 5 7 7 5 7 7\n--- expected ---\n3\n--- actual ---\n4\n<<<END-DATA-c47f5400c91a0c49>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-c47f5400c91a0c49 static-analysis>>>\n- Structure: 36 code lines (6 comments), max loop depth 4, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:WA(0.033s), 02:AC(0.033s), 03:WA(0.033s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-c47f5400c91a0c49>>>\n\nLOCAL STATE: 3 of 20 actions used; 0 of 3 repair groups used; about 539 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "c47f5400c91a0c49",
+    "statement_sha256": "14016ce5244f8aece5089791c98ea38df281fb351eee481c61a324e8fdd163b1",
+    "candidate_sha256": "95fc48a7dfd9f1694adcce66f492083115491102b335291c2b44e927a123b307",
+    "report_sha256": "c053882b8d49120b6d9e09c7fd5814a6a124a954dcec6cd1575484e7a72d93f2",
+    "user_message_sha256": "2cba149c7c9db3022cde0635eb8c7f90e1ab63b835b83f894023c6719aeadc4e",
+    "static_summary_sha256": "5aeb707ad92a797cfb904f696fdb8e3f6c0aae055c7bccd21ee0a646ea5998e8",
+    "static_risk_flags": [],
+    "verdict": "WA",
+    "first_case": "01",
+    "public_status": "candidate_failure",
+    "public_passed": 1,
+    "public_total": 3,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "95fc48a7dfd9f1694adcce66f492083115491102b335291c2b44e927a123b307",
+    "judge_tests_sha256": "2977c28992ba9b8ed46cd1762dfdc988559ff10f435977784c555771283e4eb8",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Observed failure\n\nPublic case 01 failed with a wrong answer. The expected output was `3`, and the program printed `4`.\n\n## Likely cause\n\nThe `while current < n` loop keeps advancing after `if current in indices` fails. In case 01, it counts buildings 4, 5, 7, and 8 together by stepping past building 6, even though the gaps between the chosen buildings are 1, 2, and 1.\n\n## Repair mode\n\nLOCAL-FIX. The first two chosen buildings determine the spacing, so the existing pair search can work by counting consecutive matches at that spacing.\n\n## Repair direction\n\nFor each candidate pair, extend the sequence only while the next position is in bounds and its height matches the starting height. Check the height directly in `h` for constant-time lookup. Skip a candidate when `start_pos - d` is in bounds and has the same height, since that sequence is already covered by an earlier start. This keeps the total work quadratic. Keep the initial answer of `1` for a single building.\n\n## Verification target\n\nRerun all public tests.\n\nV-1\n```text\n5\n1 1 2 1 1\n```\n```text\n2\n```\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 12647,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 511,
+        "reasoning_output_tokens": 244
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 13.7,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a0a-5f86-7e12-8cab-b0e8947f200f",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "24d9f36be8059d6dc2b5a23856cf4862868835a7bd5bbcbf0b83cd828b308b13",
+      "input_sha256": "55d033f4ca4eb12fca1a4e08ca7274a4f70f8323b8e78462c8ca775e74cfae9a",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": "[Frontier diagnosis] A separate, stronger model read the task, the exact program you just tested, the public-test report above and a static analysis of the program, and wrote the diagnosis below. It has not seen any hidden tests and may be wrong; weigh it against the evidence. Your files, history and remaining budget are unchanged (17 actions left). Revise /workspace/solution.py yourself, then run python -I /public/check.py again.\n\n## Observed failure\n\nPublic case 01 failed with a wrong answer. The expected output was `3`, and the program printed `4`.\n\n## Likely cause\n\nThe `while current < n` loop keeps advancing after `if current in indices` fails. In case 01, it counts buildings 4, 5, 7, and 8 together by stepping past building 6, even though the gaps between the chosen buildings are 1, 2, and 1.\n\n## Repair mode\n\nLOCAL-FIX. The first two chosen buildings determine the spacing, so the existing pair search can work by counting consecutive matches at that spacing.\n\n## Repair direction\n\nFor each candidate pair, extend the sequence only while the next position is in bounds and its height matches the starting height. Check the height directly in `h` for constant-time lookup. Skip a candidate when `start_pos - d` is in bounds and has the same height, since that sequence is already covered by an earlier start. This keeps the total work quadratic. Keep the initial answer of `1` for a single building.\n\n## Verification target\n\nRerun all public tests.\n\nV-1\n```text\n5\n1 1 2 1 1\n```\n```text\n2\n```",
+  "record": {
+    "assigned": true,
+    "controller": "e2-strict",
+    "mode": null,
+    "prompt_id": "E2_STRICT_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_failure",
+    "trigger_reason": "qualifying:WA",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": true,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 13.953,
+    "provider_wait_seconds": 13.703,
+    "harness_check_seconds": 0.25,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": "LOCAL-FIX",
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "enable_advisory_vchecks": true,
+    "vcheck_alignment": "aligned",
+    "vchecks": [
+      {
+        "id": "V-1",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "16bd8966d0f4fb15a6e2a9e47e265f6a1482e82f8f43ca202bfca73f6b5a6ab9",
+        "expected_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+        "trigger_outcome": "WA",
+        "aligned": true
+      }
+    ],
+    "advisories": [],
+    "trigger_action": 3,
+    "trigger_utc": "2026-11-26T22:46:56Z",
+    "local_seconds_left_at_trigger": 539.0,
+    "actions_left_at_trigger": 17,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "strict",
+      "trigger_kind": "public_failure",
+      "prompt_id": "E2_STRICT_V1",
+      "task_id": "lcb-atcoder-abc385_c",
+      "nonce": "c47f5400c91a0c49",
+      "statement_sha256": "14016ce5244f8aece5089791c98ea38df281fb351eee481c61a324e8fdd163b1",
+      "candidate_sha256": "95fc48a7dfd9f1694adcce66f492083115491102b335291c2b44e927a123b307",
+      "report_sha256": "c053882b8d49120b6d9e09c7fd5814a6a124a954dcec6cd1575484e7a72d93f2",
+      "user_message_sha256": "2cba149c7c9db3022cde0635eb8c7f90e1ab63b835b83f894023c6719aeadc4e",
+      "static_summary_sha256": "5aeb707ad92a797cfb904f696fdb8e3f6c0aae055c7bccd21ee0a646ea5998e8",
+      "static_risk_flags": [],
+      "verdict": "WA",
+      "first_case": "01",
+      "public_status": "candidate_failure",
+      "public_passed": 1,
+      "public_total": 3,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "95fc48a7dfd9f1694adcce66f492083115491102b335291c2b44e927a123b307",
+      "judge_tests_sha256": "2977c28992ba9b8ed46cd1762dfdc988559ff10f435977784c555771283e4eb8",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T22:46:56Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 12647,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 511,
+          "reasoning_output_tokens": 244
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 13.7,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a0a-5f86-7e12-8cab-b0e8947f200f",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "24d9f36be8059d6dc2b5a23856cf4862868835a7bd5bbcbf0b83cd828b308b13",
+        "input_sha256": "55d033f4ca4eb12fca1a4e08ca7274a4f70f8323b8e78462c8ca775e74cfae9a",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "1f5b9dd718a5e3ba3f0939ead8b3931fae044570aa903548b34b431f291de3ac",
+    "hedge_terms": [],
+    "vchecks_aligned": 1,
+    "delivered_utc": "2026-11-26T22:47:10Z",
+    "diagnosis_sha256": "1f5b9dd718a5e3ba3f0939ead8b3931fae044570aa903548b34b431f291de3ac",
+    "delivered_message_sha256": "f5e40b86731ee7c78d7a00f5af543eb9a86c2f4bb07d932a9a70a153a2fb63ef",
+    "diagnosis_words": 188,
+    "delivered_message_index": 9,
+    "delivered_after_action": 3,
+    "soft_code_flags": []
+  }
+}

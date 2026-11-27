@@ -1,0 +1,619 @@
+{
+  "max_requests": 20,
+  "max_usd": 10.0,
+  "price_standard_per_1m": {
+    "input": 2.0,
+    "output": 10.0
+  },
+  "price_conservative_per_1m": {
+    "input": 12.0,
+    "output": 60.0
+  },
+  "requests": [
+    {
+      "task_id": "lcb-atcoder-abc384_c",
+      "kind": "d2-contract",
+      "prompt_id": "D2_BUNDLE_V1",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 8000,
+      "estimated_input_tokens": 1835,
+      "bound_usd_conservative": 0.502,
+      "reserved_utc": "2026-11-26T09:02:07Z",
+      "request_body_sha256": "02b9175bbab444dc76af18906d9aa726ccfe35831fddacaa0a6503f207a3ed49",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_43c2c317740b41a29e7f944336c307fd",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1387,
+        "completion_tokens": 2072,
+        "total_tokens": 3459,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1384,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 512,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 30.88,
+      "cost_usd_standard": 0.02349,
+      "completed_utc": "2026-11-26T09:02:38Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc383_c",
+      "kind": "d2-contract",
+      "prompt_id": "D2_BUNDLE_V1",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 8000,
+      "estimated_input_tokens": 1329,
+      "bound_usd_conservative": 0.4959,
+      "reserved_utc": "2026-11-26T09:02:57Z",
+      "request_body_sha256": "cc0ec77da05e21c32938678491e5c1521da4057b8c597d4142f28fcda0f18e62",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_aee27cd603334d93a6c4dd3e863896d7",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1013,
+        "completion_tokens": 3340,
+        "total_tokens": 4353,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 969,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 51.94,
+      "cost_usd_standard": 0.03543,
+      "completed_utc": "2026-11-26T09:03:49Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc379_g",
+      "kind": "d2-contract",
+      "prompt_id": "D2_BUNDLE_V1",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 8000,
+      "estimated_input_tokens": 1288,
+      "bound_usd_conservative": 0.4955,
+      "reserved_utc": "2026-11-26T09:04:09Z",
+      "request_body_sha256": "8f1e5b11ce1e8af694a282517c9053b64f4ca3b13a4347fb63457c196e895b24",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_60653b124a8948d38fdc7951ba55f912",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 962,
+        "completion_tokens": 2610,
+        "total_tokens": 3572,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 827,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 38.38,
+      "cost_usd_standard": 0.02802,
+      "completed_utc": "2026-11-26T09:04:47Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc376_e",
+      "kind": "d2-contract",
+      "prompt_id": "D2_BUNDLE_V1",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 8000,
+      "estimated_input_tokens": 1288,
+      "bound_usd_conservative": 0.4955,
+      "reserved_utc": "2026-11-26T09:04:57Z",
+      "request_body_sha256": "94052cbeda061de96ee379788ce32e19d29a0fc654e0eb8c7f5a22d5280eadb1",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_c5aeb73abb52425e912e54d0db8cab36",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1022,
+        "completion_tokens": 3425,
+        "total_tokens": 4447,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 1024,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 51.53,
+      "cost_usd_standard": 0.03629,
+      "completed_utc": "2026-11-26T09:05:49Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_STRICT_V1",
+      "purpose": "phase3-strict:test5",
+      "task_id": "lcb-atcoder-abc376_g",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 3161,
+      "bound_usd_conservative": 0.2837,
+      "reserved_utc": "2026-11-27T01:04:45Z",
+      "request_body_sha256": "34ebd100a96c7908e6613b511b1ff1ec74f35be306da10e39331d2ac47b5b7e9",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_b1e1d2853cb3401b88b1bb98e6456ff2",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2679,
+        "completion_tokens": 659,
+        "total_tokens": 3338,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2676,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 320,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 12.33,
+      "cost_usd_standard": 0.01195,
+      "completed_utc": "2026-11-27T01:04:57Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_STRICT_V1",
+      "purpose": "phase3-strict:test5",
+      "task_id": "lcb-atcoder-abc385_c",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 2254,
+      "bound_usd_conservative": 0.2728,
+      "reserved_utc": "2026-11-27T01:06:22Z",
+      "request_body_sha256": "beed247fb7bbe38feea4c3f9e3f47a13228109e90bd0275efbbae2b7181534bf",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_526e71619abe476c81634311facdf5c5",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1630,
+        "completion_tokens": 377,
+        "total_tokens": 2007,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1627,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 128,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 7.52,
+      "cost_usd_standard": 0.00703,
+      "completed_utc": "2026-11-27T01:06:30Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_STRICT_V1",
+      "purpose": "phase3-strict:test5",
+      "task_id": "lcb-atcoder-abc377_d",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 2754,
+      "bound_usd_conservative": 0.2788,
+      "reserved_utc": "2026-11-27T01:07:05Z",
+      "request_body_sha256": "67988e59be318f1e7aa5ac9e8a0e3ba98a782a7a096060e642483af2088d3e4f",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_1214dbebce114c0291f56119a15bd96a",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2354,
+        "completion_tokens": 223,
+        "total_tokens": 2577,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2351,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 3.92,
+      "cost_usd_standard": 0.00694,
+      "completed_utc": "2026-11-27T01:07:09Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_STRICT_V1",
+      "purpose": "phase3-strict:test5",
+      "task_id": "lcb-atcoder-abc383_c",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 2496,
+      "bound_usd_conservative": 0.2757,
+      "reserved_utc": "2026-11-27T01:07:42Z",
+      "request_body_sha256": "fa40ea67671dfcb787ed7c5449e0c255c6c17ab0950e421171a24cf1ace95b32",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_3b3eca3a3ce04e2092d3ddaf57392411",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1965,
+        "completion_tokens": 204,
+        "total_tokens": 2169,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1962,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 3.8,
+      "cost_usd_standard": 0.00597,
+      "completed_utc": "2026-11-27T01:07:46Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_STALL_V2",
+      "purpose": "phase3-stall:test5",
+      "task_id": "lcb-atcoder-arc184_e",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 2849,
+      "bound_usd_conservative": 0.2799,
+      "reserved_utc": "2026-11-27T01:09:26Z",
+      "request_body_sha256": "405e519e8fcaa14255ec1595b0a44c65db3b319924e41406e489c7f7065c3da1",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_ec8aef959b7248748491cf863fa29f11",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2681,
+        "completion_tokens": 836,
+        "total_tokens": 3517,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2678,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 452,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 16.02,
+      "cost_usd_standard": 0.01372,
+      "completed_utc": "2026-11-27T01:09:42Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_STALL_V2",
+      "purpose": "phase3-stall:test5",
+      "task_id": "lcb-atcoder-arc185_e",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 2919,
+      "bound_usd_conservative": 0.2808,
+      "reserved_utc": "2026-11-27T01:15:45Z",
+      "request_body_sha256": "ad91629e4238ece8b5b11edc764ab46c7f6b3996337a0363eb86ab1006197b45",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_4a0a865074de49118fb53d7539fc03fe",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2796,
+        "completion_tokens": 473,
+        "total_tokens": 3269,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2793,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 66,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 7.78,
+      "cost_usd_standard": 0.01032,
+      "completed_utc": "2026-11-27T01:15:53Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_REVIEW_V1",
+      "purpose": "phase3-review:test5",
+      "task_id": "lcb-atcoder-abc375_c",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 2211,
+      "bound_usd_conservative": 0.2723,
+      "reserved_utc": "2026-11-27T01:17:00Z",
+      "request_body_sha256": "6ce3378ef6f1be63725ddd60bfe6b726ccc56496525e3af98e8c9d4ddd57dbac",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_a5a56a4537604a3e88a4abf3ea1fae3e",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1901,
+        "completion_tokens": 467,
+        "total_tokens": 2368,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1898,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 217,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 8.92,
+      "cost_usd_standard": 0.00847,
+      "completed_utc": "2026-11-27T01:17:09Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_REVIEW_V1",
+      "purpose": "phase3-review:test5",
+      "task_id": "lcb-atcoder-abc376_e",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 5287,
+      "bound_usd_conservative": 0.3092,
+      "reserved_utc": "2026-11-27T01:17:53Z",
+      "request_body_sha256": "97bf5b7e1a1c173b877ff0d308b4c77d8aa7ae33fd5fc72749243daf20bc3d0c",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_f8568836f5344df9a1de1c34a27141b1",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 4083,
+        "completion_tokens": 46,
+        "total_tokens": 4129,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 4080,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 2.14,
+      "cost_usd_standard": 0.00863,
+      "completed_utc": "2026-11-27T01:17:55Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_STALL_V2",
+      "purpose": "phase3-stall:test5",
+      "task_id": "lcb-atcoder-arc189_c",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 3325,
+      "bound_usd_conservative": 0.2857,
+      "reserved_utc": "2026-11-27T01:23:44Z",
+      "request_body_sha256": "c4cb7d136f3f702b4b735ea9f5fd4ef02d8d82f2ed66a71824fc83eedf570245",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_c5fe7876400044239bfb919bf62d765b",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 2803,
+        "completion_tokens": 407,
+        "total_tokens": 3210,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2800,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 52,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 7.72,
+      "cost_usd_standard": 0.00968,
+      "completed_utc": "2026-11-27T01:23:51Z"
+    },
+    {
+      "kind": "e2-diagnosis",
+      "prompt_id": "E2_REVIEW_V1",
+      "purpose": "phase3-review:test5",
+      "task_id": "lcb-atcoder-abc382_d",
+      "condition": "E2",
+      "v2_ledger_cap": {
+        "max_requests": 20,
+        "max_usd": 10.0
+      },
+      "configured_model": "openai/gpt-6.2-sol",
+      "api_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "max_completion_tokens": 4096,
+      "estimated_input_tokens": 2125,
+      "bound_usd_conservative": 0.2713,
+      "reserved_utc": "2026-11-27T01:28:30Z",
+      "request_body_sha256": "57cd4102a9cb437f11ad3f779032e71e908e4c23c620a4d9f7ea1a032e1d7cca",
+      "state": "completed",
+      "http_status": 200,
+      "request_id": "req_3a9fcd159dcf49f0afedcceb5ac65026",
+      "observed_model": "gpt-6.2-sol",
+      "finish_reason": "stop",
+      "usage": {
+        "prompt_tokens": 1786,
+        "completion_tokens": 71,
+        "total_tokens": 1857,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 1783,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 29,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 3.11,
+      "cost_usd_standard": 0.00428,
+      "completed_utc": "2026-11-27T01:28:33Z"
+    }
+  ],
+  "metadata_calls": [
+    {
+      "route": "GET /v1/models/gpt-6.2-sol",
+      "utc": "2026-11-26T09:02:05Z",
+      "billable_inference": false,
+      "http_status": 200,
+      "model": "gpt-6.2-sol",
+      "owned_by": "system"
+    }
+  ],
+  "note": "CSC2108 overnight enhanced D-v2 / E-v2 study ledger (hard ceiling 20 req / $10)"
+}

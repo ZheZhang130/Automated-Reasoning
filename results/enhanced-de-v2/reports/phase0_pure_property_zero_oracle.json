@@ -1,0 +1,330 @@
+{
+  "schema": "csc2108-phase0-pure-property-zero-oracle-v1",
+  "created_utc": "2026-11-26T08:49:00Z",
+  "tasks": 18,
+  "ref_fr": 2,
+  "ref_tot": 96,
+  "tasks_fr": 1,
+  "pp_kill": 38,
+  "pp_tot": 46,
+  "tasks_kill": 17,
+  "by_reason": {
+    "RE": 1,
+    "TLE": 14,
+    "postcondition": 14,
+    "metamorphic": 9,
+    "oracle_mismatch": 0
+  },
+  "by_verdict": {
+    "WA": {
+      "total": 33,
+      "killed": 25
+    },
+    "TLE": {
+      "total": 8,
+      "killed": 8
+    },
+    "RE": {
+      "total": 5,
+      "killed": 5
+    }
+  },
+  "false_rejections": [
+    {
+      "task_id": "lcb-atcoder-abc390_d",
+      "sha": "9c17917ba66184025d4053b55965bdc980c049b52363e8469e7c38383473faf4",
+      "failure": {
+        "reason": "TLE",
+        "suite": "metamorphic",
+        "input": "12\n54099087129051136 67346452816330752 37421447982874624 52871985939611648 72974050846048256 64478398302388224 67685301476130816 15598124718358528 43289790086381568 26950026689249280 68241703290535936 91494901547532288\n",
+        "timeout": 2.0,
+        "output": "",
+        "detail": ""
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_d",
+      "sha": "c7bd32ec4c2fd9cabefb16d7c1adcd55afd2377b5b45582c5f18584b881068f6",
+      "failure": {
+        "reason": "TLE",
+        "suite": "metamorphic",
+        "input": "12\n54099087129051136 67346452816330752 37421447982874624 52871985939611648 72974050846048256 64478398302388224 67685301476130816 15598124718358528 43289790086381568 26950026689249280 68241703290535936 91494901547532288\n",
+        "timeout": 2.0,
+        "output": "",
+        "detail": ""
+      }
+    }
+  ],
+  "per_task": [
+    {
+      "task_id": "lcb-atcoder-abc387_c",
+      "meta_pairs": 45,
+      "ref_fr": 0,
+      "ref_tot": 5,
+      "pp_kill": 1,
+      "pp_tot": 1,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 1,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc387_f",
+      "meta_pairs": 44,
+      "ref_fr": 0,
+      "ref_tot": 3,
+      "pp_kill": 1,
+      "pp_tot": 1,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 1,
+        "postcondition": 0,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc389_d",
+      "meta_pairs": 35,
+      "ref_fr": 0,
+      "ref_tot": 11,
+      "pp_kill": 1,
+      "pp_tot": 1,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 1,
+        "postcondition": 0,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_d",
+      "meta_pairs": 45,
+      "ref_fr": 2,
+      "ref_tot": 6,
+      "pp_kill": 2,
+      "pp_tot": 2,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 2,
+        "postcondition": 0,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_e",
+      "meta_pairs": 45,
+      "ref_fr": 0,
+      "ref_tot": 6,
+      "pp_kill": 2,
+      "pp_tot": 4,
+      "by_reason": {
+        "RE": 1,
+        "TLE": 0,
+        "postcondition": 1,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc391_d",
+      "meta_pairs": 31,
+      "ref_fr": 0,
+      "ref_tot": 4,
+      "pp_kill": 2,
+      "pp_tot": 2,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 2,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_e",
+      "meta_pairs": 45,
+      "ref_fr": 0,
+      "ref_tot": 4,
+      "pp_kill": 2,
+      "pp_tot": 2,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 2,
+        "postcondition": 0,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_f",
+      "meta_pairs": 38,
+      "ref_fr": 0,
+      "ref_tot": 3,
+      "pp_kill": 1,
+      "pp_tot": 4,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 1,
+        "postcondition": 0,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc397_b",
+      "meta_pairs": 17,
+      "ref_fr": 0,
+      "ref_tot": 6,
+      "pp_kill": 3,
+      "pp_tot": 3,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 3,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_b",
+      "meta_pairs": 45,
+      "ref_fr": 0,
+      "ref_tot": 11,
+      "pp_kill": 1,
+      "pp_tot": 1,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 0,
+        "metamorphic": 1,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_g",
+      "meta_pairs": 35,
+      "ref_fr": 0,
+      "ref_tot": 3,
+      "pp_kill": 4,
+      "pp_tot": 5,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 4,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc399_e",
+      "meta_pairs": 36,
+      "ref_fr": 0,
+      "ref_tot": 5,
+      "pp_kill": 0,
+      "pp_tot": 1,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 0,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc400_c",
+      "meta_pairs": 37,
+      "ref_fr": 0,
+      "ref_tot": 9,
+      "pp_kill": 5,
+      "pp_tot": 5,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 5,
+        "postcondition": 0,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc191_d",
+      "meta_pairs": 34,
+      "ref_fr": 0,
+      "ref_tot": 3,
+      "pp_kill": 3,
+      "pp_tot": 4,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 3,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc192_e",
+      "meta_pairs": 14,
+      "ref_fr": 0,
+      "ref_tot": 3,
+      "pp_kill": 2,
+      "pp_tot": 2,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 2,
+        "postcondition": 0,
+        "metamorphic": 0,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_d",
+      "meta_pairs": 14,
+      "ref_fr": 0,
+      "ref_tot": 3,
+      "pp_kill": 5,
+      "pp_tot": 5,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 0,
+        "metamorphic": 5,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc195_b",
+      "meta_pairs": 26,
+      "ref_fr": 0,
+      "ref_tot": 6,
+      "pp_kill": 2,
+      "pp_tot": 2,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 0,
+        "metamorphic": 2,
+        "oracle_mismatch": 0
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc196_a",
+      "meta_pairs": 45,
+      "ref_fr": 0,
+      "ref_tot": 5,
+      "pp_kill": 1,
+      "pp_tot": 1,
+      "by_reason": {
+        "RE": 0,
+        "TLE": 0,
+        "postcondition": 0,
+        "metamorphic": 1,
+        "oracle_mismatch": 0
+      }
+    }
+  ]
+}

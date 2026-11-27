@@ -1,0 +1,179 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-arc195_b",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-f16b7b58ca9693b2 statement>>>\n# Uniform Sum\n\nThere are two sequences A=(A_1,\\dots,A_N) and B=(B_1,\\dots,B_N). You can perform the following three types of operations any number of times in any order:\n\n- Choose an index i such that A_i = -1, and replace A_i with any non-negative integer.\n- Choose an index i such that B_i = -1, and replace B_i with any non-negative integer.\n- Rearrange the elements of sequence A in any order.\n\nDetermine whether it is possible, after these operations, for all elements of A and B to be non-negative and satisfy A_1 + B_1 = A_2 + B_2 = \\dots = A_N + B_N.\n\nInput\n\nThe input is given from Standard Input in the following format:\nN\nA_1 A_2 \\ldots A_N\nB_1 B_2 \\ldots B_N\n\nOutput\n\nIf it is possible, after the operations, for all elements of A and B to be non-negative and satisfy A_1 + B_1 = A_2 + B_2 = \\dots = A_N + B_N, print Yes. Otherwise, print No.\n\nConstraints\n\n\n- 2 \\leq N \\leq 2000\n- -1 \\leq A_i \\leq 10^9\n- -1 \\leq B_i \\leq 10^9\n- All input values are integers.\n\nSample Input 1\n\n4\n2 0 -1 3\n3 -1 4 2\n\nSample Output 1\n\nYes\n\nConsider the following operations:\n\n- Replace A_3 with 1.\n- Replace B_2 with 1.\n- Rearrange A to (1,3,0,2).\n\nAfter these operations, A = (1,3,0,2) and B = (3,1,4,2): all elements of A and B are non-negative, and A_1+B_1 = A_2+B_2 = A_3+B_3 = A_4+B_4 = 4 is satisfied.\n\nSample Input 2\n\n3\n1 2 3\n1 2 4\n\nSample Output 2\n\nNo\n\nNo matter how you perform the operations, it is impossible to satisfy A_1+B_1 = A_2+B_2 = A_3+B_3.\n\nSample Input 3\n\n3\n1 2 -1\n1 2 4\n\nSample Output 3\n\nNo\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-f16b7b58ca9693b2>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 e9a4689af83f0ff47262fbb430384d0f6e9ea47094d96f92ff50dbf9daab3b00, 7724 bytes)\n<<<DATA-f16b7b58ca9693b2 program>>>\nimport sys\nfrom collections import Counter\n\ndef solve():\n    input_data = sys.stdin.read().split()\n    idx = 0\n    N = int(input_data[idx]); idx += 1\n    A = list(map(int, input_data[idx:idx+N])); idx += N\n    B = list(map(int, input_data[idx:idx+N])); idx += N\n\n    # Count fixed values in A and B\n    fixed_A = [x for x in A if x != -1]\n    fixed_B = [x for x in B if x != -1]\n\n    # Count how many -1s we have in each\n    cnt_A = fixed_A.count(-1)\n    cnt_B = fixed_B.count(-1)\n\n    # We can fill -1s with any non-negative integer.\n    # We can also rearrange A.\n    # Goal: A_i + B_i = S for all i, with A_i, B_i >= 0.\n\n    # Strategy:\n    # For positions where both A and B are fixed, we must have A_i + B_i = S.\n    # So S must be at least max(A_i + B_i) over all fixed pairs.\n    # Also, for any position where one is fixed and the other is -1, \n    # we can choose the -1 value to satisfy the sum S, as long as S - fixed >= 0.\n    # For positions where both are -1, we can choose any non-negative values that sum to S.\n\n    # So:\n    # 1. Compute min possible S: must be at least max(A_i + B_i) for all i where both are fixed.\n    #    If there are no fixed pairs, min_S = 0.\n    # 2. For each position:\n    #    - If both fixed: check A_i + B_i == S. If not, impossible.\n    #    - If one fixed (say A_i fixed, B_i = -1): we need S - A_i >= 0.\n    #    - If both -1: we can always fill with (0, S) as long as S >= 0.\n    #\n    # But we can choose S freely? Actually, we can choose the filled values arbitrarily.\n    # However, the fixed pairs constrain S.\n    # So S must be at least max(A_i + B_i) for all fixed pairs.\n    # Also, for positions with one fixed, say A_i fixed, we need S >= A_i.\n    # Similarly, if B_i fixed, S >= B_i.\n    # So S must be at least max( all fixed A_i, all fixed B_i, all fixed A_i+B_i ).\n    # But note: if we have a fixed pair (a, b), then S = a+b, so S is fixed for that pair.\n    # If there are multiple fixed pairs, they must all have the same sum.\n    #\n    # Therefore:\n    # Step 1: Check all fixed pairs: they must all have the same sum S.\n    # Step 2: For positions with one fixed value, say A_i = a, then we need S >= a.\n    #          Similarly, if B_i = b, then S >= b.\n    # Step 3: For positions with both -1, we can set A_i=0, B_i=S (or any split) as long as S>=0.\n    #\n    # So the algorithm:\n    # 1. Collect all fixed pairs and check they have the same sum S.\n    #    If no fixed pairs, S can be any non-negative integer. We'll choose S = max(max(fixed_A), max(fixed_B), 0).\n    #    But actually, we can choose S as large as needed? However, we want to minimize constraints.\n    #    Actually, we can choose S to be the maximum of:\n    #        - all fixed A_i\n    #        - all fixed B_i\n    #        - all fixed A_i+B_i (if any)\n    #    Why? Because for a fixed pair (a,b), we must have S = a+b. So if there are multiple fixed pairs, they must agree.\n    #    If there is at least one fixed pair, then S is fixed to that sum.\n    #    If there are no fixed pairs, then we can choose S arbitrarily. To minimize constraints, we can choose S = max(max(fixed_A), max(fixed_B), 0).\n    #    But note: if there are fixed values that are not in pairs, we still need S >= those values.\n    #\n    # Revised plan:\n    # Let S_min = 0.\n    # For every fixed A_i, S_min = max(S_min, A_i).\n    # For every fixed B_i, S_min = max(S_min, B_i).\n    # For every fixed pair (A_i, B_i), we require A_i + B_i == S_min. \n    #    But if we have multiple fixed pairs, they must all have the same sum.\n    #    So: if there are fixed pairs, they must all have the same sum, say S_fixed.\n    #    Then we set S = S_fixed.\n    #    If there are no fixed pairs, then S can be chosen as S_min (which is max of all fixed values, or 0).\n    #\n    # However, what if we have fixed pairs and also fixed single values?\n    # Example: A = [1, -1], B = [2, -1]. Fixed pair: (1,2) -> sum=3. Fixed single: none? \n    # But wait, the fixed values are part of the pairs. \n    # Actually, the fixed values are given. The -1s are to be filled.\n    # So the fixed pairs are the positions where both A_i and B_i are not -1.\n    # The positions where one is -1 are not fixed pairs.\n    #\n    # So:\n    # Step 1: Identify all positions i where A_i != -1 and B_i != -1. These are fixed pairs.\n    # Step 2: If there are fixed pairs, they must all have the same sum S. If not, return \"No\".\n    # Step 3: Let S = that common sum (if fixed pairs exist). If no fixed pairs, then S can be chosen as max(max(fixed_A), max(fixed_B), 0).\n    # Step 4: For every position i:\n    #    - If A_i != -1 and B_i != -1: check A_i + B_i == S. (Already checked in step 2, but do again for safety)\n    #    - If A_i != -1 and B_i == -1: we need S - A_i >= 0. If not, return \"No\".\n    #    - If A_i == -1 and B_i != -1: we need S - B_i >= 0. If not, return \"No\".\n    #    - If A_i == -1 and B_i == -1: we can fill with (0, S) as long as S >= 0. Since S is non-negative by construction, this is always possible.\n    #\n    # Step 5: Also, we must ensure that S is non-negative. Since all fixed values are non-negative (because we only consider non -1, and input says non-negative for filled, and fixed values are given as non-negative? \n    #    Constraints: -1 <= A_i, B_i <= 10^9. But when we fill -1, we fill with non-negative. The fixed values (non -1) are given as non-negative? \n    #    The problem says: \"replace A_i with any non-negative integer\". So the fixed values (non -1) are already non-negative? \n    #    The constraints say -1 <= A_i <= 10^9, so non -1 values are >=0. So S will be non-negative.\n    #\n    # Implementation:\n    # Read N, A, B.\n    # fixed_pairs = []\n    # fixed_A_vals = []\n    # fixed_B_vals = []\n    # For i in range(N):\n    #   if A[i] != -1 and B[i] != -1:\n    #       fixed_pairs.append(A[i] + B[i])\n    #   if A[i] != -1:\n    #       fixed_A_vals.append(A[i])\n    #   if B[i] != -1:\n    #       fixed_B_vals.append(B[i])\n    #\n    # If fixed_pairs is not empty:\n    #   S = fixed_pairs[0]\n    #   if any(p != S for p in fixed_pairs): return \"No\"\n    # Else:\n    #   S = max(fixed_A_vals + fixed_B_vals, default=0)\n    #\n    # Now check all positions:\n    # For i in range(N):\n    #   if A[i] != -1 and B[i] != -1:\n    #       if A[i] + B[i] != S: return \"No\"\n    #   elif A[i] != -1:\n    #       if S - A[i] < 0: return \"No\"\n    #   elif B[i] != -1:\n    #       if S - B[i] < 0: return \"No\"\n    #   else:\n    #       # both -1, we can fill with (0, S) which is valid since S>=0.\n    #\n    # If all checks pass, return \"Yes\".\n\n    fixed_pairs = []\n    fixed_A_vals = []\n    fixed_B_vals = []\n    for i in range(N):\n        if A[i] != -1 and B[i] != -1:\n            fixed_pairs.append(A[i] + B[i])\n        if A[i] != -1:\n            fixed_A_vals.append(A[i])\n        if B[i] != -1:\n            fixed_B_vals.append(B[i])\n\n    if fixed_pairs:\n        S = fixed_pairs[0]\n        for p in fixed_pairs:\n            if p != S:\n                print(\"No\")\n                return\n    else:\n        all_fixed = fixed_A_vals + fixed_B_vals\n        if all_fixed:\n            S = max(all_fixed)\n        else:\n            S = 0\n\n    # Now verify all positions\n    for i in range(N):\n        if A[i] != -1 and B[i] != -1:\n            if A[i] + B[i] != S:\n                print(\"No\")\n                return\n        elif A[i] != -1:\n            if S - A[i] < 0:\n                print(\"No\")\n                return\n        elif B[i] != -1:\n            if S - B[i] < 0:\n                print(\"No\")\n                return\n        else:\n            # both -1: we can fill with (0, S) -> 0+S = S, and both non-negative since S>=0.\n            pass\n\n    print(\"Yes\")\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-f16b7b58ca9693b2>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 3/3 public cases passed)\n<<<DATA-f16b7b58ca9693b2 report>>>\nPUBLIC TESTS: 3/3 passed\n<<<END-DATA-f16b7b58ca9693b2>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-f16b7b58ca9693b2 static-analysis>>>\n- Structure: 52 code lines (112 comments), max loop depth 1, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.033s), 02:AC(0.033s), 03:AC(0.033s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-f16b7b58ca9693b2>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 484 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "f16b7b58ca9693b2",
+    "statement_sha256": "3665ef4717573ce679b69c9e847e3a216efeb3e6bc6351feaff84f87c28a4194",
+    "candidate_sha256": "e9a4689af83f0ff47262fbb430384d0f6e9ea47094d96f92ff50dbf9daab3b00",
+    "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+    "user_message_sha256": "6ca77982b8a65e3cf11b0e0b623d93495686fc586a36c3daf6b370659e194366",
+    "static_summary_sha256": "3f98bb12e964e4d814e38c6d975921e3571fb56f48e8b167bebe7ca8cf39e244",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 3,
+    "public_total": 3,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "e9a4689af83f0ff47262fbb430384d0f6e9ea47094d96f92ff50dbf9daab3b00",
+    "judge_tests_sha256": "1b732dedf9dd527b7c0fba0d0e5c69c256cc9411b4d97757d9041cedb46370f2",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\n\nDEFECT. The program prints `No` for both inputs below, even though rearranging `A` makes a uniform sum possible.\n\n## Likely bug\n\nThe loop that builds `fixed_pairs` treats `A[i]` and `B[i]` as permanently paired whenever both are known. Rearranging `A` can change which known values are paired and which land opposite an unknown entry in `B`.\n\n## Counterexample\n\nC-1\n```text\n2\n0 1\n0 1\n```\n```text\nYes\n```\n\nC-2\n```text\n2\n0 2\n1 -1\n```\n```text\nYes\n```\n\nIn C-1, swapping `A` produces sums of 1 and 1. In C-2, swapping `A` and filling the unknown in `B` with 3 produces sums of 3 and 3.\n\n## Repair direction\n\nUse the counts of known values on each side to determine the minimum number of pairs that must contain two known values. If that minimum is zero, choose a target sum at least as large as every known value. Otherwise, consider sums formed by a known value from each side, skipping sums smaller than any known value. For each candidate, count disjoint complementary pairs using value frequencies. Accept if the count reaches the required minimum, since the remaining known values can be paired with unknown entries and completed to the target sum.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 14652,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 382,
+        "reasoning_output_tokens": 79
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 10.69,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21765-92fe-7da3-b5eb-d7380b7ec6e0",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "2159787187b43502122bbc6cc3c43c244ca31b1c620359bd2b81087a21f8da78",
+      "input_sha256": "84f964ef39ee314051c0d38bcc9a83597c484891eb10c94d17b89ba02114ed77",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": "[Frontier review — verified counterexample] A separate, stronger model reviewed the program that just passed the public tests and proposed the test input below. The harness ran your current program, unchanged, on that input in an isolated sandbox: on C-1 it printed output different from the reviewer's expected output; on C-2 it printed output different from the reviewer's expected output. The expected output is the reviewer's own hand-computed answer, not an official test, and the input may be imperfect; check both against the statement before changing anything. Your files, history and remaining budget are unchanged (18 actions left). If you confirm the defect, revise /workspace/solution.py and run python -I /public/check.py again.\n\n## Likely bug\nThe loop that builds `fixed_pairs` treats `A[i]` and `B[i]` as permanently paired whenever both are known. Rearranging `A` can change which known values are paired and which land opposite an unknown entry in `B`.\n\n## Counterexample\n\nC-1\nInput:\n```text\n2\n0 1\n0 1\n```\nReviewer's expected output:\n```text\nYes\n```\nYour program printed:\n```text\nNo\n```\n\nC-2\nInput:\n```text\n2\n0 2\n1 -1\n```\nReviewer's expected output:\n```text\nYes\n```\nYour program printed:\n```text\nNo\n```\n\n## Repair direction\nUse the counts of known values on each side to determine the minimum number of pairs that must contain two known values. If that minimum is zero, choose a target sum at least as large as every known value. Otherwise, consider sums formed by a known value from each side, skipping sums smaller than any known value. For each candidate, count disjoint complementary pairs using value frequencies. Accept if the count reaches the required minimum, since the remaining known values can be paired with unknown entries and completed to the target sum.",
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": true,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 11.219,
+    "provider_wait_seconds": 10.688,
+    "harness_check_seconds": 0.531,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "verified_delivered",
+    "review_verdict": "DEFECT",
+    "counterexamples": [
+      {
+        "id": "C-1",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "415e3db2688cf0dbcca373c111a0322d095dd4642e0e1d89e56c6a086ddfc468",
+        "expected_sha256": "927580bf287560d4a26a5d6e129f91ffa9cb63031b1a8c772be6ec584e65e82b",
+        "candidate_outcome": "WA",
+        "verified": true
+      },
+      {
+        "id": "C-2",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "b96aaa92d95755a7c2790b37d5082c873e7280859cd27f9084fa90ca60e26600",
+        "expected_sha256": "927580bf287560d4a26a5d6e129f91ffa9cb63031b1a8c772be6ec584e65e82b",
+        "candidate_outcome": "WA",
+        "verified": true
+      }
+    ],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T10:27:42Z",
+    "local_seconds_left_at_trigger": 484.33,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-arc195_b",
+      "nonce": "f16b7b58ca9693b2",
+      "statement_sha256": "3665ef4717573ce679b69c9e847e3a216efeb3e6bc6351feaff84f87c28a4194",
+      "candidate_sha256": "e9a4689af83f0ff47262fbb430384d0f6e9ea47094d96f92ff50dbf9daab3b00",
+      "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+      "user_message_sha256": "6ca77982b8a65e3cf11b0e0b623d93495686fc586a36c3daf6b370659e194366",
+      "static_summary_sha256": "3f98bb12e964e4d814e38c6d975921e3571fb56f48e8b167bebe7ca8cf39e244",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 3,
+      "public_total": 3,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "e9a4689af83f0ff47262fbb430384d0f6e9ea47094d96f92ff50dbf9daab3b00",
+      "judge_tests_sha256": "1b732dedf9dd527b7c0fba0d0e5c69c256cc9411b4d97757d9041cedb46370f2",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T10:27:42Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 14652,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 382,
+          "reasoning_output_tokens": 79
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 10.69,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21765-92fe-7da3-b5eb-d7380b7ec6e0",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "2159787187b43502122bbc6cc3c43c244ca31b1c620359bd2b81087a21f8da78",
+        "input_sha256": "84f964ef39ee314051c0d38bcc9a83597c484891eb10c94d17b89ba02114ed77",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "3f71ede0bcf3fe993beeba9b8b9a1d0d88c095f442f9087d0fb08c65be9b8b20",
+    "delivered_utc": "2026-11-26T10:27:53Z",
+    "diagnosis_sha256": "e84dc7d68ddb4fc505d050a53812173fac5ee3c8bb13953dd398c9d7b6c2e596",
+    "delivered_message_sha256": "ab5d1fa9ce8c8c960206bee93a1eae4a5ac6c3847544f3d6383e34e13e6051bb",
+    "diagnosis_words": 176,
+    "delivered_message_index": 8,
+    "delivered_after_action": 2,
+    "soft_code_flags": []
+  }
+}

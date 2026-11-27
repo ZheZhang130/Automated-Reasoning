@@ -1,0 +1,34 @@
+{
+  "schema": "csc2108-d2-bundle-v1",
+  "task_id": "lcb-atcoder-abc375_c",
+  "provider": "codex",
+  "prompt_id": "D2_BUNDLE_V1",
+  "statement_sha256": "56a66f01fc904f8664af9ba70b129452f88d371a4c5d3a55596eac60be66e827",
+  "prompt_sha256": "ed4757974cef12b60537de1e65cfdf9dcd2c83415216e59d259dad5737dc4fbf",
+  "contract_md": "- **POST-1** Input consists of a decimal integer \\(N\\) on the first line and exactly \\(N\\) grid rows. \\(N\\) is even and \\(2 \\le N \\le 3000\\). Each row contains exactly \\(N\\) characters, all `#` or `.`.\n- **POST-2** Output consists of exactly \\(N\\) rows of \\(N\\) characters from `#` and `.`. For each \\(i\\) from \\(1\\) through \\(N/2\\), the next grid has at \\((y,N+1-x)\\) the color that the current grid has at \\((x,y)\\) for every \\(i \\le x,y \\le N+1-i\\). All replacements in that step use the same current grid. Cells outside the step’s square retain their colors. The output is the grid after the last step. This applies to the single step at \\(N=2\\), the final central \\(2\\times2\\) square at every size, and monochromatic grids.\n- **POST-3** For each set of four positions related by successive quarter-turns of the full grid, the number of black cells in those positions is the same in the input and output.\n- **POST-4** The full range through \\(N=3000\\) must be supported. Reading and printing the grids already requires \\(\\Omega(N^2)\\) time, with 9,000,000 cells in each grid at the upper bound.",
+  "module_code": "import random\nimport re\n\n\ndef _lines(text: str) -> list[str]:\n    text = text.replace(\"\\r\\n\", \"\\n\")\n    if text.endswith(\"\\n\"):\n        text = text[:-1]\n    return text.split(\"\\n\")\n\n\ndef _valid_rows(rows: list[str], size: int) -> bool:\n    return len(rows) == size and all(\n        len(row) == size and row.count(\"#\") + row.count(\".\") == size\n        for row in rows\n    )\n\n\ndef _parse_input(inp: str) -> list[str] | None:\n    header, *rows = _lines(inp)\n    if re.fullmatch(r\"\\+?[0-9]+\", header) is None:\n        return None\n    digits = header.lstrip(\"+\").lstrip(\"0\")\n    if not digits or len(digits) > 4:\n        return None\n    size = int(digits)\n    if not 2 <= size <= 3000 or size % 2 or not _valid_rows(rows, size):\n        return None\n    return rows\n\n\ndef _format_input(rows: list[str]) -> str:\n    return str(len(rows)) + \"\\n\" + \"\\n\".join(rows) + \"\\n\"\n\n\ndef _random_rows(rng: random.Random, size: int) -> list[str]:\n    colors = str.maketrans(\"01\", \".#\")\n    return [\n        format(rng.getrandbits(size), f\"0{size}b\").translate(colors)\n        for _ in range(size)\n    ]\n\n\ndef validate_input(inp: str) -> bool:\n    return _parse_input(inp) is not None\n\n\ndef gen_small(seed: int, n: int) -> list[str]:\n    rng = random.Random(seed)\n    fixed = [\n        [\"#.\", \"..\"],\n        [\"#..#\", \"..#.\", \"....\", \".#..\"],\n        [\"#.#.#.\", \".#.#.#\", \"#.#.#.\", \".#.#.#\", \"#.#.#.\", \".#.#.#\"],\n        [\"........\"] * 3 + [\"...#....\"] + [\"........\"] * 4,\n        [\"##\", \"##\"],\n        [\"..\", \"..\"],\n    ]\n    inputs = [_format_input(rows) for rows in fixed[:n]]\n    while len(inputs) < n:\n        size = rng.choice((2, 4, 6, 8))\n        inputs.append(_format_input(_random_rows(rng, size)))\n    return inputs\n\n\ndef gen_stress(seed: int) -> list[str]:\n    rng = random.Random(seed)\n    dense = _format_input(_random_rows(rng, 3000))\n    size = 2998\n    sparse_rows = []\n    for _ in range(size):\n        column = rng.randrange(size)\n        sparse_rows.append(\".\" * column + \"#\" + \".\" * (size - 1 - column))\n    return [dense, _format_input(sparse_rows)]\n\n\ndef _quarter_turn_counts(\n    rows: list[str], row: int, column: int, last: int\n) -> int:\n    return (\n        (rows[row][column] == \"#\")\n        + (rows[column][last - row] == \"#\")\n        + (rows[last - row][last - column] == \"#\")\n        + (rows[last - column][row] == \"#\")\n    )\n\n\ndef check_postconditions(inp: str, out: str) -> list[tuple[str, str]]:\n    before = _parse_input(inp)\n    if before is None:\n        return [(\"POST-1\", \"Input does not meet the grid format or bounds.\")]\n    after = _lines(out)\n    size = len(before)\n    if not _valid_rows(after, size):\n        return [(\"POST-2\", f\"Expected {size} rows of {size} characters from '#.'.\")]\n    last = size - 1\n    for row in range(size // 2):\n        for column in range(size // 2):\n            if _quarter_turn_counts(before, row, column, last) != (\n                _quarter_turn_counts(after, row, column, last)\n            ):\n                return [\n                    (\n                        \"POST-3\",\n                        f\"Black-cell count changed among the quarter-turn \"\n                        f\"positions of ({row + 1}, {column + 1}).\",\n                    )\n                ]\n    return []\n\n\ndef metamorphic_pairs(seed: int, n: int) -> list[tuple[str, str, str, str]]:\n    # Each step is a bijection, so distinct grids of the same size\n    # cannot have equal outputs. The other relations require scalar outputs.\n    return []\n\n\ndef reference_small(inp: str) -> str | None:\n    rows = _parse_input(inp)\n    if rows is None or len(rows) > 8:\n        return None\n    size = len(rows)\n    current = [list(row) for row in rows]\n    for i in range(1, size // 2 + 1):\n        next_grid = [row[:] for row in current]\n        for x in range(i, size + 2 - i):\n            for y in range(i, size + 2 - i):\n                next_grid[y - 1][size - x] = current[x - 1][y - 1]\n        current = next_grid\n    return \"\\n\".join(\"\".join(row) for row in current) + \"\\n\"",
+  "response_sha256": "350271ac15e429812e48bf4a5f5304ab459f6cee92de44fdbd227162ee5f1373",
+  "created_utc": "2026-11-26T08:54:56Z",
+  "isolation": {
+    "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+    "thread_id": "01a2170f-e5b5-7ea2-9fb3-208cee598dc9",
+    "started_item_types": [],
+    "completed_item_types": [
+      "agent_message"
+    ],
+    "tool_events": [],
+    "malformed_lines": [],
+    "post_run_workdir_files": [],
+    "events_sha256": "6b9e253dbe39db580e2ae55b07394a85b6c20914de9c4f439746e2b9b918578b",
+    "input_sha256": "479271369914337c420ed83ce77e038b58d9482491678c65beb8d73c91216592",
+    "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+  },
+  "usage": {
+    "input_tokens": 12372,
+    "cached_input_tokens": 9344,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2308,
+    "reasoning_output_tokens": 860
+  },
+  "wall_seconds": 49.34
+}

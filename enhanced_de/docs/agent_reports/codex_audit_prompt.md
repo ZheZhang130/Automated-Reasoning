@@ -1,0 +1,16 @@
+> Exact prompt given to the Codex auditor.
+
+You are an independent research-engineering auditor (Codex) on a CSC2108 course project. You are NOT acting as the experimental frontier model; do not produce guidance for any coding task. Work read-only.
+
+Repository: the current directory (branch feat/csc2108-enhanced-d-e-v2). Focus on the package `enhanced_de/` (uncommitted files included), plus the frozen pieces it imports from `guided_agent/`. The external study root is <study> (read-only for you; do not modify anything).
+
+Context: a previous agent implemented enhanced contract (D2: executable verification banks gated on public pass; modes inputs-stress / property / oracle) and enhanced diagnosis (E2: strict first-public-failure diagnosis; stall diagnosis at the 2nd consecutive no-source length stop, with neutral and C-late controls; review gate at first public pass). Experimental frontier calls must go through isolated Codex replay (empty working dir, read-only, no repository or study access) or a fail-closed paid-API ledger (hard ceiling 20 requests / $10 conservative).
+
+Audit and report concretely (file:line references) on:
+1. ISOLATION / LEAKAGE: Can any experimental frontier call (D2 authoring, E2 strict/stall/review) or the local agent see hidden tests, expected hidden outputs, verdicts, reference solutions, prior official submissions, `results/final-main`, or repository files? Check `ledger_guard.isolated_codex_infer` (working dir, sandbox flags, env, config/AGENTS.md inheritance, network), what text goes into each packet, and where the D2 bank's reference_small outputs come from. Check that the mutant pool built from official submissions is used only offline.
+2. TRIGGER FIDELITY: Before its trigger fires, does each arm behave byte-identically to the frozen A agent (`frozen-v6`), i.e. no prompt changes, no extra observations, unchanged format-error counting? Check `runner_v2.py` (EnhancedAgent.step/query/execute_actions, _public_judge) and the controllers in `e2_diagnosis.py` and `d2_contract.py` (D2GateChecker). Identify any path where untriggered runs could diverge from A.
+3. CORRECTNESS BUGS in trigger/delivery logic: stall trigger (2nd consecutive length stop with no candidate source), public-failure fallback, review silent-unless-verified gate, D2 seed-pool rotation, advisory V-checks never blocking, budget/clock accounting (frontier wait excluded from local clock?), word caps (STALL_MAX_WORDS was raised 220->300 mid-phase).
+4. LEDGER: does `ledger_guard` fail closed (missing ledger, reservation before send, ceiling 20 req / $10)? Is the current ledger <study>\api-ledger.json consistent (4 requests)?
+5. CLAIMS: read enhanced_de/docs/01_LITERATURE_AND_MULTI_AGENT_DESIGN.md and 02_PHASE0_AND_PHASE1_D2_FINDINGS.md and spot-check numbers against <study>\reports\*.json and runs\*\summary.json. Flag any overstated, unsupported, or wrong claims (e.g. "detection is completely solved", "proves", selection-on-outcome issues, missing controls).
+
+Write a prioritized findings list (severity: blocker / important / minor), each with evidence and a suggested fix. Be skeptical and specific; do not just agree with the docs. Keep the report under ~1500 words.

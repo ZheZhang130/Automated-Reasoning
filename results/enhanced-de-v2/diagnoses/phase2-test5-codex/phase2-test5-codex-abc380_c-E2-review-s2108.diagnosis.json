@@ -1,0 +1,153 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-abc380_c",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-0bccdf3939b316f2 statement>>>\n# Move Segment\n\nYou are given a string S of length N consisting of 0 and 1.\nMove the K-th 1-block from the beginning in S to immediately after the (K-1)-th 1-block, and print the resulting string.\nIt is guaranteed that S contains at least K 1-blocks.\nHere is a more precise description.\n\n- Let S_{l\\ldots r} denote the substring of S from the l-th character through the r-th character.\n- We define a substring S_{l\\ldots r} of S to be a 1-block if it satisfies all of the following conditions:\n- S_l = S_{l+1} = \\cdots = S_r =  1\n- l = 1 or S_{l-1} =  0\n- r = N or S_{r+1} =  0\n\n\n- \nSuppose that all 1-blocks in S are S_{l_1\\ldots r_1}, \\ldots, S_{l_m\\ldots r_m}, where l_1 < l_2 < \\cdots < l_m.\nThen, we define the length N string T, obtained by moving the K-th 1-block to immediately after the (K-1)-th 1-block, as follows:\n\n- T_i = S_i for 1 \\leq i \\leq r_{K-1}\n- T_i =  1 for r_{K-1} + 1 \\leq i \\leq r_{K-1} + (r_K - l_K) + 1\n- T_i =  0 for r_{K-1} + (r_K - l_K) + 2 \\leq i \\leq r_K\n- T_i = S_i for r_K + 1 \\leq i \\leq N\n\nInput\n\nThe input is given from Standard Input in the following format:\nN K\nS\n\nOutput\n\nPrint the answer.\n\nConstraints\n\n\n- 1 \\leq N \\leq 5 \\times 10^5\n- S is a string of length N consisting of 0 and 1.\n- 2 \\leq K\n- S contains at least K 1-blocks.\n\nSample Input 1\n\n15 3\n010011100011001\n\nSample Output 1\n\n010011111000001\n\nS has four 1-blocks: from the 2nd to the 2nd character, from the 5th to the 7th character, from the 11th to the 12th character, and from the 15th to the 15th character.\n\nSample Input 2\n\n10 2\n1011111111\n\nSample Output 2\n\n1111111110\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-0bccdf3939b316f2>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 393fea674e806352be5b4db28857d150d493e89cd462d31871ef94f33ebd3a7a, 6344 bytes)\n<<<DATA-0bccdf3939b316f2 program>>>\nimport sys\n\ndef solve():\n    input_data = sys.stdin.read().split()\n    N = int(input_data[0])\n    K = int(input_data[1])\n    S = input_data[2]\n\n    # Find all 1-blocks (start and end indices, 0-based)\n    blocks = []\n    i = 0\n    while i < N:\n        if S[i] == '1':\n            start = i\n            while i < N and S[i] == '1':\n                i += 1\n            end = i - 1\n            blocks.append((start, end))\n        else:\n            i += 1\n\n    # K-th block (1-indexed) is at index K-1\n    k_idx = K - 1\n    prev_block = blocks[k_idx - 1]\n    curr_block = blocks[k_idx]\n\n    # prev_block: (l_{K-1}, r_{K-1})\n    # curr_block: (l_K, r_K)\n    # We need to move curr_block to immediately after prev_block.\n    # The new string will be:\n    # S[0 ... r_{K-1}] + '1' * (r_K - l_K + 1) + '0' * (l_K + 1 - r_K + ... wait)\n    # Actually, the problem says:\n    # T_i = S_i for 1 <= i <= r_{K-1}  (0-based: 0 to r_{K-1}-1)\n    # T_i = 1 for r_{K-1} + 1 <= i <= r_{K-1} + (r_K - l_K) + 1\n    # Wait, let's re-read carefully.\n    # \"T_i = 1 for r_{K-1} + 1 <= i <= r_{K-1} + (r_K - l_K) + 1\"\n    # This seems to imply the length of the moved block is (r_K - l_K + 1).\n    # But the formula says r_{K-1} + (r_K - l_K) + 1.\n    # Let's check the sample.\n    # Sample 1: S = 010011100011001, N=15, K=3\n    # Blocks:\n    # 1: indices 1..1 (len 1)\n    # 2: indices 4..6 (len 3)\n    # 3: indices 10..11 (len 2)\n    # 4: indices 14..14 (len 1)\n    # K=3, so we move block 3 (indices 10..11) to after block 2 (indices 4..6).\n    # Block 2 ends at 6. Block 3 starts at 10, ends at 11. Length = 2.\n    # New string should be:\n    # Prefix: S[0..6] = \"0100111\"\n    # Moved block: \"11\"\n    # Then what? The original block 3 is removed.\n    # The rest of the string is S[12..14] = \"001\"\n    # So result: \"0100111\" + \"11\" + \"001\" = \"010011111001\"\n    # But sample output is \"010011111000001\". Length 15.\n    # My calculation: 7 + 2 + 3 = 12. Missing 3 chars.\n    # Ah, the gap between block 2 and block 3 must be filled with 0s?\n    # Original: 0100111 (0..6) then 000 (7..9) then 11 (10..11) then 00 (12..13) then 1 (14).\n    # If we move block 3 to after block 2, the gap (7..9) remains?\n    # Let's re-read the definition of T.\n    # T_i = S_i for 1 <= i <= r_{K-1}  -> indices 0 to r_{K-1}-1\n    # T_i = 1 for r_{K-1} + 1 <= i <= r_{K-1} + (r_K - l_K) + 1\n    # Wait, the upper bound is r_{K-1} + (r_K - l_K) + 1.\n    # If r_K - l_K is the length minus 1? No, length is r_K - l_K + 1.\n    # Let's assume the formula means: insert the block of length L = r_K - l_K + 1.\n    # But the indices in the formula are confusing.\n    # Let's look at the sample output again.\n    # S: 010011100011001\n    # Blocks: [1,1], [4,6], [10,11], [14,14]\n    # K=3. Move block [10,11] to after [4,6].\n    # Result: 0100111 11 000 001 ?\n    # Sample output: 010011111000001\n    # Breakdown:\n    # 0100111 (0..6)\n    # 11 (7..8) -> This is the moved block.\n    # 000 (9..11) -> This was the gap between block 2 and 3?\n    # 001 (12..14) -> This is the rest.\n    # Wait, original gap was 000 (indices 7,8,9).\n    # Original block 3 was at 10,11.\n    # If we move block 3 to after block 2, the gap remains.\n    # So the structure is:\n    # [0..r_{K-1}] + [moved block] + [gap between K-1 and K] + [rest after K]\n    # Let's check lengths.\n    # r_{K-1} = 6.\n    # Moved block length = 2.\n    # Gap length = 3 (indices 7,8,9).\n    # Rest length = 3 (indices 12,13,14).\n    # Total = 7 + 2 + 3 + 3 = 15. Correct.\n    # So the algorithm is:\n    # 1. Identify blocks.\n    # 2. Let prev = blocks[K-2], curr = blocks[K-1] (0-indexed list of blocks).\n    # 3. The new string is:\n    #    S[0 : prev_end+1] + '1' * (curr_end - curr_start + 1) + S[prev_end+1 : curr_start] + S[curr_end+1:]\n    # Wait, is the gap preserved?\n    # In the sample, the gap was 000.\n    # The formula in the problem statement:\n    # T_i = S_i for 1 <= i <= r_{K-1}\n    # T_i = 1 for r_{K-1} + 1 <= i <= r_{K-1} + (r_K - l_K) + 1\n    # This upper bound r_{K-1} + (r_K - l_K) + 1 = r_{K-1} + length_of_block_K.\n    # So it covers the moved block.\n    # Then T_i = 0 for r_{K-1} + (r_K - l_K) + 2 <= i <= r_K\n    # This range is from (end of moved block) + 1 to r_K.\n    # r_K is the end of the original K-th block.\n    # So this range is exactly the gap between K-1 and K.\n    # Then T_i = S_i for r_K + 1 <= i <= N.\n    # This is the rest after the original K-th block.\n    # So yes, the gap is preserved.\n    # The moved block is inserted right after the (K-1)-th block.\n    # The gap that was between (K-1)-th and K-th block remains in its original position?\n    # No, the gap is between K-1 and K.\n    # If we move K to after K-1, the gap is now between the moved K and the rest.\n    # So the sequence is:\n    # [0..K-2] + [K] + [gap] + [K+1..end]\n    # Where [0..K-2] is S[0 : end_of_K_minus_1 + 1]\n    # [K] is the string of 1s of length len(K)\n    # [gap] is S[end_of_K_minus_1 + 1 : start_of_K]\n    # [K+1..end] is S[end_of_K + 1 :]\n    # Let's verify with Sample 1.\n    # K=3. Blocks: B1, B2, B3, B4.\n    # K-1 = 2 (B2). K = 3 (B3).\n    # end_of_B2 = 6.\n    # start_of_B3 = 10.\n    # gap = S[7:10] = \"000\".\n    # rest = S[12:] = \"001\".\n    # Moved B3 = \"11\".\n    # Result = S[0:7] + \"11\" + \"000\" + \"001\" = \"0100111\" + \"11\" + \"000\" + \"001\" = \"010011111000001\".\n    # Matches sample output.\n\n    # Implementation:\n    # Find blocks.\n    # Extract parts.\n    # Concatenate.\n\n    # Re-find blocks to be sure\n    blocks = []\n    i = 0\n    while i < N:\n        if S[i] == '1':\n            start = i\n            while i < N and S[i] == '1':\n                i += 1\n            end = i - 1\n            blocks.append((start, end))\n        else:\n            i += 1\n\n    # K is 1-based index of the block to move.\n    # We want to move blocks[K-1] to after blocks[K-2].\n    # Let's call them prev_block and curr_block.\n    prev_start, prev_end = blocks[K-2]\n    curr_start, curr_end = blocks[K-1]\n\n    # Part 1: S[0 : prev_end + 1]\n    part1 = S[:prev_end+1]\n    # Part 2: The moved block, which is '1' * (curr_end - curr_start + 1)\n    part2 = '1' * (curr_end - curr_start + 1)\n    # Part 3: The gap between prev_block and curr_block\n    part3 = S[prev_end+1 : curr_start]\n    # Part 4: The rest after curr_block\n    part4 = S[curr_end+1:]\n\n    result = part1 + part2 + part3 + part4\n    print(result)\n\nsolve()\n<<<END-DATA-0bccdf3939b316f2>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 2/2 public cases passed)\n<<<DATA-0bccdf3939b316f2 report>>>\nPUBLIC TESTS: 2/2 passed\n<<<END-DATA-0bccdf3939b316f2>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-0bccdf3939b316f2 static-analysis>>>\n- Structure: 40 code lines (114 comments), max loop depth 2, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.017s), 02:AC(0.017s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-0bccdf3939b316f2>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 482 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "0bccdf3939b316f2",
+    "statement_sha256": "97637fadb6552bca04537dd7041e21f9a2d8661f7344f9da998e2df2961576ae",
+    "candidate_sha256": "393fea674e806352be5b4db28857d150d493e89cd462d31871ef94f33ebd3a7a",
+    "report_sha256": "6dd127255d2bd466b9a696b82c82634225b64836b74ed89f1fc533ee769caf1d",
+    "user_message_sha256": "883469634f32303605fdf04c271fc15ca33b0d4f56d2d491264e82d64e2294e9",
+    "static_summary_sha256": "d646e4715141d0f96cf92a10b36f5e062b5b5d638063cee68e7279c15fe269e3",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 2,
+    "public_total": 2,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "393fea674e806352be5b4db28857d150d493e89cd462d31871ef94f33ebd3a7a",
+    "judge_tests_sha256": "8d724942909ae4c94047beb5657c4bf91fe27821335d0fc47aa84def6ca5b352",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\n\nNO-DEFECT. The slices and moved block match the specified output for every valid input, and both scans together take linear time.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 14685,
+        "cached_input_tokens": 9344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 34,
+        "reasoning_output_tokens": 0
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 3.53,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a2c-d5b9-7411-a4a4-031fefb90548",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "c675b068080c479e0d6c690a768b5c877acada3cbd1865d629e955cb6972b35a",
+      "input_sha256": "61febb1bb2c24b5ccdb74d5b37d5e4b21c201c4934eac32fb18faef72560a79f",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": null,
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": false,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 3.531,
+    "provider_wait_seconds": 3.531,
+    "harness_check_seconds": 0.0,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "no_defect",
+    "review_verdict": "NO-DEFECT",
+    "counterexamples": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T23:24:35Z",
+    "local_seconds_left_at_trigger": 482.73,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-abc380_c",
+      "nonce": "0bccdf3939b316f2",
+      "statement_sha256": "97637fadb6552bca04537dd7041e21f9a2d8661f7344f9da998e2df2961576ae",
+      "candidate_sha256": "393fea674e806352be5b4db28857d150d493e89cd462d31871ef94f33ebd3a7a",
+      "report_sha256": "6dd127255d2bd466b9a696b82c82634225b64836b74ed89f1fc533ee769caf1d",
+      "user_message_sha256": "883469634f32303605fdf04c271fc15ca33b0d4f56d2d491264e82d64e2294e9",
+      "static_summary_sha256": "d646e4715141d0f96cf92a10b36f5e062b5b5d638063cee68e7279c15fe269e3",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 2,
+      "public_total": 2,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "393fea674e806352be5b4db28857d150d493e89cd462d31871ef94f33ebd3a7a",
+      "judge_tests_sha256": "8d724942909ae4c94047beb5657c4bf91fe27821335d0fc47aa84def6ca5b352",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T23:24:35Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 14685,
+          "cached_input_tokens": 9344,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 34,
+          "reasoning_output_tokens": 0
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 3.53,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a2c-d5b9-7411-a4a4-031fefb90548",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "c675b068080c479e0d6c690a768b5c877acada3cbd1865d629e955cb6972b35a",
+        "input_sha256": "61febb1bb2c24b5ccdb74d5b37d5e4b21c201c4934eac32fb18faef72560a79f",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "2e38595bd9f9497b21f8da22d6e9ab68bffb7b214d8864e82074a70b021e7dee"
+  }
+}

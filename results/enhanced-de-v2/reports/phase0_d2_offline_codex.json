@@ -1,0 +1,1508 @@
+{
+  "schema": "csc2108-phase0-d2-offline-report-v1",
+  "provider": "codex",
+  "created_utc": "2026-11-26T08:06:30Z",
+  "n_target_tasks": 18,
+  "n_compiled": 18,
+  "n_scored": 18,
+  "calibration_summary": {
+    "validator_public_ok": 18,
+    "property_enabled": 18,
+    "oracle_enabled": 18,
+    "stress_enabled": 18,
+    "failed_tasks": []
+  },
+  "modes": {
+    "inputs-stress": {
+      "tasks_scored": 18,
+      "references": {
+        "total_programs": 96,
+        "false_rejected_programs": 0,
+        "program_frr": 0.0,
+        "tasks_with_any_fr": 0,
+        "task_frr": 0.0
+      },
+      "public_pass_mutants": {
+        "total_mutants": 46,
+        "killed_mutants": 16,
+        "mutant_kill_rate": 0.3478,
+        "tasks_with_any_kill": 9,
+        "task_detection_rate": 0.5,
+        "by_reason": {
+          "RE": 3,
+          "TLE": 13,
+          "postcondition": 0,
+          "metamorphic": 0,
+          "oracle_mismatch": 0
+        },
+        "by_hidden_verdict": {
+          "WA": {
+            "total": 33,
+            "killed": 3,
+            "by_reason": {
+              "RE": 0,
+              "TLE": 3,
+              "postcondition": 0,
+              "metamorphic": 0,
+              "oracle_mismatch": 0
+            },
+            "kill_rate": 0.0909
+          },
+          "TLE": {
+            "total": 8,
+            "killed": 8,
+            "by_reason": {
+              "RE": 0,
+              "TLE": 8,
+              "postcondition": 0,
+              "metamorphic": 0,
+              "oracle_mismatch": 0
+            },
+            "kill_rate": 1.0
+          },
+          "RE": {
+            "total": 5,
+            "killed": 5,
+            "by_reason": {
+              "RE": 3,
+              "TLE": 2,
+              "postcondition": 0,
+              "metamorphic": 0,
+              "oracle_mismatch": 0
+            },
+            "kill_rate": 1.0
+          }
+        }
+      },
+      "false_rejections": [],
+      "per_task": [
+        {
+          "task_id": "lcb-atcoder-abc387_c",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 2,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc387_f",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 41,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc389_d",
+          "ref_total": 11,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 9,
+            "oracle_labeled_pool0": 9,
+            "metamorphic_pairs_len": 35,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc390_d",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 2,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 20,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc390_e",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 1,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 45,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc394_e",
+          "ref_total": 4,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 2,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 38,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc397_b",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 3,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 11,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc398_b",
+          "ref_total": 11,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 45,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc398_g",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 13,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 35,
+            "stress_inputs_len": 1
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc399_e",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 31,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc400_c",
+          "ref_total": 9,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 5,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 5,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 2,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc391_d",
+          "ref_total": 4,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 31,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc192_e",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 2,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 14,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc194_d",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 13,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 14,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc195_b",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 26,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc191_d",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 14,
+            "oracle_labeled_pool0": 14,
+            "metamorphic_pairs_len": 34,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc394_f",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 12,
+            "oracle_labeled_pool0": 12,
+            "metamorphic_pairs_len": 38,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc196_a",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 43,
+            "stress_inputs_len": 2
+          }
+        }
+      ]
+    },
+    "property": {
+      "tasks_scored": 18,
+      "references": {
+        "total_programs": 96,
+        "false_rejected_programs": 0,
+        "program_frr": 0.0,
+        "tasks_with_any_fr": 0,
+        "task_frr": 0.0
+      },
+      "public_pass_mutants": {
+        "total_mutants": 46,
+        "killed_mutants": 38,
+        "mutant_kill_rate": 0.8261,
+        "tasks_with_any_kill": 17,
+        "task_detection_rate": 0.9444,
+        "by_reason": {
+          "RE": 4,
+          "TLE": 11,
+          "postcondition": 14,
+          "metamorphic": 9,
+          "oracle_mismatch": 0
+        },
+        "by_hidden_verdict": {
+          "WA": {
+            "total": 33,
+            "killed": 25,
+            "by_reason": {
+              "RE": 1,
+              "TLE": 1,
+              "postcondition": 14,
+              "metamorphic": 9,
+              "oracle_mismatch": 0
+            },
+            "kill_rate": 0.7576
+          },
+          "TLE": {
+            "total": 8,
+            "killed": 8,
+            "by_reason": {
+              "RE": 0,
+              "TLE": 8,
+              "postcondition": 0,
+              "metamorphic": 0,
+              "oracle_mismatch": 0
+            },
+            "kill_rate": 1.0
+          },
+          "RE": {
+            "total": 5,
+            "killed": 5,
+            "by_reason": {
+              "RE": 3,
+              "TLE": 2,
+              "postcondition": 0,
+              "metamorphic": 0,
+              "oracle_mismatch": 0
+            },
+            "kill_rate": 1.0
+          }
+        }
+      },
+      "false_rejections": [],
+      "per_task": [
+        {
+          "task_id": "lcb-atcoder-abc387_c",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 1,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 2,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc387_f",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 41,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc389_d",
+          "ref_total": 11,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 9,
+            "oracle_labeled_pool0": 9,
+            "metamorphic_pairs_len": 35,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc390_d",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 2,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 20,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc390_e",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 1,
+            "TLE": 0,
+            "postcondition": 1,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 45,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc394_e",
+          "ref_total": 4,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 2,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 38,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc397_b",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 3,
+          "pp_killed": 3,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 3,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 11,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc398_b",
+          "ref_total": 11,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 1,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 45,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc398_g",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 4,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 4,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 13,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 35,
+            "stress_inputs_len": 1
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc399_e",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 0,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 31,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc400_c",
+          "ref_total": 9,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 5,
+          "pp_by_reason": {
+            "RE": 1,
+            "TLE": 4,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 2,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc391_d",
+          "ref_total": 4,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 2,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 31,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc192_e",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 2,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 14,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc194_d",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 5,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 5,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 13,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 14,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc195_b",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 2,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 26,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc191_d",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 3,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 3,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 14,
+            "oracle_labeled_pool0": 14,
+            "metamorphic_pairs_len": 34,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc394_f",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 12,
+            "oracle_labeled_pool0": 12,
+            "metamorphic_pairs_len": 38,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc196_a",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 1,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 43,
+            "stress_inputs_len": 2
+          }
+        }
+      ]
+    },
+    "oracle": {
+      "tasks_scored": 18,
+      "references": {
+        "total_programs": 96,
+        "false_rejected_programs": 0,
+        "program_frr": 0.0,
+        "tasks_with_any_fr": 0,
+        "task_frr": 0.0
+      },
+      "public_pass_mutants": {
+        "total_mutants": 46,
+        "killed_mutants": 40,
+        "mutant_kill_rate": 0.8696,
+        "tasks_with_any_kill": 18,
+        "task_detection_rate": 1.0,
+        "by_reason": {
+          "RE": 3,
+          "TLE": 12,
+          "postcondition": 0,
+          "metamorphic": 0,
+          "oracle_mismatch": 25
+        },
+        "by_hidden_verdict": {
+          "WA": {
+            "total": 33,
+            "killed": 27,
+            "by_reason": {
+              "RE": 0,
+              "TLE": 2,
+              "postcondition": 0,
+              "metamorphic": 0,
+              "oracle_mismatch": 25
+            },
+            "kill_rate": 0.8182
+          },
+          "TLE": {
+            "total": 8,
+            "killed": 8,
+            "by_reason": {
+              "RE": 0,
+              "TLE": 8,
+              "postcondition": 0,
+              "metamorphic": 0,
+              "oracle_mismatch": 0
+            },
+            "kill_rate": 1.0
+          },
+          "RE": {
+            "total": 5,
+            "killed": 5,
+            "by_reason": {
+              "RE": 3,
+              "TLE": 2,
+              "postcondition": 0,
+              "metamorphic": 0,
+              "oracle_mismatch": 0
+            },
+            "kill_rate": 1.0
+          }
+        }
+      },
+      "false_rejections": [],
+      "per_task": [
+        {
+          "task_id": "lcb-atcoder-abc387_c",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 1
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 2,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc387_f",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 41,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc389_d",
+          "ref_total": 11,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 9,
+            "oracle_labeled_pool0": 9,
+            "metamorphic_pairs_len": 35,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc390_d",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 2,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 20,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc390_e",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 1,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 1
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 45,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc394_e",
+          "ref_total": 4,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 2,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 38,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc397_b",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 3,
+          "pp_killed": 3,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 3
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 11,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc398_b",
+          "ref_total": 11,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 1
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 45,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc398_g",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 5,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 5
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 13,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 35,
+            "stress_inputs_len": 1
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc399_e",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 1
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 31,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc400_c",
+          "ref_total": 9,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 5,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 5,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 2,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc391_d",
+          "ref_total": 4,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 1
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 31,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc192_e",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 2,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 14,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc194_d",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 5,
+          "pp_killed": 5,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 5
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 13,
+            "oracle_labeled_pool0": 13,
+            "metamorphic_pairs_len": 14,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc195_b",
+          "ref_total": 6,
+          "ref_false_rejected": 0,
+          "pp_total": 2,
+          "pp_killed": 2,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 2
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 26,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc191_d",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 4,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 4
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 14,
+            "oracle_labeled_pool0": 14,
+            "metamorphic_pairs_len": 34,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-abc394_f",
+          "ref_total": 3,
+          "ref_false_rejected": 0,
+          "pp_total": 4,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 1,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 0
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 12,
+            "oracle_labeled_pool0": 12,
+            "metamorphic_pairs_len": 38,
+            "stress_inputs_len": 2
+          }
+        },
+        {
+          "task_id": "lcb-atcoder-arc196_a",
+          "ref_total": 5,
+          "ref_false_rejected": 0,
+          "pp_total": 1,
+          "pp_killed": 1,
+          "pp_by_reason": {
+            "RE": 0,
+            "TLE": 0,
+            "postcondition": 0,
+            "metamorphic": 0,
+            "oracle_mismatch": 1
+          },
+          "flags": {
+            "validator_public_ok": true,
+            "property_enabled": true,
+            "oracle_enabled": true,
+            "stress_enabled": true,
+            "small_pool0_len": 15,
+            "oracle_labeled_pool0": 15,
+            "metamorphic_pairs_len": 43,
+            "stress_inputs_len": 2
+          }
+        }
+      ]
+    }
+  }
+}

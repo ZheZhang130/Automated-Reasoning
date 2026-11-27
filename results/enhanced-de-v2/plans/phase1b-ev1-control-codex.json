@@ -1,0 +1,153 @@
+{
+  "batch": "phase1b-ev1-control-codex",
+  "frozen": true,
+  "outer_timeout": 1000,
+  "cohort": "dev-phase1b-e2-strict",
+  "attempts": [
+    {
+      "task_id": "lcb-atcoder-abc389_d",
+      "condition": "E",
+      "seed": 2110,
+      "agent": "frozen-v6",
+      "variant": "s2110",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_e",
+      "condition": "E",
+      "seed": 2109,
+      "agent": "frozen-v6",
+      "variant": "s2109",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_e",
+      "condition": "E",
+      "seed": 2110,
+      "agent": "frozen-v6",
+      "variant": "s2110",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc397_b",
+      "condition": "E",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc400_c",
+      "condition": "E",
+      "seed": 2109,
+      "agent": "frozen-v6",
+      "variant": "s2109",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc191_d",
+      "condition": "E",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_d",
+      "condition": "E",
+      "seed": 2109,
+      "agent": "frozen-v6",
+      "variant": "s2109",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc387_c",
+      "condition": "E",
+      "seed": 2110,
+      "agent": "frozen-v6",
+      "variant": "s2110",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_g",
+      "condition": "E",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-abc399_e",
+      "condition": "E",
+      "seed": 2110,
+      "agent": "frozen-v6",
+      "variant": "s2110",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc191_a",
+      "condition": "E",
+      "seed": 2108,
+      "agent": "frozen-v6",
+      "variant": "s2108",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_c",
+      "condition": "E",
+      "seed": 2109,
+      "agent": "frozen-v6",
+      "variant": "s2109",
+      "diagnosis": {
+        "provider": "codex",
+        "prompt_id": "diagnosis-v1",
+        "delivery": "deliver-v1"
+      }
+    }
+  ],
+  "note": "Provider-matched control for Phase 1B: original E-v1 (diagnosis-v1 + deliver-v1, official runner) with a fresh isolated-Codex diagnosis at the same 12 states where the official API E-v1 failed. Removes the selection-on-E-v1-failure bias of comparing E2-strict to the historical 0/12."
+}

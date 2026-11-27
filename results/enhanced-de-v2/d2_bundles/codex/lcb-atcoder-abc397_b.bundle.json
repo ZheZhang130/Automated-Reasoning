@@ -1,0 +1,34 @@
+{
+  "schema": "csc2108-d2-bundle-v1",
+  "task_id": "lcb-atcoder-abc397_b",
+  "provider": "codex",
+  "prompt_id": "D2_BUNDLE_V1",
+  "statement_sha256": "d6d81d514ed45bf5601ef346589506f1975eefb08163cd3b63d6e5bfc2d90f0c",
+  "prompt_sha256": "ed4757974cef12b60537de1e65cfdf9dcd2c83415216e59d259dad5737dc4fbf",
+  "contract_md": "- **POST-1** Input is one line containing a string \\(S\\) of length \\(N\\) with \\(1 \\le N \\le 100\\). Every character is `i` or `o`. The line may end with LF or CRLF, or terminate at EOF.\n- **POST-2** Output one nonnegative decimal integer \\(k\\).\n- **POST-3** The completed length \\(N+k\\) is even and at most \\(2N\\). Its \\( (N+k)/2 \\) positions of each character must accommodate all occurrences of that character in \\(S\\). The answer is zero exactly when \\(S\\) already meets the required pattern.\n- **POST-4** The answer \\(k\\) is the minimum number of insertions that makes the string alternate `i`, `o` from the first position through the last. All original characters remain in their original order.\n- **POST-5** The program must handle every valid input through \\(N=100\\). The statement specifies no separate time, memory, or asymptotic bound.",
+  "module_code": "from itertools import combinations\nfrom random import Random\n\n\ndef _line_content(inp: str) -> str:\n    if inp.endswith(\"\\r\\n\"):\n        return inp[:-2]\n    if inp.endswith(\"\\n\"):\n        return inp[:-1]\n    return inp\n\n\ndef validate_input(inp: str) -> bool:\n    s = _line_content(inp)\n    return 1 <= len(s) <= 100 and all(c in \"io\" for c in s)\n\n\ndef gen_small(seed: int, n: int) -> list[str]:\n    rng = Random(seed)\n    cases = [\n        \"i\", \"o\", \"io\", \"oi\", \"ii\", \"oo\", \"ioi\", \"iioo\",\n        \"iiiiiiii\", \"oooooooo\", \"ioioioio\", \"oioioioi\",\n        \"ooooiiii\", \"iiiioooo\",\n    ]\n    result = []\n    for index in range(n):\n        if index < len(cases):\n            s = cases[index]\n        else:\n            s = \"\".join(rng.choice(\"io\") for _ in range(rng.randint(1, 8)))\n        ending = (\"\\n\", \"\", \"\\r\\n\")[index % 3]\n        result.append(s + ending)\n    return result\n\n\ndef gen_stress(seed: int) -> list[str]:\n    rng = Random(seed)\n    single_run = rng.choice(\"io\") * 100\n    split = rng.randint(35, 65)\n    reversed_runs = \"o\" * split + \"i\" * (99 - split)\n    return [single_run + \"\\n\", reversed_runs + \"\\n\"]\n\n\ndef check_postconditions(inp: str, out: str) -> list[tuple[str, str]]:\n    if not validate_input(inp):\n        return [(\"POST-1\", \"Input must contain one line of 1–100 i/o characters.\")]\n    tokens = out.split()\n    if len(tokens) != 1 or any(c not in \"0123456789\" for c in tokens[0]):\n        return [(\"POST-2\", \"Expected one nonnegative decimal integer.\")]\n\n    s = _line_content(inp)\n    n = len(s)\n    digits = tokens[0].lstrip(\"0\") or \"0\"\n    if len(digits) > len(str(n)):\n        return [(\"POST-3\", \"The reported insertion count exceeds the input length.\")]\n    k = int(digits)\n    if k > n:\n        return [(\"POST-3\", \"The reported insertion count exceeds the input length.\")]\n\n    violations = []\n    completed_length = n + k\n    if completed_length % 2:\n        violations.append((\"POST-3\", \"The completed length must be even.\"))\n    elif max(s.count(\"i\"), s.count(\"o\")) > completed_length // 2:\n        violations.append((\"POST-3\", \"The completed string has too few positions for one character.\"))\n    already_valid = n % 2 == 0 and s == \"io\" * (n // 2)\n    if (k == 0) != already_valid:\n        violations.append((\"POST-3\", \"Zero insertions are required exactly for an already valid input.\"))\n    return violations\n\n\ndef metamorphic_pairs(seed: int, n: int) -> list[tuple[str, str, str, str]]:\n    pairs = []\n    for index, inp in enumerate(gen_small(seed, n)):\n        s = _line_content(inp)\n        if index % 2 == 0:\n            # The prepended pair can occupy the first two positions.\n            # In any embedding, its o consumes at least the first pair.\n            transformed = \"io\" + s\n        else:\n            # Reversing and swapping preserves the target pattern\n            # and gives a bijection between completions.\n            transformed = \"\".join(\"o\" if c == \"i\" else \"i\" for c in reversed(s))\n            if transformed == s:\n                transformed = \"io\" + s\n        pairs.append((\"POST-4\", \"equal\", inp, transformed + \"\\n\"))\n    return pairs\n\n\ndef reference_small(inp: str) -> str | None:\n    if not validate_input(inp):\n        return None\n    s = _line_content(inp)\n    n = len(s)\n    if n > 8:\n        return None\n    for completed_length in range(n, 2 * n + 1):\n        if completed_length % 2:\n            continue\n        target = \"io\" * (completed_length // 2)\n        for original_positions in combinations(range(completed_length), n):\n            if \"\".join(target[p] for p in original_positions) == s:\n                return str(completed_length - n) + \"\\n\"\n    return None",
+  "response_sha256": "3921418772553a9409032e27a65d250d86c850abe84d5781159aa7b596ab77d7",
+  "created_utc": "2026-11-26T07:44:26Z",
+  "isolation": {
+    "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+    "thread_id": "01a216cf-914a-7d51-88e1-504747ee7ebc",
+    "started_item_types": [],
+    "completed_item_types": [
+      "agent_message"
+    ],
+    "tool_events": [],
+    "malformed_lines": [],
+    "post_run_workdir_files": [],
+    "events_sha256": "3a2593866a093f13aafb25ce4fe28603bd5ebb2c19ff852ec3783867f01e650a",
+    "input_sha256": "efb0a1aa989f828725e94fe09ee84e5a61eddfe83b67ec86c78075342d2a289a",
+    "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+  },
+  "usage": {
+    "input_tokens": 11870,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 1605,
+    "reasoning_output_tokens": 381
+  },
+  "wall_seconds": 35.02
+}

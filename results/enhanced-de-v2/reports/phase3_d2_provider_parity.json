@@ -1,0 +1,42 @@
+{
+  "schema": "csc2108-phase3-d2-provider-parity-v1",
+  "created_utc": "2026-11-26T09:06:57Z",
+  "api_requests": 4,
+  "total_reasoning_tokens": 3332,
+  "total_standard_usd": 0.123238,
+  "total_conservative_usd": 0.739428,
+  "parity": [
+    {
+      "task_id": "lcb-atcoder-abc384_c",
+      "total_inputs_checked": 90,
+      "both_returned": 90,
+      "agreed": 90,
+      "disagreed": 0,
+      "other_returned_none": 0
+    },
+    {
+      "task_id": "lcb-atcoder-abc383_c",
+      "total_inputs_checked": 90,
+      "both_returned": 68,
+      "agreed": 68,
+      "disagreed": 0,
+      "other_returned_none": 22
+    },
+    {
+      "task_id": "lcb-atcoder-abc379_g",
+      "total_inputs_checked": 90,
+      "both_returned": 90,
+      "agreed": 90,
+      "disagreed": 0,
+      "other_returned_none": 0
+    },
+    {
+      "task_id": "lcb-atcoder-abc376_e",
+      "total_inputs_checked": 90,
+      "both_returned": 90,
+      "agreed": 90,
+      "disagreed": 0,
+      "other_returned_none": 0
+    }
+  ]
+}

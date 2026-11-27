@@ -1,0 +1,34 @@
+{
+  "schema": "csc2108-d2-bundle-v1",
+  "task_id": "lcb-atcoder-abc400_c",
+  "provider": "codex",
+  "prompt_id": "D2_BUNDLE_V1",
+  "statement_sha256": "648615b7680bd0ab71c65fcaa530aaf6589e6012be8f2367a13042c6dc1233cd",
+  "prompt_sha256": "ed4757974cef12b60537de1e65cfdf9dcd2c83415216e59d259dad5737dc4fbf",
+  "contract_md": "- **POST-1** The input contains one decimal integer \\(N\\) with \\(1 \\le N \\le 10^{18}\\).\n- **POST-2** The output contains one decimal integer \\(C\\), with optional surrounding whitespace.\n- **POST-3** \\(C\\) equals the number of distinct integers \\(X\\) in \\([1,N]\\) for which \\(X=2^a b^2\\) for some integers \\(a,b\\ge1\\). Each qualifying \\(X\\) contributes once, even if it has several representations. A qualifying \\(N\\) is included. The counts for \\(N=20\\), \\(400\\), and \\(1234567890\\) are \\(5\\), \\(24\\), and \\(42413\\), respectively.\n- **POST-4** Every good integer is even, so \\(0\\le C\\le\\lfloor N/2\\rfloor\\). The count is zero at \\(N=1\\) and positive for \\(N\\ge2\\) because \\(2\\) is good.\n- **POST-5** The count is nondecreasing in \\(N\\). Increasing a positive even bound by one leaves the count unchanged.\n- **POST-6** The program must handle the full input range with exact integer arithmetic. Time, memory use, or recursion depth proportional to \\(N\\) is infeasible at the upper bound.",
+  "module_code": "import random\nimport re\n\nMAX_N = 10**18\nREFERENCE_LIMIT = 512\nSAMPLES = ((20, 5), (400, 24), (1234567890, 42413))\nSMALL_CASES = (1, 2, 3, 4, 5, 6, 7, 8, 15, 16, 17, 18, 19, 20, 399, 400, 401)\n\n\ndef _decimal_integer(text: str) -> int | None:\n    token = text.strip()\n    if re.fullmatch(r\"[+-]?[0-9]+\", token) is None:\n        return None\n\n    negative = token.startswith(\"-\")\n    digits = token.lstrip(\"+-\").lstrip(\"0\")\n    if len(digits) > len(str(MAX_N)):\n        # This magnitude exceeds every admissible input and output.\n        magnitude = MAX_N + 1\n    else:\n        magnitude = int(digits or \"0\")\n    return -magnitude if negative else magnitude\n\n\ndef validate_input(inp: str) -> bool:\n    limit = _decimal_integer(inp)\n    return limit is not None and 1 <= limit <= MAX_N\n\n\ndef gen_small(seed: int, n: int) -> list[str]:\n    rng = random.Random(seed)\n    cases = []\n    for index in range(n):\n        if index < len(SMALL_CASES):\n            limit = SMALL_CASES[index]\n        elif rng.randrange(4) == 0:\n            limit = rng.randint(9, REFERENCE_LIMIT)\n        else:\n            limit = rng.randint(1, 8)\n        cases.append(f\"{limit}\\n\")\n    return cases\n\n\ndef gen_stress(seed: int) -> list[str]:\n    rng = random.Random(seed)\n    b = 500_000_000 - rng.randint(1, 10_000)\n    return [f\"{MAX_N}\\n\", f\"{4 * b * b - 1}\\n\"]\n\n\ndef check_postconditions(inp: str, out: str) -> list[tuple[str, str]]:\n    limit = _decimal_integer(inp)\n    if limit is None or not 1 <= limit <= MAX_N:\n        return [(\"POST-1\", \"Expected one integer N in the allowed range.\")]\n\n    count = _decimal_integer(out)\n    if count is None:\n        return [(\"POST-2\", \"Expected one decimal integer token.\")]\n\n    if not int(limit >= 2) <= count <= limit // 2:\n        return [(\"POST-4\", \"The count is outside the bounds for this N.\")]\n\n    for sample_limit, sample_count in SAMPLES:\n        if limit == sample_limit and count != sample_count:\n            return [(\"POST-3\", f\"The stated count for N={limit} is {sample_count}.\")]\n\n        if (limit < sample_limit and count > sample_count) or (\n            limit > sample_limit and count < sample_count\n        ):\n            return [\n                (\"POST-5\", f\"The count violates monotonicity with N={sample_limit}.\")\n            ]\n\n    return []\n\n\ndef metamorphic_pairs(seed: int, n: int) -> list[tuple[str, str, str, str]]:\n    rng = random.Random(seed)\n    pairs = []\n    for index in range(n):\n        if index == 0:\n            relation, lower, upper = \"equal\", 2, 3\n        elif index == 1:\n            relation, lower, upper = \"le\", 1, 2\n        elif index == 2:\n            relation, lower, upper = \"equal\", MAX_N - 2, MAX_N - 1\n        elif index == 3:\n            relation, lower, upper = \"le\", MAX_N - 1, MAX_N\n        elif index % 2 == 0:\n            lower = 2 * rng.randint(1, (MAX_N - 1) // 2)\n            relation, upper = \"equal\", lower + 1\n        else:\n            lower = rng.randint(1, MAX_N - 1)\n            relation, upper = \"le\", rng.randint(lower + 1, MAX_N)\n        pairs.append((\"POST-5\", relation, f\"{lower}\\n\", f\"{upper}\\n\"))\n    return pairs\n\n\ndef _has_witness(value: int) -> bool:\n    a = 1\n    while 2**a <= value:\n        b = 1\n        while 2**a * b**2 <= value:\n            if 2**a * b**2 == value:\n                return True\n            b += 1\n        a += 1\n    return False\n\n\ndef reference_small(inp: str) -> str | None:\n    limit = _decimal_integer(inp)\n    if limit is None or not 1 <= limit <= REFERENCE_LIMIT:\n        return None\n\n    count = sum(_has_witness(value) for value in range(1, limit + 1))\n    return f\"{count}\\n\"",
+  "response_sha256": "82ee570b132e56d340f45ca1170e46dc39361cc86abb4156c70808d54a3681c2",
+  "created_utc": "2026-11-26T07:46:37Z",
+  "isolation": {
+    "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+    "thread_id": "01a216d1-297b-70b0-9c54-d5cf6b139eff",
+    "started_item_types": [],
+    "completed_item_types": [
+      "agent_message"
+    ],
+    "tool_events": [],
+    "malformed_lines": [],
+    "post_run_workdir_files": [],
+    "events_sha256": "fb5398c2bff6bb99654153be940acde148ffa711e4d7336c9841d9f0581bf52f",
+    "input_sha256": "91768e4f3094a651d8a1dc9377a537db12864b103ddc3eda1ddb0c698f35f665",
+    "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+  },
+  "usage": {
+    "input_tokens": 11803,
+    "cached_input_tokens": 0,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 2914,
+    "reasoning_output_tokens": 1552
+  },
+  "wall_seconds": 61.11
+}

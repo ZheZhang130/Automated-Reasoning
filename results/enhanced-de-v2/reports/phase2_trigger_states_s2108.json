@@ -1,0 +1,349 @@
+{
+  "schema": "csc2108-enhanced-de-phase2-triggers-v1",
+  "created_utc": "2026-11-26T20:18:34Z",
+  "seed": 2108,
+  "batch": "E:\\CSC2108Local\\enhanced-de-v2-study\\runs\\phase2-test5-codex",
+  "states": {
+    "lcb-atcoder-abc384_c": {
+      "stall": false,
+      "fail": false,
+      "pass": true,
+      "public_statuses": [
+        "pass"
+      ],
+      "done_reasons": [
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "dfa878e576e7901cd77766a90ee1cd959a83121096b3b8ff6f2d059be04e3e16"
+    },
+    "lcb-atcoder-abc383_c": {
+      "stall": false,
+      "fail": true,
+      "pass": true,
+      "public_statuses": [
+        "candidate_failure",
+        "candidate_failure",
+        "pass"
+      ],
+      "done_reasons": [
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "ae692217c8609c28e32940371290c662a89fb418b0e9ddcd50755dffa5c19852"
+    },
+    "lcb-atcoder-abc377_c": {
+      "stall": false,
+      "fail": false,
+      "pass": true,
+      "public_statuses": [
+        "pass"
+      ],
+      "done_reasons": [
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "fa1fc06f8e314e7387fae31f669fe51517710699a2c4a2c6ec77ac22811eae2b"
+    },
+    "lcb-atcoder-abc385_c": {
+      "stall": false,
+      "fail": true,
+      "pass": false,
+      "public_statuses": [
+        "candidate_failure"
+      ],
+      "done_reasons": [
+        "length",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "length",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 3,
+      "exit_status": "action_limit",
+      "submission_sha256": "4c705be62c8e0306fb55aa563853c582bbf524bd770ed73f0b06b8ed25090c60"
+    },
+    "lcb-atcoder-abc383_b": {
+      "stall": false,
+      "fail": false,
+      "pass": true,
+      "public_statuses": [
+        "pass"
+      ],
+      "done_reasons": [
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "e972909655987c2ff783884d29d3dfb027812800a36b7bf44554883c38710a7a"
+    },
+    "lcb-atcoder-abc380_c": {
+      "stall": true,
+      "fail": false,
+      "pass": true,
+      "public_statuses": [
+        "pass"
+      ],
+      "done_reasons": [
+        "length",
+        "length",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "393fea674e806352be5b4db28857d150d493e89cd462d31871ef94f33ebd3a7a"
+    },
+    "lcb-atcoder-abc375_c": {
+      "stall": false,
+      "fail": false,
+      "pass": true,
+      "public_statuses": [
+        "pass"
+      ],
+      "done_reasons": [
+        "length",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "62e447dd8ae800f64ad577df531e21383c2ee0c504e417f0501c703dd910ed5f"
+    },
+    "lcb-atcoder-abc377_d": {
+      "stall": false,
+      "fail": true,
+      "pass": true,
+      "public_statuses": [
+        "candidate_failure",
+        "candidate_failure",
+        "pass"
+      ],
+      "done_reasons": [
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "d8bcc223e6b8c260b2611f7c4b187897d3557c5991c922b84296ae6c8caf5583"
+    },
+    "lcb-atcoder-abc379_g": {
+      "stall": false,
+      "fail": false,
+      "pass": false,
+      "public_statuses": [],
+      "done_reasons": [
+        "length",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": null,
+      "exit_status": "action_limit",
+      "submission_sha256": "9fad8ff1dade9362475fccc13ac8a9a24c2a1ab1352ceec39c7c5ad38040847c"
+    },
+    "lcb-atcoder-abc376_e": {
+      "stall": false,
+      "fail": false,
+      "pass": true,
+      "public_statuses": [
+        "pass"
+      ],
+      "done_reasons": [
+        "stop",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "b8b04c474e990643c74dacab7c1f0fb856b55bbc3014f74b997c30ba624deab2"
+    },
+    "lcb-atcoder-arc189_c": {
+      "stall": true,
+      "fail": false,
+      "pass": false,
+      "public_statuses": [],
+      "done_reasons": [
+        "length",
+        "length",
+        "length"
+      ],
+      "first_test_action": null,
+      "exit_status": "agent_error",
+      "submission_sha256": null
+    },
+    "lcb-atcoder-abc376_g": {
+      "stall": false,
+      "fail": true,
+      "pass": false,
+      "public_statuses": [
+        "candidate_failure",
+        "candidate_failure",
+        "candidate_failure",
+        "candidate_failure",
+        "candidate_failure",
+        "candidate_failure",
+        "candidate_failure",
+        "candidate_failure",
+        "candidate_failure"
+      ],
+      "done_reasons": [
+        "length",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "length",
+        "stop",
+        "stop",
+        "length",
+        "stop",
+        "stop",
+        "length",
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "length",
+        "stop",
+        "stop",
+        "length",
+        "stop",
+        "stop",
+        "length",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "action_limit",
+      "submission_sha256": "f3d1eb77f2f7cc35ddd77ef9935006f3bde504a392ec0846725cc2e1585be83c"
+    },
+    "lcb-atcoder-arc185_e": {
+      "stall": true,
+      "fail": false,
+      "pass": false,
+      "public_statuses": [],
+      "done_reasons": [
+        "length",
+        "length",
+        "length"
+      ],
+      "first_test_action": null,
+      "exit_status": "agent_error",
+      "submission_sha256": null
+    },
+    "lcb-atcoder-abc382_d": {
+      "stall": false,
+      "fail": false,
+      "pass": true,
+      "public_statuses": [
+        "pass"
+      ],
+      "done_reasons": [
+        "length",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "3bf6928ce6a820760c0bbedc40d90fb5d031d6274a55e2e5cd7233c47500de18"
+    },
+    "lcb-atcoder-arc184_e": {
+      "stall": true,
+      "fail": false,
+      "pass": false,
+      "public_statuses": [],
+      "done_reasons": [
+        "length",
+        "length",
+        "length"
+      ],
+      "first_test_action": null,
+      "exit_status": "agent_error",
+      "submission_sha256": null
+    },
+    "lcb-atcoder-abc378_e": {
+      "stall": false,
+      "fail": false,
+      "pass": true,
+      "public_statuses": [
+        "pass"
+      ],
+      "done_reasons": [
+        "stop",
+        "stop",
+        "stop",
+        "stop",
+        "stop"
+      ],
+      "first_test_action": 2,
+      "exit_status": "submitted",
+      "submission_sha256": "264464115b969656b2ff67e74d2b0c4808a6fa3d2b4d339308661de3c285fdcd"
+    }
+  },
+  "counts": {
+    "stall": 4,
+    "fail": 4,
+    "pass": 10
+  }
+}

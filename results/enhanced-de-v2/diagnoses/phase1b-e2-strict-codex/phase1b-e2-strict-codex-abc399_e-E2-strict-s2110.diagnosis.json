@@ -1,0 +1,182 @@
+{
+  "packet": {
+    "kind": "strict",
+    "trigger_kind": "public_failure",
+    "prompt_id": "E2_STRICT_V1",
+    "task_id": "lcb-atcoder-abc399_e",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-1e45d59a2febfa65 statement>>>\n# Replace\n\nYou are given a positive integer N and two strings S and T, each of length N and consisting of lowercase English letters.\nDetermine whether it is possible to make S identical to T by repeating the operation below any number of times (possibly zero). If it is possible, also find the minimum number of operations required.\n\n- Choose two lowercase English letters x, y and replace every occurrence of x in S with y.\n\nInput\n\nThe input is given from Standard Input in the following format:\nN\nS\nT\n\nOutput\n\nIf it is possible to make S identical to T, print the minimum number of operations required. Otherwise, print -1.\n\nConstraints\n\n\n- 1\\leq N \\leq 2\\times 10^5\n- N is an integer.\n- Each of S and T is a string of length N, consisting of lowercase English letters.\n\nSample Input 1\n\n6\nafbfda\nbkckbb\n\nSample Output 1\n\n4\n\nBy performing the operation four times in the following way, you can make S identical to T:\n\n- Choose x= b and y= c. S becomes afcfda.\n- Choose x= a and y= b. S becomes bfcfdb.\n- Choose x= f and y= k. S becomes bkckdb.\n- Choose x= d and y= b. S becomes bkckbb, which is identical to T.\n\nIt cannot be done with fewer than four operations, so the minimum number of operations required is 4.\n\nSample Input 2\n\n4\nabac\nabac\n\nSample Output 2\n\n0\n\nS and T are already identical, so no operations are required.\n\nSample Input 3\n\n4\nabac\nabrc\n\nSample Output 3\n\n-1\n\nNo matter how you repeat the operation, it is impossible to make S identical to T.\n\nSample Input 4\n\n4\nabac\nbcba\n\nSample Output 4\n\n4\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-1e45d59a2febfa65>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 362b790f05c13bcdbb55ca4f74c49536c510ee41efb7d5b3456cb39748186a65, 10735 bytes)\n<<<DATA-1e45d59a2febfa65 program>>>\nimport sys\nfrom collections import defaultdict\n\ndef solve():\n    input_data = sys.stdin.read().split()\n    if not input_data:\n        return\n    N = int(input_data[0])\n    S = input_data[1]\n    T = input_data[2]\n\n    # Check if the mapping from S to T is consistent\n    # We need to find a mapping f such that f(S[i]) == T[i] for all i\n    # And this mapping must be a function (one char in S maps to one char in T)\n    \n    # First, check if the required mapping is consistent\n    # For each position i, we require S[i] -> T[i]\n    # If we have S[i] == S[j], then we must have T[i] == T[j]\n    # Otherwise, it's impossible -> return -1\n    \n    # Build the required mapping from S to T\n    mapping = {}\n    for i in range(N):\n        if S[i] in mapping:\n            if mapping[S[i]] != T[i]:\n                print(-1)\n                return\n        else:\n            mapping[S[i]] = T[i]\n    \n    # Now we need to find the minimum number of operations to achieve this mapping\n    # Each operation: choose x, y and replace all x with y\n    # This is equivalent to: we want to transform the initial mapping (identity) \n    # to the required mapping\n    \n    # Let's think about it differently:\n    # We start with S and want to reach T.\n    # The operations allow us to change all occurrences of a character to another.\n    # \n    # Consider the characters that appear in S. For each character c in S:\n    # - If c appears in T, then all occurrences of c in S must become the same character in T.\n    #   This is guaranteed by our consistency check.\n    # - If c does not appear in T, then we need to change c to something else.\n    #\n    # Actually, let's think about the operations in reverse or in terms of components.\n    # \n    # Key insight: \n    # Each operation (x -> y) merges the set of positions where x appears with the set of positions where y appears.\n    # But we can only do this if all positions where x appears currently have the same target character.\n    #\n    # Let's model this as a graph problem:\n    # We have characters 'a' through 'z'.\n    # For each character c that appears in S, it must eventually become mapping[c].\n    # \n    # Consider the characters that need to be changed. \n    # If c needs to become d (where c != d), we need at least one operation.\n    # \n    # However, one operation (x -> y) can change multiple characters at once if they all need to become y.\n    # But we can only do x -> y, not multiple targets at once.\n    #\n    # Let's think about the connected components of characters that need to be merged.\n    # \n    # Actually, here's a better approach:\n    # We want to reach the state where for each character c, all its occurrences map to mapping[c].\n    # \n    # Consider the characters that are \"fixed\" (i.e., c == mapping[c]). These don't need to change.\n    # For characters where c != mapping[c], we need to change them.\n    #\n    # But we can chain operations: a -> b -> c is two operations.\n    # \n    # Key observation: \n    # If we have a set of characters that all need to become the same target character,\n    # we can do it in one operation per source character (except the target itself).\n    #\n    # However, there's a constraint: when we do x -> y, ALL occurrences of x become y.\n    # This means we need to be careful about the order.\n    #\n    # Let's think about it as: we want to reach a state where the character at each position matches T.\n    # \n    # Consider the characters that appear in S. For each character c:\n    # - If c == mapping[c], then we don't need to change c.\n    # - If c != mapping[c], then we need to change c to mapping[c].\n    #\n    # But we can't just change c directly to mapping[c] if mapping[c] is also a character that needs to be changed.\n    # For example, if we have a -> b and b -> c, we need to do a -> b first, then b -> c.\n    # But if we do a -> b first, then all a's become b's, and then we do b -> c, both original b's and the new b's (from a) become c.\n    # This is exactly what we want!\n    #\n    # So the strategy is:\n    # 1. Identify all characters c where c != mapping[c].\n    # 2. We need to perform operations to change these characters to their targets.\n    # 3. The minimum number of operations is the number of characters c where c != mapping[c],\n    #    EXCEPT we need to be careful about chains.\n    #\n    # Wait, let's reconsider. If we have a -> b and b -> c, we need 2 operations:\n    #   a -> b, then b -> c.\n    # But if we have a -> b and c -> b, we can do:\n    #   a -> b, then c -> b (2 operations).\n    #\n    # So it seems the answer is simply the number of characters c where c != mapping[c].\n    # But wait, there's a catch: what if the target character is not in the original string?\n    # Actually, the target character must be in T, and since we're mapping S to T, \n    # the target character for c is mapping[c], which is the character at the same position in T.\n    #\n    # Let me reconsider with an example:\n    # S = \"ab\", T = \"cd\"\n    # mapping: a->c, b->d\n    # We need to change a to c and b to d. That's 2 operations.\n    #\n    # Example: S = \"ab\", T = \"ac\"\n    # mapping: a->a, b->c\n    # We need to change b to c. That's 1 operation.\n    #\n    # Example: S = \"ab\", T = \"ba\"\n    # mapping: a->b, b->a\n    # We need to change a to b and b to a. \n    # If we do a->b first, then S becomes \"bb\", but we want \"ba\". \n    # So we can't do a->b first. We need to do b->a first, then a->b.\n    # After b->a: S becomes \"aa\". Then a->b: S becomes \"bb\". But we want \"ba\".\n    # This doesn't work!\n    #\n    # Wait, let me re-read the problem. \n    # \"Choose two lowercase English letters x, y and replace every occurrence of x in S with y.\"\n    # \n    # So if S = \"ab\" and we want T = \"ba\":\n    # - If we do a->b: S becomes \"bb\" (not \"ba\")\n    # - If we do b->a: S becomes \"aa\" (not \"ba\")\n    # So it's impossible!\n    #\n    # But wait, the sample 3 shows:\n    # S = \"abac\", T = \"abrc\" -> impossible\n    # Here, mapping: a->a, b->b, c->r\n    # But 'r' is not in S, so we need to introduce 'r'.\n    # Actually, the operation allows us to introduce new characters.\n    # \n    # Let me re-think the \"ab\" -> \"ba\" case:\n    # S = \"ab\", T = \"ba\"\n    # mapping: a->b, b->a\n    # This is a cycle. We can't resolve cycles with the given operations.\n    # Because if we do a->b, then all a's become b's, but we also need b's to become a's.\n    # But once a's become b's, we can't distinguish them from the original b's.\n    #\n    # So cycles are impossible. We need to detect cycles in the mapping.\n    #\n    # Algorithm:\n    # 1. Build the mapping from S to T.\n    # 2. Check for consistency (already done).\n    # 3. Check for cycles in the mapping. If there's a cycle, return -1.\n    # 4. Otherwise, the answer is the number of characters c where c != mapping[c].\n    #\n    # Wait, but in the \"ab\" -> \"ba\" case, we have a cycle a->b->a, so it should be impossible.\n    # Let's verify with the problem statement.\n    # Actually, looking at sample 3: S = \"abac\", T = \"abrc\"\n    # mapping: a->a, b->b, c->r\n    # There's no cycle here, but it's impossible because 'r' is not in S initially.\n    # But wait, the operation allows us to introduce new characters.\n    # So c->r is fine, we just need one operation.\n    #\n    # Let me re-read the problem again.\n    # \"Choose two lowercase English letters x, y and replace every occurrence of x in S with y.\"\n    # \n    # So we can choose any x and y, not necessarily from S or T.\n    # But the effect is only on characters that are currently in S.\n    #\n    # So for S = \"ab\", T = \"ba\":\n    # - We need a->b and b->a.\n    # - If we do a->b: S becomes \"bb\". Now we have \"bb\", but we want \"ba\".\n    # - If we do b->a: S becomes \"aa\". Now we have \"aa\", but we want \"ba\".\n    # So it's impossible.\n    #\n    # For S = \"abac\", T = \"abrc\":\n    # - mapping: a->a, b->b, c->r\n    # - We need to change c to r.\n    # - Operation: c->r. S becomes \"abar\". But T is \"abrc\".\n    # - Wait, T is \"abrc\", so the third character should be 'r', not 'a'.\n    # - Let me re-check: S = \"abac\", T = \"abrc\"\n    #   Position 0: S[0]='a', T[0]='a' -> a->a\n    #   Position 1: S[1]='b', T[1]='b' -> b->b\n    #   Position 2: S[2]='a', T[2]='r' -> a->r\n    #   Position 3: S[3]='c', T[3]='c' -> c->c\n    # - But we already have a->a from position 0, and now a->r from position 2.\n    # - This is inconsistent! So it's impossible.\n    #\n    # So the consistency check I did earlier is correct.\n    #\n    # Now, for the case where it's possible:\n    # S = \"ab\", T = \"cd\"\n    # mapping: a->c, b->d\n    # No cycles. Answer: 2 operations (a->c, b->d).\n    #\n    # S = \"ab\", T = \"ac\"\n    # mapping: a->a, b->c\n    # No cycles. Answer: 1 operation (b->c).\n    #\n    # S = \"ab\", T = \"ba\"\n    # mapping: a->b, b->a\n    # Cycle: a->b->a. Impossible.\n    #\n    # So the algorithm is:\n    # 1. Build the mapping from S to T.\n    # 2. Check for consistency (if S[i] == S[j] then T[i] == T[j]).\n    # 3. Check for cycles in the mapping.\n    # 4. If no cycles, the answer is the number of characters c where c != mapping[c].\n    #\n    # But wait, let's think about the cycle detection more carefully.\n    # The mapping is from characters to characters. We can represent it as a directed graph.\n    # A cycle exists if there's a path from a character back to itself.\n    #\n    # Actually, we can use a simple approach:\n    # - For each character c, follow the mapping until we either:\n    #   - Reach a character that maps to itself (fixed point)\n    #   - Reach a character we've seen before (cycle)\n    #   - Reach a character that's not in the mapping (but this shouldn't happen since we're mapping all characters in S)\n    #\n    # But wait, the mapping is only defined for characters that appear in S.\n    # Characters that don't appear in S don't matter.\n    #\n    # Let's implement this:\n    \n    # Build the mapping\n    mapping = {}\n    for i in range(N):\n        if S[i] in mapping:\n            if mapping[S[i]] != T[i]:\n                print(-1)\n                return\n        else:\n            mapping[S[i]] = T[i]\n    \n    # Check for cycles\n    visited = set()\n    for c in mapping:\n        if c not in visited:\n            current = c\n            path = []\n            while current not in visited and current in mapping:\n                visited.add(current)\n                path.append(current)\n                current = mapping[current]\n            \n            # If we reached a character that's in the path, we have a cycle\n            if current in path:\n                print(-1)\n                return\n    \n    # Count the number of characters that need to be changed\n    count = 0\n    for c in mapping:\n        if mapping[c] != c:\n            count += 1\n    \n    print(count)\n\nsolve()\n<<<END-DATA-1e45d59a2febfa65>>>\n\nPUBLIC TEST REPORT shown to the coding model (status candidate_failure, 2/4 public cases passed, first failing case 02, verdict WA)\n<<<DATA-1e45d59a2febfa65 report>>>\nPUBLIC TESTS: 2/4 passed\nFirst failure: case 02: WA (wrong answer)\n--- input ---\n4\nabac\nabac\n--- expected ---\n0\n--- actual ---\n-1\n<<<END-DATA-1e45d59a2febfa65>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-1e45d59a2febfa65 static-analysis>>>\n- Structure: 43 code lines (199 comments), max loop depth 2, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.033s), 02:WA(0.033s), 03:AC(0.033s), 04:WA(0.033s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-1e45d59a2febfa65>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 560 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "1e45d59a2febfa65",
+    "statement_sha256": "34dcea2d22a3dcb2b82eb9a9b77dc86a1a0041c6f9f34f367ed9d2cd8cb932ea",
+    "candidate_sha256": "362b790f05c13bcdbb55ca4f74c49536c510ee41efb7d5b3456cb39748186a65",
+    "report_sha256": "90bdac98dd9919b4c2295d798202ff3ba5b165c530e74fbc4dc8d04338427653",
+    "user_message_sha256": "8df7dbc7bbd3c58d0825a92d0931c7c578f894becc805188965f42bebef24ef9",
+    "static_summary_sha256": "8f260e1c25a5b755770cdca5b59f42ec4676cf11d8c3e098b7953133e02e20e3",
+    "static_risk_flags": [],
+    "verdict": "WA",
+    "first_case": "02",
+    "public_status": "candidate_failure",
+    "public_passed": 2,
+    "public_total": 4,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "362b790f05c13bcdbb55ca4f74c49536c510ee41efb7d5b3456cb39748186a65",
+    "judge_tests_sha256": "4b882735d5e24667cd55ff57f94fd7aae8d8dacbb154e9206012053627b4cdb3",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Observed failure\n\nPublic case 02 (`S = T = abac`) expected `0`, but the program printed `-1`.\n\n## Likely cause\n\nThe `if current in path` branch rejects every detected cycle. In case 02, each letter maps to itself, so following the first mapping immediately returns to a letter in `path` and triggers `-1`.\n\n## Repair mode\n\nLOCAL-FIX. The mapping and graph traversal are suitable, and the cycle-handling branch needs to distinguish fixed points, cycles with incoming edges, and isolated cycles.\n\n## Repair direction\n\nKeep the consistency check and use the number of non-identity mappings as the base cost. When traversal revisits a letter in the current path, take the suffix starting at that letter as the cycle. Ignore cycles of length one.\n\nFor each longer cycle, check incoming edges using the full mapping. If an outside letter maps to a cycle member, it has the same final target as that member’s predecessor. Move the predecessor into the outside letter first, then rotate the cycle and move the merged group to its target. This fits within the base cost.\n\nFor each longer cycle with no incoming edge from outside, add one operation for temporary storage. If such a cycle exists and `T` uses all 26 letters, return `-1`.\n\n## Verification target\n\nRerun all four public tests.\n\nV-1\n```text\n2\nab\nba\n```\n```text\n3\n```\n\nV-2\n```text\n3\nabc\nbaa\n```\n```text\n3\n```\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 15324,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 423,
+        "reasoning_output_tokens": 95
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 11.44,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21785-e31d-7821-b0e5-c190bebe9d2b",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "c0a87fa1bd16bdc5f1134064350aebc16eedf98633454995f618144b36a58ba0",
+      "input_sha256": "50cb5f81e25bc9b6d761d7f0ac1d61ad0e8f143dd094b08fe98766371edc8fff",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": "[Frontier diagnosis] A separate, stronger model read the task, the exact program you just tested, the public-test report above and a static analysis of the program, and wrote the diagnosis below. It has not seen any hidden tests and may be wrong; weigh it against the evidence. Your files, history and remaining budget are unchanged (18 actions left). Revise /workspace/solution.py yourself, then run python -I /public/check.py again.\n\n## Observed failure\n\nPublic case 02 (`S = T = abac`) expected `0`, but the program printed `-1`.\n\n## Likely cause\n\nThe `if current in path` branch rejects every detected cycle. In case 02, each letter maps to itself, so following the first mapping immediately returns to a letter in `path` and triggers `-1`.\n\n## Repair mode\n\nLOCAL-FIX. The mapping and graph traversal are suitable, and the cycle-handling branch needs to distinguish fixed points, cycles with incoming edges, and isolated cycles.\n\n## Repair direction\n\nKeep the consistency check and use the number of non-identity mappings as the base cost. When traversal revisits a letter in the current path, take the suffix starting at that letter as the cycle. Ignore cycles of length one.\n\nFor each longer cycle, check incoming edges using the full mapping. If an outside letter maps to a cycle member, it has the same final target as that member’s predecessor. Move the predecessor into the outside letter first, then rotate the cycle and move the merged group to its target. This fits within the base cost.\n\nFor each longer cycle with no incoming edge from outside, add one operation for temporary storage. If such a cycle exists and `T` uses all 26 letters, return `-1`.\n\n## Verification target\n\nRerun all four public tests.\n\nV-1\n```text\n2\nab\nba\n```\n```text\n3\n```\n\nV-2\n```text\n3\nabc\nbaa\n```\n```text\n3\n```",
+  "record": {
+    "assigned": true,
+    "controller": "e2-strict",
+    "mode": null,
+    "prompt_id": "E2_STRICT_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_failure",
+    "trigger_reason": "qualifying:WA",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": true,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 11.953,
+    "provider_wait_seconds": 11.437,
+    "harness_check_seconds": 0.516,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": "LOCAL-FIX",
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "enable_advisory_vchecks": true,
+    "vcheck_alignment": "aligned",
+    "vchecks": [
+      {
+        "id": "V-1",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "dc1c798b2e77e2e45a95d58c42671972685d1c7f6681bab58b0fa14a5d75393b",
+        "expected_sha256": "1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2",
+        "trigger_outcome": "WA",
+        "aligned": true
+      },
+      {
+        "id": "V-2",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "b4afbbb94f528880e0cb8c68034867de4aaaa891be1f260b7dbf7966d86b9355",
+        "expected_sha256": "1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2",
+        "trigger_outcome": "WA",
+        "aligned": true
+      }
+    ],
+    "advisories": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T11:02:59Z",
+    "local_seconds_left_at_trigger": 560.08,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "strict",
+      "trigger_kind": "public_failure",
+      "prompt_id": "E2_STRICT_V1",
+      "task_id": "lcb-atcoder-abc399_e",
+      "nonce": "1e45d59a2febfa65",
+      "statement_sha256": "34dcea2d22a3dcb2b82eb9a9b77dc86a1a0041c6f9f34f367ed9d2cd8cb932ea",
+      "candidate_sha256": "362b790f05c13bcdbb55ca4f74c49536c510ee41efb7d5b3456cb39748186a65",
+      "report_sha256": "90bdac98dd9919b4c2295d798202ff3ba5b165c530e74fbc4dc8d04338427653",
+      "user_message_sha256": "8df7dbc7bbd3c58d0825a92d0931c7c578f894becc805188965f42bebef24ef9",
+      "static_summary_sha256": "8f260e1c25a5b755770cdca5b59f42ec4676cf11d8c3e098b7953133e02e20e3",
+      "static_risk_flags": [],
+      "verdict": "WA",
+      "first_case": "02",
+      "public_status": "candidate_failure",
+      "public_passed": 2,
+      "public_total": 4,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "362b790f05c13bcdbb55ca4f74c49536c510ee41efb7d5b3456cb39748186a65",
+      "judge_tests_sha256": "4b882735d5e24667cd55ff57f94fd7aae8d8dacbb154e9206012053627b4cdb3",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T11:02:59Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 15324,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 423,
+          "reasoning_output_tokens": 95
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 11.44,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21785-e31d-7821-b0e5-c190bebe9d2b",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "c0a87fa1bd16bdc5f1134064350aebc16eedf98633454995f618144b36a58ba0",
+        "input_sha256": "50cb5f81e25bc9b6d761d7f0ac1d61ad0e8f143dd094b08fe98766371edc8fff",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "61078f23198a257da163610aab6509e8558d8444e5f63e820e964126a248156d",
+    "hedge_terms": [],
+    "vchecks_aligned": 2,
+    "delivered_utc": "2026-11-26T11:03:11Z",
+    "diagnosis_sha256": "61078f23198a257da163610aab6509e8558d8444e5f63e820e964126a248156d",
+    "delivered_message_sha256": "283197fc3a8c51862a12a53512c573965ca777d48b77cfa6e91139496a749732",
+    "diagnosis_words": 234,
+    "delivered_message_index": 6,
+    "delivered_after_action": 2,
+    "soft_code_flags": []
+  }
+}

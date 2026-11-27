@@ -1,0 +1,796 @@
+{
+  "schema": "csc2108-phase0-e2-offline-report-v1",
+  "provider": "codex",
+  "created_utc": "2026-11-26T09:14:32Z",
+  "review_summary": {
+    "pphf_total": 10,
+    "pphf_verdict_defect": 9,
+    "pphf_verified_delivered": 8,
+    "pphf_verified_ref_sound": 11,
+    "pphf_verified_ref_false": 0,
+    "safety_total": 6,
+    "safety_no_defect": 6,
+    "safety_unverified_abstain": 0,
+    "safety_false_delivered": 0,
+    "safety_validation_errors": 0
+  },
+  "strict_summary": {
+    "total": 12,
+    "valid_schema": 12,
+    "local_fix": 4,
+    "method_change": 8,
+    "with_aligned_vcheck": 10,
+    "total_aligned_vchecks": 11,
+    "aligned_ref_sound": 11,
+    "aligned_ref_false": 0,
+    "hist_e1_pphf_total": 7,
+    "hist_e1_pphf_caught_by_vchecks": 3
+  },
+  "review_records": [
+    {
+      "task_id": "lcb-atcoder-abc387_c",
+      "seed": 2108,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "WA",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "verified_delivered",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        },
+        {
+          "id": "C-2",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        }
+      ],
+      "verified_count": 2,
+      "verified_ref_sound": 2,
+      "verified_ref_false": 0,
+      "wall_seconds": 8.7,
+      "created_utc": "2026-11-26T09:08:41Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_d",
+      "seed": 2110,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "RE",
+      "validation_problems": [],
+      "verdict": "NO-DEFECT",
+      "review_outcome": "no_defect",
+      "checks": [],
+      "verified_count": 0,
+      "verified_ref_sound": 0,
+      "verified_ref_false": 0,
+      "wall_seconds": 9.23,
+      "created_utc": "2026-11-26T09:08:39Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_e",
+      "seed": 2110,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "WA",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "verified_delivered",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        },
+        {
+          "id": "C-2",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        }
+      ],
+      "verified_count": 2,
+      "verified_ref_sound": 2,
+      "verified_ref_false": 0,
+      "wall_seconds": 11.12,
+      "created_utc": "2026-11-26T09:09:10Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_e",
+      "seed": 2110,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "RE",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "verified_delivered",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        }
+      ],
+      "verified_count": 1,
+      "verified_ref_sound": 1,
+      "verified_ref_false": 0,
+      "wall_seconds": 19.74,
+      "created_utc": "2026-11-26T09:09:20Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_f",
+      "seed": 2110,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "WA",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "unverified_abstain",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "AC",
+          "verified": false
+        }
+      ],
+      "verified_count": 0,
+      "verified_ref_sound": 0,
+      "verified_ref_false": 0,
+      "wall_seconds": 13.58,
+      "created_utc": "2026-11-26T09:09:24Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_g",
+      "seed": 2109,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "WA",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "verified_delivered",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        }
+      ],
+      "verified_count": 1,
+      "verified_ref_sound": 1,
+      "verified_ref_false": 0,
+      "wall_seconds": 15.55,
+      "created_utc": "2026-11-26T09:09:36Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc400_c",
+      "seed": 2108,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "TLE",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "verified_delivered",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "TLE",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        }
+      ],
+      "verified_count": 1,
+      "verified_ref_sound": 1,
+      "verified_ref_false": 0,
+      "wall_seconds": 14.83,
+      "created_utc": "2026-11-26T09:08:57Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc400_c",
+      "seed": 2109,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "WA",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "verified_delivered",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "TLE",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        }
+      ],
+      "verified_count": 1,
+      "verified_ref_sound": 1,
+      "verified_ref_false": 0,
+      "wall_seconds": 16.11,
+      "created_utc": "2026-11-26T09:08:59Z"
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_d",
+      "seed": 2109,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "WA",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "verified_delivered",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        }
+      ],
+      "verified_count": 1,
+      "verified_ref_sound": 1,
+      "verified_ref_false": 0,
+      "wall_seconds": 12.77,
+      "created_utc": "2026-11-26T09:09:37Z"
+    },
+    {
+      "task_id": "lcb-atcoder-arc195_b",
+      "seed": 2109,
+      "group": "pphf",
+      "provider": "codex",
+      "a_verdict": "WA",
+      "validation_problems": [],
+      "verdict": "DEFECT",
+      "review_outcome": "verified_delivered",
+      "checks": [
+        {
+          "id": "C-1",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        },
+        {
+          "id": "C-2",
+          "dropped": null,
+          "malformed": false,
+          "candidate_outcome": "WA",
+          "verified": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ]
+        }
+      ],
+      "verified_count": 2,
+      "verified_ref_sound": 2,
+      "verified_ref_false": 0,
+      "wall_seconds": 9.84,
+      "created_utc": "2026-11-26T09:09:48Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc389_d",
+      "seed": 2108,
+      "group": "safety_pass",
+      "provider": "codex",
+      "a_verdict": "AC",
+      "validation_problems": [],
+      "verdict": "NO-DEFECT",
+      "review_outcome": "no_defect",
+      "checks": [],
+      "verified_count": 0,
+      "verified_ref_sound": 0,
+      "verified_ref_false": 0,
+      "wall_seconds": 5.45,
+      "created_utc": "2026-11-26T09:09:43Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc393_f",
+      "seed": 2108,
+      "group": "safety_pass",
+      "provider": "codex",
+      "a_verdict": "AC",
+      "validation_problems": [],
+      "verdict": "NO-DEFECT",
+      "review_outcome": "no_defect",
+      "checks": [],
+      "verified_count": 0,
+      "verified_ref_sound": 0,
+      "verified_ref_false": 0,
+      "wall_seconds": 4.45,
+      "created_utc": "2026-11-26T09:09:55Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc393_f",
+      "seed": 2109,
+      "group": "safety_pass",
+      "provider": "codex",
+      "a_verdict": "AC",
+      "validation_problems": [],
+      "verdict": "NO-DEFECT",
+      "review_outcome": "no_defect",
+      "checks": [],
+      "verified_count": 0,
+      "verified_ref_sound": 0,
+      "verified_ref_false": 0,
+      "wall_seconds": 4.02,
+      "created_utc": "2026-11-26T09:14:31Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc395_e",
+      "seed": 2108,
+      "group": "safety_pass",
+      "provider": "codex",
+      "a_verdict": "AC",
+      "validation_problems": [],
+      "verdict": "NO-DEFECT",
+      "review_outcome": "no_defect",
+      "checks": [],
+      "verified_count": 0,
+      "verified_ref_sound": 0,
+      "verified_ref_false": 0,
+      "wall_seconds": 3.5,
+      "created_utc": "2026-11-26T09:09:58Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc395_e",
+      "seed": 2109,
+      "group": "safety_pass",
+      "provider": "codex",
+      "a_verdict": "AC",
+      "validation_problems": [],
+      "verdict": "NO-DEFECT",
+      "review_outcome": "no_defect",
+      "checks": [],
+      "verified_count": 0,
+      "verified_ref_sound": 0,
+      "verified_ref_false": 0,
+      "wall_seconds": 4.58,
+      "created_utc": "2026-11-26T09:14:32Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_b",
+      "seed": 2108,
+      "group": "safety_pass",
+      "provider": "codex",
+      "a_verdict": "AC",
+      "validation_problems": [],
+      "verdict": "NO-DEFECT",
+      "review_outcome": "no_defect",
+      "checks": [],
+      "verified_count": 0,
+      "verified_ref_sound": 0,
+      "verified_ref_false": 0,
+      "wall_seconds": 3.09,
+      "created_utc": "2026-11-26T09:09:51Z"
+    }
+  ],
+  "strict_records": [
+    {
+      "task_id": "lcb-atcoder-abc387_c",
+      "seed": 2110,
+      "e1_category": "never_passed_public",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "LOCAL-FIX",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "WA"
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": true,
+      "wall_seconds": 11.05,
+      "created_utc": "2026-11-26T09:11:08Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc389_d",
+      "seed": 2110,
+      "e1_category": "public_pass_hidden_fail:TLE",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "LOCAL-FIX",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "AC"
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": false,
+      "wall_seconds": 14.02,
+      "created_utc": "2026-11-26T09:10:10Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc390_e",
+      "seed": 2109,
+      "e1_category": "public_pass_hidden_fail:RE",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "METHOD-CHANGE",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "AC"
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": false,
+      "wall_seconds": 12.75,
+      "created_utc": "2026-11-26T09:10:12Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc394_e",
+      "seed": 2110,
+      "e1_category": "public_pass_hidden_fail:RE",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "METHOD-CHANGE",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [],
+      "aligned_count": 0,
+      "aligned_ref_sound": 0,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": false,
+      "wall_seconds": 15.28,
+      "created_utc": "2026-11-26T09:10:26Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc397_b",
+      "seed": 2108,
+      "e1_category": "public_pass_hidden_fail:WA",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "METHOD-CHANGE",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "WA"
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": true,
+      "wall_seconds": 10.45,
+      "created_utc": "2026-11-26T09:10:24Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc398_g",
+      "seed": 2108,
+      "e1_category": "never_passed_public",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "METHOD-CHANGE",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "AC",
+          "aligned": false
+        }
+      ],
+      "aligned_count": 0,
+      "aligned_ref_sound": 0,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": false,
+      "wall_seconds": 73.56,
+      "created_utc": "2026-11-26T09:12:22Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc399_e",
+      "seed": 2110,
+      "e1_category": "never_passed_public",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "LOCAL-FIX",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "AC"
+        },
+        {
+          "id": "V-2",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "AC",
+          "aligned": false
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": false,
+      "wall_seconds": 13.28,
+      "created_utc": "2026-11-26T09:12:36Z"
+    },
+    {
+      "task_id": "lcb-atcoder-abc400_c",
+      "seed": 2109,
+      "e1_category": "public_pass_hidden_fail:TLE",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "METHOD-CHANGE",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "AC"
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": false,
+      "wall_seconds": 13.17,
+      "created_utc": "2026-11-26T09:10:38Z"
+    },
+    {
+      "task_id": "lcb-atcoder-arc191_a",
+      "seed": 2108,
+      "e1_category": "context_overflow",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "LOCAL-FIX",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "AC",
+          "aligned": false
+        },
+        {
+          "id": "V-2",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "AC"
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": false,
+      "wall_seconds": 25.64,
+      "created_utc": "2026-11-26T09:13:03Z"
+    },
+    {
+      "task_id": "lcb-atcoder-arc191_d",
+      "seed": 2108,
+      "e1_category": "public_pass_hidden_fail:WA",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "METHOD-CHANGE",
+      "hedge_terms": [],
+      "static_risk_flags": [
+        "Nested loops of depth 2 with statement scale up to 200,000; verify time complexity is sub-quadratic (avoid O(N^2) TLE)."
+      ],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "WA"
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": true,
+      "wall_seconds": 172.0,
+      "created_utc": "2026-11-26T09:13:19Z"
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_c",
+      "seed": 2109,
+      "e1_category": "never_passed_public",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "METHOD-CHANGE",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "AC"
+        }
+      ],
+      "aligned_count": 1,
+      "aligned_ref_sound": 1,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": false,
+      "wall_seconds": 32.58,
+      "created_utc": "2026-11-26T09:13:37Z"
+    },
+    {
+      "task_id": "lcb-atcoder-arc194_d",
+      "seed": 2109,
+      "e1_category": "public_pass_hidden_fail:WA",
+      "provider": "codex",
+      "validation_problems": [],
+      "repair_mode": "METHOD-CHANGE",
+      "hedge_terms": [],
+      "static_risk_flags": [],
+      "vchecks": [
+        {
+          "id": "V-1",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "WA"
+        },
+        {
+          "id": "V-2",
+          "dropped": null,
+          "malformed": false,
+          "trigger_outcome": "WA",
+          "aligned": true,
+          "ref_outcomes": [
+            "AC",
+            "AC"
+          ],
+          "hist_e1_final_outcome": "WA"
+        }
+      ],
+      "aligned_count": 2,
+      "aligned_ref_sound": 2,
+      "aligned_ref_false": 0,
+      "caught_hist_e1_final": true,
+      "wall_seconds": 15.31,
+      "created_utc": "2026-11-26T09:10:56Z"
+    }
+  ]
+}

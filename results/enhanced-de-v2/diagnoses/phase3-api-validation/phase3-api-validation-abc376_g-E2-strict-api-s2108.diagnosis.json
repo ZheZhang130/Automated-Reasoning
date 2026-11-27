@@ -1,0 +1,173 @@
+{
+  "packet": {
+    "kind": "strict",
+    "trigger_kind": "public_failure",
+    "prompt_id": "E2_STRICT_V1",
+    "task_id": "lcb-atcoder-abc376_g",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-884d7f75c9998ef4 statement>>>\n# Treasure Hunting\n\nThere is a rooted tree with N + 1 vertices numbered from 0 to N. Vertex 0 is the root, and the parent of vertex i is vertex p_i.\nOne of the vertices among vertex 1, vertex 2, ..., vertex N hides a treasure. The probability that the treasure is at vertex i is \\frac{a_i}{\\sum_{j=1}^N a_j}.\nAlso, each vertex is in one of the two states: \"searched\" and \"unsearched\". Initially, vertex 0 is searched, and all other vertices are unsearched.\nUntil the vertex containing the treasure becomes searched, you perform the following operation:\n\n- Choose an unsearched vertex whose parent is searched, and mark it as searched.\n\nFind the expected number of operations required when you act to minimize the expected number of operations, modulo 998244353.\nYou are given T test cases; solve each of them.\n\nHow to find an expected value modulo 998244353\n\nIt can be proved that the expected value is always a rational number. Under the constraints of this problem, it can also be proved that when the expected value is expressed as an irreducible fraction \\frac{P}{Q}, we have Q \\not\\equiv 0 \\pmod{998244353}. In this case, there is a unique integer R satisfying R \\times Q \\equiv P \\pmod{998244353},\\ 0 \\leq R < 998244353. Report this R.\n\nInput\n\nThe input is given from Standard Input in the following format. Here, \\mathrm{case}_i denotes the i-th test case.\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n\nEach test case is given in the following format:\nN\np_1 p_2 \\dots p_N\na_1 a_2 \\dots a_N\n\nOutput\n\nPrint T lines. The i-th line should contain the answer for the i-th test case.\n\nConstraints\n\n\n- 1 \\leq T \\leq 2 \\times 10^5\n- 1 \\leq N \\leq 2 \\times 10^5\n- 0 \\leq p_i < i\n- 1 \\leq a_i\n- \\sum_{i=1}^N a_i \\leq 10^8\n- The sum of N over all test cases is at most 2 \\times 10^5.\n- All input values are integers.\n\nSample Input 1\n\n3\n3\n0 0 1\n1 2 3\n5\n0 1 0 0 0\n8 6 5 1 7\n10\n0 1 1 3 3 1 4 7 5 4\n43 39 79 48 92 90 76 30 16 30\n\nSample Output 1\n\n166374061\n295776107\n680203339\n\nIn the first test case, the expected number of operations is \\frac{13}{6}.\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-884d7f75c9998ef4>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624, 3036 bytes)\n<<<DATA-884d7f75c9998ef4 program>>>\nimport sys\nfrom sys import stdin\n\ndef solve():\n    input_data = sys.stdin.read().split()\n    if not input_data:\n        return\n    iterator = iter(input_data)\n    T = int(next(iterator))\n    \n    MOD = 998244353\n    \n    inv = [1] * MOD\n    for i in range(2, MOD):\n        inv[i] = (MOD - (MOD // i) * inv[MOD % i] % MOD) % MOD\n    \n    def modinv(n):\n        return pow(n, MOD - 2, MOD)\n    \n    results = []\n    \n    for _ in range(T):\n        N = int(next(iterator))\n        p = [0] * (N + 1)\n        for i in range(1, N + 1):\n            p[i] = int(next(iterator))\n        a = [0] * (N + 1)\n        for i in range(1, N + 1):\n            a[i] = int(next(iterator))\n        \n        # Build children lists\n        children = [[] for _ in range(N + 1)]\n        for i in range(1, N + 1):\n            children[p[i]].append(i)\n        \n        # Compute subtree sums for a\n        subtree_sum = [0] * (N + 1)\n        for i in range(N, 0, -1):\n            subtree_sum[i] = a[i]\n            for c in children[i]:\n                subtree_sum[i] += subtree_sum[c]\n        \n        total_sum = subtree_sum[0]\n        \n        # Compute expected cost\n        # E = sum_{v != 0} P(v) * (1 + cost(v))\n        # cost(v) = sum_{u in subtree(v), u != v} P(u) * (depth(u) - depth(v))\n        #          = sum_{u in subtree(v), u != v} P(u) * depth(u) - P(u) * depth(v)\n        #          = (sum_{u in subtree(v), u != v} P(u) * depth(u)) - depth(v) * (subtree_sum[v] - a[v])\n        # Let S1[v] = sum_{u in subtree(v)} P(u) * depth(u)\n        # Then cost(v) = S1[v] - a[v] * depth(v) - depth(v) * (subtree_sum[v] - a[v])\n        #              = S1[v] - depth(v) * subtree_sum[v]\n        # E = sum_{v != 0} P(v) * (1 + S1[v] - depth(v) * subtree_sum[v])\n        #   = sum_{v != 0} P(v) + sum_{v != 0} P(v) * S1[v] - sum_{v != 0} P(v) * depth(v) * subtree_sum[v]\n        \n        # We need to compute S1[v] for all v\n        # S1[v] = a[v] * depth(v) + sum_{c in children[v]} S1[c]\n        \n        depth = [0] * (N + 1)\n        S1 = [0] * (N + 1)\n        \n        # BFS to compute depths and S1\n        queue = [0]\n        order = []\n        while queue:\n            u = queue.pop(0)\n            order.append(u)\n            for c in children[u]:\n                depth[c] = depth[u] + 1\n                queue.append(c)\n        \n        for u in order:\n            S1[u] = a[u] * depth[u]\n            for c in children[u]:\n                S1[u] += S1[c]\n        \n        # Now compute the answer\n        # E = sum_{v != 0} P(v) * (1 + S1[v] - depth[v] * subtree_sum[v])\n        # P(v) = a[v] / total_sum\n        \n        # E = (1/total_sum) * sum_{v != 0} a[v] * (1 + S1[v] - depth[v] * subtree_sum[v])\n        \n        numerator = 0\n        for v in range(1, N + 1):\n            term = 1 + S1[v] - depth[v] * subtree_sum[v]\n            numerator = (numerator + a[v] * term) % MOD\n        \n        ans = numerator * modinv(total_sum) % MOD\n        results.append(ans)\n    \n    for r in results:\n        print(r)\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-884d7f75c9998ef4>>>\n\nPUBLIC TEST REPORT shown to the coding model (status candidate_failure, 0/1 public cases passed, first failing case 01, verdict RE)\n<<<DATA-884d7f75c9998ef4 report>>>\nPUBLIC TESTS: 0/1 passed\nFirst failure: case 01: RE (runtime error)\n--- input ---\n3\n3\n0 0 1\n1 2 3\n5\n0 1 0 0 0\n8 6 5 1 7\n10\n0 1 1 3 3 1 4 7 5 4\n43 39 79 48 92 90 76 30 16 30\n\n--- stderr (last lines) ---\nTraceback (most recent call last):\n  File \"/tmp/code-0/solution.py\", line 95, in <module>\n    solve()\n  File \"/tmp/code-0/solution.py\", line 13, in solve\n    inv = [1] * MOD\n          ~~~~^~~~~\nMemoryError\n<<<END-DATA-884d7f75c9998ef4>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-884d7f75c9998ef4 static-analysis>>>\n- Structure: 56 code lines (19 comments), max loop depth 3, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:RE(0.017s).\n- Static risk flags:\n  * Potential O(N^2) list operation: list.pop(0) inside loop.\n<<<END-DATA-884d7f75c9998ef4>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 539 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "884d7f75c9998ef4",
+    "statement_sha256": "5c6fcc4720ee626d6d05c8d8a16db1d96fc24d7ccc2457225074a012a6fa9615",
+    "candidate_sha256": "2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624",
+    "report_sha256": "8353dd1ca930b51cb154f3cf5ba63cbd3405849483a87b577fb42d71c9566296",
+    "user_message_sha256": "d13a02f87016f7823a4a92b36ad215dca6fa34f1a9b73ac4a21502f6452ff7a7",
+    "static_summary_sha256": "1bf569e184cfc97e67c1be49e3fad0f5129de7fd75ec9a3bf90eb9dddf8f6652",
+    "static_risk_flags": [
+      "Potential O(N^2) list operation: list.pop(0) inside loop."
+    ],
+    "verdict": "RE",
+    "first_case": "01",
+    "public_status": "candidate_failure",
+    "public_passed": 0,
+    "public_total": 1,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624",
+    "judge_tests_sha256": "59c9bf49ca165d579b1dc937c182f25b051c34b564661d09efba362432a85d6c",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Observed failure\nPublic case 01 ended with a runtime error: `MemoryError` at `inv = [1] * MOD`.\n\n## Likely cause\nLine 13 allocates a list with 998,244,353 entries before processing any test case. The table is unused: `modinv` already computes inverses with `pow`.\n\n## Repair mode\nMETHOD-CHANGE. Removing the table fixes the crash, but the depth-based formula still cannot minimize the expected cost because it ignores the search order among siblings.\n\n## Repair direction\nDelete the unused inverse table and replace the depth-based calculation with a parent-before-child scheduling algorithm that minimizes the sum of each vertex’s weight times its search position.\n\nStart with one block per vertex. Repeatedly select the non-root block with the highest ratio of total weight to number of vertices, then append it to the block containing the parent of its first vertex. Update the merged block’s weight and size. Use a heap with exact cross-multiplication for density comparisons, disjoint-set lookup for current block membership, and constant-time concatenation of block orders. The final root block gives the search order; skip vertex 0 and number the remaining positions from 1. Divide the weighted position sum by the sum of the input weights using the existing modular `pow` inverse.\n\n## Verification target\nRerun the public tests. Also check that the heavier of two root children is searched first, giving an expectation of \\(5/4\\).\n\nV-1\n```text\n1\n2\n0 0\n1 3\n```\n```text\n748683266\n```\n",
+    "provider": "openai-api",
+    "model": "gpt-6.2-sol",
+    "observed_model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "prompt_tokens": 2679,
+      "completion_tokens": 659,
+      "total_tokens": 3338,
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "cache_write_tokens": 2676,
+        "audio_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 320,
+        "audio_tokens": 0,
+        "accepted_prediction_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    },
+    "latency_seconds": 12.33,
+    "cost_usd": 0.011948,
+    "request_id": "req_b1e1d2853cb3401b88b1bb98e6456ff2",
+    "ledger_index": 4,
+    "isolation": {
+      "mechanism": "direct HTTPS request; E2 evidence packet only"
+    }
+  },
+  "delivered_message": "[Frontier diagnosis] A separate, stronger model read the task, the exact program you just tested, the public-test report above and a static analysis of the program, and wrote the diagnosis below. It has not seen any hidden tests and may be wrong; weigh it against the evidence. Your files, history and remaining budget are unchanged (18 actions left). Revise /workspace/solution.py yourself, then run python -I /public/check.py again.\n\n## Observed failure\nPublic case 01 ended with a runtime error: `MemoryError` at `inv = [1] * MOD`.\n\n## Likely cause\nLine 13 allocates a list with 998,244,353 entries before processing any test case. The table is unused: `modinv` already computes inverses with `pow`.\n\n## Repair mode\nMETHOD-CHANGE. Removing the table fixes the crash, but the depth-based formula still cannot minimize the expected cost because it ignores the search order among siblings.\n\n## Repair direction\nDelete the unused inverse table and replace the depth-based calculation with a parent-before-child scheduling algorithm that minimizes the sum of each vertex’s weight times its search position.\n\nStart with one block per vertex. Repeatedly select the non-root block with the highest ratio of total weight to number of vertices, then append it to the block containing the parent of its first vertex. Update the merged block’s weight and size. Use a heap with exact cross-multiplication for density comparisons, disjoint-set lookup for current block membership, and constant-time concatenation of block orders. The final root block gives the search order; skip vertex 0 and number the remaining positions from 1. Divide the weighted position sum by the sum of the input weights using the existing modular `pow` inverse.\n\n## Verification target\nRerun the public tests. Also check that the heavier of two root children is searched first, giving an expectation of \\(5/4\\).\n\nV-1\n```text\n1\n2\n0 0\n1 3\n```\n```text\n748683266\n```",
+  "record": {
+    "assigned": true,
+    "controller": "e2-strict",
+    "mode": null,
+    "prompt_id": "E2_STRICT_V1",
+    "provider": "openai-api",
+    "trigger_observed": true,
+    "trigger_kind": "public_failure",
+    "trigger_reason": "qualifying:RE",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": true,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 13.907,
+    "provider_wait_seconds": 12.328,
+    "harness_check_seconds": 1.579,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": "METHOD-CHANGE",
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "enable_advisory_vchecks": true,
+    "vcheck_alignment": "aligned",
+    "vchecks": [
+      {
+        "id": "V-1",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "0474c9d247fb73f6c9bfc72b1d22dac5be091badd9407615cde5b126a254bce7",
+        "expected_sha256": "f9801c02d98016f646c71e87a6149adbc9269c99e7a30b8893c1511493263323",
+        "trigger_outcome": "RE",
+        "aligned": true
+      }
+    ],
+    "advisories": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-27T01:04:45Z",
+    "local_seconds_left_at_trigger": 539.14,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "strict",
+      "trigger_kind": "public_failure",
+      "prompt_id": "E2_STRICT_V1",
+      "task_id": "lcb-atcoder-abc376_g",
+      "nonce": "884d7f75c9998ef4",
+      "statement_sha256": "5c6fcc4720ee626d6d05c8d8a16db1d96fc24d7ccc2457225074a012a6fa9615",
+      "candidate_sha256": "2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624",
+      "report_sha256": "8353dd1ca930b51cb154f3cf5ba63cbd3405849483a87b577fb42d71c9566296",
+      "user_message_sha256": "d13a02f87016f7823a4a92b36ad215dca6fa34f1a9b73ac4a21502f6452ff7a7",
+      "static_summary_sha256": "1bf569e184cfc97e67c1be49e3fad0f5129de7fd75ec9a3bf90eb9dddf8f6652",
+      "static_risk_flags": [
+        "Potential O(N^2) list operation: list.pop(0) inside loop."
+      ],
+      "verdict": "RE",
+      "first_case": "01",
+      "public_status": "candidate_failure",
+      "public_passed": 0,
+      "public_total": 1,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624",
+      "judge_tests_sha256": "59c9bf49ca165d579b1dc937c182f25b051c34b564661d09efba362432a85d6c",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-27T01:04:45Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "openai-api",
+      "model": "gpt-6.2-sol",
+      "observed_model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "prompt_tokens": 2679,
+        "completion_tokens": 659,
+        "total_tokens": 3338,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 2676,
+          "audio_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 320,
+          "audio_tokens": 0,
+          "accepted_prediction_tokens": 0,
+          "rejected_prediction_tokens": 0
+        }
+      },
+      "latency_seconds": 12.33,
+      "cost_usd": 0.011948,
+      "request_id": "req_b1e1d2853cb3401b88b1bb98e6456ff2",
+      "ledger_index": 4,
+      "isolation": {
+        "mechanism": "direct HTTPS request; E2 evidence packet only"
+      }
+    },
+    "response_sha256": "963c611085816d4d047be1b8ca022b4f7daeb4f46ccd9af7302c73f96a628a1f",
+    "hedge_terms": [],
+    "vchecks_aligned": 1,
+    "delivered_utc": "2026-11-27T01:04:59Z",
+    "diagnosis_sha256": "963c611085816d4d047be1b8ca022b4f7daeb4f46ccd9af7302c73f96a628a1f",
+    "delivered_message_sha256": "6d8c21685db159dc6aa9a36994125fa4fb69b9806b7383adff12af84f3579c6e",
+    "diagnosis_words": 237,
+    "delivered_message_index": 7,
+    "delivered_after_action": 2,
+    "soft_code_flags": []
+  }
+}

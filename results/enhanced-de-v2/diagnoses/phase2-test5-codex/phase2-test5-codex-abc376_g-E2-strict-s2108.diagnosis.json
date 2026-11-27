@@ -1,0 +1,177 @@
+{
+  "packet": {
+    "kind": "strict",
+    "trigger_kind": "public_failure",
+    "prompt_id": "E2_STRICT_V1",
+    "task_id": "lcb-atcoder-abc376_g",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-fdae5dbf10dfbde4 statement>>>\n# Treasure Hunting\n\nThere is a rooted tree with N + 1 vertices numbered from 0 to N. Vertex 0 is the root, and the parent of vertex i is vertex p_i.\nOne of the vertices among vertex 1, vertex 2, ..., vertex N hides a treasure. The probability that the treasure is at vertex i is \\frac{a_i}{\\sum_{j=1}^N a_j}.\nAlso, each vertex is in one of the two states: \"searched\" and \"unsearched\". Initially, vertex 0 is searched, and all other vertices are unsearched.\nUntil the vertex containing the treasure becomes searched, you perform the following operation:\n\n- Choose an unsearched vertex whose parent is searched, and mark it as searched.\n\nFind the expected number of operations required when you act to minimize the expected number of operations, modulo 998244353.\nYou are given T test cases; solve each of them.\n\nHow to find an expected value modulo 998244353\n\nIt can be proved that the expected value is always a rational number. Under the constraints of this problem, it can also be proved that when the expected value is expressed as an irreducible fraction \\frac{P}{Q}, we have Q \\not\\equiv 0 \\pmod{998244353}. In this case, there is a unique integer R satisfying R \\times Q \\equiv P \\pmod{998244353},\\ 0 \\leq R < 998244353. Report this R.\n\nInput\n\nThe input is given from Standard Input in the following format. Here, \\mathrm{case}_i denotes the i-th test case.\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n\nEach test case is given in the following format:\nN\np_1 p_2 \\dots p_N\na_1 a_2 \\dots a_N\n\nOutput\n\nPrint T lines. The i-th line should contain the answer for the i-th test case.\n\nConstraints\n\n\n- 1 \\leq T \\leq 2 \\times 10^5\n- 1 \\leq N \\leq 2 \\times 10^5\n- 0 \\leq p_i < i\n- 1 \\leq a_i\n- \\sum_{i=1}^N a_i \\leq 10^8\n- The sum of N over all test cases is at most 2 \\times 10^5.\n- All input values are integers.\n\nSample Input 1\n\n3\n3\n0 0 1\n1 2 3\n5\n0 1 0 0 0\n8 6 5 1 7\n10\n0 1 1 3 3 1 4 7 5 4\n43 39 79 48 92 90 76 30 16 30\n\nSample Output 1\n\n166374061\n295776107\n680203339\n\nIn the first test case, the expected number of operations is \\frac{13}{6}.\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-fdae5dbf10dfbde4>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624, 3036 bytes)\n<<<DATA-fdae5dbf10dfbde4 program>>>\nimport sys\nfrom sys import stdin\n\ndef solve():\n    input_data = sys.stdin.read().split()\n    if not input_data:\n        return\n    iterator = iter(input_data)\n    T = int(next(iterator))\n    \n    MOD = 998244353\n    \n    inv = [1] * MOD\n    for i in range(2, MOD):\n        inv[i] = (MOD - (MOD // i) * inv[MOD % i] % MOD) % MOD\n    \n    def modinv(n):\n        return pow(n, MOD - 2, MOD)\n    \n    results = []\n    \n    for _ in range(T):\n        N = int(next(iterator))\n        p = [0] * (N + 1)\n        for i in range(1, N + 1):\n            p[i] = int(next(iterator))\n        a = [0] * (N + 1)\n        for i in range(1, N + 1):\n            a[i] = int(next(iterator))\n        \n        # Build children lists\n        children = [[] for _ in range(N + 1)]\n        for i in range(1, N + 1):\n            children[p[i]].append(i)\n        \n        # Compute subtree sums for a\n        subtree_sum = [0] * (N + 1)\n        for i in range(N, 0, -1):\n            subtree_sum[i] = a[i]\n            for c in children[i]:\n                subtree_sum[i] += subtree_sum[c]\n        \n        total_sum = subtree_sum[0]\n        \n        # Compute expected cost\n        # E = sum_{v != 0} P(v) * (1 + cost(v))\n        # cost(v) = sum_{u in subtree(v), u != v} P(u) * (depth(u) - depth(v))\n        #          = sum_{u in subtree(v), u != v} P(u) * depth(u) - P(u) * depth(v)\n        #          = (sum_{u in subtree(v), u != v} P(u) * depth(u)) - depth(v) * (subtree_sum[v] - a[v])\n        # Let S1[v] = sum_{u in subtree(v)} P(u) * depth(u)\n        # Then cost(v) = S1[v] - a[v] * depth(v) - depth(v) * (subtree_sum[v] - a[v])\n        #              = S1[v] - depth(v) * subtree_sum[v]\n        # E = sum_{v != 0} P(v) * (1 + S1[v] - depth(v) * subtree_sum[v])\n        #   = sum_{v != 0} P(v) + sum_{v != 0} P(v) * S1[v] - sum_{v != 0} P(v) * depth(v) * subtree_sum[v]\n        \n        # We need to compute S1[v] for all v\n        # S1[v] = a[v] * depth(v) + sum_{c in children[v]} S1[c]\n        \n        depth = [0] * (N + 1)\n        S1 = [0] * (N + 1)\n        \n        # BFS to compute depths and S1\n        queue = [0]\n        order = []\n        while queue:\n            u = queue.pop(0)\n            order.append(u)\n            for c in children[u]:\n                depth[c] = depth[u] + 1\n                queue.append(c)\n        \n        for u in order:\n            S1[u] = a[u] * depth[u]\n            for c in children[u]:\n                S1[u] += S1[c]\n        \n        # Now compute the answer\n        # E = sum_{v != 0} P(v) * (1 + S1[v] - depth[v] * subtree_sum[v])\n        # P(v) = a[v] / total_sum\n        \n        # E = (1/total_sum) * sum_{v != 0} a[v] * (1 + S1[v] - depth[v] * subtree_sum[v])\n        \n        numerator = 0\n        for v in range(1, N + 1):\n            term = 1 + S1[v] - depth[v] * subtree_sum[v]\n            numerator = (numerator + a[v] * term) % MOD\n        \n        ans = numerator * modinv(total_sum) % MOD\n        results.append(ans)\n    \n    for r in results:\n        print(r)\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-fdae5dbf10dfbde4>>>\n\nPUBLIC TEST REPORT shown to the coding model (status candidate_failure, 0/1 public cases passed, first failing case 01, verdict RE)\n<<<DATA-fdae5dbf10dfbde4 report>>>\nPUBLIC TESTS: 0/1 passed\nFirst failure: case 01: RE (runtime error)\n--- input ---\n3\n3\n0 0 1\n1 2 3\n5\n0 1 0 0 0\n8 6 5 1 7\n10\n0 1 1 3 3 1 4 7 5 4\n43 39 79 48 92 90 76 30 16 30\n\n--- stderr (last lines) ---\nTraceback (most recent call last):\n  File \"/tmp/code-0/solution.py\", line 95, in <module>\n    solve()\n  File \"/tmp/code-0/solution.py\", line 13, in solve\n    inv = [1] * MOD\n          ~~~~^~~~~\nMemoryError\n<<<END-DATA-fdae5dbf10dfbde4>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-fdae5dbf10dfbde4 static-analysis>>>\n- Structure: 56 code lines (19 comments), max loop depth 3, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:RE(0.017s).\n- Static risk flags:\n  * Potential O(N^2) list operation: list.pop(0) inside loop.\n<<<END-DATA-fdae5dbf10dfbde4>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 539 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "fdae5dbf10dfbde4",
+    "statement_sha256": "5c6fcc4720ee626d6d05c8d8a16db1d96fc24d7ccc2457225074a012a6fa9615",
+    "candidate_sha256": "2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624",
+    "report_sha256": "8353dd1ca930b51cb154f3cf5ba63cbd3405849483a87b577fb42d71c9566296",
+    "user_message_sha256": "2cb54e49c7529d66273df626edafc7d22a86186460818a91a09bf5980857fa8d",
+    "static_summary_sha256": "1bf569e184cfc97e67c1be49e3fad0f5129de7fd75ec9a3bf90eb9dddf8f6652",
+    "static_risk_flags": [
+      "Potential O(N^2) list operation: list.pop(0) inside loop."
+    ],
+    "verdict": "RE",
+    "first_case": "01",
+    "public_status": "candidate_failure",
+    "public_passed": 0,
+    "public_total": 1,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624",
+    "judge_tests_sha256": "59c9bf49ca165d579b1dc937c182f25b051c34b564661d09efba362432a85d6c",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Observed failure\n\nPublic case 01 failed with a `MemoryError` at `inv = [1] * MOD`. The report shows 0 of 1 public cases passed.\n\n## Likely cause\n\nThe program tries to allocate a list of 998,244,353 entries before processing any test case. The traceback identifies that allocation, and the answer calculation already uses `pow` through `modinv` without reading the table.\n\n## Repair mode\n\nMETHOD-CHANGE\n\nRemoving the inverse table clears the crash, but the subtree-depth formula omits the search order between branches, which affects the expected cost even for siblings.\n\n## Repair direction\n\nRemove the inverse table and replace the depth calculation with greedy block merging. Start with one block per vertex. Each block tracks its total treasure weight, its number of search operations, and its highest vertex. The root block starts with weight and size zero because vertex 0 is already searched.\n\nRepeatedly take the live nonroot block with the greatest weight-to-size ratio and append it to the block containing the original parent of its highest vertex. Use a heap with exact cross-multiplication for ratio comparisons, skip stale entries, and use union-find to locate the current parent block. Update the merged block’s weight and size and reinsert it if it excludes the root. The greedy step works because moving the chosen block immediately after its parent block crosses only blocks with equal or lower density.\n\nInitialize the weighted sum of search positions to `sum(a)`. Each merge adds the receiving block’s size before the merge times the appended block’s weight. Multiply the final sum by the modular inverse of `sum(a)`.\n\n## Verification target\n\nRerun the public tests. In V-1, searching vertices 1, 3, 2 gives the minimum weighted cost of 21 and an expected cost of 21/10.\n\nV-1\n```text\n1\n3\n0 0 1\n1 2 7\n```\n```text\n299473308\n```\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 13676,
+        "cached_input_tokens": 9344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 1014,
+        "reasoning_output_tokens": 599
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 22.81,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a0d-cf5c-7620-88b5-329c062ed586",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "5e80b1c66e018ddd37d8f66adc80a55a7cc49b055687837ad0503695c943044a",
+      "input_sha256": "8822fdefdd7f3c2acc9d9bcd422ff23d40b89605306be568aa2ccddef6570ded",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": "[Frontier diagnosis] A separate, stronger model read the task, the exact program you just tested, the public-test report above and a static analysis of the program, and wrote the diagnosis below. It has not seen any hidden tests and may be wrong; weigh it against the evidence. Your files, history and remaining budget are unchanged (18 actions left). Revise /workspace/solution.py yourself, then run python -I /public/check.py again.\n\n## Observed failure\n\nPublic case 01 failed with a `MemoryError` at `inv = [1] * MOD`. The report shows 0 of 1 public cases passed.\n\n## Likely cause\n\nThe program tries to allocate a list of 998,244,353 entries before processing any test case. The traceback identifies that allocation, and the answer calculation already uses `pow` through `modinv` without reading the table.\n\n## Repair mode\n\nMETHOD-CHANGE\n\nRemoving the inverse table clears the crash, but the subtree-depth formula omits the search order between branches, which affects the expected cost even for siblings.\n\n## Repair direction\n\nRemove the inverse table and replace the depth calculation with greedy block merging. Start with one block per vertex. Each block tracks its total treasure weight, its number of search operations, and its highest vertex. The root block starts with weight and size zero because vertex 0 is already searched.\n\nRepeatedly take the live nonroot block with the greatest weight-to-size ratio and append it to the block containing the original parent of its highest vertex. Use a heap with exact cross-multiplication for ratio comparisons, skip stale entries, and use union-find to locate the current parent block. Update the merged block’s weight and size and reinsert it if it excludes the root. The greedy step works because moving the chosen block immediately after its parent block crosses only blocks with equal or lower density.\n\nInitialize the weighted sum of search positions to `sum(a)`. Each merge adds the receiving block’s size before the merge times the appended block’s weight. Multiply the final sum by the modular inverse of `sum(a)`.\n\n## Verification target\n\nRerun the public tests. In V-1, searching vertices 1, 3, 2 gives the minimum weighted cost of 21 and an expected cost of 21/10.\n\nV-1\n```text\n1\n3\n0 0 1\n1 2 7\n```\n```text\n299473308\n```",
+  "record": {
+    "assigned": true,
+    "controller": "e2-strict",
+    "mode": null,
+    "prompt_id": "E2_STRICT_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_failure",
+    "trigger_reason": "qualifying:RE",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": true,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 24.359,
+    "provider_wait_seconds": 22.813,
+    "harness_check_seconds": 1.546,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": "METHOD-CHANGE",
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "enable_advisory_vchecks": true,
+    "vcheck_alignment": "aligned",
+    "vchecks": [
+      {
+        "id": "V-1",
+        "dropped": null,
+        "malformed": false,
+        "stdin_sha256": "de1e51b77ce60324dea290758f54607d06c3e333465fe65534bf17723fe8bb98",
+        "expected_sha256": "c2b692128564455469f0bad05c06ab1fa35ff76b7f87e824dab9a5e6af4817a7",
+        "trigger_outcome": "RE",
+        "aligned": true
+      }
+    ],
+    "advisories": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T22:50:42Z",
+    "local_seconds_left_at_trigger": 539.36,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "strict",
+      "trigger_kind": "public_failure",
+      "prompt_id": "E2_STRICT_V1",
+      "task_id": "lcb-atcoder-abc376_g",
+      "nonce": "fdae5dbf10dfbde4",
+      "statement_sha256": "5c6fcc4720ee626d6d05c8d8a16db1d96fc24d7ccc2457225074a012a6fa9615",
+      "candidate_sha256": "2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624",
+      "report_sha256": "8353dd1ca930b51cb154f3cf5ba63cbd3405849483a87b577fb42d71c9566296",
+      "user_message_sha256": "2cb54e49c7529d66273df626edafc7d22a86186460818a91a09bf5980857fa8d",
+      "static_summary_sha256": "1bf569e184cfc97e67c1be49e3fad0f5129de7fd75ec9a3bf90eb9dddf8f6652",
+      "static_risk_flags": [
+        "Potential O(N^2) list operation: list.pop(0) inside loop."
+      ],
+      "verdict": "RE",
+      "first_case": "01",
+      "public_status": "candidate_failure",
+      "public_passed": 0,
+      "public_total": 1,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "2d1f17decd1140a6a68487895b51544fab6730956d3de7c3da841567098ac624",
+      "judge_tests_sha256": "59c9bf49ca165d579b1dc937c182f25b051c34b564661d09efba362432a85d6c",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T22:50:42Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 13676,
+          "cached_input_tokens": 9344,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 1014,
+          "reasoning_output_tokens": 599
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 22.81,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a0d-cf5c-7620-88b5-329c062ed586",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "5e80b1c66e018ddd37d8f66adc80a55a7cc49b055687837ad0503695c943044a",
+        "input_sha256": "8822fdefdd7f3c2acc9d9bcd422ff23d40b89605306be568aa2ccddef6570ded",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "6877f0d4ee7361f76075968bff21f42fb0a448f908613972353c815e957c0cc8",
+    "hedge_terms": [],
+    "vchecks_aligned": 1,
+    "delivered_utc": "2026-11-26T22:51:06Z",
+    "diagnosis_sha256": "6877f0d4ee7361f76075968bff21f42fb0a448f908613972353c815e957c0cc8",
+    "delivered_message_sha256": "a8b8f9066bb3fcd46eec35c1de75a1a98ff8a7ed32ef96a229ed31672494f5ad",
+    "diagnosis_words": 301,
+    "delivered_message_index": 7,
+    "delivered_after_action": 2,
+    "soft_code_flags": []
+  }
+}

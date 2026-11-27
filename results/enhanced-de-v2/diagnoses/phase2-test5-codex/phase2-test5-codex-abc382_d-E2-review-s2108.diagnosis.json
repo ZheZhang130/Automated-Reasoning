@@ -1,0 +1,153 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-abc382_d",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-b8d108a9b0ee2c4a statement>>>\n# Keep Distance\n\nYou are given integers N and M.\nPrint all integer sequences (A_1, A_2, \\ldots, A_N) of length N that satisfy all of the following conditions, in lexicographical order.\n\n- 1 \\leq A_i\n- A_{i - 1} + 10 \\leq A_i for each integer i from 2 through N\n- A_N \\leq M\n\nWhat is lexicographical order?\nA sequence S = (S_1, S_2, \\ldots, S_N) of length N is smaller in lexicographical order than a sequence T = (T_1, T_2, \\ldots, T_N) of length N if and only if there exists an integer 1 \\leq i \\leq N such that both of the following hold:\n\n-  (S_1, S_2, \\ldots, S_{i-1}) = (T_1, T_2, \\ldots, T_{i-1})\n-  S_i is less than T_i (as a number).\n\nInput\n\nThe input is given from Standard Input in the following format:\nN M\n\nOutput\n\nLet X be the number of integer sequences that satisfy the conditions, and print X + 1 lines.\nThe first line should contain the value of X.\nThe (i + 1)-th line (1 \\leq i \\leq X) should contain the i-th smallest integer sequence in lexicographical order, with elements separated by spaces.\n\nConstraints\n\n\n- 2 \\leq N \\leq 12\n- 10N - 9 \\leq M \\leq 10N\n- All input values are integers.\n\nSample Input 1\n\n3 23\n\nSample Output 1\n\n10\n1 11 21\n1 11 22\n1 11 23\n1 12 22\n1 12 23\n1 13 23\n2 12 22\n2 12 23\n2 13 23\n3 13 23\n\n(1, 11, 21), (1, 11, 22), (1, 11, 23), (1, 12, 22), (1, 12, 23), (1, 13, 23), (2, 12, 22), (2, 12, 23), (2, 13, 23), (3, 13, 23) are the 10 sequences that satisfy the conditions.\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-b8d108a9b0ee2c4a>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 3bf6928ce6a820760c0bbedc40d90fb5d031d6274a55e2e5cd7233c47500de18, 1701 bytes)\n<<<DATA-b8d108a9b0ee2c4a program>>>\nimport sys\n\ndef solve():\n    input_data = sys.stdin.read().strip()\n    if not input_data:\n        return\n    N, M = map(int, input_data.split())\n    \n    # We need to find all sequences A_1, ..., A_N such that:\n    # 1 <= A_i\n    # A_i >= A_{i-1} + 10 for i >= 2\n    # A_N <= M\n    \n    # Since N is small (up to 12), we can use DFS/backtracking\n    # We build the sequence element by element\n    \n    results = []\n    \n    def backtrack(current_seq, last_val, min_next):\n        if len(current_seq) == N:\n            # Check if last element is <= M\n            if current_seq[-1] <= M:\n                results.append(list(current_seq))\n            return\n        \n        # For the next element, it must be at least min_next\n        # And it must be at most M (since all subsequent elements must be <= M)\n        # Actually, we need to be more careful:\n        # If we are at position i (0-indexed), and we pick value v,\n        # then for all j > i, A_j >= v + 10*(j-i)\n        # So A_N >= v + 10*(N-1-i)\n        # We need A_N <= M, so v <= M - 10*(N-1-i)\n        \n        max_val = M - 10 * (N - 1 - len(current_seq))\n        for v in range(min_next, max_val + 1):\n            current_seq.append(v)\n            backtrack(current_seq, v, v + 10)\n            current_seq.pop()\n    \n    # Start with first element: can be from 1 to M - 10*(N-1)\n    first_max = M - 10 * (N - 1)\n    for v in range(1, first_max + 1):\n        backtrack([v], v, v + 10)\n    \n    # Sort results lexicographically (they should already be in order due to our construction)\n    results.sort()\n    \n    print(len(results))\n    for seq in results:\n        print(' '.join(map(str, seq)))\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-b8d108a9b0ee2c4a>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 1/1 public cases passed)\n<<<DATA-b8d108a9b0ee2c4a report>>>\nPUBLIC TESTS: 1/1 passed\n<<<END-DATA-b8d108a9b0ee2c4a>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-b8d108a9b0ee2c4a static-analysis>>>\n- Structure: 26 code lines (16 comments), max loop depth 1, recursive=['backtrack'] (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.017s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-b8d108a9b0ee2c4a>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 544 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "b8d108a9b0ee2c4a",
+    "statement_sha256": "111e97ef45c381b16e980ae8862caf828197fd7e3746973a96fbbcbe223ed225",
+    "candidate_sha256": "3bf6928ce6a820760c0bbedc40d90fb5d031d6274a55e2e5cd7233c47500de18",
+    "report_sha256": "38a7ba794457e49e551a52eafaa714a64d3e649c924af492e0c972d562c5db21",
+    "user_message_sha256": "1735df4f77478f5a2c157f49309a6ec42c307b04c3d74dfe41d211d92eaad066",
+    "static_summary_sha256": "7a0664540e51dcdca4697e8409a2454b91bf6b666abd22ad2f661a0e0010b8d6",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 1,
+    "public_total": 1,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "3bf6928ce6a820760c0bbedc40d90fb5d031d6274a55e2e5cd7233c47500de18",
+    "judge_tests_sha256": "e172818e35a5d9ef244e15b35c79f4ac5d8c0553e79f79129181f8e3056e2598",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\nNO-DEFECT. The search generates every valid sequence exactly once, the output is sorted lexicographically, and there is no demonstrated timeout within the stated constraints.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 12805,
+        "cached_input_tokens": 9344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 150,
+        "reasoning_output_tokens": 108
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 5.78,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a30-a012-7163-b07e-ab5d1542165e",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "a1558e80f0c0a8920747df5dcd9c5d6a565be5eb1df7e3fa332a407900053210",
+      "input_sha256": "4fcea7efe66a79edd544da6936561b94c283b8126e7dacbacd5e0e1601734c56",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": null,
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": false,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 5.782,
+    "provider_wait_seconds": 5.782,
+    "harness_check_seconds": 0.0,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "no_defect",
+    "review_verdict": "NO-DEFECT",
+    "counterexamples": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T23:28:43Z",
+    "local_seconds_left_at_trigger": 544.09,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-abc382_d",
+      "nonce": "b8d108a9b0ee2c4a",
+      "statement_sha256": "111e97ef45c381b16e980ae8862caf828197fd7e3746973a96fbbcbe223ed225",
+      "candidate_sha256": "3bf6928ce6a820760c0bbedc40d90fb5d031d6274a55e2e5cd7233c47500de18",
+      "report_sha256": "38a7ba794457e49e551a52eafaa714a64d3e649c924af492e0c972d562c5db21",
+      "user_message_sha256": "1735df4f77478f5a2c157f49309a6ec42c307b04c3d74dfe41d211d92eaad066",
+      "static_summary_sha256": "7a0664540e51dcdca4697e8409a2454b91bf6b666abd22ad2f661a0e0010b8d6",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 1,
+      "public_total": 1,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "3bf6928ce6a820760c0bbedc40d90fb5d031d6274a55e2e5cd7233c47500de18",
+      "judge_tests_sha256": "e172818e35a5d9ef244e15b35c79f4ac5d8c0553e79f79129181f8e3056e2598",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T23:28:43Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 12805,
+          "cached_input_tokens": 9344,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 150,
+          "reasoning_output_tokens": 108
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 5.78,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a30-a012-7163-b07e-ab5d1542165e",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "a1558e80f0c0a8920747df5dcd9c5d6a565be5eb1df7e3fa332a407900053210",
+        "input_sha256": "4fcea7efe66a79edd544da6936561b94c283b8126e7dacbacd5e0e1601734c56",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "eb658c11dce37510ba225a59d4524fa5b48931faa3352525bac2949f3f8574ac"
+  }
+}

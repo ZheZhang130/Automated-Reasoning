@@ -1,0 +1,153 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-abc376_e",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-2469ac6bd2f2586f statement>>>\n# Max × Sum\n\nYou are given sequences of length N: A = (A_1, A_2, \\dots, A_N) and B = (B_1, B_2, \\dots, B_N).\nLet S be a subset of \\lbrace1, 2, \\dots, N\\rbrace of size K.\nHere, find the minimum possible value of the following expression:\n\n\\displaystyle \\left(\\max_{i \\in S} A_i\\right) \\times \\left(\\sum_{i \\in S} B_i\\right).\n\nYou are given T test cases; solve each of them.\n\nInput\n\nThe input is given from Standard Input in the following format. Here, \\mathrm{case}_i denotes the i-th test case.\nT\n\\mathrm{case}_1\n\\mathrm{case}_2\n\\vdots\n\\mathrm{case}_T\n\nEach test case is given in the following format:\nN K\nA_1 A_2 \\dots A_N\nB_1 B_2 \\dots B_N\n\nOutput\n\nPrint T lines. The i-th line should contain the answer for the i-th test case.\n\nConstraints\n\n\n- 1 \\leq T \\leq 2 \\times 10^5\n- 1 \\leq K \\leq N \\leq 2 \\times 10^5\n- 1 \\leq A_i, B_i \\leq 10^6\n- The sum of N over all test cases is at most 2 \\times 10^5.\n- All input values are integers.\n\nSample Input 1\n\n3\n3 2\n3 7 6\n9 2 4\n5 3\n6 4 1 5 9\n8 6 5 1 7\n10 6\n61 95 61 57 69 49 46 47 14 43\n39 79 48 92 90 76 30 16 30 94\n\nSample Output 1\n\n42\n60\n14579\n\nIn the first test case, for S = \\{2, 3\\}, the value of the expression is 7 \\times (2 + 4) = 42, which is the minimum.\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-2469ac6bd2f2586f>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 b8b04c474e990643c74dacab7c1f0fb856b55bbc3014f74b997c30ba624deab2, 11397 bytes)\n<<<DATA-2469ac6bd2f2586f program>>>\nimport sys\nfrom typing import List\n\ndef solve() -> None:\n    input_data = sys.stdin.read().split()\n    if not input_data:\n        return\n    \n    iterator = iter(input_data)\n    try:\n        T = int(next(iterator))\n    except StopIteration:\n        return\n    \n    results = []\n    \n    for _ in range(T):\n        N = int(next(iterator))\n        K = int(next(iterator))\n        \n        A = []\n        for _ in range(N):\n            A.append(int(next(iterator)))\n        \n        B = []\n        for _ in range(N):\n            B.append(int(next(iterator)))\n        \n        # We want to minimize (max(A[i] for i in S)) * (sum(B[i] for i in S))\n        # Strategy:\n        # 1. Sort indices by A[i] in ascending order.\n        # 2. Iterate through the sorted indices. For each index 'i' (which will be the max A in the subset),\n        #    we consider subsets of size K that include 'i' and K-1 other indices from the remaining available indices.\n        #    To minimize the sum, we should pick the K-1 indices with the smallest B values from the available ones.\n        #    However, we must be careful: the \"available ones\" are those with A[j] <= A[i].\n        #    Actually, the condition is simply that the max A is A[i]. So all other elements must have A[j] <= A[i].\n        #    But since we iterate in increasing order of A, if we pick 'i' as the max, we can pick any K-1 elements\n        #    from indices j where A[j] <= A[i].\n        #    Wait, if there are duplicate A values, we need to be careful.\n        #    Let's refine:\n        #    Sort pairs (A[i], B[i]) by A[i].\n        #    Iterate through the sorted list. Let the current element be at index 'idx' in the sorted list.\n        #    This element has value A_val.\n        #    We want to form a subset of size K where the maximum A is A_val.\n        #    This means we pick this element (or one of the elements with same A_val) and K-1 other elements\n        #    from the set of elements with A <= A_val.\n        #    To minimize the sum, we should pick the K-1 elements with the smallest B values from the available pool.\n        #    The available pool consists of all elements processed so far (including current) that have A <= current A.\n        #    However, we must ensure that we pick exactly K elements and the max A is indeed the current A_val.\n        #    If we pick K elements from the first 'idx+1' elements (0 to idx in sorted list), the max A will be <= A[idx].\n        #    If there are multiple elements with the same A value, say at indices idx, idx+1, ..., idx+m in sorted list,\n        #    then for any of these, the max A is the same.\n        #    So, we can maintain a pool of B values for all elements seen so far.\n        #    At step 'idx', we add B[idx] to the pool.\n        #    We need to pick K elements from the pool. To minimize sum, we pick the K smallest B's.\n        #    BUT, we must ensure that the max A is exactly A[idx].\n        #    If we pick K elements from the first 'idx+1' elements, the max A is A[idx] (since we sorted by A).\n        #    Is it possible that we pick K elements from the first 'idx' elements? Yes, but then the max A would be A[idx-1] (or less).\n        #    But we are iterating to find the minimum over ALL possible max A values.\n        #    So, for a fixed max A value (say X), we consider all subsets where max A is X.\n        #    This is equivalent to: pick K elements from the set of elements with A <= X, such that at least one element has A = X.\n        #    Actually, simpler:\n        #    Iterate through the sorted elements. At each step, we have a set of elements with A <= current A.\n        #    Let this set be S_curr. We want to choose a subset of size K from S_curr such that the max A is current A.\n        #    This is equivalent to choosing K elements from S_curr. The max A will be <= current A.\n        #    If we choose K elements from S_curr, the max A is the A of the element with the largest A in the subset.\n        #    Since we process in increasing order of A, if we are at index 'idx' (0-based in sorted list),\n        #    the elements 0..idx have A <= A[idx].\n        #    If we pick K elements from 0..idx, the max A is A[idx] ONLY IF we include at least one element with A = A[idx].\n        #    However, if there are multiple elements with the same A value, say at indices idx, idx+1, ..., idx+m,\n        #    then for any of these, the max A is the same.\n        #    So, we can just consider: for each 'idx', we have a pool of B values from indices 0 to idx.\n        #    We want to pick K smallest B values from this pool.\n        #    Let this sum be Sum_B. Then the cost is A[idx] * Sum_B.\n        #    But wait, is it guaranteed that the max A is A[idx]?\n        #    If we pick K elements from 0..idx, the max A is A[idx] ONLY IF we pick at least one element from the group of elements with A = A[idx].\n        #    However, if we pick K elements from 0..idx-1, the max A is A[idx-1] (or less).\n        #    But we are iterating 'idx' from 0 to N-1.\n        #    If we compute the cost for 'idx' as A[idx] * (sum of K smallest B's in 0..idx),\n        #    this cost corresponds to a subset where the max A is <= A[idx].\n        #    Specifically, if the K smallest B's are all from 0..idx-1, then the max A is A[idx-1] (or less).\n        #    But we are iterating 'idx' and using A[idx] as the multiplier.\n        #    This would overestimate the cost if the actual max A is smaller.\n        #    However, notice that if the optimal subset has max A = X, then when we process the first element with A = X,\n        #    we will consider subsets formed by elements with A <= X.\n        #    The sum of B's will be minimized by picking the K smallest B's from the available pool.\n        #    The cost calculated will be X * Sum_B.\n        #    Is it possible that we calculate a cost X * Sum_B where the actual max A is Y < X?\n        #    Yes, if the K smallest B's are all from elements with A < X.\n        #    But in that case, the actual max A is Y < X, so the true cost is Y * Sum_B.\n        #    Since Y < X, Y * Sum_B < X * Sum_B.\n        #    So, when we were at step Y (where Y is the max A of that subset), we would have calculated Y * Sum_B.\n        #    Therefore, the value X * Sum_B (where actual max is Y) is strictly greater than Y * Sum_B.\n        #    So, the minimum will be found when we process the actual max A.\n        #    Thus, we can simply iterate 'idx' from 0 to N-1, maintain a pool of B's from 0..idx,\n        #    and at each step, if the pool size >= K, calculate A[idx] * (sum of K smallest B's).\n        #    Update the global minimum.\n        #    This works because:\n        #    1. For any valid subset S with max A = X, let Y be the index in sorted list of the first element with A = X.\n        #       Actually, let's say the elements with A = X are at indices [y_start, y_end] in sorted list.\n        #       When we are at any index 'idx' in [y_start, y_end], the pool contains all elements with A <= X.\n        #       The K smallest B's from the pool will give the minimum sum for a subset with max A <= X.\n        #       If the K smallest B's happen to be all from A < X, then the max A is < X.\n        #       But we would have already considered that case when we were at the index corresponding to the max A of that subset.\n        #       If the K smallest B's include at least one element with A = X, then the max A is X.\n        #       In either case, the cost we compute at step 'idx' (using A[idx]) is an upper bound on the true cost.\n        #       However, since we iterate through all possible max A values, we will eventually hit the true max A.\n        #       Specifically, let the optimal subset have max A = X_opt and sum B = S_opt.\n        #       When we process the first element with A = X_opt (or any element with A = X_opt),\n        #       the pool will contain all elements with A <= X_opt.\n        #       The K smallest B's from this pool will be <= S_opt (since the optimal subset is a candidate).\n        #       Actually, the optimal subset is a subset of elements with A <= X_opt.\n        #       So the sum of the K smallest B's from the pool is <= S_opt.\n        #       Therefore, A[idx] * (sum of K smallest) <= X_opt * S_opt.\n        #       But wait, if the sum of K smallest is strictly less than S_opt, then we found a better subset?\n        #       No, because the optimal subset must have max A = X_opt.\n        #       If we pick K smallest B's from the pool (elements with A <= X_opt),\n        #       and if this selection includes at least one element with A = X_opt, then it's a valid subset with max A = X_opt.\n        #       If it doesn't include any element with A = X_opt, then the max A is < X_opt.\n        #       But then the true cost is (max A) * (sum B) < X_opt * (sum B).\n        #       So the value we compute (X_opt * sum_B) is an overestimate.\n        #       However, we will have computed the true cost (max A * sum B) when we were at the step corresponding to the true max A.\n        #       Therefore, the minimum over all steps will be the correct answer.\n        \n        # Implementation details:\n        # We need to maintain the K smallest B values from the pool.\n        # Since N is up to 2e5, we cannot sort at each step.\n        # We can use a max-heap of size K to maintain the K smallest B values.\n        # The heap will store the largest of the K smallest at the top.\n        # When we add a new B, if heap size < K, push it.\n        # If heap size == K, if new B < heap[0], pop heap[0] and push new B.\n        # Then the sum of the K smallest is sum(heap).\n        # We need to maintain the sum of elements in the heap.\n        \n        import heapq\n        \n        # Store pairs (A[i], B[i])\n        pairs = sorted(zip(A, B))\n        \n        # Max-heap to keep the K smallest B values.\n        # Python's heapq is a min-heap, so we store negative values.\n        heap = []\n        current_sum_B = 0\n        \n        min_val = float('inf')\n        \n        for a_val, b_val in pairs:\n            # Add current B to the pool\n            if len(heap) < K:\n                heapq.heappush(heap, -b_val)\n                current_sum_B += b_val\n            else:\n                # If the new B is smaller than the largest in the heap (which is -heap[0]), replace it.\n                if -heap[0] > b_val:\n                    largest_in_heap = -heapq.heappop(heap)\n                    current_sum_B -= largest_in_heap\n                    heapq.heappush(heap, -b_val)\n                    current_sum_B += b_val\n                # else: don't add, the current K smallest are better.\n            \n            if len(heap) == K:\n                # We have at least K elements.\n                # The current max A is a_val.\n                # But wait, we need to ensure that the subset we are considering has max A = a_val?\n                # As discussed, even if the subset has max A < a_val, the cost we compute (a_val * sum)\n                # is an overestimate, and the true cost would have been computed earlier.\n                # So we can just take min.\n                cost = a_val * current_sum_B\n                if cost < min_val:\n                    min_val = cost\n        \n        results.append(min_val)\n    \n    for res in results:\n        print(res)\n\nif __name__ == '__main__':\n    solve()\n<<<END-DATA-2469ac6bd2f2586f>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 1/1 public cases passed)\n<<<DATA-2469ac6bd2f2586f report>>>\nPUBLIC TESTS: 1/1 passed\n<<<END-DATA-2469ac6bd2f2586f>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-2469ac6bd2f2586f static-analysis>>>\n- Structure: 45 code lines (116 comments), max loop depth 2, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.066s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-2469ac6bd2f2586f>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 562 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "2469ac6bd2f2586f",
+    "statement_sha256": "828884a70358f304efd2eb3cb1ef372cf0c00020b7a0bee6575d5e3d2d23f41d",
+    "candidate_sha256": "b8b04c474e990643c74dacab7c1f0fb856b55bbc3014f74b997c30ba624deab2",
+    "report_sha256": "38a7ba794457e49e551a52eafaa714a64d3e649c924af492e0c972d562c5db21",
+    "user_message_sha256": "b7c054b391477d15e82247b4094a3c78ed8a81df421d75944183edacaec6d397",
+    "static_summary_sha256": "54dfa6ac199f31b01a0366f5db5e2afe11a302d6f9d9288e20cc138feffda233",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 1,
+    "public_total": 1,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "b8b04c474e990643c74dacab7c1f0fb856b55bbc3014f74b997c30ba624deab2",
+    "judge_tests_sha256": "585b27fa05ee3c6798ed8170884842735a1fc61c49f7aa4f796433d2eb90becb",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\n\nNO-DEFECT. At the last sorted position belonging to an optimal subset, the heap’s sum is at most that subset’s sum, and every computed product is at least the true optimum.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 15082,
+        "cached_input_tokens": 0,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 46,
+        "reasoning_output_tokens": 0
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 4.19,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a2f-942f-78c3-9354-43359bb1bc80",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "ef2b74838b0145f858645346aceafd233eb4ea4cd157ead7c94edd18af7351b4",
+      "input_sha256": "f28ca44a2153a808a16b9dad4714e859158ad3225103b61185cbdf35a9e8d328",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": null,
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": false,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 4.187,
+    "provider_wait_seconds": 4.187,
+    "harness_check_seconds": 0.0,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "no_defect",
+    "review_verdict": "NO-DEFECT",
+    "counterexamples": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T23:27:35Z",
+    "local_seconds_left_at_trigger": 562.0,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-abc376_e",
+      "nonce": "2469ac6bd2f2586f",
+      "statement_sha256": "828884a70358f304efd2eb3cb1ef372cf0c00020b7a0bee6575d5e3d2d23f41d",
+      "candidate_sha256": "b8b04c474e990643c74dacab7c1f0fb856b55bbc3014f74b997c30ba624deab2",
+      "report_sha256": "38a7ba794457e49e551a52eafaa714a64d3e649c924af492e0c972d562c5db21",
+      "user_message_sha256": "b7c054b391477d15e82247b4094a3c78ed8a81df421d75944183edacaec6d397",
+      "static_summary_sha256": "54dfa6ac199f31b01a0366f5db5e2afe11a302d6f9d9288e20cc138feffda233",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 1,
+      "public_total": 1,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "b8b04c474e990643c74dacab7c1f0fb856b55bbc3014f74b997c30ba624deab2",
+      "judge_tests_sha256": "585b27fa05ee3c6798ed8170884842735a1fc61c49f7aa4f796433d2eb90becb",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T23:27:35Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 15082,
+          "cached_input_tokens": 0,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 46,
+          "reasoning_output_tokens": 0
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 4.19,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a2f-942f-78c3-9354-43359bb1bc80",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "ef2b74838b0145f858645346aceafd233eb4ea4cd157ead7c94edd18af7351b4",
+        "input_sha256": "f28ca44a2153a808a16b9dad4714e859158ad3225103b61185cbdf35a9e8d328",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "7e15e7d0235c5085e409608afb4c167e78ebc0afb0eefe3eb8b68885fcf3edc6"
+  }
+}

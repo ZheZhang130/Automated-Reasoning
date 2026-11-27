@@ -1,0 +1,1012 @@
+{
+  "schema": "csc2108-enhanced-de-export-manifest-v1",
+  "exported_utc": "2026-11-27T01:31:59Z",
+  "privacy_scan_passed": true,
+  "files": [
+    {
+      "rel_path": "results/enhanced-de-v2/api-ledger.sanitized.json",
+      "sha256": "d1a00853ce6e4de9965d7797c255c4b8b4812dedbed8aff1152af176b9eca48b",
+      "bytes": 19917
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/batches/phase1a-d2-review-codex.summary.json",
+      "sha256": "9dd111685c34f67d8b82e281206bf2bd891bfa445a93bd38dde7000d690fb003",
+      "bytes": 64022
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/batches/phase1b-e2-strict-codex.summary.json",
+      "sha256": "8e6b3eaee236c4267cb3ca627cd6fec51b2f650addd27c386e44ce66068b1e8a",
+      "bytes": 13939
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/batches/phase1c-e2-stall-codex.summary.json",
+      "sha256": "8e10a94f0c94c8b7a3ae0f1acd3943b400db67b79310ae2b3e032273e1f1dbee",
+      "bytes": 40261
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/batches/phase1c-v2-e2-stall-codex.summary.json",
+      "sha256": "fd46a35527e58bcfc4ca1ae360e3f3167c35eade7eb3c6f38189801083ee8dca",
+      "bytes": 40834
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/batches/phase3-api-validation.summary.json",
+      "sha256": "830d22b391b4624fee54c0ab3b4c8cf1b51473d21c8f03032cc561f85749a8f2",
+      "bytes": 12572
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/api/lcb-atcoder-abc376_e.bundle.json",
+      "sha256": "070827c590074b761921c38533e426277c44bc12ead88f8367b4539474ce3af4",
+      "bytes": 9380
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/api/lcb-atcoder-abc379_g.bundle.json",
+      "sha256": "97e9920045ea9521afb7f8eb5ce2d7628ca5dea7dcb8d354bc07e72b74131a5e",
+      "bytes": 7682
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/api/lcb-atcoder-abc383_c.bundle.json",
+      "sha256": "75441e214253ddc6654544e3e85894fd86ff0dea373856adea8d61180d14c023",
+      "bytes": 9529
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/api/lcb-atcoder-abc384_c.bundle.json",
+      "sha256": "1b846e32563c592c4a6e4f98515deec0419fc210fca879baa130d48e6b9953d3",
+      "bytes": 6793
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc375_c.bundle.json",
+      "sha256": "c00588a03b61d9dd6d1c36cec41a44f8c6a5fd771039332ce54f38c5b54cf651",
+      "bytes": 6738
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc376_e.bundle.json",
+      "sha256": "e9bb4aa7114175335dc754d4288c98c550604f6fd9a0c1da0c0b8c4e559f7135",
+      "bytes": 9921
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc376_g.bundle.json",
+      "sha256": "06bda814fea60ad0100c8524584e9a0bc1ce7a3bab8fedc8b4b5a3b21f92aae4",
+      "bytes": 10896
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc377_c.bundle.json",
+      "sha256": "54b21befc37ca50d3709ba0c782b4996a64f4c507c8b49a464d7fa4893d75b58",
+      "bytes": 7844
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc377_d.bundle.json",
+      "sha256": "7ddea67ed82b176c352ad34995263a1322ea90795db2b6d5e2133dd51a62beb5",
+      "bytes": 9085
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc378_e.bundle.json",
+      "sha256": "25cca82bf56d17b82e5b938e22bc6b488394d073b3944699a561c9a51f6e1cfb",
+      "bytes": 7884
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc379_g.bundle.json",
+      "sha256": "5bd110b4f9408318d6e31eccef4b492454b699ab3fc3782b97515bad4b0d743f",
+      "bytes": 8740
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc380_c.bundle.json",
+      "sha256": "a863b94b6c69aaf7819a50449ca23a871a0373b1beaf848478b6abe0dea97a4b",
+      "bytes": 8239
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc382_d.bundle.json",
+      "sha256": "226e6aa5485b0158381992be7a11dbf4204f3cb5eb1acba956340757673d0837",
+      "bytes": 7200
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc383_b.bundle.json",
+      "sha256": "2b659647da10de1faf3e4f7b9ca1d177a9d91a65e142f2499c645c9af0ecea61",
+      "bytes": 9503
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc383_c.bundle.json",
+      "sha256": "48ee5efee4dc481e4d66c600afacb9204888fcc062c7e5276cd63e15b9e96d57",
+      "bytes": 9177
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc384_c.bundle.json",
+      "sha256": "8e4721a9964cb0ebca2f20e4195c84e20d03eae021f3658d24f32c8f2846512d",
+      "bytes": 7162
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc385_c.bundle.json",
+      "sha256": "9a3fe7cfa54451bc46137258de52be2cb1059b0c1a6a2911f840c777712cc6d4",
+      "bytes": 6966
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc387_c.bundle.json",
+      "sha256": "3761c0b8bbe820f8b12094941b34ea89175e585b80db75740848a1e6a270194b",
+      "bytes": 5557
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc387_f.bundle.json",
+      "sha256": "7979bb17e8ec1d52684f6c1470659da437c7c4b9312adf52d6dcdb8d07d0f9ab",
+      "bytes": 8541
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc389_d.bundle.json",
+      "sha256": "423fd33df0da8898d7b3988a448e286743c7f0eb0fa5917536df796e3bf40e11",
+      "bytes": 5365
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc390_d.bundle.json",
+      "sha256": "b2cf448e711352ad571d60f239300ce3c162d0714d5a2994ae033cf0d9c77c8f",
+      "bytes": 7648
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc390_e.bundle.json",
+      "sha256": "fe2341a0f801b97c99779e7d0c79ce85716088766f51d1650e58da4b69836311",
+      "bytes": 9488
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc391_d.bundle.json",
+      "sha256": "3d2f8f4230e710b351281294ae8e6216af1954d41c67a7c17c111872e226162e",
+      "bytes": 11031
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc393_f.bundle.json",
+      "sha256": "2ce650e1fceb3c38bbeaf48a8483e3693cc13d3e5c96e81cd5a6635119574913",
+      "bytes": 13221
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc394_e.bundle.json",
+      "sha256": "aeb28e7822a93b95188e43e9ed268c85ee354b4147fa140ef4080f77f8da8426",
+      "bytes": 10484
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc394_f.bundle.json",
+      "sha256": "d608efdf7b77067abd5228f84d0ee1a85796343619a688790a86dc3c171c2a82",
+      "bytes": 8539
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc395_e.bundle.json",
+      "sha256": "95b3c6f758b478d8f6c107f99875b25856950ed2552f3afa73dc10fbb7d7d2df",
+      "bytes": 10662
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc397_b.bundle.json",
+      "sha256": "38d957cb89ad72a60a89836843d911a16cb620982afd398dbe2debb9c02167b4",
+      "bytes": 6109
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc398_b.bundle.json",
+      "sha256": "48dfa030da7d6e076652a73cfb13b1b559023436a7c4d70ed5d6874d75d8aa10",
+      "bytes": 5890
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc398_g.bundle.json",
+      "sha256": "7f1d2ff96bb448186fc0f200846b3b4c85c709433b51ffe45f0033611e4886b6",
+      "bytes": 8712
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc399_e.bundle.json",
+      "sha256": "7c7705a8838558d9f994cd3bf3a3ba974402445adbe36e654b720eb257a4008e",
+      "bytes": 9076
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-abc400_c.bundle.json",
+      "sha256": "4ab601dfa4904915c4d7af055c66175957808b42a0ebb2610462c01e02c76cb4",
+      "bytes": 6185
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-arc185_e.bundle.json",
+      "sha256": "de1ab9b17970a0be82817903c2e3c5a18dba4c84e3ff0c639dff2f87ea45382b",
+      "bytes": 8189
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-arc189_c.bundle.json",
+      "sha256": "a07357d11101453e9fefdac84099aa822b6dae4b3f1c01b093344dfab708b95d",
+      "bytes": 10275
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-arc191_d.bundle.json",
+      "sha256": "2840c292acb228f8bded61261b85b1dfcd0f5d986bca4e0527900ffd75a10271",
+      "bytes": 10240
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-arc192_e.bundle.json",
+      "sha256": "08b39aec334dc1604e369cc1bd5efbbdc9d095611304717e8e78401b127dc808",
+      "bytes": 7507
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-arc194_d.bundle.json",
+      "sha256": "77933b5f3a283016d3fc81a3c81be55cfd63dd99b72ea5be0f2bc16d767f55e5",
+      "bytes": 7728
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-arc195_b.bundle.json",
+      "sha256": "7a507dce641b1fc5fb105113cc1121c99ed084d5abc006bca5183ba91fafc10c",
+      "bytes": 8783
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/d2_bundles/codex/lcb-atcoder-arc196_a.bundle.json",
+      "sha256": "14400a1dcc3ad8a50620ac3ea53ee95c4d9516c09dd12fd414e9256c0cc33d96",
+      "bytes": 7893
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-abc387_c-E2-review-s2108.diagnosis.json",
+      "sha256": "90b1287130e5bcf3954cd178eb706a9cd5fdc4cf8025cb8646b250607f2ca056",
+      "bytes": 17185
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-abc390_d-E2-review-s2110.diagnosis.json",
+      "sha256": "c966bddd3ed810a202e5fde790f8c9bad4f451370905936d456154a6ff7fcd31",
+      "bytes": 22637
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-abc390_e-E2-review-s2110.diagnosis.json",
+      "sha256": "eebb72b04c405973b1f5529ac6540dcc9b0637367ee5b283b6c1e847b4535049",
+      "bytes": 22739
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-abc394_e-E2-review-s2110.diagnosis.json",
+      "sha256": "e1ecbecbfbaa1e1b1292f6a21acc78de84b10f2d31d01b804d13de31a9de4322",
+      "bytes": 15560
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-abc394_f-E2-review-s2110.diagnosis.json",
+      "sha256": "56cbd83bbd579ee2d64e16a257db3aac66dd589cdcaad51635ed949deb5215a9",
+      "bytes": 19674
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-abc398_g-E2-review-s2109.diagnosis.json",
+      "sha256": "b3765812d086d5bed8d6b2cef0472c1081295d3a8662d00eea99e3f3cf11ef6b",
+      "bytes": 15211
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-abc400_c-E2-review-s2108.diagnosis.json",
+      "sha256": "2a035842fc83f04a5e7ef9ce7dfc25ccec5bfbd26d889aa52e426d5e992a28f9",
+      "bytes": 12959
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-abc400_c-E2-review-s2109.diagnosis.json",
+      "sha256": "54d53fb135bb1a92bb5818cc7ab6fc039778897966368266067543c6dcf43d40",
+      "bytes": 12412
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-arc194_d-E2-review-s2109.diagnosis.json",
+      "sha256": "b83a376d107a94d7d7ebac6cae3cb52d4f00912833bdf90cf45e1d3995e9ad79",
+      "bytes": 15387
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1a-d2-review-codex/phase1a-d2-review-codex-arc195_b-E2-review-s2109.diagnosis.json",
+      "sha256": "13d43029afdedf8fd718810be4206c86fd631ed3076207526d5e99b44e5541fb",
+      "bytes": 21013
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-abc387_c-E2-strict-s2110.diagnosis.json",
+      "sha256": "7475f5943b84d0f7cc3c08d6c0e0914701e514a5c5c0eabd57729378e959b1c1",
+      "bytes": 18783
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-abc389_d-E2-strict-s2110.diagnosis.json",
+      "sha256": "c9106cec616cd5f80a1b76863272e1cfa78601d3da14e93d94a7b3a5e0f3fad0",
+      "bytes": 16091
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-abc390_e-E2-strict-s2109.diagnosis.json",
+      "sha256": "72d6d7107e893f31c33bee93114523c14486fbc959c35d43dbad2d9609c00a80",
+      "bytes": 15380
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-abc394_e-E2-strict-s2110.diagnosis.json",
+      "sha256": "b1250037878606503d059629d8fe5efe4fdce206eafed460cd474400a8fcd49d",
+      "bytes": 25893
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-abc397_b-E2-strict-s2108.diagnosis.json",
+      "sha256": "c0832fa11f7008bc5802ed79141eb52c64628250379ab18fccf550c3c2c52a50",
+      "bytes": 13341
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-abc398_g-E2-strict-s2108.diagnosis.json",
+      "sha256": "9098c6cb0be7df17c5d5fee6ed527d35e2bb6b25da68c8f7a8910a69d4728473",
+      "bytes": 18144
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-abc399_e-E2-strict-s2110.diagnosis.json",
+      "sha256": "af8463e9edb83fce300668d03ff9f97497c8f058df873282e3d366948d4d09d0",
+      "bytes": 24674
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-abc400_c-E2-strict-s2109.diagnosis.json",
+      "sha256": "6b0d87146db07ef90a8db641131439583bf445121ce4ec69c35db91083185555",
+      "bytes": 12819
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-arc191_a-E2-strict-s2108.diagnosis.json",
+      "sha256": "11bf5fd8ef7722e4d93fc5b7b154e4216bab717d1cc4b088786ab8c898f6c181",
+      "bytes": 15142
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-arc191_d-E2-strict-s2108.diagnosis.json",
+      "sha256": "224969f77d58d49e956476b22f7c33502ddedec302ef7fb03c454d0cae9c9d53",
+      "bytes": 16204
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-arc194_c-E2-strict-s2109.diagnosis.json",
+      "sha256": "721a8625e11b5a463aa6207170aff32919136218f08e87431827daf5e7ba16ae",
+      "bytes": 20165
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1b-e2-strict-codex/phase1b-e2-strict-codex-arc194_d-E2-strict-s2109.diagnosis.json",
+      "sha256": "5b599c67418f89532340bf27c881cf7a4938467cd6195d4fe81df0ebdb299ab0",
+      "bytes": 24320
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc387_f-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "6f3b2973d0d2119d3e1278dd2ff1f64b6a4c42194bc235b7eeafefc349fc86b6",
+      "bytes": 17784
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc387_f-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "7d57cd704fc948b4c0e67841cbbe183ae9da8ae4d73deefbfe6f9c8ef5a3440f",
+      "bytes": 15030
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc387_f-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "cd3604778e9f9a266235307f4feef84f3ed11f52663d1fec136947085ae44577",
+      "bytes": 11541
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_d-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "ca2d0df5a87e8272e1df9b81da1bd961ed9779d49a0f1e7457fe2c84bea1dcb7",
+      "bytes": 19023
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_d-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "f55ff61c7464932683c0d2e3304a9f6723dff163268b6e1378b03d536a9c507a",
+      "bytes": 16241
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_d-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "191825dc5df38eb3027d0933b90e9e42724b22b80c58dd21de0d6bfced5f927a",
+      "bytes": 12702
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "bd2368dffdf511cb83f1b7bfd1e66487249e0853b7664c4128cf9700064c0032",
+      "bytes": 18238
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "f435eb55e731ae7e3bbd332b8b3c4d3a3e2affe5ae5d97059fce06ce746c1b92",
+      "bytes": 15765
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "d8adb5df9b664cb1c51a1fbaeaa2bfecaf0ecd799a1e28f81b0b1a8855c53315",
+      "bytes": 12184
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_g-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "58c46ceb471469146a67bc80b3a19859d97b938cd9498d65747e629afcd0ba20",
+      "bytes": 19479
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_g-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "ced5a46526965daa2dadc178930d269ce87e5739c0302ff38e34cd0afbc55284",
+      "bytes": 15677
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc390_g-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "cad8768b7283afd20677428faa04cf41e41b74d1c8d0c557ca7f1023bf72ded5",
+      "bytes": 11857
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc391_d-E2-stall-clate-s2110.diagnosis.json",
+      "sha256": "7b6588d6e75d54e461a85e925ef89cb829999d8ef22485c95836e0d5614bc086",
+      "bytes": 19415
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc391_d-E2-stall-diag-s2110.diagnosis.json",
+      "sha256": "1580e976222e0c747aa5f860051745280baa1ee9561b9661104208a0ab2844b3",
+      "bytes": 16166
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc391_d-E2-stall-neutral-s2110.diagnosis.json",
+      "sha256": "ed9b0f8b9c4f3100d401aabe79668425bfcc62176f67f70e638fef1208f74671",
+      "bytes": 12453
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc394_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "73d0177848551e2b11b3f74983ca31f54c8ec888be3f1c94bbb846cdabfa6fac",
+      "bytes": 19732
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc394_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "1ff8c531b39bb16f3a01b31e23455ace8903e22d237dd64e41dd72f5aa8442e8",
+      "bytes": 16183
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc394_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "68ffe972b7550ea585f0808ebb2e56a993d49eadda9bafdc0cefad159ae366c8",
+      "bytes": 12524
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc394_f-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "465379cced54dae6981db9835a59db85cbd55384e33776d84db26f049d8af6b7",
+      "bytes": 18280
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc394_f-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "5ec2dc0b9d342574605c064d43ffca6998eec520eb5dc3072365dba4c0f1e231",
+      "bytes": 15711
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc394_f-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "1cf066972bbd4f6012978b2302dda1d908363f39f2e8192c1279ad0c07ad354b",
+      "bytes": 12009
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc400_d-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "8f9b13c2bbdf9b689ba24503b7adf72711d7aa852cce4ec0e7a08ee22ea58c3b",
+      "bytes": 20300
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc400_d-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "96fa11aaa924afd7a9fdf8f4a10a48f22e850186ca17c5689c2cb6be22f8d563",
+      "bytes": 18211
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-abc400_d-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "e6172733c5f272f1b6e4e41fbe1dae71511c2dd28eae74f8a8e98b13cc603a55",
+      "bytes": 14482
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc192_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "07634a6365190ce9e2996aafcdcc221a6d0abb619f073143e2a4e90b8c328267",
+      "bytes": 19847
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc192_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "aeff29e38e008587af5e61e8400fa1537c652a1861eaa3796daf49b8e7bc15a1",
+      "bytes": 16012
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc192_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "0e7482de5266c15f39bf65cbe79c0102daf4ef055528deb88dfab686db40b66e",
+      "bytes": 12241
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc194_a-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "fe10f98ba292d860a5d6050eb1ef2efcf2a1b5ef491cedc67c1b9c20988ba2ed",
+      "bytes": 17500
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc194_a-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "88bf12699825bd5d1f953b1c2c241afeecd66730d786470c426c9081be369f0f",
+      "bytes": 15579
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc194_a-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "01e9bf1489485803beb0bee221125b43c56d4031e88aefa849e3122b37c06d96",
+      "bytes": 12164
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc195_b-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "87e8656cd7ed7097d577aaa3a57fb1e86c22a28ccf2e9fb3bcb12e6235d2d2e3",
+      "bytes": 19535
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc195_b-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "4aade5e2a6d173e7bfd596e7c9483481f626e4c588655de2ee7b091ea7e0fc6f",
+      "bytes": 15801
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc195_b-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "ed35d10515bf2faeb60092a6b0f1075ae7045f949a0ccf99a94cc598ae62387e",
+      "bytes": 12099
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc195_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "1056c4ef600a7a9a0e4095c949d23c776a88bedf8a5e0c140459b70b3e77f26c",
+      "bytes": 20173
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc195_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "517fde5d892e8ce412697e64f2e0f55503157af5cf6f93212e157db8f35dc57c",
+      "bytes": 16442
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-e2-stall-codex/phase1c-e2-stall-codex-arc195_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "d5ca2581f1036ac9dc3ecb62d2b44703b7f29f29c539e9688dd7d4d8b51b9eb0",
+      "bytes": 12691
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc387_f-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "c61080bd62ea78c1e4dc13b420af1b38f4cbf6ff364dfc99ac4085e306cf9082",
+      "bytes": 17960
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc387_f-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "3db7e7d610f98c229170eb38ac83aadd9c17afd4917f08145a1fc7a6c71de2fa",
+      "bytes": 16037
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc387_f-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "3217095f9d6afbec1b565d3487055d8df8750757de55703d9e752810e57b712a",
+      "bytes": 11562
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_d-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "ca2440a0e3c0644f43d6ea6dc5277a8d910935e72e407cd4119d17e635b92c67",
+      "bytes": 19200
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_d-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "07dbd78feb9cd14333ec39e0a1b1dff97852ed05993e91757ba0a1c621b173a3",
+      "bytes": 16937
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_d-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "e0149e7558be9dbb1e14970c2949ffde5f9849291c2f22febb099d7fc8b982cd",
+      "bytes": 12796
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "034282acd859b1b5d26ea4b91589d56d367a5a1606874cadb2fc87c38d27e0f3",
+      "bytes": 18414
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "8bbea4dcb76d007c185240c2e3fa476d1987d177dacb74a8e202ccee4e4109e7",
+      "bytes": 16671
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "3caad2eda58fcdd1d61e8dc753b4e1568eaf63ae76742ddf2b0262112d00ab8b",
+      "bytes": 12278
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_g-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "a8abe2d039ada82622c2528d5c3b3c3ec9c9a60f5d3b2a4649dbed9d38c7a5f0",
+      "bytes": 19656
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_g-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "addc8479b49f460cc67232f2782b99bdb255eaa13a8a70feda82c8338025024b",
+      "bytes": 16631
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc390_g-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "51563080003f92d55400f1df0568748d82033bbc3755efcbb0cf8521ef93d81a",
+      "bytes": 11878
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc391_d-E2-stall-clate-s2110.diagnosis.json",
+      "sha256": "b9d2e77a198aa6f9d7681ef7f3f8a95c94ea286d8f18008091a91e59004d5f4f",
+      "bytes": 19590
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc391_d-E2-stall-diag-s2110.diagnosis.json",
+      "sha256": "0c7b9934e522e1da1049116fa1e732622750a192099e4b102668c943d72c87c1",
+      "bytes": 16844
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc391_d-E2-stall-neutral-s2110.diagnosis.json",
+      "sha256": "de6f7d92f761ace66a23c4e031395faade5bab15fc9e14dc27355e214736def1",
+      "bytes": 12547
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc394_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "eb2c806d46c4f9e0f2d9df74c85d3e8fa014ae898913d03964b37cb25cb0ec2f",
+      "bytes": 19908
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc394_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "aae2d2f99aa9aadc09fa8c25795e77c8788b2124fe380d1c6fb105790b392051",
+      "bytes": 17393
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc394_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "08cd6b94483265654bca38a3c959f11baa7affa22e775ebe08bdab81d7061cfc",
+      "bytes": 12618
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc394_f-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "03df756b0c1ddd7949aaefea8891df233ed8af577244e168d50334151f2567d2",
+      "bytes": 18456
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc394_f-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "58d2602db924629073fc8cdcf3afbe47413faa6be46d6b848e873d658d743856",
+      "bytes": 16335
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc394_f-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "e33bb6eb42dc79ffd32c3c591341a4cb75a898c76a9983425fae3735732e816a",
+      "bytes": 12030
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc400_d-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "da7a96bf09bd38bbe7426575d0f275a3c5e10978c25be216ca6a1f5e66dfd736",
+      "bytes": 20476
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc400_d-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "cb18ff07038a311078409906c63fce3184419dcd321a12d9a0309a0576055a97",
+      "bytes": 18859
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-abc400_d-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "49e63aa0a7e277fe6019f9eb91c1662a21ad34eacdba843ef3f97959d7060db6",
+      "bytes": 14576
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc192_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "beb1927809ea22d9e99f369ed3ae5355b570ad389d1245a94ee93823a451f8d9",
+      "bytes": 20023
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc192_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "e38877355572a97e82c6a245e7e7f8b4ce6d3f0e623a449caad120038abe6011",
+      "bytes": 16730
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc192_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "3b1765d6a0fc2d18ff2c5cb3f8156613a194d3f8bdcadb907252fdf88f8e3005",
+      "bytes": 12260
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc194_a-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "0e20cbd0986cfd6f7540b2cbd151cf4ab687cd67c7b000801ed97044530d94cd",
+      "bytes": 17676
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc194_a-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "349de8155bf6676d61a2ba811745cdd6df19dba0cac3c7466f77420d0f73dc7e",
+      "bytes": 16033
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc194_a-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "d0045ff6155d05db5e0356eec608a87c4786262ac9106122c71d1366b4494849",
+      "bytes": 12258
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc195_b-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "ba42d011498c12fdf4f7ec57f3ce8b172e66fdc6d58d3cdfb02303c3b6bc0b48",
+      "bytes": 19711
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc195_b-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "10a2b521be6dd950bdbb9b98344c2f5642b8667ba81b74ca06b640dfefef41ed",
+      "bytes": 16486
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc195_b-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "f671546493b9a6a4ef056655c4b9af77a40a1c72fe153520850cbf2cf690892b",
+      "bytes": 12193
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc195_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "28fde273dbc1b368e91efe3f0c36ed39cfef2892e687d9aea23bc7834b2d830a",
+      "bytes": 20349
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc195_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "edd0e0b1d0224552093abd851091b1ea4f2ed871c825c57062026b8dedf24d6d",
+      "bytes": 17014
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase1c-v2-e2-stall-codex/phase1c-v2-e2-stall-codex-arc195_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "b4f2cbc4af98ec589fc1487328f64a0f6ed7d7b5015c07774f1d36af0957ff09",
+      "bytes": 12785
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc375_c-E2-review-s2108.diagnosis.json",
+      "sha256": "22ce9f84b872d81398c29348eaa6f54f86edf7eceac152ecff334371c8ae418b",
+      "bytes": 11928
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc376_e-E2-review-s2108.diagnosis.json",
+      "sha256": "b6eb246605395e95801149fe921d7f1ffec644be6fef3434d442fad203d247c8",
+      "bytes": 20462
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc376_g-E2-strict-s2108.diagnosis.json",
+      "sha256": "97dd5d01bf723a4c5a0638a49023ba119dd36ebd086ea25282c32a4c40eba91f",
+      "bytes": 18339
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc377_c-E2-review-s2108.diagnosis.json",
+      "sha256": "e4f24e19c3a19151136317f66aa45192d2842259e61caff55eae017b35c49820",
+      "bytes": 12176
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc377_d-E2-review-s2108.diagnosis.json",
+      "sha256": "89023bd28c85efde9612d3bc73f0d02828abb999430b86e03ce787653457ae05",
+      "bytes": 10201
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc377_d-E2-strict-s2108.diagnosis.json",
+      "sha256": "f552a218fe6785b7fb974afb2bb6a5a343018383d78eae9074fc0c15ff1bc947",
+      "bytes": 15174
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc378_e-E2-review-s2108.diagnosis.json",
+      "sha256": "0a3fe74bf980ef7e1dfd93fe543378468ccccbc1a06cefe364502c11a3cb0e90",
+      "bytes": 12504
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc380_c-E2-review-s2108.diagnosis.json",
+      "sha256": "7e332249dec2e007cb05611c32e407cf497c19850687e15462dd74a11cc33e49",
+      "bytes": 15761
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc380_c-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "e1e897e1e0af4f8fc8eb899ae4f06bb50a4bde63ab37b9d6ac6e43f1688408bb",
+      "bytes": 16561
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc380_c-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "dca3fd73be0c1ce411c6eea8f0c85837c87e86083ddfbcbdce7ad3663319549a",
+      "bytes": 15982
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc380_c-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "b377757214e3691cb6569262e93f99d874c31d0ff4c98c837ff8156756d7f792",
+      "bytes": 12363
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc382_d-E2-review-s2108.diagnosis.json",
+      "sha256": "93c647b9fc1a8b032b97b5f47e2d46585981b3cb9f1094a6df33059a5b5cfc36",
+      "bytes": 10837
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc383_b-E2-review-s2108.diagnosis.json",
+      "sha256": "35eed5643fbb492f53acb8b5a497c71e6e9a9d65021a7df63fffd47bc4f98bab",
+      "bytes": 10681
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc383_c-E2-review-s2108.diagnosis.json",
+      "sha256": "d812e5f245a5bea020c8f371a2760dd6d0c16adf1d5fae145adf9c026d1fd1e9",
+      "bytes": 11258
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc383_c-E2-strict-s2108.diagnosis.json",
+      "sha256": "3742f2d618bb014a5b75f619bc726bc5cea30f065b8afa51452fd69a77f3fded",
+      "bytes": 14156
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc384_c-E2-review-s2108.diagnosis.json",
+      "sha256": "694fc9ab29cb0a85f65c526e6cf0c8e0881639e4dd14d9128bcc61f1aa75a2eb",
+      "bytes": 11811
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-abc385_c-E2-strict-s2108.diagnosis.json",
+      "sha256": "543d3236b537fca617bff30b12933739185dc84702b077e3e6aa754b5230dacc",
+      "bytes": 13783
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc184_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "cc4cec4c68f0e2b48a26368338d808ab86d5d072612b74a3694304921b96f764",
+      "bytes": 15079
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc184_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "728298b28d0055d8ad966d059d1e99b7bee54a0b77d0ebe5687b31d1dc6ee6e5",
+      "bytes": 16184
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc184_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "540a99cea7c948669ae073f1534d254ba04c0a90c1b0fa78c030696c28f67ceb",
+      "bytes": 12003
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc185_e-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "ab5d1af425bde4d4162fdb8ed91beff529fbdc0d7bd63f2f9d8e847d01008adc",
+      "bytes": 18295
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc185_e-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "06a0ffdfc586fdb8a4a4b38bd371ff06929bb9b6d0bc6730c8eed2920be691ce",
+      "bytes": 16564
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc185_e-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "eddb4c7f1655247f71ef736ca0103a52ad2dda4ead29b4589af79b100a62c713",
+      "bytes": 12187
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc189_c-E2-stall-clate-s2108.diagnosis.json",
+      "sha256": "1ba30c891451a75149ca4cd90976546c2aba77413d5f7c282e46fafc147f922f",
+      "bytes": 21432
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc189_c-E2-stall-diag-s2108.diagnosis.json",
+      "sha256": "f1a3c1e96e651d142260595aa7b8e20e5bd9174271700346b8840d93a80c998f",
+      "bytes": 17975
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase2-test5-codex/phase2-test5-codex-arc189_c-E2-stall-neutral-s2108.diagnosis.json",
+      "sha256": "1279aeac4edea6db8f90e9d8b299528e473380ac1465f132d54d084672f64eae",
+      "bytes": 13476
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-abc375_c-E2-review-api-s2108.diagnosis.json",
+      "sha256": "903ee58f09e0bab29ef596090a92817b77f0c51b1a6acd900f3399c1f365c48f",
+      "bytes": 11352
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-abc376_e-E2-review-api-s2108.diagnosis.json",
+      "sha256": "72d28c72b45043d7b8de81e47112f823c7ae0500a05c40a79b00b6fbf366363d",
+      "bytes": 19815
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-abc376_g-E2-strict-api-s2108.diagnosis.json",
+      "sha256": "5d0fe5dbb332eef4c151a491e291129a6d3d0f4c80563a893e3d4a8ab684fbcf",
+      "bytes": 16931
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-abc377_d-E2-strict-api-s2108.diagnosis.json",
+      "sha256": "64ba8efe8fced9f40af6245c306882785612892c3ae378b48c5de83f3f6488d8",
+      "bytes": 13895
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-abc382_d-E2-review-api-s2108.diagnosis.json",
+      "sha256": "71b0de6ffc4c6fb79141ec95d7a3110f8eb97af2c51f954575f7250caf63d536",
+      "bytes": 10131
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-abc383_c-E2-strict-api-s2108.diagnosis.json",
+      "sha256": "1ace749e4733c245b6838f3c8ea460743e476f46f605df2f7165bba94a644a57",
+      "bytes": 13377
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-abc385_c-E2-strict-api-s2108.diagnosis.json",
+      "sha256": "ca80b32ff3a0e9ed838d86aa26727ae7d03fe161f3cdc4b5b6606407b23a9be9",
+      "bytes": 12614
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-arc184_e-E2-stall-diag-api-s2108.diagnosis.json",
+      "sha256": "557ed2cd6cad1b9016a5582e4d77a52f75feb816cef231a0b4e60144cf08daed",
+      "bytes": 15860
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-arc185_e-E2-stall-diag-api-s2108.diagnosis.json",
+      "sha256": "fed4505d11bba54280346b249748a7488ba7f10d1508a0ac3befecf9e1c6bff6",
+      "bytes": 16165
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/diagnoses/phase3-api-validation/phase3-api-validation-arc189_c-E2-stall-diag-api-s2108.diagnosis.json",
+      "sha256": "aba2ada2b4dec01f9b54c025f611b83e5bf31728c77dc3cb1cfab56ee179258b",
+      "bytes": 17153
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc375_c.plan-v1.codex.json",
+      "sha256": "3d4803ee3c6a96a3d9a677254be5695096709b0489dbdc8a933a15f7a8e808a2",
+      "bytes": 6591
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc376_e.plan-v1.codex.json",
+      "sha256": "4d848573cf5507539beede15a36373d2d3e39314dbf463b1bc4ed4de3ff2a0b4",
+      "bytes": 7407
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc376_g.plan-v1.codex.json",
+      "sha256": "057450d8b17a0d103730e1ff97411db3cd46c6b20d7807a4409d8ef7cd655af9",
+      "bytes": 9689
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc377_c.plan-v1.codex.json",
+      "sha256": "6b1957c72838c29fd443e2d669d8c8de4c707594a52f1005c43100d06d6d9a6f",
+      "bytes": 6864
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc377_d.plan-v1.codex.json",
+      "sha256": "469ba94b368bebc196304897431fff4621d9be13b53f5aac2e649c8447fb03db",
+      "bytes": 7204
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc378_e.plan-v1.codex.json",
+      "sha256": "ad7ace7d71aaef3a0494fc33beae4f5aff96007b34ce0c69cb8b096faf3741c5",
+      "bytes": 7655
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc379_g.plan-v1.codex.json",
+      "sha256": "15650ba442fffe8b670de84737cf2f7344bf11eb42a9270c6f81308946c12c24",
+      "bytes": 7675
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc380_c.plan-v1.codex.json",
+      "sha256": "7ff226d0916e4f9eabd576e37eaa78261e27889aea10d2bdda1e6b630e8a07a7",
+      "bytes": 7072
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc382_d.plan-v1.codex.json",
+      "sha256": "eef87a98ff07eb8f15681067b07bc5db6129ee0230715a9e3b5b96f023574d0c",
+      "bytes": 7774
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc383_b.plan-v1.codex.json",
+      "sha256": "5d5c317490ab47782063898d97b8512174dbb6b40db412e9e360be87eb05aaf2",
+      "bytes": 7403
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc383_c.plan-v1.codex.json",
+      "sha256": "a70fdb843f53fb0aaa0ad03afc06bbc8dc97a65c2faa084e1c33d8216c22419b",
+      "bytes": 7004
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc384_c.plan-v1.codex.json",
+      "sha256": "6ea7745382b009c614cb3be7b4b2b3e7f7a5a1b9555126f85dc434e38ad8dba5",
+      "bytes": 7016
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-abc385_c.plan-v1.codex.json",
+      "sha256": "961b669bb6557afb6ca8a655b75c78183d906b4c7cd976e775cfee31dcb034ef",
+      "bytes": 6607
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-arc184_e.plan-v1.codex.json",
+      "sha256": "996867c314fd9783caf634954cec9382bb14da3109d34ed10fa3c5938707ab71",
+      "bytes": 6512
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-arc185_e.plan-v1.codex.json",
+      "sha256": "579fdce3e59711ebeeeb2e4aacecf156e9bf6fe7afc6be7c1d7786a4d4869a72",
+      "bytes": 8029
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/guidance/test5-plans-codex/lcb-atcoder-arc189_c.plan-v1.codex.json",
+      "sha256": "4e7973343c51ddeb24b707c6f9f8d724d02f8cbfbb43e21a3408eb9abb276bc9",
+      "bytes": 8956
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/plans/phase1b-ev1-control-codex.json",
+      "sha256": "6a470518639bad5de8cec3131a883a38dadf5abea1913a4b55445e587b396aec",
+      "bytes": 3800
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/plans/phase2-test5-official-codex-s2108.json",
+      "sha256": "a443c7c9e8672e4024b4f263eddcf8b355fff8601899db8b91de7f21c3b19168",
+      "bytes": 5938
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/reports/phase0_d2_offline_codex.json",
+      "sha256": "c6f81d457e6e26ae54c4d7107cffcd2b9a5232480ab3b278e99e63390f6adc08",
+      "bytes": 42542
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/reports/phase0_e2_offline_codex.json",
+      "sha256": "e07d2664cdb319107db61c8db864bb4833b978e9c35de844ce32f94ff5742896",
+      "bytes": 20319
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/reports/phase0_pure_property_zero_oracle.json",
+      "sha256": "252678f56ff5997dbbd07438f7a5dcd6eb415b7dded59b7bbe8cc68da6857d24",
+      "bytes": 7092
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/reports/phase2_composed_s2108.json",
+      "sha256": "ea55251e91f8ba381aa0a60a1aa6cd9fcd1c1b85e8f6368f8d48240295acd36c",
+      "bytes": 111520
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/reports/phase2_trigger_states_s2108.json",
+      "sha256": "0cd39360df354eb80edb8d7a68ebeadd9c861b54f8f9561d1e90b5c81125f689",
+      "bytes": 7887
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/reports/phase3_d2_provider_parity.json",
+      "sha256": "8b579e2c0efece150517c5b71c70ca725ab7ac5435190aac4e0eb37b0cd4b44e",
+      "bytes": 994
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/reports/process_v2.json",
+      "sha256": "a9f921acecf155671fa7ea6ac6834952ecbfc4f4cc42bcf1257d740a060e98b6",
+      "bytes": 276065
+    },
+    {
+      "rel_path": "results/enhanced-de-v2/reports/reproducibility_v2.json",
+      "sha256": "4ad9223cc922583844daa3bad57415a5c4fe43dfb6afae18b94d3c978a25736f",
+      "bytes": 7411
+    }
+  ]
+}

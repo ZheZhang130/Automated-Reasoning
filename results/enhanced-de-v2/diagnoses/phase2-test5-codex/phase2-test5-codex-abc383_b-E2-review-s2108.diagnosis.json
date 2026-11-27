@@ -1,0 +1,153 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-abc383_b",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-b017de3559a37dfd statement>>>\n# Humidifier 2\n\nThe AtCoder company office can be represented as a grid of H rows and W columns. Let (i, j) denote the cell at the i-th row from the top and j-th column from the left.\nThe state of each cell is represented by a character S_{i,j}. If S_{i,j} is #, that cell contains a desk; if S_{i,j} is ., that cell is a floor. It is guaranteed that there are at least two floor cells.\nYou will choose two distinct floor cells and place a humidifier on each.\nAfter placing the humidifiers, a cell (i,j) is humidified if and only if it is within a Manhattan distance D from at least one of the humidifier cells (i',j'). The Manhattan distance between (i,j) and (i',j') is defined as |i - i'| + |j - j'|.\nNote that any floor cell on which a humidifier is placed is always humidified.\nFind the maximum possible number of humidified floor cells.\n\nInput\n\nThe input is given from Standard Input in the following format:\nH W D\nS_{1,1}S_{1,2}\\cdotsS_{1,W}\nS_{2,1}S_{2,2}\\cdotsS_{2,W}\n\\vdots\nS_{H,1}S_{H,2}\\cdotsS_{H,W}\n\nOutput\n\nPrint the answer.\n\nConstraints\n\n\n- 1 \\leq H \\leq 10\n- 1 \\leq W \\leq 10\n- 2 \\leq H \\times W\n- 0 \\leq D \\leq H+W-2\n- H,W,D are integers.\n- S_{i,j} is # or .. (1 \\leq i \\leq H, 1 \\leq j \\leq W)\n- There are at least two floor cells.\n\nSample Input 1\n\n2 5 1\n.###.\n.#.##\n\nSample Output 1\n\n3\n\nWhen placing humidifiers on (1,1) and (1,5):\n\n- From the humidifier on (1,1), two cells (1,1) and (2,1) are humidified.\n- From the humidifier on (1,5), one cell (1,5) is humidified.\n\nIn total, three cells are humidified. No configuration can humidify four or more floor cells, so the answer is 3.\n\nSample Input 2\n\n5 5 2\n.#.#.\n.....\n.#.#.\n#.#.#\n.....\n\nSample Output 2\n\n15\n\nWhen placing humidifiers on (2,4) and (5,3), 15 floor cells are humidified.\n\nSample Input 3\n\n4 4 2\n....\n.##.\n.##.\n....\n\nSample Output 3\n\n10\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-b017de3559a37dfd>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 e972909655987c2ff783884d29d3dfb027812800a36b7bf44554883c38710a7a, 1113 bytes)\n<<<DATA-b017de3559a37dfd program>>>\nimport sys\n\ndef solve():\n    input = sys.stdin.read\n    data = input().strip().split('\\n')\n    H, W, D = map(int, data[0].split())\n    grid = data[1:]\n    \n    # Collect all floor cells\n    floors = []\n    for i in range(H):\n        for j in range(W):\n            if grid[i][j] == '.':\n                floors.append((i, j))\n    \n    max_humidified = 0\n    \n    # Try all pairs of distinct floor cells\n    n = len(floors)\n    for i in range(n):\n        for j in range(i + 1, n):\n            r1, c1 = floors[i]\n            r2, c2 = floors[j]\n            \n            humidified_count = 0\n            \n            # Check each floor cell\n            for r in range(H):\n                for c in range(W):\n                    if grid[r][c] == '.':\n                        dist1 = abs(r - r1) + abs(c - c1)\n                        dist2 = abs(r - r2) + abs(c - c2)\n                        if dist1 <= D or dist2 <= D:\n                            humidified_count += 1\n            \n            max_humidified = max(max_humidified, humidified_count)\n    \n    print(max_humidified)\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-b017de3559a37dfd>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 3/3 public cases passed)\n<<<DATA-b017de3559a37dfd report>>>\nPUBLIC TESTS: 3/3 passed\n<<<END-DATA-b017de3559a37dfd>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-b017de3559a37dfd static-analysis>>>\n- Structure: 29 code lines (3 comments), max loop depth 4, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.017s), 02:AC(0.017s), 03:AC(0.017s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-b017de3559a37dfd>>>\n\nLOCAL STATE: 2 of 20 actions used; 0 of 3 repair groups used; about 587 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "b017de3559a37dfd",
+    "statement_sha256": "a672b8184b71262ac9299f7741e80196710e407355d5eb4f6a9f71c26a9878a6",
+    "candidate_sha256": "e972909655987c2ff783884d29d3dfb027812800a36b7bf44554883c38710a7a",
+    "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+    "user_message_sha256": "037a7c6886c8e7f9d37ee121f3e37ca07b3fb0aad2ebbbd87865a154ae96b69c",
+    "static_summary_sha256": "e98d11053a1c2640536e328ff3195ac80581cfa74682692a83a9f081eb356dad",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 3,
+    "public_total": 3,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "e972909655987c2ff783884d29d3dfb027812800a36b7bf44554883c38710a7a",
+    "judge_tests_sha256": "21d05bbedb0afffeb8142443f1121983198e4ae1ecb34f1268d90d2fc5211d11",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\n\nNO-DEFECT. The program evaluates every valid pair, counts each floor cell within range of either humidifier once, and examines at most 495,000 grid cells across all pairs.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 12657,
+        "cached_input_tokens": 9344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 45,
+        "reasoning_output_tokens": 0
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 3.58,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a2a-ed3b-77f0-b566-5ce1dbf09d03",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "e1bbd4e615b1ab98e2e1e035aadd6f5f74d8e2e9f0611ad40b39dc0fc73b4e2a",
+      "input_sha256": "89d0818df544c16041b5c21dd444d747badf1a6814d871ee31e89ad51054db9a",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": null,
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": false,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 3.578,
+    "provider_wait_seconds": 3.578,
+    "harness_check_seconds": 0.0,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "no_defect",
+    "review_verdict": "NO-DEFECT",
+    "counterexamples": [],
+    "trigger_action": 2,
+    "trigger_utc": "2026-11-26T23:22:30Z",
+    "local_seconds_left_at_trigger": 587.28,
+    "actions_left_at_trigger": 18,
+    "repairs_used_at_trigger": 0,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-abc383_b",
+      "nonce": "b017de3559a37dfd",
+      "statement_sha256": "a672b8184b71262ac9299f7741e80196710e407355d5eb4f6a9f71c26a9878a6",
+      "candidate_sha256": "e972909655987c2ff783884d29d3dfb027812800a36b7bf44554883c38710a7a",
+      "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+      "user_message_sha256": "037a7c6886c8e7f9d37ee121f3e37ca07b3fb0aad2ebbbd87865a154ae96b69c",
+      "static_summary_sha256": "e98d11053a1c2640536e328ff3195ac80581cfa74682692a83a9f081eb356dad",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 3,
+      "public_total": 3,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "e972909655987c2ff783884d29d3dfb027812800a36b7bf44554883c38710a7a",
+      "judge_tests_sha256": "21d05bbedb0afffeb8142443f1121983198e4ae1ecb34f1268d90d2fc5211d11",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T23:22:30Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 12657,
+          "cached_input_tokens": 9344,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 45,
+          "reasoning_output_tokens": 0
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 3.58,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a2a-ed3b-77f0-b566-5ce1dbf09d03",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "e1bbd4e615b1ab98e2e1e035aadd6f5f74d8e2e9f0611ad40b39dc0fc73b4e2a",
+        "input_sha256": "89d0818df544c16041b5c21dd444d747badf1a6814d871ee31e89ad51054db9a",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "9e7abce19c963586f49cf80edda2f445ff66fedcbe7c25b22c7eb59e04150882"
+  }
+}

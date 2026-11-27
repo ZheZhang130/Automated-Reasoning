@@ -1,0 +1,153 @@
+{
+  "packet": {
+    "kind": "review",
+    "trigger_kind": "public_pass",
+    "prompt_id": "E2_REVIEW_V1",
+    "task_id": "lcb-atcoder-abc383_c",
+    "user_message": "PROBLEM STATEMENT\n<<<DATA-b4f55a7f98b145fe statement>>>\n# Humidifier 3\n\nThe AtCoder company office is represented as a grid of H rows and W columns. Let (i, j) denote the cell at the i-th row from the top and j-th column from the left.\nThe state of each cell is represented by a character S_{i,j}. If S_{i,j} is #, that cell has a wall; if S_{i,j} is ., that cell is a floor; if S_{i,j} is H, that cell has a humidifier placed on a floor cell.\nA certain cell is considered humidified if it can be reached from at least one humidifier cell by at most D moves up, down, left, or right without passing through a wall. Note that any cell with a humidifier is always humidified.\nFind the number of humidified floor cells.\n\nInput\n\nThe input is given from Standard Input in the following format:\nH W D\nS_{1,1}S_{1,2}\\cdotsS_{1,W}\nS_{2,1}S_{2,2}\\cdotsS_{2,W}\n\\vdots\nS_{H,1}S_{H,2}\\cdotsS_{H,W}\n\nOutput\n\nPrint the answer.\n\nConstraints\n\n\n- 1 \\leq H \\leq 1000\n- 1 \\leq W \\leq 1000\n- 0 \\leq D \\leq H\\times W\n- S_{i,j} is #, ., or H. (1 \\leq i \\leq H, 1 \\leq j \\leq W)\n- All input numbers are integers.\n\nSample Input 1\n\n3 4 1\nH...\n#..H\n.#.#\n\nSample Output 1\n\n5\n\nFive cells (1,1), (1,2), (1,4), (2,3), (2,4) are humidified.\n\nSample Input 2\n\n5 6 2\n##...H\nH.....\n..H.#.\n.HH...\n.###..\n\nSample Output 2\n\n21\n\nSample Input 3\n\n1 6 3\n...#..\n\nSample Output 3\n\n0\n\nIt is possible that no cells are humidified.\n\n## Submission\n\nWrite a Python 3 program that reads the input from standard input and prints\nthe answer to standard output.\n<<<END-DATA-b4f55a7f98b145fe>>>\n\nSUBMISSION CONTRACT\nA Python 3.11 program saved at /workspace/solution.py that reads standard input and writes standard output. The public judge runs it on each public case with a time limit and compares its output line by line with the expected output (numbers are compared exactly as decimals).\n\nJUDGED PROGRAM (sha256 ae692217c8609c28e32940371290c662a89fb418b0e9ddcd50755dffa5c19852, 2177 bytes)\n<<<DATA-b4f55a7f98b145fe program>>>\nimport sys\nfrom collections import deque\n\ndef solve():\n    input_data = sys.stdin.read().split()\n    H = int(input_data[0])\n    W = int(input_data[1])\n    D = int(input_data[2])\n    grid = input_data[3:]\n    \n    # Convert grid to list of strings for easier indexing\n    grid = [list(row) for row in grid]\n    \n    # Find all humidifier positions\n    humidifiers = []\n    for i in range(H):\n        for j in range(W):\n            if grid[i][j] == 'H':\n                humidifiers.append((i, j))\n    \n    # If no humidifiers, answer is 0\n    if not humidifiers:\n        print(0)\n        return\n    \n    # BFS from all humidifiers simultaneously\n    # We need to count cells that are within distance D of any humidifier\n    # Note: Humidifier cells themselves are also humidified\n    \n    # Initialize distance array with -1 (unvisited)\n    dist = [[-1] * W for _ in range(H)]\n    \n    # Queue for BFS: (row, col, current_distance)\n    queue = deque()\n    \n    # Add all humidifiers to queue with distance 0\n    for r, c in humidifiers:\n        dist[r][c] = 0\n        queue.append((r, c, 0))\n    \n    # Directions: up, down, left, right\n    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]\n    \n    while queue:\n        r, c, d = queue.popleft()\n        \n        # If we've reached distance D, we don't need to expand further from this path\n        if d == D:\n            continue\n            \n        for dr, dc in directions:\n            nr, nc = r + dr, c + dc\n            \n            # Check bounds\n            if 0 <= nr < H and 0 <= nc < W:\n                # Check if not a wall and not visited\n                if grid[nr][nc] != '#' and dist[nr][nc] == -1:\n                    dist[nr][nc] = d + 1\n                    queue.append((nr, nc, d + 1))\n    \n    # Count humidified cells (floor cells '.' that are reachable)\n    # Note: The problem asks for \"humidified floor cells\", but based on sample,\n    # it seems to count all humidified cells (including H cells)\n    count = 0\n    for i in range(H):\n        for j in range(W):\n            if grid[i][j] != '#' and dist[i][j] != -1:\n                count += 1\n    \n    print(count)\n\nif __name__ == \"__main__\":\n    solve()\n<<<END-DATA-b4f55a7f98b145fe>>>\n\nPUBLIC TEST REPORT shown to the coding model (status pass, 3/3 public cases passed)\n<<<DATA-b4f55a7f98b145fe report>>>\nPUBLIC TESTS: 3/3 passed\n<<<END-DATA-b4f55a7f98b145fe>>>\n\nDETERMINISTIC STATIC ANALYSIS AND PUBLIC TIMINGS (lightweight AST check; may miss issues)\n<<<DATA-b4f55a7f98b145fe static-analysis>>>\n- Structure: 41 code lines (16 comments), max loop depth 2, recursive=none (setrecursionlimit=False).\n- Parsed statement scales: none parsed.\n- Public case timings: 01:AC(0.033s), 02:AC(0.033s), 03:AC(0.033s).\n- Static risk flags: none detected by lightweight AST check.\n<<<END-DATA-b4f55a7f98b145fe>>>\n\nLOCAL STATE: 6 of 20 actions used; 2 of 3 repair groups used; about 553 seconds of local coding time remain. The coding model will continue in the same session with the same files.",
+    "nonce": "b4f55a7f98b145fe",
+    "statement_sha256": "3c9c4fd94c7dd4b06c664d56b680e2bd2c43de3437bf1739130ede85e755ca82",
+    "candidate_sha256": "ae692217c8609c28e32940371290c662a89fb418b0e9ddcd50755dffa5c19852",
+    "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+    "user_message_sha256": "9043902d4f3f995831abaa4178faa17a6fe4a959462b6cfeb437a8e7c842f847",
+    "static_summary_sha256": "1a60bbcced193a08caadf505f8bdb380ee255c1fc07527b1c5230cfa13f35156",
+    "static_risk_flags": [],
+    "verdict": null,
+    "first_case": null,
+    "public_status": "pass",
+    "public_passed": 3,
+    "public_total": 3,
+    "program_clipped": false,
+    "report_clipped": false,
+    "judge_code_sha256": "ae692217c8609c28e32940371290c662a89fb418b0e9ddcd50755dffa5c19852",
+    "judge_tests_sha256": "19a8db8df3d17a2f7bb04e554b099490f9ae6211ab73481f240e7d59cbf705c3",
+    "time_limit_s": 6.0
+  },
+  "response": {
+    "text": "## Verdict\n\nNO-DEFECT. The multi-source BFS correctly counts every floor cell within distance \\(D\\) of a humidifier, including the humidifier cells themselves.\n",
+    "provider": "codex-live",
+    "model": "gpt-6.2-sol",
+    "reasoning_effort": "medium",
+    "usage": {
+      "codex_reported": {
+        "input_tokens": 12830,
+        "cached_input_tokens": 9344,
+        "cache_write_input_tokens": 0,
+        "output_tokens": 86,
+        "reasoning_output_tokens": 45
+      }
+    },
+    "latency_seconds": null,
+    "harness_wall_seconds": 5.11,
+    "cost_usd": null,
+    "isolation": {
+      "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+      "thread_id": "01a21a2a-2724-77e3-9f0b-b2acad1154ed",
+      "started_item_types": [],
+      "completed_item_types": [
+        "agent_message"
+      ],
+      "tool_events": [],
+      "malformed_lines": [],
+      "post_run_workdir_files": [],
+      "events_sha256": "3c70f5255f6d738bb5adca7daf46ef45f11e24c256f13fb9f6083b5dc768bc8a",
+      "input_sha256": "6c08178e1215732b6f8e148109381856febb8a150a6954efe27428ec31d3fd96",
+      "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+    }
+  },
+  "delivered_message": null,
+  "record": {
+    "assigned": true,
+    "controller": "e2-review",
+    "mode": null,
+    "prompt_id": "E2_REVIEW_V1",
+    "provider": "codex-live",
+    "trigger_observed": true,
+    "trigger_kind": "public_pass",
+    "trigger_reason": "qualifying:public_pass",
+    "frontier_requested": true,
+    "frontier_returned": true,
+    "delivered": false,
+    "error": null,
+    "error_category": null,
+    "frontier_wait_seconds": 5.109,
+    "provider_wait_seconds": 5.109,
+    "harness_check_seconds": 0.0,
+    "advisory_seconds": 0.0,
+    "repair_mode_declared": null,
+    "later_public_failures": 0,
+    "feedback_conditioned_replanning": false,
+    "local_actions_after": null,
+    "public_tests_after": null,
+    "candidate_changed_after": null,
+    "public_pass_after": null,
+    "format_errors_after": null,
+    "exact_repeats_after": null,
+    "assistant_messages_after": null,
+    "review_outcome": "no_defect",
+    "review_verdict": "NO-DEFECT",
+    "counterexamples": [],
+    "trigger_action": 6,
+    "trigger_utc": "2026-11-26T23:21:39Z",
+    "local_seconds_left_at_trigger": 553.67,
+    "actions_left_at_trigger": 14,
+    "repairs_used_at_trigger": 2,
+    "packet": {
+      "kind": "review",
+      "trigger_kind": "public_pass",
+      "prompt_id": "E2_REVIEW_V1",
+      "task_id": "lcb-atcoder-abc383_c",
+      "nonce": "b4f55a7f98b145fe",
+      "statement_sha256": "3c9c4fd94c7dd4b06c664d56b680e2bd2c43de3437bf1739130ede85e755ca82",
+      "candidate_sha256": "ae692217c8609c28e32940371290c662a89fb418b0e9ddcd50755dffa5c19852",
+      "report_sha256": "9cf2afb63a2d821acde9a1d477bbf5346e0f9c5410040ab3fe4813918f3475e9",
+      "user_message_sha256": "9043902d4f3f995831abaa4178faa17a6fe4a959462b6cfeb437a8e7c842f847",
+      "static_summary_sha256": "1a60bbcced193a08caadf505f8bdb380ee255c1fc07527b1c5230cfa13f35156",
+      "static_risk_flags": [],
+      "verdict": null,
+      "first_case": null,
+      "public_status": "pass",
+      "public_passed": 3,
+      "public_total": 3,
+      "program_clipped": false,
+      "report_clipped": false,
+      "judge_code_sha256": "ae692217c8609c28e32940371290c662a89fb418b0e9ddcd50755dffa5c19852",
+      "judge_tests_sha256": "19a8db8df3d17a2f7bb04e554b099490f9ae6211ab73481f240e7d59cbf705c3",
+      "time_limit_s": 6.0
+    },
+    "requested_utc": "2026-11-26T23:21:39Z",
+    "validation_problems": [],
+    "response": {
+      "provider": "codex-live",
+      "model": "gpt-6.2-sol",
+      "reasoning_effort": "medium",
+      "usage": {
+        "codex_reported": {
+          "input_tokens": 12830,
+          "cached_input_tokens": 9344,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 86,
+          "reasoning_output_tokens": 45
+        }
+      },
+      "latency_seconds": null,
+      "harness_wall_seconds": 5.11,
+      "cost_usd": null,
+      "isolation": {
+        "mechanism": "hardened isolated codex exec (empty tmpdir, read-only, tool flags disabled, credentials stripped, full event-lifecycle audit including item.started)",
+        "thread_id": "01a21a2a-2724-77e3-9f0b-b2acad1154ed",
+        "started_item_types": [],
+        "completed_item_types": [
+          "agent_message"
+        ],
+        "tool_events": [],
+        "malformed_lines": [],
+        "post_run_workdir_files": [],
+        "events_sha256": "3c70f5255f6d738bb5adca7daf46ef45f11e24c256f13fb9f6083b5dc768bc8a",
+        "input_sha256": "6c08178e1215732b6f8e148109381856febb8a150a6954efe27428ec31d3fd96",
+        "wrapper_sha256": "e0f5b15222856264000969764f8ab934b8de862ce92cd1514cdc330cbb5ffe5d"
+      }
+    },
+    "response_sha256": "6fe1684042c8cce71e66c3bb84750a17bcebd15907100300eeca4d7574529c95"
+  }
+}
