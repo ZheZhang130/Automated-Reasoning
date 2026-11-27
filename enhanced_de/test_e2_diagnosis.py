@@ -586,7 +586,7 @@ class StallTrigger(unittest.TestCase):
             self.assertEqual(ctl.post_public_advisory(SRC_GOOD, 'h', 'pass'), '')
 
     def test_stall_diag_invalid_formats(self):
-        bad = {'code': STALL_TEXT + '```text\nx\n```\n', 'long': STALL_TEXT + ' '.join(['w'] * 200),
+        bad = {'code': STALL_TEXT + '```text\nx\n```\n', 'long': STALL_TEXT + ' '.join(['w'] * e2.STALL_MAX_WORDS),
                'heading': STALL_TEXT.replace('## Key observation', '## Insight')}
         with tempfile.TemporaryDirectory() as tmp:
             for name, text in bad.items():
@@ -678,6 +678,70 @@ class StallTrigger(unittest.TestCase):
             self.assertFalse(arm_strict(ctl, env))
             self.assertEqual(ctl.record['trigger_kind'], 'stall_truncation')
             self.assertEqual(ctl.record['later_public_failures'], 1)
+
+
+STALL_TEXT_V2 = ('## Where reasoning stalled\nIt kept re-deriving the sign handling for negative numbers.\n'
+                 '## Key observation\nPython integers are unbounded and signed, so no special casing is needed.\n'
+                 '## Concrete next approach\n1. Read the two integers from one line.\n2. Print their sum. O(1).\n'
+                 '## Implementation discipline\nImplement the steps directly; write /workspace/solution.py with a '
+                 'command that only writes the file, then run python -I /public/check.py as a separate command.\n')
+
+
+class StallProtocolV2(unittest.TestCase):
+    def make(self, tmp, provider=None, mode='stall-diag', **kw):
+        return e2.E2StallController(provider if provider is not None else fixed(STALL_TEXT_V2), STATEMENT, 't',
+                                    Path(tmp) / 'd', mode=mode, sandbox_runner=FakeSandbox(), protocol='v2', **kw)
+
+    def test_unknown_protocol_rejected_and_v1_default_unchanged(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(ValueError):
+                e2.E2StallController(fixed(STALL_TEXT), STATEMENT, 't', Path(tmp) / 'x', protocol='v9')
+            v1 = e2.E2StallController(fixed(STALL_TEXT), STATEMENT, 't', Path(tmp) / 'y')
+            self.assertEqual(v1.protocol, 'v1')
+            self.assertFalse(v1.reset_format_errors_on_delivery)
+
+    def test_v2_prompt_validator_and_delivery_tail(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            provider = fixed(STALL_TEXT_V2)
+            ctl, env = self.make(tmp, provider), FakeEnv()
+            agent = FakeAgent(env)
+            stall_error(ctl, env)
+            self.assertEqual(ctl.pending['prompt_id'], 'E2_STALL_V2')
+            self.assertIsNotNone(ctl.deliver(agent))
+            msg = agent.messages[-1]['content']
+            self.assertTrue(msg.startswith('[Frontier recovery guidance]'))
+            self.assertTrue(msg.rstrip().endswith('(never in the same command as the file write).'))
+            self.assertNotIn('in a single command, then run', msg)
+            self.assertTrue(ctl.reset_format_errors_on_delivery)
+            self.assertEqual(ctl.record['stall_protocol'], 'v2')
+            # the controller itself never touches the agent counter; the runner hook resets it after delivery
+            self.assertEqual(agent.n_consecutive_format_errors, 2)
+
+    def test_v2_rejects_unnumbered_approach_and_v1_text(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ctl, env = self.make(tmp, fixed(STALL_TEXT)), FakeEnv()
+            agent = FakeAgent(env)
+            stall_error(ctl, env)
+            self.assertIsNone(ctl.deliver(agent))
+            self.assertIn('approach has no numbered steps', ctl.record['validation_problems'])
+            problems, _ = e2.validate_stall_v2(STALL_TEXT_V2 + ' '.join(['w'] * e2.STALL_V2_MAX_WORDS))
+            self.assertTrue(any(p.startswith('too long') for p in problems))
+            self.assertEqual(e2.validate_stall_v2(STALL_TEXT_V2)[0], [])
+
+    def test_v2_controls_share_the_tail_and_differ_only_in_body(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            msgs = {}
+            for mode in ('neutral', 'c-late'):
+                kw = {'plan_path': plan_artifact(tmp, name=f'{mode}.json')} if mode == 'c-late' else {}
+                ctl, env = self.make(Path(tmp) / mode, fixed(None), mode=mode, **kw), FakeEnv()
+                agent = FakeAgent(env)
+                stall_error(ctl, env)
+                ctl.deliver(agent)
+                msgs[mode] = agent.messages[-1]['content']
+            for mode, msg in msgs.items():
+                self.assertTrue(msg.rstrip().endswith('(never in the same command as the file write).'), mode)
+            self.assertIn(e2.NEUTRAL_NUDGE_V2, msgs['neutral'])
+            self.assertIn('## Solution sketch', msgs['c-late'])
 
 
 # ============================================================================= review

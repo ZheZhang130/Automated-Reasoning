@@ -11,6 +11,7 @@ Safety invariants:
    non-empty post-run workdir).
 """
 import json
+import math
 import os
 import shutil
 import subprocess
@@ -56,7 +57,8 @@ def verify_ledger(ledger_path):
     max_usd = data.get('max_usd')
     if not isinstance(max_req, int) or max_req <= 0 or max_req > HARD_MAX_REQUESTS:
         raise RuntimeError(f'Refusing paid API call: ledger max_requests={max_req!r} exceeds hard v2 cap {HARD_MAX_REQUESTS}')
-    if not isinstance(max_usd, (int, float)) or max_usd <= 0 or max_usd > HARD_MAX_USD:
+    if (not isinstance(max_usd, (int, float)) or isinstance(max_usd, bool) or not math.isfinite(max_usd)
+            or max_usd <= 0 or max_usd > HARD_MAX_USD):
         raise RuntimeError(f'Refusing paid API call: ledger max_usd={max_usd!r} exceeds hard v2 cap {HARD_MAX_USD}')
     used = len(data.get('requests') or [])
     return {'path': str(path), 'max_requests': max_req, 'max_usd': max_usd, 'requests_used': used}

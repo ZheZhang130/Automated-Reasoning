@@ -89,13 +89,13 @@ def make_spec(
 
 
 def build_phase1c_specs(study, *, arms=('E2-stall-neutral', 'E2-stall-clate', 'E2-stall-diag'),
-                        provider='codex', limit=None):
-    """Phase 1C: E2-Stall dev cohort (12 stratified truncation pairs)."""
+                        provider='codex', limit=None, protocol='v1'):
+    """Phase 1C: E2-Stall dev cohort (12 stratified truncation pairs).  protocol v2 -> separate batch."""
     cohorts = read_json(DEV_COHORTS)
     pairs = cohorts['phase1c_e2_stall_truncation_pairs']
     if limit:
         pairs = pairs[:limit]
-    batch_name = f'phase1c-e2-stall-{provider}'
+    batch_name = f'phase1c-e2-stall-{provider}' if protocol == 'v1' else f'phase1c-{protocol}-e2-stall-{provider}'
     batch_dir = Path(study) / 'runs' / batch_name
     specs = []
     for arm in arms:
@@ -124,6 +124,7 @@ def build_phase1c_specs(study, *, arms=('E2-stall-neutral', 'E2-stall-clate', 'E
                 prov_lbl = f'{provider}-replay' if provider == 'codex' else 'openai-api'
             else:
                 raise ValueError(f'Unknown Phase 1C arm: {arm}')
+            e2['protocol'] = protocol
             specs.append(make_spec(
                 batch_dir=batch_dir, study=study, cohort='dev-phase1c-stall',
                 batch_name=batch_name, task_id=tid, seed=seed, arm=arm, condition='E2',
@@ -205,6 +206,7 @@ def build_phase2_specs(
     provider='codex',
     seed=2108,
     tasks_filter=None,
+    stall_protocol='v2',
 ):
     """Phase 2: Outcome-blind test5_val16 validation cohort (16 tasks x seed 2108)."""
     manifest = read_json(TEST5_MANIFEST)
@@ -252,7 +254,8 @@ def build_phase2_specs(
                 specs.append(make_spec(
                     batch_dir=batch_dir, study=study, cohort='val-test5-16',
                     batch_name=batch_name, task_id=tid, seed=seed, arm=arm, condition='E2',
-                    e2={'kind': 'stall', 'mode': 'neutral', 'provider_spec': {'provider': 'fixed', 'text': ''}},
+                    e2={'kind': 'stall', 'mode': 'neutral', 'protocol': stall_protocol,
+                        'provider_spec': {'provider': 'fixed', 'text': ''}},
                     provider_label='local-only',
                 ))
             elif arm == 'E2-stall-diag':
@@ -262,6 +265,7 @@ def build_phase2_specs(
                     e2={
                         'kind': 'stall',
                         'mode': 'stall-diag',
+                        'protocol': stall_protocol,
                         'enable_public_fallback': False,
                         'provider_spec': _provider_spec(provider, study),
                     },
@@ -274,6 +278,7 @@ def build_phase2_specs(
                     e2={
                         'kind': 'stall',
                         'mode': 'stall-diag',
+                        'protocol': stall_protocol,
                         'enable_public_fallback': True,
                         'provider_spec': _provider_spec(provider, study),
                     },
@@ -397,6 +402,7 @@ def main():
     p1c.add_argument('--provider', default='codex', choices=['codex', 'api'])
     p1c.add_argument('--limit', type=int, default=None)
     p1c.add_argument('--skip-eval', action='store_true')
+    p1c.add_argument('--protocol', default='v1', choices=['v1', 'v2'])
 
     p1a = sub.add_parser('phase1a')
     p1a.add_argument('--arms', default='D2-inputs-stress,D2-oracle,E2-review')
@@ -434,7 +440,8 @@ def main():
     compare_fm = False
     if args.cmd == 'phase1c':
         arms = [a.strip() for a in args.arms.split(',') if a.strip()]
-        batch_dir, specs = build_phase1c_specs(study, arms=arms, provider=args.provider, limit=args.limit)
+        batch_dir, specs = build_phase1c_specs(study, arms=arms, provider=args.provider, limit=args.limit,
+                                               protocol=args.protocol)
         compare_fm = True
     elif args.cmd == 'phase1a':
         arms = [a.strip() for a in args.arms.split(',') if a.strip()]

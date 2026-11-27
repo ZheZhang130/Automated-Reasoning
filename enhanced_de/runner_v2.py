@@ -111,7 +111,14 @@ def make_enhanced_classes(
         def query(self):
             if e2_controller is not None and e2_controller.pending is not None:
                 # Deliver format-error / stall diagnosis right after stock loop appended rejection
+                was_delivered = bool(e2_controller.record.get('delivered'))
                 e2_controller.deliver(self)
+                if (getattr(e2_controller, 'reset_format_errors_on_delivery', False)
+                        and not was_delivered and e2_controller.record.get('delivered')):
+                    # Stall protocol v2 only: the delivered message is a fresh instruction, so the consecutive
+                    # format-error streak restarts (stock limit of 3 unchanged).  v1 and all other arms: untouched.
+                    e2_controller.record['format_error_streak_at_delivery'] = self.n_consecutive_format_errors
+                    self.n_consecutive_format_errors = 0
             return super().query()
 
         def execute_actions(self, message):
@@ -275,6 +282,7 @@ def _build_controllers(spec, study, out, statement, task_id):
                 plan_path=e2_spec.get('plan_path'),
                 enable_public_fallback=e2_spec.get('enable_public_fallback', False),
                 max_wait_seconds=max_wait,
+                protocol=e2_spec.get('protocol', 'v1'),
             )
         elif kind == 'review':
             e2_ctrl = e2_diagnosis.E2ReviewController(
